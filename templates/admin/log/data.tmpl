@@ -1,0 +1,12 @@
+        <tr class="<:auditentry level_name:>">
+          <!--<td><a href="<:adminurl log a_detail 1 id [auditentry id]:>"><:auditentry id:></a></td>-->
+          <td><:date "%d-%b-%Y / %r" auditentry when_at:></td>
+          <td><:auditentry level_name:></td>
+          <!--<td><:ifAuditentry actor_link:><a href="<:auditentry actor_link:>"><:auditentry actor_name:></a><:or:><:auditentry actor_name:><:eif:></td>
+          <td><:auditentry component:>/<:auditentry module:>/<:auditentry function:></td>
+          <td><:ifAuditentry object_link:><a href="<:auditentry object_link:>"><:auditentry object_name:></a><:or:><:auditentry object_name:><:eif:></td>-->
+          <td><:auditentry msg:></td>
+          <td class="actions">
+            <a href="<:adminurl log a_detail 1 id [auditentry id] referer 1:>" class="button gray small">Details</a>
+          </td>
+        </tr>

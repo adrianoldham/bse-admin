@@ -1,0 +1,37 @@
+<:wrap admin/base.tmpl title=>"New User Group" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Group</legend> 
+      <div>
+        <label for="name">Name <:error_img name:></label>
+        <span> 
+          <input type="text" name="name" id="name" value="<:old name:>" />
+          <:help editsiteuser name:>
+        </span>
+      </div>
+    </fieldset>
+    <!--<:if Siteusers:>
+    <fieldset>
+    <legend>Members</legend>
+      <ul>
+        <:iterator begin siteusers:>
+        <li>
+          <input type="hidden" name="set_is_member" value="<:siteuser id:>" />
+          <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
+          <label for="userid_<:siteuser id:>"><a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a><:ifOr [siteuser name1] [siteuser name2]:> (<:siteuser name1:> <:siteuser name2:>)<:or:><:eif:></label>
+        </li>
+        <:iterator end siteusers:> 
+      </ul>  
+    </fieldset>
+    <:or Siteusers:><:eif Siteusers:>-->
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_grouplist=1<:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <:if UserCan bse_members_group_add:>
+      <input type="submit" name="a_addgroup" value="Create Group" accesskey="c" title="AccessKey = c" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<:wrap admin/base.tmpl title=>"Edit User Group Members" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <p class="buttons">
+    <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button gray small">Group</a>
+    <:ifUserCan bse_siteuser_group_del:>
+    <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" onclick="return window.confirm('Are you sure you want to delete this Group?');" class="button red small">Delete</a><:or:>
+    <span class="disabled">Delete</span><:eif:>
+  </p>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="id" value="<:group id:>" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Group</legend> 
+      <div>
+        <label for="name">Name <:error_img name:></label>
+        <span> 
+          <input type="text" name="name" id="name" value="<:old name group name:>" readonly="readonly" />
+          <:help editsiteuser name:>
+        </span>
+      </div>
+    </fieldset>
+    <:if Siteusers:>
+    <fieldset>
+    <legend>Members</legend>
+      <ul>
+        <:iterator begin siteusers:>
+        <li>
+          <input type="hidden" name="set_is_member" value="<:siteuser id:>" />
+          <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
+          <label for="userid_<:siteuser id:>"><a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a><:ifOr [siteuser name1] [siteuser name2]:> (<:siteuser name1:> <:siteuser name2:>)<:or:><:eif:></label>
+        </li>
+        <:iterator end siteusers:> 
+      </ul>  
+    </fieldset>
+    <:or Siteusers:><:eif Siteusers:>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <:if UserCan bse_members_group_edit:>
+      <input type="submit" name="a_savegroupmembers" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+  </form>
+</div>

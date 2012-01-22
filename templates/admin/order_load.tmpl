@@ -1,0 +1,22 @@
+<:wrap admin/base.tmpl title=>"Load Order" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:adminurl shopadmin:>" method="post">
+    <input type="hidden" name="order_detail" value="1" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Order</legend>
+      <div>
+        <label for="id">Order No.</label>
+        <span>
+          <input type="text" name="id" id="id" value="<:old id:>" />
+          <:help order id:>
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:adminurl shopadmin order_list 1:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <input type="submit" value="Load" accesskey="l" title="AccessKey = l" class="button blue" />
+    </p>
+  </form>
+</div>

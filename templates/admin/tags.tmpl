@@ -1,0 +1,70 @@
+<:wrap admin/base.tmpl title => "Manage Tags" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <p class="buttons">
+    <a href="<:script:>?a_tags=1&amp;id=-1<:ifCgi showarts:><:or:>&amp;showarts=1<:eif:>&amp;cat=<:cgi cat:>&amp;p=<:systags_pagenum:>&amp;pp=<:systags_perpage:><:ifCgi nocat:>&amp;nocat=1<:or:><:eif:>" class="button gray small"><:ifCgi showarts:>Hide<:or:>Show<:eif:> articles</a>
+    <a href="<:script:>?a_tagcleanup=1&amp;id=-1" class="button red small">Delete unused</a>
+  </p>
+  <form action="<:script:>">
+    <fieldset>
+      <legend>Filter tags</legend>
+      <input type="hidden" name="id" value="-1" />
+      <:ifCgi showarts:>
+      <input type="hidden" name="showarts" value="1" />
+      <:or:><:eif:>
+      <div>
+        <label for="cat">Filter category</label>
+        <span>
+          <input type="text" name="cat" id="cat" value="<:cgi cat:>" />
+        </span>
+      </div>
+      <ul>
+        <li>
+          <input type="checkbox" name="nocat" id="nocat" <:ifCgi nocat:>checked="checked" <:or:><:eif:>/>
+          <label for="nocat">Uncategorized only</label>
+        </li>
+      </ul>
+      <p class="buttons">
+        <input type="submit" name="a_tags" value="Update filter" accesskey="u" title="AccessKey = u" class="button blue" />
+      </p>
+    </fieldset>
+  </form>
+  <:iterator begin systags:>
+  <form action="<:script:>#tag_<:systag id:>" method="post">
+    <fieldset>
+      <div id="tag_<:systag id:>">
+        <label for="tag_<:systag_number:>">Tag #<:systag_number:> <:ifEq [cgi tag_id] [systag id]:><:error_img name:><:or:><:eif:></label>
+        <span>
+          <input type="hidden" name="id" value="-1" />
+          <input type="hidden" name="tag_id" value="<:systag id:>" />
+          <input type="text" name="name" id="tag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" />
+          <input type="submit" name="a_tagrename" value="Save" class="button green small" />
+          <input type="submit" name="a_tagdelete" value="Delete" onclick="return window.confirm('Are you sure you want to delete this Tag?');" class="button red small" />
+        </span>
+      </div>
+      <:if Cgi showarts:>
+      <:if Systagarts:>
+      <ul class="children">
+        <:iterator begin systagarts:>
+        <li><a href="<:script:>?id=<:systagart id:>"><:systagart title:></a></li>
+        <:iterator end systagarts:>
+      </ul>
+      <:or Systagarts:>
+      <p>No articles use this tag.</p>
+      <:eif Systagarts:>
+      <:or Cgi:><:eif Cgi:>
+    </fieldset>
+  </form>
+  <:iterator end systags:>  
+  <p class="pagination">Page <:systags_pagenum:> of <:systags_pagecount:>
+    <:ifFirstSystagsPage:><span class="disabled">|&lt;&lt;</span><:or:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=1&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">|&lt;&lt;</a> <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:prevSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&lt;&lt;</a><:eif:>
+    <:iterator begin systags_pagec:>
+    <:switch:>
+    <:case systag_pagec gap:>...
+    <:case systag_pagec link:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systag_pagec page:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>"><:systag_pagec page:></a>
+    <:case default:><span class="disabled"><:systag_pagec page:></span>
+    <:endswitch:>
+    <:iterator end systags_pagec:>
+    <:ifLastSystagsPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:nextSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;&gt;</a> <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;&gt;|</a><:eif:>
+  </p>
+</div>

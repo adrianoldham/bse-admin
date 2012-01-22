@@ -1,0 +1,31 @@
+<:wrap admin/base.tmpl title=>"Load Article" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:adminurl add:>" method="post">
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Article</legend>
+      <div>
+        <label for="id">ID</label>
+        <span>
+          <input type="text" name="id" id="id" value="<:old id:>" />
+          <:help menu id:>
+        </span>
+      </div>
+      <div>
+        <label for="preview">Mode</label>
+        <span>
+          <select name="preview" id="preview">
+            <option value="0"<:ifEq [old [cgi preview]] "0":> selected="selected"<:or:><:eif:>>Edit</option>
+            <option value="1"<:ifEq [old [cgi preview]] "1":> selected="selected"<:or:><:eif:>>Preview</option>
+          </select>
+          <:help menu preview:>
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:adminurl menu:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <input type="submit" value="Load" accesskey="l" title="AccessKey = l" class="button blue" />
+    </p>
+  </form>
+</div>

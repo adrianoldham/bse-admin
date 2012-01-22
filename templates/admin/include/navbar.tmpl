@@ -1,0 +1,89 @@
+<nav id="menu" class="menu">
+  <ul id="nav"><:if FormLogon:>
+    <li class="current"><a href="#"><:adminuser logon:></a>
+      <ul>
+        <li><a href="<:adminurl logon a_logoff 1:>">Log out</a></li>
+        <li><a href="<:adminurl changepw referer 1:>">Change password</a></li>
+      </ul>
+    </li><:or FormLogon:><:eif FormLogon:>
+    <li><a href="#">Content</a>
+      <ul>
+        <li><a href="#">Articles</a>
+           <ul>
+             <li><a href="<:adminurl add id -1:>">Manage articles</a></li>
+             <li><a href="<:adminurl add parentid -1 level 1 referer 1:>">New article</a></li>
+             <li><a href="<:adminurl add _t load referer 1:>">Load article</a></li>
+           </ul>
+        </li>
+        <li><a href="#">Images</a>
+          <ul>
+            <li><a href="<:adminurl add id -1 _t img:>">Manage images</a></li>
+            <li><a href="<:adminurl add id -1 _t imgupload referer 1:>">New image</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Files</a>
+          <ul>
+            <li><a href="<:adminurl add id -1 _t file:>">Manage files</a></li>
+            <li><a href="<:adminurl add id -1 _t fileupload referer 1:>">New file</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Tags</a>
+          <ul>
+            <li><a href="<:adminurl add id -1 a_tags 1:>">Manage tags</a></li>
+          </ul>
+        </li>
+        <li><a href="<:adminurl add id 1 preview 1:>">Preview</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Users</a>
+      <ul>
+        <li><a href="#">Site users</a>
+          <ul>
+            <li><a href="<:adminurl siteusers:>">Manage users</a></li>
+            <li><a href="<:adminurl siteusers a_addform 1 referer 1:>">New user</a></li>
+            <li><a href="<:adminurl siteusers a_grouplist 1:>">Manage groups</a></li>
+            <li><a href="<:adminurl siteusers a_addgroupform 1:>">New group</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Admin users</a>
+          <ul>
+            <li><a href="<:adminurl adminusers:>">Manage users</a></li>
+            <li><a href="<:adminurl adminusers a_adduserform 1 referer 1:>">New user</a></li>
+            <li><a href="<:adminurl adminusers a_groups 1:>">Manage groups</a></li>
+            <li><a href="<:adminurl adminusers a_addgroupform 1 referer 1:>">New group</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#">Shop</a>
+      <ul>
+        <li><a href="<:adminurl shopadmin:>">Manage catalogs</a></li>
+        <li><a href="<:adminurl add parentid 3 type Catalog referer 1:>">New catalog</a></li>
+        <li><a href="<:adminurl add parentid 3 type Product referer 1:>">New product</a></li>
+        <li><a href="#">Orders</a>
+          <ul>
+            <li><a href="<:adminurl shopadmin order_list 1:>">Manage orders</a></li>
+            <li><a href="<:adminurl shopadmin order_list 1 template order_load referer 1:>">Load order</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#">System</a>
+      <ul>
+        <li><a href="#"><:release:></a></li>
+        <li><a href="#">Regenerate</a>
+          <ul>
+            <li><a href="<:adminurl generate progress 1:>">All</a></li>
+            <li><a href="<:adminurl generate id extras progress 1:>">Extras</a></li>
+          </ul>
+        </li>
+        <li><a href="<:adminurl backmon:>">Background processing</a>
+        <li><a href="<:adminurl messages:>">Manage system messages</a></li>
+        <li><a href="<:adminurl modules:>">Check module versions</a></li>
+        <li><a href="<:adminurl log:>">System activity log</a></li>
+        <li><a href="<:adminurl pregen:>">Preview pregenerated pages</a></li>
+        <li><a href="<:adminurl report:>">System reports</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>

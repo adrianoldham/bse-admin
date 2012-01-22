@@ -1,0 +1,62 @@
+<:wrap admin/base.tmpl title=>"Edit User Group" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <p class="buttons">
+    <a href="<:script:>?a_groupmemberform=1&amp;id=<:group id:>" class="button gray small">Members</a><!--<:if Groupfiles:>
+    <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>&amp;_t=files" class="button gray small">Files</a><:or Groupfiles:><:eif Groupfiles:>-->
+    <a href="<:script:>?a_addgroupfileform=1&amp;id=<:group id:>" class="button blue small">Add File</a><:if UserCan bse_siteuser_group_del:>
+    <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" onclick="return window.confirm('Are you sure you want to delete this Group?');" class="button red small">Delete</a><:or UserCan:>
+    <span class="disabled">Delete</span><:eif UserCan:>
+  </p>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="id" value="<:group id:>" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Group</legend> 
+      <div>
+        <label for="name">Name <:error_img name:></label>
+        <span> 
+          <input type="text" name="name" id="name" value="<:old name group name:>" />
+          <:help editsiteuser name:>
+        </span>
+      </div>
+    </fieldset>
+    <!--<:if Siteusers:>
+    <fieldset>
+    <legend>Members</legend>
+      <ul>
+        <:iterator begin siteusers:>
+        <li>
+          <input type="hidden" name="set_is_member" value="<:siteuser id:>" />
+          <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
+          <label for="userid_<:siteuser id:>"><a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a><:ifOr [siteuser name1] [siteuser name2]:> (<:siteuser name1:> <:siteuser name2:>)<:or:><:eif:></label>
+        </li>
+        <:iterator end siteusers:> 
+      </ul>  
+    </fieldset>
+    <:or Siteusers:><:eif Siteusers:>-->
+    <:if Groupfiles:>
+    <fieldset>
+      <legend>Files</legend>
+      <ul class="children groupfiles">
+        <:iterator begin groupfiles:>
+        <li>
+          <a href="<:target user downufile id [groupfile id]:>" title="<:groupfile title:>"><span class="listed <:switch:><:case default:>green<:endswitch:>"></span> <:groupfile display_name:></a>
+          <span>
+            <a href="<:script:>?a_editgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>" class="button gray small">Edit</a>
+            <:ifUserCan bse_members_group_del_file:>
+            <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a><:or:><span class="button gray small">Delete</span><:eif:>
+          </span>
+        </li>
+        <:iterator separator groupfiles:><:iterator end groupfiles:>
+      </ul>
+    </fieldset>
+    <:or Groupfiles:><:eif Groupfiles:>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_grouplist=1<:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <:if UserCan bse_members_group_save:>
+      <input type="submit" name="a_savegroup" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+  </form>
+</div>

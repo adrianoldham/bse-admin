@@ -1,0 +1,68 @@
+<:wrap admin/base.tmpl title=>"New Option", js=>"admin_prodopts.js" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:script:>" method="post">
+    <:csrfp admin_add_option hidden:>
+    <input type="hidden" name="_t" value="prodopts" />
+    <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="r" value="<:script:>?id=<:article id:>" />    
+    <fieldset>
+      <legend>Option</legend>
+      <div>
+        <label>Name <:error_img name:></label>
+        <span>
+          <input type="text" name="name" value="<:old name:>" />
+        </span>
+      </div>
+      <div>
+        <label for="enabled">Enabled <:error_img Enabled:></label>
+        <span>
+          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOld enabled option enabled:>checked="checked" <:or:><:eif:>/>
+          <:help edit Enabled:>
+        </span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Values</legend>
+      <div>
+        <label for="value1">#1 <:error_img value1:> <input type="radio" name="default_value" value="value1" <:ifEq [old default_value] "value1":>checked="checked"<:or:><:eif:> /></label>
+        <span>
+          <input type="text" name="value1" id="value1" value="<:old value1:>" />
+        </span>
+      </div>
+      <div>
+        <label for="value2">#2 <:error_img value2:> <input type="radio" name="default_value" value="value2" <:ifEq [old default_value] "value2":>checked="checked"<:or:><:eif:> /></label>
+        <span>
+          <input type="text" name="value2" id="value2" value="<:old value2:>" />
+        </span>
+      </div>
+      <div>
+        <label for="value3">#3 <:error_img value3:> <input type="radio" name="default_value" value="value3" <:ifEq [old default_value] "value3":>checked="checked"<:or:><:eif:> /></label>
+        <span>
+          <input type="text" name="value3" id="value3" value="<:old value3:>" />
+        </span>
+      </div>
+      <div>
+        <label for="value4">#4 <:error_img value4:> <input type="radio" name="default_value" value="value4" <:ifEq [old default_value] "value4":>checked="checked"<:or:><:eif:> /></label>
+        <span>
+          <input type="text" name="value4" id="value4" value="<:old value4:>" />
+        </span>
+      </div>
+      <div>
+        <label for="value5">#5 <:error_img value5:> <input type="radio" name="default_value" value="value5" <:ifEq [old default_value] "value5":>checked="checked"<:or:><:eif:> /></label>
+        <span>
+          <input type="text" name="value5" id="value5" value="<:old value5:>" />
+        </span>
+      </div>
+      <p class="buttons">
+        <button onclick="javascript: var parent = $(this).up('p'); var ele = $(this).up('p').previous('div'); parent.insert({before: ele.clone(true)}); return false;" class="button blue small">Add Value</button>
+      </p>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <:if UserCan bse_edit_prodopt_add:article:>
+      <input type="submit" name="a_add_option" value="Create Option" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+  </form>
+</div>

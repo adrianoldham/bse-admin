@@ -1,0 +1,118 @@
+<:wrap admin/base.tmpl title=>"Edit File" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <p class="buttons">
+    <:ifUserCan bse_edit_files_delete:article:>
+    <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:efile id:>&amp;_csrfp=<:csrfp admin_remove_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a><:or:><span class="button gray small">Delete</span><:eif:>
+  </p>
+  <form action="<:script:>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="file_id" value="<:efile id:>" />
+    <input type="hidden" name="save_file_flags" value="1" />
+    <:csrfp admin_save_file hidden:>
+    <input name="r" type="hidden" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Resource</legend> 
+       <div>
+        <label for="file">Change file <:error_img file:></label>
+        <span> 
+          <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" />
+          <:help file file:>
+        </span>
+      </div>
+      <div>
+        <label for="name">Name <:error_img name:></label>
+        <span> 
+          <input type="text" name="name" id="name" value="<:old name efile name:>" />
+          <:help file name:>
+        </span>
+      </div>
+     <div>
+        <label>Original</label>
+        <span>
+          <a href="<:target user download_file file [efile id]:>"><!--<span class="listed <:switch:><:case Efile hide_from_list:>gray<:case FileExists:>green<:case default:>orange<:endswitch:>"></span>--> <:efile displayName:></a>
+        </span>
+      </div>
+        <div>
+          <label>Size</label>
+          <span>
+            <:arithmetic d1:([efile sizeInBytes] / 1024):>kB
+          </span>
+        </div>
+    </fieldset>
+    <fieldset>
+      <legend>Content</legend> 
+      <div>
+        <label for="description">Description <:error_img description:></label>
+        <span> 
+          <input type="text" name="description" id="description" value="<:old description efile description:>" />
+          <:help file description:>
+        </span>
+      </div>
+      <div>
+        <label for="notes">Notes <:error_img notes:></label>
+        <span> 
+          <textarea name="notes" id="notes" ><:old notes efile notes:></textarea>
+          <:help file notes:>
+        </span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Properties</legend>
+      <div>
+        <label for="contentType">Content type <:error_img contentType:></label>
+        <span> 
+          <input type="text" name="contentType" id="contentType" value="<:old contentType efile contentType:>" placeholder="MIME format" /> 
+          <:help file contentType:>
+        </span>
+      </div>
+      <div>
+        <label for="download">Force download <:error_img download:></label>
+        <span> 
+          <input type="checkbox" name="download" id="download" value="1" <:ifOldChecked download:>checked="checked" <:or:><:eif:>/>
+          <:help file download:>
+        </span>
+      </div>
+      <div>
+        <label for="hide_from_list">Hide from list <:error_img hide_from_list:></label>
+        <span> 
+          <input type="checkbox" name="hide_from_list" id="hide_from_list" value="1" <:ifOldChecked hide_from_list:>checked="checked" <:or:><:eif:>/>
+          <:help file hide_from_list:>
+        </span>
+      </div>
+      <:if Match [article generator] "Product":>
+      <div>
+        <label for="forSale">Require payment <:error_img forSale:></label>
+        <span> 
+          <input type="checkbox" name="forSale" id="forSale" value="1" <:ifOldChecked forSale:>checked="checked" <:or:><:eif:>/>
+          <:help file forSale:>
+        </span>
+      </div>
+      <:or Match:><:eif Match:>
+      <div>
+        <label for="requireUser">Require login <:error_img requireUser:></label>
+        <span> 
+          <input type="checkbox" name="requireUser" id="requireUser" value="1" <:ifOldChecked requireUser:>checked="checked" <:or:><:eif:>/>
+          <:help file requireUser:>
+        </span>
+      </div>
+      <div>
+        <label for="storage">Storage <:error_img storage:></label>
+        <span> 
+          <select name="storage" id="storage">
+            <option value="">(Auto)</option><:iterator begin file_stores:>
+            <option value="<:file_store name:>" <:ifEq [efile storage] [file_store name]:>selected="selected"<:or:><:eif:>><:file_store description:></option>
+            <:iterator end file_stores:>
+          </select>
+          <:help file storage:>
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <:if UserCan bse_edit_files_save:article:>
+      <input type="submit" name="a_save_file" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+  </form>
+</div>

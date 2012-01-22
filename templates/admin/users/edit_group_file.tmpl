@@ -1,0 +1,99 @@
+<:wrap admin/base.tmpl title=>"Edit User Group File" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <p class="buttons">
+    <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a>
+  </p>
+  <form action="<:script:>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<:group id:>" />
+    <input type="hidden" name="file_id" value="<:groupfile id:>" />
+    <:csrfp admin_group_edit_file hidden:>
+    <input name="r" type="hidden" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" />
+    <fieldset>
+      <legend>Resource</legend> 
+      <div>
+        <label for="file">Change file <:error_img file:></label>
+        <span> 
+          <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" />
+          <:help editgroup file:>
+        </span>
+      </div>
+      <div>
+        <label for="category">Category <:error_img userfile_category:></label>
+        <span> 
+          <:replace [userfile_category] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":>
+          <:help editgroup userfile_category:>
+        </span>
+      </div>
+      <div>
+        <label>Original</label>
+        <span>
+          <:groupfile display_name:>
+        </span>
+      </div>
+      <div>
+        <label>Size</label>
+        <span>
+          <:arithmetic d1:([groupfile size_in_bytes] / 1024):>kB
+        </span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Content</legend> 
+       <div>
+        <label for="title">Description <:error_img title:></label>
+        <span> 
+          <input type="text" name="title" id="title" value="<:old title groupfile title:>" />
+          <:help editgroup title:>
+        </span>
+      </div>
+      <div>
+        <label for="body">Notes <:error_img body:></label>
+        <span> 
+          <textarea name="body" id="body" ><:old body groupfile body:></textarea>
+          <:help editgroup body:>
+        </span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Last Modified</legend>
+      <div>
+        <label for="modwhen_date">Date <span class="required">*</span> <:error_img modwhen_date:></label>
+        <span> 
+          <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date date "%d/%m/%Y" groupfile modwhen:>" placeholder="DD/MM/YYYY" />
+          <:help editgroup modwhen_date:>
+        </span>
+      </div>
+       <div>
+        <label for="modwhen_time">Time <span class="required">*</span> <:error_img modwhen_time:></label>
+        <span> 
+          <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time date "%H:%M:%S" groupfile modwhen:>" placeholder="HH:MM:SS" />
+          <:help editgroup modwhen_time:>
+        </span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Properties</legend>
+      <div>
+        <label for="content_type">Content type <span class="required">*</span> <:error_img content_type:></label>
+        <span> 
+          <input type="text" name="content_type" id="content_type" value="<:old content_type groupfile content_type:>" /> 
+          <:help editgroup content_type:>
+        </span>
+      </div>
+      <div>
+        <label for="download">Force download <:error_img download:></label>
+        <span> 
+          <input type="checkbox" name="download" id="download" value="1" <:ifOr [old download] [groupfile download]:>checked="checked" <:or:><:eif:>/>
+          <:help editgroup download:>
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
+      <:if UserCan bse_members_group_edit_file:>
+      <input type="submit" name="a_savegroupfile" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+  </form>
+</div>

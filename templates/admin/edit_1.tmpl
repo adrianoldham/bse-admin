@@ -1,0 +1,539 @@
+<:wrap admin/base.tmpl title=>[cond [ifNew] [cat "New " [typename article] " (Level " [article level] ")"] [cat "Edit " [typename article] " (Level " [article level] ")"]], js => "admin_edit.js":>
+<div class="window">
+  <h1><:param title:></h1>
+  <:if New:><:or New:>
+  <p class="buttons">
+    <a href="<:script:>?id=<:article parentid:>" title="Edit Parent" class="button gray small">Parent</a>
+    <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" class="button gray small">Preview</a>
+    <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26m=<:typename article:>%20regenerated" title="Regenerate <:typename article:>" class="button gray small">Regenerate</a>
+    <:if Images:>
+    <a href="<:script:>?id=<:article id:>&amp;_t=img" accesskey="a" title="AccessKey = a" class="button gray small">Images</a><:or Images:><:eif Images:>
+    <:if Files:>
+    <a href="<:script:>?id=<:article id:>&amp;_t=file" accesskey="a" title="AccessKey = a" class="button gray small">Files</a><:or Files:><:eif Files:>
+    <:if UserCan bse_edit_add_child:article:>
+    <:if HaveChildType:>
+    <:switch:>
+    <:case Match [article generator] "Catalog":> 
+    <a href="<:script:>?parentid=<:article id:>&amp;type=Catalog" accesskey="c" title="AccessKey = c" class="button blue small">Add Catalog</a>
+    <a href="<:script:>?parentid=<:article id:>&amp;type=Product" accesskey="p" title="AccessKey = p" class="button blue small">Add Product</a>
+    <:case default:>
+    <a href="<:script:>?parentid=<:article id:>&amp;type=Article" accesskey="a" title="AccessKey = a" class="button blue small">Add Article</a>
+    <:endswitch:>
+    <:or HaveChildType:><:eif HaveChildType:>
+    <a href="<:script:>?id=<:article id:>&amp;_t=steps" accesskey="t" title="AccessKey = t" class="button blue small">Add Stepchild</a>
+    <:or UserCan:><:eif UserCan:>
+    <a href="<:script:>?id=<:article id:>&amp;_t=imgupload" accesskey="i" title="AccessKey = i" class="button blue small">Add Image</a>
+    <a href="<:script:>?id=<:article id:>&amp;_t=fileupload" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
+    <:switch:>
+    <:case Match [article generator] "Product":> 
+    <a href="<:script:>?id=<:article id:>&amp;_t=prodopts" accesskey="o" title="AccessKey = o" class="button blue small">Add Option</a>
+    <:endswitch:>
+    <:ifUserCan bse_edit_delete_article:article:>
+    <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" title="Delete <:typename article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename article:>?')" class="button red small">Delete</a>
+    <:or:>
+    <a class="button gray small">Delete</a>
+    <:eif:>
+  </p>
+  <:eif New:>
+  <form action="<:script:>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="lastModified" value="<:article lastModified:>" />
+    <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="type" value="<:typename article:>" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <:csrfp admin_add_article hidden:>
+    <:csrfp admin_save_article hidden:>
+    <fieldset>
+      <legend>Content</legend>
+      <div class="full">
+        <label for="title">Title <:error_img title:></label>
+        <span>
+          <input type="text" name="title" id="title" value="<:old title default title:>" maxlength="<:cfg fields title_size 255:>" <:ifFieldPerm title:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit title:>
+        </span>
+      </div>
+      <:if Cfg "title alias" [concatenate level [article level]]:>
+      <div>
+        <label for="titleAlias">Title alias <:error_img titleAlias:></label>
+        <span>
+          <input type="text" name="titleAlias" id="titleAlias" value="<:old titleAlias default titleAlias:>" maxlength="<:cfg fields alias_size 60:>" <:ifFieldPerm titleAlias:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit titleAlias:>
+        </span>
+      </div>
+      <:or Cfg:><:eif Cfg:>
+      <:if Match [article generator] "Product":>
+      <div class="full">
+        <label for="description">Description <:error_img description:></label>
+        <span>
+          <input type="text" name="description" id="description" value="<:old description default description:>" maxlength="<:cfg fields description_size 255:>" <:ifFieldPerm description:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit description:>
+        </span>
+      </div>
+      <:or Match:><:eif Match:>
+      <div class="full">
+        <label for="body">Body <:error_img body:></label>
+        <span>
+          <textarea name="body" id="body" rows="<:cfg fields body_size 10:>" <:ifFieldPerm body:><:or:> disabled="disabled"<:eif:>><:old body default body:></textarea>
+          <:help edit body:>
+        </span>
+      </div>
+      <div class="full">
+        <label for="summary">Summary <:error_img summary:></label>
+        <span>
+          <textarea name="summary" id="summary" rows="<:cfg fields summary_size 5:>" <:ifFieldPerm summary:><:or:> disabled="disabled"<:eif:>><:old summary default summary:></textarea>
+          <:help edit summary:>
+        </span>
+      </div>
+      <div>
+        <label for="linkAlias">Link alias <:error_img linkAlias:></label>
+        <span>
+          <input type="text" name="linkAlias" id="linkAlias" value="<:old linkAlias default linkAlias:>" maxlength="<:cfg fields linkAlias_size 255:>" <:ifFieldPerm linkAlias:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit linkAlias:>
+        </span>
+      </div>
+      <:if New:><:or New:>
+      <ul class="meta data">
+        <li><span>Created</span> <:date "%d-%b-%Y at %r" article created:></li>
+        <li><span>Created by</span> <:ifArticle createdBy:><:article createdBy:><:or:>unkown<:eif:></li>
+        <li><span>Modified</span> <:date "%d-%b-%Y at %r" article lastModified:></li>
+        <li><span>Modified by</span> <:ifArticle lastModifiedBy:><:article lastModifiedBy:><:or:>unkown<:eif:></li>
+      </ul>
+      <:eif New:>
+    </fieldset>
+    <:if Match [article generator] "Product":>
+    <fieldset>
+      <legend>Pricing</legend>
+      <div>
+        <label for="retailPrice">Retail <:cfg shop currency $:> <:error_img retailPrice:></label>
+        <span>
+          <input type="text" name="retailPrice" id="retailPrice" value="<:old retailPrice money product retailPrice:>" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit retailPrice:>
+        </span>
+      </div>
+      <:if Cfg product legacy_gst:>
+      <div>
+        <label for="gst">GST <:cfg shop currency $:> <:error_img gst:></label>
+        <span>
+          <input type="text" name="gst" id="gst" value="<:old gst money product gst:>" <:ifFieldPerm gst:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit gst:>
+        </span>
+      </div>
+      <:or Cfg:><:eif Cfg:>
+      <:if Cfg product legacy_wholesale:>
+      <div>
+        <label for="wholesalePrice">Wholesale <:cfg shop currency $:> <:error_img wholesalePrice:></label>
+        <span>
+          <input type="text" name="wholesalePrice" id="wholesalePrice" value="<:old wholesalePrice money product wholesalePrice:>" <:ifFieldPerm wholesalePrice:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit wholesalePrice:>
+        </span>
+      </div>
+      <:or Cfg:><:eif Cfg:>
+      <:if Price_tiers:>
+        <input type="hidden" name="save_pricing_tiers" value="1" />
+        <:iterator begin price_tiers:>
+        <div>
+          <label for="tier_price_<:price_tier id:>"><:price_tier description:> <:cfg shop currency $:> <:error_img [cat "tier_price_" [price_tier id]]:></label>
+          <span>
+            <input type="text" name="tier_price_<:price_tier id:>" id="tier_price_<:price_tier id:>" value="<:ifEq [tier_price] "":><:oldi [cat "tier_price_" [price_tier id]] 0:><:or:><:oldi [cat "tier_price_" [price_tier id]] 0 money tier_price:><:eif:>" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>/>
+            <:help edit [price_tier id]:>
+          </span>
+        </div>
+        <:iterator end price_tiers:>
+      <:or Price_tiers:><:eif Price_tiers:>
+    </fieldset>
+  
+    <fieldset>
+      <legend>Stock</legend>
+      <div>
+        <label for="product_code">Product code <:error_img product_code:></label>
+        <span>
+          <input type="text" name="product_code" id="product_code" value="<:old product_code:>" <:ifFieldPerm product_code:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit product_code:>
+        </span>
+      </div>  
+      <div>
+        <label for="leadTime">Lead time <:error_img leadTime:></label>
+        <span>
+          <input type="text" name="leadTime" id="leadTime" value="<:old leadTime:>" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit product_code:>
+        </span>
+      </div>  
+    </fieldset>
+  
+    <fieldset>
+      <legend>Measurements</legend>
+      <div>
+        <label for="weight">Weight <:error_img weight:></label>
+        <span>
+          <input type="text" name="weight" id="weight" value="<:old weight default weight:>" maxlength="<:cfg fields weight_size 6:>" <:ifFieldPerm weight:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit weight:>
+          (g - grams)
+        </span>
+      </div>
+      <div>
+        <label for="length">Length <:error_img length:></label>
+        <span>
+          <input type="text" name="length" id="length" value="<:old length default length:>" maxlength="<:cfg fields length_size 6:>" <:ifFieldPerm length:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit length:>
+          (mm)
+        </span>
+      </div>
+      <div>
+        <label for="width">Width <:error_img width:></label>
+        <span>
+          <input type="text" name="width" id="width" value="<:old width default width:>" maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit width:>
+          (mm)
+        </span>
+      </div>
+      <div>
+        <label for="height">Height <:error_img height:></label>
+        <span>
+          <input type="text" name="height" id="height" value="<:old height default height:>" maxlength="<:cfg fields height_size 6:>" <:ifFieldPerm height:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit height:>
+          (mm)
+        </span>
+      </div>
+    </fieldset>
+    <:if Dboptions:>
+    <fieldset>
+      <legend>Options</legend>
+      <ul class="children options">
+        <:iterator begin dboptions:>
+        <li>
+          <label><span class="listed <:switch:><:case Dboption enabled:>green<:case default:>gray<:endswitch:>"></span> <:dboption name:></label>
+          <span>
+            <:if UserCan bse_edit_prodopt_edit:article :>
+            <a id="editoption<:dboption id:>" href="<:script:>?id=<:article id:>&amp;a_edit_option=1&amp;option_id=<:dboption id:>" class="button gray small">Edit</a>
+            <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:dboption id:>&amp;a_delconf_option=1&amp;_csrfp=<:csrfp admin_delete_option:>" onclick="return window.confirm('Are you sure you want to delete this Option?')" class="button red small">Delete</a>
+            <:or UserCan:><:eif UserCan:>
+            <:ifUserCan bse_edit_prodopt_move:article:>
+            <:dboption_move:>
+            <:or:><:eif:>
+          </span>
+        </li>
+        <:iterator separator dboptions:><:iterator end dboptions:>
+      </ul>
+    </fieldset>
+    <:or Dboptions:><:eif Dboptions:>
+    <:or Match:><:eif Match:>
+    
+    <fieldset>
+      <legend>Structure</legend>
+      <div>
+        <label for="parent">Parent <:error_img parentid:></label>
+        <span>
+          <select name="parentid" id="parent"<:ifFieldPerm parentid:><:or:> disabled="disabled"<:eif:>>
+          <option value="">Please select a <:if Eq [article parentid] "-1":>Section<:or Eq:><:parentType:><:eif Eq:></option><:ifFieldPerm parentid:><:or:>
+          <option value="" selected="selected"><:parent title:> (<:parent id:>)</option><:eif:>
+          <:list:>
+          </select>
+          <:help edit section:>
+        </span>
+      </div>
+      <:if Cfgsection [concatenate level [article level] " menus"]:>
+      <div>
+        <label for="bsereferer">Menu <:error_img menu:></label>
+        <span>
+          <select name="menu" id="bsereferer"<:ifFieldPerm menu:><:or:> disabled="disabled"<:eif:>>
+            <:iterator begin cfgsection [concatenate level [article level] " menus"] sort=key:>
+            <option value="<:cfgentry key:>"<:if Eq [old menu] [cfgentry key]:> selected="selected"<:or Eq:><:eif Eq:>><:cfgentry value:></option>
+            <:iterator end cfgsection:>
+          </select>
+          <:help edit menu:>
+        </span>
+      </div>
+      <:or Cfgsection:><:eif Cfgsection:>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Categorisation <:error_img tags:></legend>
+      <div>
+        <label for="category">Category <:error_img category:></label>
+        <span>
+          <:ifFieldPerm category:><:category:><:or:><:article category:><:eif:>
+          <:help edit category:>
+        </span>
+      </div>
+      <div>
+        <label for="tag">Tag name <:error_img tags:></label>
+        <span>
+          <input type="hidden" name="_save_tags" value="1" />
+          <input type="text" name="tags" id="tag" value="<:old tags:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit tags:>
+        </span>
+      </div>
+      <:iterator begin tags:>
+      <div>
+        <label for="tag_<:tag_number:>">&nbsp;</label>
+        <span>
+          <input type="text" name="tags" id="tag_<:tag_number:>" value="<:tag name:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>/>
+        </span>
+      </div>
+      <:iterator end tags:>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Presentation</legend>
+      <div>
+        <label for="template">Template <:error_img template:></label>
+        <span><:ifFieldPerm template:>
+          <:templates:><:or:>
+          <select name="template" id="template" disabled="disabled"><option value="<:article template:>"><:article template:></option></select><:eif:>
+          <:help edit template:>
+        </span>
+      </div>
+      <div>
+        <label for="force_dynamic">Page display <:error_img force_dynamic:></label>
+        <span>
+          <input type="hidden" name="save_force_dynamic" value="1" />
+          <select name="force_dynamic" id="force_dynamic" <:ifFieldPerm force_dynamic:><:or:>disabled="disabled"<:eif:>>
+            <option value=""><:ifAnd [article cached_dynamic] [ifEq [article force_dynamic] "0"]:>Dynamic (Inherited)<:or:>Static<:eif:></option>
+            <option value="1"<:ifArticle force_dynamic:> selected="selected"<:or:><:eif:>>Dynamic</option>
+          </select>
+          <:help edit force_dynamic:>
+        </span>
+      </div>  
+      <div>
+        <label for="summaryLength">Summary length <:error_img summaryLength:></label>
+        <span>
+          <input type="text" name="summaryLength" id="summaryLength" value="<:old summaryLength default summaryLength:>" maxlength="10" <:ifFieldPerm summaryLength:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit summaryLength:>
+        </span>
+      </div>
+      <div>
+        <label for="threshold">Embed threshold <:error_img threshold:></label>
+        <span>
+          <input type="text" name="threshold" id="threshold" value="<:old threshold default threshold:>" maxlength="10" <:ifFieldPerm threshold:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit threshold:>
+        </span>
+      </div>
+    </fieldset>
+    
+    <fieldset>
+      <legend>Publication</legend>
+      <div>
+        <label for="listed">List article <:error_img listed:></label>
+        <span>
+          <:if FieldPerm listed:><:list listed:><:or FieldPerm:><select name="listed" id="listed" disabled="disabled"><option value=""><:if Article listed:><:ifEq [article listed] "1":>Yes<:or:>In Sections, but not menu<:eif:><:or Article:>No<:eif Article:></option></select><:eif FieldPerm:>
+          <:help edit listed:>
+        </span>
+      </div>
+      <div>
+        <label for="release">Release date <:error_img listed:></label>
+        <span>
+          <input type="text" name="release" id="release" value="<:old release date "%d/%m/%Y" default release:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm release:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit listed:>
+        </span>
+      </div>
+      <div>
+        <label for="expire">Expiry date <:error_img expire:></label>
+        <span>
+          <input type="text" name="expire" id="expire" value="<:switch:><:case New:><:old expire:><:case Match [article expire] [default expire]:><:case default:><:old expire date "%d/%m/%Y" article expire:><:endswitch:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm expire:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit expire:>
+        </span>
+      </div>
+    </fieldset>
+    <:if Groups:>
+    <fieldset>
+      <legend>Access <:error_img groups:></legend>
+      <ul>
+        <:iterator begin groups:>
+        <li>
+          <input type="hidden" name="save_group_id" value="<:group id:>" />
+          <input type="checkbox" name="group_id" id="group_id<:group id:>" value="<:group id:>" <:ifOr [ifGroupRequired] [ifEq [old group_id] [group id]]:>checked="checked" <:or:><:eif:><:ifFieldPerm group_id:><:or:>disabled="disabled" <:eif:>/>
+          <label for="group_id<:group id:>"><:if Match [group id] "^-":><:group name:><:or Match:><:if UserCan bse_members_group_edit:><a href="<:adminurl siteusers:>?a_groupmemberform=1&amp;id=<:group id:>&amp;referer=1"><:group name:></a><:or UserCan:><:group name:><:eif UserCan:><:eif Match:></label>
+        </li>
+        <:iterator separator groups:>
+        <:iterator end groups:>
+      </ul>
+      <:help edit groups:>
+    </fieldset>
+    <:or Groups:><:eif Groups:>
+    <fieldset>
+      <legend>Flags <:error_img flags:></legend>
+      <ul>
+        <:iterator begin flags:>
+        <li>
+          <input type="checkbox" name="flags" id="flags_<:flag id:>" value="<:flag id:>" <:ifOr [ifFlagSet [flag id]] [ifMatch [old flags] [flag id]]:>checked="checked" <:or:><:eif:><:ifFieldPerm flags:><:or:>disabled="disabled" <:eif:>/>
+          <label for="flags_<:flag id:>"><:flag desc |h:></label>
+        </li>
+        <:iterator separator flags:>
+        <:iterator end flags:>
+      </ul>
+      <:help edit flags:>
+    </fieldset>
+    <fieldset>
+      <legend>Metadata</legend>
+      <div>
+        <label for="pageTitle">Page title <:error_img pageTitle:></label>
+        <span>
+          <input type="text" name="pageTitle" id="pageTitle" value="<:old pageTitle article pageTitle:>" maxlength="255" <:ifFieldPerm pageTitle:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit pageTitle:>
+        </span>
+      </div>
+      <div>
+        <label for="metaDescription">Meta description <:error_img metaDescription:></label>
+        <span>
+          <input type="text" name="metaDescription" id="metaDescription" value="<:old metaDescription article metaDescription:>" maxlength="255" <:ifFieldPerm metaDescription:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit metaDescription:>
+        </span>
+      </div>
+      <div>
+        <label for="metaKeywords">Meta keywords <:error_img metaKeywords:></label>
+        <span>
+          <input type="text" name="metaKeywords" id="metaKeywords" value="<:old metaKeywords article metaKeywords:>" placeholder="Comma separated" maxlength="255" <:ifFieldPerm metaKeywords:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit metaKeywords:>
+        </span>
+      </div>
+      <div>
+        <label for="author">Author name <:error_img author:></label>
+        <span>
+          <input type="text" name="author" id="author" value="<:ifCfg editor auto_author:><:old author adminuser name:><:or:><:old author article author:><:eif:>" maxlength="255" <:ifFieldPerm author:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit author:>
+        </span>
+      </div>
+      <div>
+        <label for="keyword">Local keywords <:error_img keyword:></label>
+        <span>
+          <input type="text" name="keyword" id="keyword" value="<:old keyword article keyword:>" placeholder="Comma separated" maxlength="255" <:ifFieldPerm keyword:><:or:>disabled="disabled" <:eif:>/>
+          <:help edit keyword:>
+        </span>
+      </div>
+    </fieldset>
+    
+    <:switch:>
+    <:case Match [article generator] "Article":><:include admin/include/article_custom.tmpl optional:>
+    <:case Match [article generator] "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
+    <:case Match [article generator] "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
+    <:case Match [article generator] "Product":><:include admin/include/product_custom.tmpl optional:>
+    <:endswitch:>
+    
+    <:if Or [ifMatch [article generator] "Product"] [ifMatch [article generator] "Seminar"]:>
+    <:if Subscriptions:>
+    <fieldset>
+      <legend>Subscriptions</legend>
+      <div>
+        <label for="subscription_id">Subscription <:error_img subscription_id:></label>
+        <span>
+          <select name="subscription_id" id="subscription_id" onchange="if (this.value != '-1') { this.form.subscription_usage.disabled = false, this.form.subscription_period.disabled = false } else { this.form.subscription_usage.disabled = true, this.form.subscription_period.disabled = true };"<:ifFieldPerm subscription_id:><:or:> disabled=disabled"<:eif:>>
+            <option value="-1"<:ifEq [old subscription_id] "-1":> selected="selected"<:or:><:eif:>>(nothing)</option>
+            <:iterator begin subscriptions:>
+            <option value="<:subscription subscription_id:>"<:ifEq [old subscription_id] [subscription subscription_id]:> selected="selected"<:or:><:eif:>><:subscription title:></option>
+            <:iterator end subscriptions:>
+          </select>
+          <:help edit subscription_id:>
+        </span>
+      </div>
+      <div>
+        <label for="subscription_period">Duration <:error_img subscription_period:></label>
+        <span>
+          <input type="text" name="subscription_period" id="subscription_period" value="<:old subscription_period default subscription_period:><:eif:>" <:ifFieldPerm subscription_period:><:or:>disabled="disabled" <:eif:>/> months
+          <:help edit subscription_period:>
+        </span>
+      </div>
+      <div>
+        <label for="subscription_usage">Usage <:error_img subscription_usage:></label>
+        <span>
+          <select name="subscription_usage" id="subscription_usage"<:ifFieldPerm subscription_usage:><:or:> disabled="disabled"<:eif:>>
+            <option value="3"<:ifEq [old subscription_usage] "3":> selected="selected"<:or:><:eif:>>Start or renew a subscription</option>
+            <option value="1"<:ifEq [old subscription_usage] "1":> selected="selected"<:or:><:eif:>>Start a subscription only</option>
+            <option value="2"<:ifEq [old subscription_usage] "2":> selected="selected"<:or:><:eif:>>Renew a subscription only</option>
+          </select>
+          <:help edit subscription_usage:>
+        </span>
+      </div>
+      <div>
+        <label for="subscription_required">Requires <:error_img subscription_required:></label>
+        <span>
+          <select name="subscription_required" id="subscription_required"<:ifFieldPerm subscription_required:><:or:> disabled="disabled"<:eif:>>
+            <option value="-1"<:ifEq [old subscription_required] "-1":> selected="selected"<:or:><:eif:>>(nothing)</option>
+            <:iterator begin subscriptions:>
+            <option value="<:subscription subscription_id:>"<:ifEq [old subscription_required] [subscription subscription_id]:> selected="selected"<:or:><:eif:>><:subscription title:></option>
+            <:iterator end subscriptions:>
+          </select>
+          <:help edit subscription_required:>
+        </span>
+      </div>
+    </fieldset>
+    <:or Subscriptions:><:eif Subscriptions:>
+    <:or Or:><:eif Or:>
+    <:if Images:>
+    <fieldset>
+      <legend>Images</legend>
+      <ul class="children images">
+        <:iterator begin images:>
+        <li>
+          <a href="<:image src:>"><:thumbimage editor:></a> <:ifImage name:>(<:image name:>)<:or:><:eif:>
+          <span>
+            <:ifUserCan bse_edit_images_save:article:>
+            <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>" class="button gray small">Edit</a><:or:><span class="button gray small">Edit</span><:eif:>
+            <:ifUserCan bse_edit_images_delete:article:>
+            <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" onclick="return window.confirm('Are you sure you want to delete this Image?')" class="button red small">Delete</a><:or:><span class="button gray small">Delete</span><:eif:>
+            <:ifUserCan bse_edit_images_save:article:>
+            <:imgmove:>
+            <:or:><:eif:>
+          </span>
+        </li>
+        <:iterator separator images:><:iterator end images:>
+      </ul>
+    </fieldset>
+    <:or Images:><:eif Images:>
+    <:if Files:>
+    <fieldset>
+      <legend>Files</legend>
+      <ul class="children files">
+        <:iterator begin files:>
+        <li>
+          <a href="<:target user download_file file [file id]:>"><span class="listed <:switch:><:case File hide_from_list:>gray<:case FileExists:>green<:case default:>orange<:endswitch:>"></span> <:file displayName |h:></a><:ifFile name:> (<:file name:>)<:or:><:eif:>
+          <span>
+            <:ifUserCan bse_edit_files_save:article:>
+            <a href="<:script:>?a_edit_file=1&amp;id=<:article id:>&amp;file_id=<:file id:>" class="button gray small">Edit</a><:or:><span class="button gray small">Edit</span><:eif:>
+            <:ifUserCan bse_edit_files_delete:article:>
+            <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a><:or:><span class="button gray small">Delete</span><:eif:>
+            <:ifUserCan bse_edit_files_save:article:>
+            <:movefiles:><:or:><:eif:>
+          </span>
+        </li>
+        <:iterator separator files:><:iterator end files:>
+      </ul>
+    </fieldset>
+    <:or Files:><:eif Files:>
+    <:if New:>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article parentid:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <input type="submit" name="save" value="Create <:typename article:>" accesskey="c" title="AccessKey = c" class="button green" />
+    </p>
+    <:or New:>
+    <:if UserCan bse_edit_save:article:>
+    <p class="buttons">
+      <input type="submit" name="save" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+    </p>
+    <:or UserCan:><:eif UserCan:>
+    <:eif New:>
+  </form>
+  <:if Kids:>
+  <div class="children">
+    <h2>Children</h2>
+    <:if UserCan bse_edit_reorder_children:article:>
+    <p>Sort by: <a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=title&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Children%2Bsorted%2Bby%2Btitle">title</a> | <a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=id&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Children%2Bsorted%2Bby%2Bdate">date</a> | <a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=listed&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Children%2Bsorted%2Bby%2Blisted">listed</a> | <a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;reverse=1&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Children%2Bsorted%2Bin%2Breverse">reverse</a> | <a href="<:script:>?id=<:article id:>&amp;sort=1">advanced</a> <:if Cgi sort:>[<a href="<:script:>?id=<:article id:>">x</a>]<:or Cgi:><:eif Cgi:></p>
+    <:if Cgi sort:>
+    <:include admin/include/edit_article_sort.tmpl optional:>
+    <:or Cgi:><:eif Cgi:>
+    <:or UserCan:><:eif UserCan:>
+    <ul class="children">
+      <:iterator begin kids:>
+      <li>
+        <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>"><span class="listed <:switch:><:case Eq [kid listed] 0 :>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename kid:></span> <:kid title:></a>
+        <span>
+          <:if StepKid:><a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;_t=steps" class="button gray small">Edit</a><:if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[stepkid childId]:>
+          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>" onclick="return window.confirm('Are you sure you want to delete the Stepchild realationship?\r\rThis does NOT delete the original <:typename kid:>.')" class="button red small">Delete</a><:or UserCan:>
+          <span class="button red small">Delete</span><:eif UserCan:><:or StepKid:><a href="<:script:>?id=<:kid id:>" class="button gray small">Edit</a><:if UserCan bse_edit_delete_article:kid:>
+          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename kid:>?')" class="button red small">Delete</a><:or UserCan:>
+          <span class="button red small">Delete</span><:eif UserCan:><:eif StepKid:> <:movestepkid:>
+        </span>
+      </li>
+      <:iterator separator kids:><:iterator end kids:>
+    </ul>
+  </div>
+  <:or Kids:><:eif Kids:>
+</div>

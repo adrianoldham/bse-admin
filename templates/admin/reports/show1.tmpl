@@ -1,0 +1,50 @@
+<:wrap admin/base.tmpl title=>"Report Results" nomessage=>"1" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <p class="buttons"><:ifReport has_params:>
+    <a href="<:script:>?s_prompt=1&amp;r=<:report id:>&amp;referer=1" class="button blue small">Arguments</a><:or:><:eif:>
+  </p><:if Sort_select others:>
+  <form action="<:script:>" method="post">
+    <fieldset>
+      <legend>Sort order</legend>
+      <input type="hidden" name="r" value="<:report id:>" />
+      <:repparams hidden:>
+      <div>
+        <label>Object</label>
+        <span>
+          <:sort_select select:>
+        </span>
+      </div>
+      <p class="buttons"><input type="submit" name="a_show" value="Sort" class="button blue small" /></p>
+    </fieldset>
+  </form><:or Sort_select:><:eif Sort_select:>
+  <fieldset>
+    <legend><:report name:></legend>
+    <table class="full list">
+      <thead>
+        <tr><:iterator begin level1_names:>
+          <th><:ifSort - sortable:>
+            <a href="<:sort - url:>"><:level1_name name:></a><:or:>
+            <:level1_name name:><:eif:>
+          </th><:iterator end level1_names:><:ifReport has_level1_links:>
+          <th><!--Actions--></th><:or:><:eif:>
+        </tr>
+      </thead>
+      <tbody><:if Level1:><:iterator begin level1:>
+        <tr>
+          <:iterator begin level1_cols:><td><:level1_col value |h:></td><:iterator separator level1_cols:>
+          <:iterator end level1_cols:><:if Level1_links:>
+          <td class="actions">
+            <:iterator begin level1_links:><:level1_link link:><:iterator end level1_links:>
+          </td><:or Level1_links:><:eif Level1_links:>
+        </tr><:iterator separator level1:><:iterator end level1:><:or Level1:>
+        <tr>
+          <td colspan="<:add [level1_name_count] 1:>">No rows returned.</td>
+        </tr><:eif Level1:>
+      </tbody>
+    </table>
+  </fieldset>
+  <p class="buttons">
+    <a href="<:switch:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
+  </p>
+</div>

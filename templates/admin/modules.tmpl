@@ -1,0 +1,27 @@
+<:wrap admin/base.tmpl title=>"Module Versions" nomessage=>"1" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <fieldset class="list">
+    <legend>Version hash: <:hash:></legend>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Expected</th>
+          <th>Found</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <:iterator begin modules:>
+        <tr <:switch:><:case module error:>class="error"<:endswitch:>>
+          <td><:module name:></td>
+          <td><:module version:></td>
+          <td><:module found:></td>
+          <td><:switch:><:case module error:><:module error:><:case default:><:module notes:><:endswitch:></td>
+        </tr>
+        <:iterator end modules:>
+      </tbody>
+    </table>
+  </fieldset>
+</div>

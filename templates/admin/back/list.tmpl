@@ -1,0 +1,43 @@
+<:wrap admin/base.tmpl title=>"Background Processing" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <fieldset class="list">
+    <legend>Tasks</legend>
+    <:if Tasks:>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Started</th>
+          <th>Completed</th>
+          <th>Result</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:iterator begin tasks:>
+        <tr <:switch:><:case Task_running:>class="running"<:case Task last_exit:>class="error"<:endswitch:>>
+          <td><:switch:><:case Task_running:>
+            <span class="listed green" title="PID: <:task task_pid:>">PID: <:task task_pid:></span><:case Task last_exit:>
+            <span class="listed orange" title="Failed">Failed</span><:case default:>
+            <span class="listed gray" title="Not running">Not running<:task task_pid:></span><:endswitch:>
+            <:task description:>
+          </td>
+          <td><:date "%d-%b-%Y / %r" task last_started:></td>
+          <td><:ifTask_running:>–<:or:><:date "%d-%b-%Y / %r" task last_completion:><:eif:></td>
+          <td><:switch:><:case Task_running:>–<:case Eq [task last_exit] "":><:case Task last_exit:>Failed<:case default:>Success<:endswitch:></td>
+          <td class="actions"><:if Task_running:><:ifTask stoppable:>
+            <a href="<:adminurl backmon a_stop 1 id [task id]:>" class="button red small">Stop</a><:or:>
+            <a class="button gray small">Start</a><:eif:><:or Task_running:>
+            <a href="<:adminurl backmon a_start 1 id [task id]:>" class="button green small">Start</a><:eif Task_running:>
+            <a href="<:adminurl backmon a_detail 1 id [task id]:>" class="button gray small">Details</a>
+          </td>
+        </tr>
+        <:iterator end tasks:>
+      </tbody>
+    </table>
+    <:or Tasks:>
+    <p>No tasks available.</p>
+    <:eif Tasks:>
+  </fieldset>
+</div>

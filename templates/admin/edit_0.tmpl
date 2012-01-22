@@ -1,0 +1,38 @@
+<:wrap admin/base.tmpl title=>"Manage Articles":>
+<div class="window">
+  <h1><:param title:></h1>
+  <:if UserCan bse_edit_add_child:article:>
+  <p class="buttons">
+    <a href="<:adminurl admin:>?id=1" accesskey="p" title="Preview <:typename article:>" class="button gray small">Preview</a>
+    <:if Images:>
+    <a href="<:script:>?id=<:article id:>&amp;_t=img" accesskey="a" title="AccessKey = a" class="button gray small">Images</a><:or Images:><:eif Images:>
+    <:if Files:>
+    <a href="<:script:>?id=<:article id:>&amp;_t=file" accesskey="a" title="AccessKey = a" class="button gray small">Files</a><:or Files:><:eif Files:>
+    <a href="<:script:>?parentid=<:article id:>&amp;type=Article" accesskey="a" title="AccessKey = a" class="button blue small">Add Article</a>
+    <a href="<:script:>?id=<:article id:>&amp;_t=imgupload" accesskey="i" title="AccessKey = i" class="button blue small">Add Image</a>
+    <a href="<:script:>?id=<:article id:>&amp;_t=fileupload" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
+  </p>
+  <:or UserCan:><:eif UserCan:>
+  <:if children:>
+  <div class="children">
+    <:if UserCan bse_edit_reorder_children:article:>
+    <p>Sort by: <a href="<:adminurl reorder:>?parentid=<:article id:>&amp;sort=title&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Sections%2Bsorted%2Bby%2Btitle">title</a> | <a href="<:adminurl reorder:>?parentid=<:article id:>&amp;sort=id&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Sections%2Bsorted%2Bby%2Bdate">date</a> | <a href="<:adminurl reorder:>?parentid=<:article id:>&amp;sort=listed&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Sections%2Bsorted%2Bby%2Blisted">listed</a> | <a href="<:adminurl reorder:>?parentid=<:article id:>&amp;reverse=1&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Sections%2Bsorted%2Bin%2Breverse">reverse</a> | <a href="<:script:>?id=<:article id:>&amp;sort=1">advanced</a> <:if Cgi sort:>[<a href="<:script:>?id=<:article id:>">x</a>]<:or Cgi:><:eif Cgi:></p>
+    <:if Cgi sort:>
+    <:include admin/include/edit_article_sort.tmpl optional:>
+    <:or Cgi:><:eif Cgi:>
+    <:or UserCan:><:eif UserCan:>
+    <ul class="children">
+      <:iterator begin children:>
+      <li>
+        <a href="<:script:>?id=<:child id:>&amp;preview=1" title="<:typename child:>"><span class="listed <:switch:><:case Eq [child listed] 0 :>gray<:case Eq [child listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename child:></span> <:child title:></a>
+        <span>
+          <a href="<:script:>?id=<:child id:>" class="button gray small">Edit</a><:if UserCan bse_edit_delete_article:child:>
+          <a href="<:script:>?id=<:child id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename child:>?')" class="button red small">Delete</a><:or UserCan:>
+          <span class="button red small">Delete</span><:eif UserCan:> <:movechild:>
+        </span>
+      </li>
+      <:iterator separator children:><:iterator end children:>
+    </ul>
+  </div>
+  <:or children:><:eif children:>
+</div>

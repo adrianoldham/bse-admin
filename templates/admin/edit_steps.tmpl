@@ -1,0 +1,80 @@
+<:wrap admin/base.tmpl title=>[cond [cgi stepkid] "Edit Stepchild" "New Stepchild" ]:>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="_t" value="steps" />
+    <input name="r" type="hidden" value="<:adminurl add:>?id=<:article id:>" />
+    <:csrfp admin_save_stepkids hidden:>
+    <:csrfp admin_add_stepkid hidden:>
+    <:if Cgi stepkid:>
+    <:iterator begin kids:>
+    <:if Eq [stepkid childId] [cgi stepkid]:>
+    <fieldset>
+      <legend><:article title:></legend> 
+      <div>
+        <label for="stepkid">Articles <:error_img stepkid:></label>
+        <span> 
+          <select id="stepkid" disabled="disabled">
+            <option><:kid title |h:></option>
+          </select>
+        </span>
+      </div>
+      <div>
+        <label for="release">Release <:error_img release:></label>
+        <span> 
+          <input type="text" name="release_<:stepkid childId:>" id="release" value="<:date "%d/%m/%Y" stepkid release:>" placeholder="DD/MM/YYYY" />
+        </span>
+      </div>
+      <div>
+        <label for="expire">Expire <:error_img expire:></label>
+        <span> 
+          <input type="text" name="expire_<:stepkid childId:>" id="expire" value="<:ifMatch [stepkid expire] "2999-12-31":><:or:><:date "%d/%m/%Y" stepkid expire:><:eif:>" placeholder="DD/MM/YYYY" />
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <:if UserCan bse_edit_stepkid_save:article:>
+      <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <input type="submit" name="save_stepkids" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+    <:or Eq:><:eif Eq:>
+    <:iterator end kids:>
+    <:or Cgi:>
+    <fieldset>
+      <legend><:article title:></legend> 
+      <div>
+        <label for="stepkid">Articles <:error_img stepkid:></label>
+        <span> 
+          <:if Possibles:>
+          <:possible_stepkids:>
+          <:or Possibles:>
+          <select id="stepkid">
+            <option>No possible articles</option>
+          </select>
+          <:eif Possibles:> 
+        </span>
+      </div>
+      <div>
+        <label for="release">Release <:error_img release:></label>
+        <span> 
+          <input type="text" name="release" id="release" value='<:today "%d/%m/%Y":>' />
+        </span>
+      </div>
+      <div>
+        <label for="expire">Expire <:error_img expire:></label>
+        <span> 
+          <input type="text" name="expire" id="expire" value="" />
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <:if UserCan bse_edit_stepkid_save:article:>
+      <input type="submit" name="add_stepkid" value="Create Stepchild" accesskey="c" title="AccessKey = c" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+    <:eif Cgi:>
+  </form>
+</div>

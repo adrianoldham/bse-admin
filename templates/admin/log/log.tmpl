@@ -1,0 +1,28 @@
+<:wrap admin/base.tmpl title=>"System Activity" bodyid=>"auditlog" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <fieldset>
+    <legend>Audit Log</legend>
+    <table class="full list">
+      <thead>
+<:include admin/log/head.tmpl:>
+      </thead>
+      <tbody>
+        <:iterator begin auditlog:>
+<:include admin/log/data.tmpl:>
+        <:iterator end auditlog:>
+      </tbody>
+    </table>
+  </fieldset>
+  <p class="pagination">Page <:auditlog_pagenum:> of <:auditlog_pagecount:>
+    <:ifFirstAuditlogPage:><span class="disabled">|&lt;&lt;</span><:or:><a href="<:adminurl log:>?p=1&amp;pp=<:auditlog_perpage:>">|&lt;&lt;</a> <a href="<:adminurl log:>?p=<:prevAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&lt;&lt;</a><:eif:>
+    <:iterator begin auditlog_pagec:>
+    <:switch:>
+    <:case auditentry_pagec gap:>...
+    <:case auditentry_pagec link:><a href="<:adminurl log:>?p=<:auditentry_pagec page:>&amp;pp=<:auditlog_perpage:>"><:auditentry_pagec page:></a>
+    <:case default:><span class="disabled"><:auditentry_pagec page:></span>
+    <:endswitch:>
+    <:iterator end auditlog_pagec:>
+    <:ifLastAuditlogPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:adminurl log:>?p=<:nextAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&gt;&gt;</a> <a href="<:adminurl log:>?p=<:auditlog_pagecount:>&amp;pp=<:auditlog_perpage:>">&gt;&gt;|</a><:eif:>
+  </p>
+</div>

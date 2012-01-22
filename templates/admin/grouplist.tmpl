@@ -1,0 +1,41 @@
+<:wrap admin/base.tmpl title=>"Admin Groups" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <p class="buttons">
+    <a href="<:script:>" class="button gray small">Users</a>
+    <:if UserCan bse_admin_group_add:>
+    <a href="<:script:>?a_addgroupform=1" class="button blue small">Add Group</a>
+    <:or UserCan:><:eif UserCan:>
+  </p>
+  <:if Groups:>
+  <fieldset class="list">
+    <legend>Groups</legend>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Users</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:iterator begin groups:> 
+        <tr> 
+          <td><:igroup name:></td>
+          <td><:igroup description:></td>
+          <td><:ifGroup_users igroup:><:iterator begin group_users igroup:><:group_user logon:><:iterator separator group_users:>, <:iterator end group_users:><:or:>(none)<:eif:></td>
+          <td class="actions">
+            <a href="<:script:>?a_showgroup=1&amp;groupid=<:igroup id:>" class="button gray small">Edit</a><:ifUserCan bse_admin_group_del:>
+            <a href="<:script:>?a_delgroup=1&amp;groupid=<:igroup id:>" onclick="return window.confirm('Are you sure you want to delete this Group?');" class="button red small">Delete</a><:or:>
+            <span class="disabled">Delete</span><:eif:>
+          </td>
+        </tr>
+        <:iterator end groups:> 
+      <tbody>
+    </table>
+  </fieldset>
+  <:or Groups:> 
+  <p>No admin groups created.</p>
+  <:eif Groups:> 
+</div>

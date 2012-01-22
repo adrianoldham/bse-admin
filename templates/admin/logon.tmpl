@@ -1,0 +1,25 @@
+<:wrap admin/base.tmpl title=>[cfg site name |h] nonavbar=>"1" bodyid=>"logon" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:adminurl logon:>" method="post">
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Login</legend> 
+      <div>
+        <label for="username">Username <:error_img logon:></label>
+        <span> 
+          <input type="text" name="logon" id="username" value="<:old logon:>" />
+        </span>
+      </div>
+      <div>
+        <label for="password">Password <:error_img password:></label>
+        <span> 
+          <input type="password" name="password" id="password" value="" />
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <input type="submit" name="a_logon" value="Login" accesskey="l" title="AccessKey = l" class="button blue" />
+    </p>
+  </form>
+</div>

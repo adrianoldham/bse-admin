@@ -1,0 +1,121 @@
+<:wrap admin/base.tmpl title=>"Manage Orders" target=>"order_list" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <form action="<:adminurl shopadmin:>" method="post">
+    <input type="hidden" name="a_<:param target:>" value="1" />
+    <fieldset>
+      <legend>Filter orders</legend>
+      <div>
+        <label for="userId"><:cfg "site users" display_userid "Username":></label>
+        <span>
+          <input type="text" name="userId" id="userId" value="<:cgi userId:>" />
+        </span>
+      </div>
+      <div>
+        <label for="billFirstName"><:cfg "site users" display_name1 "First Name":></label>
+        <span>
+          <input type="text" name="billFirstName" id="billFirstName" value="<:cgi billFirstName:>" />
+        </span>
+      </div>
+      <div>
+        <label for="billLastName"><:cfg "site users" display_name2 "Last Name":></label>
+        <span>
+          <input type="text" name="billLastName" id="billLastName" value="<:cgi billLastName:>" />
+        </span>
+      </div>
+      <div>
+        <label for="billOrganization"><:cfg "site users" display_organization "Organisation Name":></label>
+        <span>
+          <input type="text" name="billOrganization" id="billOrganization" value="<:cgi billOrganization:>" />
+        </span>
+      </div>
+      <div>
+        <label for="billEmail"><:cfg "site users" display_email "Email Address":></label>
+        <span>
+          <input type="text" name="billEmail" id="billEmail" value="<:cgi billEmail:>" />
+        </span>
+      </div>
+      <div>
+        <label for="stage">Order stage</label>
+        <span>
+          <:replace [stage_select] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":>
+        </span>
+      </div>
+      <div>
+        <label for="from">From date</label>
+        <span>
+          <input type="text" name="from" id="from" value="<:cgi from:>" placeholder="DD/MM/YYYY" />
+        </span>
+      </div>
+      <div>
+        <label for="to">To date</label>
+        <span>
+          <input type="text" name="to" id="to" value="<:ifMatch [cgi to] "31/12/2999":><:or:><:cgi to:><:eif:>" placeholder="DD/MM/YYYY" />
+        </span>
+      </div>
+      <div>
+        <label for="pp">Per Page</label>
+        <span>
+          <select name="pp" id="pp">
+            <option value="-1"<:ifEq [orders_perpage] "-1":> selected="selected"<:or:><:eif:>>All orders</option>
+            <option value="1000"<:ifEq [orders_perpage] "1000":> selected="selected"<:or:><:eif:>>1000</option>
+            <option value="500"<:ifEq [orders_perpage] "500":> selected="selected"<:or:><:eif:>>500</option>
+            <option value="100"<:ifEq [orders_perpage] "100":> selected="selected"<:or:><:eif:>>100</option>
+            <option value="50"<:ifEq [orders_perpage] "50":> selected="selected"<:or:><:eif:>>50</option>
+            <option value="20"<:ifEq [orders_perpage] "20":> selected="selected"<:or:><:eif:>>20</option>
+            <option value="15"<:ifEq [orders_perpage] "15":> selected="selected"<:or:><:eif:>>15</option>
+            <option value="10"<:ifEq [orders_perpage] "10":> selected="selected"<:or:><:eif:>>10</option>
+            <option value="5"<:ifEq [orders_perpage] "5":> selected="selected"<:or:><:eif:>>5</option>
+          </select>
+        </span>
+      </div>
+      <p class="buttons">
+        <input type="submit" value="Update filter" accesskey="u" title="AccessKey = u" class="button blue" />
+      </p>
+    </fieldset>
+  </form>
+  <:if Orders:>
+  <fieldset class="list">
+    <legend>Orders</legend>
+    <table class="full">
+      <thead>
+        <tr>
+          <th>Order No.</th>
+          <th>Order Date</th>
+          <th>Full Name</th>
+          <th><:cfg "site users" display_userid "Username":></th>
+          <th>Total</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:iterator begin orders:>
+        <tr> 
+          <td><span class="listed <:ifOrder filled:>green<:or:>gray<:eif:>"></span><:order id |%06d:></td>
+          <td><:date order orderDate:></td>
+          <td><:order billFirstName:> <:order billLastName:></td>
+          <td><:ifOrder userId:><:order userId:><:or:>-<:eif:></td>
+          <td><:cfg shop currency "$":><:number money [order total]:></td>
+          <td class="actions">
+            <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:order id:>" class="button gray small">Details</a>
+          </td>
+        </tr>
+        <:iterator end orders:>
+      <tbody>
+    </table>
+  </fieldset>
+  <p class="pagination">Page <:orders_pagenum:> of <:orders_pagecount:>
+    <:ifFirstOrdersPage:><span class="disabled">|&lt;&lt;</span><:or:><a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p 1:>&amp;<:search_param:>">|&lt;&lt;</a> <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [prevOrdersPage]:>&amp;<:search_param:>">&lt;&lt;</a><:eif:>
+    <:iterator begin orders_pagec:>
+    <:switch:>
+    <:case order_pagec gap:>...
+    <:case order_pagec link:><a href="<:adminurl2 shopadmin [param target] pp [orders_perpage]:>&amp;p=<:order_pagec page:>&amp;<:search_param:>"><:order_pagec page:></a>
+    <:case default:><span class="disabled"><:order_pagec page:></span>
+    <:endswitch:>
+    <:iterator end orders_pagec:>
+    <:ifLastOrdersPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [nextOrdersPage]:>&amp;<:search_param:>">&gt;&gt;</a> <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] ;p [orders_pagecount]:>&amp;&amp;<:search_param:>">&gt;&gt;|</a><:eif:>
+  </p>
+  <:or Orders:> 
+  <p>No orders match filter criteria.</p>
+  <:eif Orders:>
+</div>

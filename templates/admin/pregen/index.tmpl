@@ -1,0 +1,26 @@
+<:wrap admin/base.tmpl title=>"Pregenerated Pages":>
+<div class="window">
+  <h1><:param title:></h1>
+  <fieldset class="list">
+    <legend>Templates</legend>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:iterator begin templates:> 
+        <tr> 
+          <td><:template id:></td>
+          <td class="actions">
+            <a href="<:script:>?a_show=1&amp;template=<:template id:>" class="button gray small">Preview</a>
+            <a href="<:adminurl generate r [adminurl pregen] id [cat "extra:" [template id]] m 1 |x:>" class="button green small">Regenerate</a>
+          </td>
+        </tr>
+        <:iterator end templates:> 
+      <tbody>
+    </table>
+  </fieldset>
+</div>

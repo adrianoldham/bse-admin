@@ -1,0 +1,299 @@
+<:wrap admin/base.tmpl title=>"Edit Site User" :>
+<div class="window siteuser">
+  <h1><:param title:></h1>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="id" value="<:siteuser id:>" />
+    <input type="hidden" name="r" value="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;m=User+'<:siteuser userId:>'+saved" />
+    <p class="buttons">
+      <a href="<:script:>" class="button gray small">Users</a>
+      <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a><!--<:if Userfiles:>
+      <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button gray small">Files</a><:or Userfiles:><:eif Userfiles:>-->
+      <a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" class="button blue small">Add File</a>
+      <:ifUserCan bse_siteuser_delete:>
+      <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" onclick="return window.confirm('Are you sure you want to delete this User?');" class="button red small">Delete</a>
+      <:or:>
+      <a class="button gray small">Delete</a>
+      <:eif:>
+    </p>
+    <fieldset class="account">
+      <legend>Account</legend>
+      <:if Cfg "site users" nopassword:><:or Cfg:>
+      <div>
+        <label for="old_password"><:cfg "site users" display_old_password "Old Password":> <:error_img old_password:></label>
+        <span>
+          <input type="password" name="old_password" id="old_password" value="<:old old_password:>" class="<:ifError_img old_password:>error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="password"><:cfg "site users" display_new_password "New Password":> <:error_img password:></label>
+        <span>
+          <input type="password" name="password" id="password" value="<:old password:>" class="<:ifError_img password:>error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="confirm_password"><:cfg "site users" display_confirm_password "Confirm Password":> <:error_img confirm_password:></label>
+        <span>
+          <input type="password" name="confirm_password" id="confirm_password" value="<:old confirm_password:>" class="<:ifError_img confirm_password:>error<:or:><:eif:>" />
+        </span>
+      </div>
+      <:eif Cfg:>
+      <:if Cfg "site users" nopassword:>
+      <div>
+        <label for="email"><:cfg "site users" display_email "Email Address":> <span class="required">*</span> <:error_img email:></label>
+        <span>
+          <input type="text" name="email" id="email" value="<:old email siteuser email:>" class="required<:ifError_img email:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="confirmemail"><:cfg "site users" display_confirmemail "Confirm Email":> <:error_img confirmemail:></label>
+        <span>
+          <input type="text" name="confirmemail" id="confirmemail" value="<:old confirmemail:>" class="<:ifError_img confirmemail:>error<:or:><:eif:>" />
+        </span>
+      </div>
+      <:or Cfg:><:eif Cfg:>
+      <div>
+        <input type="hidden" name="saveDisabled" value="1" />
+        <label for="disabled">Disabled <:error_img disabled:></label>
+        <span>
+          <input type="checkbox" name="disabled" id="disabled" value="1" <:ifOld disabled siteuser disabled:>checked="checked" <:or:><:eif:>/>
+        </span>
+      </div>
+      <ul class="meta data">
+        <li><span><:cfg "site users" display_userid "Username":></span> <:siteuser userId:></li>
+        <:if Or [cfg custom user_auth] [cfg "site users" nopassword]:><:or Or:>
+        <li><span>Last logged in</span> <:date siteuser previousLogon:></li><:eif Or:>
+        <li><span>Registered since</span> <:date siteuser whenRegistered:></li>
+      </ul>
+    </fieldset>
+    <:if Subscriptions:>
+    <fieldset class="newsletter">
+      <input type="hidden" name="checkedsubs" value="1" />
+      <legend>Newsletter <:error_img subscription:></legend>
+      <:iterator begin subscriptions:>
+      <div class="checkbox">
+        <label><input type="checkbox" name="subscription" value="<:subscription id:>" <:ifSubscribed:>checked="checked" <:or:><:eif:>/> <:subscription name:>
+          (<a href="<:target siteuser subinfo id [subscription id] :>" target="_blank">info</a>)
+        </label>
+      </div>
+      <:iterator end subscriptions:>
+      <p class="small">Confirmation will be sent to your email address.</p>
+    </fieldset>
+    <:or Subscriptions:><:eif Subscriptions:>
+    <fieldset class="name">
+      <legend>Name</legend>
+      <div>
+        <label for="name1"><:cfg "site users" display_name1 "First Name":><:ifRequired name1:> <span class="required">*</span><:or:><:eif:> <:error_img name1:></label>
+        <span>
+          <input type="text" name="name1" id="name1" value="<:old name1 siteuser name1:>" class="<:ifRequired name1:>required<:or:><:eif:><:ifError_img name1:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="name2"><:cfg "site users" display_name2 "Last Name":><:ifRequired name2:> <span class="required">*</span><:or:><:eif:> <:error_img name2:></label>
+        <span>
+          <input type="text" name="name2" id="name2" value="<:old name2 siteuser name2:>" class="<:ifRequired name2:>required<:or:><:eif:><:ifError_img name2:> error<:or:><:eif:>" />
+        </span>
+      </div>
+    </fieldset>
+    <fieldset class="company">
+      <legend>Company</legend>
+      <div>
+        <label for="organization"><:cfg "site users" display_organization "Organisation Name":><:ifRequired organization:> <span class="required">*</span><:or:><:eif:> <:error_img organization:></label>
+        <span>
+          <input type="text" name="organization" id="organization" value="<:old organization siteuser organization:>" class="<:ifRequired organization:>required<:or:><:eif:><:ifError_img organization:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="title"><:cfg "site users" display_title "Title / Role":><:ifRequired title:> <span class="required">*</span><:or:><:eif:> <:error_img title:></label>
+        <span>
+          <input type="text" name="title" id="title" value="<:old title siteuser title:>" class="<:ifRequired title:>required<:or:><:eif:><:ifError_img title:> error<:or:><:eif:>" />
+        </span>
+      </div>
+    </fieldset>
+    <:if Cfg "site users" shipping_on_add 1:>
+    <fieldset class="address">
+      <legend>Address</legend>
+      <div>
+        <label for="street"><:cfg "site users" display_street "Address":><:ifRequired street:> <span class="required">*</span><:or:><:eif:> <:error_img street:></label>
+        <span>
+          <input type="text" name="street" id="street" value="<:old street siteuser street:>" class="<:ifRequired street:>required<:or:><:eif:><:ifError_img street:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="street2"><:cfg "site users" display_street2 "Address 2":><:ifRequired street2:> <span class="required">*</span><:or:><:eif:> <:error_img street2:></label>
+        <span>
+          <input type="text" name="street2" id="street2" value="<:old street2 siteuser street2:>" class="<:ifRequired street2:>required<:or:><:eif:><:ifError_img street2:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="suburb"><:cfg "site users" display_suburb "Suburb":><:ifRequired suburb:> <span class="required">*</span><:or:><:eif:> <:error_img suburb:></label>
+        <span>
+          <input type="text" name="suburb" id="suburb" value="<:old suburb siteuser suburb:>" class="<:ifRequired suburb:>required<:or:><:eif:><:ifError_img suburb:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="state"><:cfg "site users" display_state "State":><:ifRequired state:> <span class="required">*</span><:or:><:eif:> <:error_img state:></label>
+        <span>
+          <input type="text" name="state" id="state" value="<:old state siteuser state:>" class="<:ifRequired state:>required<:or:><:eif:><:ifError_img state:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="postcode"><:cfg "site users" display_postcode "Postcode":><:ifRequired postcode:> <span class="required">*</span><:or:><:eif:> <:error_img postcode:></label>
+        <span>
+          <input type="text" name="postcode" id="postcode" value="<:old postcode siteuser postcode:>" class="<:ifRequired postcode:>required<:or:><:eif:><:ifError_img postcode:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="country"><:cfg "site users" display_country "Country":><:ifRequired country:> <span class="required">*</span><:or:><:eif:> <:error_img country:></label>
+        <span><:if Cfgsection "country selector":>
+          <select name="country" id="country" class="<:ifRequired userId:>required<:or:><:eif:><:ifError_img country:> error<:or:><:eif:>">
+            <option value="">Please select a country</option><:iterator begin dyncfgsection "country selector" sort=value:>
+            <option value="<:uc [dyncfgentry key]:>"<:if Or [ifEq [siteuser country] [uc [dyncfgentry key]]] [ifEq [old country siteuser country] [uc [dyncfgentry value]]]:> selected="selected"<:or Or:><:eif Or:>><:dyncfgentry value:></option>
+            <:iterator end dyncfgsection:>
+          </select><:or Cfgsection:>
+          <input type="text" name="country" id="country" value="<:old country siteuser country:>" class="<:ifRequired country:>required<:or:><:eif:><:ifError_img country:> error<:or:><:eif:>" /><:eif Cfgsection:>
+        </span>
+      </div>
+    </fieldset>
+    <:or Cfg:><:eif Cfg:>
+    <fieldset class="contact">
+      <legend>Contact</legend>
+      <div>
+        <label for="telephone"><:cfg "site users" display_telephone "Telephone":><:ifRequired telephone:> <span class="required">*</span><:or:><:eif:> <:error_img telephone:></label>
+        <span>
+          <input type="text" name="telephone" id="telephone" value="<:old telephone siteuser telephone:>" class="<:ifRequired telephone:>required<:or:><:eif:><:ifError_img telephone:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="facsimile"><:cfg "site users" display_facsimile "Facsimile":><:ifRequired facsimile:> <span class="required">*</span><:or:><:eif:> <:error_img facsimile:></label>
+        <span>
+          <input type="text" name="facsimile" id="facsimile" value="<:old facsimile siteuser facsimile:>" class="<:ifRequired facsimile:>required<:or:><:eif:><:ifError_img facsimile:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="mobile"><:cfg "site users" display_mobile "Mobile":><:ifRequired mobile:> <span class="required">*</span><:or:><:eif:> <:error_img mobile:></label>
+        <span>
+          <input type="text" name="mobile" id="mobile" value="<:old mobile siteuser mobile:>" class="<:ifRequired mobile:>required<:or:><:eif:><:ifError_img mobile:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <label for="email"><:cfg "site users" display_email "Email Address":> <span class="required">*</span> <:error_img email:></label>
+        <span>
+          <input type="text" name="email" id="email" value="<:old email siteuser email:>" class="required<:ifError_img email:> error<:or:><:eif:>" />
+        </span>
+      </div>
+      <div>
+        <input type="hidden" name="saveTextOnlyMail" value="1" />
+        <label><input type="checkbox" name="textOnlyMail" value="1" <:ifOld textOnlyMail siteuser textOnlyMail:>checked="checked" <:or:><:eif:>/> Plain text email (only)</label>
+      </div>
+    </fieldset>
+    <:if Groups:>
+    <fieldset>
+      <legend>Groups <:error_img groups:></legend>
+      <ul>
+        <:iterator begin groups:>
+        <li>
+          <input type="hidden" name="set_group_id" value="<:group id:>" />
+          <input type="checkbox" name="group_id" id="group_<:group id:>" value="<:group id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
+          <label for="group_<:group id:>"><a href="<:script:>?a_editgroup=1&amp;id=<:group id:>&amp;referer=1"><:group name:></a></label>
+        </li>
+        <:iterator separator groups:><:iterator end groups:>
+      </ul>
+    </fieldset>
+    <:or Groups:><:eif Groups:>
+    <:if Flags:>
+    <fieldset>
+      <legend>Flags <:error_img flags:></legend>
+      <input type="hidden" name="saveFlags" value="1" />
+      <ul>
+        <:iterator begin flags:>
+        <li>
+          <input type="checkbox" name="flags" id="flags_<:flag id:>" value="<:flag id:>" <:ifFlagSet [flag id]:>checked="checked" <:or:><:eif:>/>
+          <label for="flags_<:flag id:>"><:flag desc |h:></label>
+        <span>
+          </li>
+        <:iterator separator flags:><:iterator end flags:>
+      </ul>
+    </fieldset>
+    <:or Flags:><:eif Flags:>
+    <:if Cfg "notify files" active:>
+    <:if Filecats:>
+    <fieldset>
+      <input type="hidden" name="save_file_subs" value="1" />
+      <legend>File subscriptions <:error_img filecats:></legend>
+      <ul>
+         <:iterator begin filecats:>
+        <li>
+          <input type="checkbox" name="file_subscriptions" id="filecat_<:filecat id:>" value="<:filecat id:>" <:ifFilecat subscribed:>checked="checked" <:or:><:eif:>/>
+          <label for="filecat_<:filecat id:>"><:filecat name:></label>
+        </li>
+        <:iterator separator filecats:><:iterator end filecats:>
+      </ul>
+    </fieldset>
+    <:or Filecats:><:eif Filecats:>
+    <:or Cfg:><:eif Cfg:>
+    <fieldset>
+      <legend>Information</legend>
+      <div class="full">
+        <label for="adminNotes"><:cfg "site users" display_adminNotes "Notes":><:ifRequired country:> <span class="required">*</span><:or:><:eif:> <:error_img adminNotes:></label>
+        <span>
+          <textarea name="adminNotes" id="adminNotes" ><:old adminNotes siteuser adminNotes :></textarea>
+        </span>
+      </div>
+    </fieldset>
+    <:if Userfiles:>
+    <fieldset>
+      <legend>Files</legend>
+      <ul class="children files">
+        <:iterator begin userfiles sort: -modwhen:>
+        <li>
+          <a href="<:target user downufile id [userfile id]:>" title="<:userfile title:>"><span class="listed <:switch:><:case default:>green<:endswitch:>"></span> <:userfile display_name |h:></a>
+          <span>
+            <a href="<:script:>?a_edituserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>" class="button gray small">Edit</a>
+            <:ifUserCan bse_members_user_del_file:>
+            <a href="<:script:>?a_deluserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>&amp;_csrfp=<:csrfp admin_user_del_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a><:or:><span class="button gray small">Delete</span><:eif:>
+          </span>
+        </li>
+        <:iterator separator userfiles:><:iterator end userfiles:>
+      </ul>
+    </fieldset>
+    <:or Userfiles:><:eif Userfiles:>
+    <:if Userorders:>
+    <fieldset class="list">
+      <legend>Orders</legend>
+      <table class="full">
+        <thead>
+          <tr>
+            <th>Order No.</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Payment</th>
+            <th>Total</th>
+            <th><!--Actions--></th>
+          </tr>
+        </thead>
+        <tbody>
+          <:iterator begin userorders:>
+          <tr> 
+            <td><span class="listed <:ifUserorder filled:>green<:or:>gray<:eif:>"></span><:userorder id |%06d:></td>
+            <td><:date userorder orderDate:></td>
+            <td><:userorder stage:></td>
+            <td><:ifUserorder paidFor:>Paid<:or:>Unpaid<:eif:></td>
+            <td><:cfg shop currency "$":><:number money [userorder total]:></td>
+            <td class="actions">
+              <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:userorder id:>" class="button gray small">Details</a>
+            </td>
+          </tr>
+          <:iterator end userorders:>
+        <tbody>
+      </table>
+    </fieldset>
+    <:or Userorders:> <:eif Userorders:>
+    <:include admin/include/user_custom.tmpl optional:>
+    <p><span class="required">* Required.</span> <:cfg "site users" required_text "Please provide information for all marked fields.":></p>
+    <p class="buttons">
+      <:if UserCan bse_members_user_save:>
+      <input type="submit" name="a_save" value="Save changes" accesskey="s" Title="AccessKey = s" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+  </form>
+</div>

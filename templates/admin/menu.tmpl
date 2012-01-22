@@ -1,0 +1,6 @@
+<:wrap admin/base.tmpl title=>[cat [cfg site name |h] " Administration"]:>
+<div id="preview" class="preview">
+  <iframe src="<:ifCgi workarea:><:cgi workarea:><:or:><:adminurl admin id 1:><:eif:>" frameborder="0" name="workarea">
+    <p>Your browser does not support iframes.</p>
+  </iframe>
+</div>

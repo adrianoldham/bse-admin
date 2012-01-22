@@ -1,0 +1,113 @@
+<:wrap admin/base.tmpl title=>"Site Users" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <p class="buttons">
+    <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a>
+    <:if UserCan bse_siteuser_add:>
+    <a href="<:script:>?a_addform=1" class="button blue small">Add User</a>
+    <:or UserCan:><:eif UserCan:>
+  </p>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="s" value="<:sortby:>" />
+    <input type="hidden" name="r" value="<:reverse:>" />
+    <fieldset>
+      <legend>Filter users</legend>
+      <div>
+        <label for="userId"><:cfg "site users" display_userid "Username":></label>
+        <span>
+          <input type="text" name="userId" id="userId" value="<:old userId cgi userId:>" />
+        </span>
+      </div>
+      <div>
+        <label for="name1"><:cfg "site users" display_name1 "First Name":></label>
+        <span>
+          <input type="text" name="name1" id="name1" value="<:old name1 cgi name1:>" />
+        </span>
+      </div>
+      <div>
+        <label for="name2"><:cfg "site users" display_name2 "Last Name":></label>
+        <span>
+          <input type="text" name="name2" id="name2" value="<:old name2 cgi name2:>" />
+        </span>
+      </div>
+      <div>
+        <label for="organization"><:cfg "site users" display_organization "Organisation Name":></label>
+        <span>
+          <input type="text" name="organization" id="organization" value="<:old organization cgi organization:>" />
+        </span>
+      </div>
+      <div>
+        <label for="email"><:cfg "site users" display_email "Email Address":></label>
+        <span>
+          <input type="text" name="email" id="email" value="<:old email cgi email:>" />
+        </span>
+      </div>
+      <div>
+        <label for="disabled"><:cfg "site users" display_enabled "Disabled":></label>
+        <span>
+          <input type="checkbox" name="disabled" id="disabled" value="1" <:ifOr [old disabled] [cgi disabled]:>checked="checked" <:or:><:eif:>/>
+        </span>
+      </div>
+      <div>
+        <label for="pp">Per Page</label>
+        <span>
+          <select name="pp" id="pp">
+            <option value="-1"<:ifEq [siteusers_perpage] "-1":> selected="selected"<:or:><:eif:>>All users</option>
+            <option value="1000"<:ifEq [siteusers_perpage] "1000":> selected="selected"<:or:><:eif:>>1000</option>
+            <option value="500"<:ifEq [siteusers_perpage] "500":> selected="selected"<:or:><:eif:>>500</option>
+            <option value="100"<:ifEq [siteusers_perpage] "100":> selected="selected"<:or:><:eif:>>100</option>
+            <option value="50"<:ifEq [siteusers_perpage] "50":> selected="selected"<:or:><:eif:>>50</option>
+            <option value="20"<:ifEq [siteusers_perpage] "20":> selected="selected"<:or:><:eif:>>20</option>
+            <option value="15"<:ifEq [siteusers_perpage] "15":> selected="selected"<:or:><:eif:>>15</option>
+            <option value="10"<:ifEq [siteusers_perpage] "10":> selected="selected"<:or:><:eif:>>10</option>
+            <option value="5"<:ifEq [siteusers_perpage] "5":> selected="selected"<:or:><:eif:>>5</option>
+          </select>
+        </span>
+      </div>
+      <p class="buttons">
+        <input type="submit" value="Update filter"  accesskey="u" title="AccessKey = u" class="button blue" />
+      </p>
+    </fieldset>
+  </form>
+  <:if Siteusers:>
+  <fieldset class="list">
+    <legend>Accounts</legend>
+    <table class="full">
+      <thead>
+        <tr>
+          <th><a href="<:script:>?<:sorthelp userId:>&amp;p=<:siteusers_pagenum:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:cfg "site users" display_userid "Username":></a></th>
+          <th><a href="<:script:>?<:sorthelp name1:>&amp;p=<:siteusers_pagenum:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:cfg "site users" display_name1 "First Name":></a></th>
+          <th><a href="<:script:>?<:sorthelp name2:>&amp;p=<:siteusers_pagenum:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:cfg "site users" display_name2 "Last Name":></a></th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:iterator begin siteusers:> 
+        <tr> 
+          <td><:siteuser userId:></td>
+          <td><:siteuser name1:></td>
+          <td><:siteuser name2:></td>
+          <td class="actions">
+            <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>" class="button gray small">Edit</a>
+            <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>&amp;r=<:script:>%3F<:search_param:>" onclick="return window.confirm('Are you sure you want to delete this User?');" class="button red small">Delete</a>
+          </td>
+        </tr>
+        <:iterator end siteusers:> 
+      <tbody>
+    </table>
+  </fieldset>
+  <p class="pagination">Page <:siteusers_pagenum:> of <:siteusers_pagecount:>
+    <:ifFirstSiteusersPage:><span class="disabled">|&lt;&lt;</span><:or:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">|&lt;&lt;</a> <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&lt;&lt;</a><:eif:>
+    <:iterator begin siteusers_pagec:>
+    <:switch:>
+    <:case siteuser_pagec gap:>...
+    <:case siteuser_pagec link:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteuser_pagec page:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:siteuser_pagec page:></a>
+    <:case default:><span class="disabled"><:siteuser_pagec page:></span>
+    <:endswitch:>
+    <:iterator end siteusers_pagec:>
+    <:ifLastSiteusersPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;&gt;</a> <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteusers_pagecount:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;&gt;|</a><:eif:>
+  </p>
+  <:or Siteusers:> 
+  <p>No users match search criteria.</p>
+  <:eif Siteusers:>
+</div>

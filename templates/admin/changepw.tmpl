@@ -1,0 +1,35 @@
+<:wrap admin/base.tmpl title=>"Admin User" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Account</legend> 
+      <div>
+        <label for="oldpassword">Old password <:error_img oldpassword:></label>
+        <span> 
+          <input type="password" name="oldpassword" id="oldpassword" value="<:old oldpassword:>" />
+          <:help changepw oldpassword:>
+        </span>
+      </div>
+      <div>
+        <label for="newpassword">New password <:error_img newpassword:></label>
+        <span> 
+          <input type="password" name="newpassword" id="newpassword" value="<:old newpassword:>" />
+          <:help changepw newpassword:>
+        </span>
+      </div>
+      <div>
+        <label for="confirm">Confirm password <:error_img confirm:></label>
+        <span> 
+          <input type="password" name="confirm" id="confirm" value="<:old confirm:>" />
+          <:help changepw confirm:>
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:adminurl menu:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <input type="submit" name="a_change" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+    </p>
+  </form>
+</div>

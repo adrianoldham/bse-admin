@@ -1,0 +1,37 @@
+<:wrap admin/base.tmpl title=>"User Groups" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <p class="buttons">
+    <a href="<:script:>" class="button gray small">Users</a>
+    <:if UserCan bse_siteuser_group_add:>
+    <a href="<:script:>?a_addgroupform=1" class="button blue small">Add Group</a>
+    <:or UserCan:><:eif UserCan:>
+  </p>
+  <:if Groups:>
+  <fieldset class="list">
+    <legend>Groups</legend>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:iterator begin groups:> 
+        <tr> 
+          <td><:group name:></td>
+          <td class="actions">
+            <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button gray small">Edit</a><:ifUserCan bse_siteuser_group_del:>
+            <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" onclick="return window.confirm('Are you sure you want to delete this Group?');" class="button red small">Delete</a><:or:>
+            <span class="disabled">Delete</span><:eif:>
+          </td>
+        </tr>
+        <:iterator end groups:> 
+      <tbody>
+    </table>
+  </fieldset>
+  <:or Groups:> 
+  <p>No site user groups created.</p>
+  <:eif Groups:> 
+</div>

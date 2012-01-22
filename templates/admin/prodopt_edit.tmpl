@@ -1,0 +1,48 @@
+<:wrap admin/base.tmpl title=>"Edit Option" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="option_id" value="<:option id:>" />
+    <input name="r" type="hidden" value="<:script:>?id=<:article id:>" />
+    <:csrfp admin_save_option hidden:>
+    <input type="hidden" name="save_enabled" value="1" />
+    <fieldset>
+      <legend>Option</legend>
+      <div>
+        <label for="name">Name <:error_img name:></label>
+        <span>
+          <input type="text" name="name" id="name" value="<:old name option name:>" />
+          <:help edit name:>
+        </span>
+      </div>
+      <div>
+        <label for="enabled">Enabled <:error_img Enabled:></label>
+        <span>
+          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOld enabled option enabled:>checked="checked"<:or:><:eif:> />
+          <:help edit Enabled:>
+        </span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Values</legend>
+      <:iterator begin dboptionvalues:>
+      <div>
+        <label for="value<:dboptionvalue id:>">#<:dboptionvalue_number:> <:error_img [concatenate value [dboptionvalue id]]:> <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifEq [dboptionvalue id] [option default_value]:>checked="checked"<:or:><:eif:> /> <:error_img default_value:></label>
+        <span>
+          <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [concatenate value [dboptionvalue id]] 0 dboptionvalue value:>" />
+          <:help edit name:>
+          <button onclick="javascript: $(this).up('div').remove(); return false;" class="button red small">Delete</button>
+        </span>
+      </div>
+      <:iterator end dboptionvalues:>
+      <p class="buttons">
+        <button onclick="javascript: var parent = $(this).up('p'); var ele = $(this).up('p').previous('div'); parent.insert({before: ele.clone(true)}); return false;" class="button blue small">Add Value</button>
+      </p>
+    </fieldset>
+    <p class="buttons">
+    <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+    <input type="submit" name="a_save_option" value="Save changes" accesskey="s" tabindex="100" title="AccessKey = s" class="button green" />
+    </p>
+  </form>
+</div>
