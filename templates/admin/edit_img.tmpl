@@ -25,7 +25,7 @@
         <div>
           <label for="image">Change image <:error_img [concatenate image [image id]]:></label>
           <span>
-            <input type="file" name="image<:image id:>" id="image" <:ifUserCan bse_edit_images_save:article:><:or:>disabled="disabled" <:eif:>/>
+            <input type="file" name="image<:image id:>" id="image" <:ifUserCan bse_edit_images_save:article:><:or:>disabled="disabled" <:eif:>class="<:ifError_img [concatenate image [image id]]:>error<:or:><:eif:>" />
             <:help image image:>
           </span>
         </div>

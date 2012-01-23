@@ -26,7 +26,7 @@
         <div>
           <label for="file_<:file id:>">Change file <:error_img [concatenate "file_" [file id]]:></label>
           <span>
-            <input type="file" name="file_<:file id:>" id="file_<:file id:>" />
+            <input type="file" name="file_<:file id:>" id="file_<:file id:>" class="<:ifError_img [concatenate file_ [file id]]:>error<:or:><:eif:>" />
             <:help file file:>
           </span>
         </div>
