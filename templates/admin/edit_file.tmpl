@@ -60,9 +60,9 @@
           </span>
         </div>
         <div>
-          <label for="notes">Notes <:error_img [concatenate "notes_" [file id]]:></label>
+          <label for="notes_<:file id:>">Notes <:error_img [concatenate "notes_" [file id]]:></label>
           <span> 
-            <textarea name="notes_<:file id:>" id="notes"><:oldi [concatenate notes_ [file id]] 0 file notes:></textarea>
+            <textarea name="notes_<:file id:>" id="notes_<:file id:>"><:oldi [concatenate notes_ [file id]] 0 file notes:></textarea>
             <:help file notes:>
           </span>
         </div>
