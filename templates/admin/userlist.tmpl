@@ -28,7 +28,7 @@
           <td class="actions">
             <a href="<:script:>?a_showuser=1&amp;userid=<:iuser id:>" class="button gray small">Edit</a><:ifUserCan bse_admin_user_del:>
             <a href="<:script:>?a_deluser=1&amp;userid=<:iuser id:>" onclick="return window.confirm('Are you sure you want to delete this User?');" class="button red small">Delete</a><:or:>
-            <span class="disabled">Delete</span><:eif:>
+            <a class="button red small disabled">Delete</a><:eif:>
           </td>
         </tr>
         <:iterator end users:> 

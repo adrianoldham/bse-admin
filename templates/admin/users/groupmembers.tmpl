@@ -5,7 +5,7 @@
     <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button gray small">Group</a>
     <:ifUserCan bse_siteuser_group_del:>
     <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this Group?');" class="button red small">Delete</a><:or:>
-    <span class="disabled">Delete</span><:eif:>
+    <a class="button red small disabled">Delete</a><:eif:>
   </p>
   <form action="<:script:>" method="post">
     <input type="hidden" name="id" value="<:group id:>" />

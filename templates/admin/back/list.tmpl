@@ -28,7 +28,7 @@
           <td><:switch:><:case Task_running:>–<:case Eq [task last_exit] "":><:case Task last_exit:>Failed<:case default:>Success<:endswitch:></td>
           <td class="actions"><:if Task_running:><:ifTask stoppable:>
             <a href="<:adminurl backmon a_stop 1 id [task id]:>" class="button red small">Stop</a><:or:>
-            <a class="button gray small">Start</a><:eif:><:or Task_running:>
+            <a class="button green small disabled">Start</a><:eif:><:or Task_running:>
             <a href="<:adminurl backmon a_start 1 id [task id]:>" class="button green small">Start</a><:eif Task_running:>
             <a href="<:adminurl backmon a_detail 1 id [task id]:>" class="button gray small">Details</a>
           </td>

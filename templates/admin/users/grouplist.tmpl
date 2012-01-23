@@ -24,7 +24,7 @@
           <td class="actions">
             <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button gray small">Edit</a><:ifUserCan bse_siteuser_group_del:>
             <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" onclick="return window.confirm('Are you sure you want to delete this Group?');" class="button red small">Delete</a><:or:>
-            <span class="disabled">Delete</span><:eif:>
+            <a class="button red small disabled">Delete</a><:eif:>
           </td>
         </tr>
         <:iterator end groups:> 
