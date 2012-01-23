@@ -15,7 +15,7 @@
   </head>
   <body<:ifParam bodyid:> id="<:param bodyid:>"<:or:><:eif:>>
     <:switch:><:case Param nomessage:><:case Message:>
-    <div id="message" class="message<:ifError:> error red<:or:> green<:eif:>"><:message:></div><:endswitch:>
+    <div id="message" class="message<:switch:><:case Match [script] "users":> orange<:case Error:> error red<:case default:> green<:endswitch:>"><:message:></div><:endswitch:>
     <:switch:><:case Param nonavbar:><:case default:>
 <:include admin/include/navbar.tmpl:><:endswitch:><:switch:><:case Cgi preview:>
   <div id="preview" class="preview">
