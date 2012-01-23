@@ -52,11 +52,11 @@
         <tr>
           <th>Receipt No.:</th>
           <td><:order ccReceipt:></td>
-        </tr>
+        </tr><:ifOrder ccTranId:>
         <tr>
           <th>Transaction Id:</th>
           <td><:order ccTranId:></td>
-        </tr><:or Order:><:eif Order:>
+        </tr><:or:><:eif:><:or Order:><:eif Order:>
         <tr>
           <th><:cfg shop display_ccName "Name on Card":>:</th>
           <td><:order ccName:></td>
