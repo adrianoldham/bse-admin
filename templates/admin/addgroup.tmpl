@@ -8,14 +8,14 @@
       <div>
         <label for="name">Name <:error_img name:></label>
         <span> 
-          <input type="text" name="name" id="name" value="<:old name:>" />
+          <input type="text" name="name" id="name" value="<:old name:>" class="<:ifError_img name:>error<:or:><:eif:>" />
           <:help addgroup name:>
         </span>
       </div>
       <div>
         <label for="description">Description <:error_img description:></label>
         <span> 
-          <input type="text" name="description" id="description" value="<:old description:>" />
+          <input type="text" name="description" id="description" value="<:old description:>" class="<:ifError_img description:>error<:or:><:eif:>" />
           <:help addgroup description:>
         </span>
       </div>

@@ -43,7 +43,7 @@
        <div>
         <label for="title">Description <:error_img title:></label>
         <span> 
-          <input type="text" name="title" id="title" value="<:old title groupfile title:>" />
+          <input type="text" name="title" id="title" value="<:old title groupfile title:>" class="<:ifError_img title:>error<:or:><:eif:>" />
           <:help editgroup title:>
         </span>
       </div>
@@ -77,7 +77,7 @@
       <div>
         <label for="content_type">Content type <span class="required">*</span> <:error_img content_type:></label>
         <span> 
-          <input type="text" name="content_type" id="content_type" value="<:old content_type groupfile content_type:>" /> 
+          <input type="text" name="content_type" id="content_type" value="<:old content_type groupfile content_type:>" class="<:ifError_img content_type:>error<:or:><:eif:>" /> 
           <:help editgroup content_type:>
         </span>
       </div>

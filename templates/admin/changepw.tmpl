@@ -8,21 +8,21 @@
       <div>
         <label for="oldpassword">Old password <:error_img oldpassword:></label>
         <span> 
-          <input type="password" name="oldpassword" id="oldpassword" value="<:old oldpassword:>" />
+          <input type="password" name="oldpassword" id="oldpassword" value="<:old oldpassword:>" class="<:ifError_img oldpassword:>error<:or:><:eif:>" />
           <:help changepw oldpassword:>
         </span>
       </div>
       <div>
         <label for="newpassword">New password <:error_img newpassword:></label>
         <span> 
-          <input type="password" name="newpassword" id="newpassword" value="<:old newpassword:>" />
+          <input type="password" name="newpassword" id="newpassword" value="<:old newpassword:>" class="<:ifError_img newpassword:>error<:or:><:eif:>" />
           <:help changepw newpassword:>
         </span>
       </div>
       <div>
         <label for="confirm">Confirm password <:error_img confirm:></label>
         <span> 
-          <input type="password" name="confirm" id="confirm" value="<:old confirm:>" />
+          <input type="password" name="confirm" id="confirm" value="<:old confirm:>" class="<:ifError_img confirm:>error<:or:><:eif:>" />
           <:help changepw confirm:>
         </span>
       </div>

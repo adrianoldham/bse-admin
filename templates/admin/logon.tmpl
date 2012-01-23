@@ -8,13 +8,13 @@
       <div>
         <label for="username">Username <:error_img logon:></label>
         <span> 
-          <input type="text" name="logon" id="username" value="<:old logon:>" />
+          <input type="text" name="logon" id="username" value="<:old logon:>" class="<:ifError_img logon:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="password">Password <:error_img password:></label>
         <span> 
-          <input type="password" name="password" id="password" value="" />
+          <input type="password" name="password" id="password" value="" class="<:ifError_img password:>error<:or:><:eif:>" />
         </span>
       </div>
     </fieldset>

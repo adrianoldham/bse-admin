@@ -47,7 +47,7 @@
       <div class="full">
         <label for="title">Title <:error_img title:></label>
         <span>
-          <input type="text" name="title" id="title" value="<:old title default title:>" maxlength="<:cfg fields title_size 255:>" <:ifFieldPerm title:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="title" id="title" value="<:old title default title:>" maxlength="<:cfg fields title_size 255:>" <:ifFieldPerm title:><:or:>disabled="disabled" <:eif:>class="<:ifError_img title:>error<:or:><:eif:>" />
           <:help edit title:>
         </span>
       </div>
@@ -55,7 +55,7 @@
       <div>
         <label for="titleAlias">Title alias <:error_img titleAlias:></label>
         <span>
-          <input type="text" name="titleAlias" id="titleAlias" value="<:old titleAlias default titleAlias:>" maxlength="<:cfg fields alias_size 60:>" <:ifFieldPerm titleAlias:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="titleAlias" id="titleAlias" value="<:old titleAlias default titleAlias:>" maxlength="<:cfg fields alias_size 60:>" <:ifFieldPerm titleAlias:><:or:>disabled="disabled" <:eif:>class="<:ifError_img titleAlias:>error<:or:><:eif:>" />
           <:help edit titleAlias:>
         </span>
       </div>
@@ -64,7 +64,7 @@
       <div class="full">
         <label for="description">Description <:error_img description:></label>
         <span>
-          <input type="text" name="description" id="description" value="<:old description default description:>" maxlength="<:cfg fields description_size 255:>" <:ifFieldPerm description:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="description" id="description" value="<:old description default description:>" maxlength="<:cfg fields description_size 255:>" <:ifFieldPerm description:><:or:>disabled="disabled" <:eif:>class="<:ifError_img description:>error<:or:><:eif:>" />
           <:help edit description:>
         </span>
       </div>
@@ -86,7 +86,7 @@
       <div>
         <label for="linkAlias">Link alias <:error_img linkAlias:></label>
         <span>
-          <input type="text" name="linkAlias" id="linkAlias" value="<:old linkAlias default linkAlias:>" maxlength="<:cfg fields linkAlias_size 255:>" <:ifFieldPerm linkAlias:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="linkAlias" id="linkAlias" value="<:old linkAlias default linkAlias:>" maxlength="<:cfg fields linkAlias_size 255:>" <:ifFieldPerm linkAlias:><:or:>disabled="disabled" <:eif:>class="<:ifError_img linkAlias:>error<:or:><:eif:>" />
           <:help edit linkAlias:>
         </span>
       </div>
@@ -105,7 +105,7 @@
       <div>
         <label for="retailPrice">Retail <:cfg shop currency $:> <:error_img retailPrice:></label>
         <span>
-          <input type="text" name="retailPrice" id="retailPrice" value="<:old retailPrice money product retailPrice:>" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="retailPrice" id="retailPrice" value="<:old retailPrice money product retailPrice:>" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img retailPrice:>error<:or:><:eif:>" />
           <:help edit retailPrice:>
         </span>
       </div>
@@ -113,7 +113,7 @@
       <div>
         <label for="gst">GST <:cfg shop currency $:> <:error_img gst:></label>
         <span>
-          <input type="text" name="gst" id="gst" value="<:old gst money product gst:>" <:ifFieldPerm gst:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="gst" id="gst" value="<:old gst money product gst:>" <:ifFieldPerm gst:><:or:>disabled="disabled" <:eif:>class="<:ifError_img gst:>error<:or:><:eif:>" />
           <:help edit gst:>
         </span>
       </div>
@@ -122,7 +122,7 @@
       <div>
         <label for="wholesalePrice">Wholesale <:cfg shop currency $:> <:error_img wholesalePrice:></label>
         <span>
-          <input type="text" name="wholesalePrice" id="wholesalePrice" value="<:old wholesalePrice money product wholesalePrice:>" <:ifFieldPerm wholesalePrice:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="wholesalePrice" id="wholesalePrice" value="<:old wholesalePrice money product wholesalePrice:>" <:ifFieldPerm wholesalePrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img wholesalePrice:>error<:or:><:eif:>" />
           <:help edit wholesalePrice:>
         </span>
       </div>
@@ -133,7 +133,7 @@
         <div>
           <label for="tier_price_<:price_tier id:>"><:price_tier description:> <:cfg shop currency $:> <:error_img [cat "tier_price_" [price_tier id]]:></label>
           <span>
-            <input type="text" name="tier_price_<:price_tier id:>" id="tier_price_<:price_tier id:>" value="<:ifEq [tier_price] "":><:oldi [cat "tier_price_" [price_tier id]] 0:><:or:><:oldi [cat "tier_price_" [price_tier id]] 0 money tier_price:><:eif:>" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>/>
+            <input type="text" name="tier_price_<:price_tier id:>" id="tier_price_<:price_tier id:>" value="<:ifEq [tier_price] "":><:oldi [cat "tier_price_" [price_tier id]] 0:><:or:><:oldi [cat "tier_price_" [price_tier id]] 0 money tier_price:><:eif:>" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tier_price_<:price_tier id:>:>error<:or:><:eif:>" />
             <:help edit [price_tier id]:>
           </span>
         </div>
@@ -146,14 +146,14 @@
       <div>
         <label for="product_code">Product code <:error_img product_code:></label>
         <span>
-          <input type="text" name="product_code" id="product_code" value="<:old product_code:>" <:ifFieldPerm product_code:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="product_code" id="product_code" value="<:old product_code:>" <:ifFieldPerm product_code:><:or:>disabled="disabled" <:eif:>class="<:ifError_img product_code:>error<:or:><:eif:>" />
           <:help edit product_code:>
         </span>
       </div>  
       <div>
         <label for="leadTime">Lead time <:error_img leadTime:></label>
         <span>
-          <input type="text" name="leadTime" id="leadTime" value="<:old leadTime:>" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="leadTime" id="leadTime" value="<:old leadTime:>" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>class="<:ifError_img leadTime:>error<:or:><:eif:>" />
           <:help edit product_code:>
         </span>
       </div>  
@@ -164,7 +164,7 @@
       <div>
         <label for="weight">Weight <:error_img weight:></label>
         <span>
-          <input type="text" name="weight" id="weight" value="<:old weight default weight:>" maxlength="<:cfg fields weight_size 6:>" <:ifFieldPerm weight:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="weight" id="weight" value="<:old weight default weight:>" maxlength="<:cfg fields weight_size 6:>" <:ifFieldPerm weight:><:or:>disabled="disabled" <:eif:>class="<:ifError_img weight:>error<:or:><:eif:>" />
           <:help edit weight:>
           (g - grams)
         </span>
@@ -172,7 +172,7 @@
       <div>
         <label for="length">Length <:error_img length:></label>
         <span>
-          <input type="text" name="length" id="length" value="<:old length default length:>" maxlength="<:cfg fields length_size 6:>" <:ifFieldPerm length:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="length" id="length" value="<:old length default length:>" maxlength="<:cfg fields length_size 6:>" <:ifFieldPerm length:><:or:>disabled="disabled" <:eif:>class="<:ifError_img length:>error<:or:><:eif:>" />
           <:help edit length:>
           (mm)
         </span>
@@ -180,7 +180,7 @@
       <div>
         <label for="width">Width <:error_img width:></label>
         <span>
-          <input type="text" name="width" id="width" value="<:old width default width:>" maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="width" id="width" value="<:old width default width:>" maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>class="<:ifError_img width:>error<:or:><:eif:>" />
           <:help edit width:>
           (mm)
         </span>
@@ -188,7 +188,7 @@
       <div>
         <label for="height">Height <:error_img height:></label>
         <span>
-          <input type="text" name="height" id="height" value="<:old height default height:>" maxlength="<:cfg fields height_size 6:>" <:ifFieldPerm height:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="height" id="height" value="<:old height default height:>" maxlength="<:cfg fields height_size 6:>" <:ifFieldPerm height:><:or:>disabled="disabled" <:eif:>class="<:ifError_img height:>error<:or:><:eif:>" />
           <:help edit height:>
           (mm)
         </span>
@@ -258,7 +258,7 @@
         <label for="tag">Tag name <:error_img tags:></label>
         <span>
           <input type="hidden" name="_save_tags" value="1" />
-          <input type="text" name="tags" id="tag" value="<:old tags:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="tags" id="tag" value="<:old tags:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tags:>error<:or:><:eif:>" />
           <:help edit tags:>
         </span>
       </div>
@@ -266,7 +266,7 @@
       <div>
         <label for="tag_<:tag_number:>">&nbsp;</label>
         <span>
-          <input type="text" name="tags" id="tag_<:tag_number:>" value="<:tag name:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="tags" id="tag_<:tag_number:>" value="<:tag name:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tags:>error<:or:><:eif:>" />
         </span>
       </div>
       <:iterator end tags:>
@@ -296,14 +296,14 @@
       <div>
         <label for="summaryLength">Summary length <:error_img summaryLength:></label>
         <span>
-          <input type="text" name="summaryLength" id="summaryLength" value="<:old summaryLength default summaryLength:>" maxlength="10" <:ifFieldPerm summaryLength:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="summaryLength" id="summaryLength" value="<:old summaryLength default summaryLength:>" maxlength="10" <:ifFieldPerm summaryLength:><:or:>disabled="disabled" <:eif:>class="<:ifError_img summaryLength:>error<:or:><:eif:>" />
           <:help edit summaryLength:>
         </span>
       </div>
       <div>
         <label for="threshold">Embed threshold <:error_img threshold:></label>
         <span>
-          <input type="text" name="threshold" id="threshold" value="<:old threshold default threshold:>" maxlength="10" <:ifFieldPerm threshold:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="threshold" id="threshold" value="<:old threshold default threshold:>" maxlength="10" <:ifFieldPerm threshold:><:or:>disabled="disabled" <:eif:>class="<:ifError_img threshold:>error<:or:><:eif:>" />
           <:help edit threshold:>
         </span>
       </div>
@@ -367,35 +367,35 @@
       <div>
         <label for="pageTitle">Page title <:error_img pageTitle:></label>
         <span>
-          <input type="text" name="pageTitle" id="pageTitle" value="<:old pageTitle article pageTitle:>" maxlength="255" <:ifFieldPerm pageTitle:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="pageTitle" id="pageTitle" value="<:old pageTitle article pageTitle:>" maxlength="255" <:ifFieldPerm pageTitle:><:or:>disabled="disabled" <:eif:>class="<:ifError_img pageTitle:>error<:or:><:eif:>" />
           <:help edit pageTitle:>
         </span>
       </div>
       <div>
         <label for="metaDescription">Meta description <:error_img metaDescription:></label>
         <span>
-          <input type="text" name="metaDescription" id="metaDescription" value="<:old metaDescription article metaDescription:>" maxlength="255" <:ifFieldPerm metaDescription:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="metaDescription" id="metaDescription" value="<:old metaDescription article metaDescription:>" maxlength="255" <:ifFieldPerm metaDescription:><:or:>disabled="disabled" <:eif:>class="<:ifError_img metaDescription:>error<:or:><:eif:>" />
           <:help edit metaDescription:>
         </span>
       </div>
       <div>
         <label for="metaKeywords">Meta keywords <:error_img metaKeywords:></label>
         <span>
-          <input type="text" name="metaKeywords" id="metaKeywords" value="<:old metaKeywords article metaKeywords:>" placeholder="Comma separated" maxlength="255" <:ifFieldPerm metaKeywords:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="metaKeywords" id="metaKeywords" value="<:old metaKeywords article metaKeywords:>" placeholder="Comma separated" maxlength="255" <:ifFieldPerm metaKeywords:><:or:>disabled="disabled" <:eif:>class="<:ifError_img metaKeywords:>error<:or:><:eif:>" />
           <:help edit metaKeywords:>
         </span>
       </div>
       <div>
         <label for="author">Author name <:error_img author:></label>
         <span>
-          <input type="text" name="author" id="author" value="<:ifCfg editor auto_author:><:old author adminuser name:><:or:><:old author article author:><:eif:>" maxlength="255" <:ifFieldPerm author:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="author" id="author" value="<:ifCfg editor auto_author:><:old author adminuser name:><:or:><:old author article author:><:eif:>" maxlength="255" <:ifFieldPerm author:><:or:>disabled="disabled" <:eif:>class="<:ifError_img author:>error<:or:><:eif:>" />
           <:help edit author:>
         </span>
       </div>
       <div>
         <label for="keyword">Local keywords <:error_img keyword:></label>
         <span>
-          <input type="text" name="keyword" id="keyword" value="<:old keyword article keyword:>" placeholder="Comma separated" maxlength="255" <:ifFieldPerm keyword:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="keyword" id="keyword" value="<:old keyword article keyword:>" placeholder="Comma separated" maxlength="255" <:ifFieldPerm keyword:><:or:>disabled="disabled" <:eif:>class="<:ifError_img keyword:>error<:or:><:eif:>" />
           <:help edit keyword:>
         </span>
       </div>
@@ -427,7 +427,7 @@
       <div>
         <label for="subscription_period">Duration <:error_img subscription_period:></label>
         <span>
-          <input type="text" name="subscription_period" id="subscription_period" value="<:old subscription_period default subscription_period:><:eif:>" <:ifFieldPerm subscription_period:><:or:>disabled="disabled" <:eif:>/> months
+          <input type="text" name="subscription_period" id="subscription_period" value="<:old subscription_period default subscription_period:><:eif:>" <:ifFieldPerm subscription_period:><:or:>disabled="disabled" <:eif:>class="<:ifError_img subscription_period:>error<:or:><:eif:>" /> months
           <:help edit subscription_period:>
         </span>
       </div>

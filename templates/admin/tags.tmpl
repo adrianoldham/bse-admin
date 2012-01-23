@@ -15,7 +15,7 @@
       <div>
         <label for="cat">Filter category</label>
         <span>
-          <input type="text" name="cat" id="cat" value="<:cgi cat:>" />
+          <input type="text" name="cat" id="cat" value="<:cgi cat:>" class="<:ifError_img cat:>error<:or:><:eif:>" />
         </span>
       </div>
       <ul>
@@ -37,7 +37,7 @@
         <span>
           <input type="hidden" name="id" value="-1" />
           <input type="hidden" name="tag_id" value="<:systag id:>" />
-          <input type="text" name="name" id="tag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" />
+          <input type="text" name="name" id="tag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" class="<:ifError_img name:>error<:or:><:eif:>" />
           <input type="submit" name="a_tagrename" value="Save" class="button green small" />
           <input type="submit" name="a_tagdelete" value="Delete" onclick="return window.confirm('Are you sure you want to delete this Tag?');" class="button red small" />
         </span>

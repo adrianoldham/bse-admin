@@ -27,7 +27,7 @@
        <div>
         <label for="title">Description <:error_img title:></label>
         <span> 
-          <input type="text" name="title" id="title" value="<:old title:>" />
+          <input type="text" name="title" id="title" value="<:old title:>" class="<:ifError_img title:>error<:or:><:eif:>" />
           <:help editgroup title:>
         </span>
       </div>
@@ -51,7 +51,7 @@
        <div>
         <label for="modwhen_time">Time <:error_img modwhen_time:></label>
         <span> 
-          <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time:>" placeholder="HH:MM:SS" />
+          <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time:>" placeholder="HH:MM:SS" class="<:ifError_img modwhen_time:>error<:or:><:eif:>" />
           <:help editgroup modwhen_time:>
         </span>
       </div>
@@ -61,7 +61,7 @@
       <div>
         <label for="content_type">Content type <:error_img content_type:></label>
         <span> 
-          <input type="text" name="content_type" id="content_type" value="<:old content_type:>" placeholder="MIME format" /> 
+          <input type="text" name="content_type" id="content_type" value="<:old content_type:>" placeholder="MIME format" class="<:ifError_img content_type:>error<:or:><:eif:>" /> 
           <:help editgroup content_type:>
         </span>
       </div>

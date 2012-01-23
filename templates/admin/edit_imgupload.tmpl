@@ -19,7 +19,7 @@
       <div>
         <label for="name">Name <:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name:>" />
+          <input type="text" name="name" id="name" value="<:old name:>" class="<:ifError_img name:>error<:or:><:eif:>" />
           <:help image name:>
         </span>
       </div>
@@ -29,14 +29,14 @@
       <div>
         <label for="alt">Alt <:error_img altIn:></label>
         <span>
-          <input type="text" name="altIn" id="alt" value="<:old altIn:>" />
+          <input type="text" name="altIn" id="alt" value="<:old altIn:>" class="<:ifError_img altIn:>error<:or:><:eif:>" />
           <:help image alt:>
         </span>
       </div>
       <div>
         <label for="url">URL <:error_img url:></label>
         <span>
-          <input type="text" name="url" id="url" value="<:old url:>" />
+          <input type="text" name="url" id="url" value="<:old url:>" class="<:ifError_img url:>error<:or:><:eif:>" />
           <:help image url:>
         </span>
       </div>
