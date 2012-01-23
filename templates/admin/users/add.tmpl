@@ -8,13 +8,13 @@
       <div>
         <label for="userId"><:cfg "site users" display_userId "Username":> <span class="required">*</span> <:error_img userId:></label>
         <span>
-          <input type="text" name="userId" id="userId" value="<:old userId:>" class="<:ifError_img userId:>error<:or:><:eif:>" required />
+          <input type="text" name="userId" id="userId" value="<:old userId:>" required class="<:ifError_img userId:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="password"><:cfg "site users" display_password "Password":> <span class="required">*</span> <:error_img password:></label>
         <span>
-          <input type="password" name="password" id="password" value="<:old password:>" class="<:ifError_img password:>error<:or:><:eif:>" required />
+          <input type="password" name="password" id="password" value="<:old password:>" required class="<:ifError_img password:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
@@ -27,14 +27,14 @@
       <div>
         <label for="email"><:cfg "site users" display_email "Email Address":> <span class="required">*</span> <:error_img email:></label>
         <span>
-          <input type="text" name="email" id="email" value="<:old email:>" class="<:ifError_img email:>error<:or:><:eif:>" required />
+          <input type="text" name="email" id="email" value="<:old email:>" required class="<:ifError_img email:>error<:or:><:eif:>" />
         </span>
       </div>
       <:if Cfg "site users" nopassword:>
       <div>
         <label for="confirmemail"><:cfg "site users" display_confirmemail "Confirm Email":> <span class="required">*</span> <:error_img confirmemail:></label>
         <span>
-          <input type="text" name="confirmemail" id="confirmemail" value="<:old confirmemail:>" class="<:ifError_img confirmemail:>error<:or:><:eif:>" required />
+          <input type="text" name="confirmemail" id="confirmemail" value="<:old confirmemail:>" required class="<:ifError_img confirmemail:>error<:or:><:eif:>" />
         </span>
       </div>
       <:or Cfg:><:eif Cfg:>
@@ -60,13 +60,13 @@
       <div>
         <label for="name1"><:cfg "site users" display_name1 "First Name":><:ifRequired name1:> <span class="required">*</span><:or:><:eif:> <:error_img name1:></label>
         <span>
-          <input type="text" name="name1" id="name1" value="<:old name1:>" class="<:ifError_img name1:>error<:or:><:eif:>" <:ifRequired name1:>required <:or:><:eif:>/>
+          <input type="text" name="name1" id="name1" value="<:old name1:>" <:ifRequired name1:>required <:or:><:eif:>class="<:ifError_img name1:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="name2"><:cfg "site users" display_name2 "Last Name":><:ifRequired name2:> <span class="required">*</span><:or:><:eif:> <:error_img name2:></label>
         <span>
-          <input type="text" name="name2" id="name2" value="<:old name2:>" class="<:ifError_img name2:>error<:or:><:eif:>" <:ifRequired name2:>required <:or:><:eif:>/>
+          <input type="text" name="name2" id="name2" value="<:old name2:>" <:ifRequired name2:>required <:or:><:eif:>class="<:ifError_img name2:>error<:or:><:eif:>" />
         </span>
       </div>
     </fieldset>
@@ -75,13 +75,13 @@
       <div>
         <label for="organization"><:cfg "site users" display_organization "Organisation Name":><:ifRequired organization:> <span class="required">*</span><:or:><:eif:> <:error_img organization:></label>
         <span>
-          <input type="text" name="organization" id="organization" value="<:old organization:>" class="<:ifError_img organization:>error<:or:><:eif:>" <:ifRequired organization:>required <:or:><:eif:>/>
+          <input type="text" name="organization" id="organization" value="<:old organization:>" <:ifRequired organization:>required <:or:><:eif:>class="<:ifError_img organization:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="title"><:cfg "site users" display_title "Title / Role":><:ifRequired title:> <span class="required">*</span><:or:><:eif:> <:error_img title:></label>
         <span>
-          <input type="text" name="title" id="title" value="<:old title:>" class="<:ifError_img title:>error<:or:><:eif:>" <:ifRequired title:>required <:or:><:eif:>/>
+          <input type="text" name="title" id="title" value="<:old title:>" <:ifRequired title:>required <:or:><:eif:>class="<:ifError_img title:>error<:or:><:eif:>" />
         </span>
       </div>
     </fieldset>
@@ -91,31 +91,31 @@
       <div>
         <label for="street"><:cfg "site users" display_street "Address":><:ifRequired street:> <span class="required">*</span><:or:><:eif:> <:error_img street:></label>
         <span>
-          <input type="text" name="street" id="street" value="<:old street:>" class="<:ifError_img street:>error<:or:><:eif:>" <:ifRequired street:>required <:or:><:eif:>/>
+          <input type="text" name="street" id="street" value="<:old street:>" <:ifRequired street:>required <:or:><:eif:>class="<:ifError_img street:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="street2"><:cfg "site users" display_street2 "Address 2":><:ifRequired street2:> <span class="required">*</span><:or:><:eif:> <:error_img street2:></label>
         <span>
-          <input type="text" name="street2" id="street2" value="<:old street2:>" class="<:ifError_img street2:>error<:or:><:eif:>" <:ifRequired street2:>required <:or:><:eif:>/>
+          <input type="text" name="street2" id="street2" value="<:old street2:>" <:ifRequired street2:>required <:or:><:eif:>class="<:ifError_img street2:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="suburb"><:cfg "site users" display_suburb "Suburb":><:ifRequired suburb:> <span class="required">*</span><:or:><:eif:> <:error_img suburb:></label>
         <span>
-          <input type="text" name="suburb" id="suburb" value="<:old suburb:>" class="<:ifError_img suburb:>error<:or:><:eif:>" <:ifRequired suburb:>required <:or:><:eif:>/>
+          <input type="text" name="suburb" id="suburb" value="<:old suburb:>" <:ifRequired suburb:>required <:or:><:eif:>class="<:ifError_img suburb:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="state"><:cfg "site users" display_state "State":><:ifRequired state:> <span class="required">*</span><:or:><:eif:> <:error_img state:></label>
         <span>
-          <input type="text" name="state" id="state" value="<:old state:>" class="<:ifError_img state:>error<:or:><:eif:>" <:ifRequired state:>required <:or:><:eif:>/>
+          <input type="text" name="state" id="state" value="<:old state:>" <:ifRequired state:>required <:or:><:eif:>class="<:ifError_img state:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="postcode"><:cfg "site users" display_postcode "Postcode":><:ifRequired postcode:> <span class="required">*</span><:or:><:eif:> <:error_img postcode:></label>
         <span>
-          <input type="text" name="postcode" id="postcode" value="<:old postcode:>" class="<:ifError_img postcode:>error<:or:><:eif:>" <:ifRequired postcode:>required <:or:><:eif:>/>
+          <input type="text" name="postcode" id="postcode" value="<:old postcode:>" <:ifRequired postcode:>required <:or:><:eif:>class="<:ifError_img postcode:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
@@ -126,7 +126,7 @@
             <option value="<:uc [dyncfgentry key]:>"<:if Or [ifEq [old country] [uc [dyncfgentry key]]] [ifEq [old country] [uc [dyncfgentry value]]]:> selected="selected"<:or Or:><:eif Or:>><:dyncfgentry value:></option>
             <:iterator end dyncfgsection:>
           </select><:or Cfgsection:>
-          <input type="text" name="country" id="country" value="<:old country:>" class="<:ifError_img country:>error<:or:><:eif:>" <:ifRequired country:>required <:or:><:eif:>/><:eif Cfgsection:> 
+          <input type="text" name="country" id="country" value="<:old country:>" <:ifRequired country:>required <:or:><:eif:>class="<:ifError_img country:>error<:or:><:eif:>" /><:eif Cfgsection:> 
         </span>
       </div>
     </fieldset>
@@ -136,19 +136,19 @@
       <div>
         <label for="telephone"><:cfg "site users" display_telephone "Telephone":><:ifRequired telephone:> <span class="required">*</span><:or:><:eif:> <:error_img telephone:></label>
         <span>
-          <input type="text" name="telephone" id="telephone" value="<:old telephone:>" class="<:ifError_img telephone:>error<:or:><:eif:>" <:ifRequired telephone:>required <:or:><:eif:>/>
+          <input type="text" name="telephone" id="telephone" value="<:old telephone:>" <:ifRequired telephone:>required <:or:><:eif:>class="<:ifError_img telephone:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="facsimile"><:cfg "site users" display_facsimile "Facsimile":><:ifRequired facsimile:> <span class="required">*</span><:or:><:eif:> <:error_img facsimile:></label>
         <span>
-          <input type="text" name="facsimile" id="facsimile" value="<:old facsimile:>" class="<:ifError_img facsimile:>error<:or:><:eif:>" <:ifRequired facsimile:>required <:or:><:eif:>/>
+          <input type="text" name="facsimile" id="facsimile" value="<:old facsimile:>" <:ifRequired facsimile:>required <:or:><:eif:>class="<:ifError_img facsimile:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="mobile"><:cfg "site users" display_mobile "Mobile":><:ifRequired mobile:> <span class="required">*</span><:or:><:eif:> <:error_img mobile:></label>
         <span>
-          <input type="text" name="mobile" id="mobile" value="<:old mobile:>" class="<:ifError_img mobile:>error<:or:><:eif:>" <:ifRequired mobile:>required <:or:><:eif:>/>
+          <input type="text" name="mobile" id="mobile" value="<:old mobile:>" <:ifRequired mobile:>required <:or:><:eif:>class="<:ifError_img mobile:>error<:or:><:eif:>" />
         </span>
       </div>
     </fieldset>
