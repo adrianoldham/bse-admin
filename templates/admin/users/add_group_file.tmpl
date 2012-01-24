@@ -6,34 +6,34 @@
     <:csrfp admin_group_add_file hidden:>
     <input name="r" type="hidden" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" />
     <fieldset>
-      <legend>Resource</legend> 
+      <legend>Resource</legend>
       <div>
         <label for="file">File <span class="required">*</span> <:error_img file:></label>
-        <span> 
+        <span>
           <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" class="<:ifError_img file:>error<:or:><:eif:>" />
           <:help editgroup file:>
         </span>
       </div>
       <div>
         <label for="category">Category <:error_img category:></label>
-        <span> 
+        <span>
           <:replace [userfile_category] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
           <:help editgroup category:>
         </span>
       </div>
       </fieldset>
       <fieldset>
-      <legend>Content</legend> 
+      <legend>Content</legend>
        <div>
         <label for="title">Description <:error_img title:></label>
-        <span> 
+        <span>
           <input type="text" name="title" id="title" value="<:old title:>" class="<:ifError_img title:>error<:or:><:eif:>" />
           <:help editgroup title:>
         </span>
       </div>
       <div>
         <label for="body">Notes <:error_img body:></label>
-        <span> 
+        <span>
           <textarea name="body" id="body" class="<:ifError_img body:>error<:or:><:eif:>"><:old body:></textarea>
           <:help editgroup body:>
         </span>
@@ -43,14 +43,14 @@
       <legend>Last Modified</legend>
       <div>
         <label for="modwhen_date">Date <:error_img modwhen_date:></label>
-        <span> 
+        <span>
           <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date:>" placeholder="DD/MM/YYYY" />
           <:help editgroup modwhen_date:>
         </span>
       </div>
        <div>
         <label for="modwhen_time">Time <:error_img modwhen_time:></label>
-        <span> 
+        <span>
           <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time:>" placeholder="HH:MM:SS" class="<:ifError_img modwhen_time:>error<:or:><:eif:>" />
           <:help editgroup modwhen_time:>
         </span>
@@ -60,14 +60,14 @@
       <legend>Properties</legend>
       <div>
         <label for="content_type">Content type <:error_img content_type:></label>
-        <span> 
-          <input type="text" name="content_type" id="content_type" value="<:old content_type:>" placeholder="MIME format" class="<:ifError_img content_type:>error<:or:><:eif:>" /> 
+        <span>
+          <input type="text" name="content_type" id="content_type" value="<:old content_type:>" placeholder="MIME format" class="<:ifError_img content_type:>error<:or:><:eif:>" />
           <:help editgroup content_type:>
         </span>
       </div>
       <div>
         <label for="download">Force download <:error_img download:></label>
-        <span> 
+        <span>
           <input type="checkbox" name="download" id="download" value="1" <:ifOld download:>checked="checked" <:or:><:eif:>/>
           <:help editgroup download:>
         </span>

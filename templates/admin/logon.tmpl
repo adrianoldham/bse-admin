@@ -4,16 +4,16 @@
   <form action="<:adminurl logon:>" method="post">
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
-      <legend>Login</legend> 
+      <legend>Login</legend>
       <div>
         <label for="username">Username <:error_img logon:></label>
-        <span> 
+        <span>
           <input type="text" name="logon" id="username" value="<:old logon:>" class="<:ifError_img logon:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
         <label for="password">Password <:error_img password:></label>
-        <span> 
+        <span>
           <input type="password" name="password" id="password" value="" class="<:ifError_img password:>error<:or:><:eif:>" />
         </span>
       </div>

@@ -39,7 +39,7 @@
       </div>
       <:or Cfg:><:eif Cfg:>
     </fieldset>
-    
+
     <:if Subscriptions:>
     <fieldset class="newsletter">
       <input type="hidden" name="checkedsubs" value="1" />
@@ -54,7 +54,7 @@
       <p class="small">Confirmation will be sent to your email address.</p>
     </fieldset>
     <:or Subscriptions:><:eif Subscriptions:>
-    
+
     <fieldset class="name">
       <legend>Name</legend>
       <div>
@@ -126,7 +126,7 @@
             <option value="<:uc [dyncfgentry key]:>"<:if Or [ifEq [old country] [uc [dyncfgentry key]]] [ifEq [old country] [uc [dyncfgentry value]]]:> selected="selected"<:or Or:><:eif Or:>><:dyncfgentry value:></option>
             <:iterator end dyncfgsection:>
           </select><:or Cfgsection:>
-          <input type="text" name="country" id="country" value="<:old country:>" <:ifRequired country:>required="required" <:or:><:eif:> class="<:ifError_img country:>error<:or:><:eif:>" /><:eif Cfgsection:> 
+          <input type="text" name="country" id="country" value="<:old country:>" <:ifRequired country:>required="required" <:or:><:eif:> class="<:ifError_img country:>error<:or:><:eif:>" /><:eif Cfgsection:>
         </span>
       </div>
     </fieldset>
@@ -152,7 +152,7 @@
         </span>
       </div>
     </fieldset>
-    
+
     <fieldset>
       <legend>Information</legend>
       <div class="full">

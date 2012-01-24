@@ -4,24 +4,24 @@
   <form action="<:script:>" method="post">
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
-      <legend>Account</legend> 
+      <legend>Account</legend>
       <div>
         <label for="oldpassword">Old password <:error_img oldpassword:></label>
-        <span> 
+        <span>
           <input type="password" name="oldpassword" id="oldpassword" value="<:old oldpassword:>" class="<:ifError_img oldpassword:>error<:or:><:eif:>" />
           <:help changepw oldpassword:>
         </span>
       </div>
       <div>
         <label for="newpassword">New password <:error_img newpassword:></label>
-        <span> 
+        <span>
           <input type="password" name="newpassword" id="newpassword" value="<:old newpassword:>" class="<:ifError_img newpassword:>error<:or:><:eif:>" />
           <:help changepw newpassword:>
         </span>
       </div>
       <div>
         <label for="confirm">Confirm password <:error_img confirm:></label>
-        <span> 
+        <span>
           <input type="password" name="confirm" id="confirm" value="<:old confirm:>" class="<:ifError_img confirm:>error<:or:><:eif:>" />
           <:help changepw confirm:>
         </span>

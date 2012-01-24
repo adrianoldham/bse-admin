@@ -20,8 +20,8 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin users:> 
-        <tr> 
+        <:iterator begin users:>
+        <tr>
           <td><:iuser logon:></td>
           <td><:iuser name:></td>
           <td><:ifUser_groups iuser:><:iterator begin user_groups iuser:><:user_group name:><:iterator separator user_groups:>, <:iterator end user_groups:><:or:>(none)<:eif:></td>
@@ -34,11 +34,11 @@
             <:eif UserCan:>
           </td>
         </tr>
-        <:iterator end users:> 
+        <:iterator end users:>
       <tbody>
     </table>
   </fieldset>
-  <:or Users:> 
+  <:or Users:>
   <p>No admin users created.</p>
-  <:eif Users:> 
+  <:eif Users:>
 </div>

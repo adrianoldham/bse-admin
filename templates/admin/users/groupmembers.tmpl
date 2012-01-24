@@ -13,10 +13,10 @@
     <input type="hidden" name="id" value="<:group id:>" />
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
-      <legend>Group</legend> 
+      <legend>Group</legend>
       <div>
         <label for="name">Name <:error_img name:></label>
-        <span> 
+        <span>
           <input type="text" name="name" id="name" value="<:old name group name:>" readonly="readonly" class="<:ifError_img name:>error<:or:><:eif:>" />
           <:help editsiteuser name:>
         </span>
@@ -32,8 +32,8 @@
           <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
           <label for="userid_<:siteuser id:>"><a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a><:ifOr [siteuser name1] [siteuser name2]:> (<:siteuser name1:> <:siteuser name2:>)<:or:><:eif:></label>
         </li>
-        <:iterator end siteusers:> 
-      </ul>  
+        <:iterator end siteusers:>
+      </ul>
     </fieldset>
     <:or Siteusers:><:eif Siteusers:>
     <p class="buttons">

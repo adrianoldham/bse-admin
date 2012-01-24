@@ -20,8 +20,8 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin groups:> 
-        <tr> 
+        <:iterator begin groups:>
+        <tr>
           <td><:group name:></td>
           <td class="actions">
             <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button gray small">Edit</a>
@@ -32,11 +32,11 @@
             <:eif UserCan:>
           </td>
         </tr>
-        <:iterator end groups:> 
+        <:iterator end groups:>
       <tbody>
     </table>
   </fieldset>
-  <:or Groups:> 
+  <:or Groups:>
   <p>No site user groups created.</p>
-  <:eif Groups:> 
+  <:eif Groups:>
 </div>

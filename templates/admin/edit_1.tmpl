@@ -17,7 +17,7 @@
     <:if UserCan bse_edit_add_child:article:>
     <:if HaveChildType:>
     <:switch:>
-    <:case Match [article generator] "Catalog":> 
+    <:case Match [article generator] "Catalog":>
     <a href="<:script:>?parentid=<:article id:>&amp;type=Catalog" accesskey="c" title="AccessKey = c" class="button blue small">Add Catalog</a>
     <a href="<:script:>?parentid=<:article id:>&amp;type=Product" accesskey="p" title="AccessKey = p" class="button blue small">Add Product</a>
     <:case default:>
@@ -35,7 +35,7 @@
     <a href="<:script:>?id=<:article id:>&amp;_t=fileupload" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
     <:or UserCan:><:eif UserCan:>
     <:switch:>
-    <:case Match [article generator] "Product":> 
+    <:case Match [article generator] "Product":>
     <:if UserCan bse_edit_prodopt_add:article:>
     <a href="<:script:>?id=<:article id:>&amp;_t=prodopts" accesskey="o" title="AccessKey = o" class="button blue small">Add Option</a>
     <:or UserCan:><:eif UserCan:>
@@ -152,7 +152,7 @@
         <:iterator end price_tiers:>
       <:or Price_tiers:><:eif Price_tiers:>
     </fieldset>
-  
+
     <fieldset>
       <legend>Stock</legend>
       <div>
@@ -161,16 +161,16 @@
           <input type="text" name="product_code" id="product_code" value="<:old product_code:>" <:ifFieldPerm product_code:><:or:>disabled="disabled" <:eif:>class="<:ifError_img product_code:>error<:or:><:eif:>" />
           <:help edit product_code:>
         </span>
-      </div>  
+      </div>
       <div>
         <label for="leadTime">Lead time <:error_img leadTime:></label>
         <span>
           <input type="text" name="leadTime" id="leadTime" value="<:old leadTime:>" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>class="<:ifError_img leadTime:>error<:or:><:eif:>" />
           <:help edit leadTime:>
         </span>
-      </div>  
+      </div>
     </fieldset>
-  
+
     <fieldset>
       <legend>Measurements</legend>
       <div>
@@ -234,7 +234,7 @@
     </fieldset>
     <:or Dboptions:><:eif Dboptions:>
     <:or Match:><:eif Match:>
-    
+
     <fieldset>
       <legend>Structure</legend>
       <div>
@@ -262,7 +262,7 @@
       </div>
       <:or Cfgsection:><:eif Cfgsection:>
     </fieldset>
-    
+
     <fieldset>
       <legend>Categorisation <:error_img tags:></legend>
       <div>
@@ -290,7 +290,7 @@
       </div>
       <:iterator end tags:>
     </fieldset>
-    
+
     <fieldset>
       <legend>Presentation</legend>
       <div>
@@ -311,7 +311,7 @@
           </select>
           <:help edit force_dynamic:>
         </span>
-      </div>  
+      </div>
       <div>
         <label for="summaryLength">Summary length <:error_img summaryLength:></label>
         <span>
@@ -327,7 +327,7 @@
         </span>
       </div>
     </fieldset>
-    
+
     <fieldset>
       <legend>Publication</legend>
       <div>
@@ -420,14 +420,14 @@
         </span>
       </div>
     </fieldset>
-    
+
     <:switch:>
     <:case Match [article generator] "Article":><:include admin/include/article_custom.tmpl optional:>
     <:case Match [article generator] "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
     <:case Match [article generator] "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
     <:case Match [article generator] "Product":><:include admin/include/product_custom.tmpl optional:>
     <:endswitch:>
-    
+
     <:if Or [ifMatch [article generator] "Product"] [ifMatch [article generator] "Seminar"]:>
     <:if Subscriptions:>
     <fieldset>

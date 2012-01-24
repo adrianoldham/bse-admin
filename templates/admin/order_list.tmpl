@@ -90,7 +90,7 @@
       </thead>
       <tbody>
         <:iterator begin orders:>
-        <tr> 
+        <tr>
           <td><span class="listed <:ifOrder filled:>green<:or:>gray<:eif:>"></span><:order id |%06d:></td>
           <td><:date order orderDate:></td>
           <td><:order billFirstName:> <:order billLastName:></td>
@@ -115,7 +115,7 @@
     <:iterator end orders_pagec:>
     <:ifLastOrdersPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [nextOrdersPage]:>&amp;<:search_param:>">&gt;&gt;</a> <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] ;p [orders_pagecount]:>&amp;&amp;<:search_param:>">&gt;&gt;|</a><:eif:>
   </p>
-  <:or Orders:> 
+  <:or Orders:>
   <p>No orders match filter criteria.</p>
   <:eif Orders:>
 </div>

@@ -13,24 +13,24 @@
     <input type="hidden" name="saveusers" value="1" />
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
-      <legend>Group</legend> 
+      <legend>Group</legend>
       <div>
         <label for="name">Name <:error_img name:></label>
-        <span> 
+        <span>
           <input type="text" name="name" id="name" value="<:old name group name:>" class="<:ifError_img name:>error<:or:><:eif:>" />
           <:help addgroup name:>
         </span>
       </div>
       <div>
         <label for="description">Description <:error_img description:></label>
-        <span> 
+        <span>
           <input type="text" name="description" id="description" value="<:old description group description:>" class="<:ifError_img description:>error<:or:><:eif:>" />
           <:help addgroup description:>
         </span>
       </div>
       <div>
         <label for="template_set">Template Set <:error_img template_set:></label>
-        <span> 
+        <span>
           <:replace [template_set_popup] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
           <:help addgroup template_set:>
         </span>
@@ -56,7 +56,7 @@
       <legend>Permissions <:error_img gperms:></legend>
       <ul>
         <:iterator begin gperms:>
-        <li> 
+        <li>
           <input type="checkbox" name="gperms" id="gperms_<:gperm id:>" value="<:gperm id:>" <:ifGperm_set gperm:>checked="checked" <:or:><:eif:>/>
           <label for="gperms_<:gperm id:>" title="<:gperm help:>"><:gperm brief:></label>
         </li>

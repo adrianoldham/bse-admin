@@ -56,7 +56,7 @@
         </div>
       </fieldset>
       <fieldset>
-        <legend>Content</legend> 
+        <legend>Content</legend>
         <div>
           <label for="description_<:file id:>">Description <:error_img [concatenate description_ [file id]]:></label>
           <span>
@@ -66,7 +66,7 @@
         </div>
         <div>
           <label for="notes_<:file id:>">Notes <:error_img [concatenate notes_ [file id]]:></label>
-          <span> 
+          <span>
             <textarea name="notes_<:file id:>" id="notes_<:file id:>" class="<:ifError_img [concatenate notes_ [file id]]:>error<:or:><:eif:>"><:oldi [concatenate notes_ [file id]] 0 file notes:></textarea>
             <:help file notes:>
           </span>
@@ -83,14 +83,14 @@
         </div>
         <div>
           <label for="download_<:file id:>">Force download <:error_img  [concatenate download_ [file id]]:></label>
-          <span> 
+          <span>
             <input type="checkbox" name="download_<:file id:>" id="download_<:file id:>" value="1" <:ifFile download:>checked="checked" <:or:><:eif:>/>
             <:help file download:>
           </span>
         </div>
         <div>
           <label for="hide_from_list">Hide from list <:error_img  [concatenate hide_from_list_ [file id]]:></label>
-          <span> 
+          <span>
             <input type="checkbox" name="hide_from_list_<:file id:>" id="hide_from_list" value="1" <:ifFile hide_from_list:>checked="checked" <:or:><:eif:>/>
             <:help file hide_from_list:>
           </span>
@@ -113,7 +113,7 @@
         </div>
         <div>
           <label for="storage_<:file id:>">Storage <:error_img storage:></label>
-          <span> 
+          <span>
             <select name="storage_<:file id:>" id="storage_<:file id:>">
               <option value="">(Auto)</option>
               <:iterator begin file_stores:>

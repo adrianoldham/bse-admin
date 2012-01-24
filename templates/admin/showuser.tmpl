@@ -13,17 +13,17 @@
     <input type="hidden" name="savegroups" value="1" />
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
-      <legend>Account</legend> 
+      <legend>Account</legend>
       <div>
         <label for="logon">Username <:error_img logon:></label>
-        <span> 
+        <span>
           <input type="text" name="logon" id="logon" value="<:old logon user logon:>" readonly="readonly" class="<:ifError_img logon:>error<:or:><:eif:>" />
           <:help adduser logon:>
         </span>
       </div>
       <div>
         <label for="password">Password <:error_img password:></label>
-        <span> 
+        <span>
           <input type="password" name="password" id="password" value="<:old password:>" class="<:ifError_img password:>error<:or:><:eif:>" /><!--<:if Cfg basic minpassword:>
           (minimum <:cfg basic minpassword:> characters)<:or Cfg:><:eif Cfg:>-->
           <:help adduser password:>
@@ -31,17 +31,17 @@
       </div>
       <div>
         <label for="confirm">Confirm Password <:error_img confirm:></label>
-        <span> 
+        <span>
           <input type="password" name="confirm" id="confirm" value="<:old confirm:>" class="<:ifError_img confirm:>error<:or:><:eif:>" />
           <:help adduser confirm:>
         </span>
       </div>
     </fieldset>
     <fieldset>
-      <legend>Name</legend> 
+      <legend>Name</legend>
       <div>
         <label for="name">Full Name <:error_img name:></label>
-        <span> 
+        <span>
           <input type="text" name="name" id="name" value="<:old name user name:>" class="<:ifError_img name:>error<:or:><:eif:>" />
           <:help adduser name:>
         </span>
@@ -67,7 +67,7 @@
       <legend>Permissions <:error_img gperms:></legend>
       <ul>
         <:iterator begin gperms:>
-        <li> 
+        <li>
           <input type="checkbox" name="gperms" id="gperms_<:gperm id:>" value="<:gperm id:>" <:ifGperm_set gperm:>checked="checked" <:or:><:eif:>/>
           <label for="gperms_<:gperm id:>" title="<:gperm help:>"><:gperm brief:></label>
         </li>

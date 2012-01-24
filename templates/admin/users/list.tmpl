@@ -84,8 +84,8 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin siteusers:> 
-        <tr> 
+        <:iterator begin siteusers:>
+        <tr>
           <td><:siteuser userId:></td>
           <td><:siteuser name1:></td>
           <td><:siteuser name2:></td>
@@ -95,7 +95,7 @@
             <a class="button red small disabled">Delete</a><:eif UserCan:>
           </td>
         </tr>
-        <:iterator end siteusers:> 
+        <:iterator end siteusers:>
       <tbody>
     </table>
   </fieldset>
@@ -110,7 +110,7 @@
     <:iterator end siteusers_pagec:>
     <:ifLastSiteusersPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;&gt;</a> <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteusers_pagecount:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;&gt;|</a><:eif:>
   </p>
-  <:or Siteusers:> 
+  <:or Siteusers:>
   <p>No users match search criteria.</p>
   <:eif Siteusers:>
 </div>

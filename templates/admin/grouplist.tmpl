@@ -20,8 +20,8 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin groups:> 
-        <tr> 
+        <:iterator begin groups:>
+        <tr>
           <td><:igroup name:></td>
           <td><:igroup description:></td>
           <td><:ifGroup_users igroup:><:iterator begin group_users igroup:><:group_user logon:><:iterator separator group_users:>, <:iterator end group_users:><:or:>(none)<:eif:></td>
@@ -31,11 +31,11 @@
             <a class="button red small disabled">Delete</a><:eif:>
           </td>
         </tr>
-        <:iterator end groups:> 
+        <:iterator end groups:>
       <tbody>
     </table>
   </fieldset>
-  <:or Groups:> 
+  <:or Groups:>
   <p>No admin groups created.</p>
-  <:eif Groups:> 
+  <:eif Groups:>
 </div>

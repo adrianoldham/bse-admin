@@ -11,22 +11,22 @@
     <:iterator begin kids:>
     <:if Eq [stepkid childId] [cgi stepkid]:>
     <fieldset>
-      <legend><:article title:></legend> 
+      <legend><:article title:></legend>
       <div>
         <label for="stepkid">Articles <:error_img stepkid:></label>
-        <span> 
+        <span>
           <:replace [possible_stepkids] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":>
         </span>
       </div>
       <div>
         <label for="release">Release <:error_img release:></label>
-        <span> 
+        <span>
           <input type="text" name="release_<:stepkid childId:>" id="release" value="<:date "%d/%m/%Y" stepkid release:>" placeholder="DD/MM/YYYY" />
         </span>
       </div>
       <div>
         <label for="expire">Expire <:error_img expire:></label>
-        <span> 
+        <span>
           <input type="text" name="expire_<:stepkid childId:>" id="expire" value="<:ifMatch [stepkid expire] "2999-12-31":><:or:><:date "%d/%m/%Y" stepkid expire:><:eif:>" placeholder="DD/MM/YYYY" />
         </span>
       </div>
@@ -41,28 +41,28 @@
     <:iterator end kids:>
     <:or Cgi:>
     <fieldset>
-      <legend><:article title:></legend> 
+      <legend><:article title:></legend>
       <div>
         <label for="stepkid">Articles <:error_img stepkid:></label>
-        <span> 
+        <span>
           <:if Possibles:>
           <:replace [possible_stepkids] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
           <:or Possibles:>
           <select id="stepkid">
             <option>No possible articles</option>
           </select>
-          <:eif Possibles:> 
+          <:eif Possibles:>
         </span>
       </div>
       <div>
         <label for="release">Release <:error_img release:></label>
-        <span> 
+        <span>
           <input type="text" name="release" id="release" value='<:today "%d/%m/%Y":>' />
         </span>
       </div>
       <div>
         <label for="expire">Expire <:error_img expire:></label>
-        <span> 
+        <span>
           <input type="text" name="expire" id="expire" value="" class="<:ifError_img expire:>error<:or:><:eif:>" />
         </span>
       </div>
