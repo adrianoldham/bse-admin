@@ -105,7 +105,7 @@
       <div>
         <label for="retailPrice">Retail <:cfg shop currency $:> <:error_img retailPrice:></label>
         <span>
-          <input type="text" name="retailPrice" id="retailPrice" value="<:old retailPrice money product retailPrice:>" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img retailPrice:>error<:or:><:eif:>" />
+          <input type="text" name="retailPrice" id="retailPrice" value="<:old retailPrice money product retailPrice:>" placeholder="0.00" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img retailPrice:>error<:or:><:eif:>" />
           <:help edit retailPrice:>
         </span>
       </div>
@@ -113,7 +113,7 @@
       <div>
         <label for="gst">GST <:cfg shop currency $:> <:error_img gst:></label>
         <span>
-          <input type="text" name="gst" id="gst" value="<:old gst money product gst:>" <:ifFieldPerm gst:><:or:>disabled="disabled" <:eif:>class="<:ifError_img gst:>error<:or:><:eif:>" />
+          <input type="text" name="gst" id="gst" value="<:old gst money product gst:>" placeholder="0.00" <:ifFieldPerm gst:><:or:>disabled="disabled" <:eif:>class="<:ifError_img gst:>error<:or:><:eif:>" />
           <:help edit gst:>
         </span>
       </div>
@@ -122,7 +122,7 @@
       <div>
         <label for="wholesalePrice">Wholesale <:cfg shop currency $:> <:error_img wholesalePrice:></label>
         <span>
-          <input type="text" name="wholesalePrice" id="wholesalePrice" value="<:old wholesalePrice money product wholesalePrice:>" <:ifFieldPerm wholesalePrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img wholesalePrice:>error<:or:><:eif:>" />
+          <input type="text" name="wholesalePrice" id="wholesalePrice" value="<:old wholesalePrice money product wholesalePrice:>" placeholder="0.00" <:ifFieldPerm wholesalePrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img wholesalePrice:>error<:or:><:eif:>" />
           <:help edit wholesalePrice:>
         </span>
       </div>
@@ -133,7 +133,7 @@
         <div>
           <label for="tier_price_<:price_tier id:>"><:price_tier description:> <:cfg shop currency $:> <:error_img [cat "tier_price_" [price_tier id]]:></label>
           <span>
-            <input type="text" name="tier_price_<:price_tier id:>" id="tier_price_<:price_tier id:>" value="<:ifEq [tier_price] "":><:oldi [cat "tier_price_" [price_tier id]] 0:><:or:><:oldi [cat "tier_price_" [price_tier id]] 0 money tier_price:><:eif:>" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tier_price_<:price_tier id:>:>error<:or:><:eif:>" />
+            <input type="text" name="tier_price_<:price_tier id:>" id="tier_price_<:price_tier id:>" value="<:ifEq [tier_price] "":><:oldi [cat "tier_price_" [price_tier id]] 0:><:or:><:oldi [cat "tier_price_" [price_tier id]] 0 money tier_price:><:eif:>" placeholder="0.00" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tier_price_<:price_tier id:>:>error<:or:><:eif:>" />
             <:help edit [price_tier id]:>
           </span>
         </div>
@@ -164,7 +164,7 @@
       <div>
         <label for="weight">Weight <:error_img weight:></label>
         <span>
-          <input type="text" name="weight" id="weight" value="<:old weight default weight:>" maxlength="<:cfg fields weight_size 6:>" <:ifFieldPerm weight:><:or:>disabled="disabled" <:eif:>class="<:ifError_img weight:>error<:or:><:eif:>" />
+          <input type="text" name="weight" id="weight" value="<:old weight default weight:>" placeholder="grams" maxlength="<:cfg fields weight_size 6:>" <:ifFieldPerm weight:><:or:>disabled="disabled" <:eif:>class="<:ifError_img weight:>error<:or:><:eif:>" />
           <:help edit weight:>
           (g - grams)
         </span>
@@ -172,7 +172,7 @@
       <div>
         <label for="length">Length <:error_img length:></label>
         <span>
-          <input type="text" name="length" id="length" value="<:old length default length:>" maxlength="<:cfg fields length_size 6:>" <:ifFieldPerm length:><:or:>disabled="disabled" <:eif:>class="<:ifError_img length:>error<:or:><:eif:>" />
+          <input type="text" name="length" id="length" value="<:old length default length:>" placeholder="millimetres" maxlength="<:cfg fields length_size 6:>" <:ifFieldPerm length:><:or:>disabled="disabled" <:eif:>class="<:ifError_img length:>error<:or:><:eif:>" />
           <:help edit length:>
           (mm)
         </span>
@@ -180,7 +180,7 @@
       <div>
         <label for="width">Width <:error_img width:></label>
         <span>
-          <input type="text" name="width" id="width" value="<:old width default width:>" maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>class="<:ifError_img width:>error<:or:><:eif:>" />
+          <input type="text" name="width" id="width" value="<:old width default width:>" placeholder="millimetres"maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>class="<:ifError_img width:>error<:or:><:eif:>" />
           <:help edit width:>
           (mm)
         </span>
@@ -188,7 +188,7 @@
       <div>
         <label for="height">Height <:error_img height:></label>
         <span>
-          <input type="text" name="height" id="height" value="<:old height default height:>" maxlength="<:cfg fields height_size 6:>" <:ifFieldPerm height:><:or:>disabled="disabled" <:eif:>class="<:ifError_img height:>error<:or:><:eif:>" />
+          <input type="text" name="height" id="height" value="<:old height default height:>" placeholder="millimetres" maxlength="<:cfg fields height_size 6:>" <:ifFieldPerm height:><:or:>disabled="disabled" <:eif:>class="<:ifError_img height:>error<:or:><:eif:>" />
           <:help edit height:>
           (mm)
         </span>
