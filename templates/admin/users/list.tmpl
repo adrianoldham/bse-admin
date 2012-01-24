@@ -2,8 +2,10 @@
 <div class="window">
   <h1><:param title:></h1>
   <p class="buttons">
+    <:if UserCan bse_members_group_list:>
     <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a>
-    <:if UserCan bse_siteuser_add:>
+    <:or UserCan:><:eif UserCan:>
+    <:if UserCan bse_members_user_add:>
     <a href="<:script:>?a_addform=1" accesskey="u" title="AccessKey = u" class="button blue small">Add User</a>
     <:or UserCan:><:eif UserCan:>
   </p>
@@ -88,8 +90,9 @@
           <td><:siteuser name1:></td>
           <td><:siteuser name2:></td>
           <td class="actions">
-            <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>" class="button gray small">Edit</a>
-            <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>&amp;r=<:script:>%3F<:search_param:>" onclick="return window.confirm('Are you sure you want to delete this User?');" class="button red small">Delete</a>
+            <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>" class="button gray small">Edit</a><:if UserCan bse_members_user_delete:>
+            <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>&amp;r=<:script:>%3F<:search_param:>" onclick="return window.confirm('Are you sure you want to delete this User?');" class="button red small">Delete</a><:or UserCan:>
+            <a class="button red small disabled">Delete</a><:eif UserCan:>
           </td>
         </tr>
         <:iterator end siteusers:> 

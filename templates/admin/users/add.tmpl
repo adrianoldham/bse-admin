@@ -180,9 +180,7 @@
 
     <p><span class="required">* Required.</span> <:cfg "site users" required_text "Please provide information for all marked fields.":></p>
     <p class="buttons">
-      <:if UserCan bse_members_user_list:>
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
-      <:or UserCan:><:eif UserCan:>
       <:if UserCan bse_members_user_add:>
       <input type="submit" name="a_add" value="Create User" accesskey="c" Title="AccessKey = c" class="button green" />
       <:or UserCan:><:eif UserCan:>
