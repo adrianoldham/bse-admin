@@ -265,9 +265,9 @@
       </div>
       <:iterator begin tags:>
       <div>
-        <label for="tag_<:tag_number:>">&nbsp;</label>
+        <label for="tag_<:tag_number:>">&nbsp; <:error_img tags:></label>
         <span>
-          <input type="text" name="tags" id="tag_<:tag_number:>" value="<:tag name:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tags:>error<:or:><:eif:>" />
+          <input type="text" name="tags" id="tag_<:tag_number:>" value="<:tag name:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tags:>error<:or:><:eif:>"/>
         </span>
       </div>
       <:iterator end tags:>
@@ -323,14 +323,14 @@
       <div>
         <label for="release">Release date <:error_img listed:></label>
         <span>
-          <input type="text" name="release" id="release" value="<:old release date "%d/%m/%Y" default release:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm release:><:or:>disabled="disabled" <:eif:>/>
+              <input type="text" name="release" id="release" value="<:old release date "%d/%m/%Y" default release:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm release:><:or:>disabled="disabled" <:eif:>class="<:ifError_img release:>error<:or:><:eif:>" />
           <:help edit listed:>
         </span>
       </div>
       <div>
         <label for="expire">Expiry date <:error_img expire:></label>
         <span>
-          <input type="text" name="expire" id="expire" value="<:switch:><:case New:><:old expire:><:case Match [article expire] [default expire]:><:case default:><:old expire date "%d/%m/%Y" article expire:><:endswitch:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm expire:><:or:>disabled="disabled" <:eif:>/>
+          <input type="text" name="expire" id="expire" value="<:switch:><:case New:><:old expire:><:case Match [article expire] [default expire]:><:case default:><:old expire date "%d/%m/%Y" article expire:><:endswitch:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm expire:><:or:>disabled="disabled" <:eif:>class="<:ifError_img expire:>error<:or:><:eif:>" />
           <:help edit expire:>
         </span>
       </div>
