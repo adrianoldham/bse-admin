@@ -6,9 +6,9 @@
     <fieldset>
       <legend>Article</legend>
       <div>
-        <label for="id">ID</label>
+        <label for="id">ID <span class="required">*</span></label>
         <span>
-          <input type="text" name="id" id="id" value="<:old id:>" class="<:ifError_img id:>error<:or:><:eif:>" />
+          <input type="text" name="id" id="id" value="<:old id:>" required="required" class="<:ifError_img id:>error<:or:><:eif:>" />
           <:help menu id:>
         </span>
       </div>

@@ -17,9 +17,9 @@
     <fieldset>
       <legend>Option</legend>
       <div>
-        <label for="name">Name <:error_img name:></label>
+        <label for="name">Name <span class="required">*</span> <:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name option name:>" class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name option name:>" required="required" class="<:ifError_img name:>error<:or:><:eif:>" />
           <:help edit name:>
         </span>
       </div>

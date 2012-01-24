@@ -6,15 +6,15 @@
     <fieldset>
       <legend>Login</legend>
       <div>
-        <label for="username">Username <:error_img logon:></label>
+        <label for="username">Username <span class="required">*</span> <:error_img logon:></label>
         <span>
-          <input type="text" name="logon" id="username" value="<:old logon:>" class="<:ifError_img logon:>error<:or:><:eif:>" />
+          <input type="text" name="logon" id="username" value="<:old logon:>" required="required" class="<:ifError_img logon:>error<:or:><:eif:>" />
         </span>
       </div>
       <div>
-        <label for="password">Password <:error_img password:></label>
+        <label for="password">Password <span class="required">*</span> <:error_img password:></label>
         <span>
-          <input type="password" name="password" id="password" value="" class="<:ifError_img password:>error<:or:><:eif:>" />
+          <input type="password" name="password" id="password" value="" required="required" class="<:ifError_img password:>error<:or:><:eif:>" />
         </span>
       </div>
     </fieldset>

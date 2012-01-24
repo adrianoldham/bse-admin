@@ -23,9 +23,9 @@
         </span>
       </div>
       <div>
-        <label for="name">Name <:error_img name:></label>
+        <label for="name">Name <:ifEq [article id] -1:><span class="required">*</span> <:or:><:eif:><:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name eimage name:>" class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name eimage name:>" <:ifEq [article id] -1:>required="required" <:or:><:eif:>class="<:ifError_img name:>error<:or:><:eif:>" />
           <:help image name:>
         </span>
       </div>

@@ -7,9 +7,9 @@
     <fieldset>
       <legend>Order</legend>
       <div>
-        <label for="id">Order No.</label>
+        <label for="id">Order No. <span class="required">*</span></label>
         <span>
-          <input type="text" name="id" id="id" value="<:old id:>" class="<:ifError_img id:>error<:or:><:eif:>" />
+          <input type="text" name="id" id="id" value="<:old id:>" required="required" class="<:ifError_img id:>error<:or:><:eif:>" />
           <:help order id:>
         </span>
       </div>

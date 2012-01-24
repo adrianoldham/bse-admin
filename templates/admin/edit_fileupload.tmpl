@@ -10,16 +10,16 @@
     <fieldset>
       <legend>Resource</legend>
       <div>
-        <label for="file">File <:error_img file:></label>
+        <label for="file">File <span class="required">*</span> <:error_img file:></label>
         <span>
-          <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" class="<:ifError_img file:>error<:or:><:eif:>" />
+          <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" required="required" class="<:ifError_img file:>error<:or:><:eif:>" />
           <:help file file:>
         </span>
       </div>
       <div>
-        <label for="name">Name <:error_img name:></label>
+        <label for="name">Name <:ifEq [article id] -1:><span class="required">*</span> <:or:><:eif:><:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name:>" class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name:>" <:ifEq [article id] -1:>required="required" <:or:><:eif:>class="<:ifError_img name:>error<:or:><:eif:>" />
           <:help file name:>
         </span>
       </div>

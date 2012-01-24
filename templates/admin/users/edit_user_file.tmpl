@@ -64,14 +64,14 @@
       <div>
         <label for="modwhen_date">Date <span class="required">*</span> <:error_img modwhen_date:></label>
         <span>
-          <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date date "%d/%m/%Y" userfile modwhen:>" placeholder="DD/MM/YYYY" class="<:ifError_img modwhen_date:>error<:or:><:eif:>" />
+          <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date date "%d/%m/%Y" userfile modwhen:>" placeholder="DD/MM/YYYY" required="required" class="<:ifError_img modwhen_date:>error<:or:><:eif:>" />
           <:help editsiteuser modwhen_date:>
         </span>
       </div>
        <div>
         <label for="modwhen_time">Time <span class="required">*</span> <:error_img modwhen_time:></label>
         <span>
-          <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time date "%H:%M:%S" userfile modwhen:>" placeholder="HH:MM:SS" class="<:ifError_img modwhen_time:>error<:or:><:eif:>" />
+          <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time date "%H:%M:%S" userfile modwhen:>" placeholder="HH:MM:SS" required="required" class="<:ifError_img modwhen_time:>error<:or:><:eif:>" />
           <:help editsiteuser modwhen_time:>
         </span>
       </div>
@@ -81,7 +81,7 @@
       <div>
         <label for="content_type">Content type <span class="required">*</span> <:error_img content_type:></label>
         <span>
-          <input type="text" name="content_type" id="content_type" value="<:old content_type userfile content_type:>" class="<:ifError_img content_type:>error<:or:><:eif:>" />
+          <input type="text" name="content_type" id="content_type" value="<:old content_type userfile content_type:>" required="required" class="<:ifError_img content_type:>error<:or:><:eif:>" />
           <:help editsiteuser content_type:>
         </span>
       </div>

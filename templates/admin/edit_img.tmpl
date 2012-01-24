@@ -35,9 +35,9 @@
           </span>
         </div>
         <div>
-          <label for="name">Name <:error_img [concatenate name [image id]]:></label>
+          <label for="name">Name <:ifEq [article id] -1:><span class="required">*</span> <:or:><:eif:><:error_img [concatenate name [image id]]:></label>
           <span>
-            <input type="text" name="name<:image id:>" id="name" value="<:oldi [concatenate name [image id]] 0 image name:>" <:ifUserCan bse_edit_images_save:article:><:or:>disabled="disabled" <:eif:>class="<:ifError_img [concatenate name [image id]]:>error<:or:><:eif:>" />
+            <input type="text" name="name<:image id:>" id="name" value="<:oldi [concatenate name [image id]] 0 image name:>" <:ifUserCan bse_edit_images_save:article:><:or:>disabled="disabled" <:eif:><:ifEq [article id] -1:> required="required" <:or:><:eif:>class="<:ifError_img [concatenate name [image id]]:>error<:or:><:eif:>" />
             <:help image name:>
           </span>
         </div>
