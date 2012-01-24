@@ -64,14 +64,14 @@
       <div>
         <label for="modwhen_date">Date <span class="required">*</span> <:error_img modwhen_date:></label>
         <span>
-          <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date date "%d/%m/%Y" userfile modwhen:>" placeholder="DD/MM/YYYY" />
+          <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date date "%d/%m/%Y" userfile modwhen:>" placeholder="DD/MM/YYYY" class="<:ifError_img modwhen_date:>error<:or:><:eif:>" />
           <:help editsiteuser modwhen_date:>
         </span>
       </div>
        <div>
         <label for="modwhen_time">Time <span class="required">*</span> <:error_img modwhen_time:></label>
         <span>
-          <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time date "%H:%M:%S" userfile modwhen:>" placeholder="HH:MM:SS" />
+          <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time date "%H:%M:%S" userfile modwhen:>" placeholder="HH:MM:SS" class="<:ifError_img modwhen_time:>error<:or:><:eif:>" />
           <:help editsiteuser modwhen_time:>
         </span>
       </div>
