@@ -220,21 +220,21 @@
     <fieldset>
       <legend>Structure</legend>
       <div>
-        <label for="parent">Parent <:error_img parentid:></label>
+        <label for="parentid">Parent <:error_img parentid:></label>
         <span>
-          <select name="parentid" id="parent"<:ifFieldPerm parentid:><:or:> disabled="disabled"<:eif:>>
-          <option value="">Please select a <:if Eq [article parentid] "-1":>Section<:or Eq:><:parentType:><:eif Eq:></option><:ifFieldPerm parentid:><:or:>
-          <option value="" selected="selected"><:parent title:> (<:parent id:>)</option><:eif:>
-          <:list:>
+          <select name="parentid" id="parentid"<:ifFieldPerm parentid:><:or:> disabled="disabled"<:eif:>>
+            <option value="">Please select a <:if Eq [article parentid] "-1":>Section<:or Eq:><:parentType:><:eif Eq:></option><:ifFieldPerm parentid:><:or:>
+            <option value="" selected="selected"><:parent title:> (<:parent id:>)</option><:eif:>
+            <:list:>
           </select>
           <:help edit section:>
         </span>
       </div>
       <:if Cfgsection [concatenate level [article level] " menus"]:>
       <div>
-        <label for="bsereferer">Menu <:error_img menu:></label>
+        <label for="menu">Menu <:error_img menu:></label>
         <span>
-          <select name="menu" id="bsereferer"<:ifFieldPerm menu:><:or:> disabled="disabled"<:eif:>>
+          <select name="menu" id="menu"<:ifFieldPerm menu:><:or:> disabled="disabled"<:eif:>>
             <:iterator begin cfgsection [concatenate level [article level] " menus"] sort=key:>
             <option value="<:cfgentry key:>"<:if Eq [old menu] [cfgentry key]:> selected="selected"<:or Eq:><:eif Eq:>><:cfgentry value:></option>
             <:iterator end cfgsection:>
