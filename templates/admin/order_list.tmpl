@@ -38,7 +38,7 @@
       <div>
         <label for="stage">Order stage</label>
         <span>
-          <:replace [stage_select] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":>
+          <:replace [stage_select] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
         </span>
       </div>
       <div>

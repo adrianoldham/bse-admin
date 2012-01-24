@@ -264,7 +264,7 @@
       <:csrfp shop_order_save hidden:>
       <div>
         <label for="stage">Order stage</label>
-        <:replace [stage_select] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":>
+        <:replace [stage_select] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
       </div>
       <div>
         <label for="stage_note">Log note</label>

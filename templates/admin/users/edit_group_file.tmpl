@@ -25,7 +25,7 @@
       <div>
         <label for="category">Category <:error_img userfile_category:></label>
         <span> 
-          <:replace [userfile_category] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":>
+          <:replace [userfile_category] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
           <:help editgroup userfile_category:>
         </span>
       </div>

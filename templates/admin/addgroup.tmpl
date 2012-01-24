@@ -22,7 +22,7 @@
       <div>
         <label for="template_set">Template Set <:error_img template_set:></label>
         <span>
-          <:replace [template_set_popup] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":>
+          <:replace [template_set_popup] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
           <:help addgroup template_set:>
         </span>
       </div>

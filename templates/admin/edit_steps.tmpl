@@ -15,9 +15,7 @@
       <div>
         <label for="stepkid">Articles <:error_img stepkid:></label>
         <span> 
-          <select id="stepkid" disabled="disabled">
-            <option><:kid title |h:></option>
-          </select>
+          <:replace [possible_stepkids] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":>
         </span>
       </div>
       <div>
@@ -48,7 +46,7 @@
         <label for="stepkid">Articles <:error_img stepkid:></label>
         <span> 
           <:if Possibles:>
-          <:possible_stepkids:>
+          <:replace [possible_stepkids] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
           <:or Possibles:>
           <select id="stepkid">
             <option>No possible articles</option>

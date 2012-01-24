@@ -250,8 +250,8 @@
       <div>
         <label for="category">Category <:error_img category:></label>
         <span><:ifFieldPerm category:>
-          <:replace [category] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
-          <:replace [category] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
+          <:replace [category] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
+          <:replace [category] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
           <:help edit category:>
         </span>
       </div>
@@ -278,8 +278,8 @@
       <div>
         <label for="template">Template <:error_img template:></label>
         <span><:ifFieldPerm template:>
-          <:replace [templates] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
-          <:replace [templates] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
+          <:replace [templates] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
+          <:replace [templates] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
           <:help edit template:>
         </span>
       </div>
@@ -315,8 +315,8 @@
       <div>
         <label for="listed">List article <:error_img listed:></label>
         <span><:if FieldPerm listed:>
-          <:replace [list listed] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":><:or FieldPerm:>
-          <:replace [list listed] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif FieldPerm:>
+          <:replace [list listed] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":><:or FieldPerm:>
+          <:replace [list listed] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif FieldPerm:>
           <:help edit listed:>
         </span>
       </div>
