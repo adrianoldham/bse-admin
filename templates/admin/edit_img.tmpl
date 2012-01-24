@@ -4,7 +4,9 @@
   <p class="buttons">
     <a href="<:script:>?id=<:article id:>" title="Edit Article" class="button gray small">Article</a><:ifArithmetic [article id] > 0 :>
     <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" class="button gray small">Preview</a><:or:><:eif:>
+    <:if UserCan bse_edit_images_add:article:>
     <a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" accesskey="i" title="AccessKey = i" class="button blue small">Add Image</a>
+    <:or UserCan:><:eif UserCan:>
   </p>
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
@@ -15,10 +17,13 @@
     <:csrfp admin_add_image hidden:>
     <:iterator begin images:>
     <div class="object">
-      <h2>Image <:image_number:> <:ifUserCan bse_edit_images_save:article:><:imgmove:><:or:><:eif:></h2>
+      <h2>Image <:image_number:> <:ifUserCan bse_edit_images_reorder:article:><:imgmove:><:or:><:eif:></h2>
       <p class="buttons">
-        <:ifUserCan bse_edit_images_delete:article:>
-        <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" onclick="return window.confirm('Are you sure you want to delete this Image? (#<:image_number:>)')" class="button red small">Delete</a><:or:><a class="button red small disabled">Delete</a><:eif:>
+        <:if UserCan bse_edit_images_delete:article:>
+        <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" onclick="return window.confirm('Are you sure you want to delete this Image? (#<:image_number:>)')" class="button red small">Delete</a>
+        <:or UserCan:>
+        <a class="button red small disabled">Delete</a>
+        <:eif UserCan:>
       </p>
       <fieldset>
         <legend>Resource</legend>
@@ -81,13 +86,11 @@
     </div>
     <:iterator separator images:><:iterator end images:>
     <:or Images:><:eif Images:>
-    <:if UserCan bse_edit_save:article:>
     <p class="buttons">
       <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
-      <:ifUserCan bse_edit_images_save:article:>
+      <:if UserCan bse_edit_images_save:article:>
       <input type="submit" name="process" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:or:><:eif:>
+      <:or UserCan:><:eif UserCan:>
     </p>
-    <:or UserCan:><:eif UserCan:>
   </form>
 </div>

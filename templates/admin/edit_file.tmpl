@@ -4,7 +4,9 @@
   <p class="buttons">
     <a href="<:script:>?id=<:article id:>" title="Edit Article" class="button gray small">Article</a><:ifArithmetic [article id] > 0 :>
     <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" class="button gray small">Preview</a><:or:><:eif:>
+    <:if UserCan bse_edit_files_add:article:>
     <a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
+    <:or UserCan:><:eif UserCan:>
   </p>
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
@@ -16,10 +18,13 @@
     <:csrfp admin_add_file hidden:>
     <:iterator begin files:>
     <div class="object">
-      <h2>File <:arithmetic [file_index] + 1:> <:ifUserCan bse_edit_files_save:article:><:movefiles:><:or:><:eif:></h2>
+      <h2>File <:arithmetic [file_index] + 1:> <:ifUserCan bse_edit_files_reorder:article:><:movefiles:><:or:><:eif:></h2>
       <p class="buttons">
-        <:ifUserCan bse_edit_files_delete:article:>
-        <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" onclick="return window.confirm('Are you sure you want to delete this File? (#<:arithmetic [file_index] + 1:>)')" class="button red small">Delete</a><:or:><a class="button red small disabled">Delete</a><:eif:>
+        <:if UserCan bse_edit_files_delete:article:>
+        <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" onclick="return window.confirm('Are you sure you want to delete this File? (#<:arithmetic [file_index] + 1:>)')" class="button red small">Delete</a>
+        <:or UserCan:>
+        <a class="button red small disabled">Delete</a>
+        <:eif UserCan:>
       </p>
       <fieldset>
         <legend>Resource</legend>
@@ -124,9 +129,9 @@
     <:or Files:><:eif Files:>
     <p class="buttons">
       <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
-      <:ifUserCan bse_edit_files_save:article:>
+      <:if UserCan bse_edit_files_save:article:>
       <input type="submit" name="filesave" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:or:><:eif:>
+      <:or UserCan:><:eif UserCan:>
     </p>
   </form>
 </div>

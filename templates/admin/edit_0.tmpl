@@ -1,18 +1,24 @@
 <:wrap admin/base.tmpl title=>"Manage Articles":>
 <div class="window">
   <h1><:param title:></h1>
-  <:if UserCan bse_edit_add_child:article:>
   <p class="buttons">
     <a href="<:adminurl admin:>?id=1" accesskey="p" title="Preview <:typename article:>" class="button gray small">Preview</a>
     <:if Images:>
-    <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button gray small">Images</a><:or Images:><:eif Images:>
+    <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button gray small">Images</a>
+    <:or Images:><:eif Images:>
     <:if Files:>
-    <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button gray small">Files</a><:or Files:><:eif Files:>
+    <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button gray small">Files</a>
+    <:or Files:><:eif Files:>
+    <:if UserCan bse_edit_add_child:article:>
     <a href="<:script:>?parentid=<:article id:>&amp;type=Article" accesskey="a" title="AccessKey = a" class="button blue small">Add Article</a>
+    <:or UserCan:><:eif UserCan:>
+    <:if UserCan bse_edit_images_add:article:>
     <a href="<:script:>?id=<:article id:>&amp;_t=imgupload" accesskey="i" title="AccessKey = i" class="button blue small">Add Image</a>
+    <:or UserCan:><:eif UserCan:>
+    <:if UserCan bse_edit_files_add:article:>
     <a href="<:script:>?id=<:article id:>&amp;_t=fileupload" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
+    <:or UserCan:><:eif UserCan:>
   </p>
-  <:or UserCan:><:eif UserCan:>
   <:if children:>
   <div class="children">
     <:if UserCan bse_edit_reorder_children:article:>
