@@ -249,8 +249,9 @@
       <legend>Categorisation <:error_img tags:></legend>
       <div>
         <label for="category">Category <:error_img category:></label>
-        <span>
-          <:ifFieldPerm category:><:category:><:or:><:article category:><:eif:>
+        <span><:ifFieldPerm category:>
+          <:replace [category] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
+          <:replace [category] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
           <:help edit category:>
         </span>
       </div>
@@ -277,8 +278,8 @@
       <div>
         <label for="template">Template <:error_img template:></label>
         <span><:ifFieldPerm template:>
-          <:templates:><:or:>
-          <select name="template" id="template" disabled="disabled"><option value="<:article template:>"><:article template:></option></select><:eif:>
+          <:replace [templates] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
+          <:replace [templates] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
           <:help edit template:>
         </span>
       </div>
@@ -313,8 +314,9 @@
       <legend>Publication</legend>
       <div>
         <label for="listed">List article <:error_img listed:></label>
-        <span>
-          <:if FieldPerm listed:><:list listed:><:or FieldPerm:><select name="listed" id="listed" disabled="disabled"><option value=""><:if Article listed:><:ifEq [article listed] "1":>Yes<:or:>In Sections, but not menu<:eif:><:or Article:>No<:eif Article:></option></select><:eif FieldPerm:>
+        <span><:if FieldPerm listed:>
+          <:replace [list listed] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\"":><:or FieldPerm:>
+          <:replace [list listed] "name=\"([a-z A-Z]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif FieldPerm:>
           <:help edit listed:>
         </span>
       </div>
