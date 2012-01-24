@@ -29,7 +29,9 @@
         </span>
       </div>
     </fieldset>
-    <!--<:if Siteusers:>
+    <!--
+    <:if UserCan bse_members_users_list:>
+    <:if Siteusers:>
     <fieldset>
     <legend>Members</legend>
       <ul>
@@ -42,7 +44,9 @@
         <:iterator end siteusers:>
       </ul>
     </fieldset>
-    <:or Siteusers:><:eif Siteusers:>-->
+    <:or Siteusers:><:eif Siteusers:>
+    <:or UserCan:><:eif UserCan:>
+    -->
     <:if Groupfiles:>
     <fieldset>
       <legend>Files</legend>
@@ -51,9 +55,12 @@
         <li>
           <a href="<:target user downufile id [groupfile id]:>" title="<:groupfile title:>"><span class="listed <:switch:><:case default:>green<:endswitch:>"></span> <:groupfile display_name:></a>
           <span>
-            <a href="<:script:>?a_editgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>" class="button gray small">Edit</a><:if UserCan bse_members_group_del_file:>
-            <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a><:or UserCan:>
-            <a class="button red small disabled">Delete</a><:eif UserCan:>
+            <a href="<:script:>?a_editgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>" class="button gray small">Edit</a>
+            <:if UserCan bse_members_group_del_file:>
+            <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a>
+            <:or UserCan:>
+            <a class="button red small disabled">Delete</a>
+            <:eif UserCan:>
           </span>
         </li>
         <:iterator separator groupfiles:><:iterator end groupfiles:>

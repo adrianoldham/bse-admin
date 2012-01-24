@@ -5,8 +5,13 @@
     <input type="hidden" name="id" value="<:siteuser id:>" />
     <input type="hidden" name="r" value="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;m=User+'<:siteuser userId:>'+saved" />
     <p class="buttons">
+      <:if UserCan bse_members_users_list:>
       <a href="<:script:>" class="button gray small">Users</a>
-      <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a><!--<:if Userfiles:>
+      <:or UserCan:><:eif UserCan:>
+      <:if UserCan bse_members_groups_list:>
+      <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a>
+      <:or UserCan:><:eif UserCan:>
+      <!--<:if Userfiles:>
       <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button gray small">Files</a><:or Userfiles:><:eif Userfiles:>-->
       <:if UserCan bse_members_user_add_file:>
       <a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
@@ -188,6 +193,7 @@
         <label><input type="checkbox" name="textOnlyMail" value="1" <:ifOld textOnlyMail siteuser textOnlyMail:>checked="checked" <:or:><:eif:>/> Plain text email (only)</label>
       </div>
     </fieldset>
+    <:if UserCan bse_members_group_list:>
     <:if Groups:>
     <fieldset>
       <legend>Groups <:error_img groups:></legend>
@@ -202,6 +208,7 @@
       </ul>
     </fieldset>
     <:or Groups:><:eif Groups:>
+    <:or UserCan:><:eif UserCan:>
     <:if Flags:>
     <fieldset>
       <legend>Flags <:error_img flags:></legend>

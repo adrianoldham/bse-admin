@@ -22,6 +22,7 @@
         </span>
       </div>
     </fieldset>
+    <:if UserCan bse_members_users_list:>
     <:if Siteusers:>
     <fieldset>
     <legend>Members</legend>
@@ -36,6 +37,7 @@
       </ul>
     </fieldset>
     <:or Siteusers:><:eif Siteusers:>
+    <:or UserCan:><:eif UserCan:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
       <:if UserCan bse_members_group_edit:>
