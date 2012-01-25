@@ -275,6 +275,7 @@
       <input type="submit" name="a_order_save" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
     </p>
   </form>
+  <:if UserCan bse_log_list:>
   <:if Auditlog object_id [order id] object_type BSE::TB::Order:>
   <fieldset>
     <legend>Audit Log</legend>
@@ -290,6 +291,7 @@
   </table>
   </fieldset>
   <:or Auditlog:><:eif Auditlog:>
+  <:or UserCan:><:eif UserCan:>
 
 <!--
   <:switch:>
