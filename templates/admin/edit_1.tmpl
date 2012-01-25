@@ -59,7 +59,7 @@
       <div class="full">
         <label for="title">Title <span class="required">*</span> <:error_img title:></label>
         <span>
-          <input type="text" name="title" id="title" value="<:old title default title:>" maxlength="<:cfg fields title_size 255:>" required="required" <:ifFieldPerm title:><:or:>disabled="disabled" <:eif:>class="<:ifError_img title:>error<:or:><:eif:>" />
+          <input type="text" name="title" id="title" value="<:old title default title:>" maxlength="<:cfg fields title_size 255:>" required="required" <:ifNew:>autofocus="autofocus" <:or:><:eif:><:ifFieldPerm title:><:or:>disabled="disabled" <:eif:>class="<:ifError_img title:>error<:or:><:eif:>" />
           <:help edit title:>
         </span>
       </div>
