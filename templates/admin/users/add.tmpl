@@ -39,7 +39,6 @@
       </div>
       <:or Cfg:><:eif Cfg:>
     </fieldset>
-
     <:if Subscriptions:>
     <fieldset class="newsletter">
       <input type="hidden" name="checkedsubs" value="1" />
@@ -54,7 +53,6 @@
       <p class="small">Confirmation will be sent to your email address.</p>
     </fieldset>
     <:or Subscriptions:><:eif Subscriptions:>
-
     <fieldset class="name">
       <legend>Name</legend>
       <div>
@@ -152,13 +150,12 @@
         </span>
       </div>
     </fieldset>
-
     <fieldset>
       <legend>Information</legend>
       <div class="full">
         <label for="adminNotes"><:cfg "site users" display_adminNotes "Notes":><:ifRequired country:> <span class="required">*</span><:or:><:eif:> <:error_img adminNotes:></label>
         <span>
-          <textarea name="adminNotes" id="adminNotes" class="<:ifError_img adminNotes:>error<:or:><:eif:>"><:old adminNotes :></textarea>
+          <textarea name="adminNotes" id="adminNotes" class="<:ifError_img adminNotes:>error<:or:><:eif:>"><:old adminNotes:></textarea>
         </span>
       </div>
     </fieldset>
@@ -175,9 +172,7 @@
       </ul>
     </fieldset>
     <:or Flags:><:eif Flags:>
-
     <:include admin/include/user_custom.tmpl optional:>
-
     <p><span class="required">* Required.</span> <:cfg "site users" required_text "Please provide information for all marked fields.":></p>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
@@ -187,4 +182,3 @@
     </p>
   </form>
 </div>
-

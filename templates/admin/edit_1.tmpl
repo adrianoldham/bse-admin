@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>[cond [ifNew] [cat "New " [typename article] " (Level " [article level] ")"] [cat "Edit " [typename article] " (Level " [article level] ")"]], js => "admin_edit.js":>
+<:wrap admin/base.tmpl title=>[cond [ifNew] [cat "New " [typename article] " (Level " [article level] ")"] [cat "Edit " [typename article] " (Level " [article level] ")"]], js=>"admin_edit.js":>
 <div class="window">
   <h1><:param title:></h1>
   <:if New:><:or New:>
@@ -152,7 +152,6 @@
         <:iterator end price_tiers:>
       <:or Price_tiers:><:eif Price_tiers:>
     </fieldset>
-
     <fieldset>
       <legend>Stock</legend>
       <div>
@@ -170,7 +169,6 @@
         </span>
       </div>
     </fieldset>
-
     <fieldset>
       <legend>Measurements</legend>
       <div>
@@ -234,7 +232,6 @@
     </fieldset>
     <:or Dboptions:><:eif Dboptions:>
     <:or Match:><:eif Match:>
-
     <fieldset>
       <legend>Structure</legend>
       <div>
@@ -262,7 +259,6 @@
       </div>
       <:or Cfgsection:><:eif Cfgsection:>
     </fieldset>
-
     <fieldset>
       <legend>Categorisation <:error_img tags:></legend>
       <div>
@@ -290,7 +286,6 @@
       </div>
       <:iterator end tags:>
     </fieldset>
-
     <fieldset>
       <legend>Presentation</legend>
       <div>
@@ -327,7 +322,6 @@
         </span>
       </div>
     </fieldset>
-
     <fieldset>
       <legend>Publication</legend>
       <div>
@@ -341,7 +335,7 @@
       <div>
         <label for="release">Release date <:error_img listed:></label>
         <span>
-              <input type="text" name="release" id="release" value="<:old release date "%d/%m/%Y" default release:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm release:><:or:>disabled="disabled" <:eif:>class="<:ifError_img release:>error<:or:><:eif:>" />
+          <input type="text" name="release" id="release" value="<:old release date "%d/%m/%Y" default release:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm release:><:or:>disabled="disabled" <:eif:>class="<:ifError_img release:>error<:or:><:eif:>" />
           <:help edit listed:>
         </span>
       </div>
@@ -420,14 +414,12 @@
         </span>
       </div>
     </fieldset>
-
     <:switch:>
     <:case Match [article generator] "Article":><:include admin/include/article_custom.tmpl optional:>
     <:case Match [article generator] "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
     <:case Match [article generator] "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
     <:case Match [article generator] "Product":><:include admin/include/product_custom.tmpl optional:>
     <:endswitch:>
-
     <:if Or [ifMatch [article generator] "Product"] [ifMatch [article generator] "Seminar"]:>
     <:if Subscriptions:>
     <fieldset>
