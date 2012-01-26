@@ -793,13 +793,52 @@ div.object:hover .buttons {
 
 /* @end */
 
+/* @group widget */
+
+.widget {
+	font-size: 0.9em;
+	line-height: 1.25;
+	color: #fff;
+	text-align: center;
+	text-shadow: none;
+	text-decoration: none;
+
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+
+	margin: 0;
+	padding: 0 0.75em;
+	background-color: rgba(0,0,0,0.25);
+
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+}
+.widget.round {
+    font-size: 1em;
+	line-height: 1;
+	padding: 0 0.25em;
+	width: 1.25em;
+	height: 1.25em;
+}
+
+/* @end */
+
+
 /* @group metadata */
+
+.meta li span {
+	color: #ccc;
+	font-weight: bold;
+}
 
 .meta {
 	margin-right: 0 -0.5em 0 0;
 	padding: 0;
 	font-size: 0.9em;
-	color: #666;
+	color: #fff;
+	text-shadow: none;
 }
 
 .meta li, .meta li div {
@@ -807,7 +846,7 @@ div.object:hover .buttons {
 	list-style: none;
 	margin: 0 0.5em 0.5em 0;
 	padding: 0 0.75em;
-	background-color: rgba(0,0,0,0.075);
+	background-color: rgba(0,0,0,0.5);
 
 	-webkit-border-radius: 1em;
 	-moz-border-radius: 1em;
@@ -815,6 +854,7 @@ div.object:hover .buttons {
 }
 
 .meta li span {
+	color: #ccc;
 	font-weight: bold;
 }
 
@@ -841,7 +881,8 @@ div.object:hover .buttons {
 }
 
 .meta li a, .meta li div {
-	color: #7f7863 !important; /* dark stone */
+	color: #fff !important;
+	text-decoration: none;
 }
 
 .meta li div {
@@ -852,10 +893,9 @@ div.object:hover .buttons {
 	margin: 0.5em 0 0 0;
 	*margin-top: 1.75em; /* for ie7 */
 	padding: 0.5em 0.75em;
-	background-color: #fffdf7; /* paper */
+	background-color: #eee;
 
-	border: 1px solid #b4aa8c; /* stone */
-	border-color: rgba(180, 172, 141, 0.5);
+	border: 1px solid #bbb;
 
 	-webkit-box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);
 	-moz-box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);

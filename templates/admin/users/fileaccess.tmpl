@@ -1,0 +1,150 @@
+<:wrap admin/base.tmpl title=>"File Download Log" nomessage=>1 :>
+<div class="window">
+  <h1><:param title:></h1>
+  <form action="<:script:>" method="post">
+    <fieldset>
+      <legend>Filter downloads</legend>
+      <:page_argsh from to:>
+      <div>
+        <label for="from">From date</label>
+        <span>
+          <input type="text" name="from" id="from" value="<:cgi from:>" />
+        </span>
+      </div>
+      <div>
+        <label for="to">To date</label>
+        <span>
+          <input type="text" name="to" id="to" value="<:cgi to:>" />
+        </span>
+      </div>
+      <div>
+        <label for="pp">Per page</label>
+        <span>
+          <select name="pp" id="pp">
+            <option value="-1"<:ifEq [fileaccesses_perpage] "-1":> selected="selected"<:or:><:eif:>>All downloads</option>
+            <option value="1000"<:ifEq [fileaccesses_perpage] "1000":> selected="selected"<:or:><:eif:>>1000</option>
+            <option value="500"<:ifEq [fileaccesses_perpage] "500":> selected="selected"<:or:><:eif:>>500</option>
+            <option value="100"<:ifEq [fileaccesses_perpage] "100":> selected="selected"<:or:><:eif:>>100</option>
+            <option value="50"<:ifEq [fileaccesses_perpage] "50":> selected="selected"<:or:><:eif:>>50</option>
+            <option value="20"<:ifEq [fileaccesses_perpage] "20":> selected="selected"<:or:><:eif:>>20</option>
+            <option value="15"<:ifEq [fileaccesses_perpage] "15":> selected="selected"<:or:><:eif:>>15</option>
+            <option value="10"<:ifEq [fileaccesses_perpage] "10":> selected="selected"<:or:><:eif:>>10</option>
+            <option value="5"<:ifEq [fileaccesses_perpage] "5":> selected="selected"<:or:><:eif:>>5</option>
+          </select>
+        </span>
+      </div>
+      <:if Owner:>
+      <div>
+        <label>Owner</label>
+        <span>
+          <a href="<:script:>?id=<:owner id:>&amp;_t=files&amp;<:ifEq [owner_type] G:>a_editgroup=1<:or:>a_edit=1<:eif:>"><:owner_desc:></a>
+          <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_id owner_type:>">(Remove)</a>-->
+        </span>
+      </div>
+      <:or Owner:><:eif Owner:>
+      <:if Siteuser:>
+      <div>
+        <label>User</label>
+        <span>
+          <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a>
+          <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>">(Remove)</a>-->
+        </span>
+      </div>
+      <:or Siteuser:><:eif Siteuser:>
+      <:if File:>
+      <div>
+        <label>File</label>
+        <span>
+          <a href="<:script:>?<:ifEq [file owner_type] U:>a_edituserfile<:or:>a_editgroupfile<:eif:>=1&amp;id=<:file owner_id:>&amp;file_id=<:file id:>"><:file display_name:></a>
+          <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>">(Remove)</a>-->
+        </span>
+      </div>
+      <:or File:><:eif File:>
+      <:if Category:>
+      <div>
+        <label>Category</label>
+        <span>
+          <:category name:>
+          <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>">(Remove)</a>-->
+        </span>
+      </div>
+      <:or Category:><:eif Category:>
+      <p class="buttons">
+        <input type="submit" name="a_fileaccesslog" value="Update filter" class="button blue" />
+      </p>
+    </fieldset>
+  </form>
+  <fieldset class="list">
+    <legend>Downloads</legend>
+    <ul class="meta selected">
+      <:if Owner:>
+      <li><span>Owner</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_id owner_type:>"><:owner_desc:> <b>&times;</b></a></li>
+      <:or Owner:><:eif Owner:>
+      <:if Siteuser:>
+      <li><span>User</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>"><:siteuser userId:> <b>&times;</b></a></li>
+      <:or Siteuser:><:eif Siteuser:>
+      <:if File:>
+      <li><span>File</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>"><:file display_name:> <b>&times;</b></a></li>
+      <:or File:><:eif File:>
+      <:if Category:>
+      <li><span>Category</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>"><:category name:> <b>&times;</b></a></li>
+      <:or Category:><:eif Category:>
+    </ul>
+    <table class="full">
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>User</th>
+          <th>File</th>
+          <th>Owner</th>
+          <th>Category</th>
+          <!--<th>Title</th>
+          <th>Size</th>
+          <th>Filters</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        <:iterator begin fileaccesses:>
+        <tr>
+          <td><:date "%d-%b-%Y / %r" fileaccess when_at:></td>
+          <td>
+            <a href="<:script:>?a_edit=1&amp;id=<:fileaccess siteuser_id:>"><:user:></a>
+            <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>&amp;siteuser_id=<:fileaccess siteuser_id:>" class="widget round">&plus;</a>
+          </td>
+          <td>
+            <a href="<:script:>?<:ifEq [fileaccess owner_type] "U":>a_edituserfile<:or:>a_editgroupfile<:eif:>=1&amp;id=<:fileaccess owner_id:>&amp;file_id=<:fileaccess file_id:>" title="File: <:fileaccess file_id:> / Title: <:fileaccess title:> / Size: <:arithmetic d1:([fileaccess size_in_bytes] / 1024):>kB"><:fileaccess display_name:></a>
+            <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>&amp;file_id=<:fileaccess file_id:>" class="widget round">&plus;</a>
+          </td>
+          <td>
+            <a href="<:script:>?<:ifEq [fileaccess owner_type] "U":>a_edit<:or:>a_editgroup<:eif:>=1&amp;<:ifMatch [fileaccess owner_id] ^-:>_t=files&amp;<:or:><:eif:>=1&amp;id=<:fileaccess owner_id:>"><:fileowner desc:></a>
+            <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_type owner_id:>&amp;owner_id=<:fileaccess owner_id:>&amp;owner_type=<:fileaccess owner_type:>" class="widget round">&plus;</a>
+          </td>
+          <td>
+            <:filecat:>
+            <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>&amp;category=<:fileaccess category:>" class="widget round">&plus;</a>
+          </td>
+          <!--<td><:fileaccess title:></td>
+          <td><:arithmetic d1:([fileaccess size_in_bytes] / 1024):>kB</td>
+          <td class="actions">
+            <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>&amp;siteuser_id=<:fileaccess siteuser_id:>" class="widget">U</a>
+            <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>&amp;file_id=<:fileaccess file_id:>" class="widget">F</a>
+            <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_type owner_id:>&amp;owner_id=<:fileaccess owner_id:>&amp;owner_type=<:fileaccess owner_type:>" class="widget">O</a>
+            <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>&amp;category=<:fileaccess category:>" class="widget">C</a>
+          </td>-->
+        </tr>
+        <:iterator end fileaccesses:>
+      </tbody>
+    </table>
+  </fieldset>
+  <p class="pagination">Page <:fileaccesses_pagenum:> of <:fileaccesses_pagecount:>
+    <:ifFirstFileaccessesPage:><span class="disabled">|&lt;&lt;</span> <span class="disabled">&lt;&lt;</span><:or:><a href="<:script:>?a_fileaccesslog=1&amp;p=1&amp;pp=<:fileaccesses_perpage:>">|&lt;&lt;</a> <a href="<:script:>?a_fileaccesslog=1&amp;p=<:prevFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&lt;&lt;</a><:eif:>
+    <:iterator begin fileaccesses_pagec:>
+    <:switch:>
+    <:case fileaccess_pagec gap:>...
+    <:case fileaccess_pagec link:><a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccess_pagec page:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>"><:fileaccess_pagec page:></a>
+    <:case default:><span class="disabled"><:fileaccess_pagec page:></span>
+    <:endswitch:>
+    <:iterator end fileaccesses_pagec:>
+    <:ifLastFileaccessesPage:><span class="disabled">&gt;&gt;</span> <span class="disabled">&gt;&gt;|</span><:or:><a href="<:script:>?a_fileaccesslog=1&amp;p=<:nextFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;&gt;</a> <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccesses_pagecount:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;&gt;|</a><:eif:>
+  </p>
+</div>
