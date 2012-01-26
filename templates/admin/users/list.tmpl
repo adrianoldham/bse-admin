@@ -107,7 +107,7 @@
     </table>
   </fieldset>
   <p class="pagination">Page <:siteusers_pagenum:> of <:siteusers_pagecount:>
-    <:ifFirstSiteusersPage:><span class="disabled">|&lt;&lt;</span><:or:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">|&lt;&lt;</a> <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&lt;&lt;</a><:eif:>
+    <:ifFirstSiteusersPage:><span class="disabled">|&lt;</span><:or:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">|&lt;</a> <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&lt;</a><:eif:>
     <:iterator begin siteusers_pagec:>
     <:switch:>
     <:case siteuser_pagec gap:>...
@@ -115,7 +115,7 @@
     <:case default:><span class="disabled"><:siteuser_pagec page:></span>
     <:endswitch:>
     <:iterator end siteusers_pagec:>
-    <:ifLastSiteusersPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;&gt;</a> <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteusers_pagecount:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;&gt;|</a><:eif:>
+    <:ifLastSiteusersPage:><span class="disabled">&gt;|</span><:or:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;</a> <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteusers_pagecount:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;|</a><:eif:>
   </p>
   <:or Siteusers:>
   <p>No users match search criteria.</p>

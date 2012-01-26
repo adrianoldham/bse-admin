@@ -15,7 +15,7 @@
     </table>
   </fieldset>
   <p class="pagination">Page <:auditlog_pagenum:> of <:auditlog_pagecount:>
-    <:ifFirstAuditlogPage:><span class="disabled">|&lt;&lt;</span><:or:><a href="<:adminurl log:>?p=1&amp;pp=<:auditlog_perpage:>">|&lt;&lt;</a> <a href="<:adminurl log:>?p=<:prevAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&lt;&lt;</a><:eif:>
+    <:ifFirstAuditlogPage:><span class="disabled">|&lt;</span><:or:><a href="<:adminurl log:>?p=1&amp;pp=<:auditlog_perpage:>">|&lt;</a> <a href="<:adminurl log:>?p=<:prevAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&lt;</a><:eif:>
     <:iterator begin auditlog_pagec:>
     <:switch:>
     <:case auditentry_pagec gap:>...
@@ -23,6 +23,6 @@
     <:case default:><span class="disabled"><:auditentry_pagec page:></span>
     <:endswitch:>
     <:iterator end auditlog_pagec:>
-    <:ifLastAuditlogPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:adminurl log:>?p=<:nextAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&gt;&gt;</a> <a href="<:adminurl log:>?p=<:auditlog_pagecount:>&amp;pp=<:auditlog_perpage:>">&gt;&gt;|</a><:eif:>
+    <:ifLastAuditlogPage:><span class="disabled">&gt;|</span><:or:><a href="<:adminurl log:>?p=<:nextAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&gt;</a> <a href="<:adminurl log:>?p=<:auditlog_pagecount:>&amp;pp=<:auditlog_perpage:>">&gt;|</a><:eif:>
   </p>
 </div>

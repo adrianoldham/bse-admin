@@ -137,7 +137,7 @@
     </table>
   </fieldset>
   <p class="pagination">Page <:fileaccesses_pagenum:> of <:fileaccesses_pagecount:>
-    <:ifFirstFileaccessesPage:><span class="disabled">|&lt;&lt;</span> <span class="disabled">&lt;&lt;</span><:or:><a href="<:script:>?a_fileaccesslog=1&amp;p=1&amp;pp=<:fileaccesses_perpage:>">|&lt;&lt;</a> <a href="<:script:>?a_fileaccesslog=1&amp;p=<:prevFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&lt;&lt;</a><:eif:>
+    <:ifFirstFileaccessesPage:><span class="disabled">|&lt;</span> <span class="disabled">&lt;</span><:or:><a href="<:script:>?a_fileaccesslog=1&amp;p=1&amp;pp=<:fileaccesses_perpage:>">|&lt;</a> <a href="<:script:>?a_fileaccesslog=1&amp;p=<:prevFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&lt;</a><:eif:>
     <:iterator begin fileaccesses_pagec:>
     <:switch:>
     <:case fileaccess_pagec gap:>...
@@ -145,6 +145,6 @@
     <:case default:><span class="disabled"><:fileaccess_pagec page:></span>
     <:endswitch:>
     <:iterator end fileaccesses_pagec:>
-    <:ifLastFileaccessesPage:><span class="disabled">&gt;&gt;</span> <span class="disabled">&gt;&gt;|</span><:or:><a href="<:script:>?a_fileaccesslog=1&amp;p=<:nextFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;&gt;</a> <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccesses_pagecount:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;&gt;|</a><:eif:>
+    <:ifLastFileaccessesPage:><span class="disabled">&gt;</span> <span class="disabled">&gt;|</span><:or:><a href="<:script:>?a_fileaccesslog=1&amp;p=<:nextFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;</a> <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccesses_pagecount:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;|</a><:eif:>
   </p>
 </div>

@@ -57,7 +57,7 @@
   </form>
   <:iterator end systags:>
   <p class="pagination">Page <:systags_pagenum:> of <:systags_pagecount:>
-    <:ifFirstSystagsPage:><span class="disabled">|&lt;&lt;</span><:or:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=1&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">|&lt;&lt;</a> <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:prevSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&lt;&lt;</a><:eif:>
+    <:ifFirstSystagsPage:><span class="disabled">|&lt;</span><:or:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=1&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">|&lt;</a> <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:prevSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&lt;</a><:eif:>
     <:iterator begin systags_pagec:>
     <:switch:>
     <:case systag_pagec gap:>...
@@ -65,6 +65,6 @@
     <:case default:><span class="disabled"><:systag_pagec page:></span>
     <:endswitch:>
     <:iterator end systags_pagec:>
-    <:ifLastSystagsPage:><span class="disabled">&gt;&gt;|</span><:or:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:nextSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;&gt;</a> <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;&gt;|</a><:eif:>
+    <:ifLastSystagsPage:><span class="disabled">&gt;|</span><:or:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:nextSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;</a> <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;|</a><:eif:>
   </p>
 </div>
