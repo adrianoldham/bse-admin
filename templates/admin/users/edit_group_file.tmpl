@@ -12,7 +12,7 @@
     <input type="hidden" name="id" value="<:group id:>" />
     <input type="hidden" name="file_id" value="<:groupfile id:>" />
     <:csrfp admin_group_edit_file hidden:>
-    <input name="r" type="hidden" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" />
+    <input name="r" type="hidden" value="<:cgi r:>" />
     <fieldset>
       <legend>Resource</legend>
       <div>

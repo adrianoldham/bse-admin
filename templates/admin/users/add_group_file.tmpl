@@ -4,7 +4,7 @@
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:group id:>" />
     <:csrfp admin_group_add_file hidden:>
-    <input name="r" type="hidden" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" />
+    <input name="r" type="hidden" value="<:cgi r:>" />
     <fieldset>
       <legend>Resource</legend>
       <div>

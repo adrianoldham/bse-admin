@@ -12,7 +12,7 @@
     <input type="hidden" name="id" value="<:siteuser id:>" />
     <input type="hidden" name="file_id" value="<:userfile id:>" />
     <:csrfp admin_user_edit_file hidden:>
-    <input name="r" type="hidden" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?a_edit=1&amp;id=<:siteuser id:><:endswitch:>" />
+    <input name="r" type="hidden" value="<:cgi r:>" />
     <fieldset>
       <legend>Resource</legend>
       <div>
