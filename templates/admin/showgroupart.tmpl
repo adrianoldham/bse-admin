@@ -1,0 +1,28 @@
+<:wrap admin/base.tmpl title=>"Admin Group Article Permissions" :>
+<div class="window dialog">
+  <h1><:param title:></h1>
+  <form action="<:script:>" method="post">
+    <input type="hidden" name="groupid" value="<:group id:>" />
+    <input type="hidden" name="saveaperms" value="1" />
+    <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend><:group name:> <:ifGroup description:>(<:group description:>) <:or:><:eif:><:error_img aperms:></legend>
+      <ul>
+        <:iterator begin aperms:>
+        <li>
+          <input type="checkbox" name="aperms" id="aperm_<:aperm id:>" value="<:aperm id:>" <:ifAperm_set aperm:>checked="checked" <:or:><:eif:>/>
+          <label for="aperm_<:aperm id:>"><:aperm brief:><:ifAperm help:> (<:aperm help:>)<:or:><:eif:></label>
+        </li>
+        <:iterator end aperms:>
+      </ul>
+      <:help addgroup aperms:>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:adminurl add id [article id]:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
+      <:if UserCan bse_admin_group_save_artrights:>
+      <input type="submit" name="a_savegroupart" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:or UserCan:><:eif UserCan:>
+    </p>
+  </form>
+</div>
