@@ -300,6 +300,7 @@
     <:include admin/include/user_custom.tmpl optional:>
     <p><span class="required">* Required.</span> <:cfg "site users" required_text "Please provide information for all marked fields.":></p>
     <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
       <:if UserCan bse_members_user_edit:>
       <input type="submit" name="a_save" value="Save changes" accesskey="s" Title="AccessKey = s" class="button green" />
       <:or UserCan:><:eif UserCan:>
