@@ -227,7 +227,7 @@
             <:or:><:eif:>
           </span>
         </li>
-        <:iterator separator dboptions:><:iterator end dboptions:>
+        <:iterator end dboptions:>
       </ul>
     </fieldset>
     <:or Dboptions:><:eif Dboptions:>
@@ -357,7 +357,6 @@
           <input type="checkbox" name="group_id" id="group_id<:group id:>" value="<:group id:>" <:ifOr [ifGroupRequired] [ifEq [old group_id] [group id]]:>checked="checked" <:or:><:eif:><:ifFieldPerm group_id:><:or:>disabled="disabled" <:eif:>/>
           <label for="group_id<:group id:>"><:if Match [group id] "^-":><:group name:><:or Match:><:if UserCan bse_members_group_edit:><a href="<:adminurl siteusers:>?a_groupmemberform=1&amp;id=<:group id:>&amp;referer=1"><:group name:></a><:or UserCan:><:group name:><:eif UserCan:><:eif Match:></label>
         </li>
-        <:iterator separator groups:>
         <:iterator end groups:>
       </ul>
       <:help edit groups:>
@@ -371,7 +370,6 @@
           <input type="checkbox" name="flags" id="flags_<:flag id:>" value="<:flag id:>" <:ifOr [ifFlagSet [flag id]] [ifMatch [old flags] [flag id]]:>checked="checked" <:or:><:eif:><:ifFieldPerm flags:><:or:>disabled="disabled" <:eif:>/>
           <label for="flags_<:flag id:>"><:flag desc |h:></label>
         </li>
-        <:iterator separator flags:>
         <:iterator end flags:>
       </ul>
       <:help edit flags:>
@@ -490,7 +488,7 @@
             <:or UserCan:><:eif UserCan:>
           </span>
         </li>
-        <:iterator separator images:><:iterator end images:>
+        <:iterator end images:>
       </ul>
     </fieldset>
     <:or Images:><:eif Images:>
@@ -517,7 +515,7 @@
             <:or UserCan:><:eif UserCan:>
           </span>
         </li>
-        <:iterator separator files:><:iterator end files:>
+        <:iterator end files:>
       </ul>
     </fieldset>
     <:or Files:><:eif Files:>
@@ -592,7 +590,7 @@
           <a class="button red small disabled">Delete</a><:eif UserCan:><:eif StepKid:> <:movestepkid:>
         </span>
       </li>
-      <:iterator separator kids:><:iterator end kids:>
+      <:iterator end kids:>
     </ul>
   </div>
   <:or Kids:><:eif Kids:>

@@ -168,7 +168,7 @@
           <input type="checkbox" name="flags" id="flags_<:flag id:>" value="<:flag id:>" <:ifFlagSet [flag id]:>checked="checked" <:or:><:eif:>/>
           <label for="flags_<:flag id:>"><:flag desc |h:></label>
         </li>
-        <:iterator separator flags:><:iterator end flags:>
+        <:iterator end flags:>
       </ul>
     </fieldset>
     <:or Flags:><:eif Flags:>

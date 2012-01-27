@@ -32,12 +32,11 @@
       </thead>
       <tbody><:if Level1:><:iterator begin level1:>
         <tr>
-          <:iterator begin level1_cols:><td><:level1_col value |h:></td><:iterator separator level1_cols:>
-          <:iterator end level1_cols:><:if Level1_links:>
+          <:iterator begin level1_cols:><td><:level1_col value |h:></td><:iterator end level1_cols:><:if Level1_links:>
           <td class="actions">
             <:iterator begin level1_links:><:level1_link link:><:iterator end level1_links:>
           </td><:or Level1_links:><:eif Level1_links:>
-        </tr><:iterator separator level1:><:iterator end level1:><:or Level1:>
+        </tr><:iterator end level1 :><:or Level1:>
         <tr>
           <td colspan="<:add [level1_name_count] 1:>">No rows returned.</td>
         </tr><:eif Level1:>

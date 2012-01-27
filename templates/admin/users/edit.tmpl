@@ -204,7 +204,7 @@
           <input type="checkbox" name="group_id" id="group_<:group id:>" value="<:group id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
           <label for="group_<:group id:>"><a href="<:script:>?a_editgroup=1&amp;id=<:group id:>&amp;referer=1"><:group name:></a></label>
         </li>
-        <:iterator separator groups:><:iterator end groups:>
+        <:iterator end groups:>
       </ul>
     </fieldset>
     <:or Groups:><:eif Groups:>
@@ -220,7 +220,7 @@
           <label for="flags_<:flag id:>"><:flag desc |h:></label>
         <span>
           </li>
-        <:iterator separator flags:><:iterator end flags:>
+        <:iterator end flags:>
       </ul>
     </fieldset>
     <:or Flags:><:eif Flags:>
@@ -235,7 +235,7 @@
           <input type="checkbox" name="file_subscriptions" id="filecat_<:filecat id:>" value="<:filecat id:>" <:ifFilecat subscribed:>checked="checked" <:or:><:eif:>/>
           <label for="filecat_<:filecat id:>"><:filecat name:></label>
         </li>
-        <:iterator separator filecats:><:iterator end filecats:>
+        <:iterator end filecats:>
       </ul>
     </fieldset>
     <:or Filecats:><:eif Filecats:>
@@ -268,7 +268,7 @@
             <:eif UserCan:>
           </span>
         </li>
-        <:iterator separator userfiles:><:iterator end userfiles:>
+        <:iterator end userfiles:>
       </ul>
     </fieldset>
     <:or Userfiles:><:eif Userfiles:>
