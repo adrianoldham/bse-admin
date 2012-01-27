@@ -266,7 +266,7 @@
       </ul>
     </fieldset>
     <:or Userfiles:><:eif Userfiles:>
-    <:if Userorders:>
+    <:if And [ifUserCan bse_shop_order_list] [ifUserorders]:>
     <fieldset class="list">
       <legend>Orders</legend>
       <table class="full">
@@ -289,14 +289,18 @@
             <td><:ifUserorder paidFor:>Paid<:or:>Unpaid<:eif:></td>
             <td><:cfg shop currency "$":><:number money [userorder total]:></td>
             <td class="actions">
-              <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:userorder id:>" class="button gray small">Details</a>
+              <:if UserCan bse_shop_order_detail:>
+              <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:userorder id:>&amp;referer=1" class="button gray small">Details</a>
+              <:or UserCan:>
+              <a class="button gray small disabled">Details</a>
+              <:eif UserCan:>
             </td>
           </tr>
           <:iterator end userorders:>
         <tbody>
       </table>
     </fieldset>
-    <:or Userorders:> <:eif Userorders:>
+    <:or And:> <:eif And:>
     <:include admin/include/user_custom.tmpl optional:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
