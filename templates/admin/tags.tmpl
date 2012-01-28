@@ -56,15 +56,26 @@
     </fieldset>
   </form>
   <:iterator end systags:>
-  <p class="pagination">Page <:systags_pagenum:> of <:systags_pagecount:>
-    <:ifFirstSystagsPage:><span class="disabled">|&lt;</span><:or:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=1&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">|&lt;</a> <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:prevSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&lt;</a><:eif:>
+  <p class="pagination">
+    Page <:systags_pagenum:> of <:systags_pagecount:>
+    <:if FirstSystagsPage:>
+    <span class="disabled">|&lt;</span>
+    <:or FirstSystagsPage:>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=1&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">|&lt;</a>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:prevSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&lt;</a>
+    <:eif FirstSystagsPage:>
     <:iterator begin systags_pagec:>
     <:switch:>
-    <:case systag_pagec gap:>...
+    <:case systag_pagec gap:><span class="truncation">...</span>
     <:case systag_pagec link:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systag_pagec page:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>"><:systag_pagec page:></a>
     <:case default:><span class="disabled"><:systag_pagec page:></span>
     <:endswitch:>
     <:iterator end systags_pagec:>
-    <:ifLastSystagsPage:><span class="disabled">&gt;|</span><:or:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:nextSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;</a> <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;|</a><:eif:>
+    <:if LastSystagsPage:>
+    <span class="disabled">&gt;|</span>
+    <:or LastSystagsPage:>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:nextSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;</a>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;|</a>
+    <:eif LastSystagsPage:>
   </p>
 </div>
