@@ -6,7 +6,7 @@
     <input type="hidden" name="_t" value="imgupload" />
     <:csrfp admin_save_image hidden:>
     <:csrfp admin_add_image hidden:>
-    <input name="r" type="hidden" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?id=<:article id:><:endswitch:>" />
+    <input type="hidden" name="r" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?id=<:article id:><:endswitch:>" />
     <fieldset>
       <legend>Resource</legend>
       <div>

@@ -5,7 +5,7 @@
     <:csrfp admin_add_option hidden:>
     <input type="hidden" name="_t" value="prodopts" />
     <input type="hidden" name="id" value="<:article id:>" />
-    <input type="hidden" name="r" value="<:script:>?id=<:article id:>" />
+    <input type="hidden" name="r" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?id=<:article id:><:endswitch:>" />
     <fieldset>
       <legend>Option</legend>
       <div>

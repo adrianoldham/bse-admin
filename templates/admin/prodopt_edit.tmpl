@@ -11,7 +11,7 @@
   <form action="<:script:>" method="post">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="option_id" value="<:option id:>" />
-    <input name="r" type="hidden" value="<:script:>?id=<:article id:>" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
     <:csrfp admin_save_option hidden:>
     <input type="hidden" name="save_enabled" value="1" />
     <fieldset>

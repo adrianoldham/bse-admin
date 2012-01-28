@@ -11,7 +11,7 @@
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="file" />
-    <input name="r" type="hidden" value="<:script:>?id=<:article id:>&amp;_t=file" />
+    <input type="hidden" name="r" value="<:script:>?id=<:article id:>&amp;_t=file" />
     <:if Files:>
     <input type="hidden" name="save_file_flags" value="1" />
     <:csrfp admin_save_files hidden:>

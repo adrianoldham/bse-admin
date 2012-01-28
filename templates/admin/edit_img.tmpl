@@ -11,7 +11,7 @@
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="img" />
-    <input name="r" type="hidden" value="<:script:>?id=<:article id:>&amp;_t=img" />
+    <input type="hidden" name="r" value="<:script:>?id=<:article id:>&amp;_t=img" />
     <:if Images:>
     <:csrfp admin_save_images hidden:>
     <:csrfp admin_add_image hidden:>
