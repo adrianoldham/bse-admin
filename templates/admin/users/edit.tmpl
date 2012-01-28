@@ -11,8 +11,11 @@
       <:if UserCan bse_members_group_list:>
       <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a>
       <:or UserCan:><:eif UserCan:>
-      <!--<:if Userfiles:>
-      <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button gray small">Files</a><:or Userfiles:><:eif Userfiles:>-->
+      <!--
+      <:if Userfiles:>
+      <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button gray small">Files</a>
+      <:or Userfiles:><:eif Userfiles:>
+      -->
       <:if UserCan bse_members_user_add_file:>
       <a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
       <:or UserCan:><:eif UserCan:>

@@ -27,7 +27,8 @@
         </span>
       </div>
     </fieldset>
-    <!--<:if Users:>
+    <!--
+    <:if Users:>
     <fieldset>
       <legend>Members <:error_img users:></legend>
       <ul>
@@ -54,7 +55,8 @@
         <:iterator end gperms:>
       </ul>
     </fieldset>
-    <:or Gperms:><:eif Gperms:>-->
+    <:or Gperms:><:eif Gperms:>
+    -->
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_groups=1<:endswitch:>" accesskey="." title="AccessKey = ." class="button gray ancel">Cancel</a>
       <:if UserCan bse_admin_group_add:>
