@@ -45,13 +45,20 @@
     <div>
       <label>Actor</label>
       <span>
-        <:ifAuditentry actor_link:><a href="<:auditentry actor_link:>"><:auditentry actor_name:></a><:or:><:auditentry actor_name:><:eif:>
+        <:if Auditentry actor_link:>
+        <a href="<:auditentry actor_link:>"><:auditentry actor_name:></a>
+        <:or Auditentry:><:auditentry actor_name:>
+        <:eif Auditentry:>
       </span>
     </div>
     <div>
       <label>Object</label>
       <span>
-        <:ifAuditentry object_link:><a href="<:auditentry object_link:>"><:auditentry object_name:></a><:or:><:auditentry object_name:><:eif:>
+        <:if Auditentry object_link:>
+        <a href="<:auditentry object_link:>"><:auditentry object_name:></a>
+        <:or Auditentry:>
+        <:auditentry object_name:>
+        <:eif Auditentry:>
       </span>
     </div>
     <div>
@@ -65,13 +72,15 @@
       <span>
         <:auditentry ip_address:>
       </span>
-    </div><:ifAuditentry dump:>
+    </div>
+    <:if Auditentry dump:>
     <div class="full">
       <label>Log</label>
       <span>
         <textarea><:auditentry dump:></textarea>
       </span>
-    </div><:or:><:eif:>
+    </div>
+    <:or Auditentry:><:eif Auditentry:>
   </fieldset>
   <p class="buttons">
     <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:adminurl log:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>

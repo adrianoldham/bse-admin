@@ -583,11 +583,22 @@
       <li>
         <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>"><span class="listed <:switch:><:case Eq [kid listed] 0 :>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename kid:></span> <:kid title:></a>
         <span>
-          <:if StepKid:><a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;_t=steps" class="button gray small">Edit</a><:if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[stepkid childId]:>
-          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>" onclick="return window.confirm('Are you sure you want to delete the Stepchild realationship?\r\rThis does NOT delete the original <:typename kid:>.')" class="button red small">Delete</a><:or UserCan:>
-          <a class="button red small disabled">Delete</a><:eif UserCan:><:or StepKid:><a href="<:script:>?id=<:kid id:>" class="button gray small">Edit</a><:if UserCan bse_edit_delete_article:kid:>
-          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename kid:>?')" class="button red small">Delete</a><:or UserCan:>
-          <a class="button red small disabled">Delete</a><:eif UserCan:><:eif StepKid:> <:movestepkid:>
+          <:if StepKid:>
+          <a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;_t=steps" class="button gray small">Edit</a>
+          <:if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[stepkid childId]:>
+          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>" onclick="return window.confirm('Are you sure you want to delete the Stepchild realationship?\r\rThis does NOT delete the original <:typename kid:>.')" class="button red small">Delete</a>
+          <:or UserCan:>
+          <a class="button red small disabled">Delete</a>
+          <:eif UserCan:>
+          <:or StepKid:>
+          <a href="<:script:>?id=<:kid id:>" class="button gray small">Edit</a>
+          <:if UserCan bse_edit_delete_article:kid:>
+          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename kid:>?')" class="button red small">Delete</a>
+          <:or UserCan:>
+          <a class="button red small disabled">Delete</a>
+          <:eif UserCan:>
+          <:eif StepKid:>
+          <:movestepkid:>
         </span>
       </li>
       <:iterator end kids:>

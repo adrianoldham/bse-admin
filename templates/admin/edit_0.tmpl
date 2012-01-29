@@ -32,9 +32,13 @@
       <li>
         <a href="<:script:>?id=<:child id:>&amp;preview=1" title="<:typename child:>"><span class="listed <:switch:><:case Eq [child listed] 0 :>gray<:case Eq [child listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename child:></span> <:child title:></a>
         <span>
-          <a href="<:script:>?id=<:child id:>" class="button gray small">Edit</a><:if UserCan bse_edit_delete_article:child:>
-          <a href="<:script:>?id=<:child id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename child:>?')" class="button red small">Delete</a><:or UserCan:>
-          <a class="button red small disabled">Delete</a><:eif UserCan:> <:movechild:>
+          <a href="<:script:>?id=<:child id:>" class="button gray small">Edit</a>
+          <:if UserCan bse_edit_delete_article:child:>
+          <a href="<:script:>?id=<:child id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename child:>?')" class="button red small">Delete</a>
+          <:or UserCan:>
+          <a class="button red small disabled">Delete</a>
+          <:eif UserCan:>
+          <:movechild:>
         </span>
       </li>
       <:iterator end children:>

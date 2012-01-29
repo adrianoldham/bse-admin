@@ -12,31 +12,43 @@
         <tr>
           <th>Order Date:</th>
           <td><:date order orderDate:></td>
-        </tr><:ifOrder stage_description_id:>
+        </tr>
+        <:if Order stage_description_id:>
         <tr>
           <th>Order Status:</th>
           <td><:stage_description:></td>
-        </tr><:or:><:eif:><:ifOrder purchase_order:>
+        </tr>
+        <:or Order:><:eif Order:>
+        <:if Order purchase_order:>
         <tr>
           <th>Purchase Order:</th>
           <td><:order purchase_order:></td>
-        </tr><:or:><:eif:><:ifOrder freight_tracking:>
+        </tr>
+        <:or Order:><:eif Order:>
+        <:if Order freight_tracking:>
         <tr>
           <th>Tracking Code:</th>
           <td><:order freight_tracking:></td>
-        </tr><:or:><:eif:><:ifOrder shipping_method:>
+        </tr>
+        <:or Order:><:eif Order:>
+        <:if Order shipping_method:>
         <tr>
           <th>Shipping Method:</th>
           <td><:order shipping_method:></td>
-        </tr><:or:><:eif:><:ifOrder userId:>
+        </tr>
+        <:or Order:><:eif Order:>
+        <:if Order userId:>
         <tr>
           <th><:cfg "site user" display_userid "Username":>:</th>
           <td><a href="<:adminurl siteusers a_edit 1 id [siteuser id]:>"><:order userId:></a></td>
-        </tr><:or:><:eif:><:ifOrder affiliate_code:>
+        </tr>
+        <:or Order:><:eif Order:>
+        <:if Order affiliate_code:>
         <tr>
           <th><:cfg shop display_affiliate_code "Referrer":>:</th>
           <td><:order affiliate_code:></td>
-        </tr><:or:><:eif:>
+        </tr>
+        <:or Order:><:eif Order:>
       </tbody>
     </table>
     <table class="vertical right">
@@ -46,23 +58,29 @@
           <th>Payment Method:</th><:switch:>
           <:case Eq [order paymentType] "0":>
           <td><b>Credit Card</b></td>
-        </tr><:if Order ccOnline:>
+        </tr>
+        <:if Order ccOnline:>
         <tr>
           <th>Receipt No.:</th>
           <td><:order ccReceipt:></td>
-        </tr><:ifOrder ccTranId:>
+        </tr>
+        <:ifOrder ccTranId:>
         <tr>
           <th>Transaction Id:</th>
           <td><:order ccTranId:></td>
-        </tr><:or:><:eif:><:or Order:><:eif Order:>
+        </tr>
+        <:or:><:eif:>
+        <:or Order:><:eif Order:>
         <tr>
           <th><:cfg shop display_ccName "Name on Card":>:</th>
           <td><:order ccName:></td>
-        </tr><:ifOrder ccPAN:>
+        </tr>
+        <:if Order ccPAN:>
         <tr>
           <th><:cfg shop display_ccPAN "Card Number":>:</th>
           <td>**** **** **** <:order ccPAN:></td>
-        </tr><:or:><:eif:>
+        </tr>
+        <:or Order:><:eif Order:>
         <tr>
           <th><:cfg shop display_cardType "Card Type":>:</th>
           <td><:order ccType:></td>
@@ -117,6 +135,7 @@
           <td><b>None</b></td>
         </tr>
         <:endswitch:>
+        <:include custom/order_payment_type.tmpl optional:>
       </tbody>
     </table>
     </div>
@@ -131,7 +150,8 @@
           <th class="extended">Extended</th>
         </tr>
       </thead>
-      <tbody><:iterator begin items:>
+      <tbody>
+        <:iterator begin items:>
         <tr>
           <td class="item"><:ifEq [item productId] -1:>
             <:item title:><:or:>
@@ -141,7 +161,8 @@
           <td class="quantity"><:item units:> &times;</td>
           <td class="price"><:cfg shop currency "$":><:number money [item price]:></td>
           <td class="extended"><:cfg shop currency "$":><:number money [arithmetic [item units] * [item price]]:></td>
-        </tr><:iterator end items:>
+        </tr>
+        <:iterator end items:>
       </tbody>
     </table>
     <div class="totals">
@@ -165,34 +186,50 @@
         </tr>
         <tr>
           <th>Address:</th>
-          <td><:ifOrder billOrganization:>
-            <:order billOrganization:><br /><:or:><:eif:>
-            <:order billStreet:><br /><:ifOrder billStreet2:>
-            <:order billStreet2:><br /><:or:><:eif:>
-            <:order billSuburb:> <:order billState:> <:order billPostCode:><br /><:ifCfgsection "country selector":>
-            <:cfg "country selector" [order billCountry]:><:or:><:order billCountry:><:eif:>
+          <td>
+            <:ifOrder billOrganization:>
+            <:order billOrganization:><br />
+            <:or:><:eif:>
+            <:order billStreet:><br />
+            <:ifOrder billStreet2:>
+            <:order billStreet2:><br />
+            <:or:><:eif:>
+            <:order billSuburb:> <:order billState:> <:order billPostCode:><br />
+            <:ifCfgsection "country selector":>
+            <:cfg "country selector" [order billCountry]:>
+            <:or:>
+            <:order billCountry:>
+            <:eif:>
           </td>
         </tr>
-        <:ifOrder billTelephone:><tr>
+        <:ifOrder billTelephone:>
+        <tr>
           <th><:cfg "site users" display_telephone "Telephone":>:</th>
           <td><:order billTelephone:></td>
-        </tr><:or:><:eif:>
-        <:ifOrder billFacsimile:><tr>
+        </tr>
+        <:or:><:eif:>
+        <:ifOrder billFacsimile:>
+        <tr>
           <th><:cfg "site users" display_facsimile "Facsimile":>:</th>
           <td><:order billFacsimile:></td>
-        </tr><:or:><:eif:>
-        <:ifOrder billMobile:><tr>
+        </tr>
+        <:or:><:eif:>
+        <:ifOrder billMobile:>
+        <tr>
           <th><:cfg "site users" display_mobile "Mobile":>:</th>
           <td><:order billMobile:></td>
-        </tr><:or:><:eif:>
+        </tr>
+        <:or:><:eif:>
         <tr>
           <th><:cfg "site users" display_email "Email Address":>:</th>
           <td><:order billEmail:></td>
         </tr>
-        <:ifOrder instructions:><tr>
+        <:ifOrder instructions:>
+        <tr>
           <th>Instructions:</th>
           <td><:order instructions:></td>
-        </tr><:or:><:eif:>
+        </tr>
+        <:or:><:eif:>
       </tbody>
     </table>
     <:or Order:><:eif Order:>
@@ -206,30 +243,46 @@
         </tr>
         <tr>
           <th>Address:</th>
-          <td><:ifOrder delivOrganization:>
-            <:order delivOrganization:><br /><:or:><:eif:>
-            <:order delivStreet:><br /><:ifOrder delivStreet2:>
-            <:order delivStreet2:><br /><:or:><:eif:>
-            <:order delivSuburb:> <:order delivState:> <:order delivPostCode:><br /><:ifCfgsection "country selector":>
-            <:cfg "country selector" [order delivCountry]:><:or:><:order delivCountry:><:eif:>
+          <td>
+            <:ifOrder delivOrganization:>
+            <:order delivOrganization:><br />
+            <:or:><:eif:>
+            <:order delivStreet:><br />
+            <:ifOrder delivStreet2:>
+            <:order delivStreet2:><br />
+            <:or:><:eif:>
+            <:order delivSuburb:> <:order delivState:> <:order delivPostCode:><br />
+            <:ifCfgsection "country selector":>
+            <:cfg "country selector" [order delivCountry]:>
+            <:or:>
+            <:order delivCountry:>
+            <:eif:>
           </td>
         </tr>
-        <:ifOrder telephone:><tr>
+        <:ifOrder telephone:>
+        <tr>
           <th><:cfg "site users" display_telephone "Telephone":>:</th>
           <td><:order telephone:></td>
-        </tr><:or:><:eif:>
-        <:ifOrder facsimile:><tr>
+        </tr>
+        <:or:><:eif:>
+        <:ifOrder facsimile:>
+        <tr>
           <th><:cfg "site users" display_facsimile "Facsimile":>:</th>
           <td><:order facsimile:></td>
-        </tr><:or:><:eif:>
-        <:ifOrder delivMobile:><tr>
+        </tr>
+        <:or:><:eif:>
+        <:ifOrder delivMobile:>
+        <tr>
           <th><:cfg "site users" display_mobile "Mobile":>:</th>
           <td><:order delivMobile:></td>
-        </tr><:or:><:eif:>
-        <:ifOrder emailAddress:><tr>
+        </tr>
+        <:or:><:eif:>
+        <:ifOrder emailAddress:>
+        <tr>
           <th><:cfg "site users" display_email "Email Address":>:</th>
           <td><:order emailAddress:></td>
-        </tr><:or:><:eif:>
+        </tr>
+        <:or:><:eif:>
       </tbody>
     </table>
     <:or Order:><:eif Order:>

@@ -5,47 +5,49 @@
     <a href="<:adminurl backmon:>" title="Task list" class="button gray small">Tasks</a>
   </p>
   <fieldset>
-    <legend><:task description:></legend><:ifTask long_desc:>
+    <legend><:task description:></legend>
+    <:if Task long_desc:>
     <div>
       <label>Description</label>
       <span>
         <:task long_desc |z:>
       </span>
-    </div><:or:><:eif:>
+    </div>
+    <:or Task:><:eif Task:>
     <div>
       <label>Status</label>
-      <span><:ifTask_running:>
-        Running (<:task task_pid:>)<:or:>
-        Stopped<:eif:>
+      <span><:ifTask_running:>Running (<:task task_pid:>)<:or:>Stopped<:eif:>
       </span>
-    </div><:ifTask_running:><:or:>
+    </div>
+    <:if Task_running:><:or Task_running:>
     <div>
       <label>Result</label>
       <span>
         <:switch:>
-        <:case Task_running:>Running
-        <:case Eq [task last_exit] 0:>Success
-        <:case default:>Failed
-          <:switch:>
-          <:case Task_exit:>(Exit: <:task_exit:>)
-          <:case Task_signal:>(Signal: <:task_signal_name:>)
-          <:case default:>(Unknown cause)
-          <:endswitch:>
+        <:case Task_running:>
+        Running
+        <:case Eq [task last_exit] 0:>
+        Success
+        <:case default:>
+        Failed <:switch:><:case Task_exit:>(Exit: <:task_exit:>)<:case Task_signal:>(Signal: <:task_signal_name:>)<:case default:>(Unknown cause)<:endswitch:>
         <:endswitch:>
       </span>
-    </div><:eif:>
+    </div>
+    <:eif Task_running:>
     <div>
       <label>Started</label>
       <span>
         <:date "%d-%b-%Y / %r" task last_started:>
       </span>
-    </div><:ifTask_running:><:or:>
+    </div>
+    <:if Task_running:><:or Task_running:>
     <div>
       <label>Completed</label>
       <span>
         <:date "%d-%b-%Y / %r" task last_completion:>
       </span>
-    </div><:eif:>
+    </div>
+    <:eif Task_running:>
     <div class="full">
       <label>Log</label>
       <span>
@@ -54,9 +56,15 @@
     </div>
   </fieldset>
   <p class="buttons">
-    <a href="<:adminurl backmon:>" accesskey="." title="AccessKey = ." class="button gray">Done</a><:if Task running:><:ifTask stoppable:>
-    <a href="<:adminurl backmon a_stop 1 id [task id]:>" accesskey="x" title="AccessKey = x" class="button red">Stop task</a><:or:>
-    <a href="<:adminurl backmon a_detail 1 id [task id]:>" accesskey="r" title="AccessKey = r" class="button blue">Refresh</a><:eif:><:or Task:>
-    <a href="<:adminurl backmon a_start 1 id [task id]:>" accesskey="s" title="AccessKey = s" class="button green">Start task</a><:eif Task:>
+    <a href="<:adminurl backmon:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
+    <:if Task_running:>
+    <:if Task stoppable:>
+    <a href="<:adminurl backmon a_stop 1 id [task id]:>" accesskey="x" title="AccessKey = x" class="button red">Stop task</a>
+    <:or Task:>
+    <a href="<:adminurl backmon a_detail 1 id [task id]:>" accesskey="r" title="AccessKey = r" class="button blue">Refresh</a>
+    <:eif Task:>
+    <:or Task_running:>
+    <a href="<:adminurl backmon a_start 1 id [task id]:>" accesskey="s" title="AccessKey = s" class="button green">Start task</a>
+    <:eif Task_running:>
   </p>
 </div>
