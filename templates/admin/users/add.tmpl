@@ -172,7 +172,7 @@
       </ul>
     </fieldset>
     <:or Flags:><:eif Flags:>
-    <:include admin/include/user_custom.tmpl optional:>
+<:include admin/include/user_custom.tmpl optional:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
       <:if UserCan bse_members_user_add:>

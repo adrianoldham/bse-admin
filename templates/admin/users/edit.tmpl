@@ -310,7 +310,7 @@
       </table>
     </fieldset>
     <:or And:> <:eif And:>
-    <:include admin/include/user_custom.tmpl optional:>
+<:include admin/include/user_custom.tmpl optional:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
       <:if UserCan bse_members_user_edit:>

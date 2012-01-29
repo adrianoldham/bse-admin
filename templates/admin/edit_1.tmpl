@@ -575,7 +575,7 @@
     <:if UserCan bse_edit_reorder_children:article:>
     <p>Sort by: <a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=title&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Children%2Bsorted%2Bby%2Btitle">title</a> | <a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=id&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Children%2Bsorted%2Bby%2Bdate">date</a> | <a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=listed&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Children%2Bsorted%2Bby%2Blisted">listed</a> | <a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;reverse=1&amp;refreshto=<:script:>%3Fid=<:article id:>%26m=Children%2Bsorted%2Bin%2Breverse">reverse</a> | <a href="<:script:>?id=<:article id:>&amp;sort=1">advanced</a> <:if Cgi sort:>[<a href="<:script:>?id=<:article id:>">x</a>]<:or Cgi:><:eif Cgi:></p>
     <:if Cgi sort:>
-    <:include admin/include/edit_article_sort.tmpl optional:>
+<:include admin/include/edit_article_sort.tmpl optional:>
     <:or Cgi:><:eif Cgi:>
     <:or UserCan:><:eif UserCan:>
     <ul class="children">
