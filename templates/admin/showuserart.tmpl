@@ -7,7 +7,22 @@
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
-      <legend><:user logon:><:ifUser name:> (<:user name:>)<:or:><:eif:> <:error_img aperms:></legend>
+      <legend>User</legend>
+      <div>
+        <label for="logon">Username</label>
+        <span>
+          <input type="text" name="logon" id="logon" value="<:old logon user logon:>" readonly="readonly" />
+        </span>
+      </div>
+      <div>
+        <label for="name">Full Name</label>
+        <span>
+          <input type="text" name="name" id="name" value="<:old name user name:>" readonly="readonly" />
+        </span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Permissions</legend>
       <ul>
         <:- iterator begin aperms:>
         <li>
