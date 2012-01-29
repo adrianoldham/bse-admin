@@ -13,42 +13,42 @@
           <th>Order Date:</th>
           <td><:date order orderDate:></td>
         </tr>
-        <:if Order stage_description_id:>
+        <:- if Order stage_description_id:>
         <tr>
           <th>Order Status:</th>
           <td><:stage_description:></td>
         </tr>
-        <:or Order:><:eif Order:>
-        <:if Order purchase_order:>
+        <:- or Order:><:eif Order:>
+        <:- if Order purchase_order:>
         <tr>
           <th>Purchase Order:</th>
           <td><:order purchase_order:></td>
         </tr>
-        <:or Order:><:eif Order:>
-        <:if Order freight_tracking:>
+        <:- or Order:><:eif Order:>
+        <:- if Order freight_tracking:>
         <tr>
           <th>Tracking Code:</th>
           <td><:order freight_tracking:></td>
         </tr>
-        <:or Order:><:eif Order:>
-        <:if Order shipping_method:>
+        <:- or Order:><:eif Order:>
+        <:- if Order shipping_method:>
         <tr>
           <th>Shipping Method:</th>
           <td><:order shipping_method:></td>
         </tr>
-        <:or Order:><:eif Order:>
-        <:if Order userId:>
+        <:- or Order:><:eif Order:>
+        <:- if Order userId:>
         <tr>
           <th><:cfg "site user" display_userid "Username":>:</th>
           <td><a href="<:adminurl siteusers a_edit 1 id [siteuser id]:>"><:order userId:></a></td>
         </tr>
-        <:or Order:><:eif Order:>
-        <:if Order affiliate_code:>
+        <:- or Order:><:eif Order:>
+        <:- if Order affiliate_code:>
         <tr>
           <th><:cfg shop display_affiliate_code "Referrer":>:</th>
           <td><:order affiliate_code:></td>
         </tr>
-        <:or Order:><:eif Order:>
+        <:- or Order:><:eif Order:>
       </tbody>
     </table>
     <table class="vertical right">
@@ -56,36 +56,36 @@
       <tbody>
        <tr>
           <th>Payment Method:</th><:switch:>
-          <:case Eq [order paymentType] "0":>
+          <:- case Eq [order paymentType] "0":>
           <td><b>Credit Card</b></td>
         </tr>
-        <:if Order ccOnline:>
+        <:- if Order ccOnline:>
         <tr>
           <th>Receipt No.:</th>
           <td><:order ccReceipt:></td>
         </tr>
-        <:ifOrder ccTranId:>
+        <:- ifOrder ccTranId:>
         <tr>
           <th>Transaction Id:</th>
           <td><:order ccTranId:></td>
         </tr>
-        <:or:><:eif:>
-        <:or Order:><:eif Order:>
+        <:- or:><:eif:>
+        <:- or Order:><:eif Order:>
         <tr>
           <th><:cfg shop display_ccName "Name on Card":>:</th>
           <td><:order ccName:></td>
         </tr>
-        <:if Order ccPAN:>
+        <:- if Order ccPAN:>
         <tr>
           <th><:cfg shop display_ccPAN "Card Number":>:</th>
           <td>**** **** **** <:order ccPAN:></td>
         </tr>
-        <:or Order:><:eif Order:>
+        <:- or Order:><:eif Order:>
         <tr>
           <th><:cfg shop display_cardType "Card Type":>:</th>
           <td><:order ccType:></td>
         </tr>
-          <:case Eq [order paymentType] "1":>
+          <:- case Eq [order paymentType] "1":>
           <td><b>Cheque</b></td>
         </tr>
         <tr>
@@ -102,7 +102,7 @@
             <:cfg shop address4 |h:>
           </td>
         </tr>
-          <:case Eq [order paymentType] "10":>
+          <:- case Eq [order paymentType] "10":>
           <td><b>EFT</b></td>
         </tr>
         <tr>
@@ -121,20 +121,20 @@
           <th>Reference:</th>
           <td><:order id |%06d:></td>
         </tr>
-          <:case Eq [order paymentType] "2":>
+          <:- case Eq [order paymentType] "2":>
           <td><b>Contact</b></td>
         </tr>
-          <:case Eq [order paymentType] "4":>
+          <:- case Eq [order paymentType] "4":>
           <td><b>PayPal</b></td>
         </tr>
         <tr>
           <th>Transaction Id:</th>
           <td><:order paypal_tran_id:></td>
         </tr>
-          <:case default:>
+          <:- case default:>
           <td><b>None</b></td>
         </tr>
-        <:endswitch:>
+        <:- endswitch:>
 <:include custom/order_payment_type.tmpl optional:>
       </tbody>
     </table>
@@ -151,7 +151,7 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin items:>
+        <:- iterator begin items:>
         <tr>
           <td class="item"><:ifEq [item productId] -1:>
             <:item title:><:or:>
@@ -163,21 +163,21 @@
           <td class="price"><:cfg shop currency "$":><:number money [item price]:></td>
           <td class="extended"><:cfg shop currency "$":><:number money [arithmetic [item units] * [item price]]:></td>
         </tr>
-        <:iterator end items:>
+        <:- iterator end items:>
       </tbody>
     </table>
     <div class="totals">
-      <:switch:>
-      <:case Order shipping_cost:>
+      <:- switch:>
+      <:- case Order shipping_cost:>
       <p class="freight"><span>(<:order shipping_method:>)</span> <label>Freight:</label> <:cfg shop currency "$":><:number money [order shipping_cost]:></p>
-      <:case Match [order shipping_name] ^contact$:>
+      <:- case Match [order shipping_name] ^contact$:>
       <p class="freight"><span>(<:order shipping_method:>)</span> <label>Freight:</label> TBA</p>
-      <:case default:>
-      <:endswitch:>
+      <:- case default:>
+      <:- endswitch:>
       <p class="total"><abbr><:cfg shop currency_code "AUD":></abbr> <label>Total:</label> <:cfg shop currency "$":><:number money [order total]:></p>
     </div>
     <div class="group">
-    <:if Order billStreet:>
+    <:- if Order billStreet:>
     <table class="vertical left">
       <caption>Billing details</caption>
       <tbody>
@@ -188,53 +188,53 @@
         <tr>
           <th>Address:</th>
           <td>
-            <:ifOrder billOrganization:>
-            <:order billOrganization:><br />
-            <:or:><:eif:>
-            <:order billStreet:><br />
-            <:ifOrder billStreet2:>
-            <:order billStreet2:><br />
-            <:or:><:eif:>
-            <:order billSuburb:> <:order billState:> <:order billPostCode:><br />
-            <:ifCfgsection "country selector":>
+            <:- ifOrder billOrganization:>
+            <:- order billOrganization:><br />
+            <:- or:><:eif:>
+            <:- order billStreet:><br />
+            <:- ifOrder billStreet2:>
+            <:- order billStreet2:><br />
+            <:- or:><:eif:>
+            <:- order billSuburb:> <:order billState:> <:order billPostCode:><br />
+            <:- ifCfgsection "country selector":>
             <:cfg "country selector" [order billCountry]:>
-            <:or:>
-            <:order billCountry:>
-            <:eif:>
+            <:- or:>
+            <:- order billCountry:>
+            <:- eif:>
           </td>
         </tr>
-        <:ifOrder billTelephone:>
+        <:- ifOrder billTelephone:>
         <tr>
           <th><:cfg "site users" display_telephone "Telephone":>:</th>
           <td><:order billTelephone:></td>
         </tr>
-        <:or:><:eif:>
-        <:ifOrder billFacsimile:>
+        <:- or:><:eif:>
+        <:- ifOrder billFacsimile:>
         <tr>
           <th><:cfg "site users" display_facsimile "Facsimile":>:</th>
           <td><:order billFacsimile:></td>
         </tr>
-        <:or:><:eif:>
-        <:ifOrder billMobile:>
+        <:- or:><:eif:>
+        <:- ifOrder billMobile:>
         <tr>
           <th><:cfg "site users" display_mobile "Mobile":>:</th>
           <td><:order billMobile:></td>
         </tr>
-        <:or:><:eif:>
+        <:- or:><:eif:>
         <tr>
           <th><:cfg "site users" display_email "Email Address":>:</th>
           <td><:order billEmail:></td>
         </tr>
-        <:ifOrder instructions:>
+        <:- ifOrder instructions:>
         <tr>
           <th>Instructions:</th>
           <td><:order instructions:></td>
         </tr>
-        <:or:><:eif:>
+        <:- or:><:eif:>
       </tbody>
     </table>
-    <:or Order:><:eif Order:>
-    <:if Order delivStreet:>
+    <:- or Order:><:eif Order:>
+    <:- if Order delivStreet:>
     <table class="vertical right">
       <caption>Shipping details</caption>
       <tbody>
@@ -245,48 +245,48 @@
         <tr>
           <th>Address:</th>
           <td>
-            <:ifOrder delivOrganization:>
-            <:order delivOrganization:><br />
-            <:or:><:eif:>
-            <:order delivStreet:><br />
-            <:ifOrder delivStreet2:>
-            <:order delivStreet2:><br />
-            <:or:><:eif:>
-            <:order delivSuburb:> <:order delivState:> <:order delivPostCode:><br />
-            <:ifCfgsection "country selector":>
+            <:- ifOrder delivOrganization:>
+            <:- order delivOrganization:><br />
+            <:- or:><:eif:>
+            <:- order delivStreet:><br />
+            <:- ifOrder delivStreet2:>
+            <:- order delivStreet2:><br />
+            <:- or:><:eif:>
+            <:- order delivSuburb:> <:order delivState:> <:order delivPostCode:><br />
+            <:- ifCfgsection "country selector":>
             <:cfg "country selector" [order delivCountry]:>
-            <:or:>
-            <:order delivCountry:>
-            <:eif:>
+            <:- or:>
+            <:- order delivCountry:>
+            <:- eif:>
           </td>
         </tr>
-        <:ifOrder telephone:>
+        <:- ifOrder telephone:>
         <tr>
           <th><:cfg "site users" display_telephone "Telephone":>:</th>
           <td><:order telephone:></td>
         </tr>
-        <:or:><:eif:>
-        <:ifOrder facsimile:>
+        <:- or:><:eif:>
+        <:- ifOrder facsimile:>
         <tr>
           <th><:cfg "site users" display_facsimile "Facsimile":>:</th>
           <td><:order facsimile:></td>
         </tr>
-        <:or:><:eif:>
-        <:ifOrder delivMobile:>
+        <:- or:><:eif:>
+        <:- ifOrder delivMobile:>
         <tr>
           <th><:cfg "site users" display_mobile "Mobile":>:</th>
           <td><:order delivMobile:></td>
         </tr>
-        <:or:><:eif:>
-        <:ifOrder emailAddress:>
+        <:- or:><:eif:>
+        <:- ifOrder emailAddress:>
         <tr>
           <th><:cfg "site users" display_email "Email Address":>:</th>
           <td><:order emailAddress:></td>
         </tr>
-        <:or:><:eif:>
+        <:- or:><:eif:>
       </tbody>
     </table>
-    <:or Order:><:eif Order:>
+    <:- or Order:><:eif Order:>
   </div>
   <div style="clear: both;" />
   <form action="<:adminurl shopadmin:>" method="post">
@@ -294,12 +294,12 @@
       <legend>Freight</legend>
       <input type="hidden" name="id" value="<:order id:>" />
       <:csrfp shop_order_save hidden:>
-      <:if Cfg shop shipping:><:or Cfg:>
+      <:- if Cfg shop shipping:><:or Cfg:>
       <div>
         <label>Shipping method</label>
         <:shipping_method_select:>
       </div>
-      <:eif Cfg:>
+      <:- eif Cfg:>
       <div>
         <label for="freight_tracking">Tracking code</label>
         <input type="text" name="freight_tracking" id="freight_tracking" value="<:order freight_tracking:>" />
@@ -320,13 +320,13 @@
     </fieldset>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:adminurl shopadmin order_list 1:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
-      <:if UserCan bse_shop_order_save:>
+      <:- if UserCan bse_shop_order_save:>
       <input type="submit" name="a_order_save" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
     </p>
   </form>
-  <:if UserCan bse_log_list:>
-  <:if Auditlog object_id [order id] object_type BSE::TB::Order:>
+  <:- if UserCan bse_log_list:>
+  <:- if Auditlog object_id [order id] object_type BSE::TB::Order:>
   <fieldset>
     <legend>Audit Log</legend>
     <table class="list full">
@@ -334,52 +334,52 @@
 <:include admin/log/head.tmpl:>
       </thead>
       <tbody>
-      <:iterator begin auditlog object_id [order id] object_type BSE::TB::Order:>
+      <:- iterator begin auditlog object_id [order id] object_type BSE::TB::Order:>
 <:include admin/log/data.tmpl:>
-      <:iterator end auditlog:>
+      <:- iterator end auditlog:>
       </tbody>
     </table>
   </fieldset>
-  <:or Auditlog:><:eif Auditlog:>
-  <:or UserCan:><:eif UserCan:>
+  <:- or Auditlog:><:eif Auditlog:>
+  <:- or UserCan:><:eif UserCan:>
 <!--
-  <:switch:>
-  <:case Eq [order paidFor] "0":>
+  <:- switch:>
+  <:- case Eq [order paidFor] "0":>
   <p>This order hasn't been paid</p>
   <p>If the customer has paid by cheque, transfer, etc, you can <a href="<:adminurl shopadmin a_order_paid 1 id [order id]:>">mark this order paid</a></p>
-  <:case order ccOnline:>
+  <:- case order ccOnline:>
   <p>This was processed as an online credit card transaction.</p>
-  <:if Order ccSuccess:>
+  <:- if Order ccSuccess:>
   <p>This transaction was <b>SUCCESSFUL</b>.</p>
   <table>
   <tr><th>Receipt Number:</th><td><:order ccReceipt:></td></tr>
-  <:ifOrder ccTranId:>
+  <:- ifOrder ccTranId:>
   <tr><th>Transaction Id:</th><td><:order ccTranId:></td></tr>
-  <:or:><:eif:>
+  <:- or:><:eif:>
   </table>
-  <:or Order:>
+  <:- or Order:>
   <p>This transaction <b>FAILED</b>.</p>
   <table>
   <tr><th>Status:</th><td><:order ccStatus:></td>
   <tr><th>Error:</th><td><:order ccStatusText:></td>
-  <:ifOrder ccStatus2:>
+  <:- ifOrder ccStatus2:>
   <tr><th>More status</th><td><:order ccStatus2:></td>
-  <:or:><:eif:>
+  <:- or:><:eif:>
   </table>
-  <:eif Order:>
-  <:case Eq [order paymentType] "0":><p>Payment made by credit card.  Credit card details can be found in the encrypted email you received when the customer made the order.</p>
-  <:case Eq [order paymentType] "1":><p>Payment will be made by cheque.</p>
-  <:case Eq [order paymentType] "2":><p>Contact the customer to arrange for payment.</p>
-  <:case Eq [order paymentType] "3":><p>Paid manually (staff marked this order paid) - you can <a href="<:adminurl shopadmin a_order_unpaid 1 id [order id]:>">unmark it</a></p>
-  <:case Eq [order paymentType] "4":><p>Paid via PayPal, transaction id <:order paypal_tran_id:><:ifUserCan bse_shop_order_refund_paypal:> <a href="<:adminurl shopadmin a_paypal_refund 1 id [order id]:>">Refund</a><:or:><:eif:></p>
-  <:endswitch:>
+  <:- eif Order:>
+  <:- case Eq [order paymentType] "0":><p>Payment made by credit card.  Credit card details can be found in the encrypted email you received when the customer made the order.</p>
+  <:- case Eq [order paymentType] "1":><p>Payment will be made by cheque.</p>
+  <:- case Eq [order paymentType] "2":><p>Contact the customer to arrange for payment.</p>
+  <:- case Eq [order paymentType] "3":><p>Paid manually (staff marked this order paid) - you can <a href="<:adminurl shopadmin a_order_unpaid 1 id [order id]:>">unmark it</a></p>
+  <:- case Eq [order paymentType] "4":><p>Paid via PayPal, transaction id <:order paypal_tran_id:><:ifUserCan bse_shop_order_refund_paypal:> <a href="<:adminurl shopadmin a_paypal_refund 1 id [order id]:>">Refund</a><:or:><:eif:></p>
+  <:- endswitch:>
 <:include custom/order_detail_payment.include optional:>
-  <:if Order filled:>
+  <:- if Order filled:>
   <p>This order was filled on <:date order whenFilled:> by <:order whoFilled:>.</p>
-  <:or Order:>
-  <:ifOrder complete:>
+  <:- or Order:>
+  <:- ifOrder complete:>
   <p>This order hasn't been filled yet.  <a href="<:adminurl shopadmin id [order id] order_filled 1 filled 1 detail 1:>">Mark order filled</a>.</p><:or:><:eif:>
-  <:eif Order:>
-  <:ifOrder complete:><:or:><p>This order is incomplete and should not be filled.</p><:eif:>
+  <:- eif Order:>
+  <:- ifOrder complete:><:or:><p>This order is incomplete and should not be filled.</p><:eif:>
 -->
 </div>

@@ -3,30 +3,30 @@
   <h1><:param title:></h1>
   <p class="buttons">
     <a href="<:script:>?id=<:article id:>" title="Edit Article" class="button gray small">Article</a>
-    <:if Arithmetic [article id] > 0 :>
+    <:- if Arithmetic [article id] > 0 :>
     <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" class="button gray small">Preview</a>
-    <:or Arithmetic:><:eif Arithmetic:>
-    <:if UserCan bse_edit_files_add:article:>
+    <:- or Arithmetic:><:eif Arithmetic:>
+    <:- if UserCan bse_edit_files_add:article:>
     <a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
-    <:or UserCan:><:eif UserCan:>
+    <:- or UserCan:><:eif UserCan:>
   </p>
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="file" />
     <input type="hidden" name="r" value="<:script:>?id=<:article id:>&amp;_t=file" />
-    <:if Files:>
+    <:- if Files:>
     <input type="hidden" name="save_file_flags" value="1" />
     <:csrfp admin_save_files hidden:>
     <:csrfp admin_add_file hidden:>
-    <:iterator begin files:>
+    <:- iterator begin files:>
     <div class="object">
       <h2>File <:arithmetic [file_index] + 1:> <:ifUserCan bse_edit_files_reorder:article:><:movefiles:><:or:><:eif:></h2>
       <p class="buttons">
-        <:if UserCan bse_edit_files_delete:article:>
+        <:- if UserCan bse_edit_files_delete:article:>
         <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" onclick="return window.confirm('Are you sure you want to delete this File? (#<:arithmetic [file_index] + 1:>)')" class="button red small">Delete</a>
-        <:or UserCan:>
+        <:- or UserCan:>
         <a class="button red small disabled">Delete</a>
-        <:eif UserCan:>
+        <:- eif UserCan:>
       </p>
       <fieldset>
         <legend>Resource</legend>
@@ -97,7 +97,7 @@
             <:help file hide_from_list:>
           </span>
         </div>
-        <:if Match [article generator] "Product":>
+        <:- if Match [article generator] "Product":>
         <div>
           <label for="forSale_<:file id:>">Require payment <:error_img [concatenate forSale_ [file id]]:></label>
           <span>
@@ -105,7 +105,7 @@
             <:help file forSale:>
           </span>
         </div>
-        <:or Match:><:eif Match:>
+        <:- or Match:><:eif Match:>
         <div>
           <label for="requireUser_<:file id:>">Require login <:error_img [concatenate requireUser_ [file id]]:></label>
           <span>
@@ -118,22 +118,22 @@
           <span>
             <select name="storage_<:file id:>" id="storage_<:file id:>">
               <option value="">(Auto)</option>
-              <:iterator begin file_stores:>
+              <:- iterator begin file_stores:>
               <option value="<:file_store name:>" <:ifEq [oldi [concatenate storage_ [file id]] 0 file storage] [file_store name]:>selected="selected"<:or:><:eif:>><:file_store description:></option>
-              <:iterator end file_stores:>
+              <:- iterator end file_stores:>
             </select>
             <:help file storage:>
           </span>
         </div>
       </fieldset>
     </div>
-    <:iterator end files:>
-    <:or Files:><:eif Files:>
+    <:- iterator end files:>
+    <:- or Files:><:eif Files:>
     <p class="buttons">
       <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
-      <:if UserCan bse_edit_files_save:article:>
+      <:- if UserCan bse_edit_files_save:article:>
       <input type="submit" name="filesave" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
     </p>
   </form>
 </div>

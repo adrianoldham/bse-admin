@@ -8,35 +8,35 @@
 <:include admin/log/head.tmpl:>
       </thead>
       <tbody>
-        <:iterator begin auditlog:>
+        <:- iterator begin auditlog:>
 <:include admin/log/data.tmpl:>
-        <:iterator end auditlog:>
+        <:- iterator end auditlog:>
       </tbody>
     </table>
   </fieldset>
   <p class="pagination">
     Page <:auditlog_pagenum:> of <:auditlog_pagecount:>
-    <:if FirstAuditlogPage:>
+    <:- if FirstAuditlogPage:>
     <span class="disabled">|&lt;</span>
-    <:or FirstAuditlogPage:>
+    <:- or FirstAuditlogPage:>
     <a href="<:adminurl log:>?p=1&amp;pp=<:auditlog_perpage:>">|&lt;</a>
     <a href="<:adminurl log:>?p=<:prevAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&lt;</a>
-    <:eif FirstAuditlogPage:>
-    <:iterator begin auditlog_pagec:>
-    <:switch:>
-    <:case auditentry_pagec gap:>
+    <:- eif FirstAuditlogPage:>
+    <:- iterator begin auditlog_pagec:>
+    <:- switch:>
+    <:- case auditentry_pagec gap:>
     <span class="truncation">...</span>
-    <:case auditentry_pagec link:>
+    <:- case auditentry_pagec link:>
     <a href="<:adminurl log:>?p=<:auditentry_pagec page:>&amp;pp=<:auditlog_perpage:>"><:auditentry_pagec page:></a>
-    <:case default:>
+    <:- case default:>
     <span class="disabled"><:auditentry_pagec page:></span>
-    <:endswitch:>
-    <:iterator end auditlog_pagec:>
-    <:if LastAuditlogPage:>
+    <:- endswitch:>
+    <:- iterator end auditlog_pagec:>
+    <:- if LastAuditlogPage:>
     <span class="disabled">&gt;|</span>
-    <:or LastAuditlogPage:>
+    <:- or LastAuditlogPage:>
     <a href="<:adminurl log:>?p=<:nextAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&gt;</a>
     <a href="<:adminurl log:>?p=<:auditlog_pagecount:>&amp;pp=<:auditlog_perpage:>">&gt;|</a>
-    <:eif LastAuditlogPage:>
+    <:- eif LastAuditlogPage:>
   </p>
 </div>

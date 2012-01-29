@@ -45,9 +45,9 @@
         <span>
           <select name="storage" id="storage">
             <option value="">(Auto)</option>
-            <:iterator begin image_stores:>
+            <:- iterator begin image_stores:>
             <option value="<:image_store name:>" <:ifOld storage:>selected="selected"<:or:><:eif:>><:image_store description:></option>
-            <:iterator end image_stores:>
+            <:- iterator end image_stores:>
           </select>
           <:help image storage:>
         </span>
@@ -55,9 +55,9 @@
     </fieldset>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
-      <:if UserCan bse_edit_images_add:article:>
+      <:- if UserCan bse_edit_images_add:article:>
       <input type="submit" name="addimg" value="Upload image" accesskey="u" title="AccessKey = u" class="button green" />
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
     </p>
   </form>
 </div>

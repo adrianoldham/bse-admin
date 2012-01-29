@@ -3,11 +3,11 @@
   <h1><:param title:></h1>
   <p class="buttons">
     <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button gray small">Group</a>
-    <:if UserCan bse_members_group_delete:>
+    <:- if UserCan bse_members_group_delete:>
     <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this Group?');" class="button red small">Delete</a>
-    <:or UserCan:>
+    <:- or UserCan:>
     <a class="button red small disabled">Delete</a>
-    <:eif UserCan:>
+    <:- eif UserCan:>
   </p>
   <form action="<:script:>" method="post">
     <input type="hidden" name="id" value="<:group id:>" />
@@ -22,27 +22,27 @@
         </span>
       </div>
     </fieldset>
-    <:if UserCan bse_members_user_list:>
-    <:if Siteusers:>
+    <:- if UserCan bse_members_user_list:>
+    <:- if Siteusers:>
     <fieldset>
     <legend>Members</legend>
       <ul>
-        <:iterator begin siteusers:>
+        <:- iterator begin siteusers:>
         <li>
           <input type="hidden" name="set_is_member" value="<:siteuser id:>" />
           <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
           <label for="userid_<:siteuser id:>"><a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a><:ifOr [siteuser name1] [siteuser name2]:> (<:siteuser name1:> <:siteuser name2:>)<:or:><:eif:></label>
         </li>
-        <:iterator end siteusers:>
+        <:- iterator end siteusers:>
       </ul>
     </fieldset>
-    <:or Siteusers:><:eif Siteusers:>
-    <:or UserCan:><:eif UserCan:>
+    <:- or Siteusers:><:eif Siteusers:>
+    <:- or UserCan:><:eif UserCan:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
-      <:if UserCan bse_members_group_edit:>
+      <:- if UserCan bse_members_group_edit:>
       <input type="submit" name="a_savegroupmembers" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
     </p>
   </form>
 </div>

@@ -2,11 +2,11 @@
 <div class="window dialog">
   <h1><:param title:></h1>
   <p class="buttons">
-    <:if UserCan bse_edit_images_delete:article:>
+    <:- if UserCan bse_edit_images_delete:article:>
     <a href="<:script:>?removeimg_<:eimage id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this Image?')" class="button red small">Delete</a>
-    <:or UserCan:>
+    <:- or UserCan:>
     <a class="button red small disabled">Delete</a>
-    <:eif UserCan:>
+    <:- eif UserCan:>
   </p>
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
@@ -63,9 +63,9 @@
         <span>
           <select name="storage" id="storage">
             <option value="">(Auto)</option>
-            <:iterator begin image_stores:>
+            <:- iterator begin image_stores:>
             <option value="<:image_store name:>" <:ifEq [old storage eimage storage] [image_store name]:>selected="selected"<:or:><:eif:>><:image_store description:></option>
-            <:iterator end image_stores:>
+            <:- iterator end image_stores:>
           </select>
           <:help image storage:>
         </span>
@@ -73,9 +73,9 @@
     </fieldset>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
-      <:if UserCan bse_edit_images_save:article:>
+      <:- if UserCan bse_edit_images_save:article:>
       <input type="submit" name="a_save_image" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
     </p>
   </form>
 </div>

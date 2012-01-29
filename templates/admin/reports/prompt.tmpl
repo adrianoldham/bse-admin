@@ -8,26 +8,26 @@
     <input type="hidden" name="r" value="<:report id:>" />
     <fieldset class="list">
       <legend><:report name:></legend>
-      <:iterator begin fields:>
+      <:- iterator begin fields:>
       <div>
         <label for="p<:arithmetic [field_index] + 1:>"><:field label:></label>
         <span>
           <:replace [field html] "name=\"([a-z A-Z 0-9 _]+)\"" "name=\"$1\" id=\"$1\"":>
         </span>
       </div>
-      <:iterator end fields:>
-      <:if Sort_count:>
+      <:- iterator end fields:>
+      <:- if Sort_count:>
       <div>
         <label for="sort">Sort order</label>
         <span>
           <select name="sort" id="sort">
-            <:iterator begin sorts:>
+            <:- iterator begin sorts:>
             <option value="<:sort id:>"><:sort label:></option>
-            <:iterator end sorts:>
+            <:- iterator end sorts:>
           </select>
         </span>
       </div>
-      <:or Sort_count:><:eif Sort_count:>
+      <:- or Sort_count:><:eif Sort_count:>
     </fieldset>
     <p class="buttons">
       <a href="<:switch:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>

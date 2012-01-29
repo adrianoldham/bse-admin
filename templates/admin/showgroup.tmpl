@@ -2,11 +2,11 @@
 <div class="window dialog">
   <h1><:param title:></h1>
   <p class="buttons">
-    <:if UserCan bse_admin_group_del:>
+    <:- if UserCan bse_admin_group_del:>
     <a href="<:script:>?a_delgroup=1&amp;groupid=<:group id:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this Group?');" class="button red small">Delete</a>
-    <:or UserCan:>
+    <:- or UserCan:>
     <a class="button red small disabled">Delete</a>
-    <:eif UserCan:>
+    <:- eif UserCan:>
   </p>
   <form action="<:script:>" method="post">
     <input type="hidden" name="groupid" value="<:group id:>" />
@@ -36,39 +36,39 @@
         </span>
       </div>
     </fieldset>
-    <:if Users:>
+    <:- if Users:>
     <fieldset>
       <legend>Members <:error_img users:></legend>
       <ul>
-        <:iterator begin users:>
+        <:- iterator begin users:>
         <li>
           <input type="checkbox" name="users" id="user_<:iuser id:>" value="<:iuser id:>" <:ifOr [ifMemberof iuser] [ifMatch [old users] [iuser id]]:>checked="checked" <:or:><:eif:>/>
           <label for="user_<:iuser id:>"><a href="<:script:>?a_showuser=1&amp;userid=<:iuser id:>"><:iuser logon:></a><:ifIuser name:> (<:iuser name:>)<:or:><:eif:></label>
         </li>
-        <:iterator end users:>
+        <:- iterator end users:>
       </ul>
       <:help addgroup users:>
     </fieldset>
-    <:or Users:><:eif Users:>
-    <:if Gperms:>
+    <:- or Users:><:eif Users:>
+    <:- if Gperms:>
     <input type="hidden" name="savegperms" value="1" />
     <fieldset>
       <legend>Permissions <:error_img gperms:></legend>
       <ul>
-        <:iterator begin gperms:>
+        <:- iterator begin gperms:>
         <li>
           <input type="checkbox" name="gperms" id="gperms_<:gperm id:>" value="<:gperm id:>" <:ifGperm_set gperm:>checked="checked" <:or:><:eif:>/>
           <label for="gperms_<:gperm id:>" title="<:gperm help:>"><:gperm brief:></label>
         </li>
-        <:iterator end gperms:>
+        <:- iterator end gperms:>
       </ul>
     </fieldset>
-    <:or Gperms:><:eif Gperms:>
+    <:- or Gperms:><:eif Gperms:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_groups=1<:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
-      <:if UserCan bse_admin_group_save:>
+      <:- if UserCan bse_admin_group_save:>
       <input type="submit" name="a_savegroup" value="Save changes" accesskey="c" title="AccessKey = c" class="button green" />
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
     </p>
   </form>
 </div>

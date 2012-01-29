@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin templates:>
+        <:- iterator begin templates:>
         <tr>
           <td><:template id:></td>
           <td class="actions">
@@ -19,7 +19,7 @@
             <a href="<:adminurl generate r [adminurl pregen] id [cat "extra:" [template id]] m 1 |x:>" class="button green small">Regenerate</a>
           </td>
         </tr>
-        <:iterator end templates:>
+        <:- iterator end templates:>
       <tbody>
     </table>
   </fieldset>

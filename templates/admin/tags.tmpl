@@ -9,9 +9,9 @@
     <fieldset>
       <legend>Filter tags</legend>
       <input type="hidden" name="id" value="-1" />
-      <:ifCgi showarts:>
+      <:- ifCgi showarts:>
       <input type="hidden" name="showarts" value="1" />
-      <:or:><:eif:>
+      <:- or:><:eif:>
       <div>
         <label for="cat">Filter category</label>
         <span>
@@ -29,7 +29,7 @@
       </p>
     </fieldset>
   </form>
-  <:iterator begin systags:>
+  <:- iterator begin systags:>
   <form action="<:script:>#tag_<:systag id:>" method="post">
     <fieldset>
       <div id="tag_<:systag id:>">
@@ -42,43 +42,43 @@
           <input type="submit" name="a_tagdelete" value="Delete" onclick="return window.confirm('Are you sure you want to delete this Tag?');" class="button red small" />
         </span>
       </div>
-      <:if Cgi showarts:>
-      <:if Systagarts:>
+      <:- if Cgi showarts:>
+      <:- if Systagarts:>
       <ul class="children">
-        <:iterator begin systagarts:>
+        <:- iterator begin systagarts:>
         <li><a href="<:script:>?id=<:systagart id:>"><:systagart title:></a></li>
-        <:iterator end systagarts:>
+        <:- iterator end systagarts:>
       </ul>
-      <:or Systagarts:>
+      <:- or Systagarts:>
       <p>No articles use this tag.</p>
-      <:eif Systagarts:>
-      <:or Cgi:><:eif Cgi:>
+      <:- eif Systagarts:>
+      <:- or Cgi:><:eif Cgi:>
     </fieldset>
   </form>
-  <:iterator end systags:>
+  <:- iterator end systags:>
   <p class="pagination">
     Page <:systags_pagenum:> of <:systags_pagecount:>
-    <:if FirstSystagsPage:>
+    <:- if FirstSystagsPage:>
     <span class="disabled">|&lt;</span>
-    <:or FirstSystagsPage:>
+    <:- or FirstSystagsPage:>
     <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=1&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">|&lt;</a>
     <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:prevSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&lt;</a>
-    <:eif FirstSystagsPage:>
-    <:iterator begin systags_pagec:>
-    <:switch:>
-    <:case systag_pagec gap:>
+    <:- eif FirstSystagsPage:>
+    <:- iterator begin systags_pagec:>
+    <:- switch:>
+    <:- case systag_pagec gap:>
     <span class="truncation">...</span>
-    <:case systag_pagec link:>
+    <:- case systag_pagec link:>
     <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systag_pagec page:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>"><:systag_pagec page:></a>
-    <:case default:>
+    <:- case default:>
     <span class="disabled"><:systag_pagec page:></span>
-    <:endswitch:>
-    <:iterator end systags_pagec:>
-    <:if LastSystagsPage:>
+    <:- endswitch:>
+    <:- iterator end systags_pagec:>
+    <:- if LastSystagsPage:>
     <span class="disabled">&gt;|</span>
-    <:or LastSystagsPage:>
+    <:- or LastSystagsPage:>
     <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:nextSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;</a>
     <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;|</a>
-    <:eif LastSystagsPage:>
+    <:- eif LastSystagsPage:>
   </p>
 </div>

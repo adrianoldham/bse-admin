@@ -5,29 +5,29 @@
     <input type="hidden" name="id" value="<:siteuser id:>" />
     <input type="hidden" name="r" value="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;m=User+'<:siteuser userId:>'+saved" />
     <p class="buttons">
-      <:if UserCan bse_members_user_list:>
+      <:- if UserCan bse_members_user_list:>
       <a href="<:script:>" class="button gray small">Users</a>
-      <:or UserCan:><:eif UserCan:>
-      <:if UserCan bse_members_group_list:>
+      <:- or UserCan:><:eif UserCan:>
+      <:- if UserCan bse_members_group_list:>
       <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a>
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
       <!--
-      <:if Userfiles:>
+      <:- if Userfiles:>
       <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button gray small">Files</a>
-      <:or Userfiles:><:eif Userfiles:>
+      <:- or Userfiles:><:eif Userfiles:>
       -->
-      <:if UserCan bse_members_user_add_file:>
+      <:- if UserCan bse_members_user_add_file:>
       <a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
-      <:or UserCan:><:eif UserCan:>
-      <:if UserCan bse_members_user_delete:>
+      <:- or UserCan:><:eif UserCan:>
+      <:- if UserCan bse_members_user_delete:>
       <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this User?');" class="button red small">Delete</a>
-      <:or UserCan:>
+      <:- or UserCan:>
       <a class="button red small disabled">Delete</a>
-      <:eif UserCan:>
+      <:- eif UserCan:>
     </p>
     <fieldset class="account">
       <legend>Account</legend>
-      <:if Cfg "site users" nopassword:><:or Cfg:>
+      <:- if Cfg "site users" nopassword:><:or Cfg:>
       <div>
         <label for="old_password"><:cfg "site users" display_old_password "Old Password":> <:error_img old_password:></label>
         <span>
@@ -46,8 +46,8 @@
           <input type="password" name="confirm_password" id="confirm_password" value="<:old confirm_password:>" class="<:ifError_img confirm_password:>error<:or:><:eif:>" />
         </span>
       </div>
-      <:eif Cfg:>
-      <:if Cfg "site users" nopassword:>
+      <:- eif Cfg:>
+      <:- if Cfg "site users" nopassword:>
       <div>
         <label for="email"><:cfg "site users" display_email "Email Address":> <span class="required">*</span> <:error_img email:></label>
         <span>
@@ -60,7 +60,7 @@
           <input type="text" name="confirmemail" id="confirmemail" value="<:old confirmemail:>" class="<:ifError_img confirmemail:>error<:or:><:eif:>" />
         </span>
       </div>
-      <:or Cfg:><:eif Cfg:>
+      <:- or Cfg:><:eif Cfg:>
       <div>
         <input type="hidden" name="saveDisabled" value="1" />
         <label for="disabled">Disabled <:error_img disabled:></label>
@@ -70,25 +70,25 @@
       </div>
       <ul class="meta data">
         <li><span><:cfg "site users" display_userid "Username":></span> <:siteuser userId:></li>
-        <:if Or [cfg custom user_auth] [cfg "site users" nopassword]:><:or Or:>
+        <:- if Or [cfg custom user_auth] [cfg "site users" nopassword]:><:or Or:>
         <li><span>Last logged in</span> <:date siteuser previousLogon:></li><:eif Or:>
         <li><span>Registered since</span> <:date siteuser whenRegistered:></li>
       </ul>
     </fieldset>
-    <:if Subscriptions:>
+    <:- if Subscriptions:>
     <fieldset class="newsletter">
       <input type="hidden" name="checkedsubs" value="1" />
       <legend>Newsletter <:error_img subscription:></legend>
-      <:iterator begin subscriptions:>
+      <:- iterator begin subscriptions:>
       <div class="checkbox">
         <label><input type="checkbox" name="subscription" value="<:subscription id:>" <:ifSubscribed:>checked="checked" <:or:><:eif:>/> <:subscription name:>
           (<a href="<:target siteuser subinfo id [subscription id]:>" target="_blank">info</a>)
         </label>
       </div>
-      <:iterator end subscriptions:>
+      <:- iterator end subscriptions:>
       <p class="small">Confirmation will be sent to your email address.</p>
     </fieldset>
-    <:or Subscriptions:><:eif Subscriptions:>
+    <:- or Subscriptions:><:eif Subscriptions:>
     <fieldset class="name">
       <legend>Name</legend>
       <div>
@@ -119,7 +119,7 @@
         </span>
       </div>
     </fieldset>
-    <:if Cfg "site users" shipping_on_add 1:>
+    <:- if Cfg "site users" shipping_on_add 1:>
     <fieldset class="address">
       <legend>Address</legend>
       <div>
@@ -158,13 +158,13 @@
           <select name="country" id="country" class="<:ifRequired userId:>required<:or:><:eif:><:ifError_img country:> error<:or:><:eif:>">
             <option value="">Please select a country</option><:iterator begin dyncfgsection "country selector" sort=value:>
             <option value="<:uc [dyncfgentry key]:>"<:if Or [ifEq [siteuser country] [uc [dyncfgentry key]]] [ifEq [old country siteuser country] [uc [dyncfgentry value]]]:> selected="selected"<:or Or:><:eif Or:>><:dyncfgentry value:></option>
-            <:iterator end dyncfgsection:>
+            <:- iterator end dyncfgsection:>
           </select><:or Cfgsection:>
           <input type="text" name="country" id="country" value="<:old country siteuser country:>" <:ifRequired country:>required="required" <:or:><:eif:>class="<:ifError_img country:>error<:or:><:eif:>" /><:eif Cfgsection:>
         </span>
       </div>
     </fieldset>
-    <:or Cfg:><:eif Cfg:>
+    <:- or Cfg:><:eif Cfg:>
     <fieldset class="contact">
       <legend>Contact</legend>
       <div>
@@ -196,53 +196,53 @@
         <label><input type="checkbox" name="textOnlyMail" value="1" <:ifOld textOnlyMail siteuser textOnlyMail:>checked="checked" <:or:><:eif:>/> Plain text email (only)</label>
       </div>
     </fieldset>
-    <:if UserCan bse_members_group_list:>
-    <:if Groups:>
+    <:- if UserCan bse_members_group_list:>
+    <:- if Groups:>
     <fieldset>
       <legend>Groups <:error_img groups:></legend>
       <ul>
-        <:iterator begin groups:>
+        <:- iterator begin groups:>
         <li>
           <input type="hidden" name="set_group_id" value="<:group id:>" />
           <input type="checkbox" name="group_id" id="group_<:group id:>" value="<:group id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
           <label for="group_<:group id:>"><a href="<:script:>?a_editgroup=1&amp;id=<:group id:>&amp;referer=1"><:group name:></a></label>
         </li>
-        <:iterator end groups:>
+        <:- iterator end groups:>
       </ul>
     </fieldset>
-    <:or Groups:><:eif Groups:>
-    <:or UserCan:><:eif UserCan:>
-    <:if Flags:>
+    <:- or Groups:><:eif Groups:>
+    <:- or UserCan:><:eif UserCan:>
+    <:- if Flags:>
     <fieldset>
       <legend>Flags <:error_img flags:></legend>
       <input type="hidden" name="saveFlags" value="1" />
       <ul>
-        <:iterator begin flags:>
+        <:- iterator begin flags:>
         <li>
           <input type="checkbox" name="flags" id="flags_<:flag id:>" value="<:flag id:>" <:ifFlagSet [flag id]:>checked="checked" <:or:><:eif:>/>
           <label for="flags_<:flag id:>"><:flag desc |h:></label>
         <span>
           </li>
-        <:iterator end flags:>
+        <:- iterator end flags:>
       </ul>
     </fieldset>
-    <:or Flags:><:eif Flags:>
-    <:if Cfg "notify files" active:>
-    <:if Filecats:>
+    <:- or Flags:><:eif Flags:>
+    <:- if Cfg "notify files" active:>
+    <:- if Filecats:>
     <fieldset>
       <input type="hidden" name="save_file_subs" value="1" />
       <legend>File subscriptions <:error_img filecats:></legend>
       <ul>
-         <:iterator begin filecats:>
+         <:- iterator begin filecats:>
         <li>
           <input type="checkbox" name="file_subscriptions" id="filecat_<:filecat id:>" value="<:filecat id:>" <:ifFilecat subscribed:>checked="checked" <:or:><:eif:>/>
           <label for="filecat_<:filecat id:>"><:filecat name:></label>
         </li>
-        <:iterator end filecats:>
+        <:- iterator end filecats:>
       </ul>
     </fieldset>
-    <:or Filecats:><:eif Filecats:>
-    <:or Cfg:><:eif Cfg:>
+    <:- or Filecats:><:eif Filecats:>
+    <:- or Cfg:><:eif Cfg:>
     <fieldset>
       <legend>Information</legend>
       <div class="full">
@@ -252,30 +252,30 @@
         </span>
       </div>
     </fieldset>
-    <:if Userfiles:>
+    <:- if Userfiles:>
     <fieldset>
       <legend>Files</legend>
       <ul class="children files">
-        <:iterator begin userfiles sort: -modwhen:>
+        <:- iterator begin userfiles sort: -modwhen:>
         <li>
           <a href="<:target user downufile id [userfile id]:>" title="<:userfile title:>"><span class="listed <:switch:><:case default:>green<:endswitch:>"></span> <:userfile display_name |h:></a>
           <span>
-            <:if UserCan bse_members_user_edit_file:>
+            <:- if UserCan bse_members_user_edit_file:>
             <a href="<:script:>?a_edituserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>" class="button gray small">Edit</a>
-            <:or UserCan:>
+            <:- or UserCan:>
             <a class="button gray small disabled">Edit</a>
-            <:eif UserCan:>
-            <:if UserCan bse_members_user_del_file:>
+            <:- eif UserCan:>
+            <:- if UserCan bse_members_user_del_file:>
             <a href="<:script:>?a_deluserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>&amp;_csrfp=<:csrfp admin_user_del_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a>
-            <:or UserCan:><a class="button red small disabled">Delete</a>
-            <:eif UserCan:>
+            <:- or UserCan:><a class="button red small disabled">Delete</a>
+            <:- eif UserCan:>
           </span>
         </li>
-        <:iterator end userfiles:>
+        <:- iterator end userfiles:>
       </ul>
     </fieldset>
-    <:or Userfiles:><:eif Userfiles:>
-    <:if And [ifUserCan bse_shop_order_list] [ifUserorders]:>
+    <:- or Userfiles:><:eif Userfiles:>
+    <:- if And [ifUserCan bse_shop_order_list] [ifUserorders]:>
     <fieldset class="list">
       <legend>Orders</legend>
       <table class="full">
@@ -290,7 +290,7 @@
           </tr>
         </thead>
         <tbody>
-          <:iterator begin userorders:>
+          <:- iterator begin userorders:>
           <tr>
             <td><span class="listed <:ifUserorder filled:>green<:or:>gray<:eif:>"></span><:userorder id |%06d:></td>
             <td><:date userorder orderDate:></td>
@@ -298,24 +298,24 @@
             <td><:ifUserorder paidFor:>Paid<:or:>Unpaid<:eif:></td>
             <td><:cfg shop currency "$":><:number money [userorder total]:></td>
             <td class="actions">
-              <:if UserCan bse_shop_order_detail:>
+              <:- if UserCan bse_shop_order_detail:>
               <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:userorder id:>&amp;referer=1" class="button gray small">Details</a>
-              <:or UserCan:>
+              <:- or UserCan:>
               <a class="button gray small disabled">Details</a>
-              <:eif UserCan:>
+              <:- eif UserCan:>
             </td>
           </tr>
-          <:iterator end userorders:>
+          <:- iterator end userorders:>
         <tbody>
       </table>
     </fieldset>
-    <:or And:> <:eif And:>
+    <:- or And:> <:eif And:>
 <:include admin/include/user_custom.tmpl optional:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
-      <:if UserCan bse_members_user_edit:>
+      <:- if UserCan bse_members_user_edit:>
       <input type="submit" name="a_save" value="Save changes" accesskey="s" Title="AccessKey = s" class="button green" />
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
     </p>
   </form>
 </div>

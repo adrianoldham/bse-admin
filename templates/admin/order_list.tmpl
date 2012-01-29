@@ -74,7 +74,7 @@
       </p>
     </fieldset>
   </form>
-  <:if Orders:>
+  <:- if Orders:>
   <fieldset class="list">
     <legend>Orders</legend>
     <table class="full">
@@ -89,7 +89,7 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin orders:>
+        <:- iterator begin orders:>
         <tr>
           <td><span class="listed <:ifOrder filled:>green<:or:>gray<:eif:>"></span><:order id |%06d:></td>
           <td><:date order orderDate:></td>
@@ -97,43 +97,43 @@
           <td><:ifOrder userId:><:order userId:><:or:>-<:eif:></td>
           <td><:cfg shop currency "$":><:number money [order total]:></td>
           <td class="actions">
-            <:if UserCan bse_shop_order_detail:>
+            <:- if UserCan bse_shop_order_detail:>
             <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:order id:>" class="button gray small">Details</a>
-            <:or UserCan:>
+            <:- or UserCan:>
             <a class="button gray small disabled">Details</a>
-            <:eif UserCan:>
+            <:- eif UserCan:>
           </td>
         </tr>
-        <:iterator end orders:>
+        <:- iterator end orders:>
       <tbody>
     </table>
   </fieldset>
   <p class="pagination">
     Page <:orders_pagenum:> of <:orders_pagecount:>
-    <:if FirstOrdersPage:>
+    <:- if FirstOrdersPage:>
     <span class="disabled">|&lt;</span>
-    <:or FirstOrdersPage:>
+    <:- or FirstOrdersPage:>
     <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p 1:>&amp;<:search_param:>">|&lt;</a>
     <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [prevOrdersPage]:>&amp;<:search_param:>">&lt;</a>
-    <:eif FirstOrdersPage:>
-    <:iterator begin orders_pagec:>
-    <:switch:>
-    <:case order_pagec gap:>
+    <:- eif FirstOrdersPage:>
+    <:- iterator begin orders_pagec:>
+    <:- switch:>
+    <:- case order_pagec gap:>
     <span class="truncation">...</span>
-    <:case order_pagec link:>
+    <:- case order_pagec link:>
     <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage]:>&amp;p=<:order_pagec page:>&amp;<:search_param:>"><:order_pagec page:></a>
-    <:case default:>
+    <:- case default:>
     <span class="disabled"><:order_pagec page:></span>
-    <:endswitch:>
-    <:iterator end orders_pagec:>
-    <:if LastOrdersPage:>
+    <:- endswitch:>
+    <:- iterator end orders_pagec:>
+    <:- if LastOrdersPage:>
     <span class="disabled">&gt;|</span>
-    <:or LastOrdersPage:>
+    <:- or LastOrdersPage:>
     <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [nextOrdersPage]:>&amp;<:search_param:>">&gt;</a>
     <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] ;p [orders_pagecount]:>&amp;&amp;<:search_param:>">&gt;|</a>
-    <:eif LastOrdersPage:>
+    <:- eif LastOrdersPage:>
   </p>
-  <:or Orders:>
+  <:- or Orders:>
   <p>No orders match filter criteria.</p>
-  <:eif Orders:>
+  <:- eif Orders:>
 </div>

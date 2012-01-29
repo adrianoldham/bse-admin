@@ -3,7 +3,7 @@
   <h1><:param title:></h1>
   <fieldset class="list">
     <legend>Reports</legend>
-    <:if Reports:>
+    <:- if Reports:>
     <table class="full list">
       <thead>
         <tr>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin reports:>
+        <:- iterator begin reports:>
         <tr>
           <td>
             <:report name:>
@@ -21,11 +21,11 @@
             <a href="<:script:>?<:ifReport has_params:>s_prompt<:or:>s_show<:eif:>=1&amp;r=<:report id:>" class="button gray small">Details</a>
           </td>
         </tr>
-        <:iterator end reports:>
+        <:- iterator end reports:>
       </tbody>
     </table>
-    <:or Reports:>
+    <:- or Reports:>
     <p>No reports available.</p>
-    <:eif Reports:>
+    <:- eif Reports:>
   </fieldset>
 </div>

@@ -5,42 +5,42 @@
     <title><:cfg site name |h:> - <:param title:></title>
     <link rel="stylesheet" href="/css/bse-admin/reset.css" type="text/css" />
     <link rel="stylesheet" href="/css/bse-admin/admin.css" type="text/css" />
-    <:if Param css:>
+    <:- if Param css:>
     <link rel="stylesheet" href="/css/bse-admin/<:param css:>" type="text/css" />
-    <:or Param:><:eif Param:>
+    <:- or Param:><:eif Param:>
     <script type="text/javascript" src="/js/prototype.js"></script>
     <script type="text/javascript" src="/js/scriptaculous.js"></script>
     <script type="text/javascript" src="/js/bse-admin/admin.js"></script>
-    <:if Param api:>
+    <:- if Param api:>
     <script type="text/javascript" src="/js/bse_api.js"></script>
-    <:or Param:><:eif Param:>
-    <:if Param jstools:>
+    <:- or Param:><:eif Param:>
+    <:- if Param jstools:>
     <script type="text/javascript" src="/js/admin_tools.js"></script>
-    <:or Param:><:eif Param:>
-    <:if Param js:>
+    <:- or Param:><:eif Param:>
+    <:- if Param js:>
     <script type="text/javascript" src="/js/<:param js:>"></script>
-    <:or Param:><:eif Param:>
+    <:- or Param:><:eif Param:>
   </head>
   <body<:ifParam bodyid:> id="<:param bodyid:>"<:or:><:eif:>>
-    <:switch:>
-    <:case Param nomessage:>
-    <:case Message:>
+    <:- switch:>
+    <:- case Param nomessage:>
+    <:- case Message:>
     <div id="message" class="message<:switch:><:case Error:> error red<:case Match [script] "users":> orange<:case default:> green<:endswitch:>"><:message:></div>
-    <:endswitch:>
-    <:switch:>
-    <:case Param nonavbar:>
-    <:case default:>
+    <:- endswitch:>
+    <:- switch:>
+    <:- case Param nonavbar:>
+    <:- case default:>
 <:include admin/include/navbar.tmpl:>
-    <:endswitch:>
-    <:switch:>
-    <:case Cgi preview:>
+    <:- endswitch:>
+    <:- switch:>
+    <:- case Cgi preview:>
     <div id="preview" class="preview">
       <iframe src="<:adminurl admin id [article id]:>" frameborder="0" name="workarea">
         <p>Your browser does not support iframes.</p>
       </iframe>
     </div>
-    <:case default:>
+    <:- case default:>
 <:wrap here:>
-    <:endswitch:>
+    <:- endswitch:>
   </body>
 </html>

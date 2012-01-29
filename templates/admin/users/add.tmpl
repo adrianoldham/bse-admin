@@ -4,7 +4,7 @@
   <form action="<:script:>" method="post">
     <fieldset class="account">
       <legend>Account</legend>
-      <:if Cfg "site users" nopassword:><:or Cfg:>
+      <:- if Cfg "site users" nopassword:><:or Cfg:>
       <div>
         <label for="userId"><:cfg "site users" display_userId "Username":> <span class="required">*</span> <:error_img userId:></label>
         <span>
@@ -23,36 +23,36 @@
           <input type="password" name="confirm_password" id="confirm_password" value="<:old confirm_password:>" required="required" class="<:ifError_img confirm_password:>error<:or:><:eif:>" />
         </span>
       </div>
-      <:eif Cfg:>
+      <:- eif Cfg:>
       <div>
         <label for="email"><:cfg "site users" display_email "Email Address":> <span class="required">*</span> <:error_img email:></label>
         <span>
           <input type="text" name="email" id="email" value="<:old email:>" required="required" class="<:ifError_img email:>error<:or:><:eif:>" />
         </span>
       </div>
-      <:if Cfg "site users" nopassword:>
+      <:- if Cfg "site users" nopassword:>
       <div>
         <label for="confirmemail"><:cfg "site users" display_confirmemail "Confirm Email":> <span class="required">*</span> <:error_img confirmemail:></label>
         <span>
           <input type="text" name="confirmemail" id="confirmemail" value="<:old confirmemail:>" required="required" class="<:ifError_img confirmemail:>error<:or:><:eif:>" />
         </span>
       </div>
-      <:or Cfg:><:eif Cfg:>
+      <:- or Cfg:><:eif Cfg:>
     </fieldset>
-    <:if Subscriptions:>
+    <:- if Subscriptions:>
     <fieldset class="newsletter">
       <input type="hidden" name="checkedsubs" value="1" />
       <legend>Newsletter <:error_img subscription:></legend>
-      <:iterator begin subscriptions:>
+      <:- iterator begin subscriptions:>
       <div class="checkbox">
         <label><input type="checkbox" name="subscription" value="<:subscription id:>" <:ifSubscribed:>checked="checked" <:or:><:eif:>/> <:subscription name:>
           (<a href="<:dyntarget user subinfo id [subscription id]:>" target="_blank">info</a>)
         </label>
       </div>
-      <:iterator end subscriptions:>
+      <:- iterator end subscriptions:>
       <p class="small">Confirmation will be sent to your email address.</p>
     </fieldset>
-    <:or Subscriptions:><:eif Subscriptions:>
+    <:- or Subscriptions:><:eif Subscriptions:>
     <fieldset class="name">
       <legend>Name</legend>
       <div>
@@ -83,7 +83,7 @@
         </span>
       </div>
     </fieldset>
-    <:if Cfg "site users" shipping_on_add 1:>
+    <:- if Cfg "site users" shipping_on_add 1:>
     <fieldset class="address">
       <legend>Address</legend>
       <div>
@@ -122,13 +122,13 @@
           <select name="country" id="country" class="<:ifRequired userId:>required<:or:><:eif:><:ifError_img country:> error<:or:><:eif:>">
             <option value="">Please select a country</option><:iterator begin dyncfgsection "country selector" sort=value:>
             <option value="<:uc [dyncfgentry key]:>"<:if Or [ifEq [old country] [uc [dyncfgentry key]]] [ifEq [old country] [uc [dyncfgentry value]]]:> selected="selected"<:or Or:><:eif Or:>><:dyncfgentry value:></option>
-            <:iterator end dyncfgsection:>
+            <:- iterator end dyncfgsection:>
           </select><:or Cfgsection:>
           <input type="text" name="country" id="country" value="<:old country:>" <:ifRequired country:>required="required" <:or:><:eif:> class="<:ifError_img country:>error<:or:><:eif:>" /><:eif Cfgsection:>
         </span>
       </div>
     </fieldset>
-    <:or Cfg:><:eif Cfg:>
+    <:- or Cfg:><:eif Cfg:>
     <fieldset class="contact">
       <legend>Contact</legend>
       <div>
@@ -159,25 +159,25 @@
         </span>
       </div>
     </fieldset>
-    <:if Flags:>
+    <:- if Flags:>
     <fieldset>
       <legend>Flags <:error_img flags:></legend>
       <ul>
-        <:iterator begin flags:>
+        <:- iterator begin flags:>
         <li>
           <input type="checkbox" name="flags" id="flags_<:flag id:>" value="<:flag id:>" <:ifFlagSet [flag id]:>checked="checked" <:or:><:eif:>/>
           <label for="flags_<:flag id:>"><:flag desc |h:></label>
         </li>
-        <:iterator end flags:>
+        <:- iterator end flags:>
       </ul>
     </fieldset>
-    <:or Flags:><:eif Flags:>
+    <:- or Flags:><:eif Flags:>
 <:include admin/include/user_custom.tmpl optional:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
-      <:if UserCan bse_members_user_add:>
+      <:- if UserCan bse_members_user_add:>
       <input type="submit" name="a_add" value="Create User" accesskey="c" Title="AccessKey = c" class="button green" />
-      <:or UserCan:><:eif UserCan:>
+      <:- or UserCan:><:eif UserCan:>
     </p>
   </form>
 </div>

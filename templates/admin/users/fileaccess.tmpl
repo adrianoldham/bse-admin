@@ -33,7 +33,7 @@
           </select>
         </span>
       </div>
-      <:if Owner:>
+      <:- if Owner:>
       <div>
         <label>Owner</label>
         <span>
@@ -41,8 +41,8 @@
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_id owner_type:>">(Remove)</a>-->
         </span>
       </div>
-      <:or Owner:><:eif Owner:>
-      <:if Siteuser:>
+      <:- or Owner:><:eif Owner:>
+      <:- if Siteuser:>
       <div>
         <label>User</label>
         <span>
@@ -50,8 +50,8 @@
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>">(Remove)</a>-->
         </span>
       </div>
-      <:or Siteuser:><:eif Siteuser:>
-      <:if File:>
+      <:- or Siteuser:><:eif Siteuser:>
+      <:- if File:>
       <div>
         <label>File</label>
         <span>
@@ -59,8 +59,8 @@
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>">(Remove)</a>-->
         </span>
       </div>
-      <:or File:><:eif File:>
-      <:if Category:>
+      <:- or File:><:eif File:>
+      <:- if Category:>
       <div>
         <label>Category</label>
         <span>
@@ -68,7 +68,7 @@
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>">(Remove)</a>-->
         </span>
       </div>
-      <:or Category:><:eif Category:>
+      <:- or Category:><:eif Category:>
       <p class="buttons">
         <input type="submit" name="a_fileaccesslog" value="Update filter" class="button blue" />
       </p>
@@ -77,18 +77,18 @@
   <fieldset class="list">
     <legend>Downloads</legend>
     <ul class="meta selected">
-      <:if Owner:>
+      <:- if Owner:>
       <li><span>Owner</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_id owner_type:>"><:owner_desc:> <b>&times;</b></a></li>
-      <:or Owner:><:eif Owner:>
-      <:if Siteuser:>
+      <:- or Owner:><:eif Owner:>
+      <:- if Siteuser:>
       <li><span>User</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>"><:siteuser userId:> <b>&times;</b></a></li>
-      <:or Siteuser:><:eif Siteuser:>
-      <:if File:>
+      <:- or Siteuser:><:eif Siteuser:>
+      <:- if File:>
       <li><span>File</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>"><:file display_name:> <b>&times;</b></a></li>
-      <:or File:><:eif File:>
-      <:if Category:>
+      <:- or File:><:eif File:>
+      <:- if Category:>
       <li><span>Category</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>"><:category name:> <b>&times;</b></a></li>
-      <:or Category:><:eif Category:>
+      <:- or Category:><:eif Category:>
     </ul>
     <table class="full">
       <thead>
@@ -104,7 +104,7 @@
         </tr>
       </thead>
       <tbody>
-        <:iterator begin fileaccesses:>
+        <:- iterator begin fileaccesses:>
         <tr>
           <td><:date "%d-%b-%Y / %r" fileaccess when_at:></td>
           <td>
@@ -132,33 +132,33 @@
             <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>&amp;category=<:fileaccess category:>" class="widget">C</a>
           </td>-->
         </tr>
-        <:iterator end fileaccesses:>
+        <:- iterator end fileaccesses:>
       </tbody>
     </table>
   </fieldset>
   <p class="pagination">
     Page <:fileaccesses_pagenum:> of <:fileaccesses_pagecount:>
-    <:if FirstFileaccessesPage:>
+    <:- if FirstFileaccessesPage:>
     <span class="disabled">|&lt;</span>
-    <:or FirstFileaccessesPage:>
+    <:- or FirstFileaccessesPage:>
     <a href="<:script:>?a_fileaccesslog=1&amp;p=1&amp;pp=<:fileaccesses_perpage:>">|&lt;</a>
     <a href="<:script:>?a_fileaccesslog=1&amp;p=<:prevFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&lt;</a>
-    <:eif FirstFileaccessesPage:>
-    <:iterator begin fileaccesses_pagec:>
-    <:switch:>
-    <:case fileaccess_pagec gap:>
+    <:- eif FirstFileaccessesPage:>
+    <:- iterator begin fileaccesses_pagec:>
+    <:- switch:>
+    <:- case fileaccess_pagec gap:>
     <span class="truncation">...</span>
-    <:case fileaccess_pagec link:>
+    <:- case fileaccess_pagec link:>
     <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccess_pagec page:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>"><:fileaccess_pagec page:></a>
-    <:case default:>
+    <:- case default:>
     <span class="disabled"><:fileaccess_pagec page:></span>
-    <:endswitch:>
-    <:iterator end fileaccesses_pagec:>
-    <:if LastFileaccessesPage:>
+    <:- endswitch:>
+    <:- iterator end fileaccesses_pagec:>
+    <:- if LastFileaccessesPage:>
     <span class="disabled">&gt;|</span>
-    <:or LastFileaccessesPage:>
+    <:- or LastFileaccessesPage:>
     <a href="<:script:>?a_fileaccesslog=1&amp;p=<:nextFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;</a>
     <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccesses_pagecount:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;|</a>
-    <:eif LastFileaccessesPage:>
+    <:- eif LastFileaccessesPage:>
   </p>
 </div>
