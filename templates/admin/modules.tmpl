@@ -14,11 +14,11 @@
       </thead>
       <tbody>
         <:iterator begin modules:>
-        <tr <:switch:><:case module error:>class="error"<:endswitch:>>
+        <tr class="<:ifModule error:>error<:or:><:eif:>">
           <td><:module name:></td>
           <td><:module version:></td>
           <td><:module found:></td>
-          <td><:switch:><:case module error:><:module error:><:case default:><:module notes:><:endswitch:></td>
+          <td><:ifModule error:><:module error:><:or:><:module notes:><:eif:></td>
         </tr>
         <:iterator end modules:>
       </tbody>

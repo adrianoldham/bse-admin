@@ -7,7 +7,7 @@
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
-      <legend><:user logon:> <:ifUser name:>(<:user name:>) <:or:><:eif:><:error_img aperms:></legend>
+      <legend><:user logon:><:ifUser name:> (<:user name:>)<:or:><:eif:> <:error_img aperms:></legend>
       <ul>
         <:iterator begin aperms:>
         <li>

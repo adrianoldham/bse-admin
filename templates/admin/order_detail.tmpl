@@ -275,16 +275,16 @@
   <:if Auditlog object_id [order id] object_type BSE::TB::Order:>
   <fieldset>
     <legend>Audit Log</legend>
-  <table class="list full">
-    <thead>
-    <:include admin/log/head.tmpl:>
-    </thead>
-    <tbody>
-    <:iterator begin auditlog object_id [order id] object_type BSE::TB::Order:>
-    <:include admin/log/data.tmpl:>
-    <:iterator end auditlog:>
-    </tbody>
-  </table>
+    <table class="list full">
+      <thead>
+      <:include admin/log/head.tmpl:>
+      </thead>
+      <tbody>
+      <:iterator begin auditlog object_id [order id] object_type BSE::TB::Order:>
+      <:include admin/log/data.tmpl:>
+      <:iterator end auditlog:>
+      </tbody>
+    </table>
   </fieldset>
   <:or Auditlog:><:eif Auditlog:>
   <:or UserCan:><:eif UserCan:>

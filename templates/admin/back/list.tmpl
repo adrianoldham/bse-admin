@@ -16,11 +16,11 @@
       </thead>
       <tbody>
         <:iterator begin tasks:>
-        <tr <:switch:><:case Task_running:>class="running"<:case Task last_exit:>class="error"<:endswitch:>>
           <td><:switch:><:case Task_running:>
             <span class="listed green" title="PID: <:task task_pid:>">PID: <:task task_pid:></span><:case Task last_exit:>
             <span class="listed orange" title="Failed">Failed</span><:case default:>
             <span class="listed gray" title="Not running">Not running<:task task_pid:></span><:endswitch:>
+        <tr class="<:switch:><:case Task_running:>running<:case Task last_exit:>error<:endswitch:>">
             <:task description:>
           </td>
           <td><:date "%d-%b-%Y / %r" task last_started:></td>
