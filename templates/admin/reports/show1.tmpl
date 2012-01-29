@@ -30,13 +30,7 @@
       <thead>
         <tr>
           <:iterator begin level1_names:>
-          <th>
-            <:if Sort - sortable:>
-            <a href="<:sort - url:>"><:level1_name name:></a>
-            <:or Sort:>
-            <:level1_name name:>
-            <:eif Sort:>
-          </th>
+          <th><:ifSort - sortable:><a href="<:sort - url:>"><:level1_name name:></a><:or:><:level1_name name:><:eif:></th>
           <:iterator end level1_names:>
           <:if Report has_level1_links:>
           <th><!--Actions--></th>
