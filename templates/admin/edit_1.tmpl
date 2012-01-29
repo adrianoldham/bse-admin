@@ -534,41 +534,6 @@
     <:- or UserCan:><:eif UserCan:>
     <:- eif New:>
   </form>
-  <:- if New:><:or New:>
-  <:- if Or [ifUserCan bse_admin_user_save_artrights] [ifUserCan bse_admin_group_save_artrights]:>
-  <form action="<:adminurl adminusers:>" method="post">
-    <input type="hidden" name="id" value="<: article id:>" />
-    <fieldset>
-      <legend>Permissions</legend>
-      <div>
-        <label>Users / Groups</label>
-        <span>
-          <select name="adminid" id="adminid">
-            <:- if Adminusers:>
-            <optgroup label="Admin Users">
-              <:- iterator begin adminusers:>
-              <option value="<:iadminuser id:>"><:iadminuser logon:> <:ifIadminuser name:>(<:iadminuser name:>)<:or:><:eif:></option>
-              <:- iterator end adminusers:>
-            </optgroup>
-            <:- or Adminusers:><:eif Adminusers:>
-            <:- if Admingroups:>
-            <optgroup label="Admin Groups">
-              <:- iterator begin admingroups:>
-              <option value="<:iadmingroup id:>"><:iadmingroup name:> <:ifIadmingroup description:>(<:iadmingroup description:>)<:or:><:eif:></option>
-              <:- iterator end admingroups:>
-            </optgroup>
-            <:- or Admingroups:><:eif Admingroups:>
-          </select>
-        </span>
-        <:help access manage:>
-      </div>
-      <p class="buttons">
-        <input type="submit" name="a_showobjectart" value="Permissions" class="button gray" />
-      </p>
-    </fieldset>
-  </form>
-  <:- or Or:><:eif Or:>
-  <:- eif New:>
   <:- if Kids:>
   <fieldset class="children">
     <legend>Children</legend>
@@ -612,4 +577,39 @@
     </ul>
   </fieldset>
   <:- or Kids:><:eif Kids:>
+  <:- if New:><:or New:>
+  <:- if Or [ifUserCan bse_admin_user_save_artrights] [ifUserCan bse_admin_group_save_artrights]:>
+  <form action="<:adminurl adminusers:>" method="post">
+    <input type="hidden" name="id" value="<: article id:>" />
+    <fieldset>
+      <legend>Permissions</legend>
+      <div>
+        <label>Users / Groups</label>
+        <span>
+          <select name="adminid" id="adminid">
+            <:- if Adminusers:>
+            <optgroup label="Admin Users">
+              <:- iterator begin adminusers:>
+              <option value="<:iadminuser id:>"><:iadminuser logon:> <:ifIadminuser name:>(<:iadminuser name:>)<:or:><:eif:></option>
+              <:- iterator end adminusers:>
+            </optgroup>
+            <:- or Adminusers:><:eif Adminusers:>
+            <:- if Admingroups:>
+            <optgroup label="Admin Groups">
+              <:- iterator begin admingroups:>
+              <option value="<:iadmingroup id:>"><:iadmingroup name:> <:ifIadmingroup description:>(<:iadmingroup description:>)<:or:><:eif:></option>
+              <:- iterator end admingroups:>
+            </optgroup>
+            <:- or Admingroups:><:eif Admingroups:>
+          </select>
+        </span>
+        <:help access manage:>
+      </div>
+      <p class="buttons">
+        <input type="submit" name="a_showobjectart" value="Permissions" class="button gray" />
+      </p>
+    </fieldset>
+  </form>
+  <:- or Or:><:eif Or:>
+  <:- eif New:>
 </div>
