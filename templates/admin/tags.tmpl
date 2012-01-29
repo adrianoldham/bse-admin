@@ -66,9 +66,12 @@
     <:eif FirstSystagsPage:>
     <:iterator begin systags_pagec:>
     <:switch:>
-    <:case systag_pagec gap:><span class="truncation">...</span>
-    <:case systag_pagec link:><a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systag_pagec page:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>"><:systag_pagec page:></a>
-    <:case default:><span class="disabled"><:systag_pagec page:></span>
+    <:case systag_pagec gap:>
+    <span class="truncation">...</span>
+    <:case systag_pagec link:>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systag_pagec page:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>"><:systag_pagec page:></a>
+    <:case default:>
+    <span class="disabled"><:systag_pagec page:></span>
     <:endswitch:>
     <:iterator end systags_pagec:>
     <:if LastSystagsPage:>

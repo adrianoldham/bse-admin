@@ -5,11 +5,11 @@
     <legend>Audit Log</legend>
     <table class="full list">
       <thead>
-<:include admin/log/head.tmpl:>
+        <:include admin/log/head.tmpl:>
       </thead>
       <tbody>
         <:iterator begin auditlog:>
-<:include admin/log/data.tmpl:>
+        <:include admin/log/data.tmpl:>
         <:iterator end auditlog:>
       </tbody>
     </table>
@@ -24,9 +24,12 @@
     <:eif FirstAuditlogPage:>
     <:iterator begin auditlog_pagec:>
     <:switch:>
-    <:case auditentry_pagec gap:><span class="truncation">...</span>
-    <:case auditentry_pagec link:><a href="<:adminurl log:>?p=<:auditentry_pagec page:>&amp;pp=<:auditlog_perpage:>"><:auditentry_pagec page:></a>
-    <:case default:><span class="disabled"><:auditentry_pagec page:></span>
+    <:case auditentry_pagec gap:>
+    <span class="truncation">...</span>
+    <:case auditentry_pagec link:>
+    <a href="<:adminurl log:>?p=<:auditentry_pagec page:>&amp;pp=<:auditlog_perpage:>"><:auditentry_pagec page:></a>
+    <:case default:>
+    <span class="disabled"><:auditentry_pagec page:></span>
     <:endswitch:>
     <:iterator end auditlog_pagec:>
     <:if LastAuditlogPage:>

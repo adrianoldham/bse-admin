@@ -118,9 +118,12 @@
     <:eif FirstOrdersPage:>
     <:iterator begin orders_pagec:>
     <:switch:>
-    <:case order_pagec gap:><span class="truncation">...</span>
-    <:case order_pagec link:><a href="<:adminurl2 shopadmin [param target] pp [orders_perpage]:>&amp;p=<:order_pagec page:>&amp;<:search_param:>"><:order_pagec page:></a>
-    <:case default:><span class="disabled"><:order_pagec page:></span>
+    <:case order_pagec gap:>
+    <span class="truncation">...</span>
+    <:case order_pagec link:>
+    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage]:>&amp;p=<:order_pagec page:>&amp;<:search_param:>"><:order_pagec page:></a>
+    <:case default:>
+    <span class="disabled"><:order_pagec page:></span>
     <:endswitch:>
     <:iterator end orders_pagec:>
     <:if LastOrdersPage:>

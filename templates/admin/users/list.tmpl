@@ -116,9 +116,12 @@
     <:eif FirstSiteusersPage:>
     <:iterator begin siteusers_pagec:>
     <:switch:>
-    <:case siteuser_pagec gap:><span class="truncation">...</span>
-    <:case siteuser_pagec link:><a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteuser_pagec page:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:siteuser_pagec page:></a>
-    <:case default:><span class="disabled"><:siteuser_pagec page:></span>
+    <:case siteuser_pagec gap:>
+    <span class="truncation">...</span>
+    <:case siteuser_pagec link:>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteuser_pagec page:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:siteuser_pagec page:></a>
+    <:case default:>
+    <span class="disabled"><:siteuser_pagec page:></span>
     <:endswitch:>
     <:iterator end siteusers_pagec:>
     <:if LastSiteusersPage:>

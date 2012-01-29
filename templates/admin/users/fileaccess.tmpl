@@ -146,9 +146,12 @@
     <:eif FirstFileaccessesPage:>
     <:iterator begin fileaccesses_pagec:>
     <:switch:>
-    <:case fileaccess_pagec gap:><span class="truncation">...</span>
-    <:case fileaccess_pagec link:><a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccess_pagec page:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>"><:fileaccess_pagec page:></a>
-    <:case default:><span class="disabled"><:fileaccess_pagec page:></span>
+    <:case fileaccess_pagec gap:>
+    <span class="truncation">...</span>
+    <:case fileaccess_pagec link:>
+    <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccess_pagec page:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>"><:fileaccess_pagec page:></a>
+    <:case default:>
+    <span class="disabled"><:fileaccess_pagec page:></span>
     <:endswitch:>
     <:iterator end fileaccesses_pagec:>
     <:if LastFileaccessesPage:>
