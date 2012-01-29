@@ -87,6 +87,14 @@ iframe {
 	-moz-box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.4);
 	box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.4);
 }
+.group:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
 fieldset.error, label.error, ._error>label, ._error>fieldset, .error>legend, input.error {
 	color: #c03 !important;
 	border-color: #c03 !important;
