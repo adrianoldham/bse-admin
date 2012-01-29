@@ -4,7 +4,7 @@
   <form action="<:script:>" method="post">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="steps" />
-    <input type="hidden" name="r" value="<:script:>?id=<:article id:>" />
+    <input type="hidden" name="r" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?id=<:article id:><:endswitch:>" />
     <:csrfp admin_save_stepkids hidden:>
     <:csrfp admin_add_stepkid hidden:>
     <:- if Cgi stepkid:>
