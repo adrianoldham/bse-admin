@@ -527,11 +527,12 @@
       <:- or UserCan:><:eif UserCan:>
     </p>
     <:- or New:>
-    <:- if UserCan bse_edit_save:article:>
     <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article parentid:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
+      <:- if UserCan bse_edit_save:article:>
       <input type="submit" name="save" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:- or UserCan:><:eif UserCan:>
     </p>
-    <:- or UserCan:><:eif UserCan:>
     <:- eif New:>
   </form>
   <:- if Kids:>
