@@ -7,6 +7,8 @@
           <td><:ifAuditentry object_link:><a href="<:auditentry object_link:>"><:auditentry object_name:></a><:or:><:auditentry object_name:><:eif:></td>-->
           <td><:auditentry msg:></td>
           <td class="actions">
+            <:if UserCan bse_log_detail:>
             <a href="<:adminurl log a_detail 1 id [auditentry id] referer 1:>" class="button gray small">Details</a>
+            <:or UserCan:><:eif UserCan:>
           </td>
         </tr>
