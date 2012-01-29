@@ -243,15 +243,6 @@
     </fieldset>
     <:- or Filecats:><:eif Filecats:>
     <:- or Cfg:><:eif Cfg:>
-    <fieldset>
-      <legend>Information</legend>
-      <div class="full">
-        <label for="adminNotes"><:cfg "site users" display_adminNotes "Notes":><:ifRequired country:> <span class="required">*</span><:or:><:eif:> <:error_img adminNotes:></label>
-        <span>
-          <textarea name="adminNotes" id="adminNotes" class="<:ifError_img adminNotes:>error<:or:><:eif:>"><:old adminNotes siteuser adminNotes:></textarea>
-        </span>
-      </div>
-    </fieldset>
     <:- if Userfiles:>
     <fieldset>
       <legend>Files</legend>
@@ -275,6 +266,23 @@
       </ul>
     </fieldset>
     <:- or Userfiles:><:eif Userfiles:>
+<:include admin/include/user_custom.tmpl optional:>
+    <fieldset>
+      <legend>Information</legend>
+      <div class="full">
+        <label for="adminNotes"><:cfg "site users" display_adminNotes "Notes":><:ifRequired country:> <span class="required">*</span><:or:><:eif:> <:error_img adminNotes:></label>
+        <span>
+          <textarea name="adminNotes" id="adminNotes" class="<:ifError_img adminNotes:>error<:or:><:eif:>"><:old adminNotes siteuser adminNotes:></textarea>
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
+      <:- if UserCan bse_members_user_edit:>
+      <input type="submit" name="a_save" value="Save changes" accesskey="s" Title="AccessKey = s" class="button green" />
+      <:- or UserCan:><:eif UserCan:>
+    </p>
+  </form>
     <:- if And [ifUserCan bse_shop_order_list] [ifUserorders]:>
     <fieldset class="list">
       <legend>Orders</legend>
@@ -310,12 +318,4 @@
       </table>
     </fieldset>
     <:- or And:> <:eif And:>
-<:include admin/include/user_custom.tmpl optional:>
-    <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
-      <:- if UserCan bse_members_user_edit:>
-      <input type="submit" name="a_save" value="Save changes" accesskey="s" Title="AccessKey = s" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
-    </p>
-  </form>
 </div>
