@@ -5,7 +5,7 @@
   <p class="buttons">
     <a href="<:script:>?id=<:article parentid:>" title="Edit Parent" class="button gray small">Parent</a>
     <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" class="button gray small">Preview</a>
-    <:- if UserCan bse_edit_save:article:>
+    <:- if UserCan bse_regen_article:article:>
     <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26m=<:typename article:>%20regenerated" title="Regenerate <:typename article:>" class="button gray small">Regenerate</a>
     <:- or UserCan:><:eif UserCan:>
     <:- if Images:>
