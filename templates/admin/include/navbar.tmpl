@@ -1,89 +1,149 @@
 <nav id="navbar">
-  <ul id="nav"><:if FormLogon:>
+  <ul id="nav">
+    <:- if FormLogon:>
     <li class="current"><a href="#"><:adminuser logon:></a>
       <ul>
         <li><a href="<:adminurl logon a_logoff 1:>">Log out</a></li>
         <li><a href="<:adminurl changepw referer 1:>">Change password</a></li>
       </ul>
-    </li><:or FormLogon:><:eif FormLogon:>
+    </li>
+    <:- or FormLogon:><:eif FormLogon:>
     <li><a href="#">Content</a>
       <ul>
         <li><a href="#">Articles</a>
            <ul>
              <li><a href="<:adminurl add id -1:>">Manage articles</a></li>
+             <:- if UserCan bse_edit_add_child:>
              <li><a href="<:adminurl add parentid -1 level 1 referer 1:>">New article</a></li>
+             <:- or UserCan:><:eif UserCan:>
              <li><a href="<:adminurl add _t load referer 1:>">Load article</a></li>
            </ul>
         </li>
         <li><a href="#">Images</a>
           <ul>
             <li><a href="<:adminurl add id -1 _t img:>">Manage images</a></li>
+            <:- if UserCan bse_edit_images_add:-1 :>
             <li><a href="<:adminurl add id -1 _t imgupload referer 1:>">New image</a></li>
+            <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
         <li><a href="#">Files</a>
           <ul>
             <li><a href="<:adminurl add id -1 _t file:>">Manage files</a></li>
+            <:- if UserCan bse_edit_files_add:-1 :>
             <li><a href="<:adminurl add id -1 _t fileupload referer 1:>">New file</a></li>
+            <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
+        <:- if UserCan bse_edit_save:>
+        <!-- FIXME: find correct permission name -->
         <li><a href="#">Tags</a>
           <ul>
             <li><a href="<:adminurl add id -1 a_tags 1:>">Manage tags</a></li>
           </ul>
         </li>
+        <:- or UserCan:><:eif UserCan:>
         <li><a href="<:adminurl add id 1 preview 1:>">Preview</a></li>
       </ul>
     </li>
+    <:- if Or [ifUserCan bse_members_user_list] [ifUserCan bse_members_user_add] [ifUserCan bse_members_group_list] [ifUserCan bse_members_group_add] [ifUserCan bse_members_file_log]:>
     <li><a href="#">Users</a>
       <ul>
         <li><a href="#">Site users</a>
           <ul>
+            <:- if UserCan bse_members_user_list:>
             <li><a href="<:adminurl siteusers:>">Manage users</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_members_user_add:>
             <li><a href="<:adminurl siteusers a_addform 1 referer 1:>">New user</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_members_group_list:>
             <li><a href="<:adminurl siteusers a_grouplist 1:>">Manage groups</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_members_group_add:>
             <li><a href="<:adminurl siteusers a_addgroupform 1:>">New group</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_members_file_log:>
             <li><a href="<:adminurl siteusers a_fileaccesslog 1:>">File download log</a></li>
+            <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
         <li><a href="#">Admin users</a>
           <ul>
+            <:- if UserCan bse_admin_user_list:>
             <li><a href="<:adminurl adminusers:>">Manage users</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_admin_user_add:>
             <li><a href="<:adminurl adminusers a_adduserform 1 referer 1:>">New user</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_admin_group_list:>
             <li><a href="<:adminurl adminusers a_groups 1:>">Manage groups</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_admin_group_add:>
             <li><a href="<:adminurl adminusers a_addgroupform 1 referer 1:>">New group</a></li>
+            <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
       </ul>
     </li>
+    <:- or Or:><:eif Or:>
+    <:- if Or [ifUserCan bse_edit_add_child:3:] [ifUserCan bse_shop_order_list]:>
     <li><a href="#">Shop</a>
       <ul>
-        <li><a href="<:adminurl shopadmin:>">Manage catalogs</a></li>
+        <:- if UserCan bse_edit_add_child:3:>
+        <li><a href="<:adminurl shopadmin:>">Manage products</a></li>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_edit_add_child:3 :>
         <li><a href="<:adminurl add parentid 3 type Catalog referer 1:>">New catalog</a></li>
         <li><a href="<:adminurl add parentid 3 type Product referer 1:>">New product</a></li>
+        <:- or UserCan:><:eif UserCan:>
         <li><a href="#">Orders</a>
           <ul>
+            <:- if UserCan bse_shop_order_list:>
             <li><a href="<:adminurl shopadmin order_list 1:>">Manage orders</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_shop_order_detail:>
             <li><a href="<:adminurl shopadmin order_list 1 template order_load referer 1:>">Load order</a></li>
+            <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
       </ul>
     </li>
+    <:- or Or:><:eif Or:>
     <li><a href="#">System</a>
       <ul>
         <li><a href="#"><:release:></a></li>
+        <:- if Or [ifUserCan bse_regen_all] [ifUserCan bse_regen_extras]:>
         <li><a href="#">Regenerate</a>
           <ul>
+            <:- if UserCan bse_regen_all:>
             <li><a href="<:adminurl generate progress 1:>">All</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_regen_extras:>
             <li><a href="<:adminurl generate id extras progress 1:>">Extras</a></li>
+            <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
+        <:- or Or:><:eif Or:>
+        <:- if Or [ifUserCan bse_back_start] [ifUserCan bse_back_stop] [ifUserCan bse_back_detail]:>
         <li><a href="<:adminurl backmon:>">Background processing</a>
+        <:- or Or:><:eif Or:>
+        <:- if Or [ifUserCan bse_msg_view] [ifUserCan bse_msg_save]  [ifUserCan bse_msg_delete]:>
         <li><a href="<:adminurl messages:>">Manage system messages</a></li>
+        <:- or Or:><:eif Or:>
+        <:- if UserCan bse_modules:>
         <li><a href="<:adminurl modules:>">Check module versions</a></li>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_log_list:>
         <li><a href="<:adminurl log:>">System activity log</a></li>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_regen_extras:>
         <li><a href="<:adminurl pregen:>">Preview pregenerated pages</a></li>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_reports_list:>
+        <!-- FIXME: this is not a real permission name -->
         <li><a href="<:adminurl report:>">System reports</a></li>
+        <:- or UserCan:><:eif UserCan:>
       </ul>
     </li>
   </ul>
