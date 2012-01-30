@@ -1,0 +1,62 @@
+  <p class="buttons">
+    <a href="<:adminurl add:>?id=<:catalog id:>&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" class="button gray small">Catalog</a>
+    <a href="<:adminurl add:>?id=<:catalog id:>&amp;preview=1" class="button gray small">Preview</a>
+    <:- if UserCan bse_edit_add_child:[shopid]:>
+    <a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Product&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" class="button blue small">Add Product</a>
+    <:- if Cfg seminars enabled:>
+    <a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" class="button blue small">Add Seminar</a>
+    <:- or Cfg:><:eif Cfg:>
+    <:- or UserCan:><:eif UserCan:>
+  </p> 
+  <:- if Products:>
+  <fieldset class="list">
+    <legend>Products</legend>
+    <:- if UserCan bse_edit_reorder_children:[shopid]:>
+    Sort by:
+    <ul class="meta group">
+      <li><a href="<:adminurl reorder:>?parentid=<:catalog id:>&amp;sort=title&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Btitle%23catalog<:catalog id:>">title</a></li>
+      <li><a href="<:adminurl reorder:>?parentid=<:catalog id:>&amp;sort=id&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Bdate%23catalog<:catalog id:>">date</a></li>
+      <li><a href="<:adminurl reorder:>?parentid=<:catalog id:>&amp;sort=listed&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Blisted%23catalog<:catalog id:>">listed</a></li>
+      <li><a href="<:adminurl reorder:>?parentid=<:catalog id:>&amp;reverse=1&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bin%2Breverse%23catalog<:catalog id:>">reverse</a></li>
+    </ul>
+    <:- or UserCan:><:eif UserCan:>
+    <table class="full">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Product Code</th>
+          <th>Retail</th>
+          <th><!-- Actions --></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:- iterator begin products:>
+        <tr>
+          <td><:product id:></td>
+          <td><span class="listed <:ifProduct listed:>green<:or:>gray<:eif:>"></span> <a href="<:adminurl add:>?id=<:product id:>&amp;preview=1"><:product title:></a></td>
+          <td><:product product_code:></td>
+          <td><:cfg shop currency "$":><:number money [product retailPrice]:></td>
+          <td class="actions">
+            <a href="<:adminurl add:>?id=<:product id:>&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" class="button gray small">Edit</a>
+            <:- if UserCan bse_edit_delete_article:product:>
+            <a href="<:adminurl add:>?id=<:product id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" onclick="return window.confirm('Are you sure you want to delete this Product?')" class="button red small">Delete</a>
+            <:- or UserCan:>
+            <a class="button red small disabled">Delete</a>
+            <:- eif UserCan:>
+            <!--:move:-->
+          </td>
+        </tr>
+        <:- iterator end products:>
+      </tbody>
+    </table>
+  </fieldset>
+  <:- or Products:>
+  <p>This catalog contains no products</p>
+  <:- eif Products:>
+  <:- if Subcats:>
+  <:- iterator begin subcats:> 
+  <h2 id="catalog<:subcat id:>"><:subcat title:> <!--:movecat:--></h2>
+<:embed subcat include/catalog.tmpl:>
+  <:- iterator end subcats:>
+  <:- or Subcats:><:eif Subcats:>
