@@ -34,7 +34,7 @@
         <:- iterator begin products:>
         <tr>
           <td><:product id:></td>
-          <td><span class="listed <:ifProduct listed:>green<:or:>gray<:eif:>"></span> <a href="<:adminurl add:>?id=<:product id:>&amp;preview=1"><:product title:></a></td>
+          <td><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" product release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" product expire]:>red<:case Eq [product listed] 0 :>gray<:case Eq [product listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <a href="<:adminurl add:>?id=<:product id:>&amp;preview=1"><:product title:></a></td>
           <td><:product product_code:></td>
           <td><:cfg shop currency "$":><:number money [product retailPrice]:></td>
           <td class="actions">
