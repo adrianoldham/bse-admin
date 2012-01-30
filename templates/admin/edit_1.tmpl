@@ -342,7 +342,7 @@
       <div>
         <label for="expire">Expiry date <:error_img expire:></label>
         <span>
-          <input type="text" name="expire" id="expire" value="<:switch:><:case New:><:old expire:><:case Match [article expire] [default expire]:><:case default:><:old expire date "%d/%m/%Y" article expire:><:endswitch:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm expire:><:or:>disabled="disabled" <:eif:>class="<:ifError_img expire:>error<:or:><:eif:>" />
+          <input type="text" name="expire" id="expire" value="<:switch:><:case New:><:old expire:><:case Match [article expire] "^9999-12-31":><:case default:><:old expire date "%d/%m/%Y" article expire:><:endswitch:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm expire:><:or:>disabled="disabled" <:eif:>class="<:ifError_img expire:>error<:or:><:eif:>" />
           <:help edit expire:>
         </span>
       </div>
