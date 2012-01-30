@@ -581,7 +581,7 @@
   <:- if New:><:or New:>
   <:- if Or [ifUserCan bse_admin_user_save_artrights] [ifUserCan bse_admin_group_save_artrights]:>
   <form action="<:adminurl adminusers:>" method="post">
-    <input type="hidden" name="id" value="<: article id:>" />
+    <input type="hidden" name="id" value="<:article id:>" />
     <fieldset>
       <legend>Permissions</legend>
       <div>
@@ -591,14 +591,14 @@
             <:- if Adminusers:>
             <optgroup label="Admin Users">
               <:- iterator begin adminusers:>
-              <option value="<:iadminuser id:>"><:iadminuser logon:> <:ifIadminuser name:>(<:iadminuser name:>)<:or:><:eif:></option>
+              <option value="<:iadminuser id:>"><:iadminuser logon:><:ifIadminuser name:> (<:iadminuser name:>)<:or:><:eif:></option>
               <:- iterator end adminusers:>
             </optgroup>
             <:- or Adminusers:><:eif Adminusers:>
             <:- if Admingroups:>
             <optgroup label="Admin Groups">
               <:- iterator begin admingroups:>
-              <option value="<:iadmingroup id:>"><:iadmingroup name:> <:ifIadmingroup description:>(<:iadmingroup description:>)<:or:><:eif:></option>
+              <option value="<:iadmingroup id:>"><:iadmingroup name:><:ifIadmingroup description:> (<:iadmingroup description:>)<:or:><:eif:></option>
               <:- iterator end admingroups:>
             </optgroup>
             <:- or Admingroups:><:eif Admingroups:>
