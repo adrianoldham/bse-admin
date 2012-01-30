@@ -34,7 +34,7 @@
       <:help adduser aperms:>
     </fieldset>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:param r:><:case Cgi referer:><:referer:><:case default:><:adminurl add id [article id]:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:adminurl add id [article id]:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
       <:- if UserCan bse_admin_user_save_artrights:>
       <input type="submit" name="a_saveuserart" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or UserCan:><:eif UserCan:>
