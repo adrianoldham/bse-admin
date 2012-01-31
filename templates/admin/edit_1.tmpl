@@ -522,7 +522,7 @@
     <:- if New:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article parentid:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
-      <:- if UserCan bse_edit_save:article:>
+      <:- if UserCan bse_edit_save:[article parentid]:>
       <input type="submit" name="save" value="Create <:typename article:>" accesskey="c" title="AccessKey = c" class="button green" />
       <:- or UserCan:><:eif UserCan:>
     </p>
