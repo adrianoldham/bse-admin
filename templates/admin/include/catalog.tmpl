@@ -14,10 +14,10 @@
     <:- if UserCan bse_edit_reorder_children:[shopid]:>
     Sort by:
     <ul class="meta group">
-      <li><a href="<:adminurl reorder:>?parentid=<:catalog id:>&amp;sort=title&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Btitle%23catalog<:catalog id:>">title</a></li>
-      <li><a href="<:adminurl reorder:>?parentid=<:catalog id:>&amp;sort=id&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Bdate%23catalog<:catalog id:>">date</a></li>
-      <li><a href="<:adminurl reorder:>?parentid=<:catalog id:>&amp;sort=listed&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Blisted%23catalog<:catalog id:>">listed</a></li>
-      <li><a href="<:adminurl reorder:>?parentid=<:catalog id:>&amp;reverse=1&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bin%2Breverse%23catalog<:catalog id:>">reverse</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:catalog id:>&amp;sort=title&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Btitle%23catalog<:catalog id:>">title</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:catalog id:>&amp;sort=id&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Bdate%23catalog<:catalog id:>">date</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:catalog id:>&amp;sort=listed&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Blisted%23catalog<:catalog id:>">listed</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:catalog id:>&amp;reverse=1&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bin%2Breverse%23catalog<:catalog id:>">reverse</a></li>
     </ul>
     <:- or UserCan:><:eif UserCan:>
     <table class="full">
