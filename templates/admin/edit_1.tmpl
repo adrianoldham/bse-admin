@@ -498,7 +498,7 @@
       <ul class="children files">
         <:- iterator begin files:>
         <li>
-          <a href="<:target user download_file file [file id]:>"><span class="listed <:switch:><:case File hide_from_list:>gray<:case FileExists:>green<:case default:>orange<:endswitch:>"></span> <:file displayName |h:></a><:ifFile name:> (<:file name:>)<:or:><:eif:>
+          <a href="<:target user download_file file [file id]:>"><span class="listed <:switch:><:case File hide_from_list:>orange<:case FileExists:>green<:case default:>red<:endswitch:>"></span> <:file displayName |h:></a><:ifFile name:> (<:file name:>)<:or:><:eif:>
           <span>
             <:- if UserCan bse_edit_files_save:article:>
             <a href="<:script:>?a_edit_file=1&amp;id=<:article id:>&amp;file_id=<:file id:>" class="button gray small">Edit</a>
