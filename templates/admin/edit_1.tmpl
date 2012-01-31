@@ -164,7 +164,7 @@
       <div>
         <label for="leadTime">Lead time <:error_img leadTime:></label>
         <span>
-          <input type="text" name="leadTime" id="leadTime" value="<:old leadTime:>" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>class="<:ifError_img leadTime:>error<:or:><:eif:>" />
+          <input type="text" name="leadTime" id="leadTime" value="<:old leadTime:>" placeholder="days" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>class="<:ifError_img leadTime:>error<:or:><:eif:>" />
           <:help edit leadTime:>
         </span>
       </div>
@@ -310,14 +310,14 @@
       <div>
         <label for="summaryLength">Summary length <:error_img summaryLength:></label>
         <span>
-          <input type="text" name="summaryLength" id="summaryLength" value="<:old summaryLength default summaryLength:>" maxlength="10" <:ifFieldPerm summaryLength:><:or:>disabled="disabled" <:eif:>class="<:ifError_img summaryLength:>error<:or:><:eif:>" />
+          <input type="text" name="summaryLength" id="summaryLength" value="<:old summaryLength default summaryLength:>" placeholder="characters" maxlength="10" <:ifFieldPerm summaryLength:><:or:>disabled="disabled" <:eif:>class="<:ifError_img summaryLength:>error<:or:><:eif:>" />
           <:help edit summaryLength:>
         </span>
       </div>
       <div>
         <label for="threshold">Embed threshold <:error_img threshold:></label>
         <span>
-          <input type="text" name="threshold" id="threshold" value="<:old threshold default threshold:>" maxlength="10" <:ifFieldPerm threshold:><:or:>disabled="disabled" <:eif:>class="<:ifError_img threshold:>error<:or:><:eif:>" />
+          <input type="text" name="threshold" id="threshold" value="<:old threshold default threshold:>" placeholder="children" maxlength="10" <:ifFieldPerm threshold:><:or:>disabled="disabled" <:eif:>class="<:ifError_img threshold:>error<:or:><:eif:>" />
           <:help edit threshold:>
         </span>
       </div>
@@ -393,7 +393,7 @@
       <div>
         <label for="metaKeywords">Meta keywords <:error_img metaKeywords:></label>
         <span>
-          <input type="text" name="metaKeywords" id="metaKeywords" value="<:old metaKeywords article metaKeywords:>" placeholder="Comma separated" maxlength="255" <:ifFieldPerm metaKeywords:><:or:>disabled="disabled" <:eif:>class="<:ifError_img metaKeywords:>error<:or:><:eif:>" />
+          <input type="text" name="metaKeywords" id="metaKeywords" value="<:old metaKeywords article metaKeywords:>" placeholder="comma separated" maxlength="255" <:ifFieldPerm metaKeywords:><:or:>disabled="disabled" <:eif:>class="<:ifError_img metaKeywords:>error<:or:><:eif:>" />
           <:help edit metaKeywords:>
         </span>
       </div>
@@ -407,7 +407,7 @@
       <div>
         <label for="keyword">Local keywords <:error_img keyword:></label>
         <span>
-          <input type="text" name="keyword" id="keyword" value="<:old keyword article keyword:>" placeholder="Comma separated" maxlength="255" <:ifFieldPerm keyword:><:or:>disabled="disabled" <:eif:>class="<:ifError_img keyword:>error<:or:><:eif:>" />
+          <input type="text" name="keyword" id="keyword" value="<:old keyword article keyword:>" placeholder="comma separated" maxlength="255" <:ifFieldPerm keyword:><:or:>disabled="disabled" <:eif:>class="<:ifError_img keyword:>error<:or:><:eif:>" />
           <:help edit keyword:>
         </span>
       </div>
