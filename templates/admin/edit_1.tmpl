@@ -238,9 +238,9 @@
         <label for="parentid">Parent <:error_img parentid:></label>
         <span>
           <select name="parentid" id="parentid"<:ifFieldPerm parentid:><:or:> disabled="disabled"<:eif:>>
-            <option value="">Please select a <:if Eq [article parentid] "-1":>Section<:or Eq:><:parentType:><:eif Eq:></option><:ifFieldPerm parentid:><:or:>
+            <option value="">Please select a <:if Eq [article parentid] "-1":>Section<:or Eq:><:parentType:><:eif Eq:></option><:ifFieldPerm parentid:>
+            <:list:><:or:>
             <option value="" selected="selected"><:parent title:> (<:parent id:>)</option><:eif:>
-            <:list:>
           </select>
           <:help edit section:>
         </span>
