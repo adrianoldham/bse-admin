@@ -19,6 +19,7 @@
              <li><a href="<:adminurl add _t load referer 1:>">Load article</a></li>
            </ul>
         </li>
+        <:- if Or [ifUserCan bse_edit_save] [ifUserCan edit_images_save:-1] [ifUserCan edit_images_add:-1] [ifUserCan edit_images_delete:-1] [ifUserCan edit_images_reorder:-1]:>
         <li><a href="#">Images</a>
           <ul>
             <li><a href="<:adminurl add id -1 _t img:>">Manage images</a></li>
@@ -27,6 +28,8 @@
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
+        <:- or Or:><:eif Or:>
+        <:- if Or [ifUserCan bse_edit_save] [ifUserCan edit_files_save:-1] [ifUserCan edit_files_add:-1] [ifUserCan edit_files_delete:-1] [ifUserCan edit_files_reorder:-1]:>
         <li><a href="#">Files</a>
           <ul>
             <li><a href="<:adminurl add id -1 _t file:>">Manage files</a></li>
@@ -35,6 +38,7 @@
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
+        <:- or Or:><:eif Or:>
         <:- if UserCan bse_edit_save:>
         <!-- FIXME: find correct permission name -->
         <li><a href="#">Tags</a>

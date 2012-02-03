@@ -3,12 +3,12 @@
   <h1><:param title:></h1>
   <p class="buttons">
     <a href="<:adminurl add:>?id=1&amp;preview=1" accesskey="p" title="Preview <:typename article:>" class="button gray small">Preview</a>
-    <:- if Images:>
+    <:if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
     <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button gray small">Images</a>
-    <:- or Images:><:eif Images:>
-    <:- if Files:>
+    <:- or And:><:eif And:>
+    <:if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
     <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button gray small">Files</a>
-    <:- or Files:><:eif Files:>
+    <:- or And:><:eif And:>
     <:- if UserCan bse_edit_add_child:article:>
     <a href="<:script:>?parentid=<:article id:>&amp;type=Article" accesskey="a" title="AccessKey = a" class="button blue small">Add Article</a>
     <:- or UserCan:><:eif UserCan:>

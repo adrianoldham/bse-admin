@@ -8,12 +8,12 @@
     <:- if UserCan bse_regen_article:article:>
     <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26m=<:typename article:>%20regenerated" title="Regenerate <:typename article:>" class="button gray small">Regenerate</a>
     <:- or UserCan:><:eif UserCan:>
-    <:- if Images:>
+    <:if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
     <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button gray small">Images</a>
-    <:- or Images:><:eif Images:>
-    <:- if Files:>
+    <:- or And:><:eif And:>
+    <:if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
     <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button gray small">Files</a>
-    <:- or Files:><:eif Files:>
+    <:- or And:><:eif And:>
     <:- if UserCan bse_edit_add_child:article:>
     <:- if HaveChildType:>
     <:- switch:>
