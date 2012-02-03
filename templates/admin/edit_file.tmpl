@@ -128,12 +128,14 @@
       </fieldset>
     </div>
     <:- iterator end files:>
-    <:- or Files:><:eif Files:>
+    <:- or Files:>
+    <p>There are no files available</p>
+    <:- eif Files:>
     <p class="buttons">
       <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
-      <:- if UserCan bse_edit_files_save:article:>
+      <:- if And [ifFiles] [ifUserCan bse_edit_files_save:article]:>
       <input type="submit" name="filesave" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- or And:><:eif And:>
     </p>
   </form>
 </div>
