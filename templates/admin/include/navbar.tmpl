@@ -46,9 +46,11 @@
         <li><a href="<:adminurl add id 1 preview 1:>">Preview</a></li>
       </ul>
     </li>
-    <:- if Or [ifUserCan bse_members_user_list] [ifUserCan bse_members_user_add] [ifUserCan bse_members_group_list] [ifUserCan bse_members_group_add] [ifUserCan bse_members_file_log]:>
+    <:- switch:>
+    <:- case Or [ifUserCan bse_members_user_list] [ifUserCan bse_members_user_add] [ifUserCan bse_members_group_list] [ifUserCan bse_members_group_add] [ifUserCan bse_members_file_log] [ifUserCan bse_admin_user_list] [ifUserCan bse_admin_user_add] [ifUserCan bse_admin_group_list] [ifUserCan bse_admin_group_add]:>
     <li><a href="#">Users</a>
       <ul>
+        <:- if Or [ifUserCan bse_members_user_list] [ifUserCan bse_members_user_add] [ifUserCan bse_members_group_list] [ifUserCan bse_members_group_add] [ifUserCan bse_members_file_log]:>
         <li><a href="#">Site users</a>
           <ul>
             <:- if UserCan bse_members_user_list:>
@@ -68,6 +70,8 @@
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
+        <:- or Or:><:eif Or:>
+        <:- if Or [ifUserCan bse_admin_user_list] [ifUserCan bse_admin_user_add] [ifUserCan bse_admin_group_list] [ifUserCan bse_admin_group_add]:>
         <li><a href="#">Admin users</a>
           <ul>
             <:- if UserCan bse_admin_user_list:>
@@ -84,10 +88,12 @@
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
+        <:- or Or:><:eif Or:>
       </ul>
     </li>
-    <:- or Or:><:eif Or:>
-    <:- if Or [ifUserCan bse_edit_add_child:3:] [ifUserCan bse_shop_order_list]:>
+    <:- endswitch:>
+    <:- switch:>
+    <:- case Or [ifUserCan bse_edit_add_child:3:] [ifUserCan bse_shop_order_list]:>
     <li><a href="#">Shop</a>
       <ul>
         <:- if UserCan bse_edit_add_child:3:>
@@ -109,7 +115,7 @@
         </li>
       </ul>
     </li>
-    <:- or Or:><:eif Or:>
+    <:- endswitch:>
     <li><a href="#">System</a>
       <ul>
         <li><a href="#"><:release:></a></li>
