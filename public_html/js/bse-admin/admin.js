@@ -9,11 +9,17 @@ document.observe("dom:loaded", dom_init);
 
 function dom_init() {
 
-    if ($('message')) {
-        new Effect.Pulsate($('message'), {
+    var message = $('message');
+    
+    if (message != undefined) {
+        new Effect.Pulsate(message, {
             delay: 2
         });
-    }
+    
+        message.observe('click', function() {
+            new Effect.SlideUp(this);
+       });
+    };
 
 };
 

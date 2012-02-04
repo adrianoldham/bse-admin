@@ -25,7 +25,9 @@
     <:- switch:>
     <:- case Param nomessage:>
     <:- case Message:>
-    <div id="message" class="message<:switch:><:case Error:> error red<:case Match [script] "users":> orange<:case default:> green<:endswitch:>"><:message:></div>
+    <div id="message">
+      <div class="message<:switch:><:case Error:> error red<:case Match [script] "users":> orange<:case default:> green<:endswitch:>"><:message:></div>
+    </div>
     <:- endswitch:>
     <:- switch:>
     <:- case Param nonavbar:>
