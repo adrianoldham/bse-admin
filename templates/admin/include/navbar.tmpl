@@ -17,9 +17,9 @@
            <ul>
              <li><a href="<:adminurl add id -1:>">Manage articles</a></li>
              <:- if UserCan bse_edit_add_child:>
-             <li><a href="<:adminurl add parentid -1 level 1 referer 1:>">New article</a></li>
+             <li><a href="<:adminurl add parentid -1 level 1 referer 1:>">New article…</a></li>
              <:- or UserCan:><:eif UserCan:>
-             <li><a href="<:adminurl add _t load referer 1:>">Load article</a></li>
+             <li><a href="<:adminurl add _t load referer 1:>">Load article…</a></li>
            </ul>
         </li>
         <:- if Or [ifUserCan bse_edit_save] [ifUserCan edit_images_save:-1] [ifUserCan edit_images_add:-1] [ifUserCan edit_images_delete:-1] [ifUserCan edit_images_reorder:-1]:>
@@ -27,7 +27,7 @@
           <ul>
             <li><a href="<:adminurl add id -1 _t img:>">Manage images</a></li>
             <:- if UserCan bse_edit_images_add:-1 :>
-            <li><a href="<:adminurl add id -1 _t imgupload referer 1:>">New image</a></li>
+            <li><a href="<:adminurl add id -1 _t imgupload referer 1:>">New image…</a></li>
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
@@ -37,7 +37,7 @@
           <ul>
             <li><a href="<:adminurl add id -1 _t file:>">Manage files</a></li>
             <:- if UserCan bse_edit_files_add:-1 :>
-            <li><a href="<:adminurl add id -1 _t fileupload referer 1:>">New file</a></li>
+            <li><a href="<:adminurl add id -1 _t fileupload referer 1:>">New file…</a></li>
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
@@ -64,13 +64,13 @@
             <li><a href="<:adminurl siteusers:>">Manage users</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_members_user_add:>
-            <li><a href="<:adminurl siteusers a_addform 1 referer 1:>">New user</a></li>
+            <li><a href="<:adminurl siteusers a_addform 1 referer 1:>">New user…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_members_group_list:>
             <li><a href="<:adminurl siteusers a_grouplist 1:>">Manage groups</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_members_group_add:>
-            <li><a href="<:adminurl siteusers a_addgroupform 1:>">New group</a></li>
+            <li><a href="<:adminurl siteusers a_addgroupform 1:>">New group…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_members_file_log:>
             <li><a href="<:adminurl siteusers a_fileaccesslog 1:>">File download log</a></li>
@@ -85,13 +85,13 @@
             <li><a href="<:adminurl adminusers:>">Manage users</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_admin_user_add:>
-            <li><a href="<:adminurl adminusers a_adduserform 1 referer 1:>">New user</a></li>
+            <li><a href="<:adminurl adminusers a_adduserform 1 referer 1:>">New user…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_admin_group_list:>
             <li><a href="<:adminurl adminusers a_groups 1:>">Manage groups</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_admin_group_add:>
-            <li><a href="<:adminurl adminusers a_addgroupform 1 referer 1:>">New group</a></li>
+            <li><a href="<:adminurl adminusers a_addgroupform 1 referer 1:>">New group…</a></li>
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
@@ -107,8 +107,8 @@
         <li><a href="#">Products</a>
           <ul>
             <li><a href="<:adminurl shopadmin:>">Manage products</a></li>
-            <li><a href="<:adminurl add parentid 3 type Product referer 1:>">New product</a></li>
-            <li><a href="<:adminurl add parentid 3 type Catalog referer 1:>">New catalog</a></li>
+            <li><a href="<:adminurl add parentid 3 type Product referer 1:>">New product…</a></li>
+            <li><a href="<:adminurl add parentid 3 type Catalog referer 1:>">New catalog…</a></li>
           </ul>
         </li>
         <:- or UserCan:><:eif UserCan:>
@@ -118,7 +118,7 @@
             <li><a href="<:adminurl shopadmin order_list 1:>">Manage orders</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_shop_order_detail:>
-            <li><a href="<:adminurl shopadmin order_list 1 template order_load referer 1:>">Load order</a></li>
+            <li><a href="<:adminurl shopadmin order_list 1 template order_load referer 1:>">Load order…</a></li>
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
