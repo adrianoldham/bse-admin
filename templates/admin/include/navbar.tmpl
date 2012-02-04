@@ -101,11 +101,13 @@
     <li><a href="#">Shop</a>
       <ul>
         <:- if UserCan bse_edit_add_child:3:>
-        <li><a href="<:adminurl shopadmin:>">Manage products</a></li>
-        <:- or UserCan:><:eif UserCan:>
-        <:- if UserCan bse_edit_add_child:3 :>
-        <li><a href="<:adminurl add parentid 3 type Catalog referer 1:>">New catalog</a></li>
-        <li><a href="<:adminurl add parentid 3 type Product referer 1:>">New product</a></li>
+        <li><a href="#">Products</a>
+          <ul>
+            <li><a href="<:adminurl shopadmin:>">Manage products</a></li>
+            <li><a href="<:adminurl add parentid 3 type Product referer 1:>">New product</a></li>
+            <li><a href="<:adminurl add parentid 3 type Catalog referer 1:>">New catalog</a></li>
+          </ul>
+        </li>
         <:- or UserCan:><:eif UserCan:>
         <li><a href="#">Orders</a>
           <ul>
