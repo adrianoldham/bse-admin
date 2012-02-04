@@ -1,6 +1,7 @@
 //  We really need a proper loading script like scriptaculous
 
 //document.write('<script type="text/javascript" src="/js/combo.packed.js"></script>');
+document.write('<script type="text/javascript" src="/js/bse-admin/dropmenu.js"></script>');
 
 // wait for DOM to load before initialising
 
@@ -21,6 +22,20 @@ function dom_init() {
        });
     };
 
+    var menu = new DropMenu('#nav li', {
+        showLeft: null,
+        effects: {
+            show: [ Effect.Appear ],
+            hide: [ Effect.Fade ],
+            showDuration: 0.1,
+            hideDuration: 0.5,
+            transition: Effect.Transitions.linear
+        },
+        showDelay: 0.2,
+        hideDelay: 0.5,
+        osMode: true,
+        rootItems: '#nav > li'
+    });
 };
 
 function window_init() {
