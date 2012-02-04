@@ -50,6 +50,18 @@
           </ul>
         </li>
         <:- or UserCan:><:eif UserCan:>
+        <:- if Or [ifUserCan bse_regen_all] [ifUserCan bse_regen_extras]:>
+        <li><a href="#">Regenerate</a>
+          <ul>
+            <:- if UserCan bse_regen_all:>
+            <li><a href="<:adminurl generate progress 1:>">All site pages</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_regen_extras:>
+            <li><a href="<:adminurl generate id extras progress 1:>">Extra system pages</a></li>
+            <:- or UserCan:><:eif UserCan:>
+          </ul>
+        </li>
+        <:- or Or:><:eif Or:>
         <li><a href="<:adminurl add id 1 preview 1:>">Preview</a></li>
       </ul>
     </li>
@@ -128,18 +140,6 @@
     <li><a href="#">System</a>
       <ul>
         <li><a href="#"><:release:></a></li>
-        <:- if Or [ifUserCan bse_regen_all] [ifUserCan bse_regen_extras]:>
-        <li><a href="#">Regenerate</a>
-          <ul>
-            <:- if UserCan bse_regen_all:>
-            <li><a href="<:adminurl generate progress 1:>">All</a></li>
-            <:- or UserCan:><:eif UserCan:>
-            <:- if UserCan bse_regen_extras:>
-            <li><a href="<:adminurl generate id extras progress 1:>">Extras</a></li>
-            <:- or UserCan:><:eif UserCan:>
-          </ul>
-        </li>
-        <:- or Or:><:eif Or:>
         <:- if Or [ifUserCan bse_back_start] [ifUserCan bse_back_stop] [ifUserCan bse_back_detail]:>
         <li><a href="<:adminurl backmon:>">Background processing</a>
         <:- or Or:><:eif Or:>
