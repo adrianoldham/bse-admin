@@ -1,8 +1,11 @@
 <nav id="navbar">
   <ul id="nav">
     <:- if FormLogon:>
-    <li class="current"><a href="#"><:adminuser logon:></a>
+    <li><a href="#"><:adminuser logon:></a>
       <ul>
+        <:- if Adminuser name:>
+        <li class="disabled"><span><:adminuser name:></span></li>
+        <:- or Adminuser:><:eif Adminuser:>
         <li><a href="<:adminurl logon a_logoff 1:>">Log out</a></li>
         <li><a href="<:adminurl changepw referer 1:>">Change password</a></li>
       </ul>
