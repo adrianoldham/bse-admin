@@ -139,26 +139,26 @@
     <:- endswitch:>
     <li><a href="#">System</a>
       <ul>
-        <li><a href="#"><:release:></a></li>
-        <:- if Or [ifUserCan bse_back_start] [ifUserCan bse_back_stop] [ifUserCan bse_back_detail]:>
-        <li><a href="<:adminurl backmon:>">Background processing</a>
-        <:- or Or:><:eif Or:>
-        <:- if Or [ifUserCan bse_msg_view] [ifUserCan bse_msg_save]  [ifUserCan bse_msg_delete]:>
-        <li><a href="<:adminurl messages:>">Manage system messages</a></li>
-        <:- or Or:><:eif Or:>
-        <:- if UserCan bse_modules:>
-        <li><a href="<:adminurl modules:>">Check module versions</a></li>
-        <:- or UserCan:><:eif UserCan:>
+        <li class="disabled"><span><:release:></span></li>
         <:- if UserCan bse_log_list:>
         <li><a href="<:adminurl log:>">System activity log</a></li>
-        <:- or UserCan:><:eif UserCan:>
-        <:- if UserCan bse_regen_extras:>
-        <li><a href="<:adminurl pregen:>">Preview pregenerated pages</a></li>
         <:- or UserCan:><:eif UserCan:>
         <:- if UserCan bse_reports_list:>
         <!-- FIXME: this is not a real permission name -->
         <li><a href="<:adminurl report:>">System reports</a></li>
         <:- or UserCan:><:eif UserCan:>
+        <:- if Or [ifUserCan bse_back_start] [ifUserCan bse_back_stop] [ifUserCan bse_back_detail]:>
+        <li><a href="<:adminurl backmon:>">Background processing</a>
+        <:- or Or:><:eif Or:>
+        <:- if UserCan bse_modules:>
+        <li><a href="<:adminurl modules:>">Check module versions</a></li>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_regen_extras:>
+        <li><a href="<:adminurl pregen:>">Preview pregenerated pages</a></li>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if Or [ifUserCan bse_msg_view] [ifUserCan bse_msg_save]  [ifUserCan bse_msg_delete]:>
+        <li><a href="<:adminurl messages:>">Manage system messages</a></li>
+        <:- or Or:><:eif Or:>
       </ul>
     </li>
   </ul>
