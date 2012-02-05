@@ -61,7 +61,9 @@ select, input, textarea, button {
 	margin: 0;
 }
 .hidden {
-    display: none !important;
+    position: absolute !important;
+    left: -9999em !important;
+    top: -9999em !important;
 }
 .left {
 	float: left;
