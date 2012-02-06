@@ -23,75 +23,79 @@
           <:help file name:>
         </span>
       </div>
+    </fieldset>
+    <details>
+      <summary>More attributes</summary>
+      <fieldset>
+        <legend>Content</legend>
+        <div>
+          <label for="description">Description <:error_img description:></label>
+          <span>
+            <input type="text" name="description" id="description" value="<:old description:>" class="<:ifError_img description:>error<:or:><:eif:>" />
+            <:help file description:>
+          </span>
+        </div>
+        <div>
+          <label for="notes">Notes <:error_img notes:></label>
+          <span>
+            <textarea name="notes" id="notes" class="<:ifError_img notes:>error<:or:><:eif:>"><:old notes:></textarea>
+            <:help file notes:>
+          </span>
+        </div>
       </fieldset>
       <fieldset>
-      <legend>Content</legend>
-       <div>
-        <label for="description">Description <:error_img description:></label>
-        <span>
-          <input type="text" name="description" id="description" value="<:old description:>" class="<:ifError_img description:>error<:or:><:eif:>" />
-          <:help file description:>
-        </span>
-      </div>
-      <div>
-        <label for="notes">Notes <:error_img notes:></label>
-        <span>
-          <textarea name="notes" id="notes" class="<:ifError_img notes:>error<:or:><:eif:>"><:old notes:></textarea>
-          <:help file notes:>
-        </span>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>Properties</legend>
-      <div>
-        <label for="contentType">Content type <:error_img contentType:></label>
-        <span>
-          <input type="text" name="contentType" id="contentType" value="<:old contentType:>" placeholder="MIME format" class="<:ifError_img contentType:>error<:or:><:eif:>" />
-          <:help file contentType:>
-        </span>
-      </div>
-      <div>
-        <label for="download">Force download <:error_img download:></label>
-        <span>
-          <input type="checkbox" name="download" id="download" value="1" <:ifOld download:>checked="checked" <:or:><:eif:>/>
-          <:help file download:>
-        </span>
-      </div>
-      <div>
-        <label for="hide_from_list">Hide from list <:error_img hide_from_list:></label>
-        <span>
-          <input type="checkbox" name="hide_from_list" id="hide_from_list" value="1" <:ifOld hide_from_list:>checked="checked" <:or:><:eif:>/>
-          <:help file hide_from_list:>
-        </span>
-      </div>
-      <:- if Match [article generator] "Product":>
-      <div>
-        <label for="forSale">Require payment <:error_img forSale:></label>
-        <span>
-          <input type="checkbox" name="forSale" id="forSale" value="1" <:ifOld forSale:>checked="checked" <:or:><:eif:>/>
-          <:help file forSale:>
-        </span>
-      </div>
-      <:- or Match:><:eif Match:>
-      <div>
-        <label for="requireUser">Require login <:error_img requireUser:></label>
-        <span>
-          <input type="checkbox" name="requireUser" id="requireUser" value="1" <:ifOld requireUser:>checked="checked" <:or:><:eif:>/>
-          <:help file requireUser:>
-        </span>
-      </div>
-      <div>
-        <label for="storage">Storage <:error_img storage:></label>
-        <span>
-          <select name="storage" id="storage">
-            <option value="">(Auto)</option><:iterator begin file_stores:>
-            <option value="<:file_store name:>" <:ifOld storage:>selected="selected"<:or:><:eif:>><:file_store description:></option>
-            <:- iterator end file_stores:>
-          </select>
-          <:help file storage:>
-        </span>
-      </div>
-    </fieldset>
+        <legend>Properties</legend>
+        <div>
+          <label for="contentType">Content type <:error_img contentType:></label>
+          <span>
+            <input type="text" name="contentType" id="contentType" value="<:old contentType:>" placeholder="MIME format" class="<:ifError_img contentType:>error<:or:><:eif:>" />
+            <:help file contentType:>
+          </span>
+        </div>
+        <div>
+          <label for="download">Force download <:error_img download:></label>
+          <span>
+            <input type="checkbox" name="download" id="download" value="1" <:ifOld download:>checked="checked" <:or:><:eif:>/>
+            <:help file download:>
+          </span>
+        </div>
+        <div>
+          <label for="hide_from_list">Hide from list <:error_img hide_from_list:></label>
+          <span>
+            <input type="checkbox" name="hide_from_list" id="hide_from_list" value="1" <:ifOld hide_from_list:>checked="checked" <:or:><:eif:>/>
+            <:help file hide_from_list:>
+          </span>
+        </div>
+        <:- if Match [article generator] "Product":>
+        <div>
+          <label for="forSale">Require payment <:error_img forSale:></label>
+          <span>
+            <input type="checkbox" name="forSale" id="forSale" value="1" <:ifOld forSale:>checked="checked" <:or:><:eif:>/>
+            <:help file forSale:>
+          </span>
+        </div>
+        <:- or Match:><:eif Match:>
+        <div>
+          <label for="requireUser">Require login <:error_img requireUser:></label>
+          <span>
+            <input type="checkbox" name="requireUser" id="requireUser" value="1" <:ifOld requireUser:>checked="checked" <:or:><:eif:>/>
+            <:help file requireUser:>
+          </span>
+        </div>
+        <div>
+          <label for="storage">Storage <:error_img storage:></label>
+          <span>
+            <select name="storage" id="storage">
+              <option value="">(Auto)</option>
+              <:- iterator begin file_stores:>
+              <option value="<:file_store name:>" <:ifOld storage:>selected="selected"<:or:><:eif:>><:file_store description:></option>
+              <:- iterator end file_stores:>
+            </select>
+            <:help file storage:>
+          </span>
+        </div>
+      </fieldset>
+    </details>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
       <:- if UserCan bse_edit_files_add:article:>

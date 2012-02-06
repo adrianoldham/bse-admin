@@ -62,35 +62,38 @@
           </span>
         </div>
       </fieldset>
-      <fieldset>
-        <legend>Properties</legend>
-        <div>
-          <label for="alt">Alt <:error_img [concatenate alt [image id]]:></label>
-          <span>
-            <input type="text" name="alt<:image id:>" id="alt" value="<:oldi [concatenate alt [image id]] 0 image alt:>" class="<:ifError_img [concatenate alt [image id]]:>error<:or:><:eif:>" />
-            <:help image alt:>
-          </span>
-        </div>
-        <div>
-          <label for="url">URL <:error_img [concatenate url [image id]]:></label>
-          <span>
-            <input type="text" name="url<:image id:>" id="url" value="<:oldi [concatenate url [image id]] 0 image url:>" class="<:ifError_img [concatenate url [image id]]:>error<:or:><:eif:>" />
-            <:help image url:>
-          </span>
-        </div>
-        <div>
-          <label for="storage<:image id:>">Storage <:error_img [concatenate storage [image id]]:></label>
-          <span>
-            <select name="storage<:image id:>" id="storage<:image id:>">
-              <option value="">(Auto)</option>
-              <:- iterator begin image_stores:>
-              <option value="<:image_store name:>" <:ifEq [oldi [concatenate storage [image id]] 0 image storage] [image_store name]:>selected="selected"<:or:><:eif:>><:image_store description:></option>
-              <:- iterator end image_stores:>
-            </select>
-            <:help image storage:>
-          </span>
-        </div>
-      </fieldset>
+      <details>
+        <summary>More attributes</summary>
+        <fieldset>
+          <legend>Properties</legend>
+          <div>
+            <label for="alt">Alt <:error_img [concatenate alt [image id]]:></label>
+            <span>
+              <input type="text" name="alt<:image id:>" id="alt" value="<:oldi [concatenate alt [image id]] 0 image alt:>" class="<:ifError_img [concatenate alt [image id]]:>error<:or:><:eif:>" />
+              <:help image alt:>
+            </span>
+          </div>
+          <div>
+            <label for="url">URL <:error_img [concatenate url [image id]]:></label>
+            <span>
+              <input type="text" name="url<:image id:>" id="url" value="<:oldi [concatenate url [image id]] 0 image url:>" class="<:ifError_img [concatenate url [image id]]:>error<:or:><:eif:>" />
+              <:help image url:>
+            </span>
+          </div>
+          <div>
+            <label for="storage<:image id:>">Storage <:error_img [concatenate storage [image id]]:></label>
+            <span>
+              <select name="storage<:image id:>" id="storage<:image id:>">
+                <option value="">(Auto)</option>
+                <:- iterator begin image_stores:>
+                <option value="<:image_store name:>" <:ifEq [oldi [concatenate storage [image id]] 0 image storage] [image_store name]:>selected="selected"<:or:><:eif:>><:image_store description:></option>
+                <:- iterator end image_stores:>
+              </select>
+              <:help image storage:>
+            </span>
+          </div>
+        </fieldset>
+      </details>
     </div>
     <:- iterator end images:>
     <:- or Images:>

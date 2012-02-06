@@ -2,6 +2,7 @@
 
 //document.write('<script type="text/javascript" src="/js/combo.packed.js"></script>');
 document.write('<script type="text/javascript" src="/js/bse-admin/dropmenu.js"></script>');
+document.write('<script type="text/javascript" src="/js/bse-admin/opendetails.js"></script>');
 
 // wait for DOM to load before initialising
 
@@ -36,6 +37,8 @@ function dom_init() {
         osMode: true,
         rootItems: '#nav > li'
     });
+
+    var openDetails = OpenDetails();
 };
 
 function window_init() {

@@ -57,75 +57,78 @@
           </span>
         </div>
       </fieldset>
-      <fieldset>
-        <legend>Content</legend>
-        <div>
-          <label for="description_<:file id:>">Description <:error_img [concatenate description_ [file id]]:></label>
-          <span>
-            <input type="text" name="description_<:file id:>" id="description_<:file id:>" value="<:oldi [concatenate description_ [file id]] 0 file description:>" class="<:ifError_img [concatenate description_ [file id]]:>error<:or:><:eif:>" />
-            <:help file description:>
-          </span>
-        </div>
-        <div>
-          <label for="notes_<:file id:>">Notes <:error_img [concatenate notes_ [file id]]:></label>
-          <span>
-            <textarea name="notes_<:file id:>" id="notes_<:file id:>" class="<:ifError_img [concatenate notes_ [file id]]:>error<:or:><:eif:>"><:oldi [concatenate notes_ [file id]] 0 file notes:></textarea>
-            <:help file notes:>
-          </span>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Properties</legend>
-        <div>
-          <label for="contentType_<:file id:>">Content type <:error_img [concatenate contentType_ [file id]]:></label>
-          <span>
-            <input type="text" name="contentType_<:file id:>" id="contentType_<:file id:>" value="<:file contentType:>" placeholder="MIME format" class="<:ifError_img [concatenate contentType_ [file id]]:>error<:or:><:eif:>" />
-            <:help file contentType:>
-          </span>
-        </div>
-        <div>
-          <label for="download_<:file id:>">Force download <:error_img  [concatenate download_ [file id]]:></label>
-          <span>
-            <input type="checkbox" name="download_<:file id:>" id="download_<:file id:>" value="1" <:ifFile download:>checked="checked" <:or:><:eif:>/>
-            <:help file download:>
-          </span>
-        </div>
-        <div>
-          <label for="hide_from_list">Hide from list <:error_img  [concatenate hide_from_list_ [file id]]:></label>
-          <span>
-            <input type="checkbox" name="hide_from_list_<:file id:>" id="hide_from_list" value="1" <:ifFile hide_from_list:>checked="checked" <:or:><:eif:>/>
-            <:help file hide_from_list:>
-          </span>
-        </div>
-        <:- if Match [article generator] "Product":>
-        <div>
-          <label for="forSale_<:file id:>">Require payment <:error_img [concatenate forSale_ [file id]]:></label>
-          <span>
-            <input type="checkbox" name="forSale_<:file id:>" id="forSale_<:file id:>" <:ifFile forSale:>checked="checked" <:or:><:eif:>/>
-            <:help file forSale:>
-          </span>
-        </div>
-        <:- or Match:><:eif Match:>
-        <div>
-          <label for="requireUser_<:file id:>">Require login <:error_img [concatenate requireUser_ [file id]]:></label>
-          <span>
-            <input type="checkbox" name="requireUser_<:file id:>" id="requireUser_<:file id:>" <:ifFile requireUser:>checked="checked" <:or:><:eif:>/>
-            <:help file requireUser:>
-          </span>
-        </div>
-        <div>
-          <label for="storage_<:file id:>">Storage <:error_img storage:></label>
-          <span>
-            <select name="storage_<:file id:>" id="storage_<:file id:>">
-              <option value="">(Auto)</option>
-              <:- iterator begin file_stores:>
-              <option value="<:file_store name:>" <:ifEq [oldi [concatenate storage_ [file id]] 0 file storage] [file_store name]:>selected="selected"<:or:><:eif:>><:file_store description:></option>
-              <:- iterator end file_stores:>
-            </select>
-            <:help file storage:>
-          </span>
-        </div>
-      </fieldset>
+      <details>
+        <summary>More attributes</summary>
+        <fieldset>
+          <legend>Content</legend>
+          <div>
+            <label for="description_<:file id:>">Description <:error_img [concatenate description_ [file id]]:></label>
+            <span>
+              <input type="text" name="description_<:file id:>" id="description_<:file id:>" value="<:oldi [concatenate description_ [file id]] 0 file description:>" class="<:ifError_img [concatenate description_ [file id]]:>error<:or:><:eif:>" />
+              <:help file description:>
+            </span>
+          </div>
+          <div>
+            <label for="notes_<:file id:>">Notes <:error_img [concatenate notes_ [file id]]:></label>
+            <span>
+              <textarea name="notes_<:file id:>" id="notes_<:file id:>" class="<:ifError_img [concatenate notes_ [file id]]:>error<:or:><:eif:>"><:oldi [concatenate notes_ [file id]] 0 file notes:></textarea>
+              <:help file notes:>
+            </span>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Properties</legend>
+          <div>
+            <label for="contentType_<:file id:>">Content type <:error_img [concatenate contentType_ [file id]]:></label>
+            <span>
+              <input type="text" name="contentType_<:file id:>" id="contentType_<:file id:>" value="<:file contentType:>" placeholder="MIME format" class="<:ifError_img [concatenate contentType_ [file id]]:>error<:or:><:eif:>" />
+              <:help file contentType:>
+            </span>
+          </div>
+          <div>
+            <label for="download_<:file id:>">Force download <:error_img  [concatenate download_ [file id]]:></label>
+            <span>
+              <input type="checkbox" name="download_<:file id:>" id="download_<:file id:>" value="1" <:ifFile download:>checked="checked" <:or:><:eif:>/>
+              <:help file download:>
+            </span>
+          </div>
+          <div>
+            <label for="hide_from_list">Hide from list <:error_img  [concatenate hide_from_list_ [file id]]:></label>
+            <span>
+              <input type="checkbox" name="hide_from_list_<:file id:>" id="hide_from_list" value="1" <:ifFile hide_from_list:>checked="checked" <:or:><:eif:>/>
+              <:help file hide_from_list:>
+            </span>
+          </div>
+          <:- if Match [article generator] "Product":>
+          <div>
+            <label for="forSale_<:file id:>">Require payment <:error_img [concatenate forSale_ [file id]]:></label>
+            <span>
+              <input type="checkbox" name="forSale_<:file id:>" id="forSale_<:file id:>" <:ifFile forSale:>checked="checked" <:or:><:eif:>/>
+              <:help file forSale:>
+            </span>
+          </div>
+          <:- or Match:><:eif Match:>
+          <div>
+            <label for="requireUser_<:file id:>">Require login <:error_img [concatenate requireUser_ [file id]]:></label>
+            <span>
+              <input type="checkbox" name="requireUser_<:file id:>" id="requireUser_<:file id:>" <:ifFile requireUser:>checked="checked" <:or:><:eif:>/>
+              <:help file requireUser:>
+            </span>
+          </div>
+          <div>
+            <label for="storage_<:file id:>">Storage <:error_img storage:></label>
+            <span>
+              <select name="storage_<:file id:>" id="storage_<:file id:>">
+                <option value="">(Auto)</option>
+                <:- iterator begin file_stores:>
+                <option value="<:file_store name:>" <:ifEq [oldi [concatenate storage_ [file id]] 0 file storage] [file_store name]:>selected="selected"<:or:><:eif:>><:file_store description:></option>
+                <:- iterator end file_stores:>
+              </select>
+              <:help file storage:>
+            </span>
+          </div>
+        </fieldset>
+      </details>
     </div>
     <:- iterator end files:>
     <:- or Files:>

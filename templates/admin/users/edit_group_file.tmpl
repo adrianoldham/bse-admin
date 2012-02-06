@@ -42,57 +42,60 @@
         </span>
       </div>
     </fieldset>
-    <fieldset>
-      <legend>Content</legend>
-       <div>
-        <label for="title">Description <:error_img title:></label>
-        <span>
-          <input type="text" name="title" id="title" value="<:old title groupfile title:>" class="<:ifError_img title:>error<:or:><:eif:>" />
-          <:help editgroup title:>
-        </span>
-      </div>
-      <div>
-        <label for="body">Notes <:error_img body:></label>
-        <span>
-          <textarea name="body" id="body" class="<:ifError_img body:>error<:or:><:eif:>"><:old body groupfile body:></textarea>
-          <:help editgroup body:>
-        </span>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>Last Modified</legend>
-      <div>
-        <label for="modwhen_date">Date <span class="required">*</span> <:error_img modwhen_date:></label>
-        <span>
-          <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date date "%d/%m/%Y" groupfile modwhen:>" placeholder="DD/MM/YYYY" required="required" class="<:ifError_img modwhen_date:>error<:or:><:eif:>" />
-          <:help editgroup modwhen_date:>
-        </span>
-      </div>
-       <div>
-        <label for="modwhen_time">Time <span class="required">*</span> <:error_img modwhen_time:></label>
-        <span>
-          <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time date "%H:%M:%S" groupfile modwhen:>" placeholder="HH:MM:SS" required="required" class="<:ifError_img modwhen_time:>error<:or:><:eif:>" />
-          <:help editgroup modwhen_time:>
-        </span>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>Properties</legend>
-      <div>
-        <label for="content_type">Content type <span class="required">*</span> <:error_img content_type:></label>
-        <span>
-          <input type="text" name="content_type" id="content_type" value="<:old content_type groupfile content_type:>" required="required" class="<:ifError_img content_type:>error<:or:><:eif:>" />
-          <:help editgroup content_type:>
-        </span>
-      </div>
-      <div>
-        <label for="download">Force download <:error_img download:></label>
-        <span>
-          <input type="checkbox" name="download" id="download" value="1" <:ifOr [old download] [groupfile download]:>checked="checked" <:or:><:eif:>/>
-          <:help editgroup download:>
-        </span>
-      </div>
-    </fieldset>
+    <details>
+      <summary>More attributes</summary>
+      <fieldset>
+        <legend>Content</legend>
+         <div>
+          <label for="title">Description <:error_img title:></label>
+          <span>
+            <input type="text" name="title" id="title" value="<:old title groupfile title:>" class="<:ifError_img title:>error<:or:><:eif:>" />
+            <:help editgroup title:>
+          </span>
+        </div>
+        <div>
+          <label for="body">Notes <:error_img body:></label>
+          <span>
+            <textarea name="body" id="body" class="<:ifError_img body:>error<:or:><:eif:>"><:old body groupfile body:></textarea>
+            <:help editgroup body:>
+          </span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Last Modified</legend>
+        <div>
+          <label for="modwhen_date">Date <span class="required">*</span> <:error_img modwhen_date:></label>
+          <span>
+            <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date date "%d/%m/%Y" groupfile modwhen:>" placeholder="DD/MM/YYYY" required="required" class="<:ifError_img modwhen_date:>error<:or:><:eif:>" />
+            <:help editgroup modwhen_date:>
+          </span>
+        </div>
+         <div>
+          <label for="modwhen_time">Time <span class="required">*</span> <:error_img modwhen_time:></label>
+          <span>
+            <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time date "%H:%M:%S" groupfile modwhen:>" placeholder="HH:MM:SS" required="required" class="<:ifError_img modwhen_time:>error<:or:><:eif:>" />
+            <:help editgroup modwhen_time:>
+          </span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Properties</legend>
+        <div>
+          <label for="content_type">Content type <span class="required">*</span> <:error_img content_type:></label>
+          <span>
+            <input type="text" name="content_type" id="content_type" value="<:old content_type groupfile content_type:>" required="required" class="<:ifError_img content_type:>error<:or:><:eif:>" />
+            <:help editgroup content_type:>
+          </span>
+        </div>
+        <div>
+          <label for="download">Force download <:error_img download:></label>
+          <span>
+            <input type="checkbox" name="download" id="download" value="1" <:ifOr [old download] [groupfile download]:>checked="checked" <:or:><:eif:>/>
+            <:help editgroup download:>
+          </span>
+        </div>
+      </fieldset>
+    </details>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Done</a>
       <:- if UserCan bse_members_group_edit_file:>

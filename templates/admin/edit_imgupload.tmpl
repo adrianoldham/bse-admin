@@ -24,35 +24,38 @@
         </span>
       </div>
     </fieldset>
-    <fieldset>
-      <legend>Properties</legend>
-      <div>
-        <label for="alt">Alt <:error_img altIn:></label>
-        <span>
-          <input type="text" name="altIn" id="alt" value="<:old altIn:>" class="<:ifError_img altIn:>error<:or:><:eif:>" />
-          <:help image alt:>
-        </span>
-      </div>
-      <div>
-        <label for="url">URL <:error_img url:></label>
-        <span>
-          <input type="text" name="url" id="url" value="<:old url:>" class="<:ifError_img url:>error<:or:><:eif:>" />
-          <:help image url:>
-        </span>
-      </div>
-      <div>
-        <label for="storage">Storage <:error_img storage:></label>
-        <span>
-          <select name="storage" id="storage">
-            <option value="">(Auto)</option>
-            <:- iterator begin image_stores:>
-            <option value="<:image_store name:>" <:ifOld storage:>selected="selected"<:or:><:eif:>><:image_store description:></option>
-            <:- iterator end image_stores:>
-          </select>
-          <:help image storage:>
-        </span>
-      </div>
-    </fieldset>
+    <details>
+      <summary>More attributes</summary>
+      <fieldset>
+        <legend>Properties</legend>
+        <div>
+          <label for="alt">Alt <:error_img altIn:></label>
+          <span>
+            <input type="text" name="altIn" id="alt" value="<:old altIn:>" class="<:ifError_img altIn:>error<:or:><:eif:>" />
+            <:help image alt:>
+          </span>
+        </div>
+        <div>
+          <label for="url">URL <:error_img url:></label>
+          <span>
+            <input type="text" name="url" id="url" value="<:old url:>" class="<:ifError_img url:>error<:or:><:eif:>" />
+            <:help image url:>
+          </span>
+        </div>
+        <div>
+          <label for="storage">Storage <:error_img storage:></label>
+          <span>
+            <select name="storage" id="storage">
+              <option value="">(Auto)</option>
+              <:- iterator begin image_stores:>
+              <option value="<:image_store name:>" <:ifOld storage:>selected="selected"<:or:><:eif:>><:image_store description:></option>
+              <:- iterator end image_stores:>
+            </select>
+            <:help image storage:>
+          </span>
+        </div>
+      </fieldset>
+    </details>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
       <:- if UserCan bse_edit_images_add:article:>
