@@ -191,10 +191,11 @@ h4 {
     overflow: hidden;
 }
 
-.bse_arrows {
+.bse_arrows, .bse_arrows img {
     display: inline !important;
     position: relative;
     z-index: 10;
+    border: none !important;
 }
 
 .actions {
