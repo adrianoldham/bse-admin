@@ -317,6 +317,9 @@ div.window fieldset select, div.window fieldset textarea {
     display: inline-block;*/
     min-width: 20em;
     width: 40%;
+    -webkit-box-shadow: inset 0px 0.083em 0.35em rgba(0,0,0,0.1);
+    -moz-box-shadow: inset 0px 0.083em 0.35em rgba(0,0,0,0.1);
+    box-shadow: inset 0px 0.083em 0.35em rgba(0,0,0,0.1);
 }
 div.window fieldset input[type=file] {
     padding: 0.1em 0.25em;
@@ -341,9 +344,9 @@ div.window fieldset textarea[name=summary] {
 }
 div.window fieldset input:focus, div.window fieldset textarea:focus, div.window fieldset select:focus {
 	border-color: rgba(3,153,212,0.75) !important;
-	-webkit-box-shadow: 0 0 0.25em rgba(3,153,212,0.75);
-	-moz-box-shadow: 0 0 0.25em rgba(3,153,212,0.75);
-	box-shadow: 0 0 0.25em rgba(3,153,212,0.75);
+	-webkit-box-shadow: 0 0 0.25em rgba(3,153,212,0.75) !important;
+	-moz-box-shadow: 0 0 0.25em rgba(3,153,212,0.75) !important;
+	box-shadow: 0 0 0.25em rgba(3,153,212,0.75) !important;
 }
 div.window fieldset input.error {
 	color: #c03 !important;
