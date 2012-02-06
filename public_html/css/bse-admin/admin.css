@@ -184,7 +184,7 @@ h4 {
     font-size: 1.25em;    
 }
 
-.images>li>a>img {
+.images > li > a > img {
     display: block;
     float: left;
 }
@@ -307,11 +307,11 @@ div.window fieldset legend {
     padding: 0 0.25em;
 }
 
-div.window fieldset>div {
+div.window fieldset > div {
     display: table-row;
 }
 
-div.window fieldset>div>label, div.window fieldset>div>span {
+div.window fieldset > div > label, div.window fieldset > div > span {
     display: table-cell;
     vertical-align: top;
     /*padding: 0.25em 1em 0.25em 0;*/
@@ -319,7 +319,7 @@ div.window fieldset>div>label, div.window fieldset>div>span {
     /*line-height: 2;*/
 }
 
-div.window fieldset>div>label {
+div.window fieldset > div > label {
     padding-right: 0.5em;
     text-align: right;
     width: 10%;
@@ -327,11 +327,11 @@ div.window fieldset>div>label {
     white-space: nowrap;
 }
 
-div.window fieldset>div>span {
+div.window fieldset > div > span {
     width: 100%;
 }
 
-div.window fieldset>div>span>button {
+div.window fieldset > div > span > button {
     display: none;
     /*background-color: #ccc;
     width: 1.75em;
@@ -340,7 +340,7 @@ div.window fieldset>div>span>button {
     overflow: hidden;*/
 }
 
-div.window fieldset>div:hover>span>button {
+div.window fieldset > div:hover > span > button {
     display: inline;
 }
 
@@ -404,7 +404,7 @@ div.window input.error:focus {
     box-shadow: 0 0 0.25em #c03 !important; 
 }
 
-div.window fieldset>label {
+div.window fieldset > label {
     text-align: left;
     display: block;
 }
@@ -668,13 +668,13 @@ div.window div span img {
     /*margin-top: 1em;*/
 }
 
-.buttons>span {
+.buttons > span {
     display: table-cell;
     white-space: nowrap;
     vertical-align: top;
 }
 
-.buttons>span span {
+.buttons > span span {
     text-align: left;
     text-indent: -9999em;
     height: 2.5em;
@@ -686,11 +686,11 @@ div.window div span img {
     width: 100%;
 }
 
-.buttons>span.progress span {
+.buttons > span.progress span {
     display: block;
 }
 
-.buttons>span span.status {
+.buttons > span span.status {
     text-indent: 0.5em;
     line-height: 2.5;
     margin-bottom: -2.5em;
@@ -698,7 +698,7 @@ div.window div span img {
     text-shadow: 0 0.1em 0.1em rgba(0,0,0,0.3);
 }
 
-.buttons>span span.spinner {
+.buttons > span span.spinner {
     display: inline-block;
     width: 2.5em;
     background: transparent url(/images/bse-admin/spinner.gif) no-repeat 100% 50%;
@@ -871,7 +871,7 @@ ul.children li:hover {
     background-color: rgba(255,255,255,0.5);
 }
 
-ul.children li>span {
+ul.children li > span {
     display: none;
     position: absolute;
     /*top: 50%;*/
@@ -879,7 +879,7 @@ ul.children li>span {
     /*margin-top: -30%;*/
 }
 
-ul.children li:hover>span {
+ul.children li:hover > span {
     display: inline;
 }
 
