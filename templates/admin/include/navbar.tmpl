@@ -52,7 +52,7 @@
           </ul>
         </li>
         <:- or UserCan:><:eif UserCan:>
-        <:- if Or [ifUserCan bse_regen_all] [ifUserCan bse_regen_extras]:>
+        <:- if Or [ifUserCan bse_regen_all] [ifUserCan bse_regen_extras] [ifUserCan bse_makeindex]:>
         <li><a href="#">Regenerate</a>
           <ul>
             <:- if UserCan bse_regen_all:>
@@ -60,6 +60,10 @@
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_regen_extras:>
             <li><a href="<:adminurl generate id extras progress 1:>">Extra system pages</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_makeindex:>
+            <li class="divider"></li>
+            <li><a href="<:adminurl makeIndex verbose 1:>">Search index</a></li>
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>

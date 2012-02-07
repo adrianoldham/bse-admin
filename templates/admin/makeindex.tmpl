@@ -1,0 +1,14 @@
+<:wrap admin/base.tmpl title=>"Regenerate Search Index" nomessage=>"1" :>
+<div class="window">
+  <h1><:param title:></h1>
+  <ul class="children list">
+    <:iterator begin messages:>
+    <:switch:>
+    <:case Error:>
+    <li class="error message"><:message:></li>
+    <:case default:>
+    <li><:message:></li>
+    <:endswitch:>
+    <:iterator end messages:>
+  </ul>
+</div>
