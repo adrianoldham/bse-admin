@@ -1,0 +1,11 @@
+<:wrap email/base.tmpl title=>"Activity notification" :>
+
+<p>This noteworthy activity has occurred on your site.</p>
+
+<dl>
+  <dt>Activity Details:</dt>
+  <dd><span>Level:</span> <:entry level_name:><br />
+  <span>When:</span> <:date "%H:%M %d/%m/%Y" entry when_at:><br /><br />
+  <span>Message:</span><br />
+  <:entry msg:></dd>
+</dl>

@@ -1,0 +1,16 @@
+<:wrap email/base.tmpl title=>"A new user registered" :>
+
+<p>A new user has registered as a member on your site.</p>
+
+<dl>
+  <dt>New Account Details:</dt>
+  <dd><span><:cfg "site users" display_userid "Username":>:</span> <:user userId:><br />
+  <span>Full Name:</span> <:user name1 |h:> <:user name2 |h:><br />
+  <span><:cfg "site users" display_email "Email Address":>:</span> <:user email:></dd>
+</dl>
+
+<!--<a href="<:cfg site url:>/cgi-bin/admin/siteusers.pl?a_edit=1&id=<:user id:>"><table cellspacing="0" border="0" cellpadding="0" class="bse-button"><tr><td>Edit user</td></tr></table></a>//-->
+
+<p class="bse-buttons"><a href="<:cfg site url:>/cgi-bin/admin/siteusers.pl?a_edit=1&id=<:user id:>" class="bse-button">Edit user</a></p>
+
+<p><small>Registered from this IP: <:host:></small></p>
