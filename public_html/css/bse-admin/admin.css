@@ -841,7 +841,7 @@ div.object:hover .buttons {
     padding: 0;
     font-size: 0.9em;
     color: #fff;
-    text-shadow: none;
+    text-shadow: 0 0.1em 0.1em rgba(0,0,0,0.5);
 }
 
 .meta li, .meta li div {
