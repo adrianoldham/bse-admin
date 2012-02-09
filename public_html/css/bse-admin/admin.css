@@ -1326,31 +1326,7 @@ table.vertical td {
 
 /* @group navbar */
 
-ul#nav:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-
-ul#nav {
-    background-color: #ccc;
-    background-color: rgba(255, 255, 255, 0.75);
-    position: fixed;
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    font-size: 1.17em;
-    /*height: 1.75em;*/ /* not required with #nav clearfix */
-    width: 100%;
-    -webkit-box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
-}
-
-ul#nav, h1:first-child {
+ul.menu.global, h1:first-child {
     background-image: -webkit-gradient(
         linear,
         left top,
@@ -1409,28 +1385,17 @@ ul#nav, h1:first-child {
     );
 }
 
-ul#nav a,
-ul#nav span {
+ul.menu.global a,
+ul.menu.global span,
+ul.menu li li a,
+ul.menu ul li span {
     color: #444;
     text-decoration: none;
     display: block;
     padding: 0 0.75em;
 }
 
-ul#nav > li:first-child {
-    margin-left: 0.75em;
-}
-
-ul#nav > li:first-child > a {
-    font-weight: bold;
-}
-
-ul#nav > li {
-    float: left;
-    line-height: 1.75;
-}
-
-ul#nav li {
+ul.menu li {
     list-style-type: none;
     color: #111;
     cursor: pointer;
@@ -1438,48 +1403,42 @@ ul#nav li {
     white-space: nowrap;
 }
 
-ul#nav li li {
+ul.menu li li {
     padding: 0 0.75em 0 1em;
 }
 
-ul#nav ul {
+ul.menu ul {
     position: absolute;
     background-color: #fff;
     background-color: rgba(255, 255, 255, 0.95);
     min-width: 20em;
     max-width: 30em;
-    -webkit-border-bottom-left-radius: 0.3em;
-    -webkit-border-bottom-right-radius: 0.3em;
-    -moz-border-radius-bottomleft: 0.3em;
-    -moz-border-radius-bottomright: 0.3em;
-    border-bottom-left-radius: 0.3em;
-    border-bottom-right-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    border-radius: 0.3em;
     -webkit-box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
     box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
-
 }
 
-ul#nav ul ul {
-    -webkit-border-top-right-radius: 0.3em;
-    -moz-border-radius-topright: 0.3em;
-    border-top-right-radius: 0.3em;
-}
-
-ul#nav li ul {
+ul.menu li ul {
     top: 1.75em;
     padding-top: 0.3em;
     padding-bottom: 0.3em;
 }
 
-ul#nav li li ul {
+ul.menu li li ul {
     top: -0.3em !important;
     margin-left: 20em;
     margin-left: 0; /* set margin left zero when using show left null */
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0;
 }
 
-ul#nav ul li.hover,
-ul#nav li.active {
+ul.menu li li.hover,
+ul.menu.global li.active,
+ul.menu li li.active {
     background-color: #00adee;
     background-position: 0 0;
     background-image: -webkit-gradient(
@@ -1517,12 +1476,12 @@ ul#nav li.active {
     text-shadow: none;
 }
 
-ul#nav ul li.hover a,
-ul#nav li.active a {
+ul.menu ul li.hover a,
+ul.menu li.active a {
     color: #fff;
 }
 
-ul#nav > li li > a {
+ul.menu > li li > a {
     color: #222 !important;
     overflow: hidden;
     display: block;
@@ -1530,12 +1489,12 @@ ul#nav > li li > a {
     text-overflow: ellipsis;
 }
 
-ul#nav > li li.hover > a,
-ul#nav > li li.active > a {
+ul.menu > li li.hover > a,
+ul.menu > li li.active > a {
     color: #fff !important;
 }
 
-ul#nav > li ul li.parent > a {
+ul.menu > li ul li.parent > a {
     background: transparent url(/images/bse-admin/arrow.png) no-repeat right 50%;
     -webkit-background-size: 1em;
     -moz-background-size: 1em;
@@ -1543,28 +1502,30 @@ ul#nav > li ul li.parent > a {
     display: block;
 }
 
-ul#nav > li ul li.hover.parent > a,
-ul#nav > li ul li.active.parent > a {
+ul.menu > li ul li.hover.parent > a,
+ul.menu > li ul li.active.parent > a {
     background-image: url(/images/bse-admin/arrow-white.png);
 }
 
-ul#nav > li ul {
+ul.menu > li ul {
     left: -9999px;
 }
 
-ul#nav > li:hover > ul {
+ul.menu > li:hover > ul {
     left: 0;
 }
 
-ul#nav li.disabled,
-ul#nav li.disabled a,
-ul#nav li.disabled span {
+/* @group disabled */
+
+ul.menu li.disabled,
+ul.menu li.disabled a,
+ul.menu li.disabled span {
     color: #999 !important;
     background: none !important;
     opacity: 1 !important;
 }
 
-ul#nav li.divider {
+ul.menu li.divider {
     margin: 0.3em 0;
     border-width: 1px 0;
     border-style: solid;
@@ -1575,9 +1536,47 @@ ul#nav li.divider {
     background: none !important;
 }
 
-ul#nav li:first-child.divider,
-ul#nav li:last-child.divider,
-ul#nav li.divider + li.divider {
+/* @end */
+
+/* @group global */
+
+ul.menu.global {
+    background-color: #ccc;
+    background-color: rgba(255, 255, 255, 0.75);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    font-size: 1.17em;
+    /*height: 1.75em;*/ /* not required with .menu.global clearfix */
+    width: 100%;
+    -webkit-box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
+}
+
+ul.menu.global > li:first-child {
+    margin-left: 0.75em;
+}
+
+ul.menu.global > li:first-child > a {
+    font-weight: bold;
+}
+
+ul.menu.global > li {
+    float: left;
+    line-height: 1.75;
+}
+
+ul.menu.global > li > ul {
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-bottomright: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* @end */
     display: none;
 }
 
