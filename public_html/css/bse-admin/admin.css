@@ -1595,24 +1595,24 @@ details[open] summary {
 }
 
 .disclosure-widget:before {
-    content:"";
-    position:absolute;
+    content: "";
+    position: absolute;
     left: 0;
-    width:1.25em;
-    height:1.25em;
-    margin:0 0.5em 0 0;
-    background:url(/images/bse-admin/arrow.png) no-repeat 0 0;
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.5em 0 0;
+    background: url(/images/bse-admin/arrow.png) no-repeat 0 0;
     -webkit-background-size: 1.2em;
     -moz-background-size: 1.2em;
     background-size: 1.2em;
 }
 
 .open .disclosure-widget:before {
-    -webkit-transform:rotate(90deg);
-    -moz-transform:rotate(90deg);
-    -ms-transform:rotate(90deg);
-    -o-transform:rotate(90deg);
-    transform:rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 /* @end */
