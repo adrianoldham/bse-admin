@@ -23,7 +23,7 @@ function dom_init() {
        });
     };
 
-    var menu = new DropMenu('#nav li', {
+    var menu = new DropMenu('.menu li', {
         showLeft: null,
         effects: {
             show: [ Effect.Appear ],
@@ -35,7 +35,7 @@ function dom_init() {
         showDelay: 0.2,
         hideDelay: 0.5,
         osMode: true,
-        rootItems: '#nav > li'
+        rootItems: '.menu > li'
     });
 
     var openDetails = OpenDetails();
