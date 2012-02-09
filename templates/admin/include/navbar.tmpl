@@ -27,9 +27,9 @@
         <:- if Or [ifUserCan bse_edit_save] [ifUserCan edit_images_save:-1] [ifUserCan edit_images_add:-1] [ifUserCan edit_images_delete:-1] [ifUserCan edit_images_reorder:-1]:>
         <li><a href="#">Images</a>
           <ul>
-            <li><a href="<:adminurl add id -1 _t img:>">Manage Images</a></li>
+            <li><a href="<:adminurl add id -1 _t img:>">Manage Site Images</a></li>
             <:- if UserCan bse_edit_images_add:-1 :>
-            <li><a href="<:adminurl add id -1 _t imgupload referer 1:>">New Image…</a></li>
+            <li><a href="<:adminurl add id -1 _t imgupload referer 1:>">New Site Image…</a></li>
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
@@ -37,9 +37,9 @@
         <:- if Or [ifUserCan bse_edit_save] [ifUserCan edit_files_save:-1] [ifUserCan edit_files_add:-1] [ifUserCan edit_files_delete:-1] [ifUserCan edit_files_reorder:-1]:>
         <li><a href="#">Files</a>
           <ul>
-            <li><a href="<:adminurl add id -1 _t file:>">Manage Files</a></li>
+            <li><a href="<:adminurl add id -1 _t file:>">Manage Site Files</a></li>
             <:- if UserCan bse_edit_files_add:-1 :>
-            <li><a href="<:adminurl add id -1 _t fileupload referer 1:>">New File…</a></li>
+            <li><a href="<:adminurl add id -1 _t fileupload referer 1:>">New Site File…</a></li>
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
@@ -48,7 +48,7 @@
         <!-- FIXME: find correct permission name -->
         <li><a href="#">Tags</a>
           <ul>
-            <li><a href="<:adminurl add id -1 a_tags 1:>">Manage Tags</a></li>
+            <li><a href="<:adminurl add id -1 a_tags 1:>">Manage Site Tags</a></li>
           </ul>
         </li>
         <:- or UserCan:><:eif UserCan:>
@@ -80,17 +80,17 @@
         <li><a href="#">Site Users</a>
           <ul>
             <:- if UserCan bse_members_user_list:>
-            <li><a href="<:adminurl siteusers:>">Manage Users</a></li>
+            <li><a href="<:adminurl siteusers:>">Manage Site Users</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_members_user_add:>
-            <li><a href="<:adminurl siteusers a_addform 1 referer 1:>">New User…</a></li>
+            <li><a href="<:adminurl siteusers a_addform 1 referer 1:>">New Site User…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_members_group_list:>
-            <li><a href="<:adminurl siteusers a_grouplist 1:>">Manage Groups</a></li>
+            <li><a href="<:adminurl siteusers a_grouplist 1:>">Manage Site Groups</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_members_group_add:>
-            <li><a href="<:adminurl siteusers a_addgroupform 1:>">New Group…</a></li>
+            <li><a href="<:adminurl siteusers a_addgroupform 1:>">New Site Group…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_members_file_log:>
             <li class="divider"></li>
@@ -103,17 +103,17 @@
         <li><a href="#">Admin Users</a>
           <ul>
             <:- if UserCan bse_admin_user_list:>
-            <li><a href="<:adminurl adminusers:>">Manage Users</a></li>
+            <li><a href="<:adminurl adminusers:>">Manage Admin Users</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_admin_user_add:>
-            <li><a href="<:adminurl adminusers a_adduserform 1 referer 1:>">New User…</a></li>
+            <li><a href="<:adminurl adminusers a_adduserform 1 referer 1:>">New Admin User…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_admin_group_list:>
-            <li><a href="<:adminurl adminusers a_groups 1:>">Manage Groups</a></li>
+            <li><a href="<:adminurl adminusers a_groups 1:>">Manage Admin Groups</a></li>
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_admin_group_add:>
-            <li><a href="<:adminurl adminusers a_addgroupform 1 referer 1:>">New Group…</a></li>
+            <li><a href="<:adminurl adminusers a_addgroupform 1 referer 1:>">New Admin Group…</a></li>
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
