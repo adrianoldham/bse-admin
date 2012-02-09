@@ -1,4 +1,4 @@
-  <p class="buttons">
+  <nav class="toolbar">
     <a href="<:adminurl add:>?id=<:catalog id:>&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" class="button gray small">Catalog</a>
     <a href="<:adminurl add:>?id=<:catalog id:>&amp;preview=1" class="button gray small">Preview</a>
     <:- if UserCan bse_edit_add_child:[shopid]:>
@@ -7,7 +7,7 @@
     <a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" class="button blue small">Add Seminar</a>
     <:- or Cfg:><:eif Cfg:>
     <:- or UserCan:><:eif UserCan:>
-  </p> 
+  </nav> 
   <:- if Products:>
   <fieldset class="list">
     <legend>Products</legend>

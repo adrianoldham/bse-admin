@@ -1,12 +1,12 @@
 <:wrap admin/base.tmpl title=>"Admin Users" :>
 <div class="window">
   <h1><:param title:></h1>
-  <p class="buttons">
+  <nav class="toolbar">
     <a href="<:script:>?a_groups=1" class="button gray small">Groups</a>
     <:- if UserCan bse_admin_user_add:>
     <a href="<:script:>?a_adduserform=1" accesskey="u" title="AccessKey = u" class="button blue small">Add User</a>
     <:- or UserCan:><:eif UserCan:>
-  </p>
+  </nav>
   <:- if Users:>
   <fieldset class="list">
     <legend>Accounts</legend>

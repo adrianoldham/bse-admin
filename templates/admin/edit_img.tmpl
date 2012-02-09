@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Manage Images" :>
 <div class="window dialog">
   <h1><:param title:></h1>
-  <p class="buttons">
+  <nav class="toolbar">
     <a href="<:script:>?id=<:article id:>" title="Edit Article" class="button gray small">Article</a>
     <:- if Arithmetic [article id] > 0 :>
     <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" class="button gray small">Preview</a>
@@ -9,7 +9,7 @@
     <:- if UserCan bse_edit_images_add:article:>
     <a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" accesskey="i" title="AccessKey = i" class="button blue small">Add Image</a>
     <:- or UserCan:><:eif UserCan:>
-  </p>
+  </nav>
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="img" />

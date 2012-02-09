@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Manage Products" :>
 <div class="window">
   <h1><:param title:></h1>
-  <p class="buttons">
+  <nav class="toolbar">
     <a href="<:adminurl add:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>" class="button gray small">Shop</a>
     <a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1" class="button gray small">Preview</a>
     <:- if UserCan bse_edit_add_child:[shopid]:>
@@ -10,7 +10,7 @@
     <a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>" class="button blue small">Add Seminar</a>
     <:- or Cfg:><:eif Cfg:>
     <:- or UserCan:><:eif UserCan:>
-  </p> 
+  </nav> 
   <:- if Products:>
   <fieldset class="list">
     <legend>Products</legend>

@@ -1,10 +1,11 @@
 <:wrap admin/base.tmpl title=>"Edit Site User" :>
 <div class="window siteuser">
   <h1><:param title:></h1>
+  <nav class="toolbar">
+  </nav>
   <form action="<:script:>" method="post">
     <input type="hidden" name="id" value="<:siteuser id:>" />
     <input type="hidden" name="r" value="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;m=User+'<:siteuser userId:>'+saved" />
-    <p class="buttons">
       <:- if UserCan bse_members_user_list:>
       <a href="<:script:>" class="button gray small">Users</a>
       <:- or UserCan:><:eif UserCan:>
@@ -24,7 +25,6 @@
       <:- or UserCan:>
       <a class="button red small disabled">Delete</a>
       <:- eif UserCan:>
-    </p>
     <fieldset class="account">
       <legend>Account</legend>
       <:- if Cfg "site users" nopassword:><:or Cfg:>

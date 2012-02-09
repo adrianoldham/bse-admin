@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Manage Articles" :>
 <div class="window">
   <h1><:param title:></h1>
-  <p class="buttons">
+  <nav class="toolbar">
     <a href="<:adminurl add:>?id=1&amp;preview=1" accesskey="p" title="Preview <:typename article:>" class="button gray small">Preview</a>
     <:if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
     <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button gray small">Images</a>
@@ -18,7 +18,7 @@
     <:- if UserCan bse_edit_files_add:article:>
     <a href="<:script:>?id=<:article id:>&amp;_t=fileupload" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
     <:- or UserCan:><:eif UserCan:>
-  </p>
+  </nav>
   <:- if Children:>
   <fieldset class="children">
     <legend>Sections</legend>

@@ -1,13 +1,13 @@
 <:wrap admin/base.tmpl title=>"Edit Option" :>
 <div class="window dialog">
   <h1><:param title:></h1>
-  <p class="buttons">
+  <nav class="toolbar">
     <:- if UserCan bse_edit_prodopt_delete:article:>
     <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:option id:>&amp;a_delconf_option=1&amp;_csrfp=<:csrfp admin_delete_option:>" onclick="return window.confirm('Are you sure you want to delete this Option?')" class="button red small">Delete</a>
     <:- or UserCan:>
     <a class="button red small disabled">Delete</a>
     <:- eif UserCan:>
-  </p>
+  </nav>
   <form action="<:script:>" method="post">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="option_id" value="<:option id:>" />

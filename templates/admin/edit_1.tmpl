@@ -2,12 +2,12 @@
 <div class="window">
   <h1><:param title:></h1>
   <:- if New:><:or New:>
-  <p class="buttons">
     <a href="<:script:>?id=<:article parentid:>" title="Edit Parent" class="button gray small">Parent</a>
     <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" class="button gray small">Preview</a>
     <:- if UserCan bse_regen_article:article:>
     <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26m=<:typename article:>%20regenerated" title="Regenerate <:typename article:>" class="button gray small">Regenerate</a>
     <:- or UserCan:><:eif UserCan:>
+  <nav class="toolbar">
     <:if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
     <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button gray small">Images</a>
     <:- or And:><:eif And:>
@@ -45,7 +45,7 @@
     <:- or UserCan:>
     <a class="button red small disabled">Delete</a>
     <:- eif UserCan:>
-  </p>
+  </nav>
   <:- eif New:>
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="lastModified" value="<:article lastModified:>" />

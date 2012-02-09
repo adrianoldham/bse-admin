@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Edit User Group" :>
 <div class="window dialog">
   <h1><:param title:></h1>
-  <p class="buttons">
+  <nav class="toolbar">
     <:- if UserCan bse_members_user_list:>
     <a href="<:script:>?a_groupmemberform=1&amp;id=<:group id:>" class="button gray small">Members</a>
     <:- or UserCan:><:eif UserCan:>
@@ -18,7 +18,7 @@
     <:- or UserCan:>
     <a class="button red small disabled">Delete</a>
     <:- eif UserCan:>
-  </p>
+  </nav>
   <form action="<:script:>" method="post">
     <input type="hidden" name="id" value="<:group id:>" />
     <input type="hidden" name="r" value="<:cgi r:>" />
