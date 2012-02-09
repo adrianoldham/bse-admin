@@ -371,8 +371,9 @@ div.window fieldset textarea[name=body] {
 }
 
 div.window.dialog fieldset textarea,
-div.window fieldset textarea[name=summary] {
-    height: 10em;
+div.window fieldset textarea[name=summary],
+div.window fieldset textarea[name=adminNotes] {    
+   height: 10em;
 }
 
 div.window fieldset input:focus, div.window fieldset textarea:focus, div.window fieldset select:focus {
