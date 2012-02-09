@@ -1300,43 +1300,26 @@ table.vertical td {
 /* @group pagination */
 
 .pagination {
-    margin-top: 3em !important;
-}
-
-.pagination, .pagination ul {
     margin: 0 -0.5em 0 0;
     padding: 0;
-    overflow: hidden;
 }
 
-.pagination li {
-    list-style: none;
-    float: left;
-}
-
-.pagination > li > span {
-    display: block;
-    font-size: 0.9em;
-    margin-bottom: 0.25em;
-    color: #7f7863; /* dark stone */
-}
-
-.pagination ul a, .pagination ul span {
-    display: block;
+.pagination a, .pagination span {  
+    display: inline-block;
     min-width: 1.5em;
     margin: 0 0.5em 0.5em 0;
     text-align: center;
     text-decoration: none !important;
-    color: #7f7863; /* dark stone */
-    border:  1px solid #b4aa8c;
+    color: #777;
+    border: 1px solid #555;
     -webkit-border-radius: 0.25em;
     -moz-border-radius: 0.25em;
     border-radius: 0.25em;
 }
 
-.pagination ul a:hover, .pagination ul span {
+.pagination a:hover, .pagination span {
     color: #fff !important;
-    background-color: #b4aa8c; /* stone */
+    background-color: #555;
 }
 
 /* @end */
