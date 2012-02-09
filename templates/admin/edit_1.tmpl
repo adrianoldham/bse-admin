@@ -8,10 +8,10 @@
     <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26m=<:typename article:>%20regenerated" title="Regenerate <:typename article:>" class="button gray small">Regenerate</a>
     <:- or UserCan:><:eif UserCan:>
   <nav class="toolbar">
-    <:if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
+    <:- if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
     <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button gray small">Images</a>
     <:- or And:><:eif And:>
-    <:if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
+    <:- if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
     <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button gray small">Files</a>
     <:- or And:><:eif And:>
     <:- if UserCan bse_edit_add_child:article:>
