@@ -220,33 +220,29 @@
         <div>
           <label for="weight">Weight <:error_img weight:></label>
           <span>
-            <input type="text" name="weight" id="weight" value="<:old weight default weight:>" placeholder="grams" maxlength="<:cfg fields weight_size 6:>" <:ifFieldPerm weight:><:or:>disabled="disabled" <:eif:>class="<:ifError_img weight:>error<:or:><:eif:>" />
+            <input type="text" name="weight" id="weight" value="<:ifEq [old weight default weight] 0:><:or:><:old weight default weight:><:eif:>" placeholder="grams" maxlength="<:cfg fields weight_size 6:>" <:ifFieldPerm weight:><:or:>disabled="disabled" <:eif:>class="<:ifError_img weight:>error<:or:><:eif:>" />
             <:help edit weight:>
-            (g - grams)
           </span>
         </div>
         <div>
           <label for="length">Length <:error_img length:></label>
           <span>
-            <input type="text" name="length" id="length" value="<:old length default length:>" placeholder="millimetres" maxlength="<:cfg fields length_size 6:>" <:ifFieldPerm length:><:or:>disabled="disabled" <:eif:>class="<:ifError_img length:>error<:or:><:eif:>" />
+            <input type="text" name="length" id="length" value="<:ifEq [old length default length] 0:><:or:><:old length default length:><:eif:>" placeholder="millimetres" maxlength="<:cfg fields length_size 6:>" <:ifFieldPerm length:><:or:>disabled="disabled" <:eif:>class="<:ifError_img length:>error<:or:><:eif:>" />
             <:help edit length:>
-            (mm)
           </span>
         </div>
         <div>
           <label for="width">Width <:error_img width:></label>
           <span>
-            <input type="text" name="width" id="width" value="<:old width default width:>" placeholder="millimetres"maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>class="<:ifError_img width:>error<:or:><:eif:>" />
+            <input type="text" name="width" id="width" value="<:ifEq [old width default width] 0:><:or:><:old width default width:><:eif:>" placeholder="millimetres"maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>class="<:ifError_img width:>error<:or:><:eif:>" />
             <:help edit width:>
-            (mm)
           </span>
         </div>
         <div>
           <label for="height">Height <:error_img height:></label>
           <span>
-            <input type="text" name="height" id="height" value="<:old height default height:>" placeholder="millimetres" maxlength="<:cfg fields height_size 6:>" <:ifFieldPerm height:><:or:>disabled="disabled" <:eif:>class="<:ifError_img height:>error<:or:><:eif:>" />
+            <input type="text" name="height" id="height" value="<:ifEq [old height default height] 0:><:or:><:old height default height:><:eif:>" placeholder="millimetres" maxlength="<:cfg fields height_size 6:>" <:ifFieldPerm height:><:or:>disabled="disabled" <:eif:>class="<:ifError_img height:>error<:or:><:eif:>" />
             <:help edit height:>
-            (mm)
           </span>
         </div>
       </fieldset>
@@ -356,14 +352,14 @@
         <div>
           <label for="summaryLength">Summary length <:error_img summaryLength:></label>
           <span>
-            <input type="text" name="summaryLength" id="summaryLength" value="<:old summaryLength default summaryLength:>" placeholder="characters" maxlength="10" <:ifFieldPerm summaryLength:><:or:>disabled="disabled" <:eif:>class="<:ifError_img summaryLength:>error<:or:><:eif:>" />
+            <input type="text" name="summaryLength" id="summaryLength" value="<:ifEq [old summaryLength default summaryLength] 0:><:or:><:old summaryLength default summaryLength:><:eif:>" placeholder="characters" maxlength="10" <:ifFieldPerm summaryLength:><:or:>disabled="disabled" <:eif:>class="<:ifError_img summaryLength:>error<:or:><:eif:>" />
             <:help edit summaryLength:>
           </span>
         </div>
         <div>
           <label for="threshold">Embed threshold <:error_img threshold:></label>
           <span>
-            <input type="text" name="threshold" id="threshold" value="<:old threshold default threshold:>" placeholder="children" maxlength="10" <:ifFieldPerm threshold:><:or:>disabled="disabled" <:eif:>class="<:ifError_img threshold:>error<:or:><:eif:>" />
+            <input type="text" name="threshold" id="threshold" value="<:ifEq [old threshold default threshold] 0:><:or:><:old threshold default threshold:><:eif:>" placeholder="children" maxlength="10" <:ifFieldPerm threshold:><:or:>disabled="disabled" <:eif:>class="<:ifError_img threshold:>error<:or:><:eif:>" />
             <:help edit threshold:>
           </span>
         </div>
@@ -601,7 +597,7 @@
     <ul class="children">
       <:- iterator begin kids:>
       <li>
-        <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>"><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" kid release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" kid expire]:>red<:case Eq [kid listed] 0 :>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename kid:></span> <:kid title:></a>
+        <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>"><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" kid release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" kid expire]:>red<:case Eq [kid listed] 0:>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename kid:></span> <:kid title:></a>
         <span>
           <:- if StepKid:>
           <a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;_t=steps" class="button gray small">Edit</a>
