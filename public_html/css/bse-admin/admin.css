@@ -136,7 +136,8 @@ iframe {
     box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.4);
 }
 
-.group:after, [data-role]:after {
+.group:after,
+[data-role]:after {
     content: ".";
     display: block;
     clear: both;
@@ -300,7 +301,8 @@ div.window fieldset > div {
     display: table-row;
 }
 
-div.window fieldset > div > label, div.window fieldset > div > span {
+div.window fieldset > div > label,
+div.window fieldset > div > span {
     display: table-cell;
     vertical-align: top;
     /*padding: 0.25em 1em 0.25em 0;*/
@@ -376,7 +378,9 @@ div.window fieldset textarea[name=adminNotes] {
    height: 10em;
 }
 
-div.window fieldset input:focus, div.window fieldset textarea:focus, div.window fieldset select:focus {
+div.window fieldset input:focus,
+div.window fieldset textarea:focus,
+div.window fieldset select:focus {
     border-color: rgba(3,153,212,0.75) !important;
     -webkit-box-shadow: 0 0 0.25em rgba(3,153,212,0.75) !important;
     -moz-box-shadow: 0 0 0.25em rgba(3,153,212,0.75) !important;
@@ -409,7 +413,9 @@ div.window div span img {
 
 /* @group common */
 
-.disabled, button[disabled], input[type=submit][disabled] {
+.disabled,
+button[disabled],
+input[type=submit][disabled] {
     opacity: 0.25 !important;
     top: 0 !important;
     cursor: default !important;
@@ -865,7 +871,8 @@ div.object:hover .buttons {
     white-space: nowrap;
 }*/
 
-.meta li.has-info:hover, .meta li.has-info:hover a {
+.meta li.has-info:hover,
+.meta li.has-info:hover a {
     color: #fff !important;
     background-color: #999;
 }
@@ -883,7 +890,8 @@ div.object:hover .buttons {
     background-image: url(/images/interface/more_info_focus.png);
 }
 
-.meta li a, .meta li div {
+.meta li a,
+.meta li div {
     color: #fff !important;
     text-decoration: none;
 }
@@ -903,7 +911,9 @@ div.object:hover .buttons {
     box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);
 }
 
-.meta li:hover div, .meta li div:hover, .meta li:hover div:hover {
+.meta li:hover div,
+.meta li div:hover,
+.meta li:hover div:hover {
     display: block;
 }
 
@@ -919,7 +929,6 @@ ul.children {
     padding: 0.75em;
     border: 1px solid;
     border-color: #b5b5b5 #ddd #fff #ddd;
-
     -webkit-border-radius: 0.25em;
     -moz-border-radius: 0.25em;
     border-radius: 0.25em;
@@ -1037,12 +1046,12 @@ table.items td {
     vertical-align: top;
     border-bottom: 1px solid #ddd;
     padding: 0.75em 0.5em;
-    background-image: -webkit-gradient( linear, left top, left bottom, color-stop( 0, rgba(0,0,0,0.05) ), color-stop( 0.5, rgba(0,0,0,0) ) );
-    background-image: -webkit-linear-gradient( top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
-    background-image: -moz-linear-gradient( top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
-    background-image: -ms-linear-gradient( top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
-    background-image: -o-linear-gradient( top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
-    background-image: linear-gradient( top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0,0,0,0.05)), color-stop(0.5, rgba(0,0,0,0)));
+    background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
+    background-image: -moz-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
+    background-image: -ms-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
+    background-image: -o-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
+    background-image: linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
 }
 
 table.items td.noitems {
@@ -1058,7 +1067,8 @@ table.items td.thumbnail a {
     float: left;
 }
 
-table.items th.item, table.items td.item {
+table.items th.item,
+table.items td.item {
     /*width: 100%;*/
     text-align: left;
 }
@@ -1072,11 +1082,16 @@ table.items td.item span {
     color: #666;
 }
 
-table.items th+th, table.items td+td {
+table.items th+th,
+table.items td+td {
     width: 10%;
 }
 
-table.items .code, table.items .quantity, table.items .price, table.items .extended, table.items .action {
+table.items .code,
+table.items .quantity,
+table.items .price,
+table.items .extended,
+table.items .action {
     text-align: right;
     white-space: nowrap;
 }
@@ -1085,7 +1100,8 @@ table.items td.price {
     color: #f60;
 }
 
-table.items td.price, table.items td.extended {
+table.items td.price,
+table.items td.extended {
     font-weight: bold;
 }
 
@@ -1106,7 +1122,8 @@ table.items td.action .arrows {
 }
 
 table.items tr:hover .arrows, 
-table.items td.action .arrows a, table.items td.action .arrows img {
+table.items td.action .arrows a,
+table.items td.action .arrows img {
     display: block;
     line-height: 1;
 }
@@ -1115,7 +1132,8 @@ table.items td.action .arrows a, table.items td.action .arrows img {
 
 /* @group files */
 
-table.files .date, table.files .size {
+table.files .date,
+table.files .size {
     white-space: nowrap;
     text-align: right;
 }
@@ -1129,7 +1147,8 @@ table.files td.size {
 
 /* @group orders */
 
-table.orders th, table.orders td {
+table.orders th,
+table.orders td {
     width: 25% !important;
 }
 
@@ -1141,7 +1160,8 @@ table.orders .payment {
     text-align: center;
 }
 
-table.orders td.number, table.orders td.total {
+table.orders td.number,
+table.orders td.total {
     font-weight: bold;
 }
 
@@ -1193,18 +1213,22 @@ table.items td {
     padding: 0.75em 0.5em;
 }
 
-table.items th, table.items td {
+table.items th,
+table.items td {
     width: auto;
     text-align: left;
 }
 
-table.items th+th, table.items td+td {
+table.items th+th,
+table.items td+td {
     width: 10%;
     text-align: right;
     white-space: nowrap;
 }
 
-table.items td.price, table.items td.extended, table.files td.size {
+table.items td.price,
+table.items td.extended,
+table.files td.size {
     font-weight: bold;
     color: #15a2cb;
 }
@@ -1245,11 +1269,14 @@ div.totals p.total {
     color: #be0f54; /* wine */
 }
 
-div.totals span, div.totals label, div.totals abbr {
+div.totals span,
+div.totals label,
+div.totals abbr {
     color: #999;
 }
 
-div.totals span, div.totals abbr {
+div.totals span,
+div.totals abbr {
     color: #ccc;
     font-weight: normal;
 }
@@ -1263,7 +1290,8 @@ table.vertical {
     margin: 0 0.25%;
 }
 
-table.vertical.left, table.vertical.right {
+table.vertical.left,
+table.vertical.right {
     width: 49%;
     margin: 0 0.25%;
     float: left;
@@ -1276,7 +1304,8 @@ table.vertical caption {
     color: #666;
 }
 
-table.vertical th, table.vertical td {
+table.vertical th,
+table.vertical td {
     font-size: 0.85em;
     padding: 0.35em 1em;
 }
@@ -1304,7 +1333,8 @@ table.vertical td {
     padding: 0;
 }
 
-.pagination a, .pagination span {  
+.pagination a,
+.pagination span {  
     display: inline-block;
     min-width: 1.5em;
     margin: 0 0.5em 0.5em 0;
@@ -1317,7 +1347,8 @@ table.vertical td {
     border-radius: 0.25em;
 }
 
-.pagination a:hover, .pagination span {
+.pagination a:hover,
+.pagination span {
     color: #fff !important;
     background-color: #555;
 }
@@ -1326,7 +1357,8 @@ table.vertical td {
 
 /* @group navbar */
 
-ul.menu.global, h1:first-child {
+ul.menu.global,
+h1:first-child {
     background-image: -webkit-gradient(
         linear,
         left top,
