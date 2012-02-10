@@ -21,7 +21,7 @@
     <script type="text/javascript" src="/js/<:param js:>"></script>
     <:- or Param:><:eif Param:>
   </head>
-  <body<:ifParam bodyid:> id="<:param bodyid:>"<:or:><:eif:>>
+  <body<:ifParam bodyid:> id="<:param bodyid:>"<:or:><:eif:> data-role="page">
     <:- switch:>
     <:- case Param nomessage:>
     <:- case Message:>
