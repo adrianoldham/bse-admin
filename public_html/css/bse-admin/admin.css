@@ -251,8 +251,8 @@ div.window {
     min-width: 34em;
     padding: 1em 2em 1.5em;
     background-color: #ececec;
-    border-top: 0.1em solid #fff;
-    border-bottom: 0.1em solid #444;
+    border-top: 0.083em solid #fff;
+    border-bottom: 0.083em solid #444;
     overflow: hidden; /* clear contained floats */
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
