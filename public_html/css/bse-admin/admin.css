@@ -837,17 +837,16 @@ div.object:hover .buttons {
 
 /* @group metadata */
 
-.meta li span {
-    color: #ccc;
-    font-weight: bold;
-}
-
 .meta {
-    margin-right: 0 -0.5em 0 0;
+    margin: 0 -0.5em 0 0;
     padding: 0;
     font-size: 0.9em;
     color: #fff;
     text-shadow: 0 0.1em 0.1em rgba(0,0,0,0.5);
+}
+
+div + .meta {
+    margin-top: 1em;
 }
 
 .meta li, .meta li div {
@@ -855,6 +854,7 @@ div.object:hover .buttons {
     list-style: none;
     margin: 0 0.5em 0.5em 0;
     padding: 0 0.75em;
+    background-color: #666;
     background-color: rgba(0,0,0,0.5);
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
