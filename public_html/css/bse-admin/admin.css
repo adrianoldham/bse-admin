@@ -192,7 +192,8 @@ h4 {
     overflow: hidden;
 }
 
-.bse_arrows, .bse_arrows img {
+.bse_arrows,
+.bse_arrows img {
     display: inline !important;
     position: relative;
     z-index: 10;
@@ -208,7 +209,8 @@ h4 {
     display: none;
 }
 
-#auditlog tr td:nth-child(1), #auditlog tr td:nth-child(2) {
+#auditlog tr td:nth-child(1),
+#auditlog tr td:nth-child(2) {
     white-space: nowrap;
 }
 
@@ -336,7 +338,8 @@ div.window fieldset > div:hover > span > button {
 }
 
 div.window fieldset input:not([type=submit]):not([type=checkbox]):not([type=radio]),
-div.window fieldset select, div.window fieldset textarea {
+div.window fieldset select,
+div.window fieldset textarea {
     border: 0.1em solid #ddd;
     border-top-color: #aaa;
     line-height: 1.2;
@@ -359,8 +362,10 @@ div.window fieldset input[type=file] {
 
 div.window fieldset div.full input:not([type=submit]):not([type=checkbox]):not([type=radio]),
 div.dialog fieldset input:not([type=submit]):not([type=checkbox]):not([type=radio]),
-div.window fieldset div.full select, div.window fieldset div.full textarea,
-div.dialog fieldset select, div.dialog fieldset textarea {
+div.window fieldset div.full select,
+div.window fieldset div.full textarea,
+div.dialog fieldset select,
+div.dialog fieldset textarea {
     width: 100%;
 }
 
