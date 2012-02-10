@@ -33,11 +33,10 @@
           <li><a href="<:script:>?id=<:article id:>&amp;_t=prodopts" accesskey="o" title="AccessKey = o">New Option…</a></li>
           <:- or UserCan:><:eif UserCan:>
           <:- endswitch:>
-          <:- if UserCan bse_regen_article:article:>
           <li class="divider"></li>
+          <:- if UserCan bse_regen_article:article:>
           <li><a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
           <:- or UserCan:><:eif UserCan:>
-          <li class="divider"></li>
           <li><a href="<:script:>?id=<:article id:>&amp;preview=1">Preview</a></li>
           <:- if Or [ifUserCan bse_admin_user_save_artrights] [ifUserCan bse_admin_group_save_artrights]:>
           <li class="divider"></li>

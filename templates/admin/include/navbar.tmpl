@@ -52,6 +52,7 @@
           </ul>
         </li>
         <:- or UserCan:><:eif UserCan:>
+        <li class="divider"></li>
         <:- if Or [ifUserCan bse_regen_all] [ifUserCan bse_regen_extras] [ifUserCan bse_makeindex]:>
         <li><a href="#">Regenerate</a>
           <ul>
@@ -68,7 +69,6 @@
           </ul>
         </li>
         <:- or Or:><:eif Or:>
-        <li class="divider"></li>
         <li><a href="<:adminurl add id 1 preview 1:>">Preview</a></li>
       </ul>
     </li>
