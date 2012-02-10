@@ -1,25 +1,39 @@
 <:wrap admin/base.tmpl title=>"Edit Site User" :>
 <div class="window siteuser">
   <h1><:param title:></h1>
-    <:- if UserCan bse_members_user_list:>
-    <a href="<:script:>" class="button gray small">Users</a>
-    <:- or UserCan:><:eif UserCan:>
-    <:- if UserCan bse_members_group_list:>
-    <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a>
-    <:- or UserCan:><:eif UserCan:>
   <nav data-role="toolbar">
+    <ul class="menu context">
+      <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+        <ul>
+          <:- if UserCan bse_members_user_add_file:>
+          <li><a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" accesskey="f" title="AccessKey = f">New File…</a></li>
+          <:- or UserCan:><:eif UserCan:>      
+          <:- if UserCan bse_members_user_delete:>
+          <li class="divider"></li>
+          <li><a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this User?');" data-icon="delete">Delete</a></li>
+          <:- or UserCan:>
+          <li class="disabled"><span>Delete</span></li>
+          <:- eif UserCan:>
+        </ul>
+      </li>
+    </ul>
+    <span data-role="controlgroup">
+      <:- if UserCan bse_members_user_list:>
+      <a href="<:script:>" class="button active">Users</a>
+      <:- or UserCan:><:eif UserCan:>
+      <:- if UserCan bse_members_group_list:>
+      <a href="<:script:>?a_grouplist=1" class="button">Groups</a>
+      <:- or UserCan:><:eif UserCan:>
+    </span>
     <!--
     <:- if Userfiles:>
     <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button gray small">Files</a>
     <:- or Userfiles:><:eif Userfiles:>
     -->
-    <:- if UserCan bse_members_user_add_file:>
-    <a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" accesskey="f" title="AccessKey = f" class="button blue small">Add File</a>
-    <:- or UserCan:><:eif UserCan:>
     <:- if UserCan bse_members_user_delete:>
-    <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this User?');" class="button red small">Delete</a>
+    <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this User?');" data-icon="delete" class="button">Delete</a>
     <:- or UserCan:>
-    <a class="button red small disabled">Delete</a>
+    <a data-icon="delete" class="button disabled">Delete</a>
     <:- eif UserCan:>
   </nav>
   <form action="<:script:>" method="post">
@@ -260,7 +274,8 @@
               <:- eif UserCan:>
               <:- if UserCan bse_members_user_del_file:>
               <a href="<:script:>?a_deluserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>&amp;_csrfp=<:csrfp admin_user_del_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a>
-              <:- or UserCan:><a class="button red small disabled">Delete</a>
+              <:- or UserCan:>
+              <a  data-icon="delete" class="button red small disabled">Delete</a>
               <:- eif UserCan:>
             </span>
           </li>

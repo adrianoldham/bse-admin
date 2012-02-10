@@ -1,8 +1,8 @@
 <:wrap admin/base.tmpl title=>"Show Template" :>
 <div id="preview" class="preview">
-    <a href="<:script:>" class="button gray small">Done</a>
-    <a href="<:adminurl generate r [adminurl pregen a_show 1 template [template id] |z] id [cat "extra:" [template id]] m 1 |x:>" class="button green small">Regenerate</a>
   <nav data-role="toolbar">Viewing: <:template id:>
+    <a href="<:script:>" class="button">Done</a>
+    <a href="<:adminurl generate r [adminurl pregen a_show 1 template [template id] |z] id [cat "extra:" [template id]] m 1 |x:>" class="button">Regenerate</a>
   </nav>
   <iframe src="<:script:>?a_display=1&amp;template=<:template id:>" frameborder="0" name="workarea">
     <p>Your browser does not support iframes.</p>

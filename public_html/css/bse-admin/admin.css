@@ -1687,8 +1687,30 @@ ul.menu.global > li > ul {
 }
 
 /* @end */
+
+/* @group context */
+
+ul.menu.context,
+ul.menu.context > li {
+    float: left;
+}
+
+ul.menu.context > li > ul {
+    font-size: 1.1em;
+    top: 2em;
+}
+
+/* @end */
+
+/* @group divider */
+
+ul.menu li:first-child.divider,
+ul.menu li:last-child.divider,
+ul.menu li.divider + li.divider {
     display: none;
 }
+
+/* @end */
 
 /* @end */
 
@@ -1724,5 +1746,210 @@ details[open] summary {
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+
+/* @end */
+
+/* @group toolbar */
+
+[data-role=toolbar] {
+    padding: 0.75em 2em;
+    margin: 0 -2em;
+    border-bottom: 0.083em solid #999;
+}
+
+[data-role=toolbar]:first-child {
+    margin: 0;
+}
+
+[data-role=toolbar] > .button:first-child,
+[data-role=toolbar] > :first-child .button:first-child {
+    margin-left: 0;
+}
+
+h1:first-child + [data-role=toolbar] {
+    padding-top: 0.25em;
+    margin-top: -1.25em;
+    margin-bottom: 1em;
+    background: #b8b8b8;
+}
+
+[data-role=toolbar] .button {
+    top: 0;
+    float: left;
+    padding: 0.3em 1em;
+    font-size: 1em !important;
+    color: #333 !important;
+    text-shadow: 0 0.083em 0 #fff;
+    border: 0.083em solid;
+    border-color: #7c7c7c #757575 #6b6b6b #757575;
+    /*border-color: rgba(0,0,0,0.4);*/
+    -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
+    -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
+    box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
+    border-radius: 0.35em;
+    background: #ddd; /* Old browsers */
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%,rgba(255,255,255,0.8)),
+        color-stop(100%,rgba(255,255,255,0))
+    ); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(
+        top,
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* Chrome10+,Safari5.1+ */
+    background: -moz-linear-gradient(
+        top,
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* FF3.6+ */
+    background: -o-linear-gradient(
+        top,
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* Opera 11.10+ */
+    background: -ms-linear-gradient(
+        top,
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* IE10+ */
+    background: linear-gradient(
+        top,
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(
+        startColorstr='#CCFFFFFF',
+        endColorstr='#00FFFFFF',
+        GradientType=0
+    ); /* IE6-9 */
+}
+
+[data-role=toolbar] .button:active,
+[data-role=toolbar] .button.active,
+[data-role=toolbar] .active .button {
+    -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
+    box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
+}
+
+[data-role=toolbar] .button.selected {
+    -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
+    -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
+    box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
+    background: #888;
+    background: #3F000000;
+    background: rgba(0,0,0,0.25);
+    color: #eee !important;
+    text-shadow: 0 0.083em 0 #444;
+}
+
+/* @group control group */
+
+[data-role=toolbar] [data-role=controlgroup] {
+    float: left;  
+}
+
+[data-role=toolbar] [data-role=controlgroup] .button:first-child {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;    
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 0;    
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;    
+    margin-right: 0;
+}
+
+[data-role=toolbar] [data-role=controlgroup] .button:last-child {
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;    
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-bottomleft: 0;    
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;    
+    margin-left: 0;
+}
+
+[data-role=toolbar] [data-role=controlgroup] .button:not(:first-child):not(:last-child) {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin: 0;
+}
+
+[data-role=toolbar] [data-role=controlgroup] .button:first-child:last-child {
+    margin: inherit;
+}
+
+[data-role=toolbar] [data-role=controlgroup] .button:not(:first-child) {
+    margin-left: -0.083em !important;
+}
+
+[data-role=toolbar] [data-role=controlgroup] + [data-role=controlgroup] {
+    margin-left: 3.5em;
+}
+
+/* @end */
+
+/* @group button icons */
+
+[data-role=toolbar] .button[data-icon=delete] {
+    float: right;
+}
+
+[data-role=toolbar] .button[data-icon][data-icon-only] {
+    width: 3em;
+    line-height: 0;
+    padding-left: 0;
+    padding-right: 0;
+    text-indent: -9999em;
+    overflow: hidden;
+}
+
+[data-role=toolbar] .button[data-icon]:before {
+    text-indent: -9999em;
+    content: "";
+    float: left;
+    width: 2em;
+    height: 1.25em;
+    margin: 0 0.25em 0 -0.75em;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    opacity: 0.9;
+}
+
+[data-role=toolbar] .button[data-icon][data-icon-only]:before {
+    width: 100%;
+    margin-left: 0;
+}
+
+[data-role=toolbar] .button[data-icon].selected:before {
+    background-position: 50% 100%;
+    opacity: 0.7;
+}
+
+[data-role=toolbar] .button[data-icon=action]:before {
+    background-image: url(/images/bse-admin/buttons/action-sprite.png);
+}
+
+[data-role=toolbar] .button[data-icon=preview]:before {
+    background-image: url(/images/bse-admin/buttons/preview-sprite.png);
+}
+
+[data-role=toolbar] .button[data-icon=back]:before {
+    background-image: url(/images/bse-admin/buttons/back-sprite.png);
+}
+
+[data-role=toolbar] .button[data-icon=delete]:before {
+    background-image: url(/images/bse-admin/buttons/delete-sprite.png);
+}
+
+[data-role=toolbar] .button[data-icon=regen]:before {
+    background-image: url(/images/bse-admin/buttons/regen-sprite.png);
+}
+
+/* @end */
 
 /* @end */

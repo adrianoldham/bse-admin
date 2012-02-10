@@ -1,11 +1,11 @@
 <:wrap admin/base.tmpl title=>"Report Results" nomessage=>"1" :>
 <div class="window">
   <h1><:param title:></h1>
-    <:- if Report has_params:>
-    <a href="<:script:>?s_prompt=1&amp;r=<:report id:>&amp;referer=1" class="button blue small">Arguments</a>
-    <:- or Report:><:eif Report:>
+  <:- if Report has_params:>
   <nav data-role="toolbar">
+    <a href="<:script:>?s_prompt=1&amp;r=<:report id:>&amp;referer=1" class="button">Arguments</a>
   </nav>
+  <:- or Report:><:eif Report:>
   <:- if Sort_select others:>
   <form action="<:script:>" method="post">
     <fieldset>

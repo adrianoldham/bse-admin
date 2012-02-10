@@ -1,13 +1,30 @@
 <:wrap admin/base.tmpl title=>"Manage Site Groups" :>
 <div class="window">
   <h1><:param title:></h1>
-    <:- if UserCan bse_members_user_list:>
-    <a href="<:script:>" class="button gray small">Users</a>
-    <:- or UserCan:><:eif UserCan:>
-    <:- if UserCan bse_members_group_add:>
-    <a href="<:script:>?a_addgroupform=1" accesskey="g" title="AccessKey = g" class="button blue small">Add Group</a>
-    <:- or UserCan:><:eif UserCan:>
   <nav data-role="toolbar">
+    <:- if Or [ifUserCan bse_members_user_add] [ifUserCan bse_members_group_add]:>
+    <ul class="menu context">
+      <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+        <ul>
+          <:- if UserCan bse_members_user_add:>
+          <li><a href="<:script:>?a_addform=1" accesskey="u" title="AccessKey = u">New Site User…</a></li>
+           <:- or UserCan:><:eif UserCan:>
+           <:- if UserCan bse_members_group_add:>
+           <li class="divider"></li>
+           <li><a href="<:script:>?a_addgroupform=1" accesskey="g" title="AccessKey = g">New Site Group…</a></li>
+           <:- or UserCan:><:eif UserCan:>
+        </ul>
+      </li>
+    </ul>
+    <:- or Or:><:eif Or:>
+    <span data-role="controlgroup">
+      <:- if UserCan bse_members_user_list:>
+      <a href="<:script:>" class="button">Users</a>
+      <:- or UserCan:><:eif UserCan:>
+      <:- if UserCan bse_members_group_list:>
+      <a href="<:script:>?a_grouplist=1" class="button selected">Groups</a>
+      <:- or UserCan:><:eif UserCan:>
+    </span>
   </nav>
   <:- if Groups:>
   <fieldset class="list">
