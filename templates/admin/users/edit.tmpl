@@ -1,13 +1,13 @@
 <:wrap admin/base.tmpl title=>"Edit Site User" :>
 <div class="window siteuser">
   <h1><:param title:></h1>
-  <nav class="toolbar">
     <:- if UserCan bse_members_user_list:>
     <a href="<:script:>" class="button gray small">Users</a>
     <:- or UserCan:><:eif UserCan:>
     <:- if UserCan bse_members_group_list:>
     <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a>
     <:- or UserCan:><:eif UserCan:>
+  <nav data-role="toolbar">
     <!--
     <:- if Userfiles:>
     <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button gray small">Files</a>

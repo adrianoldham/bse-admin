@@ -1,9 +1,9 @@
 <:wrap admin/base.tmpl title=>"Manage Products" :>
 <div class="window">
   <h1><:param title:></h1>
-  <nav class="toolbar">
     <a href="<:adminurl add:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>" class="button gray small">Shop</a>
     <a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1" class="button gray small">Preview</a>
+  <nav data-role="toolbar">
     <:- if UserCan bse_edit_add_child:[shopid]:>
     <a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Product&amp;r=<:adminurl shopadmin:>" class="button blue small">Add Product</a>
     <:- if Cfg seminars enabled:>

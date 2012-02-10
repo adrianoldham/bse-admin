@@ -1,13 +1,13 @@
 <:wrap admin/base.tmpl title=>"Manage Site Users" :>
 <div class="window">
   <h1><:param title:></h1>
-  <nav class="toolbar">
     <:- if UserCan bse_members_group_list:>
     <a href="<:script:>?a_grouplist=1" class="button gray small">Groups</a>
     <:- or UserCan:><:eif UserCan:>
     <:- if UserCan bse_members_user_add:>
     <a href="<:script:>?a_addform=1" accesskey="u" title="AccessKey = u" class="button blue small">Add User</a>
     <:- or UserCan:><:eif UserCan:>
+  <nav data-role="toolbar">
   </nav>
   <form action="<:script:>" method="post">
     <input type="hidden" name="s" value="<:sortby:>" />
