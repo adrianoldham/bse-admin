@@ -25,28 +25,28 @@ body {
         linear,
         left top,
         left bottom,
-        color-stop(0, #999),
-        color-stop(100%, #666)
+        color-stop(0, #rgba(255,255,255,0.35)),
+        color-stop(100%, rgba(255,255,255,0))
     );
     background-image: -webkit-linear-gradient(
         top,
-        #999 0,
-        #666 100%
+        rgba(255,255,255,0.35) 0,
+        rgba(255,255,255,0) 100%
     );
     background-image: -moz-linear-gradient(
         top,
-        #999 0,
-        #666 100%
+        rgba(255,255,255,0.35) 0,
+        rgba(255,255,255,0) 100%
     );
     background-image: -o-linear-gradient(
         top,
-        #999 0,
-        #666 100%
+        rgba(255,255,255,0.35) 0,
+        rgba(255,255,255,0) 100%
     );
     background-image: linear-gradient(
         top,
-        #999 0,
-        #666 100%
+        rgba(255,255,255,0.35) 0,
+        rgba(255,255,255,0) 100%
     );
 }
 
@@ -1749,17 +1749,44 @@ details[open] summary {
 
 header {
     margin: 0 -2em 1em;
-    background-color: #aaa;
     border-top: 0.083em solid #fff;
     border-bottom: 0.083em solid #777;
     -webkit-border-radius: 0.75em 0.75em 0 0;
     -moz-border-radius: 0.75em 0.75em 0 0;
     border-radius: 0.75em 0.75em 0 0;
+    background-color: #aaa; /* Old browsers */
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%,rgba(255,255,255,0.4)),
+        color-stop(100%,rgba(255,255,255,0))
+    ); /* Chrome,Safari4+ */
     background-image: -webkit-linear-gradient(
         top,
         rgba(255,255,255,0.4) 0%,
         rgba(255,255,255,0) 100%
     ); /* Chrome10+,Safari5.1+ */
+    background-image: -moz-linear-gradient(
+        top,
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* FF3.6+ */
+    background-image: -o-linear-gradient(
+        top,
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(
+        top,
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* IE10+ */
+    background-image: linear-gradient(
+        top,
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* W3C */
 }
 
 *[data-role=toolbar] {
@@ -1802,7 +1829,7 @@ h1:first-child + *[data-role=toolbar] {
         color-stop(0%,rgba(255,255,255,0.8)),
         color-stop(100%,rgba(255,255,255,0))
     ); /* Chrome,Safari4+ */
-    background-image: -webkit-linear-gradient(
+    background: -webkit-linear-gradient(
         top,
         rgba(255,255,255,0.8) 0%,
         rgba(255,255,255,0) 100%
