@@ -137,7 +137,7 @@ iframe {
 }
 
 .group:after,
-[data-role]:after {
+*[data-role]:after {
     content: ".";
     display: block;
     clear: both;
