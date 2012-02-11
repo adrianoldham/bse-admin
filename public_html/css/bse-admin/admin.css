@@ -150,13 +150,15 @@ iframe {
     color: orange;
 }
 
-tr.error, tr.crit {
+tr.error,
+tr.crit {
     border: none;
     color: #c03 !important;
     background-color: rgba(255,0,0,0.05);
 }
 
-tr.error:nth-child(odd), tr.crit:nth-child(odd) {
+tr.error:nth-child(odd),
+tr.crit:nth-child(odd) {
     background-color: rgba(255,0,0,0.15) !important;
 }
 
