@@ -65,10 +65,12 @@ var DropMenu = Class.create({
 
         activeClass: "active",                          // The class applied when a dropdown is visible
         hoverClass: "hover",                            // The class applied to a menu when it's hovered over
-        hasDropdownClass: "parent",               // The class applied to a menu if it has a dropdown
-        
+        hasDropdownClass: "parent",                     // The class applied to a menu if it has a dropdown
+
         dropdownElement: "ul",                          // The element type of the dropdowns to look for
         showLeft: 0,                                    // Set null to use parent element width, non-zero values require units ie: "200px" or "20em"
+
+        excludeElements: ".divider, .disabled",          // Element selectors to exclude from keyboard navigation        
 
         show: [ Effect.Appear ],                        // Can use a combination of effects to
         hide: [ Effect.Fade ],                          // show or hide the dropdowns
@@ -143,12 +145,13 @@ var DropMenu = Class.create({
             if (this.rootActive && this.lastActive != null) {
                 var newMenuItem, onHoverOutPrevious;
                 
-                var nextKey = 40, previousKey = 38, openKey = 39, closeKey = 37;
+                var nextKey = 40, previousKey = 38, openKey = 39, closeKey = 37, goKey = 13;
                 if (this.lastActive.isOsRoot()) {
                     nextKey = 39;
                     previousKey = 37;
                     openKey = 40;
                     closeKey = 38;
+                    goKey = 13;
                 }
                 
                 switch (event.keyCode) {
@@ -158,7 +161,7 @@ var DropMenu = Class.create({
                         this.rootActive = false;
                         return;
                     case nextKey: // down
-                        newMenuItem = this.lastActive.element.next();
+                        newMenuItem = this.lastActive.element.next(':not(' + this.options.excludeElements + ')');
                         
                         // Loop if root
                         if (newMenuItem == null && this.lastActive.isOsRoot()) {
@@ -168,7 +171,7 @@ var DropMenu = Class.create({
                         onHoverOutPrevious = true;
                         break;
                     case previousKey: // up
-                        newMenuItem = this.lastActive.element.previous();
+                        newMenuItem = this.lastActive.element.previous(':not(' + this.options.excludeElements + ')');
                         
                         // Loop if root
                         if (newMenuItem == null && this.lastActive.isOsRoot()) {
@@ -222,7 +225,14 @@ var DropMenu = Class.create({
                                 onHoverOutPrevious = true;
                             }
                         }
-                        
+                        break;
+                    case goKey:
+                        newMenuItem = this.lastActive.element;                        
+                        var href = newMenuItem.down("a").getAttribute("href");
+                        var location = window.location.href;
+                        if(href != location && href != "#") {
+                            window.location.href = href;
+                        }
                         break;
                 }
                 
@@ -329,7 +339,6 @@ DropMenu.Item = Class.create({
     onHover: function() {
         this.parent.onHoverOutAll(this);
         this.parent.lastActive = this;
-        
         this.element.addClassName(this.options.hoverClass);
     },
     
