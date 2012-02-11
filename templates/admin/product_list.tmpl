@@ -1,29 +1,31 @@
 <:wrap admin/base.tmpl title=>"Manage Products" :>
 <div class="window">
-  <h1><:param title:></h1>
-  <nav data-role="toolbar">
-    <ul class="menu context">
-      <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
-        <ul>
-          <:- if UserCan bse_edit_add_child:[shopid]:>
-          <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Product&amp;r=<:adminurl shopadmin:>" accesskey="p" title="AccessKey = p">New Product…</a></li>
-          <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Catalog&amp;r=<:adminurl shopadmin:>" accesskey="c" title="AccessKey = c">New Catalog…</a></li>
-          <:- if Cfg seminars enabled:>
-          <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>" accesskey="s" title="AccessKey = s">New Seminar…</a></li>
-          <:- or Cfg:><:eif Cfg:>
-          <:- or UserCan:><:eif UserCan:>
-          <:- if UserCan bse_regen_article:shopid:>
-          <li class="divider"></li>
-          <li><a href="<:adminurl generate:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>%26m=Shop%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
-          <:- or UserCan:><:eif UserCan:>
-          <li class="divider"></li>
-          <li><a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1">Preview</a></li>
-        </ul>
-      </li>
-    </ul>
-    <a href="<:adminurl add:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>" title="Edit Shop" data-icon="back" data-icon-only="true" class="button">Shop</a>
-    <a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1" title="Preview Shop" data-icon="preview" class="button">Preview</a>
-  </nav> 
+  <header>
+    <h1><:param title:></h1>
+    <nav data-role="toolbar">
+      <ul class="menu context">
+        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:- if UserCan bse_edit_add_child:[shopid]:>
+            <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Product&amp;r=<:adminurl shopadmin:>" accesskey="p" title="AccessKey = p">New Product…</a></li>
+            <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Catalog&amp;r=<:adminurl shopadmin:>" accesskey="c" title="AccessKey = c">New Catalog…</a></li>
+            <:- if Cfg seminars enabled:>
+            <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>" accesskey="s" title="AccessKey = s">New Seminar…</a></li>
+            <:- or Cfg:><:eif Cfg:>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_regen_article:shopid:>
+            <li class="divider"></li>
+            <li><a href="<:adminurl generate:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>%26m=Shop%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <li class="divider"></li>
+            <li><a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1">Preview</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a href="<:adminurl add:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>" title="Edit Shop" data-icon="back" data-icon-only="true" class="button">Shop</a>
+      <a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1" title="Preview Shop" data-icon="preview" class="button">Preview</a>
+    </nav>
+  </header>
   <:- if Products:>
   <fieldset class="list">
     <legend>Products</legend>

@@ -1,6 +1,8 @@
 <:wrap admin/base.tmpl title=>[cfg site name |h] nonavbar=>"1" bodyid=>"logon" :>
 <div class="window dialog">
-  <h1><:param title:></h1>
+  <header>
+    <h1><:param title:></h1>
+  </header>
   <form action="<:adminurl logon:>" method="post">
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>

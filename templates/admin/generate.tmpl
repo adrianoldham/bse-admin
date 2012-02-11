@@ -1,6 +1,8 @@
 <:wrap admin/base.tmpl title=>[cond [ifMatch [cgi id] "extras"] [cat "Regenerate extras"] [cat "Regenerate site"]] nomessage=>"1" :>
 <div class="window">
-  <h1><:param title:></h1>
+  <header>
+    <h1><:param title:></h1>
+  </header>
   <ul class="children list">
     <:iterator begin messages:>
     <:switch:>

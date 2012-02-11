@@ -1,6 +1,8 @@
 <:wrap admin/base.tmpl title=>"New Option" js=>"admin_prodopts.js" :>
 <div class="window dialog">
-  <h1><:param title:></h1>
+  <header>
+    <h1><:param title:></h1>
+  </header>
   <form action="<:script:>" method="post">
     <:csrfp admin_add_option hidden:>
     <input type="hidden" name="_t" value="prodopts" />

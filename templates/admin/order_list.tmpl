@@ -1,6 +1,8 @@
 <:wrap admin/base.tmpl title=>"Manage Orders" target=>"order_list" :>
 <div class="window">
-  <h1><:param title:></h1>
+  <header>
+    <h1><:param title:></h1>
+  </header>
   <form action="<:adminurl shopadmin:>" method="post">
     <input type="hidden" name="a_<:param target:>" value="1" />
     <fieldset>

@@ -1,29 +1,31 @@
 <:wrap admin/base.tmpl title=>[cat "Manage " [cond [ifEq [article id] -1] Site [typename article] ] " Images"] :>
 <div class="window">
-  <h1><:param title:></h1>
-  <nav data-role="toolbar">
-    <ul class="menu context">
-      <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
-        <ul>
-          <:- if UserCan bse_edit_images_add:article:>
-          <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" accesskey="i" title="AccessKey = i">New Image…</a></li>
-          <:- or UserCan:><:eif UserCan:>
-        </ul>
-      </li>
-    </ul>
-    <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
-    <span data-role="controlgroup">
-      <:- if Or [ifImages] [ifFiles]:>
-      <a href="<:script:>?id=<:article id:>" class="button"><:typename article:></a>
-      <:- or Or:><:eif Or:>
-      <:- if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
-      <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button selected">Images</a>
-      <:- or And:><:eif And:>
-      <:- if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
-      <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button">Files</a>
-      <:- or And:><:eif And:>
-    </span>
-  </nav>
+  <header>
+    <h1><:param title:></h1>
+    <nav data-role="toolbar">
+      <ul class="menu context">
+        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:- if UserCan bse_edit_images_add:article:>
+            <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" accesskey="i" title="AccessKey = i">New Image…</a></li>
+            <:- or UserCan:><:eif UserCan:>
+          </ul>
+        </li>
+      </ul>
+      <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
+      <span data-role="controlgroup">
+        <:- if Or [ifImages] [ifFiles]:>
+        <a href="<:script:>?id=<:article id:>" class="button"><:typename article:></a>
+        <:- or Or:><:eif Or:>
+        <:- if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
+        <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button selected">Images</a>
+        <:- or And:><:eif And:>
+        <:- if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
+        <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button">Files</a>
+        <:- or And:><:eif And:>
+      </span>
+    </nav>
+  </header>
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="img" />

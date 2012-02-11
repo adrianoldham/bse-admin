@@ -1,6 +1,8 @@
 <:wrap admin/base.tmpl title=>"New File" :>
 <div class="window dialog">
-  <h1><:param title:></h1>
+  <header>
+    <h1><:param title:></h1>
+  </header>
   <form action="<:script:>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="fileupload" />

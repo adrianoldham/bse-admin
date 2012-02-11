@@ -1,6 +1,8 @@
 <:wrap admin/base.tmpl title=>[cond [cgi stepkid] "Edit Stepchild" "New Stepchild"] :>
 <div class="window dialog">
-  <h1><:param title:></h1>
+  <header>
+    <h1><:param title:></h1>
+  </header>
   <form action="<:script:>" method="post">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="steps" />

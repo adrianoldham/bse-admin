@@ -251,9 +251,8 @@ div.window {
     width: 95%;
     max-width: 80em;
     min-width: 34em;
-    padding: 1em 2em 1.5em;
+    padding: 0 2em 1.5em;
     background-color: #ececec;
-    border-top: 0.083em solid #fff;
     border-bottom: 0.083em solid #444;
     overflow: hidden; /* clear contained floats */
     -webkit-border-radius: 0.5em;
@@ -270,16 +269,12 @@ div.window.dialog {
 
 h1:first-child {
     padding: 0.25em;
-    margin: -1em -1.75em 1em;
+    margin: 0;
     font-size: 1.17em;
     font-weight: normal;
     font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, sans-serif;
     text-align: center;
     color: #444;
-    background-color: #ccc;
-    -webkit-border-radius: 0.75em 0.75em 0 0;
-    -moz-border-radius: 0.75em 0.75em 0 0;
-    border-radius: 0.75em 0.75em 0 0;
 }
 
 div.window fieldset {
@@ -1437,8 +1432,7 @@ table.vertical td {
 
 /* @group navbar */
 
-ul.menu.global,
-h1:first-child {
+ul.menu.global {
     background-image: -webkit-gradient(
         linear,
         left top,
@@ -1753,10 +1747,24 @@ details[open] summary {
 
 /* @group toolbar */
 
+header {
+    margin: 0 -2em 1em;
+    background-color: #aaa;
+    border-top: 0.083em solid #fff;
+    border-bottom: 0.083em solid #777;
+    -webkit-border-radius: 0.75em 0.75em 0 0;
+    -moz-border-radius: 0.75em 0.75em 0 0;
+    border-radius: 0.75em 0.75em 0 0;
+    background-image: -webkit-linear-gradient(
+        top,
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0) 100%
+    ); /* Chrome10+,Safari5.1+ */
+}
+
 [data-role=toolbar] {
     padding: 0.75em 2em;
-    margin: 0 -2em;
-    border-bottom: 0.083em solid #999;
+    margin: 0;
 }
 
 [data-role=toolbar]:first-child {
@@ -1769,10 +1777,7 @@ details[open] summary {
 }
 
 h1:first-child + [data-role=toolbar] {
-    padding-top: 0.25em;
-    margin-top: -1.25em;
-    margin-bottom: 1em;
-    background: #b8b8b8;
+    padding-top: 0;
 }
 
 [data-role=toolbar] .button {
