@@ -1762,25 +1762,25 @@ header {
     ); /* Chrome10+,Safari5.1+ */
 }
 
-[data-role=toolbar] {
+*[data-role=toolbar] {
     padding: 0.75em 2em;
     margin: 0;
 }
 
-[data-role=toolbar]:first-child {
+*[data-role=toolbar]:first-child {
     margin: 0;
 }
 
-[data-role=toolbar] > .button:first-child,
-[data-role=toolbar] > :first-child .button:first-child {
+*[data-role=toolbar] > .button:first-child,
+*[data-role=toolbar] > :first-child .button:first-child {
     margin-left: 0;
 }
 
-h1:first-child + [data-role=toolbar] {
+h1:first-child + *[data-role=toolbar] {
     padding-top: 0;
 }
 
-[data-role=toolbar] .button {
+*[data-role=toolbar] .button {
     top: 0;
     float: left;
     padding: 0.3em 1em;
@@ -1834,15 +1834,15 @@ h1:first-child + [data-role=toolbar] {
     ); /* IE6-9 */
 }
 
-[data-role=toolbar] .button:active,
-[data-role=toolbar] .button.active,
-[data-role=toolbar] .active .button {
+*[data-role=toolbar] .button:active,
+*[data-role=toolbar] .button.active,
+*[data-role=toolbar] .active .button {
     -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
     -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
     box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
 }
 
-[data-role=toolbar] .button.selected {
+*[data-role=toolbar] .button.selected {
     -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
     -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
     box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
@@ -1855,11 +1855,11 @@ h1:first-child + [data-role=toolbar] {
 
 /* @group control group */
 
-[data-role=toolbar] [data-role=controlgroup] {
+*[data-role=controlgroup] {
     float: left;  
 }
 
-[data-role=toolbar] [data-role=controlgroup] .button:first-child {
+*[data-role=controlgroup] > :first-child {
     -webkit-border-top-right-radius: 0;
     -webkit-border-bottom-right-radius: 0;    
     -moz-border-radius-topright: 0;
@@ -1869,7 +1869,7 @@ h1:first-child + [data-role=toolbar] {
     margin-right: 0;
 }
 
-[data-role=toolbar] [data-role=controlgroup] .button:last-child {
+*[data-role=controlgroup] > :last-child {
     -webkit-border-top-left-radius: 0;
     -webkit-border-bottom-left-radius: 0;    
     -moz-border-radius-topleft: 0;
@@ -1879,22 +1879,22 @@ h1:first-child + [data-role=toolbar] {
     margin-left: 0;
 }
 
-[data-role=toolbar] [data-role=controlgroup] .button:not(:first-child):not(:last-child) {
+*[data-role=controlgroup] > :not(:first-child):not(:last-child) {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
     margin: 0;
 }
 
-[data-role=toolbar] [data-role=controlgroup] .button:first-child:last-child {
+*[data-role=controlgroup] > :first-child:last-child {
     margin: inherit;
 }
 
-[data-role=toolbar] [data-role=controlgroup] .button:not(:first-child) {
+*[data-role=controlgroup] > :not(:first-child) {
     margin-left: -0.083em !important;
 }
 
-[data-role=toolbar] [data-role=controlgroup] + [data-role=controlgroup] {
+*[data-role=controlgroup] + *[data-role=controlgroup] {
     margin-left: 3.5em;
 }
 
@@ -1902,11 +1902,11 @@ h1:first-child + [data-role=toolbar] {
 
 /* @group button icons */
 
-[data-role=toolbar] .button[data-icon=delete] {
-    float: right;
+*[data-icon=delete] {
+    float: right !important;
 }
 
-[data-role=toolbar] .button[data-icon][data-icon-only] {
+*[data-icon][data-icon-only] {
     width: 3em;
     line-height: 0;
     padding-left: 0;
@@ -1915,7 +1915,7 @@ h1:first-child + [data-role=toolbar] {
     overflow: hidden;
 }
 
-[data-role=toolbar] .button[data-icon]:before {
+*[data-icon]:before {
     text-indent: -9999em;
     content: "";
     float: left;
@@ -1927,33 +1927,33 @@ h1:first-child + [data-role=toolbar] {
     opacity: 0.9;
 }
 
-[data-role=toolbar] .button[data-icon][data-icon-only]:before {
+*[data-icon][data-icon-only]:before {
     width: 100%;
     margin-left: 0;
 }
 
-[data-role=toolbar] .button[data-icon].selected:before {
+*[data-icon].selected:before {
     background-position: 50% 100%;
     opacity: 0.7;
 }
 
-[data-role=toolbar] .button[data-icon=action]:before {
+*[data-icon=action]:before {
     background-image: url(/images/bse-admin/buttons/action-sprite.png);
 }
 
-[data-role=toolbar] .button[data-icon=preview]:before {
+*[data-icon=preview]:before {
     background-image: url(/images/bse-admin/buttons/preview-sprite.png);
 }
 
-[data-role=toolbar] .button[data-icon=back]:before {
+*[data-icon=back]:before {
     background-image: url(/images/bse-admin/buttons/back-sprite.png);
 }
 
-[data-role=toolbar] .button[data-icon=delete]:before {
+*[data-icon=delete]:before {
     background-image: url(/images/bse-admin/buttons/delete-sprite.png);
 }
 
-[data-role=toolbar] .button[data-icon=regen]:before {
+*[data-icon=regen]:before {
     background-image: url(/images/bse-admin/buttons/regen-sprite.png);
 }
 
