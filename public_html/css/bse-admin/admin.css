@@ -257,7 +257,6 @@ div.window {
     padding: 0 2em 1.5em;
     background-color: #ececec;
     border-bottom: 0.083em solid #444;
-    overflow: hidden; /* clear contained floats */
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
@@ -1717,6 +1716,7 @@ ul.menu.global > li > ul {
 ul.menu.context,
 ul.menu.context > li {
     float: left;
+    z-index: 1;
 }
 
 ul.menu.context > li > ul {
