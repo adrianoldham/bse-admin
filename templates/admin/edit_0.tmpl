@@ -56,7 +56,7 @@
         <span>
           <a href="<:script:>?id=<:child id:>" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_delete_article:child:>
-          <a href="<:script:>?id=<:child id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename child:>?')" class="button red small">Delete</a>
+          <a href="<:script:>?id=<:child id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" data-confirm="Are you sure you want to delete this <:typename child:>?" class="button red small">Delete</a>
           <:- or UserCan:>
           <a class="button red small disabled">Delete</a>
           <:- eif UserCan:>

@@ -4,7 +4,7 @@
     <h1><:param title:></h1>
     <nav data-role="toolbar">
       <:- if UserCan bse_edit_files_delete:article:>
-      <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:efile id:>&amp;_csrfp=<:csrfp admin_remove_file:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this File?')" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:efile id:>&amp;_csrfp=<:csrfp admin_remove_file:>" accesskey="d" title="AccessKey = d" data-confirm="Are you sure you want to delete this File?" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>

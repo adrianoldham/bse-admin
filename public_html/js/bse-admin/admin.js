@@ -39,6 +39,27 @@ function dom_init() {
     });
 
     var openDetails = OpenDetails();
+    $$("[data-confirm]").each(function(e) {
+        e.observe('click', function(event) {
+            var element = event.element();
+
+            $("lightbox").setStyle({display: "block"});
+            
+            $("confirmMessage").update(element.getAttribute("data-confirm"));
+            
+            $("confirmDelete").setAttribute("href", element.href);
+    
+            $("confirmCancel").observe('click', function(event) {
+                $("lightbox").hide();
+                event.stopPropagation();
+                event.preventDefault();
+            });
+            
+            event.stopPropagation();
+            event.preventDefault();
+        });
+   });
+
 };
 
 function window_init() {

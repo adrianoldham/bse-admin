@@ -104,11 +104,12 @@ iframe {
     left: 0;
     margin: 0;
     padding: 0;
-    background-color: rgba(0,0,0,0.75);
-    z-index: 3;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
     overflow: visible;
     height: 100%;
     width: 100%;
+    display: none;
 }
 
 .half {
@@ -265,9 +266,34 @@ div.window {
     box-shadow: 0.25em 1em 3em rgba(0,0,0,0.5);
 }
 
+/* @group dialog */
+
 div.window.dialog {
     max-width: 40em;
 }
+
+/* @end */
+
+/* @group modal */
+
+div.window.modal {
+    top: 33%;
+    margin: 0 auto;
+}
+
+div.window.modal p:not(.buttons) {
+    margin-bottom: 1em;
+}
+
+ div.window.modal h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1;
+    color: #333;
+    margin: 1.75em 0 0.75em 0;
+}
+
+/* @end */
 
 h1:first-child {
     padding: 0.25em;

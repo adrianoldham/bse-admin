@@ -58,7 +58,7 @@
           <td class="actions">
             <a href="<:adminurl add:>?id=<:product id:>&amp;r=<:adminurl shopadmin:>" class="button gray small">Edit</a>
             <:- if UserCan bse_edit_delete_article:product:>
-            <a href="<:adminurl add:>?id=<:product id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:adminurl shopadmin:>" onclick="return window.confirm('Are you sure you want to delete this Product?')" class="button red small">Delete</a>
+            <a href="<:adminurl add:>?id=<:product id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:adminurl shopadmin:>" data-confirm="Are you sure you want to delete this Product?" class="button red small">Delete</a>
             <:- or UserCan:>
             <a class="button red small disabled">Delete</a>
             <:- eif UserCan:>

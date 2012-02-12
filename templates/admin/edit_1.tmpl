@@ -59,7 +59,7 @@
             <:- or Or:><:eif Or:>
             <li class="divider"></li>
             <:- if UserCan bse_edit_delete_article:article:>
-            <li><a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this <:typename article:>?')">Delete</a></li>
+            <li><a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-confirm="Are you sure you want to delete this <:typename article:>?">Delete</a></li>
             <:- or UserCan:>
             <li class="disabled"><span>Delete</span></li>
             <:- eif UserCan:>
@@ -83,7 +83,7 @@
         <:- or And:><:eif And:>
       </span>
       <:- if UserCan bse_edit_delete_article:article:>
-      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" onclick="return window.confirm('Are you sure you want to delete this <:typename article:>?');" data-icon="delete" class="button">Delete</a>
+      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-confirm="Are you sure you want to delete this <:typename article:>?" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>
@@ -261,7 +261,7 @@
               <a class="button gray small disabled">Edit</a>
               <:- eif UserCan:>
               <:- if UserCan bse_edit_prodopt_delete:article:>
-              <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:dboption id:>&amp;a_delconf_option=1&amp;_csrfp=<:csrfp admin_delete_option:>" onclick="return window.confirm('Are you sure you want to delete this Option?')" class="button red small">Delete</a>
+              <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:dboption id:>&amp;a_delconf_option=1&amp;_csrfp=<:csrfp admin_delete_option:>" data-confirm="Are you sure you want to delete this Option?" class="button red small">Delete</a>
               <:- or UserCan:>
               <a class="button red small disabled">Delete</a>
               <:- eif UserCan:>
@@ -523,7 +523,7 @@
               <:- or UserCan:><a class="button gray small disabled">Edit</a>
               <:- eif UserCan:>
               <:- if UserCan bse_edit_images_delete:article:>
-              <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" onclick="return window.confirm('Are you sure you want to delete this Image?')" class="button red small">Delete</a>
+              <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" data-confirm="Are you sure you want to delete this Image?" class="button red small">Delete</a>
               <:- or UserCan:><a class="button red small disabled">Delete</a>
               <:- eif UserCan:>
               <:- if UserCan bse_edit_images_reorder:article:>
@@ -549,7 +549,7 @@
               <a class="button gray small disabled">Edit</a>
               <:- eif UserCan:>
               <:- if UserCan bse_edit_files_delete:article:>
-              <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>" onclick="return window.confirm('Are you sure you want to delete this File?')" class="button red small">Delete</a>
+              <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>" data-confirm="Are you sure you want to delete this File?" class="button red small">Delete</a>
               <:- or UserCan:>
               <a class="button red small disabled">Delete</a>
               <:- eif UserCan:>
@@ -603,14 +603,14 @@
           <:- if StepKid:>
           <a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;_t=steps" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[stepkid childId]:>
-          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>" onclick="return window.confirm('Are you sure you want to delete the Stepchild realationship?\r\rThis does NOT delete the original <:typename kid:>.')" class="button red small">Delete</a>
+          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>" data-confirm="Are you sure you want to delete the Stepchild realationship? This does NOT delete the original <:typename kid:>." class="button red small">Delete</a>
           <:- or UserCan:>
           <a class="button red small disabled">Delete</a>
           <:- eif UserCan:>
           <:- or StepKid:>
           <a href="<:script:>?id=<:kid id:>" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_delete_article:kid:>
-          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" onclick="return window.confirm('Are you sure you want to delete this <:typename kid:>?')" class="button red small">Delete</a>
+          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" data-confirm="Are you sure you want to delete this <:typename kid:>?" class="button red small">Delete</a>
           <:- or UserCan:>
           <a class="button red small disabled">Delete</a>
           <:- eif UserCan:>
