@@ -77,7 +77,7 @@
       </fieldset>
     </details>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
       <:- if UserCan bse_edit_images_save:article:>
       <input type="submit" name="a_save_image" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or UserCan:><:eif UserCan:>

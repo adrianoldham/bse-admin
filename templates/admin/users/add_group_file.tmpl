@@ -79,7 +79,7 @@
       </fieldset>
     </details>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:referer:><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
       <:- if UserCan bse_members_group_add_file:>
       <input type="submit" name="a_addgroupfile" value="Upload file" accesskey="u" title="AccessKey = u" class="button green" />
       <:- or UserCan:><:eif UserCan:>

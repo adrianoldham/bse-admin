@@ -29,7 +29,7 @@
       <:- or Sort_count:><:eif Sort_count:>
     </fieldset>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi referer:><:referer:><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
+      <a href="<:switch:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button gray">Cancel</a>
       <input type="submit" name="s_show" value="Display report" accesskey="d" title="AccessKey = d" class="button green" />
     </p>
   </form>
