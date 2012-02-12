@@ -435,7 +435,7 @@ input[type=submit][disabled] {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 0.1em 0.1em rgba(0,0,0,0.3);
+    text-shadow: 0 0.083em 0.083em rgba(0,0,0,0.3);
     border: 0.083em solid;
     line-height: 1.25; /* Cannot modify because FF doesn't allow override on button element */
     color: #fff;
