@@ -39,7 +39,7 @@
       <h2>File <:arithmetic [file_index] + 1:> <:ifUserCan bse_edit_files_reorder:article:><:movefiles:><:or:><:eif:></h2>
       <p class="buttons">
         <:- if UserCan bse_edit_files_delete:article:>
-        <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" data-confirm="Are you sure you want to delete this File? (#<:arithmetic [file_index] + 1:>)" class="button red small">Delete</a>
+        <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" data-object="File" class="button red small">Delete</a>
         <:- or UserCan:>
         <a class="button red small disabled">Delete</a>
         <:- eif UserCan:>

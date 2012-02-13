@@ -41,14 +41,19 @@ function dom_init() {
     var openDetails = OpenDetails();
     $$("[data-confirm]").each(function(e) {
         e.observe('click', function(event) {
+    $$("[data-object]:not([data-object=placeholder])").each(function(element) {
+        element.observe('click', function(event) {
             var element = event.element();
+            var message = element.getAttribute("data-confirm");
+            var object = element.getAttribute("data-object");
 
             $("lightbox").setStyle({display: "block"});
+            $$("#lightbox [data-object=placeholder]").invoke('update', object);
             
-            $("confirmMessage").update(element.getAttribute("data-confirm"));
-            
+            if(message) {
+                $("confirmMessage").update(message);
+            }
             $("confirmDelete").setAttribute("href", element.href);
-    
             $("confirmCancel").observe('click', function(event) {
                 $("lightbox").hide();
                 event.stopPropagation();

@@ -4,7 +4,7 @@
     <h1><:param title:></h1>
     <nav data-role="toolbar">
       <:- if UserCan bse_edit_prodopt_delete:article:>
-      <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:option id:>&amp;a_delconf_option=1&amp;_csrfp=<:csrfp admin_delete_option:>" data-confirm="Are you sure you want to delete this Option?" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:option id:>&amp;a_delconf_option=1&amp;_csrfp=<:csrfp admin_delete_option:>" data-object="Option" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>
