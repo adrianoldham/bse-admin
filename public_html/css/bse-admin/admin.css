@@ -884,6 +884,10 @@ input[type=submit][disabled] {
     background-size: 2em;
 }
 
+.buttons .button {
+    font-weight: bold;
+}
+
 /* @end */
 
 /* @group item */
