@@ -64,6 +64,10 @@ select, input, textarea, button {
     margin: 0;
 }
 
+form {
+    position: relative;
+}
+
 p {
     margin-bottom: 1em;
 }
@@ -266,7 +270,7 @@ div.window {
 
 /* @group dialog */
 
-div.window.dialog {
+div.dialog {
     max-width: 40em;
 }
 
@@ -274,16 +278,18 @@ div.window.dialog {
 
 /* @group modal */
 
-div.window.modal {
+div.modal {
     top: 33%;
     margin: 0 auto;
 }
 
-div.window.modal p:not(.buttons) {
-    margin-bottom: 1em;
+div.modal h1 {
+    text-indent: -9999em;
+    overflow: hidden;
+    height: 1.5em;
 }
 
- div.window.modal h2 {
+div.modal h2 {
     font-size: 1.2em;
     font-weight: bold;
     line-height: 1;
@@ -292,6 +298,32 @@ div.window.modal p:not(.buttons) {
 }
 
 /* @end */
+
+/* @group sheet */
+
+div.sheet {
+    z-index: 1;
+    position: absolute;
+    top: -1em;
+    left: 50%;
+    margin: 0 -25%;
+    background-color: rgba(255,255,255,0.9);
+    border: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.75);
+    -moz-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.75);
+    box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
+}
+
+div.sheet p.buttons :first-child {
+    float: left;
+    margin-left: 0;
+}
+
+/* @end */
+
 
 h1:first-child {
     padding: 0.25em;
@@ -767,11 +799,7 @@ input[type=submit][disabled] {
 .white {
     color: #333;
     border-color: #999;
-    box-shadow: 0 0.1em 0 #dedede;
-    padding: 0.5em 1.5em;
-    font-size: 1.1em;
-    font-weight: bold;
-    text-shadow: 0 1px 1px #fff;
+    text-shadow: 0 0.083em 0.083em rgba(255,255,255,0.9);
     background: rgb(255,255,255); /* Old browsers */
     background: -webkit-gradient(
         linear,
@@ -844,7 +872,6 @@ input[type=submit][disabled] {
     width: 100%;
     text-align: right;
     clear: both;
-    /*margin-top: 1em;*/
 }
 
 .buttons > span {
@@ -1779,6 +1806,8 @@ details[open] summary {
 /* @group toolbar */
 
 header {
+    z-index: 2;
+    position: relative;
     margin: 0 -2em 1em;
     border-top: 0.083em solid #fff;
     border-bottom: 0.083em solid #777;
