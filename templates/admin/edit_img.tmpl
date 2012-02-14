@@ -9,10 +9,12 @@
             <:- if UserCan bse_edit_images_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" accesskey="i" title="AccessKey = i">New Image…</a></li>
             <:- or UserCan:><:eif UserCan:>
+            <li class="divider"></li>
+            <li><a href="<:script:>?id=<:cond [ifEq [article id] -1] 1 [article id]:>&amp;preview=1">Preview</a></li>
           </ul>
         </li>
       </ul>
-      <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
+      <a href="<:script:>?id=<:cond [ifEq [article id] -1] 1 [article id]:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
       <span data-role="controlgroup">
         <:- if Or [ifImages] [ifFiles]:>
         <a href="<:script:>?id=<:article id:>" class="button"><:typename article:></a>
