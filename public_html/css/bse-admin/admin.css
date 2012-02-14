@@ -798,7 +798,7 @@ input[type=submit][disabled] {
 
 .white {
     color: #333;
-    border-color: #999;
+    border-color: #aaa;
     text-shadow: 0 0.083em 0.083em rgba(255,255,255,0.9);
     background: rgb(255,255,255); /* Old browsers */
     background: -webkit-gradient(
