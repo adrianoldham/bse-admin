@@ -574,7 +574,7 @@
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?id=<:article parentid:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if UserCan bse_edit_save:article:>
-      <input type="submit" name="save" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <input type="submit" name="save" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or UserCan:><:eif UserCan:>
     </p>
     <:- eif New:>
