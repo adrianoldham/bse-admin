@@ -64,6 +64,10 @@ select, input, textarea, button {
     margin: 0;
 }
 
+p {
+    margin-bottom: 1em;
+}
+
 .hidden {
     position: absolute !important;
     left: -9999em !important;
@@ -249,7 +253,7 @@ div.window {
     width: 95%;
     max-width: 80em;
     min-width: 34em;
-    padding: 0 2em 1.5em;
+    padding: 0 2em 1em;
     background-color: #ececec;
     border-bottom: 0.083em solid #444;
     -webkit-border-radius: 0.5em;
