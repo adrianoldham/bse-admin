@@ -309,9 +309,12 @@ div.sheet {
     margin: 0 -25%;
     background-color: rgba(255,255,255,0.9);
     border: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-topright: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     -webkit-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.75);
     -moz-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.75);
     box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
