@@ -208,7 +208,7 @@ h4 {
 .bse_arrows img {
     display: inline !important;
     position: relative;
-    z-index: 10;
+    z-index: 1;
     border: none !important;
 }
 
