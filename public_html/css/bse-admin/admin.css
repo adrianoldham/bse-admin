@@ -868,6 +868,10 @@ input[type=submit][disabled] {
     ); /* IE6-9 */
 }
 
+.white:active {
+    color: #999;
+}
+
 /* @end */
 
 /* @end */
