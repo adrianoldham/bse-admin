@@ -45,7 +45,7 @@
           <td class="actions">
             <a href="<:script:>?a_showgroup=1&amp;groupid=<:igroup id:>" class="button gray small">Edit</a>
             <:- if UserCan bse_admin_group_del:>
-            <a href="<:script:>?a_delgroup=1&amp;groupid=<:igroup id:>" data-object="Group" class="button red small">Delete</a>
+            <a href="<:script:>?a_delgroup=1&amp;groupid=<:igroup id:>" data-action="delete" data-object="Group" class="button red small">Delete</a>
             <:- or UserCan:>
             <a class="button red small disabled">Delete</a>
             <:- eif UserCan:>
