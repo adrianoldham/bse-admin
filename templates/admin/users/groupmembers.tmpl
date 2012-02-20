@@ -69,7 +69,7 @@
     <:- or Siteusers:><:eif Siteusers:>
     <:- or UserCan:><:eif UserCan:>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Cancel</a>
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="cancel" class="button white">Cancel</a>
       <:- if UserCan bse_members_group_edit:>
       <input type="submit" name="a_savegroupmembers" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or UserCan:><:eif UserCan:>
