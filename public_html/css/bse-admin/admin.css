@@ -301,14 +301,19 @@ div.modal h2 {
 
 /* @group sheet */
 
-div.sheet {
+#sheet {
     z-index: 1;
+    display: none;
     position: absolute;
-    top: -1em;
-    left: 50%;
-    margin: 0 -25%;
+    left: 0;
+    right: 0;
+    margin-top: -1em;
+}
+
+div.sheet {
     background-color: rgba(255,255,255,0.9);
-    border: 0;
+    border-top: 0.083em solid #fff; /* prevent margin collapse */
+    border-bottom: 0;
     -webkit-border-top-left-radius: 0;
     -webkit-border-top-right-radius: 0;
     -moz-border-radius-topleft: 0;
@@ -320,7 +325,7 @@ div.sheet {
     box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
 }
 
-div.sheet p.buttons :first-child {
+div.sheet p.buttons > :first-child {
     float: left;
     margin-left: 0;
 }

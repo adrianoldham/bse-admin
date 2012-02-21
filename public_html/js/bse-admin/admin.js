@@ -3,6 +3,8 @@
 //document.write('<script type="text/javascript" src="/js/combo.packed.js"></script>');
 document.write('<script type="text/javascript" src="/js/bse-admin/dropmenu.js"></script>');
 document.write('<script type="text/javascript" src="/js/bse-admin/opendetails.js"></script>');
+document.write('<script type="text/javascript" src="/js/bse-admin/formmonitor.js"></script>');
+document.write('<script type="text/javascript" src="/js/bse-admin/linkconfirmer.js"></script>');
 
 // wait for DOM to load before initialising
 
@@ -39,31 +41,40 @@ function dom_init() {
     });
 
     var openDetails = OpenDetails();
-    $$("[data-confirm]").each(function(e) {
-        e.observe('click', function(event) {
-    $$("[data-object]:not([data-object=placeholder])").each(function(element) {
-        element.observe('click', function(event) {
-            var element = event.element();
-            var message = element.getAttribute("data-confirm");
-            var object = element.getAttribute("data-object");
 
-            $("lightbox").setStyle({display: "block"});
-            $$("#lightbox [data-object=placeholder]").invoke('update', object);
-            
-            if(message) {
-                $("confirmMessage").update(message);
-            }
-            $("confirmDelete").setAttribute("href", element.href);
-            $("confirmCancel").observe('click', function(event) {
-                $("lightbox").hide();
-                event.stopPropagation();
-                event.preventDefault();
-            });
-            
-            event.stopPropagation();
-            event.preventDefault();
-        });
-   });
+    var sheetHtml = '\
+    <div id="sheet">\
+      <div class="window dialog modal sheet">\
+        <h2>Would you like to save the changes to this <span data-object="placeholder">Object</span>?</h2>\
+        <p>If you don‘t save, your changes will be lost.</p>\
+        <p class="buttons">\
+          <a href="#" class="button white left" id="unsavedDont">Don’t Save</a>\
+          <a href="#" class="button white" id="unsavedCancel">Cancel</a>\
+          <a href="#" class="button green" id="unsavedSave">Save <span data-object="placeholder">Object</span></a>\
+        </p>\
+      </div>\
+    </div>';
+
+    var confirmHtml = '\
+    <div id="modal" class="lightbox">\
+      <div class="window dialog modal">\
+        <header>\
+          <h1>Alert!</h1>\
+        </header>\
+        <h2 id="confirmMessage">Are you sure you want to delete this <span data-object="placeholder">Object</span>?</h2>\
+        <p id="confirmInformation">Continuing with this action will permenantly remove this <span data-object="placeholder">Object</span> from your site. This action cannot be undone.</p>\
+        <p class="buttons">\
+          <a href="#" id="confirmCancel" class="button white">Cancel</a>\
+          <a href="#" id="confirmDelete" class="button red">Delete <span data-object="placeholder">Object</span></a>\
+        </p>\
+      </div>\
+    </div>';
+
+    $$("header").invoke('insert', { after: sheetHtml });
+    $$("body").invoke('insert', { bottom: confirmHtml });
+
+    var changesMonitor = new ChangesMonitor({ forms: 'form:[data-object]' });
+    var linkConfirmer = new LinkConfirmer();
 
 };
 
