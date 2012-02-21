@@ -7,7 +7,7 @@
       <a href="<:script:>?a_tagcleanup=1&amp;id=-1" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Unused Tags" data-icon="delete" class="button">Delete unused</a>
     </nav>
   </header>
-  <form action="<:script:>">
+  <form action="<:script:>" method="post">
     <fieldset>
       <legend>Filter tags</legend>
       <input type="hidden" name="id" value="-1" />
@@ -32,7 +32,7 @@
     </fieldset>
   </form>
   <:- iterator begin systags:>
-  <form action="<:script:>#tag_<:systag id:>" method="post">
+  <form action="<:script:>#tag_<:systag id:>" method="post" data-object="Tag">
     <fieldset>
       <div id="tag_<:systag id:>">
         <label for="tag_<:systag_number:>">Tag #<:systag_number:> <:ifEq [cgi tag_id] [systag id]:><:error_img name:><:or:><:eif:></label>
@@ -41,7 +41,7 @@
           <input type="hidden" name="tag_id" value="<:systag id:>" />
           <input type="text" name="name" id="tag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" class="<:ifError_img name:>error<:or:><:eif:>" />
           <input type="submit" name="a_tagrename" value="Save" class="button green small" />
-          <input type="submit" name="a_tagdelete" value="Delete" data-action="delete" data-object="Tag" class="button red small" />
+          <a href="<:script:>?a_tagdelete=1&amp;id=-1&amp;tag_id=<:systag id:>" data-action="delete" data-object="Tag" class="button red small">Delete</a>
         </span>
       </div>
       <:- if Cgi showarts:>

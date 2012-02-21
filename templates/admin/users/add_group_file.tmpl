@@ -3,7 +3,7 @@
   <header>
     <h1><:param title:></h1>
   </header>
-  <form action="<:script:>" method="post" enctype="multipart/form-data">
+  <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="File">
     <input type="hidden" name="id" value="<:group id:>" />
     <:csrfp admin_group_add_file hidden:>
     <input type="hidden" name="r" value="<:cgi r:>" />

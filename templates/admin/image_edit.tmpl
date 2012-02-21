@@ -10,7 +10,7 @@
       <:- eif UserCan:>
     </nav>
   </header>
-  <form action="<:script:>" method="post" enctype="multipart/form-data">
+  <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="Image">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="image_id" value="<:eimage id:>" />
     <:csrfp admin_save_image hidden:>
