@@ -3,6 +3,9 @@
 RewriteEngine On
 RewriteBase /
 
+# Redirect admin directly to admin menu
+    RewriteRule ^/?admin/?(index\.html)?$ /cgi-bin/admin/menu.pl [R=301,L]
+
 # Redirect unless it's the development domain
     #RewriteCond %{HTTP_HOST} !example.vtc.net.au$
     #RewriteCond %{REQUEST_URI} !^/?home
