@@ -128,8 +128,10 @@ iframe {
     width: 100%;
 }
 
-.disabled {
+.disabled,
+*[disabled] {
     opacity: 0.25;
+    cursor: default !important;
 }
 
 .message {
@@ -485,12 +487,9 @@ div.window div span img {
 
 /* @group common */
 
-.disabled,
 button[disabled],
 input[type=submit][disabled] {
-    opacity: 0.25 !important;
     top: 0 !important;
-    cursor: default !important;
 }
 
 .button {
