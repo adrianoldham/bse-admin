@@ -345,7 +345,7 @@ h1:first-child {
     color: #444;
 }
 
-div.window fieldset {
+fieldset {
     /*display: table; opera encloses the legend if set as table */
     border: 0.1em solid #ddd;
     border-color: #bbb #ddd #fff #ddd;
@@ -357,19 +357,19 @@ div.window fieldset {
     border-radius: 0.25em;
 }
 
-div.window fieldset legend {
+fieldset legend {
     font-size: 1.25em;
     color: #444;
     margin: 0;
     padding: 0 0.25em;
 }
 
-div.window fieldset > div {
+fieldset > div {
     display: table-row;
 }
 
-div.window fieldset > div > label,
-div.window fieldset > div > span {
+fieldset > div > label,
+fieldset > div > span {
     display: table-cell;
     vertical-align: top;
     /*padding: 0.25em 1em 0.25em 0;*/
@@ -377,7 +377,7 @@ div.window fieldset > div > span {
     /*line-height: 2;*/
 }
 
-div.window fieldset > div > label {
+fieldset > div > label {
     padding-right: 0.5em;
     text-align: right;
     width: 10%;
@@ -385,11 +385,11 @@ div.window fieldset > div > label {
     white-space: nowrap;
 }
 
-div.window fieldset > div > span {
+fieldset > div > span {
     width: 100%;
 }
 
-div.window fieldset > div > span > button {
+fieldset > div > span > button {
     display: none;
     /*background-color: #ccc;
     width: 1.75em;
@@ -398,17 +398,17 @@ div.window fieldset > div > span > button {
     overflow: hidden;*/
 }
 
-div.window fieldset > div:hover > span > button {
+fieldset > div:hover > span > button {
     display: inline;
 }
 
-div.window fieldset > :last-child {
+fieldset > :last-child {
     margin-bottom: 0;
 }
 
-div.window fieldset input:not([type=submit]):not([type=checkbox]):not([type=radio]),
-div.window fieldset select,
-div.window fieldset textarea {
+input:not([type=submit]):not([type=checkbox]):not([type=radio]),
+select,
+textarea {
     border: 0.1em solid #ddd;
     border-top-color: #aaa;
     line-height: 1.2;
@@ -423,61 +423,61 @@ div.window fieldset textarea {
     box-shadow: inset 0px 0.083em 0.35em rgba(0,0,0,0.1);
 }
 
-div.window fieldset input[type=file] {
+input[type=file] {
     padding: 0.1em 0.25em;
     overflow: hidden;
     position: relative;
 }
 
-div.window fieldset div.full input:not([type=submit]):not([type=checkbox]):not([type=radio]),
-div.dialog fieldset input:not([type=submit]):not([type=checkbox]):not([type=radio]),
-div.window fieldset div.full select,
-div.window fieldset div.full textarea,
-div.dialog fieldset select,
-div.dialog fieldset textarea {
+div.full input:not([type=submit]):not([type=checkbox]):not([type=radio]),
+div.dialog input:not([type=submit]):not([type=checkbox]):not([type=radio]),
+div.full select,
+div.full textarea,
+div.dialog select,
+div.dialog textarea {
     width: 100%;
 }
 
-div.window fieldset textarea {
+textarea {
     height: 20em;
 }
 
-div.window fieldset textarea[name=body] {
+textarea[name=body] {
     height: 30em;
 }
 
-div.window.dialog fieldset textarea,
-div.window fieldset textarea[name=summary],
-div.window fieldset textarea[name=adminNotes] {    
+div.window.dialog textarea,
+textarea[name=summary],
+textarea[name=adminNotes] {    
    height: 10em;
 }
 
-div.window fieldset input:focus,
-div.window fieldset textarea:focus,
-div.window fieldset select:focus {
+input:focus,
+textarea:focus,
+select:focus {
     border-color: rgba(3,153,212,0.75) !important;
     -webkit-box-shadow: 0 0 0.25em rgba(3,153,212,0.75) !important;
     -moz-box-shadow: 0 0 0.25em rgba(3,153,212,0.75) !important;
     box-shadow: 0 0 0.25em rgba(3,153,212,0.75) !important;
 }
 
-div.window fieldset input.error {
+input.error {
     color: #c03 !important;
     border-color: #c03 !important;
 }
 
-div.window input.error:focus {
+input.error:focus {
     -webkit-box-shadow: 0 0 0.25em #c03 !important; 
     -moz-box-shadow: 0 0 0.25em #c03 !important; 
     box-shadow: 0 0 0.25em #c03 !important; 
 }
 
-div.window fieldset > label {
+fieldset > label {
     text-align: left;
     display: block;
 }
 
-div.window div span img {
+div span img {
     border: 0.1em solid rgba(0,0,0,0.1);
 }
 
