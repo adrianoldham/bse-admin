@@ -198,8 +198,8 @@ FormMonitor.Element.SelectMultiple = Class.create(FormMonitor.Element.Base, {
 FormMonitorElements = (function() {
     var button = new FormMonitor.Element.Button();
     return {
-    "default":
-        new FormMonitor.Element.Value(), checkbox: button,
+        "default": new FormMonitor.Element.Value(),
+        checkbox: button,
         radio: button,
         "select-one": new FormMonitor.Element.SelectOne(),
         "select-multiple": new FormMonitor.Element.SelectMultiple()
