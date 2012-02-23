@@ -111,9 +111,9 @@
             </span>
           </div>
           <div>
-            <label for="hide_from_list">Hide from list <:error_img  [concatenate hide_from_list_ [file id]]:></label>
+            <label for="hide_from_list_<:file id:>">Hide from list <:error_img  [concatenate hide_from_list_ [file id]]:></label>
             <span>
-              <input type="checkbox" name="hide_from_list_<:file id:>" id="hide_from_list" value="1" <:ifFile hide_from_list:>checked="checked" <:or:><:eif:>/>
+              <input type="checkbox" name="hide_from_list_<:file id:>" id="hide_from_list_<:file id:>" value="1" <:ifFile hide_from_list:>checked="checked" <:or:><:eif:>/>
               <:help file hide_from_list:>
             </span>
           </div>
