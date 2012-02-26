@@ -509,8 +509,9 @@ input[type=submit][disabled] {
     top: 0.1em;
 }
 
-.small {
+.button.small {
     font-size: 0.85em;
+    margin: 0;
     padding: 0.3em 1em;
 }
 
@@ -1055,11 +1056,6 @@ ul.children li > span {
 
 ul.children li:hover > span {
     display: inline;
-}
-
-ul.children li .button.small {
-    font-size: 0.7em;
-    margin: 0;
 }
 
 /* @end */
