@@ -1641,17 +1641,6 @@ ul.menu li.disabled span {
     opacity: 1 !important;
 }
 
-ul.menu li.divider {
-    margin: 0.3em 0;
-    border-width: 1px 0;
-    border-style: solid;
-    border-top-color: #fff;
-    border-bottom-color: #ccc;
-    border-top-color: rgba(0,0,0,0.1);
-    border-bottom-color: rgba(255,255,255,0.5);
-    background: none !important;
-}
-
 /* @end */
 
 /* @group global */
@@ -1710,6 +1699,17 @@ ul.menu.context > li > ul {
 /* @end */
 
 /* @group divider */
+
+ul.menu li.divider {
+    margin: 0.3em 0;
+    border-width: 1px 0;
+    border-style: solid;
+    border-top-color: #fff;
+    border-bottom-color: #ccc;
+    border-top-color: rgba(0,0,0,0.1);
+    border-bottom-color: rgba(255,255,255,0.5);
+    background: none !important;
+}
 
 ul.menu li:first-child.divider,
 ul.menu li:last-child.divider,
