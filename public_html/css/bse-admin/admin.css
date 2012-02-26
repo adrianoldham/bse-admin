@@ -343,7 +343,7 @@ h1:first-child {
 
 fieldset {
     /*display: table; opera encloses the legend if set as table */
-    border: 0.1em solid #ddd;
+    border: 0.083em solid #ddd;
     border-color: #bbb #ddd #fff #ddd;
     margin-bottom: 1em;
     padding: 1em;
@@ -398,7 +398,7 @@ fieldset > :last-child {
 input:not([type=submit]):not([type=checkbox]):not([type=radio]),
 select,
 textarea {
-    border: 0.1em solid #ddd;
+    border: 0.083em solid #ddd;
     border-top-color: #aaa;
     line-height: 1.2;
     padding: 0.25em;
@@ -466,7 +466,7 @@ fieldset > label {
 }
 
 div span img {
-    border: 0.1em solid rgba(0,0,0,0.1);
+    border: 0.083em solid rgba(0,0,0,0.1);
 }
 
 /* @end */
@@ -860,7 +860,7 @@ input[type=submit][disabled] {
     text-align: left;
     text-indent: -9999em;
     height: 2.5em;
-    border-width: 0.1em !important;
+    border-width: 0.083em !important;
 }
 
 .buttons span.progress {
@@ -877,7 +877,7 @@ input[type=submit][disabled] {
     line-height: 2.5;
     margin-bottom: -2.5em;
     color: #fff;
-    text-shadow: 0 0.1em 0.1em rgba(0,0,0,0.3);
+    text-shadow: 0 0.083em 0.083em rgba(0,0,0,0.3);
 }
 
 .buttons > span span.spinner {
@@ -948,7 +948,7 @@ div.object:hover .buttons {
     padding: 0;
     font-size: 0.9em;
     color: #fff;
-    text-shadow: 0 0.1em 0.1em rgba(0,0,0,0.5);
+    text-shadow: 0 0.112em 0.112em rgba(0,0,0,0.5);
 }
 
 div + .meta {
@@ -965,7 +965,7 @@ div + .meta {
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
-    box-shadow: inset 0 1px 2px #444;
+    box-shadow: inset 0 0.112em 0.224em #444;
 }
 
 .meta li span {
@@ -1006,7 +1006,7 @@ div + .meta {
     margin: 0.5em 0 0 0;
     padding: 0.5em 0.75em;
     background-color: #eee;
-    border: 1px solid #bbb;
+    border: 0.112em solid #bbb;
     -webkit-box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);
     -moz-box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);
     box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);
@@ -1028,7 +1028,7 @@ div + .meta {
 
 ul.children {
     padding: 0.75em;
-    border: 1px solid;
+    border: 0.083em solid;
     border-color: #b5b5b5 #ddd #fff #ddd;
     -webkit-border-radius: 0.25em;
     -moz-border-radius: 0.25em;
@@ -1111,8 +1111,8 @@ table.items caption {
 }
 
 table.items {
-    border: 1px solid #ccc;
-    border-width: 1px 0;
+    border: solid #ccc;
+    border-width: 0.083em 0;
     width: 100%;
     clear: both;
 }
@@ -1130,7 +1130,7 @@ table.items th {
 
 table.items td {
     vertical-align: top;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0.083em solid #ddd;
     padding: 0.75em 0.5em;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0,0,0,0.05)), color-stop(0.5, rgba(0,0,0,0)));
     background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
@@ -1274,8 +1274,8 @@ table.orders td.total {
 /* @group items table */
 
 table.items {
-    border: 1px solid #ccc;
-    border-width: 1px 0;
+    border: 0.083em solid #ccc;
+    border-width: 0.083em 0;
     width: 100%;
 }
 
@@ -1294,7 +1294,7 @@ table.items th {
 }
 
 table.items td {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0.083em solid #ddd;
     padding: 0.75em 0.5em;
 }
 
@@ -1426,7 +1426,7 @@ table.vertical td {
     text-align: center;
     text-decoration: none !important;
     color: #777;
-    border: 1px solid #555;
+    border: 0.083em solid #555;
     -webkit-border-radius: 0.25em;
     -moz-border-radius: 0.25em;
     border-radius: 0.25em;
@@ -1702,7 +1702,7 @@ ul.menu.context > li > ul {
 
 ul.menu li.divider {
     margin: 0.3em 0;
-    border-width: 1px 0;
+    border-width: 0.083em 0;
     border-style: solid;
     border-top-color: #fff;
     border-bottom-color: #ccc;
