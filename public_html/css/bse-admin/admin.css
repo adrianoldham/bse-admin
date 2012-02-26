@@ -403,8 +403,7 @@ textarea {
     line-height: 1.2;
     padding: 0.25em;
     background-color: #efefef;
-    float: left; /* because some odd margins persist 
-    display: inline-block;*/
+    display: block;/* because some odd margins persist on textareas */
     min-width: 20em;
     width: 40%;
     -webkit-box-shadow: inset 0px 0.083em 0.35em rgba(0,0,0,0.1);
