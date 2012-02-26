@@ -135,8 +135,6 @@ iframe {
 }
 
 .message {
-    /*position: absolute;
-    top: 4em;*/
     width: 100%;
     padding: 1em 2em;
     color: #fff;
@@ -232,13 +230,12 @@ h4 {
 
 .listed {
     display: block;
-    /*position: absolute;*/
     margin: 0.25em 0.5em 0.25em 0.25em;
     float: left;
     left: 0;
     width: 1em;
     height: 1em;
-    text-indent: -9999em;/**/
+    text-indent: -9999em;
     overflow: hidden;
     line-height: 1;
     border: 0.083em solid;
@@ -255,7 +252,6 @@ div.window {
     position: relative;
     z-index: 10;
     margin: 4em auto;
-    /*margin-top: 8em;*/
     width: 95%;
     max-width: 80em;
     min-width: 34em;
@@ -372,9 +368,7 @@ fieldset > div > label,
 fieldset > div > span {
     display: table-cell;
     vertical-align: top;
-    /*padding: 0.25em 1em 0.25em 0;*/
     padding: 0.25em 0;
-    /*line-height: 2;*/
 }
 
 fieldset > div > label {
@@ -391,11 +385,6 @@ fieldset > div > span {
 
 fieldset > div > span > button {
     display: none;
-    /*background-color: #ccc;
-    width: 1.75em;
-    height: 1.75em;
-    text-indent: -9999em;
-    overflow: hidden;*/
 }
 
 fieldset > div:hover > span > button {
@@ -984,10 +973,6 @@ div + .meta {
     font-weight: bold;
 }
 
-/*.meta li a, .meta li span {
-    white-space: nowrap;
-}*/
-
 .meta li.has-info:hover,
 .meta li.has-info:hover a {
     color: #fff !important;
@@ -1066,9 +1051,7 @@ ul.children li:hover {
 ul.children li > span {
     display: none;
     position: absolute;
-    /*top: 50%;*/
     right: 0.25em;
-    /*margin-top: -30%;*/
 }
 
 ul.children li:hover > span {
@@ -1095,7 +1078,6 @@ ul.children li .button.small {
 .list tr > * {
     padding: 0.25em;
     position: relative;
-    /*white-space: nowrap;*/
 }
 
 .wrap {
@@ -1107,16 +1089,9 @@ td.buttons {
     white-space: nowrap !important;
 }
 
-/*.list tr td:last-child {
-    width: 10%;
-}*/
-
 .list td:last-child span {
     display: none;
     position: absolute;
-    /*margin-top: -50%;
-    padding: 0.45em;
-    top: 50%;*/
     right: 0.25em;
 }
 
@@ -1148,7 +1123,7 @@ table.items {
 }
 
 table.items tr {
-    vertical-align: top; /**/
+    vertical-align: top;
 }
 
 table.items th {
@@ -1185,7 +1160,6 @@ table.items td.thumbnail a {
 
 table.items th.item,
 table.items td.item {
-    /*width: 100%;*/
     text-align: left;
 }
 
@@ -1861,7 +1835,6 @@ h1:first-child + *[data-role=toolbar] {
     text-shadow: 0 0.083em 0 #fff;
     border: 0.083em solid;
     border-color: #7c7c7c #757575 #6b6b6b #757575;
-    /*border-color: rgba(0,0,0,0.4);*/
     -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
     -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
     box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
