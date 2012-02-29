@@ -277,7 +277,7 @@
               <:- if UserCan bse_members_user_del_file:>
               <a href="<:script:>?a_deluserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>&amp;_csrfp=<:csrfp admin_user_del_file:>" data-action="delete" data-object="File" class="button red small">Delete</a>
               <:- or UserCan:>
-              <a  data-icon="delete" class="button red small disabled">Delete</a>
+              <a class="button red small disabled">Delete</a>
               <:- eif UserCan:>
             </span>
           </li>
