@@ -134,6 +134,7 @@
           </ul>
         </li>
         <:- or UserCan:><:eif UserCan:>
+        <:- if Or [ifUserCan bse_shop_order_list] [ifUserCan bse_shop_order_detail]:>
         <li><a href="#">Orders</a>
           <ul>
             <:- if UserCan bse_shop_order_list:>
@@ -144,6 +145,7 @@
             <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
+        <:- or Or:><:eif Or:>
       </ul>
     </li>
     <:- endswitch:>
