@@ -604,7 +604,7 @@
           <:- if StepKid:>
           <a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;_t=steps" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[stepkid childId]:>
-          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>" data-action="delete" data-object="Stepchild" data-confirm="Are you sure you want to delete the Stepchild realationship? This does NOT delete the original <:typename kid:>." class="button red small">Delete</a>
+          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>" data-action="delete" data-object="Stepchild" data-confirm="Are you sure you want to delete the Stepchild realationship? This does not delete the original <:typename kid:>." class="button red small">Delete</a>
           <:- or UserCan:>
           <a class="button red small disabled">Delete</a>
           <:- eif UserCan:>
