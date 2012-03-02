@@ -981,15 +981,11 @@ div + .meta {
 
 .meta li.has-info {
     padding-right: 1.8em;
-    background-image: url(/images/interface/more_info.png);
+    background-image: url(/images/bse-admin/more_info.png);
     background-repeat: no-repeat;
     background-position: 100% 50%;
     -moz-background-size: 1.5em;
     background-size: 1.5em;
-}
-
-.meta li.has-info:hover {
-    background-image: url(/images/interface/more_info_focus.png);
 }
 
 .meta li a,
@@ -1159,7 +1155,7 @@ table.items td.item {
 }
 
 table.items td.item a {
-    background: transparent url(/images/interface/checkmark.png) no-repeat 0 50%;
+    background: transparent url(/images/bse-admin/checkmark.png) no-repeat 0 50%;
     padding-left: 17px;
 }
 
