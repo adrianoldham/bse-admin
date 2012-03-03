@@ -465,7 +465,7 @@
       <:- if Or [ifMatch [article generator] "Product"] [ifMatch [article generator] "Seminar"]:>
       <:- if Subscriptions:>
       <fieldset>
-        <legend>Subscriptions</legend>
+        <legend>Subscription</legend>
         <div>
           <label for="subscription_id">Subscription <:error_img subscription_id:></label>
           <span>
@@ -481,7 +481,7 @@
         <div>
           <label for="subscription_period">Duration <:error_img subscription_period:></label>
           <span>
-            <input type="text" name="subscription_period" id="subscription_period" value="<:old subscription_period default subscription_period:><:eif:>" <:ifFieldPerm subscription_period:><:or:>disabled="disabled" <:eif:>class="<:ifError_img subscription_period:>error<:or:><:eif:>" /> months
+            <input type="text" name="subscription_period" id="subscription_period" value="<:old subscription_period default subscription_period:>" placeholder="months" <:ifFieldPerm subscription_period:><:or:>disabled="disabled" <:eif:>class="<:ifError_img subscription_period:>error<:or:><:eif:>" />
             <:help edit subscription_period:>
           </span>
         </div>
