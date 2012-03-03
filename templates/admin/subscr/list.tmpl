@@ -1,0 +1,81 @@
+<:wrap admin/base.tmpl title=>"Manage Subscriptions" :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <nav data-role="toolbar">
+      <ul class="menu context">
+        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:- if UserCan bse_subscr_add:>
+            <li><a href="<:script:>?a_addform=1" accesskey="c" title="AccessKey = c">New Subscription…</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <li class="divider"></li>
+            <:- if UserCan bse_subscr_update:>
+            <li><a href="<:script:>?a_update=1" accesskey="u" title="AccessKey = u">Update Expiry Dates</a></li>
+            <:- or UserCan:><:eif UserCan:>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <:- if Subscriptions:>
+  <fieldset class="list">
+    <legend>Subscriptions</legend>
+    <table class="full">
+      <thead>
+        <tr>
+          <th><a href="<:script:>?<:sorthelp title:>&p=<:subscriptions_pagenum:>&pp=<:subscriptions_perpage:>">Title</a></th>
+          <th><a href="<:script:>?<:sorthelp text_id:>&p=<:subscriptions_pagenum:>&pp=<:subscriptions_perpage:>">Name</a></th>
+          <th><a href="<:script:>?<:sorthelp max_lapsed:>&p=<:subscriptions_pagenum:>&pp=<:subscriptions_perpage:>">Max Lapsed</a></th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:- iterator begin subscriptions:>
+        <tr>
+          <td><span class="listed <:ifRemovable:>gray<:or:>green<:eif:>"></span> <:isubscription title:></td>
+          <td><:isubscription text_id:></td>
+          <td><:isubscription max_lapsed:></td>
+          <td class="actions">
+            <:- if UserCan bse_subscr_edit:>
+            <a href="<:script:>?a_edit=1&amp;subscription_id=<:isubscription subscription_id:>" class="button gray small">Edit</a>
+            <:- or UserCan:>
+            <a class="disabled">Edit</a>
+            <:- eif UserCan:>
+            <:- if And [ifRemovable] [ifUserCan bse_subscr_delete]:>
+            <a href="<:script:>?a_remove=1&amp;subscription_id=<:isubscription subscription_id:>" data-action="delete" data-object="Subscription" class="button red small">Delete</a>
+            <:- or And:>
+            <a class="button red small disabled">Delete</a>
+            <:- eif And:>
+          </td>
+        </tr>
+        <:- iterator end subscriptions:>
+      <tbody>
+    </table>
+  </fieldset>
+  <p class="pagination">
+    Page <:subscriptions_pagenum:> of <:subscriptions_pagecount:>
+    <:- if FirstSubscriptionsPage:>
+    <span class="disabled">|&lt;</span>
+    <:- or FirstSubscriptionsPage:>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:subscriptions_perpage:>">|&lt;</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSubscriptionsPage:>&amp;pp=<:subscriptions_perpage:>">&lt;</a>
+    <:- eif FirstSubscriptionsPage:>
+    <:- iterator begin repeats [subscriptions_pagecount]:>
+    <:- if Eq [repeat value] [subscriptions_pagenum]:>
+    <span class="disabled"><:repeat value:></span>
+    <:- or Eq:>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:repeat value:>&amp;pp=<:subscriptions_perpage:>"><:repeat value:></a>
+    <:- eif Eq:>
+    <:- iterator end repeats:>
+    <:- if LastSubscriptionsPage:>
+    <span class="disabled">&gt;|</span>
+    <:- or LastSubscriptionsPage:>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSubscriptionsPage:>&amp;pp=<:subscriptions_perpage:>">&gt;</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:subscriptions_pagecount:>&amp;pp=<:subscriptions_perpage:>">&gt;|</a>
+    <:- eif LastSubscriptionsPage:>
+  </p>
+  <:- or Subscriptions:>
+  <p>Your system has no subscriptions available.</p>
+  <:- eif Subscriptions:>
+</div>

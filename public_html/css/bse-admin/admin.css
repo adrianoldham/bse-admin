@@ -436,7 +436,8 @@ textarea[name=body] {
 
 div.window.dialog textarea,
 textarea[name=summary],
-textarea[name=adminNotes] {    
+textarea[name=adminNotes],
+textarea[name=description] {    
    height: 10em;
 }
 

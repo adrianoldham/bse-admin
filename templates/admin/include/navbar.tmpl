@@ -134,6 +134,20 @@
           </ul>
         </li>
         <:- or UserCan:><:eif UserCan:>
+        <:- if Or [ifUserCan bse_subscr_list] [ifUserCan bse_subscr_edit] [ifUserCan bse_subscr_add] [ifUserCan bse_subscr_detail] [ifUserCan bse_subscr_update]:>
+        <li><a href="#">Subscriptions</a>
+          <ul>
+            <li><a href="<:adminurl subadmin:>">Manage Subscriptions</a></li>
+            <:- if UserCan bse_subscr_add:>
+            <li><a href="<:adminurl subadmin a_addform 1 referer 1:>">New Subscription…</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_subscr_update:>
+            <li class="divider"></li>
+            <li><a href="<:adminurl subadmin a_update 1:>">Update Expiry Dates</a></li>
+            <:- or UserCan:><:eif UserCan:>
+          </ul>
+        </li>
+        <:- or Or:><:eif Or:>
         <:- if Or [ifUserCan bse_shop_order_list] [ifUserCan bse_shop_order_detail]:>
         <li><a href="#">Orders</a>
           <ul>

@@ -1,0 +1,169 @@
+<:wrap admin/base.tmpl title=>"Subscription Relationships" :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <nav data-role="toolbar">
+      <ul class="menu context">
+        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <li class="divider"></li>
+            <:- if UserCan bse_subscr_update:>
+            <li><a href="<:script:>?a_update=1" accesskey="u" title="AccessKey = u">Update Expiry Dates</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <li class="divider"></li>
+            <:- if UserCan bse_subscr_delete:>
+            <li><a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Subscription">Delete</a></li>
+            <:- or UserCan:>
+            <li class="disabled"><span>Delete</span></li>
+            <:- eif UserCan:>
+          </ul>
+        </li>
+      </ul>
+      <:- if Or [ifUserCan bse_subscr_list] [ifUserCan bse_subscr_edit]:>      
+      <span data-role="controlgroup">
+        <:- if UserCan bse_subscr_edit:>
+        <a href="<:script:>?a_edit=1&amp;subscription_id=<:subscription subscription_id:>" class="button">Subscription</a>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_subscr_list:>
+        <a href="<:script:>?a_detail=1&amp;subscription_id=<:subscription subscription_id:>" class="button selected">Relationships</a>
+        <:- or UserCan:><:eif UserCan:>
+      </span>
+      <:- or Or:><:eif Or:>
+      <:- if UserCan bse_subscr_delete:>
+      <a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Subscription" data-icon="delete" class="button">Delete</a>
+      <:- or UserCan:>
+      <a data-icon="delete" class="button disabled">Delete</a>
+      <:- eif UserCan:>
+    </nav>
+  </header>
+  <form action="<:script:>" method="post" data-object="Subscription">
+    <input type="hidden" name="subscription_id" value="<:subscription subscription_id:>" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Subscription</legend>
+      <div>
+        <label for="title">Title</label>
+        <span>
+          <input type="text" name="title" id="title" value="<:old title subscription title:>" required="required" readonly="readonly" class="<:ifError_img title:>error<:or:><:eif:>" />
+          <:help addsubscr title:>
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?a_list=1<:endswitch:>" accesskey="." title="AccessKey = ." data-action="cancel" class="button white">Done</a>
+    </p>
+  </form>
+  <:- if Users:>
+  <fieldset>
+    <legend>Subscribers</legend>
+    <table class="list full">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th><:cfg "site user" display_userid "Username":></th>
+          <th>Expires</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:- iterator begin users:>
+        <tr>
+          <td><:user name1:> <:user name2:></td>
+          <td><a href="<:adminurl siteusers:>?a_edit=1&amp;id=<:user id:>&amp;referer=1"><:user userId:></a></td>
+          <td><:date user ends_at:></td>
+          <td class="actions"><a href="<:adminurl siteusers:>?a_edit=1&amp;id=<:user id:>&amp;referer=1" class="button gray small">Edit</a></td>
+        </tr>
+        <:- iterator end users:>
+      </tbody>
+    </table>
+  </fieldset>
+  <:- or Users:>
+  <p>There are no users subscribed.</p>
+  <:- eif Users:>
+  <:- if Products:>
+  <fieldset>
+    <legend>Products</legend>
+    <table class="list full">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Sells</th>
+          <th>Months</th>
+          <th>Condition</th>
+          <th>Requires</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:- iterator begin products:>
+        <tr>
+          <td><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" product release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" product expire]:>red<:case Eq [product listed] 0:>gray<:case Eq [product listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <a href="<:adminurl add:>?id=<:product id:>&amp;preview=1"><:product title:></a></td>
+          <td>
+            <:- switch:>
+            <:- case Eq [subscription subscription_id] [product subscription_id]:>Yes
+            <:- case Eq [product subscription_id] "-1":>None
+            <:- case default:><a href="<:script:>?a_detail=1&amp;subscription_id=<:product subscription_id:>">Other</a>
+            <:- endswitch:>
+          </td>
+          <td><:product subscription_period:></td>
+          <td>	
+            <:- switch:>
+            <:- case Eq [product subscription_usage] "1":>Start only
+            <:- case Eq [product subscription_usage] "2":>Renew only
+            <:- case Eq [product subscription_usage] "3":>Start or Renew
+            <:- endswitch:>
+          </td>
+          <td>
+            <:- switch:>
+            <:- case Eq [subscription subscription_id] [product subscription_required]:>Yes
+            <:- case Eq [product subscription_required] "-1":>None
+            <:- case default:><a href="<:script:>?a_detail=1&amp;subscription_id=<:product subscription_required:>">Other</a>
+            <:- endswitch:>
+          </td>
+          <td class="actions"><a href="<:adminurl add:>?id=<:product id:>&amp;referer=1" class="button gray small">Edit</a></td>
+        </tr>
+        <:- iterator end products:>
+      </tbody>
+    </table>
+  </fieldset>
+  <:- or Products:>
+  <p>There are no products that subscribe to or require this subscription.</p>
+  <:- eif Products:>
+  <:- if Orders:>
+  <fieldset>
+    <legend>Orders</legend>
+    <table class="list full">
+      <thead>
+        <tr>
+          <th>Order No.</th>
+          <th>Order Date</th>
+          <th>Full Name</th>
+          <th><:cfg "site user" display_userid "Username":></th>
+          <th>Months</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:- iterator begin orders:>
+        <tr>
+          <td><:order id |%06d:></td>
+          <td><:date order orderDate:></td>
+          <td><:order billFirstName:> <:order billLastName:></td>
+          <td><a href="<:adminurl siteusers:>?a_edit=1&amp;id=<:order siteuser_id:>&amp;referer=1"><:order userId:></a></td>
+          <td><:order subscription_period:></td>
+          <td class="actions">
+            <:- if UserCan bse_shop_order_detail:>
+            <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:order id:>&amp;referer=1" class="button gray small">Details</a>
+            <:- or UserCan:>
+            <a class="button gray disabled">Details</a>
+            <:- eif UserCan:>
+          </td>
+        </tr>
+        <:- iterator end orders:>
+      </tbody>
+    </table>
+  </fieldset>
+  <:- or Orders:>
+  <p>There have been no orders for this subscription.</p>
+  <:- eif Orders:>
+</div>
