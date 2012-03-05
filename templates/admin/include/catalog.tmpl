@@ -18,13 +18,13 @@
         </ul>
       </li>
     </ul>
-    <a href="<:adminurl add:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>" title="Edit Parent" data-icon="back" data-icon-only="true" class="button">Parent</a>
-    <a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1" title="Preview Catalog" data-icon="preview" class="button">Preview</a>
+    <a href="<:adminurl add:>?id=<:catalog id:>&amp;r=<:adminurl shopadmin:>" title="Edit Parent" data-icon="back" data-icon-only="true" class="button">Parent</a>
+    <a href="<:adminurl add:>?id=<:catalog id:>&amp;preview=1" title="Preview Catalog" data-icon="preview" class="button">Preview</a>
   </nav> 
   <:- if Products:>
   <fieldset class="list">
     <legend>Products</legend>
-    <:- if UserCan bse_edit_reorder_children:[shopid]:>
+    <:- if UserCan bse_edit_reorder_children:[catalog id]:>
     Sort by:
     <ul class="meta group">
       <li><a href="<:adminurl reorder:>?stepparent=<:catalog id:>&amp;sort=title&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Btitle%23catalog<:catalog id:>">title</a></li>
