@@ -42,7 +42,7 @@
             <:- or UserCan:>
             <a class="disabled">Edit</a>
             <:- eif UserCan:>
-            <:- if And [ifRemovable] [ifUserCan bse_subscr_delete]:>
+            <:- if And [ifUserCan bse_subscr_delete] [isubscription is_removable]:>
             <a href="<:script:>?a_remove=1&amp;subscription_id=<:isubscription subscription_id:>" data-action="delete" data-object="Subscription" class="button red small">Delete</a>
             <:- or And:>
             <a class="button red small disabled">Delete</a>

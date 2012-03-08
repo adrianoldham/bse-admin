@@ -11,11 +11,11 @@
             <li><a href="<:script:>?a_update=1" accesskey="u" title="AccessKey = u">Update Expiry Dates</a></li>
             <:- or UserCan:><:eif UserCan:>
             <li class="divider"></li>
-            <:- if UserCan bse_subscr_delete:>
+            <:- if And [ifUserCan bse_subscr_delete] [subscription is_removable]:>
             <li><a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Subscription">Delete</a></li>
-            <:- or UserCan:>
+            <:- or And:>
             <li class="disabled"><span>Delete</span></li>
-            <:- eif UserCan:>
+            <:- eif And:>
           </ul>
         </li>
       </ul>
@@ -29,11 +29,11 @@
         <:- or UserCan:><:eif UserCan:>
       </span>
       <:- or Or:><:eif Or:>
-      <:- if UserCan bse_subscr_delete:>
+      <:- if And [ifUserCan bse_subscr_delete] [subscription is_removable]:>
       <a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Subscription" data-icon="delete" class="button">Delete</a>
-      <:- or UserCan:>
+      <:- or And:>
       <a data-icon="delete" class="button disabled">Delete</a>
-      <:- eif UserCan:>
+      <:- eif And:>
     </nav>
   </header>
   <form action="<:script:>" method="post" data-object="Subscription">
