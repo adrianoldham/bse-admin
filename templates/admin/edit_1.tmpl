@@ -212,7 +212,7 @@
         <div>
           <label for="leadTime">Lead time <:error_img leadTime:></label>
           <span>
-            <input type="text" name="leadTime" id="leadTime" value="<:old leadTime:>" placeholder="days" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>class="<:ifError_img leadTime:>error<:or:><:eif:>" />
+            <input type="text" name="leadTime" id="leadTime" value="<:ifEq [old leadTime default leadTime] 0:><:or:><:old leadTime default leadTime:><:eif:>" placeholder="days" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>class="<:ifError_img leadTime:>error<:or:><:eif:>" />
             <:help edit leadTime:>
           </span>
         </div>
