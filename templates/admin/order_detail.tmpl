@@ -155,10 +155,18 @@
       <tbody>
         <:- iterator begin items:>
         <tr>
-          <td class="item"><:ifEq [item productId] -1:>
-            <:item title:><:or:>
-            <a href="<:product link:>"><:item title:></a><:eif:> <:ifOptions:><span><:options:></span><:or:><:eif:><:if And [item description] [cfg shop product_description 1]:>
-            <div class="description"><:item description:></div><:or And:><:eif And:>
+          <td class="item">
+            <:- if Eq [item productId] -1:>
+            <:item title:> (product deleted)
+            <:- or Eq:>
+            <a href="<:adminurl add id [product id] referer 1 :>"><:item title:></a>
+            <:- eif Eq:>
+            <:- if Options:>
+            <span><:options:></span>
+            <:- or Options:><:eif Options:>
+            <:- if And [item description] [cfg shop product_description 1]:>
+            <div class="description"><:item description:></div>
+            <:- or And:><:eif And:>
           </td>
           <td class="code"><:item product_code:></td>
           <td class="quantity"><:item units:> &times;</td>
