@@ -1,0 +1,28 @@
+<:wrap admin/base.tmpl title=>"Manage System Messages" nomessage=>"1" js=>"admin_messages.js" api=>"1" jstools=>"1" :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <nav data-role="toolbar">
+      <a href="#" id="open_all" class="button">Open all</a>
+      <a href="#" id="close_all" class="button">Close all</a>
+    </nav>
+  </header>
+  <fieldset>
+    <legend>Messages</legend>
+    <ul id="message_catalog" class="treeview">
+      <li>Loading...</li>
+    </ul>
+  </fieldset>
+</div>
+<div id="message_detail" class="window dialog modal" style="position: fixed; left: 50%; margin-left: -20em; display: none;">
+  <div class="head"></div>
+  <div id="message_detail_list"></div>
+  <!--
+  <fieldset>
+    <legend>Message</legend>
+    <div class="head"></div>
+    <div id="message_detail_list"></div>
+  </fieldset>
+  -->
+</div>
+<div id="lightbox" class="lightbox" style="display: none;"></div>

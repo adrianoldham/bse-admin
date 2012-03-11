@@ -1992,3 +1992,16 @@ h1:first-child + *[data-role=toolbar] {
 /* @end */
 
 /* @end */
+
+/* @group treeview */
+
+ul.treeview ul {
+    list-style: disc;
+    margin: 1em 0 2em 2em;
+}
+
+ul.treeview a {
+    font-weight: bold;
+}
+
+/* @end */
