@@ -1,10 +1,9 @@
 //  We really need a proper loading script like scriptaculous
 
-//document.write('<script type="text/javascript" src="/js/combo.packed.js"></script>');
-document.write('<script type="text/javascript" src="/js/bse-admin/dropmenu.js"></script>');
-document.write('<script type="text/javascript" src="/js/bse-admin/opendetails.js"></script>');
-document.write('<script type="text/javascript" src="/js/bse-admin/formmonitor.js"></script>');
-document.write('<script type="text/javascript" src="/js/bse-admin/linkconfirmer.js"></script>');
+document.write('<script type="text/javascript" src="/bse-admin/js/dropmenu.js"></script>');
+document.write('<script type="text/javascript" src="/bse-admin/js/opendetails.js"></script>');
+document.write('<script type="text/javascript" src="/bse-admin/js/formmonitor.js"></script>');
+document.write('<script type="text/javascript" src="/bse-admin/js/linkconfirmer.js"></script>');
 
 // wait for DOM to load before initialising
 

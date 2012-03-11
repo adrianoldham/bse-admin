@@ -884,7 +884,7 @@ input[type=submit][disabled] {
 .buttons > span span.spinner {
     display: inline-block;
     width: 2.5em;
-    background: transparent url(/images/bse-admin/spinner.gif) no-repeat 100% 50%;
+    background: transparent url(/bse-admin/images/spinner.gif) no-repeat 100% 50%;
     background-size: 2em;
 }
 
@@ -982,7 +982,7 @@ div + .meta {
 
 .meta li.has-info {
     padding-right: 1.8em;
-    background-image: url(/images/bse-admin/more_info.png);
+    background-image: url(/bse-admin/images/more_info.png);
     background-repeat: no-repeat;
     background-position: 100% 50%;
     -moz-background-size: 1.5em;
@@ -1156,7 +1156,7 @@ table.items td.item {
 }
 
 table.items td.item a {
-    background: transparent url(/images/bse-admin/checkmark.png) no-repeat 0 50%;
+    background: transparent url(/bse-admin/images/checkmark.png) no-repeat 0 50%;
     padding-left: 17px;
 }
 
@@ -1608,7 +1608,7 @@ ul.menu > li li.active > a {
 }
 
 ul.menu > li ul li.parent > a {
-    background: transparent url(/images/bse-admin/arrow.png) no-repeat right 50%;
+    background: transparent url(/bse-admin/images/arrow.png) no-repeat right 50%;
     -webkit-background-size: 1em;
     -moz-background-size: 1em;
     background-size: 1em;
@@ -1617,7 +1617,7 @@ ul.menu > li ul li.parent > a {
 
 ul.menu > li ul li.hover.parent > a,
 ul.menu > li ul li.active.parent > a {
-    background-image: url(/images/bse-admin/arrow-white.png);
+    background-image: url(/bse-admin/images/arrow-white.png);
 }
 
 ul.menu > li ul {
@@ -1737,7 +1737,7 @@ details[open] summary {
     width: 1.25em;
     height: 1.25em;
     margin: 0 0.5em 0 0;
-    background: url(/images/bse-admin/arrow.png) no-repeat 0 0;
+    background: url(/bse-admin/images/arrow.png) no-repeat 0 0;
     -webkit-background-size: 1.2em;
     -moz-background-size: 1.2em;
     background-size: 1.2em;
@@ -1970,23 +1970,23 @@ h1:first-child + *[data-role=toolbar] {
 }
 
 *[data-icon=action]:before {
-    background-image: url(/images/bse-admin/buttons/action-sprite.png);
+    background-image: url(/bse-admin/images/buttons/action-sprite.png);
 }
 
 *[data-icon=preview]:before {
-    background-image: url(/images/bse-admin/buttons/preview-sprite.png);
+    background-image: url(/bse-admin/images/buttons/preview-sprite.png);
 }
 
 *[data-icon=back]:before {
-    background-image: url(/images/bse-admin/buttons/back-sprite.png);
+    background-image: url(/bse-admin/images/buttons/back-sprite.png);
 }
 
 *[data-icon=delete]:before {
-    background-image: url(/images/bse-admin/buttons/delete-sprite.png);
+    background-image: url(/bse-admin/images/buttons/delete-sprite.png);
 }
 
 *[data-icon=regen]:before {
-    background-image: url(/images/bse-admin/buttons/regen-sprite.png);
+    background-image: url(/bse-admin/images/buttons/regen-sprite.png);
 }
 
 /* @end */
