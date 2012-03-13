@@ -1156,7 +1156,7 @@ table.items td.item {
 }
 
 table.items td.item a {
-    background: transparent url(/bse-admin/images/checkmark.png) no-repeat 0 50%;
+    background: transparent url(/bse-admin/images/widgets/checkmark.png) no-repeat 0 50%;
     padding-left: 17px;
 }
 
@@ -1608,7 +1608,7 @@ ul.menu > li li.active > a {
 }
 
 ul.menu > li ul li.parent > a {
-    background: transparent url(/bse-admin/images/arrow.png) no-repeat right 50%;
+    background: transparent url(/bse-admin/images/widgets/arrow.png) no-repeat right 50%;
     -webkit-background-size: 1em;
     -moz-background-size: 1em;
     background-size: 1em;
@@ -1617,7 +1617,7 @@ ul.menu > li ul li.parent > a {
 
 ul.menu > li ul li.hover.parent > a,
 ul.menu > li ul li.active.parent > a {
-    background-image: url(/bse-admin/images/arrow-white.png);
+    background-image: url(/bse-admin/images/widgets/arrow-white.png);
 }
 
 ul.menu > li ul {
@@ -1737,7 +1737,7 @@ details[open] summary {
     width: 1.25em;
     height: 1.25em;
     margin: 0 0.5em 0 0;
-    background: url(/bse-admin/images/arrow.png) no-repeat 0 0;
+    background: url(/bse-admin/images/widgets/arrow.png) no-repeat 0 0;
     -webkit-background-size: 1.2em;
     -moz-background-size: 1.2em;
     background-size: 1.2em;
