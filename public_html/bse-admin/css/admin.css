@@ -1991,6 +1991,31 @@ h1:first-child + *[data-role=toolbar] {
 
 /* @end */
 
+/* @group widget icons */
+
+*[data-widget]:after {
+    text-indent: -9999em;
+    content: "";
+    display: inline-block;
+    width: 1.25em;
+    height: 1.25em;
+    margin: -0.25em 0.5em;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    opacity: 0.5;
+}
+
+*[data-widget]:hover:after,
+*:hover > *[data-widget]:after {
+    opacity: 0.9;
+}
+
+*[data-widget=stepkid]:after {
+    background-image: url(/bse-admin/images/widgets/stepkid.png);
+}
+
+/* @end */
+
 /* @end */
 
 /* @group treeview */
