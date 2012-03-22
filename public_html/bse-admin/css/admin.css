@@ -221,6 +221,23 @@ h4 {
     display: none;
 }
 
+.paid, .unpaid {
+    float: left;
+    margin-right: 0.5em;
+    margin-top: -0.1em;
+    padding: 0.1em 0.5em;
+    background-color: #c03;
+    color: #fff !important;
+    text-shadow: none;
+    -webkit-border-radius: 0.35em;
+    -moz-border-radius: 0.35em;
+    border-radius: 0.35em;
+}
+
+.paid {
+    background-color: green;
+}
+
 #auditlog tr td:nth-child(1),
 #auditlog tr td:nth-child(2) {
     white-space: nowrap;
@@ -894,7 +911,9 @@ input[type=submit][disabled] {
 
 /* @end */
 
-/* @group item */
+/* @end */
+
+/* @group object */
 
 div.object {
     position: relative;
@@ -1057,7 +1076,7 @@ ul.children li:hover > span {
 
 /* @end */
 
-/* @group children */
+/* @group list */
 
 .list tbody tr:nth-child(odd) {
     background-color: rgba(0,0,0,0.025);
@@ -1245,25 +1264,6 @@ table.orders .payment {
 table.orders td.number,
 table.orders td.total {
     font-weight: bold;
-}
-
-/* @end */
-
-.paid, .unpaid {
-    float: left;
-    margin-right: 0.5em;
-    margin-top: -0.1em;
-    padding: 0.1em 0.5em;
-    background-color: #c03;
-    color: #fff !important;
-    text-shadow: none;
-    -webkit-border-radius: 0.35em;
-    -moz-border-radius: 0.35em;
-    border-radius: 0.35em;
-}
-
-.paid {
-    background-color: green;
 }
 
 /* @end */
@@ -1991,6 +1991,8 @@ h1:first-child + *[data-role=toolbar] {
 
 /* @end */
 
+/* @end */
+
 /* @group widget icons */
 
 *[data-widget]:after {
@@ -2013,8 +2015,6 @@ h1:first-child + *[data-role=toolbar] {
 *[data-widget=stepkid]:after {
     background-image: url(/bse-admin/images/widgets/stepkid.png);
 }
-
-/* @end */
 
 /* @end */
 
