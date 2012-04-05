@@ -141,10 +141,10 @@
   <p class="pagination">
     Page <:fileaccesses_pagenum:> of <:fileaccesses_pagecount:>
     <:- if FirstFileaccessesPage:>
-    <span class="disabled">|&lt;</span>
+    <span class="disabled">|←</span>
     <:- or FirstFileaccessesPage:>
-    <a href="<:script:>?a_fileaccesslog=1&amp;p=1&amp;pp=<:fileaccesses_perpage:>">|&lt;</a>
-    <a href="<:script:>?a_fileaccesslog=1&amp;p=<:prevFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&lt;</a>
+    <a href="<:script:>?a_fileaccesslog=1&amp;p=1&amp;pp=<:fileaccesses_perpage:>">|←</a>
+    <a href="<:script:>?a_fileaccesslog=1&amp;p=<:prevFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">←</a>
     <:- eif FirstFileaccessesPage:>
     <:- iterator begin fileaccesses_pagec:>
     <:- switch:>
@@ -157,10 +157,10 @@
     <:- endswitch:>
     <:- iterator end fileaccesses_pagec:>
     <:- if LastFileaccessesPage:>
-    <span class="disabled">&gt;|</span>
+    <span class="disabled">→|</span>
     <:- or LastFileaccessesPage:>
-    <a href="<:script:>?a_fileaccesslog=1&amp;p=<:nextFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;</a>
-    <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccesses_pagecount:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">&gt;|</a>
+    <a href="<:script:>?a_fileaccesslog=1&amp;p=<:nextFileaccessesPage:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">→</a>
+    <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccesses_pagecount:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">→|</a>
     <:- eif LastFileaccessesPage:>
   </p>
 </div>

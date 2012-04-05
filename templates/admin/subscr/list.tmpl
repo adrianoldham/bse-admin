@@ -56,10 +56,10 @@
   <p class="pagination">
     Page <:subscriptions_pagenum:> of <:subscriptions_pagecount:>
     <:- if FirstSubscriptionsPage:>
-    <span class="disabled">|&lt;</span>
+    <span class="disabled">|←</span>
     <:- or FirstSubscriptionsPage:>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:subscriptions_perpage:>">|&lt;</a>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSubscriptionsPage:>&amp;pp=<:subscriptions_perpage:>">&lt;</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:subscriptions_perpage:>">|←</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSubscriptionsPage:>&amp;pp=<:subscriptions_perpage:>">←</a>
     <:- eif FirstSubscriptionsPage:>
     <:- iterator begin repeats [subscriptions_pagecount]:>
     <:- if Eq [repeat value] [subscriptions_pagenum]:>
@@ -69,10 +69,10 @@
     <:- eif Eq:>
     <:- iterator end repeats:>
     <:- if LastSubscriptionsPage:>
-    <span class="disabled">&gt;|</span>
+    <span class="disabled">→|</span>
     <:- or LastSubscriptionsPage:>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSubscriptionsPage:>&amp;pp=<:subscriptions_perpage:>">&gt;</a>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:subscriptions_pagecount:>&amp;pp=<:subscriptions_perpage:>">&gt;|</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSubscriptionsPage:>&amp;pp=<:subscriptions_perpage:>">→</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:subscriptions_pagecount:>&amp;pp=<:subscriptions_perpage:>">→|</a>
     <:- eif LastSubscriptionsPage:>
   </p>
   <:- or Subscriptions:>

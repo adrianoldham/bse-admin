@@ -61,10 +61,10 @@
   <p class="pagination">
     Page <:systags_pagenum:> of <:systags_pagecount:>
     <:- if FirstSystagsPage:>
-    <span class="disabled">|&lt;</span>
+    <span class="disabled">|←</span>
     <:- or FirstSystagsPage:>
-    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=1&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">|&lt;</a>
-    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:prevSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&lt;</a>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=1&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">|←</a>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:prevSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">←</a>
     <:- eif FirstSystagsPage:>
     <:- iterator begin systags_pagec:>
     <:- switch:>
@@ -77,10 +77,10 @@
     <:- endswitch:>
     <:- iterator end systags_pagec:>
     <:- if LastSystagsPage:>
-    <span class="disabled">&gt;|</span>
+    <span class="disabled">→|</span>
     <:- or LastSystagsPage:>
-    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:nextSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;</a>
-    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">&gt;|</a>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:nextSystagsPage:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">→</a>
+    <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">→|</a>
     <:- eif LastSystagsPage:>
   </p>
 </div>

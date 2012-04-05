@@ -128,10 +128,10 @@
   <p class="pagination">
     Page <:siteusers_pagenum:> of <:siteusers_pagecount:>
     <:- if FirstSiteusersPage:>
-    <span class="disabled">|&lt;</span>
+    <span class="disabled">|←</span>
     <:- or FirstSiteusersPage:>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">|&lt;</a>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&lt;</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">|←</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">←</a>
     <:- eif FirstSiteusersPage:>
     <:- iterator begin siteusers_pagec:>
     <:- switch:>
@@ -144,10 +144,10 @@
     <:- endswitch:>
     <:- iterator end siteusers_pagec:>
     <:- if LastSiteusersPage:>
-    <span class="disabled">&gt;|</span>
+    <span class="disabled">→|</span>
     <:- or LastSiteusersPage:>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;</a>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteusers_pagecount:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">&gt;|</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">→</a>
+    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteusers_pagecount:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">→|</a>
     <:- eif LastSiteusersPage:>
   </p>
   <:- or Siteusers:>

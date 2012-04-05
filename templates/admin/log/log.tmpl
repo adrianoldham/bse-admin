@@ -19,10 +19,10 @@
   <p class="pagination">
     Page <:auditlog_pagenum:> of <:auditlog_pagecount:>
     <:- if FirstAuditlogPage:>
-    <span class="disabled">|&lt;</span>
+    <span class="disabled">|←</span>
     <:- or FirstAuditlogPage:>
-    <a href="<:adminurl log:>?p=1&amp;pp=<:auditlog_perpage:>">|&lt;</a>
-    <a href="<:adminurl log:>?p=<:prevAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&lt;</a>
+    <a href="<:adminurl log:>?p=1&amp;pp=<:auditlog_perpage:>">|←</a>
+    <a href="<:adminurl log:>?p=<:prevAuditlogPage:>&amp;pp=<:auditlog_perpage:>">←</a>
     <:- eif FirstAuditlogPage:>
     <:- iterator begin auditlog_pagec:>
     <:- switch:>
@@ -35,10 +35,10 @@
     <:- endswitch:>
     <:- iterator end auditlog_pagec:>
     <:- if LastAuditlogPage:>
-    <span class="disabled">&gt;|</span>
+    <span class="disabled">→|</span>
     <:- or LastAuditlogPage:>
-    <a href="<:adminurl log:>?p=<:nextAuditlogPage:>&amp;pp=<:auditlog_perpage:>">&gt;</a>
-    <a href="<:adminurl log:>?p=<:auditlog_pagecount:>&amp;pp=<:auditlog_perpage:>">&gt;|</a>
+    <a href="<:adminurl log:>?p=<:nextAuditlogPage:>&amp;pp=<:auditlog_perpage:>">→</a>
+    <a href="<:adminurl log:>?p=<:auditlog_pagecount:>&amp;pp=<:auditlog_perpage:>">→|</a>
     <:- eif LastAuditlogPage:>
   </p>
 </div>

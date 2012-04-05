@@ -113,10 +113,10 @@
   <p class="pagination">
     Page <:orders_pagenum:> of <:orders_pagecount:>
     <:- if FirstOrdersPage:>
-    <span class="disabled">|&lt;</span>
+    <span class="disabled">|←</span>
     <:- or FirstOrdersPage:>
-    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p 1:>&amp;<:search_param:>">|&lt;</a>
-    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [prevOrdersPage]:>&amp;<:search_param:>">&lt;</a>
+    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p 1:>&amp;<:search_param:>">|←</a>
+    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [prevOrdersPage]:>&amp;<:search_param:>">←</a>
     <:- eif FirstOrdersPage:>
     <:- iterator begin orders_pagec:>
     <:- switch:>
@@ -129,10 +129,10 @@
     <:- endswitch:>
     <:- iterator end orders_pagec:>
     <:- if LastOrdersPage:>
-    <span class="disabled">&gt;|</span>
+    <span class="disabled">→|</span>
     <:- or LastOrdersPage:>
-    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [nextOrdersPage]:>&amp;<:search_param:>">&gt;</a>
-    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] ;p [orders_pagecount]:>&amp;&amp;<:search_param:>">&gt;|</a>
+    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] p [nextOrdersPage]:>&amp;<:search_param:>">→</a>
+    <a href="<:adminurl2 shopadmin [param target] pp [orders_perpage] ;p [orders_pagecount]:>&amp;&amp;<:search_param:>">→|</a>
     <:- eif LastOrdersPage:>
   </p>
   <:- or Orders:>
