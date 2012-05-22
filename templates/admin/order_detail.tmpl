@@ -434,44 +434,4 @@
   </fieldset>
   <:- or Auditlog:><:eif Auditlog:>
   <:- or UserCan:><:eif UserCan:>
-<!--
-  <:- switch:>
-  <:- case Eq [order paidFor] "0":>
-  <p>This order hasn't been paid</p>
-  <p>If the customer has paid by cheque, transfer, etc, you can <a href="<:adminurl shopadmin a_order_paid 1 id [order id]:>">mark this order paid</a></p>
-  <:- case order ccOnline:>
-  <p>This was processed as an online credit card transaction.</p>
-  <:- if Order ccSuccess:>
-  <p>This transaction was <b>SUCCESSFUL</b>.</p>
-  <table>
-  <tr><th>Receipt Number:</th><td><:order ccReceipt:></td></tr>
-  <:- ifOrder ccTranId:>
-  <tr><th>Transaction Id:</th><td><:order ccTranId:></td></tr>
-  <:- or:><:eif:>
-  </table>
-  <:- or Order:>
-  <p>This transaction <b>FAILED</b>.</p>
-  <table>
-  <tr><th>Status:</th><td><:order ccStatus:></td>
-  <tr><th>Error:</th><td><:order ccStatusText:></td>
-  <:- ifOrder ccStatus2:>
-  <tr><th>More status</th><td><:order ccStatus2:></td>
-  <:- or:><:eif:>
-  </table>
-  <:- eif Order:>
-  <:- case Eq [order paymentType] "0":><p>Payment made by credit card.  Credit card details can be found in the encrypted email you received when the customer made the order.</p>
-  <:- case Eq [order paymentType] "1":><p>Payment will be made by cheque.</p>
-  <:- case Eq [order paymentType] "2":><p>Contact the customer to arrange for payment.</p>
-  <:- case Eq [order paymentType] "3":><p>Paid manually (staff marked this order paid) - you can <a href="<:adminurl shopadmin a_order_unpaid 1 id [order id]:>">unmark it</a></p>
-  <:- case Eq [order paymentType] "4":><p>Paid via PayPal, transaction id <:order paypal_tran_id:><:ifUserCan bse_shop_order_refund_paypal:> <a href="<:adminurl shopadmin a_paypal_refund 1 id [order id]:>">Refund</a><:or:><:eif:></p>
-  <:- endswitch:>
-<:include custom/order_detail_payment.include optional:>
-  <:- if Order filled:>
-  <p>This order was filled on <:date order whenFilled:> by <:order whoFilled:>.</p>
-  <:- or Order:>
-  <:- ifOrder complete:>
-  <p>This order hasn't been filled yet.  <a href="<:adminurl shopadmin id [order id] order_filled 1 filled 1 detail 1:>">Mark order filled</a>.</p><:or:><:eif:>
-  <:- eif Order:>
-  <:- ifOrder complete:><:or:><p>This order is incomplete and should not be filled.</p><:eif:>
--->
 </div>
