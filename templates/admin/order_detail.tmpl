@@ -323,12 +323,16 @@
       <:- if Cfgsection "dummy shipping methods":>
       <div>
         <label for="shipping_name">Shipping method</label>
-        <:shipping_method_select:>
+        <span>
+          <:shipping_method_select:>
+        </span>
       </div>
       <:- or Cfgsection:><:eif Cfgsection:>
       <div>
         <label for="freight_tracking">Tracking code</label>
-        <input type="text" name="freight_tracking" id="freight_tracking" value="<:order freight_tracking:>" />
+        <span>
+          <input type="text" name="freight_tracking" id="freight_tracking" value="<:order freight_tracking:>" />
+        </span>
       </div>
     </fieldset>
     <fieldset>
@@ -337,11 +341,15 @@
       <:csrfp shop_order_save hidden:>
       <div>
         <label for="stage">Order stage</label>
-        <:replace [stage_select] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
+        <span>
+          <:replace [stage_select] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
+        </span>
       </div>
       <div>
         <label for="stage_note">Log note</label>
-        <input type="text" name="stage_note" id="stage_note" />
+        <span>
+          <input type="text" name="stage_note" id="stage_note" />
+        </span>
       </div>
     </fieldset>
     <p class="buttons">
