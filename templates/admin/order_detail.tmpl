@@ -320,12 +320,12 @@
       <legend>Freight</legend>
       <input type="hidden" name="id" value="<:order id:>" />
       <:csrfp shop_order_save hidden:>
-      <:- if Cfg shop shipping:><:or Cfg:>
+      <:- if Cfgsection "dummy shipping methods":>
       <div>
         <label for="shipping_name">Shipping method</label>
         <:shipping_method_select:>
       </div>
-      <:- eif Cfg:>
+      <:- or Cfgsection:><:eif Cfgsection:>
       <div>
         <label for="freight_tracking">Tracking code</label>
         <input type="text" name="freight_tracking" id="freight_tracking" value="<:order freight_tracking:>" />
