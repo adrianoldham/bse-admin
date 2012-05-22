@@ -334,6 +334,45 @@
   </form>
   <:- or UserCan:><:eif UserCan:>
   <:- or And:><:eif And:>
+  <:- .if !order.paidFor:>
+  <form action="<:adminurl shopadmin:>" method="post" data-object="Payment">
+    <:csrfp shop_order_paid hidden:>
+    <fieldset>
+      <legend>Payment</legend>
+      <div>
+        <label for="paymentType">Method</label>
+        <span>
+          <:.call "make_select", "name": "paymentType", "required": "required", "list": payment_types, "id": "id", "desc": "desc", "default": order.paymentType:>
+        </span>
+      </div>
+      <ul>
+        <li>
+          <input type="checkbox" name="id" id="id" value="<:= order.id :>" required="required" />
+          <label for="id">Mark this order as paid using the selected payment method</label>
+        </li>
+      </ul>
+      <p class="buttons">
+        <input type="submit" name="a_order_paid" value="Save Payment" class="button green" />
+      </p>
+    </fieldset>
+  </form>
+  <:- .elsif order.is_manually_paid:>
+  <form action="<:adminurl shopadmin:>" method="post" data-object="Payment">
+    <:csrfp shop_order_unpaid hidden:>
+    <fieldset>
+      <legend>Payment</legend>
+      <ul>
+        <li>
+          <input type="checkbox" name="id" id="id" value="<:= order.id :>" required="required" />
+          <label for="id">Delete the payment associated with this order and mark it as unpaid</label>
+        </li>
+      </ul>
+      <p class="buttons">
+        <input type="submit" name="a_order_unpaid" value="Delete Payment" class="button red" />
+      </p>
+    </fieldset>
+  </form>
+  <:- .end if:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Order">
     <fieldset>
       <legend>Freight</legend>
