@@ -126,6 +126,7 @@ FormMonitor.Element.Base = Class.create({
         return true;
     }
 });
+
 FormMonitor.Element.Value = Class.create(FormMonitor.Element.Base, {
     start: function(data, monitor) {
         data.value = data.element.defaultValue;
@@ -152,6 +153,9 @@ FormMonitor.Element.Button = Class.create(FormMonitor.Element.Base, {
     },
     changed: function(data) {
         return data.checked != data.element.checked;
+    },
+    valid: function(data) {
+        return !data.element.required || data.element.checked;
     },
     onfocus: function() {},
     onblur: function() {}
