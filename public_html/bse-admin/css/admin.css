@@ -385,7 +385,7 @@ fieldset > div > label,
 fieldset > div > span {
     display: table-cell;
     vertical-align: top;
-    padding: 0.25em 0;
+    padding: 0.35em 0;
 }
 
 fieldset > div > label {
