@@ -316,6 +316,24 @@
     <:- or Order:><:eif Order:>
   </div>
   <div style="clear: both;" />
+  <:- if And [ifEq [order paymentType] "4"] [order paidFor] [ifEq [order paid_manually] "0"]:>
+  <:- if UserCan bse_shop_order_refund_paypal:>
+  <form action="<:adminurl shopadmin:>" method="post" data-object="Refund">
+    <fieldset>
+      <legend>Payment</legend>
+      <ul>
+        <li>
+          <input type="checkbox" name="id" id="id" value="<:= order.id :>" required="required" />
+          <label for="id">Refund the PayPal payment associated with this order and mark it as unpaid</label>
+        </li>
+      </ul>
+      <p class="buttons">
+        <input type="submit" name="a_paypal_refund" value="Refund Payment" class="button red" />
+      </p>
+    </fieldset>
+  </form>
+  <:- or UserCan:><:eif UserCan:>
+  <:- or And:><:eif And:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Order">
     <fieldset>
       <legend>Freight</legend>
