@@ -374,18 +374,17 @@
   </form>
   <:- .end if:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Order">
+    <:-if Eq [order shipping_name] "none":><:or Eq:>
     <fieldset>
       <legend>Freight</legend>
       <input type="hidden" name="id" value="<:order id:>" />
       <:csrfp shop_order_save hidden:>
-      <:- if Cfgsection "dummy shipping methods":>
       <div>
         <label for="shipping_name">Shipping method</label>
         <span>
           <:shipping_method_select:>
         </span>
       </div>
-      <:- or Cfgsection:><:eif Cfgsection:>
       <div>
         <label for="freight_tracking">Tracking code</label>
         <span>
@@ -393,6 +392,7 @@
         </span>
       </div>
     </fieldset>
+    <:-eif Eq:>
     <fieldset>
       <legend>Status</legend>
       <input type="hidden" name="id" value="<:order id:>" />
