@@ -30,7 +30,13 @@
         <:- if Order freight_tracking:>
         <tr>
           <th>Tracking Code:</th>
-          <td><:order freight_tracking:></td>
+          <td>
+            <:- if Cfg "shipping tracking urls" [order shipping_name]:>
+            <a href="<:cfg "shipping tracking urls" [order shipping_name] |h:><:order freight_tracking:>"><:order freight_tracking:></a>
+            <:- or Cfg:>
+            <:order freight_tracking:>
+            <:- eif Cfg:>
+          </td>
         </tr>
         <:- or Order:><:eif Order:>
         <:- if Order shipping_method:>
