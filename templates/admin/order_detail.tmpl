@@ -380,7 +380,10 @@
   </form>
   <:- .end if:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Order">
-    <:-if Eq [order shipping_name] "none":><:or Eq:>
+    <:-switch:>
+    <:-case Eq [order stage] "shipped":>
+    <:-case Eq [order shipping_name] "none":>
+    <:-case default:>
     <fieldset>
       <legend>Freight</legend>
       <input type="hidden" name="id" value="<:order id:>" />
@@ -398,7 +401,7 @@
         </span>
       </div>
     </fieldset>
-    <:-eif Eq:>
+    <:-endswitch:>
     <fieldset>
       <legend>Status</legend>
       <input type="hidden" name="id" value="<:order id:>" />
