@@ -1,0 +1,87 @@
+<:wrap admin/base.tmpl title=>"View User Orders" :>
+<div class="window siteuser">
+  <header>
+    <h1><:param title:></h1>
+    <nav data-role="toolbar">
+      <ul class="menu context">
+        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:- if UserCan bse_members_user_add_file:>
+            <li><a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" accesskey="f" title="AccessKey = f">New File…</a></li>
+            <:- or UserCan:><:eif UserCan:>      
+            <:- if UserCan bse_members_user_delete:>
+            <li class="divider"></li>
+            <li><a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="User">Delete</a></li>
+            <:- or UserCan:>
+            <li class="disabled"><span>Delete</span></li>
+            <:- eif UserCan:>
+          </ul>
+        </li>
+      </ul>
+      <span data-role="controlgroup">
+        <:- if UserCan bse_members_user_list:>
+        <a href="<:script:>" class="button active">Users</a>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_members_group_list:>
+        <a href="<:script:>?a_grouplist=1" class="button">Groups</a>
+        <:- or UserCan:><:eif UserCan:>
+      </span>
+      <:- if Or [ifAnd [ifUserCan bse_log_list] [ifAuditlog actor_id [siteuser id] actor_type M]] [ifAnd [ifUserCan bse_shop_order_list] [ifUserorders]]:>
+      <span data-role="controlgroup">
+        <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>" class="button">User</a>
+        <!--
+        <:- if Userfiles:>
+        <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button">Files</a>
+        <:- or Userfiles:><:eif Userfiles:>
+        -->
+        <:- if And [ifUserCan bse_shop_order_list] [ifUserorders]:>
+        <a href="<:script:>?a_view=1&amp;id=<:siteuser id:>&amp;_t=orders" class="button selected">Orders</a>
+        <:- or And:><:eif And:>
+        <:- if And [ifUserCan bse_log_list] [ifAuditlog actor_id [siteuser id] actor_type M]:>
+        <a href="<:script:>?a_view=1&amp;id=<:siteuser id:>&amp;_t=activity" class="button">Activity</a>
+        <:- or And:><:eif And:>
+      </span>
+      <:- or Or:><:eif Or:>
+      <:- if UserCan bse_members_user_delete:>
+      <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="User" data-icon="delete" class="button">Delete</a>
+      <:- or UserCan:>
+      <a data-icon="delete" class="button disabled">Delete</a>
+      <:- eif UserCan:>
+    </nav>
+  </header>
+  <:- if And [ifUserCan bse_shop_order_list] [ifUserorders]:>
+  <fieldset class="list">
+    <legend>Orders</legend>
+    <table class="full">
+      <thead>
+        <tr>
+          <th>Order No.</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>Payment</th>
+          <th>Total</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:- iterator begin userorders:>
+        <tr>
+          <td><span class="listed <:ifUserorder filled:>green<:or:>gray<:eif:>"></span><:userorder id |%06d:></td>
+          <td><:date userorder orderDate:></td>
+          <td><:userorder stage:></td>
+          <td><:ifUserorder paidFor:>Paid<:or:>Unpaid<:eif:></td>
+          <td><:cfg shop currency "$":><:number money [userorder total]:></td>
+          <td class="actions">
+            <:- if UserCan bse_shop_order_detail:>
+            <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:userorder id:>&amp;referer=1" class="button gray small">Details</a>
+            <:- or UserCan:>
+            <a class="button gray small disabled">Details</a>
+            <:- eif UserCan:>
+          </td>
+        </tr>
+        <:- iterator end userorders:>
+      <tbody>
+    </table>
+  </fieldset>
+  <:- or And:> <:eif And:>
+</div>
