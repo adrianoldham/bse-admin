@@ -20,13 +20,25 @@
           <select name="importspec" id="importspec" required="required" class="<:ifError_img importspec:>error<:or:><:eif:>">
             <option value="">(select an import specification)</option>
             <:- iterator begin importspecs:>
-            <option value="<:importspec name:>"<:ifEq [old importspec] [importspec name]:> selected="selected"<:or:><:eif:>><:importspec description:> (<:importspec name:>)</option>
+            <option value="<:importspec name:>"<:ifEq [old importspec] [importspec name]:> selected="selected"<:or:><:eif:>><:importspec description:> (<:capitalize [importspec name]:>)</option>
             <:- iterator end importspecs:>
           </select>
           <:help userupdate importspecs:>
         </span>
       </div>
     </fieldset>
+    <:- if Cfgsection "siteuser updates":>
+    <details>
+      <summary>Field details</summary>
+      <:- iterator begin importspecs:>
+      <fieldset>
+        <legend><:capitalize [importspec name]:></legend>
+        <label for="<:importspec name:>"><:importspec description:></label>
+        <input type="text" name="<:importspec name:>" id="<:importspec name:>" value="<:cfg [concatenate "siteuser update " [importspec name]] fields:>" readonly="readonly" />
+      </fieldset>
+      <:- iterator end importspecs:>
+    </details>
+    <:- or Cfgsection:><:eif Cfgsection:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:adminurl menu:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="cancel" class="button white">Cancel</a>
       <:- if UserCan bse_siteuser_list:>
