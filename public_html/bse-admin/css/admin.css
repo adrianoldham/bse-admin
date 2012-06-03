@@ -467,12 +467,16 @@ select:focus {
     box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.5em rgba(3,153,212,0.75) !important;
 }
 
-input.error {
+input.error,
+textarea.error,
+select.error {
     color: #c03 !important;
     border-color: #c03 !important;
 }
 
-input.error:focus {
+input.error:focus,
+textarea.error:focus,
+select.error:focus {
     -webkit-box-shadow: 0 0 0.25em #c03 !important; 
     -moz-box-shadow: 0 0 0.25em #c03 !important; 
     box-shadow: 0 0 0.25em #c03 !important; 
