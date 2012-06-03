@@ -1,0 +1,33 @@
+<:wrap admin/base.tmpl title=>"Imported Site User Data" nomessage=>1 :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+  </header>
+  <p><:line_count:> lines with <:line_error_count:> error lines and <:line_good_count:> good lines.</p>
+  <fieldset class="list">
+    <legend>Preview</legend>
+    <div class="scrollable">
+      <table class="full nowrap">
+        <thead>
+          <tr>
+            <:- iterator begin fields:>
+            <th><:field description:></th>
+            <:- iterator end fields:>
+          </tr>
+        </thead>
+        <tbody>
+          <:- iterator begin lines:>
+          <tr>
+            <:- iterator begin fields:>
+            <td><:line [field name]:> <:line_error [field name] [line_index]:></td>
+            <:- iterator end fields:>
+          </tr>
+          <:- iterator end lines:>
+        </tbody>
+      </table>
+    </div>
+  </fieldset>
+  <p class="buttons">
+    <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:adminurl userupdate:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="cancel" class="button white">Done</a>
+  </p>
+</div>

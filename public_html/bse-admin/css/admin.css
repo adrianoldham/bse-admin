@@ -146,6 +146,11 @@ iframe {
     box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.4);
 }
 
+.scrollable {
+    overflow: auto;
+    display: block;
+}
+
 .group:after,
 *[data-role]:after {
     content: ".";
@@ -1082,6 +1087,10 @@ ul.children li:hover > span {
 
 /* @group list */
 
+.list {
+    max-width: 76em;
+}
+
 .list tbody tr:nth-child(odd) {
     background-color: rgba(0,0,0,0.025);
 }
@@ -1097,6 +1106,10 @@ ul.children li:hover > span {
 
 .wrap {
     white-space: normal !important;
+}
+
+.nowrap {
+    white-space: nowrap !important;
 }
 
 td.buttons {
