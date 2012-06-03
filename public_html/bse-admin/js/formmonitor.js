@@ -288,6 +288,7 @@ var ChangesMonitor = Class.create({
         var save = $(this.options.saveButton);
         var cancel = $(this.options.cancelButton);
         var dontsave = $(this.options.dontSaveButton);
+        var page = $$(this.options.pageElement)[0];
 
         // avoid recursing in
         save.stopObserving('click');
@@ -319,6 +320,8 @@ var ChangesMonitor = Class.create({
         ele.setStyle({
             display: "block"
         });
+
+        page.scrollTo();
     },
     defaults: function() {
         return {
@@ -328,7 +331,8 @@ var ChangesMonitor = Class.create({
             replace: ["object", "confirm"],
             dontSaveButton: 'unsavedDont',
             cancelButton: 'unsavedCancel',
-            saveButton: 'unsavedSave'
+            saveButton: 'unsavedSave',
+            pageElement: 'body'
         };
     }
 });
