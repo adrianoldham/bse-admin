@@ -92,10 +92,10 @@
             <:- if UserCan bse_members_group_add:>
             <li><a href="<:adminurl siteusers a_addgroupform 1:>">New Site Group…</a></li>
             <:- or UserCan:><:eif UserCan:>
-            <:- if UserCan bse_members_file_log:>
+            <:- if And [ifUserCan bse_members_file_log] [cfg download log_downuload]:>
             <li class="divider"></li>
             <li><a href="<:adminurl siteusers a_fileaccesslog 1:>">Downloads Activity Log</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- or And:><:eif And:>
           </ul>
         </li>
         <:- or Or:><:eif Or:>
