@@ -169,6 +169,9 @@ FormMonitor.Element.SelectOne = Class.create(FormMonitor.Element.Base, {
     changed: function(data) {
         return data.selection != data.element.selectedIndex;
     },
+    valid: function(data) {
+        return !data.element.required || data.element.value != "";
+    },
     onfocus: function(data, monitor) {
         data.element.observe("keyup", monitor.onchange);
     },
