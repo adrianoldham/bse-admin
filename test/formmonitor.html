@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>formmonitor.js</title>
+    <link rel="stylesheet" href="../public_html/bse-admin/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="../public_html/bse-admin/css/admin.css" type="text/css" />
+    <script type="text/javascript" src="http://bseburn.develop-help.com/js/prototype.js"></script>
+    <script type="text/javascript" src="http://bseburn.develop-help.com/js/js/scriptaculous.js?load=effects"></script>
+    <script type="text/javascript" src="../public_html/bse-admin/js/formmonitor.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+<h1>formmonitor.js tests</h1>
+<h2>single select - changed p1</h2>
+<p>should be submittable iff default isn't selected</p>
+<form method="post" action="#">
+<select name="foo">
+<option value="" selected="selected">default</option>
+<option value="1">One</option>
+<option value="2">Two</option>
+</select>
+<input type="submit"/>
+</form>
+<h2>single select - changed p2</h2>
+<p>should be submittable iff One isn't selected</p>
+<form method="post" action="#">
+<select name="foo">
+<option value="">default</option>
+<option value="1" selected="selected">One</option>
+<option value="2">Two</option>
+</select>
+<input type="submit"/>
+</form>
+<h2>single select - required</h2>
+<p>should be submittable iff One and default isn't selected</p>
+<form method="post" action="#">
+<select name="foo" required>
+<option value="">default</option>
+<option value="1" selected="selected">One</option>
+<option value="2">Two</option>
+</select>
+<input type="submit"/>
+</form>
+<script>
+var changesMonitor = new ChangesMonitor({ forms: 'form' });
+</script>
+  </body>
+</html>
