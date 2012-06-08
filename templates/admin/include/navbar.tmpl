@@ -76,7 +76,7 @@
     <:- case Or [ifUserCan bse_members_user_list] [ifUserCan bse_members_user_add] [ifUserCan bse_siteuser_edit] [ifUserCan bse_siteuser_export] [ifUserCan bse_members_group_list] [ifUserCan bse_members_group_add] [ifUserCan bse_members_file_log] [ifUserCan bse_admin_user_list] [ifUserCan bse_admin_user_add] [ifUserCan bse_admin_group_list] [ifUserCan bse_admin_group_add]:>
     <li><a href="#">Users</a>
       <ul>
-        <:- if Or [ifUserCan bse_members_user_list] [ifUserCan bse_members_user_add] [ifUserCan bse_siteuser_edit] [ifUserCan bse_siteuser_export] [ifUserCan bse_members_group_list] [ifUserCan bse_members_group_add] [ifUserCan bse_members_file_log]:>
+        <:- if Or [ifUserCan bse_members_user_list] [ifUserCan bse_members_user_add] [ifUserCan bse_members_user_view] [ifUserCan bse_siteuser_edit] [ifUserCan bse_siteuser_export] [ifUserCan bse_members_group_list] [ifUserCan bse_members_group_add] [ifUserCan bse_members_file_log]:>
         <li><a href="#">Site Users</a>
           <ul>
             <:- if UserCan bse_members_user_list:>
@@ -84,6 +84,9 @@
             <:- or UserCan:><:eif UserCan:>
             <:- if UserCan bse_members_user_add:>
             <li><a href="<:adminurl siteusers a_addform 1 referer 1:>">New Site User…</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_members_user_view:>
+            <li><a href="<:adminurl siteusers _t load referer 1:>">Load Site User…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_members_group_list:>
