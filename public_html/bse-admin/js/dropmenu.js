@@ -305,7 +305,6 @@ DropMenu.Item = Class.create({
 
             this.anchor.observe("click", this.toggleShow.bindAsEventListener(this));
             this.anchor.observe('custom:mouseenter', this.rootShow.bindAsEventListener(this));
-            this.anchor.observe("blur", this.rootHide.bindAsEventListener(this));
         } else {
             this.element.observe('custom:mouseenter', this.delayShow.bindAsEventListener(this));
 
