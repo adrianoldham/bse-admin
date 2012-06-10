@@ -72,10 +72,16 @@ function dom_init() {
     $$("header").invoke('insert', { after: sheetHtml });
     $$("body").invoke('insert', { bottom: confirmHtml });
 
-    var changesMonitor = new ChangesMonitor({ forms: 'form:[data-object]' });
-    var linkConfirmer = new LinkConfirmer();
+    var changesMonitor = new ChangesMonitor({ forms: 'form:[data-object]', onPrompt: hide_menu });
+    var linkConfirmer = new LinkConfirmer({ onPrompt: hide_menu });
 
 };
 
 function window_init() {
+};
+
+function hide_menu() {
+    $$(".menu ul").invoke('hide');
+    $$(".menu li.active").invoke('removeClassName','active');
+    
 };
