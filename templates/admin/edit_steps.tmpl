@@ -2,6 +2,15 @@
 <div class="window dialog">
   <header>
     <h1><:param title:></h1>
+    <:- if Cgi stepkid:>
+    <nav data-role="toolbar">
+      <:- if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[cgi stepkid]:>
+      <a href="<:script:>?id=<:article id:>&amp;stepkid=<:cgi stepkid:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Stepchild" data-confirm="Are you sure you want to remove the Stepchild relationship?" data-info="Continuing with this action will permanently remove this Stepchild relationship. This action does not delete the original <:cgi typename:>." data-icon="delete" class="button">Delete</a>
+      <:- or UserCan:>
+      <a data-icon="delete" class="button disabled">Delete</a>
+      <:- eif UserCan:>
+    </nav>
+    <:- or Cgi:><:eif Cgi:>
   </header>
   <form action="<:script:>" method="post" data-object="Stepchild">
     <input type="hidden" name="id" value="<:article id:>" />
@@ -13,11 +22,11 @@
     <:- iterator begin kids:>
     <:- if Eq [stepkid childId] [cgi stepkid]:>
     <fieldset>
-      <legend><:article title:></legend>
+      <legend>Properties</legend>
       <div>
-        <label for="stepkid">Articles <:error_img stepkid:></label>
+        <label for="stepkid">Article <:error_img stepkid:></label>
         <span>
-          <:replace [possible_stepkids] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":>
+          <input type="text" name="stepkid" value="<:kid title:>" readonly="readonly"/>
         </span>
       </div>
       <div>
@@ -43,12 +52,12 @@
     <:- iterator end kids:>
     <:- or Cgi:>
     <fieldset>
-      <legend><:article title:></legend>
+      <legend>Properties</legend>
       <div>
-        <label for="stepkid">Articles <:error_img stepkid:></label>
+        <label for="stepkid">Articles <span class="required">*</span> <:error_img stepkid:></label>
         <span>
           <:- if Possibles:>
-          <:replace [possible_stepkids] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
+          <:replace [possible_stepkids] "name=\"([a-z A-Z _]+)\">" "name=\"$1\" id=\"$1\" required=\"required\"><option>Select a stepchild</option>":>
           <:- or Possibles:>
           <select id="stepkid">
             <option>No possible articles</option>
