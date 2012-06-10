@@ -325,6 +325,7 @@ var ChangesMonitor = Class.create({
             display: "block"
         });
 
+        this.options.onPrompt();
         page.scrollTo();
     },
     defaults: function() {
@@ -336,7 +337,8 @@ var ChangesMonitor = Class.create({
             dontSaveButton: 'unsavedDont',
             cancelButton: 'unsavedCancel',
             saveButton: 'unsavedSave',
-            pageElement: 'body'
+            pageElement: 'body',
+            onPrompt: function() {}
         };
     }
 });

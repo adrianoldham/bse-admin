@@ -29,6 +29,7 @@ var LinkConfirmer = Class.create({
         ele.setStyle({
             display: "block"
         });
+        this.options.onPrompt();
     },
     defaults: function() {
         return {
@@ -36,7 +37,8 @@ var LinkConfirmer = Class.create({
             prompt: 'modal',
             replace: ["object", "confirm", "info"],
             confirmButton: 'confirmDelete',
-            cancelButton: 'confirmCancel'
+            cancelButton: 'confirmCancel',
+            onPrompt: function() {}
         };
     }
 });
