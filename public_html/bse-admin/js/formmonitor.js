@@ -274,7 +274,8 @@ var ChangesMonitor = Class.create({
                 found = forms[i];
             }
         }
-        if (found) {
+        var confirm = found.form().getAttribute("data-confirm") != "false";
+        if (found && confirm) {
             ev.stop();
             this.prompt(found, ev.element());
         }
