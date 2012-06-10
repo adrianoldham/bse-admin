@@ -331,7 +331,7 @@ var ChangesMonitor = Class.create({
             formClass: FormChangeMonitor,
             links: 'a[href]:not([data-action]):not([href="#"])',
             prompt: 'sheet',
-            replace: ["object", "confirm"],
+            replace: ["object", "confirm", "info"],
             dontSaveButton: 'unsavedDont',
             cancelButton: 'unsavedCancel',
             saveButton: 'unsavedSave',

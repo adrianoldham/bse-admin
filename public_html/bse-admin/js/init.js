@@ -44,8 +44,8 @@ function dom_init() {
     var sheetHtml = '\
     <div id="sheet">\
       <div class="window dialog modal sheet">\
-        <h2>Would you like to save the changes to this <span data-object="placeholder">Object</span>?</h2>\
-        <p>If you don‘t save, your changes will be lost.</p>\
+        <h2 data-confirm="default">Would you like to save the changes to this <span data-object="placeholder">Object</span>?</h2>\
+        <p data-info="default">If you don‘t save, your changes will be lost.</p>\
         <p class="buttons">\
           <a href="#" class="button white left" id="unsavedDont">Don’t Save</a>\
           <a href="#" class="button white" id="unsavedCancel">Cancel</a>\
@@ -60,8 +60,8 @@ function dom_init() {
         <header>\
           <h1>Alert!</h1>\
         </header>\
-        <h2 id="confirmMessage">Are you sure you want to delete this <span data-object="placeholder">Object</span>?</h2>\
-        <p id="confirmInformation">Continuing with this action will permenantly remove this <span data-object="placeholder">Object</span> from your site. This action cannot be undone.</p>\
+        <h2 data-confirm="default">Are you sure you want to delete this <span data-object="placeholder">Object</span>?</h2>\
+        <p data-info="default">Continuing with this action will permanently remove this <span data-object="placeholder">Object</span> from your site. This action cannot be undone.</p>\
         <p class="buttons">\
           <a href="#" id="confirmCancel" class="button white">Cancel</a>\
           <a href="#" id="confirmDelete" class="button red">Delete <span data-object="placeholder">Object</span></a>\
