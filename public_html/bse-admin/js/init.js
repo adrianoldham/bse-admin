@@ -39,7 +39,7 @@ function dom_init() {
         rootItems: '.menu > li'
     });
 
-    var openDetails = OpenDetails();
+    var openDetails = new OpenDetails();
 
     var sheetHtml = '\
     <div id="sheet">\

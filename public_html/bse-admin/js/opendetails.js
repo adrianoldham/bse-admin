@@ -1,62 +1,50 @@
-/*
-
-Initialise with:
-
-    DEFAULTS
-    OpenDetails();
-    
-    CUSTOM OPTIONS
-    OpenDetails($$("summary"),{
+var OpenDetails = Class.create({
+    defaults: {
+        selector: "summary",
         openClass: "open",
         disclosureWidgetClass: "disclosure-widget",
         disclosureEvent: "click"
-    });
+    },
 
-*/
+    initialize: function(selector, options) {
+        var isChrome = navigator.userAgent.indexOf("Chrome") > -1;
+        if (isChrome) return;
 
-function OpenDetails(selector, options) {
-    // Chrome supports "details" natively
-    var isChrome = navigator.userAgent.indexOf("Chrome") > -1;
-    if(isChrome) return;
+        this.options = Object.extend(Object.extend({}, this.defaults), options || {});
+        this.selector = $$(selector ? selector : this.options.selector);
+        this.selector.each(function(element) {
+            this.setup(element);
+        }.bind(this));
+    },
 
-    var defaults = {
-        openClass: "open",
-        disclosureWidgetClass: "disclosure-widget",
-        disclosureEvent: "click"
-    };
+    setup: function(element) {
+        // Create a new container
+        var container = new Element("div").hide();
 
-    options = Object.extend(Object.extend({}, defaults), options || { });
-
-    // Toggle collapsible DETAILS element
-    selector = selector ? selector : $$("summary");
-    selector.each(function(summary) {
-        var details = summary.parentNode;
-        var siblings = summary.siblings();
-
+        // Add siblings to the container
+        var siblings = element.siblings();
         siblings.each(function(sibling) {
-            sibling.writeAttribute("hidden", "true");
-        })
-        summary.observe(options.disclosureEvent, function() {
+            container.insert({ top: sibling });
+        });
+        element.insert({ after: container });
+        this.apply(element, container);
+    },
 
-            // Details element
-            var isOpen = details.hasAttribute("open");
-            if(isOpen) {
-                details.removeClassName(options.openClass).removeAttribute("open");
-            } else {
-                details.addClassName(options.openClass).writeAttribute("open", "true");
-            }
+    apply: function(element, container) {
+        element.observe(this.options.disclosureEvent,
+            this.toggle.bindAsEventListener(this, element, container)
+        ).addClassName(this.options.disclosureWidgetClass).setStyle({ cursor: "pointer" });
+    },
 
-            // Sibling elements
-            siblings.each(function(sibling) {
-                var isHidden = sibling.hasAttribute("hidden");
-                if(isHidden) {
-                    //show
-                    sibling.removeAttribute("hidden");
-                } else {
-                    //hide
-                    sibling.writeAttribute("hidden", "true");
-                }
-            })
-        }).addClassName(options.disclosureWidgetClass);
-    });
-};
+    toggle: function(event, element, container) {
+        var parent = element.parentNode;
+        var isOpen = parent.hasAttribute("open");
+        if (isOpen) {
+            parent.removeClassName(this.options.openClass).removeAttribute("open");
+            container.hide();
+        } else {
+            parent.addClassName(this.options.openClass).writeAttribute("open", "true");
+            container.show();
+        }
+    }
+});
