@@ -94,7 +94,7 @@ var DropMenu = Class.create({
         hideDuration: 0.2,
 
         // Use spring to make it bouncy, or check http://wiki.github.com/madrobby/scriptaculous/effect-transitions for other transitions
-        transition: Effect.Transitions.linear 
+        transition: Effect.Transitions.linear
     },
 
     initialize: function(menuItems, options) {
