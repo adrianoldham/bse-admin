@@ -7,7 +7,7 @@
         <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
           <ul>
             <:- if UserCan bse_edit_files_add:article:>
-            <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" accesskey="f" title="AccessKey = f">New File…</a></li>
+            <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" accesskey="f" title="AccessKey = f">New File…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <li class="divider"></li>
             <li><a href="<:script:>?id=<:cond [ifEq [article id] -1] 1 [article id]:>&amp;preview=1">Preview</a></li>
