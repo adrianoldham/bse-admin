@@ -45,13 +45,13 @@
               <ul>
                 <:- if Adminusers:>
                 <:- iterator begin adminusers:>
-                <li><a href="<:adminurl adminusers:>?a_showobjectart=1&amp;id=<:article id:>&amp;adminid=<:iadminuser id:>"><:iadminuser logon:><:ifIadminuser name:> (<:iadminuser name:>)<:or:><:eif:></a></li>
+                <li><a href="<:adminurl adminusers:>?a_showuserart=1&amp;id=<:article id:>&amp;userid=<:iadminuser id:>&amp;referer=1"><:iadminuser logon:><:ifIadminuser name:> (<:iadminuser name:>)<:or:><:eif:></a></li>
                 <:- iterator end adminusers:>
                 <:- or Adminusers:><:eif Adminusers:>
                 <:- if Admingroups:>
                 <li class="divider"></li>
                 <:- iterator begin admingroups:>
-                <li><a href="<:adminurl adminusers:>?a_showobjectart=1&amp;id=<:article id:>&amp;adminid=<:iadmingroup id:>"><:iadmingroup name:><:ifIadmingroup description:> (<:iadmingroup description:>)<:or:><:eif:></a></li>
+                <li><a href="<:adminurl adminusers:>?a_showgroupart=1&amp;id=<:article id:>&amp;groupid=<:iadmingroup id:>&amp;referer=1"><:iadmingroup name:><:ifIadmingroup description:> (<:iadmingroup description:>)<:or:><:eif:></a></li>
                 <:- iterator end admingroups:>
                 <:- or Admingroups:><:eif Admingroups:>
               </ul>
