@@ -1826,8 +1826,8 @@ header {
     margin: 0;
 }
 
-*[data-role=toolbar] > .button:first-child,
-*[data-role=toolbar] > :first-child .button:first-child {
+*[data-role=toolbar] > .button:first-child:not(:last-child),
+*[data-role=toolbar] > :first-child .button:first-child:not(:last-child) {
     margin-left: 0;
 }
 
@@ -1908,7 +1908,7 @@ h1:first-child + *[data-role=toolbar] {
     float: left;  
 }
 
-*[data-role=controlgroup] > :first-child {
+*[data-role=controlgroup] > :first-child:not(:last-child) {
     -webkit-border-top-right-radius: 0;
     -webkit-border-bottom-right-radius: 0;    
     -moz-border-radius-topright: 0;
@@ -1918,7 +1918,7 @@ h1:first-child + *[data-role=toolbar] {
     margin-right: 0;
 }
 
-*[data-role=controlgroup] > :last-child {
+*[data-role=controlgroup] > :last-child:not(:first-child) {
     -webkit-border-top-left-radius: 0;
     -webkit-border-bottom-left-radius: 0;    
     -moz-border-radius-topleft: 0;
@@ -1933,10 +1933,6 @@ h1:first-child + *[data-role=toolbar] {
     -moz-border-radius: 0;
     border-radius: 0;
     margin: 0;
-}
-
-*[data-role=controlgroup] > :first-child:last-child {
-    margin: inherit;
 }
 
 *[data-role=controlgroup] > :not(:first-child) {
