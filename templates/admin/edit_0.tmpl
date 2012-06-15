@@ -54,7 +54,8 @@
     <ul class="children">
       <:- iterator begin children:>
       <li>
-        <a href="<:script:>?id=<:child id:>&amp;preview=1" title="<:typename child:>"><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" child release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" child expire]:>red<:case Eq [child listed] 0 :>gray<:case Eq [child listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename child:></span> <:child title:></a>
+        <a href="<:script:>?id=<:child id:>&amp;preview=1" title="<:typename child:>"><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" child release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" child expire]:>red<:case Eq [child listed] 0 :>gray<:case Eq [child listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename child:></span> <:ifChild titleAlias:><:child titleAlias:><:or:><:child title:><:eif:></a>
+        <:ifChild titleAlias:>(<:child title:>)<:or:><:eif:>
         <span>
           <a href="<:script:>?id=<:child id:>" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_delete_article:child:>
