@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>[cat "Manage " [cond [ifEq [article id] -1] Site [typename article] ] " Images"] :>
+<:wrap admin/base.tmpl title=>[cat "Manage " [cond [article parentid] [typename article] Site] " Images"] :>
 <div class="window">
   <header>
     <h1><:param title:></h1>
@@ -10,7 +10,7 @@
             <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;referer=1" accesskey="i" title="AccessKey = i">New Image…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <li class="divider"></li>
-            <li><a href="<:script:>?id=<:cond [ifEq [article id] -1] 1 [article id]:>&amp;preview=1">Preview</a></li>
+            <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1">Preview</a></li>
           </ul>
         </li>
       </ul>

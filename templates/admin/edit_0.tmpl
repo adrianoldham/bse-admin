@@ -21,7 +21,7 @@
           </ul>
         </li>
       </ul>
-      <a href="<:script:>?id=<:cond [ifEq [article id] -1] 1 [article id]:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
+      <a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
       <span data-role="controlgroup">
         <:- if Or [ifImages] [ifFiles]:>
         <a href="<:script:>?id=<:article id:>" class="button selected"><:typename article:></a>
