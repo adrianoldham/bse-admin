@@ -19,7 +19,7 @@
       <:or Article:><:eif Article:>
       <a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
       <:- if And [article parentid] [ifUserCan bse_regen_article:article]:>
-      <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=kids%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
+      <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=img%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
       <:- or And:><:eif And:>
       <span data-role="controlgroup">
         <:- if Or [ifImages] [ifFiles]:>
@@ -33,7 +33,7 @@
         <:- or And:><:eif And:>
       </span>
       <:- if UserCan bse_edit_delete_article:article:>
-      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>
+      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" accesskey="d" title="AccessKey = d" data-action="delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <:- if Article parentid:>
       <a data-icon="delete" class="button disabled">Delete</a>
