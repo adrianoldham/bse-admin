@@ -2,44 +2,11 @@
 <div class="window">
   <header>
     <h1><:param title:></h1>
-    <nav data-role="toolbar">
-      <ul class="menu context">
-        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
-          <ul>
-            <:- if UserCan bse_edit_files_add:article:>
-            <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" accesskey="f" title="AccessKey = f">New File…</a></li>
-            <:- or UserCan:><:eif UserCan:>
-            <li class="divider"></li>
-            <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1">Preview</a></li>
-          </ul>
-        </li>
-      </ul>
-      <:- if Article parentid:>
-      <a href="<:script:>?id=<:article parentid:>" title="Edit Parent" data-icon="back" data-icon-only="true" class="button">Parent</a>
-      <:or Article:><:eif Article:>
-      <a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
-      <:- if And [article parentid] [ifUserCan bse_regen_article:article]:>
-      <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=file%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
-      <:- or And:><:eif And:>
-      <span data-role="controlgroup">
-        <:- if Or [ifImages] [ifFiles]:>
-        <a href="<:script:>?id=<:article id:>" class="button"><:typename article:></a>
-        <:- or Or:><:eif Or:>
-        <:- if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
-        <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button">Images</a>
-        <:- or And:><:eif And:>
-        <:- if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
-        <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button selected">Files</a>
-        <:- or And:><:eif And:>
-      </span>
-      <:- if UserCan bse_edit_delete_article:article:>
-      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" accesskey="d" title="AccessKey = d" data-action="delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>
-      <:- or UserCan:>
-      <:- if Article parentid:>
-      <a data-icon="delete" class="button disabled">Delete</a>
-      <:- or Article:><:eif Article:>
-      <:- eif UserCan:>
-    </nav>
+    <:- if Article parentid:>
+<:include admin/include/toolbar_article.tmpl:>
+    <:- or Article:>
+<:include admin/include/toolbar_site.tmpl:>
+    <:- eif Article:>
   </header>
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="File">
     <input type="hidden" name="id" value="<:article id:>" />

@@ -1,0 +1,87 @@
+    <nav data-role="toolbar">
+      <ul class="menu context">
+        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:- if UserCan bse_edit_add_child:article:>
+            <:- if HaveChildType:>
+            <:- switch:>
+            <:- case Match [article generator] "Catalog":>
+            <li><a href="<:script:>?parentid=<:article id:>&amp;type=Catalog&amp;referer=1" accesskey="c" title="AccessKey = c">New Catalog…</a></li>
+            <li><a href="<:script:>?parentid=<:article id:>&amp;type=Product&amp;referer=1" accesskey="p" title="AccessKey = p">New Product…</a></li>
+            <:- case default:>
+            <li><a href="<:script:>?parentid=<:article id:>&amp;type=Article&amp;referer=1" accesskey="a" title="AccessKey = a">New Child…</a></li>
+            <:- endswitch:>
+            <:- or HaveChildType:><:eif HaveChildType:>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_edit_stepkid_add:article:>
+            <li><a href="<:script:>?id=<:article id:>&amp;_t=steps&amp;referer=1" accesskey="t" title="AccessKey = t">New Stepchild…</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <li class="divider"></li>
+            <:- if UserCan bse_edit_images_add:article:>
+            <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;referer=1" accesskey="i" title="AccessKey = i">New Image…</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_edit_files_add:article:>
+            <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" accesskey="f" title="AccessKey = f">New File…</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- switch:>
+            <:- case Match [article generator] "Product":>
+            <:- if UserCan bse_edit_prodopt_add:article:>
+            <li><a href="<:script:>?id=<:article id:>&amp;_t=prodopts&amp;referer=1" accesskey="o" title="AccessKey = o">New Option…</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <:- endswitch:>
+            <li class="divider"></li>
+            <:- if UserCan bse_regen_article:article:>
+            <li><a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
+            <:- or UserCan:><:eif UserCan:>
+            <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1">Preview</a></li>
+            <:- if Or [ifUserCan bse_admin_user_save_artrights] [ifUserCan bse_admin_group_save_artrights]:>
+            <li class="divider"></li>
+            <li><a href="#">Permissions</a>
+              <ul>
+                <:- if Adminusers:>
+                <:- iterator begin adminusers:>
+                <li><a href="<:adminurl adminusers:>?a_showuserart=1&amp;id=<:article id:>&amp;userid=<:iadminuser id:>&amp;referer=1"><:iadminuser logon:><:ifIadminuser name:> (<:iadminuser name:>)<:or:><:eif:></a></li>
+                <:- iterator end adminusers:>
+                <:- or Adminusers:><:eif Adminusers:>
+                <:- if Admingroups:>
+                <li class="divider"></li>
+                <:- iterator begin admingroups:>
+                <li><a href="<:adminurl adminusers:>?a_showgroupart=1&amp;id=<:article id:>&amp;groupid=<:iadmingroup id:>&amp;referer=1"><:iadmingroup name:><:ifIadmingroup description:> (<:iadmingroup description:>)<:or:><:eif:></a></li>
+                <:- iterator end admingroups:>
+                <:- or Admingroups:><:eif Admingroups:>
+              </ul>
+            </li>
+            <:- or Or:><:eif Or:>
+            <li class="divider"></li>
+            <:- if UserCan bse_edit_delete_article:article:>
+            <li><a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="<:typename article:>">Delete</a></li>
+            <:- or UserCan:>
+            <li class="disabled"><span>Delete</span></li>
+            <:- eif UserCan:>
+          </ul>
+        </li>
+      </ul>
+      <:- if Article parentid:>
+      <a href="<:script:>?id=<:article parentid:>" title="Edit Parent" data-icon="back" data-icon-only="true" class="button">Parent</a>
+      <:or Article:><:eif Article:>
+      <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
+      <:- if And [article parentid] [ifUserCan bse_regen_article:article]:>
+      <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
+      <:- or And:><:eif And:>
+      <span data-role="controlgroup">
+        <:- if Or [ifImages] [ifFiles]:>
+        <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>"><:typename article:></a>
+        <:- or Or:><:eif Or:>
+        <:- if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
+        <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button <:cond [ifEq [cgi _t] img] selected:>">Images</a>
+        <:- or And:><:eif And:>
+        <:- if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
+        <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button <:cond [ifEq [cgi _t] file] selected:>">Files</a>
+        <:- or And:><:eif And:>
+      </span>
+      <:- if UserCan bse_edit_delete_article:article:>
+      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>
+      <:- or UserCan:>
+      <a data-icon="delete" class="button disabled">Delete</a>
+      <:- eif UserCan:>
+    </nav>

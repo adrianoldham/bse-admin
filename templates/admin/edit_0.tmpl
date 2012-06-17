@@ -2,38 +2,7 @@
 <div class="window">
   <header>
     <h1><:param title:></h1>
-    <nav data-role="toolbar">
-      <ul class="menu context">
-        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
-          <ul>
-            <:- if UserCan bse_edit_add_child:article:>
-            <li><a href="<:script:>?parentid=<:article id:>&amp;type=Article" accesskey="a" title="AccessKey = a">New Article…</a></li>
-            <:- or UserCan:><:eif UserCan:>
-            <li class="divider"></li>
-            <:- if UserCan bse_edit_images_add:article:>
-            <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload" accesskey="i" title="AccessKey = i">New Image…</a></li>
-            <:- or UserCan:><:eif UserCan:>
-            <:- if UserCan bse_edit_files_add:article:>
-            <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload" accesskey="f" title="AccessKey = f">New File…</a></li>
-            <:- or UserCan:><:eif UserCan:>
-            <li class="divider"></li>
-            <li><a href="<:script:>?id=<:cond [ifEq [article id] -1] 1 [article id]:>&amp;preview=1">Preview</a></li>
-          </ul>
-        </li>
-      </ul>
-      <a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
-      <span data-role="controlgroup">
-        <:- if Or [ifImages] [ifFiles]:>
-        <a href="<:script:>?id=<:article id:>" class="button selected"><:typename article:></a>
-        <:- or Or:><:eif Or:>
-        <:- if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
-        <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button">Images</a>
-        <:- or And:><:eif And:>
-        <:- if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
-        <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button">Files</a>
-        <:- or And:><:eif And:>
-      </span>
-    </nav>
+<:include admin/include/toolbar_site.tmpl:>
   </header>
   <:- if Children:>
   <fieldset class="children">
