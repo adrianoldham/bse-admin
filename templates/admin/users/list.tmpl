@@ -9,11 +9,11 @@
           <ul>
             <:- if UserCan bse_members_user_add:>
             <li><a href="<:script:>?a_addform=1" accesskey="u" title="AccessKey = u">New Site User…</a></li>
-             <:- or UserCan:><:eif UserCan:>
-             <:- if UserCan bse_members_group_add:>
-             <li class="divider"></li>
-             <li><a href="<:script:>?a_addgroupform=1" accesskey="g" title="AccessKey = g">New Site Group…</a></li>
-             <:- or UserCan:><:eif UserCan:>
+            <:- or UserCan:><:eif UserCan:>
+            <:- if UserCan bse_members_group_add:>
+            <li class="divider"></li>
+            <li><a href="<:script:>?a_addgroupform=1" accesskey="g" title="AccessKey = g">New Site Group…</a></li>
+            <:- or UserCan:><:eif UserCan:>
           </ul>
         </li>
       </ul>
