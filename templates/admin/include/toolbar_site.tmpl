@@ -23,10 +23,10 @@
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>"><:typename article:></a>
         <:- or Or:><:eif Or:>
         <:- if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
-        <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button <:cond [ifEq [cgi _t] img] selected:>">Images</a>
+        <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button <:cond [ifEq [cgi _t] img] selected:>">Images <span class="badge"><:image_count:></span></a>
         <:- or And:><:eif And:>
         <:- if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
-        <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button <:cond [ifEq [cgi _t] file] selected:>">Files</a>
+        <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button <:cond [ifEq [cgi _t] file] selected:>">Files <span class="badge"><:file_count:></span></a>
         <:- or And:><:eif And:>
       </span>
     </nav>

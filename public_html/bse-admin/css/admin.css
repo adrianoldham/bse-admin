@@ -151,6 +151,29 @@ iframe {
     display: block;
 }
 
+.badge {
+    position: relative;
+    display: inline-block;
+    min-width: 1.7em !important;
+    height: 1.7em !important;
+    top: -0.112em;
+    margin-bottom: -1.7em;
+    margin-right: -0.5em;
+    padding: 0.35em;
+    background-color: #c03;
+    text-align: center;
+    font-size: 0.75em !important;
+    line-height: 1;
+    color: #fff !important;
+    text-shadow: 0 0.112em 0.056em rgba(0,0,0,0.5);
+    -webkit-border-radius: 1.7em;
+    -moz-border-radius: 1.7em;
+    border-radius: 1.7em;
+    -webkit-box-shadow: inset 0 0.112em 0.112em rgba(0,0,0,0.4), 0 0.112em 0 rgba(255,255,255,0.5);
+    -moz-box-shadow: inset 0 0.112em 0.112em rgba(0,0,0,0.4), 0 0.112em 0 rgba(255,255,255,0.5);
+    box-shadow: inset 0 0.112em 0.112em rgba(0,0,0,0.4), 0 0.112em 0 rgba(255,255,255,0.5);
+}
+
 .group:after,
 *[data-role]:after {
     content: ".";
@@ -1457,6 +1480,10 @@ table.vertical td {
 /* @end */
 
 /* @group navbar */
+
+nav a {
+    position: relative;
+}
 
 ul.menu.global {
     background-image: -webkit-gradient(
