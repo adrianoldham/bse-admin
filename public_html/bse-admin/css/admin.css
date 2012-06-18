@@ -994,6 +994,8 @@ div + .meta {
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
+    -webkit-box-shadow: inset 0 0.112em 0.224em #444;
+    -moz-box-shadow: inset 0 0.112em 0.224em #444;
     box-shadow: inset 0 0.112em 0.224em #444;
 }
 
