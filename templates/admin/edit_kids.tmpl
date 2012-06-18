@@ -1,0 +1,55 @@
+<:wrap admin/base.tmpl title=>[cat "Manage " [cond [ifEq [article id] -1] Site [typename article] ] " Children"]  :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <:- if Article parentid:>
+<:include admin/include/toolbar_article.tmpl:>
+    <:- or Article:>
+<:include admin/include/toolbar_site.tmpl:>
+    <:- eif Article:>
+  </header>
+  <:- if Kids:>
+  <fieldset class="children">
+    <legend>Children</legend>
+    <:- if UserCan bse_edit_reorder_children:article:>
+    Sort by:
+    <ul class="meta group">
+      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=title&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids%26m=Children%2Bsorted%2Bby%2Btitle">title</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=id&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids%26m=Children%2Bsorted%2Bby%2Bdate">date</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=listed&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids%26m=Children%2Bsorted%2Bby%2Blisted">listed</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;reverse=1&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids%26m=Children%2Bsorted%2Bin%2Breverse">reverse</a></li>
+      <li><:ifCgi sort:><a href="<:script:>?id=<:article id:>">advanced &times;</a><:or:><a href="<:script:>?id=<:article id:>&amp;sort=1">advanced</a><:eif:></li>
+    </ul>
+    <:- if Cgi sort:>
+<:include admin/include/edit_article_sort.tmpl optional:>
+    <:- or Cgi:><:eif Cgi:>
+    <:- or UserCan:><:eif UserCan:>
+    <ul class="children">
+      <:- iterator begin kids:>
+      <li>
+        <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>" <:ifStepKid:>data-widget="stepkid"<:or:><:eif:>><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" kid release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" kid expire]:>red<:case Eq [kid listed] 0:>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <:ifKid titleAlias:><:kid titleAlias:><:or:><:kid title:><:eif:></a>
+        <:ifKid titleAlias:>(<:kid title:>)<:or:><:eif:></a>
+        <span>
+          <:- if StepKid:>
+          <a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;typename=<:typename kid:>&amp;_t=steps" class="button gray small">Edit</a>
+          <:- if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[stepkid childId]:>
+          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;typename=<:typename kid:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=kids" data-action="delete" data-object="Stepchild" data-confirm="Are you sure you want to remove the Stepchild relationship?" data-info="Continuing with this action will permanently remove this Stepchild relationship. This action does not delete the original <:typename kid:>." class="button red small">Delete</a>
+          <:- or UserCan:>
+          <a class="button red small disabled">Delete</a>
+          <:- eif UserCan:>
+          <:- or StepKid:>
+          <a href="<:script:>?id=<:kid id:>&amp;referer=1" class="button gray small">Edit</a>
+          <:- if UserCan bse_edit_delete_article:kid:>
+          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=kids" data-action="delete" data-object="<:typename kid:>" class="button red small">Delete</a>
+          <:- or UserCan:>
+          <a class="button red small disabled">Delete</a>
+          <:- eif UserCan:>
+          <:- eif StepKid:>
+          <:movestepkid:>
+        </span>
+      </li>
+      <:- iterator end kids:>
+    </ul>
+  </fieldset>
+  <:- or Kids:><:eif Kids:>
+</div>

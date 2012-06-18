@@ -69,7 +69,7 @@
       <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
       <:- or And:><:eif And:>
       <span data-role="controlgroup">
-        <:- if Or [ifImages] [ifFiles]:>
+        <:- if Or [ifImages] [ifFiles] [ifKids]:>
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>"><:typename article:></a>
         <:- or Or:><:eif Or:>
         <:- if And [ifImages] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
@@ -77,6 +77,9 @@
         <:- or And:><:eif And:>
         <:- if And [ifFiles] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button <:cond [ifEq [cgi _t] file] selected:>">Files</a>
+        <:- or And:><:eif And:>
+        <:- if And [ifKids]]:>
+        <a href="<:script:>?id=<:article id:>&amp;_t=kids" class="button <:cond [ifEq [cgi _t] kids] selected:>">Children</a>
         <:- or And:><:eif And:>
       </span>
       <:- if UserCan bse_edit_delete_article:article:>
