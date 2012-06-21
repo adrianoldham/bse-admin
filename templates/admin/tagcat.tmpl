@@ -1,0 +1,50 @@
+<:wrap admin/base.tmpl title=>"Edit Tag Dependencies" :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+  </header>
+  <form action="<:= bse.admin_url2("add") :>" method="post" data-object="Dependant">
+    <input type="hidden" name="cat" value="<:= cat.cat |html :>" />
+    <input type="hidden" name="id" value="-1" />
+    <:csrfp admin_tagcatsave hidden :>
+    <fieldset>
+      <legend><:= cat.cat |html :> Depends on…</legend>
+      <div>
+        <label for="dep1">Tag name</label>
+        <span>
+          <input type="text" name="dep" id="dep1" value="" />
+          <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
+          <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+        </span>
+      </div>
+      <:-.for dep in cat.deps :>
+      <div>
+        <label for="dep_<:=loop.count:>">or<!--Tag #<:=loop.count:>--></label>
+        <span>
+          <input type="text" name="dep" id="dep_<:=loop.count:>" value="<:= dep |html:>" />
+        </span>
+      </div>
+      <:-.end for:>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?a_tagcats=1&amp;id=-1<:endswitch:>" accesskey="." title="AccessKey = ." data-action="cancel" class="button white">Cancel</a>
+      <input type="submit" name="a_tagcatsave" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
+    </p>
+  </form>
+</div>
+<script type="text/javascript">
+    function plus(ele) {
+        var ele = $(ele).up('div');
+        var clone = ele.clone(true);
+        clone.down('label').update('or');
+        var disabled = clone.down('button[disabled]');
+        if (disabled) {
+            disabled.removeAttribute('disabled');
+        }
+        ele.insert({after: clone});
+    };
+    
+    function minus(ele) {
+        var ele = $(ele).up('div').remove();
+    };
+</script>

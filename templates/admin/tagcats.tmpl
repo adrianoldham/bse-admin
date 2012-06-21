@@ -1,0 +1,37 @@
+<:wrap admin/base.tmpl title=>"Manage Tag Dependencies" :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+  </header>
+  <form action="<:= bse.admin_url("add") :>" method="get" data-object="Filter">
+    <input type="hidden" name="id" value="-1" />
+    <:csrfp admin_tagcatsave hidden :>
+    <fieldset>
+      <legend>Filter tags</legend>
+      <div>
+        <label for="cat">Filter category</label>
+        <span>
+          <input type="text" name="cat" id="cat" value="<:= cgi.param("cat") |html:>" />
+        </span>
+      </div>
+      <p class="buttons">
+        <input type="submit" name="a_tagcats" value="Update filter" accesskey="u" title="AccessKey = u" class="button blue" />
+      </p>
+    </fieldset>
+  </form>
+  <:-.set pcats = bse.paged(tagcats) :>
+  <fieldset>
+    <legend>Categories</legend>
+    <ul class="children list">
+      <:-.for cat in pcats.items :>
+      <li>
+        <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) |html:>"><:= cat | html :></a>
+        <span>
+          <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) |html:>" class="button gray small">Edit</a>
+        </span>
+      </li>
+      <:-.end for:>
+    </ul>
+  </fieldset>
+  <:-.call "page_list", "base":cfg.admin_url2("add", "tagcats", { "id":-1 }), "pages":pcats :>
+</div>
