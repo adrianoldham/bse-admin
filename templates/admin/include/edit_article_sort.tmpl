@@ -1,0 +1,61 @@
+    <form method="post" action="<:adminurl reorder:>" data-object="Sort Order">
+      <input name="refreshto" type="hidden" value="<:script:>?id=<:article id:>&amp;sort=1&amp;_t=<:cgi _t:>&amp;m=Children+sorted" />
+      <input type="hidden" name="<:cond [article parentid] stepparent parentid:>" value="<:article id:>" />
+      <fieldset>
+        <legend>Sort children</legend>
+        <div>
+          <label for="sort">Sort by</label>
+          <span>
+            <select name="sort" id="sort" required="required">
+              <option value="">Select article attribute</option>
+              <optgroup label="Ascending">
+                <option value="title">&plus; Title Alphabetical</option>
+                <option value="id">&plus; Date Created</option>
+                <option value="expire">&plus; Date Expire</option>
+                <option value="release">&plus; Date Release</option>
+                <option value="lastModified">&plus; Last Modified</option>
+                <option value="listed">&plus; Listed</option>
+                <option value="threshold">&plus; Threshold</option>
+                <option value="summaryLength">&plus; Summary Length</option>
+                <option value="generator">&plus; Article Type</option>
+                <option value="template">&plus; Template</option>
+              </optgroup>
+              <optgroup label="Descending">
+                <option value="-title">&minus; Title Alphabetical</option>
+                <option value="-id">&minus; Date Created</option>
+                <option value="-expire">&minus; Date Expire</option>
+                <option value="-release">&minus; Date Release</option>
+                <option value="-lastModified">&minus; Last Modified</option>
+                <option value="-listed">&minus; Listed</option>
+                <option value="-threshold">&minus; Threshold</option>
+                <option value="-summaryLength">&minus; Summary Length</option>
+                <option value="-generator">&minus; Article Type</option>
+                <option value="-template">&minus; Template</option>
+              </optgroup>
+            </select>
+            <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
+            <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+          </span>
+        </div>
+      </fieldset>
+      <p class="buttons">
+        <a href="<:script:>?id=<:article id:>&amp;_t=<:cgi _t:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+        <input type="submit" name="save" value="Update Sorting" accesskey="u" title="AccessKey = u"  class="button green" />
+      </p>
+    </form>
+    <script type="text/javascript">
+        function plus(ele) {
+            var ele = $(ele).up('div');
+            var clone = ele.clone(true);
+            clone.down('label').update('then');
+            var disabled = clone.down('button[disabled]');
+            if (disabled) {
+                disabled.removeAttribute('disabled');
+            }
+            ele.insert({after: clone});
+        };
+        
+        function minus(ele) {
+            var ele = $(ele).up('div').remove();
+        };
+    </script>
