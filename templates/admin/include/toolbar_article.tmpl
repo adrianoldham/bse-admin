@@ -63,7 +63,7 @@
       </ul>
       <:- if Article parentid:>
       <a href="<:script:>?id=<:article parentid:>" title="Edit Parent" data-icon="back" data-icon-only="true" class="button">Parent</a>
-      <:or Article:><:eif Article:>
+      <:- or Article:><:eif Article:>
       <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
       <:- if And [article parentid] [ifUserCan bse_regen_article:article]:>
       <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
