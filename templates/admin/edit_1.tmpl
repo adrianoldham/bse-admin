@@ -238,6 +238,8 @@
           <span>
             <input type="hidden" name="_save_tags" value="1" />
             <input type="text" name="tags" id="tag" value="<:old tags:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tags:>error<:or:><:eif:>" />
+            <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
+            <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button> 
             <:help edit tags:>
           </span>
         </div>
@@ -501,3 +503,19 @@
     <:- eif New:>
   </form>
 </div>
+<script type="text/javascript">
+    function plus(ele) {
+        var ele = $(ele).up('div');
+        var clone = ele.clone(true);
+        clone.down('label').update(' ');
+        var disabled = clone.down('button[disabled]');
+        if (disabled) {
+            disabled.removeAttribute('disabled');
+        }
+        ele.insert({after: clone});
+    };
+    
+    function minus(ele) {
+        var ele = $(ele).up('div').remove();
+    };
+</script>
