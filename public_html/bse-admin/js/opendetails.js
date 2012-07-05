@@ -24,7 +24,7 @@ var OpenDetails = Class.create({
         // Add siblings to the container
         var siblings = element.siblings();
         siblings.each(function(sibling) {
-            container.insert({ top: sibling });
+            container.insert({ bottom: sibling });
         });
         element.insert({ after: container });
         this.apply(element, container);
