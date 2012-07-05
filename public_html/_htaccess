@@ -14,7 +14,7 @@ RewriteBase /
 # Redirect all to primary domain
     #RewriteCond %{HTTP_HOST} !www.example.com.au$ [NC]
     #RewriteCond %{HTTP_HOST} !^$
-    #RewriteRule ^(.*)$ http://www.example.com.au/$1 [R=301,L]
+    #RewriteRule ^/?(.*) http://www.example.com.au/$1 [R=301,L]
 
 # Limit file linking to the primary domain referrer
     #RewriteCond %{HTTP_REFERER} !^https?://www.example.com.au/.*$ [NC]
