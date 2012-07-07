@@ -321,6 +321,7 @@ var ChangesMonitor = Class.create({
         }.bind(this));
 
         dontsave.href = link.href;
+        dontsave.target = link.target;
         ele.setStyle({
             display: "block"
         });

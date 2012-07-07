@@ -17,6 +17,7 @@ var LinkConfirmer = Class.create({
         });
         var confirm = $(this.options.confirmButton);
         confirm.href = link.href;
+        confirm.target = link.target;
         confirm.stopObserving('click');
         var cancel = $(this.options.cancelButton)
         cancel.stopObserving('click');
