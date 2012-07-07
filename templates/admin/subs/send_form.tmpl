@@ -1,0 +1,160 @@
+<:wrap admin/base.tmpl title=>[cat "Send Mailing List (" [subscription name] ")"] :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <nav data-role="toolbar">
+      <:- if Or [ifUserCan bse_subs_delete]:>
+      <ul class="menu context">
+        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:- if UserCan bse_subs_send:>
+            <li><a href="<:script:>?start_send=1&amp;id=<:subscription id:>">Send Mailing List…</a></li>
+            <:- or UserCan:>
+            <li><a class="disabled"><span>Send Mailing List…</span></a></li>
+            <:- eif UserCan:>
+            <li class="divider"></li>
+            <:- if UserCan bse_subs_delete:>
+            <li><a href="<:script:>?delete=1&amp;id=<:subscription id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Mailing List">Delete</a></li>
+            <:- or UserCan:>
+            <li class="disabled"><span>Delete</span></li>
+            <:-eif UserCan:>
+          </ul>
+        </li>
+      </ul>
+      <:- if Or [ifUserCan bse_subs_edit] [ifUserCan bse_subs_send]:>      
+      <span data-role="controlgroup">
+        <:- if UserCan bse_subs_edit:>
+        <a href="<:script:>?edit=1&amp;id=<:subscription id:>" target="_top" class="button">Edit</a>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_subs_send:>
+        <a href="<:script:>?start_send=1&amp;id=<:subscription id:>" class="button selected">Send</a>
+        <:- or UserCan:><:eif UserCan:>
+      </span>
+      <:- or Or:><:eif Or:>
+      <:- if UserCan bse_subs_delete:>
+      <a href="<:script:>?id=<:subscription id:>&amp;delete=1" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Mailing List" data-icon="delete" target="_top" class="button">Delete</a>
+      <:- or UserCan:>
+      <a data-icon="delete" class="button disabled">Delete</a>
+      <:- eif UserCan:>
+      <:- or Or:><:eif Or:>
+    </nav>
+  </header>
+  <form action="<:script:>" method="post" data-object="Mailing List" data-confirm="Would you like to send this Mailing List?" data-info="If you don‘t send, your composition will be lost, it cannot be saved." data-action="Send" target="preview">
+    <input type="hidden" name="id" value="<:subscription id:>" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
+    <fieldset>
+      <legend>Content</legend>
+      <div class="full">
+        <label for="title">Subject <span class="required">*</span> <:ifError title:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error title:>" /><:or:><:eif:></label>
+        <span>
+          <input type="text" name="title" id="title" value="<:subscription title:>" maxlength="255" required="required" class="<:ifError title:>error<:or:><:eif:>" />
+          <:help subs title:>
+        </span>
+      </div>
+      <div class="full">
+        <label for="body">Body <span class="required">*</span> <:ifError body:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error body:>" /><:or:><:eif:></label>
+        <span>
+          <textarea name="body" id="body" class="<:ifError body:>error<:or:><:eif:>" required="required"><:subscription body:></textarea>
+          <:help subs body:>
+        </span>
+      </div>
+      <ul class="meta data">
+        <li><span>List Id</span> <:subscription id:></li>
+        <li><span>Listed</span> <:ifSubscription visible:>Yes<:or:>No<:eif:></li>
+        <li><span>Archive</span> <:ifSubscription archive:>Yes<:or:>No<:eif:></li>
+        <li><span>Recipients</span> <:ifRecipient_count:><:recipient_count:><:or:>None<:eif:></li>
+        <li><span>Last Published</span> <:ifMatch [subscription lastSent] "0000-00-00":>Never<:or:><:date "%d-%b-%Y / %r" subscription lastSent:><:eif:></li>
+      </ul>
+    </fieldset>
+    <details>
+      <summary>More attributes</summary>
+      <:- if Filters:>
+      <:include admin/subs/send_filters.tmpl optional:>
+      <:- or Filters:><:eif Filters:>
+      <fieldset>
+        <legend>Testing</legend>
+        <div>
+          <label for="testname"><:cfg "site users" display_name1 "First name":> <:ifError testname:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error testname:>" /><:or:><:eif:></label>
+          <span>
+            <input type="text" name="testname" id="testname" value="<:cfg subscriptions testname:>" />
+            <:help edit testname:>
+          </span>
+        </div>
+        <div>
+          <label for="testemail"><:cfg "site users" display_email "Email Address":> <:ifError testemail:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error testemail:>" /><:or:><:eif:></label>
+          <span>
+            <input type="text" name="testemail" id="testemail" value="<:cfg subscriptions testemail:>" />
+            <:help edit testemail:>
+          </span>
+        </div>
+        <div>
+          <label for="testtextonly">Plain text email <:ifError testtextonly:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error testtextonly:>" /><:or:><:eif:></label>
+          <span>
+            <input type="checkbox" name="testtextonly" id="testtextonly" <:ifCfg subscriptions testtextonly:>checked="checked" <:or:><:eif:> />
+            <:help edit testtextonly:>
+          </span>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Presentation</legend>
+        <div>
+          <label for="html_template">HTML Template <:ifError html_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error html_template:>" /><:or:><:eif:></label>
+          <span>
+            <:replace [template html_template htmlemail 1] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
+            <:help subs html_template:>
+          </span>
+        </div>
+        <div>
+          <label for="text_template">Text Template <:ifError text_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error text_template:>" /><:or:><:eif:></label>
+          <span>
+            <:replace [template text_template textemail] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
+            <:help subs text_template:>
+          </span>
+        </div>
+      </fieldset>      
+      <fieldset>
+        <legend>Archiving</legend>
+        <div>
+          <label for="archive">Enable archive <:ifError archive:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error archive:>" /><:or:><:eif:></label>
+          <span>
+            <input type="hidden" name="have_archive_check" value="1" />
+            <input type="checkbox" name="archive" id="archive" value="1" <:ifSubscription archive:>checked="checked" <:or:><:eif:>/>
+          </span>
+        </div>
+        <div>
+          <label for="parentId">Parent <:ifError parentId:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error parentId:>" /><:or:><:eif:></label>
+          <span>
+            <:replace [parent] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
+            <:help subs parentId:>
+          </span>
+        </div>
+        <div>
+          <label for="article_template">Template <:ifError article_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error article_template:>" /><:or:><:eif:></label>
+          <span>
+            <:replace [template article_template] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
+            <:help subs article_template:>
+          </span>
+        </div>
+        <div>
+          <label for="keyword">Local keywords <:ifError keyword:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error keyword:>" /><:or:><:eif:></label>
+          <span>
+            <input type="text" name="keyword" id="keyword" value="<:subscription keyword:>" placeholder="comma separated" maxlength="255" class="<:ifError keyword:>error<:or:><:eif:>" />
+            <:help subs keyword:>
+          </span>
+        </div>
+      </fieldset>
+    </details>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:><:endswitch:>" target="_top" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <input type="submit" name="html_preview" value="HTML Preview" class="button blue" />
+      <input type="submit" name="text_preview" value="Text Preview" class="button blue" />
+      <:- if Filters:>
+      <input type="submit" name="filter_preview" value="Filter Preview" class="button blue" />
+      <:- or Filters:><:eif Filters:>
+      <input type="submit" name="send_test" value="Send Test" class="button green" />
+      <:- if And [ifUserCan bse_subs_send] [recipient_count]:>
+      <input type="submit" name="send" value="Send List" accesskey="s" title="AccessKey = s" class="button green" />
+      <:- or And:><:eif And:>
+    </p>
+  </form>
+</div>

@@ -74,6 +74,10 @@ function dom_init() {
 
     var changesMonitor = new ChangesMonitor({ forms: 'form:[data-object]', onPrompt: hide_menu });
     var linkConfirmer = new LinkConfirmer({ onPrompt: hide_menu });
+    
+    if (/subs\.pl/.test(window.location.href)) {
+        $$("nav a:not([target])").invoke('setAttribute', 'target', '_top');
+    }
 
 };
 

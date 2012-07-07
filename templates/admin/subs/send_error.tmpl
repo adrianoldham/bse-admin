@@ -1,0 +1,12 @@
+<:wrap admin/base.tmpl title=>"Send Error" nomessage=>"1" nonavbar=>"1" :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+  </header>
+  <p><b>Warning</b> Your send form contained the following errors:</p>
+  <ul class="children list">
+    <:iterator begin errors:>
+    <li class="error"><:error message:></li>
+    <:iterator end errors:>
+  </ul>
+</div>
