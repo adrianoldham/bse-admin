@@ -8,7 +8,7 @@
         <a href="<:script:>?a_groups=1" class="button">Groups</a>
       </span>
       <:- if UserCan bse_admin_user_del:>
-      <a href="<:script:>?a_deluser=1&amp;userid=<:user id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="User" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?a_deluser=1&amp;userid=<:user id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="User" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>

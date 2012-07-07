@@ -11,7 +11,7 @@
             <:- or UserCan:><:eif UserCan:>      
             <:- if UserCan bse_members_group_delete:>
             <li class="divider"></li>
-            <li><a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Group">Delete</a></li>
+            <li><a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Group">Delete</a></li>
             <:- or UserCan:>
             <li class="disabled"><span>Delete</span></li>
             <:- eif UserCan:>
@@ -33,7 +33,7 @@
         <:- or UserCan:><:eif UserCan:>
       </span>
       <:- if UserCan bse_members_group_delete:>
-      <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Group" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Group" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>
@@ -84,7 +84,7 @@
             <a class="button gray small disabled">Edit</a>
             <:- eif UserCan:>
             <:- if UserCan bse_members_group_del_file:>
-            <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" data-action="delete" data-object="File" class="button red small">Delete</a>
+            <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" data-action="Delete" data-object="File" class="button red small">Delete</a>
             <:- or UserCan:>
             <a class="button red small disabled">Delete</a>
             <:- eif UserCan:>

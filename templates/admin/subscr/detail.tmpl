@@ -12,7 +12,7 @@
             <:- or UserCan:><:eif UserCan:>
             <li class="divider"></li>
             <:- if And [ifUserCan bse_subscr_delete] [subscription is_removable]:>
-            <li><a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Subscription">Delete</a></li>
+            <li><a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Subscription">Delete</a></li>
             <:- or And:>
             <li class="disabled"><span>Delete</span></li>
             <:- eif And:>
@@ -30,7 +30,7 @@
       </span>
       <:- or Or:><:eif Or:>
       <:- if And [ifUserCan bse_subscr_delete] [subscription is_removable]:>
-      <a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="Subscription" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Subscription" data-icon="delete" class="button">Delete</a>
       <:- or And:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif And:>

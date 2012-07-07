@@ -4,7 +4,7 @@
     <h1><:param title:></h1>
     <nav data-role="toolbar">
       <:- if UserCan bse_members_group_del_file:>
-      <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="File" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="File" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>

@@ -28,7 +28,7 @@
         <span>
           <a href="<:script:>?id=<:child id:>" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_delete_article:child:>
-          <a href="<:script:>?id=<:child id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" data-action="delete" data-object="<:typename child:>" class="button red small">Delete</a>
+          <a href="<:script:>?id=<:child id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" data-action="Delete" data-object="<:typename child:>" class="button red small">Delete</a>
           <:- or UserCan:>
           <a class="button red small disabled">Delete</a>
           <:- eif UserCan:>

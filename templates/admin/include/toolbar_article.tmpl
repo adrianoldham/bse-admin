@@ -54,7 +54,7 @@
             <:- or Or:><:eif Or:>
             <li class="divider"></li>
             <:- if UserCan bse_edit_delete_article:article:>
-            <li><a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="<:typename article:>">Delete</a></li>
+            <li><a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="<:typename article:>">Delete</a></li>
             <:- or UserCan:>
             <li class="disabled"><span>Delete</span></li>
             <:- eif UserCan:>
@@ -83,7 +83,7 @@
         <:- or And:><:eif And:>
       </span>
       <:- if UserCan bse_edit_delete_article:article:>
-      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>
+      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>

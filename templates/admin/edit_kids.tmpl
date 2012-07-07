@@ -33,14 +33,14 @@
           <:- if StepKid:>
           <a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;typename=<:typename kid:>&amp;_t=steps" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[stepkid childId]:>
-          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;typename=<:typename kid:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=kids" data-action="delete" data-object="Stepchild" data-confirm="Are you sure you want to remove the Stepchild relationship?" data-info="Continuing with this action will permanently remove this Stepchild relationship. This action does not delete the original <:typename kid:>." class="button red small">Delete</a>
+          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;typename=<:typename kid:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=kids" data-action="Delete" data-object="Stepchild" data-confirm="Are you sure you want to remove the Stepchild relationship?" data-info="Continuing with this action will permanently remove this Stepchild relationship. This action does not delete the original <:typename kid:>." class="button red small">Delete</a>
           <:- or UserCan:>
           <a class="button red small disabled">Delete</a>
           <:- eif UserCan:>
           <:- or StepKid:>
           <a href="<:script:>?id=<:kid id:>&amp;referer=1" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_delete_article:kid:>
-          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=kids" data-action="delete" data-object="<:typename kid:>" class="button red small">Delete</a>
+          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=kids" data-action="Delete" data-object="<:typename kid:>" class="button red small">Delete</a>
           <:- or UserCan:>
           <a class="button red small disabled">Delete</a>
           <:- eif UserCan:>

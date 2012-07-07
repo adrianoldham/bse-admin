@@ -11,7 +11,7 @@
             <:- or UserCan:><:eif UserCan:>      
             <:- if UserCan bse_members_user_delete:>
             <li class="divider"></li>
-            <li><a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="User">Delete</a></li>
+            <li><a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="User">Delete</a></li>
             <:- or UserCan:>
             <li class="disabled"><span>Delete</span></li>
             <:- eif UserCan:>
@@ -43,7 +43,7 @@
       </span>
       <:- or Or:><:eif Or:>
       <:- if UserCan bse_members_user_delete:>
-      <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="delete" data-object="User" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="User" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>
