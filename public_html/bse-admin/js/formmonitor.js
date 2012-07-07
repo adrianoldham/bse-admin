@@ -304,9 +304,9 @@ var ChangesMonitor = Class.create({
             save.observe('click', function() {
                 var submits = form.submits();
                 if (submits.length == 1) {
-                    submits[0].click();
-                } else {
                     form.form().submit();
+                } else {
+                    submits.last().click();
                 }
             }.bind(this));
         } else {
