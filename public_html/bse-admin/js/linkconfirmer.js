@@ -36,7 +36,7 @@ var LinkConfirmer = Class.create({
         return {
             links: 'a[href][data-object][data-action]:not([href="#"])',
             prompt: 'modal',
-            replace: ["object", "confirm", "info"],
+            replace: ["object", "confirm", "info", "action"],
             confirmButton: 'confirmDelete',
             cancelButton: 'confirmCancel',
             onPrompt: function() {}
