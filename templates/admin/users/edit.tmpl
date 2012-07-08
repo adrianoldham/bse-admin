@@ -207,22 +207,37 @@
           </span>
         </div>
         <div>
-          <input type="hidden" name="saveTextOnlyMail" value="1" />
-          <label><input type="checkbox" name="textOnlyMail" value="1" <:ifOld textOnlyMail siteuser textOnlyMail:>checked="checked" <:or:><:eif:>/> Plain text email (only)</label>
+          <label for="textOnlyMail">Plain text email</label>
+          <span>
+            <input type="hidden" name="saveTextOnlyMail" value="1" />
+            <input type="checkbox" name="textOnlyMail" id="textOnlyMail" value="1" <:ifOld textOnlyMail siteuser textOnlyMail:>checked="checked" <:or:><:eif:>/>
+          </span>
         </div>
       </fieldset>
       <:- if Subscriptions:>
       <fieldset class="newsletter">
         <input type="hidden" name="checkedsubs" value="1" />
         <legend>Newsletter <:error_img subscription:></legend>
-        <:- iterator begin subscriptions:>
-        <div class="checkbox">
-          <label><input type="checkbox" name="subscription" value="<:subscription id:>" <:ifSubscribed:>checked="checked" <:or:><:eif:>/> <:subscription name:>
-            (<a href="<:target siteuser subinfo id [subscription id]:>" target="_blank">info</a>)
-          </label>
-        </div>
-        <:- iterator end subscriptions:>
-        <p class="small">Confirmation will be sent to your email address.</p>
+        <ul>
+          <:- iterator begin subscriptions:>
+          <li>
+            <input type="checkbox" name="subscription" id="subscription_<:subscription id:>" value="<:subscription id:>" <:ifSubscribed:>checked="checked" <:or:><:eif:>/>
+            <label for="subscription_<:subscription id:>">
+              <a href="<:adminurl subs edit 1 id [subscription id]:>"><:subscription name:></a>
+            </label>
+          </li>
+          <:- iterator end subscriptions:>
+        </ul>
+        <p class="small">
+          <:- switch:>
+          <:- case Siteuser confirmed:>
+          Confirmation has been received.
+          <:- case Siteuser confirmSecret:>
+          Confirmation has been requested, but not received.
+          <:- case default:>
+          Confirmation has not yet been requested.
+          <:- endswitch:>
+        </p>
       </fieldset>
       <:- or Subscriptions:><:eif Subscriptions:>
       <:- if UserCan bse_members_group_list:>
