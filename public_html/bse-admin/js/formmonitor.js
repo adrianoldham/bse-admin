@@ -302,12 +302,7 @@ var ChangesMonitor = Class.create({
         if (form.valid()) {
             save.removeClassName("disabled");
             save.observe('click', function() {
-                var submits = form.submits();
-                if (submits.length == 1) {
-                    form.form().submit();
-                } else {
-                    submits.last().click();
-                }
+                form.submits().last().click();
             }.bind(this));
         } else {
             save.addClassName("disabled");
