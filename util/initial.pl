@@ -37,7 +37,7 @@ my @prebuilt =
     lastModified => "$nowDatetime",
     keyword => '',
     template => 'index.tmpl',
-    link => $ROOT_URI . '/',
+    link => $ROOT_URI . '',
     admin => $CGI_URI.'/admin/admin.pl?id=1',
     threshold => 10000, # needs to be high
     summaryLength => 0, # should be ignored
