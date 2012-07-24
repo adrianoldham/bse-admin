@@ -24,7 +24,7 @@
       <:- if Or [ifUserCan bse_subs_edit] [ifUserCan bse_subs_send]:>      
       <span data-role="controlgroup">
         <:- if UserCan bse_subs_edit:>
-        <a href="<:script:>?edit=1&amp;id=<:subscription id:>" target="_top" class="button">Edit</a>
+        <a href="<:script:>?edit=1&amp;id=<:subscription id:>" class="button">Edit</a>
         <:- or UserCan:><:eif UserCan:>
         <:- if UserCan bse_subs_send:>
         <a href="<:script:>?start_send=1&amp;id=<:subscription id:>" class="button selected">Send</a>
@@ -32,7 +32,7 @@
       </span>
       <:- or Or:><:eif Or:>
       <:- if UserCan bse_subs_delete:>
-      <a href="<:script:>?id=<:subscription id:>&amp;delete=1" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Mailing List" data-icon="delete" target="_top" class="button">Delete</a>
+      <a href="<:script:>?id=<:subscription id:>&amp;delete=1" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Mailing List" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>
@@ -145,7 +145,7 @@
       </fieldset>
     </details>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:><:endswitch:>" target="_top" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <input type="submit" name="html_preview" value="HTML Preview" class="button blue" />
       <input type="submit" name="text_preview" value="Text Preview" class="button blue" />
       <:- if Filters:>

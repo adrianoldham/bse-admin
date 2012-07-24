@@ -76,7 +76,7 @@ function dom_init() {
     var linkConfirmer = new LinkConfirmer({ onPrompt: hide_menu });
     
     if (/subs\.pl/.test(window.location.href)) {
-        $$("nav a:not([target])").invoke('setAttribute', 'target', '_top');
+        $$("a:not([target])").invoke('setAttribute', 'target', '_top');
     }
 
 };
