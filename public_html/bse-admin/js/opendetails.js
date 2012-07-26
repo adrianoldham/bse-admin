@@ -7,8 +7,8 @@ var OpenDetails = Class.create({
     },
 
     initialize: function(selector, options) {
-        var isChrome = navigator.userAgent.indexOf("Chrome") > -1;
-        if (isChrome) return;
+        var isSupported = 'open' in document.createElement('details');
+        if (isSupported) return;
 
         this.options = Object.extend(Object.extend({}, this.defaults), options || {});
         this.selector = $$(selector ? selector : this.options.selector);
