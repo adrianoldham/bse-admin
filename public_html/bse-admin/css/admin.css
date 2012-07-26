@@ -1771,6 +1771,10 @@ ul.menu li.divider + li.divider {
 
 /* @group details */
 
+details summary {
+    cursor: pointer;
+}
+
 details[open] summary {
     margin: 0 0 1em 0;
 }
