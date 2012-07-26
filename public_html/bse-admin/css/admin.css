@@ -1702,9 +1702,9 @@ ul.menu.global {
     font-size: 1.17em;
     /*height: 1.75em;*/ /* not required with .menu.global clearfix */
     width: 100%;
-    -webkit-box-shadow: 0 0.4em 1.75em rgba(0,0,0,0.5);
-    -moz-box-shadow: 0 0.4em 1.75em rgba(0,0,0,0.5);
-    box-shadow: 0 0.4em 1.75em rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
+    -moz-box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
+    box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
 }
 
 ul.menu.global > li:first-child {
