@@ -79,6 +79,9 @@ function dom_init() {
         $$("a:not([target])").invoke('setAttribute', 'target', '_top');
     }
 
+    if (has_svg_support()) {
+        $$("html").invoke('addClassName', 'svg');
+    }
 };
 
 function window_init() {
@@ -89,3 +92,7 @@ function hide_menu() {
     $$(".menu li.active").invoke('removeClassName','active');
     
 };
+
+function has_svg_support() {
+    return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1");
+}

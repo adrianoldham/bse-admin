@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Button_Icons"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
+	 viewBox="0 0 24 15" xml:space="preserve">
+<g>
+	<g>
+		<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFDFD" d="M11,8.996c3.484,0,4.023,0.752,4.023,2.253
+			c0,2.029-3.015,3.493-4.529,3.501c4.01,0,7.006-0.983,7.006-4.502c0-0.482,0.006-4.75-6.5-4.75V1.996L5.5,7.238l5.5,5.261V8.996z"
+			/>
+	</g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="11.5005" y1="14" x2="11.5005" y2="1.2466">
+			<stop  offset="0" style="stop-color:#7A7B7B"/>
+			<stop  offset="1" style="stop-color:#404040"/>
+		</linearGradient>
+		<path fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" d="M11,8.246c3.484,0,4.023,0.752,4.023,2.253
+			c0,2.029-3.015,3.493-4.529,3.501c4.01,0,7.006-0.983,7.006-4.502c0-0.482,0.006-4.75-6.5-4.75V1.246L5.5,6.488l5.5,5.261V8.246z"
+			/>
+	</g>
+</g>
+</svg>

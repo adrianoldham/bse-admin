@@ -1662,13 +1662,23 @@ ul.menu > li ul li.parent > a {
     background: transparent url(/bse-admin/images/widgets/arrow.png) no-repeat right 50%;
     -webkit-background-size: 1em;
     -moz-background-size: 1em;
+    -o-background-size: 1em;
     background-size: 1em;
     display: block;
+}
+
+.svg ul.menu > li ul li.parent > a {
+    background-image: url(/bse-admin/images/widgets/arrow.svg);
 }
 
 ul.menu > li ul li.hover.parent > a,
 ul.menu > li ul li.active.parent > a {
     background-image: url(/bse-admin/images/widgets/arrow-white.png);
+}
+
+.svg ul.menu > li ul li.hover.parent > a,
+.svg ul.menu > li ul li.active.parent > a {
+    background-image: url(/bse-admin/images/widgets/arrow-white.svg);
 }
 
 ul.menu > li ul {
@@ -1788,13 +1798,18 @@ details[open] summary {
     content: "";
     position: absolute;
     left: 0;
-    width: 1.25em;
-    height: 1.25em;
-    margin: 0 0.5em 0 0;
-    background: url(/bse-admin/images/widgets/arrow.png) no-repeat 0 0;
-    -webkit-background-size: 1.2em;
-    -moz-background-size: 1.2em;
-    background-size: 1.2em;
+    top: 0.083em;
+    width: 1.167em;
+    height: 1.167em;
+    background: url(/bse-admin/images/widgets/arrow.png) no-repeat 0 50%;
+    -webkit-background-size: 1.167em;
+    -moz-background-size: 1.167em;
+    -o-background-size: 1.167em;
+    background-size: 1.167em;
+}
+
+.svg .disclosure-widget:before {
+    background-image: url(/bse-admin/images/widgets/arrow.svg);
 }
 
 details[open] .disclosure-widget:before {
@@ -2002,11 +2017,14 @@ h1:first-child + *[data-role=toolbar] {
     content: "";
     float: left;
     width: 2em;
-    height: 1.25em;
-    margin: 0 0.25em 0 -0.75em;
+    height: 1.5em;
+    margin: 0 0.25em -0.25em -0.75em;
     background-repeat: no-repeat;
     background-position: 50% 0;
-    opacity: 0.9;
+    -webkit-background-size: 2em auto;
+    -moz-background-size: 2em auto;
+    -o-background-size: 2em auto;
+    background-size: 2em auto;
 }
 
 *[data-icon][data-icon-only]:before {
@@ -2020,23 +2038,43 @@ h1:first-child + *[data-role=toolbar] {
 }
 
 *[data-icon=action]:before {
-    background-image: url(/bse-admin/images/buttons/action-sprite.png);
+    background-image: url(/bse-admin/images/buttons/action.png);
 }
 
 *[data-icon=preview]:before {
-    background-image: url(/bse-admin/images/buttons/preview-sprite.png);
+    background-image: url(/bse-admin/images/buttons/preview.png);
 }
 
 *[data-icon=back]:before {
-    background-image: url(/bse-admin/images/buttons/back-sprite.png);
+    background-image: url(/bse-admin/images/buttons/back.png);
 }
 
 *[data-icon=delete]:before {
-    background-image: url(/bse-admin/images/buttons/delete-sprite.png);
+    background-image: url(/bse-admin/images/buttons/delete.png);
 }
 
 *[data-icon=regen]:before {
-    background-image: url(/bse-admin/images/buttons/regen-sprite.png);
+    background-image: url(/bse-admin/images/buttons/regen.png);
+}
+
+.svg *[data-icon=action]:before {
+    background-image: url(/bse-admin/images/buttons/action.svg);
+}
+
+.svg *[data-icon=preview]:before {
+    background-image: url(/bse-admin/images/buttons/preview.svg);
+}
+
+.svg *[data-icon=back]:before {
+    background-image: url(/bse-admin/images/buttons/back.svg);
+}
+
+.svg *[data-icon=delete]:before {
+    background-image: url(/bse-admin/images/buttons/delete.svg);
+}
+
+.svg *[data-icon=regen]:before {
+    background-image: url(/bse-admin/images/buttons/regen.svg);
 }
 
 /* @end */
@@ -2054,6 +2092,10 @@ h1:first-child + *[data-role=toolbar] {
     margin: -0.25em 0.5em;
     background-repeat: no-repeat;
     background-position: 50% 0;
+    -webkit-background-size: 1.25em;
+    -moz-background-size: 1.25em;
+    -o-background-size: 1.25em;
+    background-size: 1.25em;
     opacity: 0.5;
 }
 
@@ -2064,6 +2106,10 @@ h1:first-child + *[data-role=toolbar] {
 
 *[data-widget=stepkid]:after {
     background-image: url(/bse-admin/images/widgets/stepkid.png);
+}
+
+.svg *[data-widget=stepkid]:after {
+    background-image: url(/bse-admin/images/widgets/stepkid.svg);
 }
 
 /* @end */
