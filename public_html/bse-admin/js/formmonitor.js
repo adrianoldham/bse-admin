@@ -38,6 +38,14 @@ var FormMonitor = Class.create({
             return data;
         }.bind(this)).each(function(data) {
             this._elements[data.element.identify()] = data;
+
+            // fire onchange event to work around auto-fill event timing problems
+            setTimeout(function() {
+                var ev = {
+                    target: data.element
+                }; // cheat
+                this.onchange(ev);
+            }.bind(this), 500);
         }.bind(this));
 
         this._submits = this._form.select(this.options.submits);
