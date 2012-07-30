@@ -510,9 +510,9 @@ select.error {
 input.error:focus,
 textarea.error:focus,
 select.error:focus {
-    -webkit-box-shadow: 0 0 0.25em #c03 !important; 
-    -moz-box-shadow: 0 0 0.25em #c03 !important; 
-    box-shadow: 0 0 0.25em #c03 !important; 
+    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em #c03 !important;
+    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em #c03 !important;
+    box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em #c03 !important;
 }
 
 fieldset > label {
