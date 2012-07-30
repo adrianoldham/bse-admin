@@ -433,6 +433,11 @@ fieldset > div > span {
     width: 100%;
 }
 
+fieldset div > label > img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
 fieldset > div > span > button {
     display: none;
 }

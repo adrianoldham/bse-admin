@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Alert" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" width="18px" height="18px" viewBox="0 0 18 18" xml:space="preserve">
+<g>
+	<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFE800" d="M9.031,2.985L1.688,15.014h14.624L9.031,2.985z"/>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="9" y1="15.0137" x2="9" y2="2.9854">
+		<stop  offset="0" style="stop-color:#F9A61A"/>
+		<stop  offset="1" style="stop-color:#F9A61A;stop-opacity:0"/>
+	</linearGradient>
+	<path fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" d="M9.031,2.985L1.688,15.014h14.624L9.031,2.985z"/>
+	<g opacity="0.5">
+		<path fill="#FFE800" d="M9.029,3.947l6.396,10.566H2.579L9.029,3.947 M9.031,2.985L1.688,15.014h14.624L9.031,2.985L9.031,2.985z"
+			/>
+	</g>
+	<path fill="#FFE800" d="M9.03,3.466l6.838,11.297H2.133L9.03,3.466 M9.031,2.985L1.688,15.014h14.624L9.031,2.985L9.031,2.985z"/>
+	<path fill="#C9802A" d="M9.031,2.985l7.28,12.029H1.688L9.031,2.985 M9.031,1.985c-0.349,0-0.672,0.182-0.854,0.479L0.834,14.492
+		c-0.188,0.31-0.195,0.695-0.019,1.011s0.51,0.511,0.872,0.511h14.624c0.361,0,0.694-0.194,0.871-0.509
+		c0.178-0.314,0.171-0.7-0.016-1.009L9.887,2.467C9.706,2.168,9.382,1.985,9.033,1.985C9.033,1.985,9.032,1.985,9.031,1.985
+		L9.031,1.985z"/>
+</g>
+<g>
+	<g opacity="0.5">
+		<circle fill-rule="evenodd" clip-rule="evenodd" fill="#FFE800" cx="9.25" cy="13.499" r="1.001"/>
+	</g>
+	<g>
+		<circle fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" cx="9" cy="12.999" r="1.001"/>
+	</g>
+</g>
+<g>
+	<g opacity="0.5">
+		<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFE800" d="M10.039,10.755c-0.02,0.412-0.375,0.749-0.787,0.749H9.249
+			c-0.413,0-0.767-0.337-0.788-0.749L8.286,7.252c-0.021-0.412,0.3-0.749,0.712-0.749h0.504c0.413,0,0.732,0.337,0.713,0.749
+			L10.039,10.755z"/>
+	</g>
+	<g>
+		<path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M9.79,10.255c-0.021,0.412-0.375,0.749-0.788,0.749H8.999
+			c-0.413,0-0.767-0.337-0.788-0.749L8.036,6.752c-0.021-0.412,0.3-0.749,0.712-0.749h0.504c0.413,0,0.733,0.337,0.712,0.749
+			L9.79,10.255z"/>
+	</g>
+</g>
+</svg>
