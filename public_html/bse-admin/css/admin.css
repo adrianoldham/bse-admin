@@ -1874,15 +1874,6 @@ header {
     margin: 0;
 }
 
-*[data-role=toolbar]:first-child {
-    margin: 0;
-}
-
-*[data-role=toolbar] > .button:first-child:not(:last-child),
-*[data-role=toolbar] > :first-child .button:first-child:not(:last-child) {
-    margin-left: 0;
-}
-
 h1:first-child + *[data-role=toolbar] {
     padding-top: 0;
 }
@@ -1891,6 +1882,7 @@ h1:first-child + *[data-role=toolbar] {
     top: 0;
     float: left;
     padding: 0.3em 1em;
+    margin: 0 0.5em 0 0;
     font-size: 1em !important;
     color: #333 !important;
     text-shadow: 0 0.083em 0 #fff;
@@ -1935,6 +1927,10 @@ h1:first-child + *[data-role=toolbar] {
     ); /* W3C */
 }
 
+*[data-role=toolbar] > :last-child {
+    margin-right: 0;
+}
+
 *[data-role=toolbar] .button:active,
 *[data-role=toolbar] .button.active,
 *[data-role=toolbar] .active .button {
@@ -1957,7 +1953,7 @@ h1:first-child + *[data-role=toolbar] {
 /* @group control group */
 
 *[data-role=controlgroup] {
-    float: left;  
+    float: left;
 }
 
 *[data-role=controlgroup] > :first-child:not(:last-child) {
@@ -2001,6 +1997,7 @@ h1:first-child + *[data-role=toolbar] {
 
 *[data-icon=delete] {
     float: right !important;
+    margin-right: 0;
 }
 
 *[data-icon][data-icon-only] {
@@ -2057,6 +2054,10 @@ h1:first-child + *[data-role=toolbar] {
     background-image: url(/bse-admin/images/buttons/regen.png);
 }
 
+*[data-icon=path]:before {
+    background-image: url(/bse-admin/images/buttons/path.png);
+}
+
 .svg *[data-icon=action]:before {
     background-image: url(/bse-admin/images/buttons/action.svg);
 }
@@ -2075,6 +2076,10 @@ h1:first-child + *[data-role=toolbar] {
 
 .svg *[data-icon=regen]:before {
     background-image: url(/bse-admin/images/buttons/regen.svg);
+}
+
+.svg *[data-icon=path]:before {
+    background-image: url(/bse-admin/images/buttons/path.svg);
 }
 
 /* @end */

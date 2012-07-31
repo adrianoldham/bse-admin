@@ -61,6 +61,19 @@
           </ul>
         </li>
       </ul>
+      <ul class="menu context">
+        <li><a href="#" data-icon="path" data-icon-only="true" class="button">Path</a>
+          <ul>
+            <li><a href="<:script:>?id=-1">Manage Articles</a></li>
+            <li class="divider"></li>
+            <:- iterator begin crumbs:>
+            <li><a href="<:script:>?id=<:crumb id:>&amp;referer=1"><:crumb title:> (Level <:crumb level:>)</a></li>
+            <:- iterator end crumbs:>
+            <li class="divider"></li>
+            <li class="disabled"><span><:article title:> (Level <:article level:>)</span></li>
+          </ul>
+        </li>
+      </ul>
       <:- if Article parentid:>
       <a href="<:script:>?id=<:article parentid:>" title="Edit Parent" data-icon="back" data-icon-only="true" class="button">Parent</a>
       <:- or Article:><:eif Article:>
