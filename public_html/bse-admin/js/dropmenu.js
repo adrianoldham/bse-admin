@@ -76,8 +76,9 @@ var DropMenu = Class.create({
         // The class applied to a menu if it has a dropdown
         hasDropdownClass: "parent",
 
-        // The element type of the dropdowns to look for
+        // The element types of the dropdowns to look for
         dropdownElement: "ul",
+        menuItemElement: "li",
 
         // Set null to use parent element width, non-zero values require units ie: "200px" or "20em"
         showLeft: 0,
@@ -210,7 +211,7 @@ var DropMenu = Class.create({
                         this.lastActive.show(0);
                         this.lastActive.element.addClassName(this.options.activeClass);
 
-                        newMenuItem = dropdown.getElementsBySelector('li').first();
+                        newMenuItem = dropdown.getElementsBySelector(this.options.menuItemElement + ':not(' + this.options.excludeElements + ')').first();
                     } else {
                         // Next root item if nothing to open
                         var activeRoot = this.lastActive.element.up(this.options.rootItems);
