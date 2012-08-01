@@ -54,3 +54,13 @@ button[disabled],
 input[disabled] {
     filter: alpha(opacity = 25);
 }
+
+*[data-role=controlgroup] :first-child,
+*[data-role=controlgroup] > .button + .button {
+    margin-left: -0.083em;
+    margin-right: 0;
+}
+
+*[data-role=controlgroup] :first-child {
+    margin-left: 0;
+}
