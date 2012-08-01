@@ -341,9 +341,14 @@ DropMenu.Item = Class.create({
             this.hideLeft = this.dropdown.getStyle('left');
             this.hideDisplay = this.dropdown.getStyle('display');
 
+            // Compensate for left border and left padding if defined
+            this.borderWidthLeft =  parseFloat(this.dropdown.getStyle('border-left-width') || 0);
+            this.paddingLeft =  parseFloat(this.dropdown.getStyle('padding-left') || 0);
+            this.offsetLeft = this.borderWidthLeft + this.paddingLeft;
+
             if (this.options.showLeft == null) {
                 if (this.element.parentNode != null && this.element.parentNode.parentNode != null & this.element.parentNode.parentNode.dropMenu != null) {
-                    this.showLeft = this.element.parentNode.parentNode.dropMenu.dropdown.offsetWidth + "px";
+                    this.showLeft = this.element.parentNode.parentNode.dropMenu.dropdown.offsetWidth - this.offsetLeft + "px";
                 } else {
                     this.showLeft = 0;
                 }
