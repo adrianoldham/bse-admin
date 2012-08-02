@@ -1650,7 +1650,8 @@ ul.menu li.active a {
     color: #fff;
 }
 
-ul.menu > li li > a {
+ul.menu > li li > a,
+ul.menu > li li > span {
     color: #222 !important;
     overflow: hidden;
     display: block;
