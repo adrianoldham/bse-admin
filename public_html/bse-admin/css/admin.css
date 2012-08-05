@@ -1708,15 +1708,20 @@ ul.menu li.disabled span {
 
 /* @group global */
 
-ul.menu.global {
-    background-color: #ccc;
-    background-color: rgba(255,255,255,0.75);
+*[data-role=navbar] {
     position: fixed;
     z-index: 2;
     top: 0;
+    width: 100%;
+}
+
+ul.menu.global {
+    background-color: #ccc;
+    background-color: rgba(255,255,255,0.75);
     font-size: 1.17em;
     /*height: 1.75em;*/ /* not required with .menu.global clearfix */
     width: 100%;
+    float: left;
     -webkit-box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
     -moz-box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
     box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
