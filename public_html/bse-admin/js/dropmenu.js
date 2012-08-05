@@ -332,7 +332,6 @@ DropMenu.Item = Class.create({
 
             // If using any sort of sliding effect, we need to add a wrapper around the dropdown
             if (this.options.show.indexOf(Effect.SlideUp) != -1 || this.options.show.indexOf(Effect.SlideDown) != -1 || this.options.hide.indexOf(Effect.SlideUp) != -1 || this.options.hide.indexOf(Effect.SlideDown) != -1) {
-
                 this.dropdown = dropdown.wrap("div");
             } else {
                 this.dropdown = dropdown;
@@ -342,9 +341,9 @@ DropMenu.Item = Class.create({
             this.hideDisplay = this.dropdown.getStyle('display');
 
             // Compensate for left border and left padding if defined
-            this.borderWidthLeft =  parseFloat(this.dropdown.getStyle('border-left-width') || 0);
+            this.borderLeftWidth =  parseFloat(this.dropdown.getStyle('border-left-width') || 0);
             this.paddingLeft =  parseFloat(this.dropdown.getStyle('padding-left') || 0);
-            this.offsetLeft = this.borderWidthLeft + this.paddingLeft;
+            this.offsetLeft = this.borderLeftWidth + this.paddingLeft;
 
             if (this.options.showLeft == null) {
                 if (this.element.parentNode != null && this.element.parentNode.parentNode != null & this.element.parentNode.parentNode.dropMenu != null) {
