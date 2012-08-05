@@ -83,7 +83,7 @@ var DropMenu = Class.create({
         // Set null to use parent element width, non-zero values require units ie: "200px" or "20em"
         showLeft: 0,
 
-        // Element selectors to exclude from keyboard navigation        
+        // Element selectors to exclude from keyboard navigation
         excludeElements: ".divider, .disabled",
 
         // Can use a combination of effects to show or hide the dropdowns
@@ -95,7 +95,12 @@ var DropMenu = Class.create({
         hideDuration: 0.2,
 
         // Use spring to make it bouncy, or check http://wiki.github.com/madrobby/scriptaculous/effect-transitions for other transitions
-        transition: Effect.Transitions.linear
+        transition: Effect.Transitions.linear,
+
+        // Trigger events on root menu show/hide
+        onShow: function() {},
+        onHide: function() {}
+
     },
 
     initialize: function(menuItems, options) {
@@ -142,9 +147,10 @@ var DropMenu = Class.create({
             }
         });
 
-        if (!ignore) {
+        if (!ignore && this.rootActive) {
             this.forceDelayedHides(null, this.options.hideDuration);
             this.rootActive = false;
+            this.options.onHide();
         }
     },
 
@@ -180,6 +186,7 @@ var DropMenu = Class.create({
                     // hide all on escape
                     this.forceDelayedHides(null, this.options.hideDuration);
                     this.rootActive = false;
+                    this.options.onHide();
                     return;
                 case nextKey:
                     // down
@@ -389,8 +396,10 @@ DropMenu.Item = Class.create({
         // Toggle global root active status
         if (!this.parent.rootActive) {
             this.rootHide();
+            this.options.onHide();
         } else {
             this.rootShow();
+            this.options.onShow();
         }
 
         event.preventDefault();
