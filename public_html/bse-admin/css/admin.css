@@ -300,7 +300,6 @@ h4 {
 
 div.window {
     position: relative;
-    z-index: 10;
     margin: 4em auto;
     width: 95%;
     max-width: 80em;
@@ -1713,7 +1712,7 @@ ul.menu.global {
     background-color: #ccc;
     background-color: rgba(255,255,255,0.75);
     position: fixed;
-    z-index: 1000;
+    z-index: 2;
     top: 0;
     font-size: 1.17em;
     /*height: 1.75em;*/ /* not required with .menu.global clearfix */
@@ -1831,7 +1830,6 @@ details[open] .disclosure-widget:before {
 /* @group toolbar */
 
 header {
-    z-index: 2;
     position: relative;
     margin: 0 -2em 1em;
     border: 0.083em solid transparent;
