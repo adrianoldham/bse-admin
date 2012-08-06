@@ -129,9 +129,8 @@ function toggle_menu() {
 function hide_menu() {
     $$(".menu ul").invoke('hide');
     $$(".menu li.active").invoke('removeClassName','active');
-    
 };
 
 function has_svg_support() {
     return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1");
-}
+};
