@@ -315,6 +315,31 @@ div.window {
     box-shadow: 0.25em 1em 3em rgba(0,0,0,0.5);
 }
 
+/* @group fullscreen */
+
+div.fullscreen {
+    max-width: 100%;
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;    
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+div.fullscreen header {
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;    
+}
+
+/* @end */
+
 /* @group dialog */
 
 div.dialog {
@@ -1490,6 +1515,27 @@ table.vertical td {
 
 /* @group navbar */
 
+/* @group fullscreen */
+
+*[data-role].fullscreen {
+    padding-top: 0;
+}
+
+*[data-role].fullscreen:after {
+    content: "";
+}
+
+*[data-role].fullscreen [data-role=navbar] {
+    opacity: 0;
+}
+
+*[data-role].fullscreen [data-role=navbar].visible,
+*[data-role].fullscreen [data-role=navbar]:hover {
+    opacity: 1;
+}
+
+/* @end */
+
 nav a {
     position: relative;
 }
@@ -2113,17 +2159,55 @@ h1:first-child + *[data-role=toolbar] {
     opacity: 0.5;
 }
 
+*[data-widget]:hover,
 *[data-widget]:hover:after,
 *:hover > *[data-widget]:after {
     opacity: 1;
+}
+
+nav *[data-widget] {
+    text-indent: -9999em;
+    display: inline-block;
+    position: absolute;
+    top: 0.25em;
+    right: 0.25em;
+    width: 1.5em;
+    height: 1.5em;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -webkit-background-size: 1.5em;
+    -moz-background-size: 1.5em;
+    -o-background-size: 1.5em;
+    background-size: 1.5em;
+    opacity: 0.5;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 *[data-widget=stepkid]:after {
     background-image: url(/bse-admin/images/widgets/stepkid.png);
 }
 
+*[data-widget=fullscreen] {
+    background-image: url(/bse-admin/images/widgets/fullscreen.png);
+}
+
+*[data-widget=window] {
+    background-image: url(/bse-admin/images/widgets/window.png);
+    opacity: 1;
+}
+
 .svg *[data-widget=stepkid]:after {
     background-image: url(/bse-admin/images/widgets/stepkid.svg);
+}
+
+.svg *[data-widget=fullscreen] {
+    background-image: url(/bse-admin/images/widgets/fullscreen.svg);
+}
+
+.svg *[data-widget=window] {
+    background-image: url(/bse-admin/images/widgets/window.svg);
+    opacity: 1;
 }
 
 /* @end */

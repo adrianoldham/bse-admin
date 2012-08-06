@@ -64,3 +64,12 @@ input[disabled] {
 *[data-role=controlgroup] :first-child {
     margin-left: 0;
 }
+
+*[data-role].fullscreen [data-role=navbar] {
+    filter: alpha(opacity = 0);
+}
+ 
+*[data-role].fullscreen [data-role=navbar].visible,
+*[data-role].fullscreen [data-role=navbar]:hover {
+    filter: none;
+}

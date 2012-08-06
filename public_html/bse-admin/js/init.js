@@ -36,7 +36,9 @@ function dom_init() {
         showDelay: 0.2,
         hideDelay: 0.5,
         osMode: true,
-        rootItems: '.menu > li'
+        rootItems: '.menu > li',
+        onShow: toggle_menu,
+        onHide: toggle_menu
     });
 
     var openDetails = new OpenDetails();
@@ -86,9 +88,42 @@ function dom_init() {
             img.setAttribute('src', src).addClassName("error");
         });
     }
+
+    setup_fullscreen_widgets();
+    
 };
 
 function window_init() {
+};
+
+var fullscreenToggle, windowToggle;
+
+function setup_fullscreen_widgets() {
+    fullscreenToggle = new Element('div', {
+        'data-widget': 'fullscreen'
+    }).observe('click', toggle_fullscreen);
+
+    $$("header > nav").invoke('insert', { top: fullscreenToggle });
+
+    windowToggle = new Element('div', {
+        'data-widget': 'window'
+    }).observe('click', toggle_fullscreen).hide();
+
+    $$("body > nav").invoke('insert', { top: windowToggle });
+};
+
+function toggle_fullscreen(event) {
+    $$("[data-role=page], .window:not('.dialog')").invoke('toggleClassName', 'fullscreen');
+    fullscreenToggle.toggle();
+    windowToggle.toggle();
+    
+    hide_menu();
+    event.stop();
+};
+
+function toggle_menu() {
+    $$("[data-role=navbar]").invoke('toggleClassName', 'visible');
+    hide_menu();
 };
 
 function hide_menu() {
