@@ -204,6 +204,9 @@
         <:- if Or [ifUserCan bse_msg_view] [ifUserCan bse_msg_save]  [ifUserCan bse_msg_delete]:>
         <li><a href="<:adminurl messages:>">Manage System Messages</a></li>
         <:- or Or:><:eif Or:>
+        <:- if UserCan bse_imageclean:>
+        <li><a href="<:adminurl imageclean:>">Manage Unreferenced Images</a></li>
+        <:- or UserCan:><:eif UserCan:>
       </ul>
     </li>
   </ul>

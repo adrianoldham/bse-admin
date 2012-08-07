@@ -1,0 +1,34 @@
+<:wrap admin/base.tmpl title=>"Process Unreferenced Images" nomessage=>1 :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+  </header>
+  <:iterator begin messages:>
+  <:- .set msgbase = [ state, "msg:bse/admin/imageclean/" ][1] -:>
+  <:- .if state.type eq "stage" :>
+  <fieldset class="list">
+    <legend id="<:= state.stage :>"><:= request.catmsg(msgbase _ "stage/" _ state.stage) :></legend>
+    <ul class="list">
+      <:- .elsif state.type eq "orphanimage" :>
+      <li>
+        <span class="listed <:= acted ? "red" : "gray" :>"></span>
+        <:= request.htmlmsg(msgbase _ "process/" _ ( acted ? "remove" : "skip" ) _ "image", [ state.image.id, state.image.image ]) :>
+      </li>
+      <:- .elsif state.type eq "orphanfile" :>
+      <li>
+        <span class="listed <:= acted ? "red" : "gray" :>"></span>
+        <:= request.htmlmsg(msgbase _ "process/" _ ( acted ? "remove" : "skip" ) _ "file", [ state.file ]) :>
+      </li>
+      <:- .elsif state.type eq "substage" :>
+      <li><:= request.htmlmsg(msgbase _ "substage/" _ state.stage _ "/" _ state.substage) :></li>
+      <:- .elsif state.type eq "error" :>
+      <li class="error"><:= state.error | html :></li>
+      <:- .elsif state.type eq "endstage" :>
+    </ul>
+  </fieldset>
+  <:- .end if -:>
+  <:iterator end messages:>
+  <p class="buttons">
+    <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:adminurl imageclean:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Done</a>
+  </p>
+</div>
