@@ -242,8 +242,6 @@ h4 {
 .bse_arrows,
 .bse_arrows img {
     display: inline !important;
-    position: relative;
-    z-index: 1;
     border: none !important;
 }
 
@@ -975,6 +973,12 @@ input[type=submit][disabled] {
 
 .buttons .button {
     font-weight: bold;
+}
+
+.object .buttons {
+    display: block;
+    float: right;
+    width: auto;
 }
 
 /* @end */
