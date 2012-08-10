@@ -47,7 +47,7 @@ function dom_init() {
     <div id="sheet">\
       <div class="window dialog modal sheet">\
         <h2 data-confirm>Would you like to save the changes to this <span data-object>Object</span>?</h2>\
-        <p data-info>If you don‘t save, your changes will be lost.</p>\
+        <p data-info>If you don’t save, your changes will be lost.</p>\
         <p class="buttons">\
           <a href="#" class="button white left" id="unsavedDont">Don’t <span data-action>Save</span></a>\
           <a href="#" class="button white" id="unsavedCancel">Cancel</a>\
