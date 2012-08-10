@@ -1832,6 +1832,7 @@ ul.menu li.divider {
 }
 
 ul.menu li:first-child.divider,
+ul.menu li:last-child.divider,
 ul.menu li.divider + li.divider {
     display: none;
 }
