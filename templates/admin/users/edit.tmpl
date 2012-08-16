@@ -49,7 +49,7 @@
       <:- eif UserCan:>
     </nav>
   </header>
-  <form action="<:script:>" method="post" data-object="User">
+  <form action="<:script:>" method="post" data-object="User" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:siteuser id:>" />
     <input type="hidden" name="r" value="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;m=User+'<:siteuser userId:>'+saved" />
     <fieldset class="account">
@@ -214,10 +214,88 @@
           </span>
         </div>
       </fieldset>
+      <:- if UserCan bse_members_group_list:>
+      <:- or UserCan:><:eif UserCan:>
+      <fieldset>
+        <legend>Profile</legend>
+        <div>
+          <label for="affiliate_name"><:cfg "site users" display_affiliate_name "Screen Name":><:ifRequired affiliate_name:> <span class="required">*</span><:or:><:eif:> <:error_img affiliate_name:></label>
+          <span>
+            <input type="text" name="affiliate_name" id="affiliate_name" value="<:old affiliate_name siteuser affiliate_name:>" <:ifRequired affiliate_name:>required="required" <:or:><:eif:>class="<:ifError_img affiliate_name:>error<:or:><:eif:>" />
+          </span>
+        </div>
+      </fieldset>
+      <:- if Imagetemplates:>
+      <:- iterator begin imagetemplates:>
+      <fieldset>
+        <legend><:imagetemplate description:> <:error_img [concatenate [siteuser_image [imagetemplate id] file]]:></legend>
+        <:- if Siteuser_image [imagetemplate id]:>
+        <div>
+          <label>Thumbnail</label>
+          <span>
+            <img src="<:siteuser_image [imagetemplate id] url:>" width="<:siteuser_image [imagetemplate id] width:>" height="<:siteuser_image [imagetemplate id] height:>" alt="<:siteuser_image [imagetemplate id] alt:>" />
+          </span>
+        </div>
+        <div>
+          <label>Original</label>
+          <span>
+            <a href="<:siteuser_image [imagetemplate id] url:>"><:replace [siteuser_image [imagetemplate id] filename] ^[0-9]+_ :></a>
+          </span>
+        </div>
+        <div>
+          <label>Alt</label>
+          <span>
+            <:- if Siteuser_image [imagetemplate id] alt:>
+            <:siteuser_image [imagetemplate id] alt:>
+            <:- or Siteuser_image:>
+            (none)
+            <:- eif Siteuser_image:>
+          </span>
+        </div>
+        <div>
+          <label>Size</label>
+          <span>
+            <:siteuser_image [imagetemplate id] width:> &times; <:siteuser_image [imagetemplate id] height:> px
+          </span>
+        </div>
+        <p class="buttons">
+          <a href="<:script:>?a_save=1&amp;id=<:siteuser id:>&amp;image_<:imagetemplate id:>_delete=1&amp;r=<:script:>%3Fa_edit=1%26id=<:siteuser id:>" data-object="Image" class="button red small">Delete</a>
+        </p>
+        <:- or Siteuser_image:>
+        <div>
+          <label for="image_<:imagetemplate id:>_file">Image <:error_img [concatenate [siteuser_image [imagetemplate id] file]]:></label>
+          <span>
+            <input type="file" name="image_<:imagetemplate id:>_file" id="image_<:imagetemplate id:>_file" class="<:ifError_img [concatenate [siteuser_image [imagetemplate id] file]]:>error<:or:><:eif:>" />
+          </span>
+        </div>
+        <div>
+          <label for="image_<:imagetemplate id:>_alt">Alt <:error_img [concatenate [siteuser_image [imagetemplate id] alt]]:></label>
+          <span>
+            <input type="text" name="image_<:imagetemplate id:>_alt" id="image_<:imagetemplate id:>_alt" value="<:siteuser_image [imagetemplate id] alt:>" class="<:ifError_img [concatenate [siteuser_image [imagetemplate id] alt]]:>error<:or:><:eif:>" />
+          </span>
+        </div>
+        <:- eif Siteuser_image:>
+      </fieldset>
+      <:- iterator end imagetemplates:>
+      <:- or Imagetemplates:><:eif Imagetemplates:>
+      <:- if Groups:>
+      <fieldset>
+        <legend>Groups <:error_img groups:></legend>
+        <ul>
+          <:- iterator begin groups:>
+          <li>
+            <input type="hidden" name="set_group_id" value="<:group id:>" />
+            <input type="checkbox" name="group_id" id="group_<:group id:>" value="<:group id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
+            <label for="group_<:group id:>"><a href="<:script:>?a_editgroup=1&amp;id=<:group id:>&amp;referer=1"><:group name:></a></label>
+          </li>
+          <:- iterator end groups:>
+        </ul>
+      </fieldset>
+      <:- or Groups:><:eif Groups:>
       <:- if Subscriptions:>
-      <fieldset class="newsletter">
+      <fieldset class="subscribe">
         <input type="hidden" name="checkedsubs" value="1" />
-        <legend>Newsletter <:error_img subscription:></legend>
+        <legend>Subscribe <:error_img subscription:></legend>
         <ul>
           <:- iterator begin subscriptions:>
           <li>
@@ -240,22 +318,6 @@
         </p>
       </fieldset>
       <:- or Subscriptions:><:eif Subscriptions:>
-      <:- if UserCan bse_members_group_list:>
-      <:- if Groups:>
-      <fieldset>
-        <legend>Groups <:error_img groups:></legend>
-        <ul>
-          <:- iterator begin groups:>
-          <li>
-            <input type="hidden" name="set_group_id" value="<:group id:>" />
-            <input type="checkbox" name="group_id" id="group_<:group id:>" value="<:group id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
-            <label for="group_<:group id:>"><a href="<:script:>?a_editgroup=1&amp;id=<:group id:>&amp;referer=1"><:group name:></a></label>
-          </li>
-          <:- iterator end groups:>
-        </ul>
-      </fieldset>
-      <:- or Groups:><:eif Groups:>
-      <:- or UserCan:><:eif UserCan:>
       <:- if Flags:>
       <fieldset>
         <legend>Flags <:error_img flags:></legend>
