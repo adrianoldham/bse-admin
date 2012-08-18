@@ -49,9 +49,9 @@ function dom_init() {
         <h2 data-confirm>Would you like to save the changes to this <span data-object>Object</span>?</h2>\
         <p data-info>If you don’t save, your changes will be lost.</p>\
         <p class="buttons">\
-          <a href="#" class="button white left" id="unsavedDont">Don’t <span data-action>Save</span></a>\
-          <a href="#" class="button white" id="unsavedCancel">Cancel</a>\
-          <a href="#" class="button green" id="unsavedSave"><span data-action>Save</span> <span data-object>Object</span></a>\
+          <a href="#" id="unsavedDont" class="button white left">Don’t <span data-action>Save</span></a>\
+          <a href="#" id="unsavedCancel" class="button white">Cancel</a>\
+          <a href="#" id="unsavedSave" class="button green"><span data-action>Save</span> <span data-object>Object</span></a>\
         </p>\
       </div>\
     </div>';
