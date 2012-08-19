@@ -2268,6 +2268,14 @@ h1:first-child + *[data-role=toolbar],
     background-image: url(/bse-admin/images/buttons/down.svg);
 }
 
+*[data-icon=versions+]:before {
+    background-image: url(/bse-admin/images/buttons/versions+.svg);
+}
+
+*[data-icon=versions]:before {
+    background-image: url(/bse-admin/images/buttons/versions.svg);
+}
+
 /* @end */
 
 /* @end */

@@ -165,6 +165,14 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/down.png);
 }
 
+*[data-icon=versions+]:before {
+    background-image: url(/bse-admin/images/buttons/versions+.png);
+}
+
+*[data-icon=versions]:before {
+    background-image: url(/bse-admin/images/buttons/versions.png);
+}
+
 /* @end */
 
 /* @group launchpad */
