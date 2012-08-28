@@ -33,7 +33,7 @@
             <:- if UserCan bse_regen_article:article:>
             <li><a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
             <:- or UserCan:><:eif UserCan:>
-            <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1">Preview</a></li>
+            <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1" accesskey="y" title="AccessKey = y">Preview</a></li>
             <:- if Or [ifUserCan bse_admin_user_save_artrights] [ifUserCan bse_admin_group_save_artrights]:>
             <li class="divider"></li>
             <li><a href="#">Permissions</a>
@@ -95,7 +95,7 @@
           </ul>
         </li>
       </ul>
-      <a href="<:script:>?id=<:article id:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
+      <a href="<:script:>?id=<:article id:>&amp;preview=1" accesskey="y" title="AccessKey = y" data-icon="preview" class="button">Preview</a>
       <:- if And [article parentid] [ifUserCan bse_regen_article:article]:>
       <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
       <:- or And:><:eif And:>

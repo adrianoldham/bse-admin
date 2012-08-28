@@ -13,11 +13,11 @@
             <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" accesskey="f" title="AccessKey = f">New File…</a></li>
             <:- or UserCan:><:eif UserCan:>
             <li class="divider"></li>
-            <li><a href="<:script:>?id=<:cond [ifEq [article id] -1] 1 [article id]:>&amp;preview=1">Preview</a></li>
+            <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" accesskey="y" title="AccessKey = y">Preview</a></li>
           </ul>
         </li>
       </ul>
-      <a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" title="Preview <:typename article:>" data-icon="preview" class="button">Preview</a>
+      <a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" accesskey="y" title="AccessKey = y" data-icon="preview" class="button">Preview</a>
       <span data-role="controlgroup">
         <:- if Or [ifImages] [ifFiles]:>
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>"><:typename article:></a>
