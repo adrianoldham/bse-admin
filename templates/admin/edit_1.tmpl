@@ -14,7 +14,13 @@
     <input type="hidden" name="lastModified" value="<:article lastModified:>" />
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="type" value="<:typename article:>" />
-    <input type="hidden" name="r" value="<:cgi r:>" />
+    <input type="hidden" name="r" value="
+    <:- switch -:>
+    <:- case Cgi r:><:cgi r:>
+    <:- case And [ifNew] [ifMatch [referer] [script]]:><:adminurl add m [cat [typename article] " " Created]:>
+    <:- case !Or [ifNew] [ifMatch [referer] [script]]:><:adminurl admin id [cgi id]:>
+    <:- endswitch -:>
+    " />
     <:csrfp admin_add_article hidden:>
     <:csrfp admin_save_article hidden:>
     <fieldset>
