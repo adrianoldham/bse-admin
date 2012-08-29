@@ -133,7 +133,7 @@
     <p>There are no files available</p>
     <:- eif Files:>
     <p class="buttons">
-      <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <a href="<:switch:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if And [ifFiles] [ifUserCan bse_edit_files_save:article]:>
       <input type="submit" name="filesave" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or And:><:eif And:>
