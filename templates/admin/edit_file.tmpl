@@ -11,7 +11,19 @@
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="File">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="file" />
-    <input type="hidden" name="r" value="<:cgi r:>" />
+    <input type="hidden" name="r" value="
+    <:- switch -:>
+
+    <:- # from aywhere: refresh to supplied r param -:>
+    <:- case Cgi r -:>
+    <:cgi r:>
+
+    <:- # from preview: refresh to article preview on save changes -:>
+    <:- case !Match [referer] [script] -:>
+    <:adminurl add id [cgi referer] preview 1:>
+
+    <:- endswitch -:>
+    " />
     <:- if Files:>
     <input type="hidden" name="save_file_flags" value="1" />
     <:csrfp admin_save_files hidden:>
@@ -133,7 +145,7 @@
     <p>There are no files available</p>
     <:- eif Files:>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <a href="<:switch:><:case !Match [referer] [script]:><:adminurl add id [cgi referer] preview 1:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if And [ifFiles] [ifUserCan bse_edit_files_save:article]:>
       <input type="submit" name="filesave" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or And:><:eif And:>
