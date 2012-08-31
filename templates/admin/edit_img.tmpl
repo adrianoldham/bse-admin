@@ -11,7 +11,19 @@
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="Image">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="_t" value="img" />
-    <input type="hidden" name="r" value="<:cgi r:>" />
+    <input type="hidden" name="r" value="
+    <:- switch -:>
+
+    <:- # from aywhere: refresh to supplied r param -:>
+    <:- case Cgi r -:>
+    <:cgi r:>
+
+    <:- # from preview: refresh to article preview on save changes -:>
+    <:- case !Match [referer] [script] -:>
+    <:adminurl add id [cgi referer] preview 1:>
+
+    <:- endswitch -:>
+    " />
     <:- if Images:>
     <:csrfp admin_save_images hidden:>
     <:csrfp admin_add_image hidden:>
@@ -98,7 +110,7 @@
     <p>There are no images available</p>
     <:- eif Images:>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <a href="<:switch:><:case !Match [referer] [script]:><:adminurl add id [cgi referer] preview 1:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if And [ifImages] [ifUserCan bse_edit_images_save:article]:>
       <input type="submit" name="process" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or And:><:eif And:>
