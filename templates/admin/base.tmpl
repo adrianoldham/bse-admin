@@ -42,7 +42,7 @@
     <:- switch:>
     <:- case Cgi preview:>
     <div id="preview" class="preview">
-      <iframe src="<:adminurl admin id [article id]:>" frameborder="0" name="workarea">
+      <iframe src="<:adminurl admin id [article id]:>" frameborder="0" name="workarea" onload="this.contentWindow.focus()">
         <p>Your browser does not support iframes.</p>
       </iframe>
     </div>
