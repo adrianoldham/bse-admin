@@ -5,7 +5,7 @@
   </header>
   <form action="<:adminurl imageclean:>" method="post" data-action="Delete" data-object="Images" data-confirm="false">
     <:iterator begin messages:>
-    <:- .set msgbase = [ state, "msg:bse/admin/imageclean/" ][1] -:>
+    <:- .set msgbase = [ state, "msg:bse/admin/imageclean/", "NOMSGID" ][1] -:>
     <:- .if state.type eq "stage" :>
     <fieldset class="list">
       <legend id="<:= state.stage :>"><:= request.catmsg(msgbase _ "stage/" _ state.stage) :></legend>

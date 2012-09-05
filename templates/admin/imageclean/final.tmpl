@@ -4,7 +4,7 @@
     <h1><:param title:></h1>
   </header>
   <:iterator begin messages:>
-  <:- .set msgbase = [ state, "msg:bse/admin/imageclean/" ][1] -:>
+  <:- .set msgbase = [ state, "msg:bse/admin/imageclean/", "NOMSGID" ][1] -:>
   <:- .if state.type eq "stage" :>
   <fieldset class="list">
     <legend id="<:= state.stage :>"><:= request.catmsg(msgbase _ "stage/" _ state.stage) :></legend>
