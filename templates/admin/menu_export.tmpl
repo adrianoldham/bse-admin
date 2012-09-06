@@ -34,7 +34,7 @@
       </div>
     </fieldset>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:adminurl menu:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl menu:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_siteuser_export:>
       <input type="submit" name="export" value="Export Data" accesskey="e" title="AccessKey = e" class="button green" />
       <:- or UserCan:><:eif UserCan:>

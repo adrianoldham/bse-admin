@@ -34,7 +34,7 @@
     <:- or UserCan:><:eif UserCan:>
     -->
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=1":><:case default:><:script:>?a_grouplist=1<:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?a_grouplist=1<:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_members_group_add:>
       <input type="submit" name="a_addgroup" value="Create Group" accesskey="c" title="AccessKey = c" class="button green" />
       <:- or UserCan:><:eif UserCan:>
