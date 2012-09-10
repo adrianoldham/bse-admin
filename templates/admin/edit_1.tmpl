@@ -20,27 +20,47 @@
     <:- # from anywhere: refresh to supplied r param -:>
     <:- case Cgi r -:>
     <:cgi r:>
+    
+    <:- case New -:>
+        <:- switch -:>
 
-    <:- # from admin: refresh to new article admin on creation -:>
-    <:- case And [ifNew] [ifMatch [referer] [script]] -:>
-    <:adminurl add m [cat [typename article] " " Created]:>
+        <:- # from nowhere: refresh to article admin on creation -:>
+        <:- case !Referer -:>
+        <:adminurl add:>
 
-    <:- # from preview: refresh to article preview on save changes -:>
-    <:- case !Or [ifNew] [ifMatch [referer] [script]] -:>
-    <:adminurl add id [cgi referer] preview 1:>
+        <:- # from admin: refresh to new article admin on creation -:>
+        <:- case Match [referer] [adminurl add] -:>
+        <:adminurl add m [cat [typename article] " " Created]:>
 
-    <:- # from admin: refresh to article admin on save changes -:>
-    <:- case Match [referer] [script] -:>
-    <:adminurl add id [article id]:>
+        <:- # from preview with referer: refresh to top article preview on creation -:>
+        <:- case Cgi referer -:>
+        <:adminurl add id [cgi referer] preview 1:>
 
-    <:- # from embedded preview: refresh to top article preview on creation -:>
-    <:- case !Eq [cgi referer] [article parentid] -:>
-    <:adminurl add id [cgi referer] preview 1:>
+        <:- # from preview: refresh to new article preview on creation -:>
+        <:- case Match [referer] [adminurl admin] -:>
+        <:adminurl add preview 1:>
 
-    <:- # from preview: refresh to new article preview on creation -:>
-    <:- case !Match [referer] [script] -:>
-    <:adminurl add preview 1:>
+        <:- endswitch -:>
+    <:- case default -:>
+        <:- switch -:>
 
+        <:- # from nowhere: refresh to article admin on save changes -:>
+        <:- case !Referer -:>
+        <:adminurl add id [article id]:>
+
+        <:- # from admin: refresh to article admin on save changes -:>
+        <:- case Match [referer] [adminurl add] -:>
+        <:adminurl add id [article id]:>
+
+        <:- # from preview with referer: refresh to top article preview on save changes -:>
+        <:- case Cgi referer -:>
+        <:adminurl add id [cgi referer] preview 1:>
+
+        <:- # from preview: refresh to article preview on save changes -:>
+        <:- case Match [referer] [adminurl admin] -:>
+        <:adminurl add id [article id] preview 1:>
+
+        <:- endswitch -:>
     <:- endswitch -:>
     " />
     <:csrfp admin_add_article hidden:>

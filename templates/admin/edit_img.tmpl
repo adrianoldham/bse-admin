@@ -18,9 +18,13 @@
     <:- case Cgi r -:>
     <:cgi r:>
 
-    <:- # from preview: refresh to article preview on save changes -:>
-    <:- case !Match [referer] [script] -:>
+    <:- # from preview with referer: refresh to article preview on save changes -:>
+    <:- case And [cgi referer] [ifMatch [referer] [adminurl admin]] -:>
     <:adminurl add id [cgi referer] preview 1:>
+
+    <:- # from preview: refresh to article preview on save changes -:>
+    <:- case ifMatch [referer] [adminurl admin] -:>
+    <:adminurl add id [article id] preview 1:>
 
     <:- endswitch -:>
     " />
