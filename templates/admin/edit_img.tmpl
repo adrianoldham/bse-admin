@@ -110,7 +110,7 @@
     <p>There are no images available</p>
     <:- eif Images:>
     <p class="buttons">
-      <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cgi referer] preview 1:><:case Cgi referer:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case Cgi referer:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if And [ifImages] [ifUserCan bse_edit_images_save:article]:>
       <input type="submit" name="process" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or And:><:eif And:>
