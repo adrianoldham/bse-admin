@@ -99,7 +99,7 @@
       </fieldset>
     </details>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?a_edit=1&amp;id=<:siteuser id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?a_edit=1&amp;id=<:siteuser id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if UserCan bse_members_user_edit_file:>
       <input type="submit" name="a_saveuserfile" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- or UserCan:><:eif UserCan:>

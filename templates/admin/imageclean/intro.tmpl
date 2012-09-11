@@ -6,7 +6,7 @@
   <h2>This process removes unreferenced images from your site.</h2>
   <p>Preview images will display any unreferenced image files and objects. Images may be deleted selectively, however once performed, this action cannot be undone.</p>
   <p class="buttons">
-    <a href="<:switch:><:case Cgi r:><:cgi r:><:case Cgi referer:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl menu:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Cancel</a>
+    <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl menu:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Cancel</a>
     <a href="<:adminurl imageclean a_preview 1:>" class="button blue">Preview Images</a>
   </p>
 </div>
