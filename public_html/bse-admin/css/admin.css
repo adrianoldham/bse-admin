@@ -384,7 +384,7 @@ div.modal h2 {
 
 div.sheet {
     background-color: rgba(255,255,255,0.9);
-    border-top: 0.083em solid #fff; /* prevent margin collapse */
+    overflow:  hidden; /* prevent margin collapse */
     border-bottom: 0;
     -webkit-border-top-left-radius: 0;
     -webkit-border-top-right-radius: 0;
