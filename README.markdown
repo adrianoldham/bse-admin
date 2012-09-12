@@ -1,10 +1,10 @@
 # Bse-admin project
 
-The aim of the **bse-admin** project is to produce a modern familiar OS styled UI environment for the [BSE content management system](http://github.com/tonycoz/bse). The current state of the **bse-admin** project is highly usable and a significant improvement over the standard admin included in the BSE distribution.  This project represents over 1,000 hours of work-to-date.
+The aim of the **bse-admin** project is to produce a modern familiar OS styled UI environment for the [BSE content management system](http://github.com/tonycoz/bse). The current state of the **bse-admin** project is highly usable and a significant improvement over the standard admin included in the BSE distribution.  This project represents well over 1,100 hours of work-to-date.
 
 ## Requirements
 
-The **bse-admin** is designed and tested for use in modern standards compliant web browsers supporting _HTML5_ and _Javascript_, namely: [Safari](http://www.apple.com/safari), [Chrome](http://www.google.com/chrome), [Firefox](http://www.firefox.com/), [Opera](http://www.opera.com/). The **bse-admin** is functional in IE8 or better, however it is not optimal. For users stuck with IE, installation of [Google Chrome Frame](http://code.google.com/chrome/chromeframe/) is highly recommended for the best experience.
+The **bse-admin** is designed and tested for use in modern standards compliant web browsers supporting _HTML5, CSS3_ and _Javascript_, namely: [Safari](http://www.apple.com/safari), [Chrome](http://www.google.com/chrome), [Firefox](http://www.firefox.com/), [Opera](http://www.opera.com/) & [IE9](http://www.microsoft.com/ie/) or better. The **bse-admin** is functional in IE8, however it is not optimal. For users stuck with IE8 or less, installation of [Google Chrome Frame](http://code.google.com/chrome/chromeframe/) is highly recommended for the best experience.
 
 ## Dependancies
 
