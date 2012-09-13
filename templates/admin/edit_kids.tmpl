@@ -51,5 +51,10 @@
       <:- iterator end kids:>
     </ul>
   </fieldset>
-  <:- or Kids:><:eif Kids:>
+  <:- or Kids:>
+  <p>There are no children available</p>
+  <:- eif Kids:>
+  <p class="buttons">
+    <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+  </p>
 </div>
