@@ -397,11 +397,6 @@ div.sheet {
     box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
 }
 
-div.sheet p.buttons > :first-child {
-    float: left;
-    margin-left: 0;
-}
-
 /* @end */
 
 
@@ -582,6 +577,10 @@ input[type=submit][disabled] {
     -webkit-box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.25);
     -moz-box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.25);
     box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.25);
+}
+
+.button:first-child {
+    margin-left: 0;
 }
 
 .button:hover {
