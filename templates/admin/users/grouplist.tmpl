@@ -56,6 +56,15 @@
     </table>
   </fieldset>
   <:- or Groups:>
-  <p>No site user groups created.</p>
+  <fieldset>
+    <legend>Groups</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No site groups to display</p>
+      <:- if UserCan bse_members_group_add:>
+      <p><a href="<:script:>?a_addgroupform=1&amp;referer=1" data-icon="add" class="button white">New Site Group…</a></p>
+      <:- or UserCan:><:eif UserCan:>
+    </div>
+  </fieldset>
   <:- eif Groups:>
 </div>

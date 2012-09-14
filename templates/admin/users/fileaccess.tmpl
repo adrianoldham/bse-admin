@@ -76,6 +76,7 @@
       </p>
     </fieldset>
   </form>
+  <:- if Fileaccesses:>
   <fieldset class="list">
     <legend>Downloads</legend>
     <ul class="meta selected">
@@ -163,4 +164,13 @@
     <a href="<:script:>?a_fileaccesslog=1&amp;p=<:fileaccesses_pagecount:>&amp;pp=<:fileaccesses_perpage:>&amp;<:page_args:>">→|</a>
     <:- eif LastFileaccessesPage:>
   </p>
+  <:- or Fileaccesses:>
+  <fieldset>
+    <legend>Downloads</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No download log entries to display</p>
+    </div>
+  </fieldset>
+  <:- eif Fileaccesses:>
 </div>

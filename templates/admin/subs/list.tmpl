@@ -60,6 +60,15 @@
     </table>
   </fieldset>
   <:- or Subscriptions:>
-  <p>Your system has no mailing lists</p> 
+  <fieldset>
+    <legend>Mailing Lists</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No mailing lists to display</p>
+      <:- if UserCan bse_subs_add:>
+      <p><a href="<:script:>?a_add=1&amp;referer=1" data-icon="add" class="button white">New Mailing List…</a></p>
+      <:- or UserCan:><:eif UserCan:>
+    </div>
+  </fieldset>
   <:- eif Subscriptions:>
 </div>

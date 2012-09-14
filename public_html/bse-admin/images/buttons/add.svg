@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Button_Icons"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
+	 viewBox="0 0 24 15" xml:space="preserve">
+<g>
+	<g>
+		<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFDFD" points="17,6.75 13,6.75 13,2.75 10,2.75 10,6.75 6,6.75 6,9.75 
+			10,9.75 10,13.75 13,13.75 13,9.75 17,9.75 		"/>
+	</g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="11.5005" y1="13" x2="11.5005" y2="2.0005">
+			<stop  offset="0" style="stop-color:#7A7B7B"/>
+			<stop  offset="1" style="stop-color:#404040"/>
+		</linearGradient>
+		<polygon fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" points="17,6 13,6 13,2 10,2 10,6 6,6 6,9 10,9 10,13 
+			13,13 13,9 17,9 		"/>
+	</g>
+</g>
+</svg>

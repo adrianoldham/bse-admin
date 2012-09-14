@@ -86,6 +86,11 @@ p, table {
     float: right;
 }
 
+.center {
+    text-align: center;
+    display: block;
+}
+
 .preview {
     position: absolute;
     top: 2em;
@@ -2120,6 +2125,10 @@ h1:first-child + *[data-role=toolbar] {
     background-image: url(/bse-admin/images/buttons/path.png);
 }
 
+*[data-icon=add]:before {
+    background-image: url(/bse-admin/images/buttons/add.png);
+}
+
 .svg *[data-icon=action]:before {
     background-image: url(/bse-admin/images/buttons/action.svg);
 }
@@ -2142,6 +2151,10 @@ h1:first-child + *[data-role=toolbar] {
 
 .svg *[data-icon=path]:before {
     background-image: url(/bse-admin/images/buttons/path.svg);
+}
+
+.svg *[data-icon=add]:before {
+    background-image: url(/bse-admin/images/buttons/add.svg);
 }
 
 /* @end */

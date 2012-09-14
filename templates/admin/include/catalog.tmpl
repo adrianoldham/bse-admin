@@ -9,12 +9,17 @@
           <li><a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" accesskey="s" title="AccessKey = s">New Seminar…</a></li>
           <:- or Cfg:><:eif Cfg:>
           <:- or UserCan:><:eif UserCan:>
-          <:- if UserCan bse_regen_article:catalog:>
           <li class="divider"></li>
+          <:- if UserCan bse_regen_article:catalog:>
           <li><a href="<:adminurl generate:>?id=<:catalog id:>&amp;r=<:adminurl shopadmin:>%3Fid=<:catalog id:>%26m=Catalog%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
           <:- or UserCan:><:eif UserCan:>
-          <li class="divider"></li>
           <li><a href="<:adminurl add:>?id=<:catalog id:>&amp;preview=1">Preview</a></li>
+          <li class="divider"></li>
+          <:- if UserCan bse_edit_delete_article:[catalog id]:>
+          <li><a href="<:adminurl add:>?id=<:catalog id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:adminurl shopadmin:>%23catalog<:catalog parentid:>" data-action="Delete" data-object="Catalog">Delete</a></li>
+          <:- or UserCan:>
+          <li class="disabled"><span>Delete</span></li>
+          <:- eif UserCan:>
         </ul>
       </li>
     </ul>
@@ -65,7 +70,22 @@
     </table>
   </fieldset>
   <:- or Products:>
-  <p>This catalog contains no products</p>
+  <fieldset>
+    <legend>Products</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No products to display</p>
+      <:- if UserCan bse_edit_add_child:[catalog id]:>
+      <p>
+        <a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Catalog&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" data-icon="add" class="button white">New Catalog…</a>
+        <a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Product&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" data-icon="add" class="button white">New Product…</a>
+        <:- if Cfg seminars enabled:>
+        <a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" data-icon="add" class="button white">New Seminar…</a>
+        <:- or Cfg:><:eif Cfg:>
+      </p>
+      <:- or UserCan:><:eif UserCan:>
+    </div>
+  </fieldset>
   <:- eif Products:>
   <:- if Subcats:>
   <:- iterator begin subcats:> 

@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>"Manage Tags" :>
+<:wrap admin/base.tmpl title=>"Manage Site Tags" :>
 <div class="window">
   <header>
     <h1><:param title:></h1>
@@ -31,6 +31,7 @@
       </p>
     </fieldset>
   </form>
+  <:- if Systags:>
   <:- iterator begin systags:>
   <form action="<:script:>#tag_<:systag id:>" method="post" data-object="Tag">
     <fieldset>
@@ -83,4 +84,13 @@
     <a href="<:adminurl add:>?a_tags=1&amp;id=-1&amp;p=<:systags_pagecount:>&amp;pp=<:systags_perpage:>&amp;showarts=<:cgi showarts |u:>&amp;nocat=<:cgi nocat |u:>&amp;cat=<:cgi cat |u:>">→|</a>
     <:- eif LastSystagsPage:>
   </p>
+  <:- or Systags:>
+  <fieldset>
+    <legend>Tags</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No tags to display</p>
+    </div>
+  </fieldset>
+  <:- eif Systags:>
 </div>

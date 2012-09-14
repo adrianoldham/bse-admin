@@ -13,11 +13,10 @@
             <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>" accesskey="s" title="AccessKey = s">New Seminar…</a></li>
             <:- or Cfg:><:eif Cfg:>
             <:- or UserCan:><:eif UserCan:>
-            <:- if UserCan bse_regen_article:shopid:>
             <li class="divider"></li>
+            <:- if UserCan bse_regen_article:shopid:>
             <li><a href="<:adminurl generate:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>%26m=Shop%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
             <:- or UserCan:><:eif UserCan:>
-            <li class="divider"></li>
             <li><a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1">Preview</a></li>
           </ul>
         </li>
@@ -70,7 +69,22 @@
     </table>
   </fieldset>
   <:- or Products:>
-  <p>This catalog contains no native products</p>
+  <fieldset>
+    <legend>Products</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No products to display</p>
+      <:- if UserCan bse_edit_add_child:[shopid]:>
+      <p>
+        <a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Catalog&amp;r=<:adminurl shopadmin:>" data-icon="add" class="button white">New Catalog…</a>
+        <a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Product&amp;r=<:adminurl shopadmin:>" data-icon="add" class="button white">New Product…</a>
+        <:- if Cfg seminars enabled:>
+        <a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>" data-icon="add" class="button white">New Seminar…</a>
+        <:- or Cfg:><:eif Cfg:>
+      </p>
+      <:- or UserCan:><:eif UserCan:>
+    </div>
+  </fieldset>
   <:- eif Products:>
   <:- iterator begin catalogs:> 
   <h2 id="catalog<:catalog id:>"><:catalog title:> <!--:movecat:--></h2>

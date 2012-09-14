@@ -146,7 +146,16 @@
     </div>
     <:- iterator end files:>
     <:- or Files:>
-    <p>There are no files available</p>
+    <fieldset>
+      <legend>Files</legend>
+      <div class="center">
+        <p><img src="/bse-admin/images/icons/alert.png" /></p>
+        <p>No files to display</p>
+        <:- if UserCan bse_edit_files_add:article:>
+        <p><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" data-icon="add" class="button white">New File…</a></p>
+        <:- or UserCan:><:eif UserCan:>
+      </div>
+    </fieldset>
     <:- eif Files:>
     <p class="buttons">
       <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>

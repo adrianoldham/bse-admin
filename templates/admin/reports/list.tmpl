@@ -3,9 +3,9 @@
   <header>
     <h1><:param title:></h1>
   </header>
+  <:- if Reports:>
   <fieldset class="list">
     <legend>Reports</legend>
-    <:- if Reports:>
     <table class="full list">
       <thead>
         <tr>
@@ -26,8 +26,14 @@
         <:- iterator end reports:>
       </tbody>
     </table>
-    <:- or Reports:>
-    <p>No reports available.</p>
-    <:- eif Reports:>
   </fieldset>
+  <:- or Reports:>
+  <fieldset>
+    <legend>Reports</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No reports to display</p>
+    </div>
+  </fieldset>
+  <:- eif Reports:>
 </div>

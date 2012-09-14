@@ -52,7 +52,31 @@
     </ul>
   </fieldset>
   <:- or Kids:>
-  <p>There are no children available</p>
+  <fieldset>
+    <legend>Children</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No children to display</p>
+      <:- if Or [ifUserCan bse_edit_add_child:article] [ifUserCan bse_edit_stepkid_add:article]:>
+      <p>
+        <:- if UserCan bse_edit_add_child:article:>
+        <:- if HaveChildType:>
+        <:- switch:>
+        <:- case Match [article generator] "Catalog":>
+        <a href="<:script:>?parentid=<:article id:>&amp;type=Catalog&amp;referer=1" data-icon="add" class="button white">New Catalog…</a>
+        <a href="<:script:>?parentid=<:article id:>&amp;type=Product&amp;referer=1" data-icon="add" class="button white">New Product…</a>
+        <:- case default:>
+        <a href="<:script:>?parentid=<:article id:>&amp;type=Article&amp;referer=1" data-icon="add" class="button white">New Child…</a>
+        <:- endswitch:>
+        <:- or HaveChildType:><:eif HaveChildType:>
+        <:- or UserCan:><:eif UserCan:>
+        <:- if UserCan bse_edit_stepkid_add:article:>
+        <a href="<:script:>?id=<:article id:>&amp;_t=steps&amp;referer=1" data-icon="add" class="button white">New Stepchild…</a>
+        <:- or UserCan:><:eif UserCan:>
+      </p>
+      <:- or Or:><:eif Or:>
+    </div>
+  </fieldset>
   <:- eif Kids:>
   <p class="buttons">
     <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>

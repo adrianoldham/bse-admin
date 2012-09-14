@@ -26,7 +26,7 @@
   </header>
   <:- if Users:>
   <fieldset class="list">
-    <legend>Accounts</legend>
+    <legend>Users</legend>
     <table class="full list">
       <thead>
         <tr>
@@ -56,6 +56,15 @@
     </table>
   </fieldset>
   <:- or Users:>
-  <p>No admin users created.</p>
+  <fieldset>
+    <legend>Users</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No admin users to display</p>
+      <:- if UserCan bse_admin_user_add:>
+      <p><a href="<:script:>?a_adduserform=1&amp;referer=1" data-icon="add" class="button white">New Admin User…</a></p>
+      <:- or UserCan:><:eif UserCan:>
+    </div>
+  </fieldset>
   <:- eif Users:>
 </div>

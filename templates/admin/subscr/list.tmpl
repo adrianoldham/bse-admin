@@ -76,6 +76,15 @@
     <:- eif LastSubscriptionsPage:>
   </p>
   <:- or Subscriptions:>
-  <p>Your system has no subscriptions available.</p>
+  <fieldset>
+    <legend>Subscriptions</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No subscriptions to display</p>
+      <:- if UserCan bse_subscr_add:>
+      <p><a href="<:script:>?a_addform=1&amp;referer=1" data-icon="add" class="button white">New Subscription…</a></p>
+      <:- or UserCan:><:eif UserCan:>
+    </div>
+  </fieldset>
   <:- eif Subscriptions:>
 </div>

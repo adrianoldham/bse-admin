@@ -19,19 +19,29 @@
       </p>
     </fieldset>
   </form>
-  <:-.set pcats = bse.paged(tagcats) :>
+  <:- .set pcats = bse.paged(tagcats) :>
+  <:- .if pcats.items.size:>
   <fieldset>
     <legend>Categories</legend>
     <ul class="children list">
-      <:-.for cat in pcats.items :>
+      <:- .for cat in pcats.items :>
       <li>
         <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) |html:>"><:= cat | html :></a>
         <span>
           <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) |html:>" class="button gray small">Edit</a>
         </span>
       </li>
-      <:-.end for:>
+      <:- .end for:>
     </ul>
   </fieldset>
-  <:-.call "page_list", "base":cfg.admin_url2("add", "tagcats", { "id":-1 }), "pages":pcats :>
+  <:- .call "page_list", "base":cfg.admin_url2("add", "tagcats", { "id":-1 }), "pages":pcats :>
+  <:- .else:>
+  <fieldset>
+    <legend>Categories</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No categories to display</p>
+    </div>
+  </fieldset>
+  <:- .end if:>
 </div>

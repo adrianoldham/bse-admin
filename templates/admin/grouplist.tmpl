@@ -56,6 +56,15 @@
     </table>
   </fieldset>
   <:- or Groups:>
-  <p>No admin groups created.</p>
+  <fieldset>
+    <legend>Groups</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No admin groups to display</p>
+      <:- if UserCan bse_admin_group_add:>
+      <p><a href="<:script:>?a_addgroupform=1&amp;referer=1" data-icon="add" class="button white">New Admin Group…</a></p>
+      <:- or UserCan:><:eif UserCan:>
+    </div>
+  </fieldset>
   <:- eif Groups:>
 </div>

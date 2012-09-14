@@ -3,6 +3,7 @@
   <header>
     <h1><:param title:></h1>
   </header>
+  <:- if Auditlog:>
   <fieldset>
     <legend>Audit Log</legend>
     <table class="full list">
@@ -41,4 +42,13 @@
     <a href="<:adminurl log:>?p=<:auditlog_pagecount:>&amp;pp=<:auditlog_perpage:>">→|</a>
     <:- eif LastAuditlogPage:>
   </p>
+  <:- or Auditlog:>
+  <fieldset>
+    <legend>Audit Log</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No audit log entries to display</p>
+    </div>
+  </fieldset>
+  <:- eif Auditlog:>
 </div>
