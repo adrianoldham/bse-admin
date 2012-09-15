@@ -1889,6 +1889,7 @@ details[open] .disclosure-widget:before {
 header {
     position: relative;
     margin: 0 -2em 1em;
+    padding: 0 2em;
     border: 0.083em solid transparent;
     border-top-color: #fff;
     border-bottom-color: #777;
@@ -1931,7 +1932,7 @@ header {
 }
 
 *[data-role=toolbar] {
-    padding: 0.75em 2em;
+    padding: 0.75em 0;
     margin: 0;
 }
 
