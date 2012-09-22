@@ -27,7 +27,7 @@
         <:- if Or [ifUserCan bse_edit_save] [ifUserCan edit_images_save:-1] [ifUserCan edit_images_add:-1] [ifUserCan edit_images_delete:-1] [ifUserCan edit_images_reorder:-1]:>
         <li><a href="#">Images</a>
           <ul>
-            <li><a href="<:adminurl add id -1 _t img:>">Manage Site Images</a></li>
+            <li><a href="<:adminurl add id -1 _t img referer 1:>">Manage Site Images</a></li>
             <:- if UserCan bse_edit_images_add:-1 :>
             <li><a href="<:adminurl add id -1 _t imgupload referer 1:>">New Site Image…</a></li>
             <:- or UserCan:><:eif UserCan:>
@@ -37,7 +37,7 @@
         <:- if Or [ifUserCan bse_edit_save] [ifUserCan edit_files_save:-1] [ifUserCan edit_files_add:-1] [ifUserCan edit_files_delete:-1] [ifUserCan edit_files_reorder:-1]:>
         <li><a href="#">Files</a>
           <ul>
-            <li><a href="<:adminurl add id -1 _t file:>">Manage Site Files</a></li>
+            <li><a href="<:adminurl add id -1 _t file referer 1:>">Manage Site Files</a></li>
             <:- if UserCan bse_edit_files_add:-1 :>
             <li><a href="<:adminurl add id -1 _t fileupload referer 1:>">New Site File…</a></li>
             <:- or UserCan:><:eif UserCan:>
