@@ -4,7 +4,11 @@
     <h1><:param title:></h1>
   </header>
   <form action="<:adminurl logon:>" method="post" data-object="User" data-confirm="false">
+    <:- if Cgi r:>
     <input type="hidden" name="r" value="<:cgi r:>" />
+    <:- or Cgi:>
+    <input type="hidden" name="r" value="<:adminurl add id 1 preview 1:>" />
+    <:- eif Cgi:>
     <fieldset>
       <legend>Login</legend>
       <div>
