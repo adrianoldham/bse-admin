@@ -1,6 +1,6 @@
   <nav data-role="toolbar">
     <ul class="menu context">
-      <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+      <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
         <ul>
           <:- if UserCan bse_edit_add_child:[catalog id]:>
           <li><a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Product&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" accesskey="p" title="AccessKey = p">New Product…</a></li>
@@ -23,7 +23,7 @@
         </ul>
       </li>
     </ul>
-    <a href="<:adminurl add:>?id=<:catalog id:>&amp;r=<:adminurl shopadmin:>" title="Edit Parent" data-icon="back" data-icon-only="true" class="button">Parent</a>
+    <a href="<:adminurl add:>?id=<:catalog id:>&amp;r=<:adminurl shopadmin:>" title="Edit Parent" data-icon="back+" data-icon-only="true" class="button">Parent</a>
     <a href="<:adminurl add:>?id=<:catalog id:>&amp;preview=1" title="Preview Catalog" data-icon="preview" class="button">Preview</a>
   </nav> 
   <:- if Products:>

@@ -5,7 +5,7 @@
     <nav data-role="toolbar">
       <:- if Or [ifUserCan bse_subs_add]:>
       <ul class="menu context">
-        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+        <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
           <ul>
             <:- if UserCan bse_subs_add:>
             <li><a href="<:script:>?a_add=1" accesskey="u" title="AccessKey = u">New Mailing List…</a></li>

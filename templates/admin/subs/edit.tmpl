@@ -6,7 +6,7 @@
     <nav data-role="toolbar">
       <:- if Or [ifUserCan bse_subs_delete]:>
       <ul class="menu context">
-        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+        <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
           <ul>
             <:- if UserCan bse_subs_send:>
             <li><a href="<:script:>?start_send=1&amp;id=<:subscription id:>">Send Mailing List…</a></li>

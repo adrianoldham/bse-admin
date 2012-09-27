@@ -5,7 +5,7 @@
     <nav data-role="toolbar">
       <:- if Or [ifUserCan bse_members_user_add] [ifUserCan bse_members_group_add]:>
       <ul class="menu context">
-        <li><a href="#" data-icon="action" data-icon-only="true" class="button">Actions</a>
+        <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
           <ul>
             <:- if UserCan bse_members_user_add:>
             <li><a href="<:script:>?a_addform=1" accesskey="u" title="AccessKey = u">New Site User…</a></li>

@@ -2101,16 +2101,16 @@ h1:first-child + *[data-role=toolbar] {
     opacity: 0.7;
 }
 
-*[data-icon=action]:before {
-    background-image: url(/bse-admin/images/buttons/action.png);
+*[data-icon=action\+]:before {
+    background-image: url(/bse-admin/images/buttons/action+.png);
 }
 
 *[data-icon=preview]:before {
     background-image: url(/bse-admin/images/buttons/preview.png);
 }
 
-*[data-icon=back]:before {
-    background-image: url(/bse-admin/images/buttons/back.png);
+*[data-icon=back\+]:before {
+    background-image: url(/bse-admin/images/buttons/back+.png);
 }
 
 *[data-icon=delete]:before {
@@ -2121,24 +2121,24 @@ h1:first-child + *[data-role=toolbar] {
     background-image: url(/bse-admin/images/buttons/regen.png);
 }
 
-*[data-icon=path]:before {
-    background-image: url(/bse-admin/images/buttons/path.png);
+*[data-icon=path\+]:before {
+    background-image: url(/bse-admin/images/buttons/path+.png);
 }
 
 *[data-icon=add]:before {
     background-image: url(/bse-admin/images/buttons/add.png);
 }
 
-.svg *[data-icon=action]:before {
-    background-image: url(/bse-admin/images/buttons/action.svg);
+.svg *[data-icon=action\+]:before {
+    background-image: url(/bse-admin/images/buttons/action+.svg);
 }
 
 .svg *[data-icon=preview]:before {
     background-image: url(/bse-admin/images/buttons/preview.svg);
 }
 
-.svg *[data-icon=back]:before {
-    background-image: url(/bse-admin/images/buttons/back.svg);
+.svg *[data-icon=back\+]:before {
+    background-image: url(/bse-admin/images/buttons/back+.svg);
 }
 
 .svg *[data-icon=delete]:before {
@@ -2149,8 +2149,8 @@ h1:first-child + *[data-role=toolbar] {
     background-image: url(/bse-admin/images/buttons/regen.svg);
 }
 
-.svg *[data-icon=path]:before {
-    background-image: url(/bse-admin/images/buttons/path.svg);
+.svg *[data-icon=path\+]:before {
+    background-image: url(/bse-admin/images/buttons/path+.svg);
 }
 
 .svg *[data-icon=add]:before {
