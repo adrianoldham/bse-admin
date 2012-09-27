@@ -1,0 +1,166 @@
+/* @group navbar */
+
+ul.menu > li ul li.parent > a {
+    background: transparent url(/bse-admin/images/widgets/arrow.png) no-repeat right 50%;
+}
+
+ul.menu > li ul li.hover.parent > a,
+ul.menu > li ul li.active.parent > a {
+    background-image: url(/bse-admin/images/widgets/arrow-white.png);
+}
+
+
+/* @end */
+
+/* @group details */
+
+.disclosure-widget:before {
+    background-image: url(/bse-admin/images/widgets/arrow.png);
+}
+
+/* @end */
+
+/* @group button icons */
+
+*[data-icon=action\+]:before {
+    background-image: url(/bse-admin/images/buttons/action+.png);
+}
+
+*[data-icon=action]:before {
+    background-image: url(/bse-admin/images/buttons/action.png);
+}
+
+*[data-icon=preview]:before {
+    background-image: url(/bse-admin/images/buttons/preview.png);
+}
+
+*[data-icon=back\+]:before {
+    background-image: url(/bse-admin/images/buttons/back+.png);
+}
+
+*[data-icon=back]:before {
+    background-image: url(/bse-admin/images/buttons/back.png);
+}
+
+*[data-icon=delete]:before {
+    background-image: url(/bse-admin/images/buttons/delete.png);
+}
+
+*[data-icon=regen]:before {
+    background-image: url(/bse-admin/images/buttons/regen.png);
+}
+
+*[data-icon=path\+]:before {
+    background-image: url(/bse-admin/images/buttons/path+.png);
+}
+
+*[data-icon=path]:before {
+    background-image: url(/bse-admin/images/buttons/path.png);
+}
+
+*[data-icon=add]:before {
+    background-image: url(/bse-admin/images/buttons/add.png);
+}
+
+*[data-icon=images]:before {
+    background-image: url(/bse-admin/images/buttons/images.png);
+}
+
+*[data-icon=files]:before {
+    background-image: url(/bse-admin/images/buttons/files.png);
+}
+
+*[data-icon=article]:before {
+    background-image: url(/bse-admin/images/buttons/article.png);
+}
+
+*[data-icon=load]:before {
+    background-image: url(/bse-admin/images/buttons/load.png);
+}
+
+*[data-icon=orders]:before {
+    background-image: url(/bse-admin/images/buttons/orders.png);
+}
+
+*[data-icon=users]:before {
+    background-image: url(/bse-admin/images/buttons/users.png);
+}
+
+*[data-icon=products]:before {
+    background-image: url(/bse-admin/images/buttons/products.png);
+}
+
+/* @end */
+
+/* @group launchpad */
+
+.launchpad *[data-icon=action]:before {
+    background-image: url(/bse-admin/images/launcher/action.png);
+}
+
+.launchpad *[data-icon=preview]:before {
+    background-image: url(/bse-admin/images/launcher/preview.png);
+}
+
+.launchpad *[data-icon=regen]:before {
+    background-image: url(/bse-admin/images/launcher/regen.png);
+}
+
+.launchpad *[data-icon=path]:before {
+    background-image: url(/bse-admin/images/launcher/path.png);
+}
+
+.launchpad *[data-icon=add]:before {
+    background-image: url(/bse-admin/images/launcher/add.png);
+}
+
+.launchpad *[data-icon=images]:before {
+    background-image: url(/bse-admin/images/launcher/images.png);
+}
+
+.launchpad *[data-icon=files]:before {
+    background-image: url(/bse-admin/images/launcher/files.png);
+}
+
+.launchpad *[data-icon=article]:before {
+    background-image: url(/bse-admin/images/launcher/article.png);
+}
+
+.launchpad *[data-icon=load]:before {
+    background-image: url(/bse-admin/images/launcher/load.png);
+}
+
+.launchpad *[data-icon=orders]:before {
+    background-image: url(/bse-admin/images/launcher/orders.png);
+}
+
+.launchpad *[data-icon=path]:before {
+    background-image: url(/bse-admin/images/launcher/path.png);
+}
+
+.launchpad *[data-icon=users]:before {
+    background-image: url(/bse-admin/images/launcher/users.png);
+}
+
+.launchpad *[data-icon=products]:before {
+    background-image: url(/bse-admin/images/launcher/products.png);
+}
+
+/* @end */
+
+/* @group widget icons */
+
+*[data-widget=stepkid]:after {
+    background-image: url(/bse-admin/images/widgets/stepkid.png);
+}
+
+*[data-widget=fullscreen] {
+    background-image: url(/bse-admin/images/widgets/fullscreen.png);
+}
+
+*[data-widget=window] {
+    background-image: url(/bse-admin/images/widgets/window.png);
+    opacity: 1;
+}
+
+/* @end */

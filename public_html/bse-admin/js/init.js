@@ -1,5 +1,9 @@
 //  We really need a proper loading script like scriptaculous
 
+if (!has_svg_support()) {
+    document.write('<link rel="stylesheet" href="/bse-admin/css/png.css" type="text/css" />');
+}
+
 document.write('<script type="text/javascript" src="/bse-admin/js/dropmenu.js"></script>');
 document.write('<script type="text/javascript" src="/bse-admin/js/opendetails.js"></script>');
 document.write('<script type="text/javascript" src="/bse-admin/js/formmonitor.js"></script>');
