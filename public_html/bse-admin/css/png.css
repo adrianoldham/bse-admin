@@ -163,4 +163,12 @@ ul.menu > li ul li.active.parent > a {
     opacity: 1;
 }
 
+*[data-widget=close] {
+    background-image: url(/bse-admin/images/widgets/close.png);
+}
+
+*[data-widget=menu] {
+    background-image: url(/bse-admin/images/widgets/menu.png);
+}
+
 /* @end */

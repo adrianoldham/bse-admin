@@ -1928,7 +1928,8 @@ header {
     margin: 0;
 }
 
-h1:first-child + *[data-role=toolbar] {
+h1:first-child + *[data-role=toolbar],
+*[data-widget] + *[data-role=toolbar] {
     padding-top: 0;
 }
 
@@ -2212,12 +2213,12 @@ h1:first-child + *[data-role=toolbar] {
     opacity: 1;
 }
 
-nav *[data-widget] {
+nav *[data-widget],
+header *[data-widget] {
     text-indent: -9999em;
     display: inline-block;
     position: absolute;
     top: 0.25em;
-    right: 0.25em;
     width: 1.5em;
     height: 1.5em;
     background-repeat: no-repeat;
@@ -2231,6 +2232,19 @@ nav *[data-widget] {
     cursor: pointer;
 }
 
+nav *[data-widget=window] {
+    right: 0.25em;
+    opacity: 1;
+}
+
+header *[data-widget=close] {
+    left: 0.25em;
+}
+
+header *[data-widget=fullscreen] {
+    right: 0.25em;
+}
+
 *[data-widget=stepkid]:after {
     background-image: url(/bse-admin/images/widgets/stepkid.svg);
 }
@@ -2241,7 +2255,14 @@ nav *[data-widget] {
 
 *[data-widget=window] {
     background-image: url(/bse-admin/images/widgets/window.svg);
-    opacity: 1;
+}
+
+*[data-widget=close] {
+    background-image: url(/bse-admin/images/widgets/close.svg);
+}
+
+*[data-widget=menu] {
+    background-image: url(/bse-admin/images/widgets/menu.svg);
 }
 
 /* @end */

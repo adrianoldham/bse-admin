@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Header_Widgets"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="18px" height="18px"
+	 viewBox="0 0 18 18" xml:space="preserve">
+<g>
+	<g>
+		<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFDFD" d="M6,6.75H2v-4h4V6.75z M11,2.75H7v4h4V2.75z M16,2.75h-4v4h4V2.75
+			z M6,7.75H2v4h4V7.75z M11,7.75H7v4h4V7.75z M16,7.75h-4v4h4V7.75z M6,12.75H2v4h4V12.75z M11,12.75H7v4h4V12.75z M16,12.75h-4v4
+			h4V12.75z"/>
+	</g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="9.0005" y1="16" x2="9.0005" y2="2.0005">
+			<stop  offset="0" style="stop-color:#7A7B7B"/>
+			<stop  offset="1" style="stop-color:#404040"/>
+		</linearGradient>
+		<path fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" d="M6,6H2V2h4V6z M11,2H7v4h4V2z M16,2h-4v4h4V2z M6,7H2v4h4
+			V7z M11,7H7v4h4V7z M16,7h-4v4h4V7z M6,12H2v4h4V12z M11,12H7v4h4V12z M16,12h-4v4h4V12z"/>
+	</g>
+</g>
+</svg>
