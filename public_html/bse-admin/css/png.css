@@ -90,6 +90,10 @@ ul.menu > li ul li.active.parent > a {
     background-image: url(/bse-admin/images/buttons/products.png);
 }
 
+*[data-icon=menu]:before {
+    background-image: url(/bse-admin/images/buttons/menu.png);
+}
+
 /* @end */
 
 /* @group launchpad */
