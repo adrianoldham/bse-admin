@@ -2,7 +2,7 @@
 <div class="window">
   <header>
     <h1><:param title:></h1>
-    <a href="<:adminurl menu:>" data-widget="close">Quick Launch</a>
+    <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <nav data-role="toolbar">
       <:- if Or [ifUserCan bse_members_user_add] [ifUserCan bse_members_group_add]:>
       <ul class="menu context">
