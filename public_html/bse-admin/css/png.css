@@ -94,6 +94,10 @@ ul.menu > li ul li.active.parent > a {
     background-image: url(/bse-admin/images/buttons/menu.png);
 }
 
+*[data-icon=reports]:before {
+    background-image: url(/bse-admin/images/buttons/reports.png);
+}
+
 /* @end */
 
 /* @group launchpad */
@@ -148,6 +152,10 @@ ul.menu > li ul li.active.parent > a {
 
 .launchpad *[data-icon=products]:before {
     background-image: url(/bse-admin/images/launcher/products.png);
+}
+
+.launchpad *[data-icon=reports]:before {
+    background-image: url(/bse-admin/images/launcher/reports.png);
 }
 
 /* @end */

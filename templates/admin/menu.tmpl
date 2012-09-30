@@ -31,6 +31,9 @@
     <:- if UserCan bse_edit_add_child:3 :>
     <a href="<:adminurl shopadmin:>" accesskey="p" title="AccessKey = p" data-icon="products" class="button white">Products</a>
     <:- eif UserCan:>
+    <:- if UserCan bse_reports_list:>
+    <a href="<:adminurl report:>" accesskey="n" title="AccessKey = n" data-icon="reports" class="button white">Reports</a>
+    <:- eif UserCan:>
     <a href="<:adminurl add _t load referer 1:>" accesskey="1" title="AccessKey = 1" data-icon="load" class="button white">Load Article…</a>
     <:- if UserCan bse_members_user_view:>
     <a href="<:adminurl siteusers _t load referer 1:>" accesskey="2" title="AccessKey = 2" data-icon="load" class="button white">Load User…</a>
