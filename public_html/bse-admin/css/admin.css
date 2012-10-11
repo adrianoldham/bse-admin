@@ -1941,6 +1941,8 @@ h1:first-child + *[data-role=toolbar],
     font-size: 1em !important;
     color: #333 !important;
     text-shadow: 0 0.083em 0 #fff;
+    white-space: nowrap;
+    overflow: hidden;
     border: 0.083em solid;
     border-color: #7c7c7c #757575 #6b6b6b #757575;
     -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
@@ -2057,20 +2059,17 @@ h1:first-child + *[data-role=toolbar],
 
 *[data-icon][data-icon-only] {
     width: 3em;
-    line-height: 0;
     padding-left: 0;
     padding-right: 0;
-    text-indent: -9999em;
-    overflow: hidden;
 }
 
 *[data-icon]:before {
-    text-indent: -9999em;
-    content: "";
+    font-size: 1em;
+    line-height: 1.25;
+    content: "\00a0";
     float: left;
     width: 2em;
-    height: 1.5em;
-    margin: 0 0.25em -0.25em -0.75em;
+    margin: 0 0.25em 0 -0.75em;
     background-repeat: no-repeat;
     background-position: 50% 0;
     -webkit-background-size: 2em auto;
@@ -2200,8 +2199,7 @@ h1:first-child + *[data-role=toolbar],
 /* @group widget icons */
 
 *[data-widget]:after {
-    text-indent: -9999em;
-    content: "";
+    content: "\00a0";
     display: inline-block;
     width: 1.5em;
     height: 1.5em;
@@ -2223,21 +2221,29 @@ h1:first-child + *[data-role=toolbar],
 
 nav *[data-widget],
 header *[data-widget] {
-    text-indent: -9999em;
-    display: inline-block;
     position: absolute;
     top: 0.25em;
     width: 1.5em;
-    height: 1.5em;
+    line-height: 1.5;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0.5;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+nav *[data-widget]:before,
+header *[data-widget]:before {
+    content: "\00a0";
+    float: left;
+    width: 1.5em;
+    line-height: 1.5;
     background-repeat: no-repeat;
     background-position: 50% 0;
     -webkit-background-size: 1.5em;
     -moz-background-size: 1.5em;
     -o-background-size: 1.5em;
     background-size: 1.5em;
-    opacity: 0.5;
-    overflow: hidden;
-    cursor: pointer;
 }
 
 nav *[data-widget=window] {
@@ -2257,19 +2263,19 @@ header *[data-widget=fullscreen] {
     background-image: url(/bse-admin/images/widgets/stepkid.svg);
 }
 
-*[data-widget=fullscreen] {
+*[data-widget=fullscreen]:before {
     background-image: url(/bse-admin/images/widgets/fullscreen.svg);
 }
 
-*[data-widget=window] {
+*[data-widget=window]:before {
     background-image: url(/bse-admin/images/widgets/window.svg);
 }
 
-*[data-widget=close] {
+*[data-widget=close]:before {
     background-image: url(/bse-admin/images/widgets/close.svg);
 }
 
-*[data-widget=menu] {
+*[data-widget=menu]:before {
     background-image: url(/bse-admin/images/widgets/menu.svg);
 }
 
