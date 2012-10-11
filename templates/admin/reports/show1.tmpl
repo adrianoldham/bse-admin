@@ -3,11 +3,12 @@
   <header>
     <h1><:param title:></h1>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
-    <:- if Report has_params:>
     <nav data-role="toolbar">
+      <:- if Report has_params:>
       <a href="<:script:>?s_prompt=1&amp;r=<:report id:>&amp;referer=1" class="button">Arguments</a>
+      <:- or Report:><:eif Report:>
+      <a href="<:adminurl2 report show r [report id] type csv:>&amp;<:repparams url:>" class="button">Download CSV</a>
     </nav>
-    <:- or Report:><:eif Report:>
   </header>
   <:- if Sort_select others:>
   <form action="<:script:>" method="post">
