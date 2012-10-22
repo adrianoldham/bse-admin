@@ -53,12 +53,12 @@ RewriteBase /
     RewriteRule ^/?([A-Za-z0-9_/-]+)$ /cgi-bin/page.pl/$1 [QSA]
 
 # FastCGI
-    #RewriteRule ^/?cgi-bin/(page|thumb|search|shop|nuser|fmail)\.pl$ /cgi-bin/$1.fcgi [QSA]
+    #RewriteRule ^/?cgi-bin/(page|thumb|search|shop|nuser|fmail)\.pl(.*)$ /cgi-bin/$1.fcgi$2 [QSA]
 
 # FastCGI Nuser
-    #RewriteRule ^/?cgi-bin/thumb\.pl$ /cgi-bin/thumb.fcgi [QSA]
-    #RewriteRule ^/?cgi-bin/nuser\.pl$ /cgi-bin/nuser.fcgi [QSA]
-    #RewriteRule ^/?cgi-bin/(page|search|shop|fmail)\.pl$ /cgi-bin/nuser.fcgi/$1 [QSA]
+    #RewriteRule ^/?cgi-bin/thumb\.pl(.*)$ /cgi-bin/thumb.fcgi$1 [QSA]
+    #RewriteRule ^/?cgi-bin/nuser\.pl(.*)$ /cgi-bin/nuser.fcgi$1 [QSA]
+    #RewriteRule ^/?cgi-bin/(page|search|shop|fmail)\.pl(.*)$ /cgi-bin/nuser.fcgi/$1$2 [QSA]
     
 # PopFlash
     #RewriteRule ^/?video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)\.flv$ /cgi-bin/user.pl?download_file=1&page=$1&file=$2 [PT]
