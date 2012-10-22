@@ -9,7 +9,7 @@ RewriteBase /
 # Redirect unless it's the development domain
     #RewriteCond %{HTTP_HOST} !example.vtc.net.au$
     #RewriteCond %{REQUEST_URI} !^/?home
-    #RewriteRule ^/?(.*) http://www.example.com.au/home/ [R=301,L]
+    #RewriteRule ^/?(.*) http://www.example.com.au/home/ [R=302,L]
 
 # Redirect all to primary domain
     #RewriteCond %{HTTP_HOST} !www.example.com.au$ [NC]
