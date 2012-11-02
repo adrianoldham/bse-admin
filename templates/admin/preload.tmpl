@@ -1,13 +1,18 @@
 <:# utility definitions :>
 <:-.define make_select -:>
-  <select name="<:= name :>" id="<:= name :>" required="<:= required :>">
-  <:-.for i in list:>
+  <:-.if !default.defined -:>
+  <:-.set default = "" -:>
+  <:-.end if -:>
+  <select name="<:= name :>" id="<:= name :>"
+    <:-.if required.defined :> required="required"<:.end if -:>
+    >
+    <:-.for i in list:>
     <option value="<:= i[id] |html :>"
-      <:- .if i[id] eq default :> selected="selected"<:.end if -:>
+      <:-.if i[id] eq default :> selected="selected"<:.end if -:>
     >
     <:-= i[desc] | html -:>
     </option>
-  <:-.end for:>
+    <:-.end for:>
   </select>
 <:-.end define:>
 <:#

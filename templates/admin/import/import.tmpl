@@ -1,0 +1,18 @@
+<:wrap admin/base.tmpl title=>"Imported Article Data" nomessage=>1:>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+  </header>
+  <fieldset class="list">
+    <legend>Articles</legend>
+    <ul class="children list">
+      <:.iterateover perline :>
+      <li><:= importmessage | html :></li>
+      <:.end:>
+    </ul>
+  </fieldset>
+  <p class="buttons">
+    <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl importer:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Done</a>
+  </p>
+</div>

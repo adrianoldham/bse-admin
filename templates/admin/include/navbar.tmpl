@@ -23,6 +23,10 @@
              <li><a href="<:adminurl add parentid -1 level 1 referer 1:>">New Article…</a></li>
              <:- or UserCan:><:eif UserCan:>
              <li><a href="<:adminurl add _t load referer 1:>">Load Article…</a></li>
+             <:- if And [ifUserCan bse_admin_import] [ifCfgsection "import profiles"]:>
+             <li class="divider"></li>
+             <li><a href="<:adminurl importer referer 1:>">Import Article Data…</a></li>
+             <:- or And:><:eif And:>
            </ul>
         </li>
         <li class="divider"></li>
