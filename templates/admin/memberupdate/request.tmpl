@@ -15,10 +15,10 @@
         </span>
       </div>
       <div>
-        <label for="importspec">Specification <span class="required">*</span> <:error_img importspec:></label>
+        <label for="importspec">Profile <span class="required">*</span> <:error_img importspec:></label>
         <span>
           <select name="importspec" id="importspec" required="required" class="<:ifError_img importspec:>error<:or:><:eif:>">
-            <option value="">(select an import specification)</option>
+            <option value="">(select an import profile)</option>
             <:- iterator begin importspecs:>
             <option value="<:importspec name:>"<:ifEq [old importspec] [importspec name]:> selected="selected"<:or:><:eif:>><:importspec description:> (<:capitalize [importspec name]:>)</option>
             <:- iterator end importspecs:>
