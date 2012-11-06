@@ -203,16 +203,16 @@
         <li><a href="<:adminurl backmon:>">Background Processing</a></li>
         <:- or Or:><:eif Or:>
         <:- switch:>
-        <:- case Or [ifUserCan bse_modules] [ifUserCan bse_regen_extras] [ifUserCan bse_msg_view] [ifUserCan bse_msg_save] [ifUserCan bse_msg_delete]  [ifUserCan bse_imageclean]:>
+        <:- case Or [ifUserCan bse_modules] [ifAnd [ifUserCan bse_pregen_view] [ifUserCan bse_regen_extras]] [ifUserCan bse_msg_view] [ifUserCan bse_msg_save] [ifUserCan bse_msg_delete] [ifUserCan bse_imageclean]:>
         <li class="divider"></li>
         <li><a href="#">Development Tools</a>
           <ul>
             <:- if UserCan bse_modules:>
             <li><a href="<:adminurl modules:>">Check Module Versions</a></li>
             <:- or UserCan:><:eif UserCan:>
-            <:- if UserCan bse_regen_extras:>
+            <:- if And [ifUserCan bse_pregen_view] [ifUserCan bse_regen_extras]:>
             <li><a href="<:adminurl pregen:>">Preview Pregenerated Pages</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- or And:><:eif And:>
             <:- if Or [ifUserCan bse_msg_view] [ifUserCan bse_msg_save] [ifUserCan bse_msg_delete]:>
             <li><a href="<:adminurl messages:>">Manage System Messages</a></li>
             <:- or Or:><:eif Or:>
