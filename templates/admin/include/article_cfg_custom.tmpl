@@ -1,0 +1,13 @@
+      <:-.if custom.size -:>
+      <fieldset>
+        <legend>Custom</legend>
+        <:-.for f in custom.list -:>
+        <div>
+          <label for="<:= f.key | html :>"><:= f.value.description | html :> <:-.call "error_img", "field":f.key -:></label>
+          <span>
+            <input type="text" name="<:= f.key | html :>" id="<:= f.key | html :>" value="<:.call "old", "field":f.key, "default": ifnew ? f.value.default : article.get(f.key) :>" placeholder="<:= f.value.placeholder | html :>" class="<:.if request.field_errors[f.key]:>error<:.end if:>" />
+          </span>
+        </div>
+        <:-.end for -:>
+      </fieldset>
+      <:-.end if:>

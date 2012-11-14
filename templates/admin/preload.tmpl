@@ -15,6 +15,7 @@
     <:-.end for:>
   </select>
 <:-.end define:>
+
 <:#
 page_list expects:
 base - base url for links
@@ -47,4 +48,19 @@ pages - the result of the bse.pages call
     <span class="disabled">→|</span>
     <:.end if -:>
   </p>
-<:-.end define -:>
+<:-.end define:>
+ 
+<:# parameters: field, default :>
+<:-.define old -:>
+<:.if cgi.param(field).defined -:>
+<:= cgi.param(field) -:>
+<:.else -:>
+<:= default | html -:>
+<:.end if -:>
+<:-.end define:>
+ 
+<:# parameters: field :>
+<:# this implementation should probably change :>
+<:-.define error_img -:>
+<:= ("error_img " _ field).evaltag -:>
+<:-.end define:>
