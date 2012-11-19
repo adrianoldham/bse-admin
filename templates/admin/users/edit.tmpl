@@ -374,7 +374,6 @@
         </ul>
       </fieldset>
       <:- or Userfiles:><:eif Userfiles:>
-<:include admin/include/user_custom.tmpl optional:>
       <fieldset>
         <legend>Information</legend>
         <div class="full">
@@ -384,6 +383,7 @@
           </span>
         </div>
       </fieldset>
+<:include admin/include/user_custom.tmpl optional:>
     </details>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
