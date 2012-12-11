@@ -22,31 +22,31 @@ base - base url for links
 pages - the result of the bse.pages call
 :>
 <:-.define page_list -:>
-<:.set sep = base =~ /\?/ ? "&" : "?" -:>
-<:.set base = base _ sep :>
+<:-.set sep = base =~ /\?/ ? "&" : "?" :>
+<:-.set base = base _ sep :>
   <p class="pagination">
     Page <:= pages.page :> of <:= pages.pagecount :>
-    <:.if pages.previous_page -:>
+    <:-.if pages.previous_page:>
     <a href="<:= base |html:><:= pages.pname | uri :>=1&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">|←</a>
     <a href="<:= base |html:><:= pages.pname | uri :>=<:= pages.previous_page |uri:>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">←</a>
-    <:.else -:>
+    <:-.else:>
     <span class="disabled">|←</span>
     <span class="disabled">←</span>
-    <:.end if -:>
+    <:-.end if:>
     <:.for p in pcats.pages :>
     <:.if p.link -:>
-    <a href="<:= base |html :><:= pages.pname | uri:>=<:= p.page | uri :>&amp;<:=pages.ppname | uri :>=<:= pages.pp | uri :>"><:= p.page |html :></a>
-    <:.else -:>
+    <a href="<:= base |html:><:= pages.pname | uri:>=<:= p.page | uri :>&amp;<:=pages.ppname | uri :>=<:= pages.pp | uri :>"><:= p.page |html:></a>
+    <:-.else:>
     <span class="disabled"><:= p.page |html:></span>
-    <:.end if -:>
-    <:.end for:>
-    <:.if pages.next_page -:>
+    <:-.end if:>
+    <:-.end for:>
+    <:-.if pages.next_page:>
     <a href="<:= base |html:><:= pages.pname | uri :>=<:= pages.next_page |uri:>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">→</a>
     <a href="<:= base |html:><:= pages.pname | uri :>=<:= pages.pagecount |uri:>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">→|</a>
-    <:.else -:>
+    <:-.else:>
     <span class="disabled">→</span>
     <span class="disabled">→|</span>
-    <:.end if -:>
+    <:-.end if:>
   </p>
 <:-.end define:>
  
