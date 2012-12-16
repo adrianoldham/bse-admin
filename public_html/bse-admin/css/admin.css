@@ -2164,6 +2164,14 @@ h1:first-child + *[data-role=toolbar],
     background-image: url(/bse-admin/images/buttons/reports.svg);
 }
 
+*[data-icon=next]:before {
+    background-image: url(/bse-admin/images/buttons/next.svg);
+}
+
+*[data-icon=previous]:before {
+    background-image: url(/bse-admin/images/buttons/previous.svg);
+}
+
 /* @end */
 
 /* @end */

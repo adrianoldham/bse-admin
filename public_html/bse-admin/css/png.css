@@ -98,6 +98,14 @@ ul.menu > li ul li.active.parent > a {
     background-image: url(/bse-admin/images/buttons/reports.png);
 }
 
+*[data-icon=next]:before {
+    background-image: url(/bse-admin/images/buttons/next.png);
+}
+
+*[data-icon=previous]:before {
+    background-image: url(/bse-admin/images/buttons/previous.png);
+}
+
 /* @end */
 
 /* @group launchpad */
