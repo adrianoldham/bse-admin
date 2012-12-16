@@ -1,7 +1,7 @@
 /* @group navbar */
 
 ul.menu > li ul li.parent > a {
-    background: transparent url(/bse-admin/images/widgets/arrow.png) no-repeat right 50%;
+    background-image: url(/bse-admin/images/widgets/arrow.png);
 }
 
 ul.menu > li ul li.hover.parent > a,
