@@ -1626,7 +1626,7 @@ ul.menu li {
     position: relative;
     white-space: nowrap;
     text-align: left;
-    z-index: 1;
+    z-index: 2;
 }
 
 ul.menu li li {
@@ -1762,7 +1762,7 @@ ul.menu li.disabled span {
 
 *[data-role=navbar] {
     position: fixed;
-    z-index: 2;
+    z-index: 5;
     top: 0;
     width: 100%;
 }
@@ -1812,7 +1812,6 @@ ul.menu.global > li > ul {
 ul.menu.context,
 ul.menu.context > li {
     float: left;
-    z-index: 1;
 }
 
 ul.menu.context > li > ul {
