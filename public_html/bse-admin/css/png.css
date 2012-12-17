@@ -9,6 +9,9 @@ ul.menu > li ul li.active.parent > a {
     background-image: url(/bse-admin/images/widgets/arrow-white.png);
 }
 
+ul.menu.header > li > a {
+    background-image: url(/bse-admin/images/widgets/caret.png);
+}
 
 /* @end */
 

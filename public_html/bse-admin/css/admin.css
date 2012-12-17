@@ -1821,6 +1821,35 @@ ul.menu.context > li > ul {
 
 /* @end */
 
+/* @group header */
+
+ul.menu.header,
+ul.menu.header > li {
+    text-align: center;    
+    display: inline;
+    position: relative;
+    z-index: 3;
+}
+
+ul.menu.header > li > ul {
+    top: -0.75em;
+}
+
+ul.menu.header > li > a {
+    padding: 0 1em;
+    background: url(/bse-admin/images/widgets/caret.svg) no-repeat 100% 50%;
+    -webkit-background-size: 1em;
+    -moz-background-size: 1em;
+    -o-background-size: 1em;
+    background-size: 1em;
+}
+
+ul.menu.header > li.active > a {
+    color: #333 !important;
+}
+
+/* @end */
+
 /* @group divider */
 
 ul.menu li.divider {
