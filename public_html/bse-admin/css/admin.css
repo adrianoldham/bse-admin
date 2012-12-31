@@ -1663,6 +1663,7 @@ ul.menu li li ul {
 }
 
 ul.menu li li:hover,
+ul.menu li li.hover,
 ul.menu.global li.active,
 ul.menu li li.active {
     background-color: #00adee;
@@ -1716,6 +1717,7 @@ ul.menu > li li > span {
 }
 
 ul.menu > li li:hover > a,
+ul.menu > li li.hover > a,
 ul.menu > li li.active > a {
     color: #fff !important;
 }
@@ -1730,6 +1732,7 @@ ul.menu > li ul li.parent > a {
 }
 
 ul.menu > li ul li:hover.parent > a,
+ul.menu > li ul li.hover.parent > a,
 ul.menu > li ul li.active.parent > a {
     background-image: url(/bse-admin/images/widgets/arrow-white.svg);
 }
