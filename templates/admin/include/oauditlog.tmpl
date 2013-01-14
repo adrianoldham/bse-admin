@@ -1,0 +1,22 @@
+  <fieldset>
+    <legend><:= title |html:></legend>
+    <table class="list full">
+      <thead>
+        <:include admin/log/head.tmpl:>
+      </thead>
+      <tbody>
+        <:-.for auditentry in log:>
+        <tr class="audit<:= auditentry.level |html:>">
+          <td><:= bse.date("%d-%b-%Y / %r", auditentry.when_at) |html:></td>
+          <td><:= auditentry.level_name |html:></td>
+          <td><:= auditentry.msg |html:></td>
+          <td class="actions">
+            <:-.if request.user_can("bse_log_detail"):>
+            <a href="<:= cfg.admin_url2("log", "detail", { "id":auditentry.id, "referer":1 }) |html:>" class="button gray small">Details</a>
+            <:-.end if:>
+          </td>
+        </tr>
+        <:-.end for:>
+      </tbody>
+    </table>
+  </fieldset>
