@@ -1,25 +1,59 @@
+<:# define globals :>
+<:-.set autofocus = 0 -:>
+<:-.set required = 0 -:>
+<:-.set groups = 0 -:>
+<:-.set grouplabel = "label" -:>
+<:-.set groupid = "id" -:>
+<:-.set itemgroupid = "groupid" -:>
+
 <:# utility definitions :>
 <:-.define make_select -:>
-  <:-.if !default.defined -:>
-  <:-.set default = "" -:>
-  <:-.end if -:>
-  <select name="<:= name :>" id="<:= name :>"
-    <:-.if required.defined :> required="required"<:.end if -:>
-    >
-    <:-.for i in list:>
-    <option value="<:= i[id] |html :>"
-      <:-.if i[id] eq default :> selected="selected"<:.end if -:>
-    >
-    <:-= i[desc] | html -:>
-    </option>
-    <:-.end for:>
-  </select>
+          <:-.if !default.defined:>
+          <:-.set default = "" :>
+          <:-.end if:>
+          <select name="<:= name :>" id="<:= name |html:>"
+            <:-= autofocus ? ' autofocus="autofocus"' : '' -:>
+            <:-= required ? ' required="required"' : '' -:>
+            <:-= request.field_errors.$name ? ' class="error"' : '' -:>
+          >
+          <:-.if groups:>
+            <:-.for i in list:>
+            <:-.if i.$itemgroupid eq "" :>
+            <option value="<:= i.$id |html:>"
+              <:-= i.$id eq default ? ' selected="selected"' : '' -:>
+            >
+              <:-= i.$desc |html -:>
+            </option>
+            <:-.end if:>
+            <:-.end for:>
+            <:-.for g in groups:>
+            <optgroup label="<:= g.$grouplabel |html:>">
+              <:-.for i in list:>
+              <:-.if i.$itemgroupid == g.$groupid :>
+              <option value="<:= i.$id |html:>"
+                <:-= i.$id eq default ? ' selected="selected"' : '' -:>
+              >
+                <:-= i.$desc |html -:>
+              </option>
+              <:-.end if:>
+              <:-.end for:>
+            </optgroup>
+            <:-.end for:>
+          <:-.else:>
+            <:-.for i in list:>
+            <option value="<:= i.$id |html:>"
+              <:-= i.$id eq default ? ' selected="selected"' : '' -:>
+            >
+              <:-= i.$desc |html -:>
+            </option>
+            <:-.end for:>
+          <:-.end if:>
+          </select>
 <:-.end define:>
 
-<:#
-page_list expects:
-base - base url for links
-pages - the result of the bse.pages call
+<:# paramaters:
+  base - base url for links
+  pages - the result of the bse.pages call
 :>
 <:-.define page_list -:>
 <:-.set sep = base =~ /\?/ ? "&" : "?" :>
@@ -33,8 +67,8 @@ pages - the result of the bse.pages call
     <span class="disabled">|←</span>
     <span class="disabled">←</span>
     <:-.end if:>
-    <:.for p in pcats.pages :>
-    <:.if p.link -:>
+    <:-.for p in pcats.pages:>
+    <:-.if p.link:>
     <a href="<:= base |html:><:= pages.pname | uri:>=<:= p.page | uri :>&amp;<:=pages.ppname | uri :>=<:= pages.pp | uri :>"><:= p.page |html:></a>
     <:-.else:>
     <span class="disabled"><:= p.page |html:></span>
@@ -52,15 +86,121 @@ pages - the result of the bse.pages call
  
 <:# parameters: field, default :>
 <:-.define old -:>
-<:.if cgi.param(field).defined -:>
-<:= cgi.param(field) -:>
-<:.else -:>
-<:= default | html -:>
-<:.end if -:>
+<:-.if cgi.param(field).defined:>
+  <:-= cgi.param(field) :>
+<:-.else:>
+  <:-= default |html:>
+<:-.end if:>
 <:-.end define:>
- 
+
 <:# parameters: field :>
 <:# this implementation should probably change :>
 <:-.define error_img -:>
-<:= ("error_img " _ field).evaltag -:>
+<:-= ("error_img " _ field).evaltag :>
 <:-.end define:>
+
+<:-.define required_indicator -:>
+<:.-if f.required:>
+<span class="required">*</span>
+<:-.end if:>
+<:-.end define:>
+
+<:# paramaters:
+  name - field name
+  fields - hash of fields (may be set by page instead)
+  object - source for defaults in edit mode
+:>
+<:-.define input :>
+    <:-.set f = fields[name] :>
+
+    <:-.if object:>
+      <:-.set default = object.get(name) :>
+    <:-.elsif f.default :>
+      <:-.set default = f.default:>
+    <:-.else:>
+      <:-.set default = "" :>
+    <:-.end if:>
+
+    <:-.if f.type and f.type eq "date" and default ne "" :>
+      <:-.set default = default.replace(/(\d+)\D+(\d+)\D+(\d+)/, "$3/$2/$1") :>
+    <:-.elsif f.type and f.type eq "time" and default ne "":>
+      <:-.set default = bse.date(default =~ /:00$/ ? "%I:%M%p" : "%I:%M:%S%p", default).replace(/^0/, "").lower:>
+    <:-.end if:>
+
+    <:-.if cgi.param(name).defined:>
+      <:-.set default = cgi.param(name) :>
+    <:-.end if:>
+
+          <:-.if f.htmltype eq "textarea":>
+          <textarea name="<:= name |html:>" id="<:= name |html:>" rows="<:= f.height ? f.height : cfg.entry("forms", "textarea_rows", 10) :>" cols=<:= f.width ? f.width : cfg.entry("textarea_cols", 60) |html:>
+            <:-= f.required ? ' required="required"' : '' :>
+            <:-= autofocus ? ' autofocus="autofocus"' : '' :>
+            <:-= request.field_errors.$name ? ' class="error"' : '' -:>
+          >
+            <:-= default |html -:>
+          </textarea>
+          <:-.elsif f.htmltype eq "checkbox":>
+          <:-.set is_checked = request.method() eq 'post' ? cgi.param(name).defined : default :>
+          <input type="checkbox" name="<:= name |html:>" id="<:= name |html:>" value="<:= f.value ? f.value : 1 |html:>"
+            <:-= is_checked ? ' checked="checked"' : '' -:>
+            <:-= f.required ? ' required="required"' : '' :> />
+          <:-.elsif f.htmltype eq "select":>
+          <:-.set values = f.select["values"] :>
+          <:-.set values = values.is_code ? values() : values :>
+          <:-.call "make_select",
+            "name":name,
+            "default":default,
+            "list":values,
+            "id":f.select.id,
+            "desc":f.select.label,
+            "required":f.required,
+            "autofocus":autofocus,
+            "groupid": (f.select.groupid or "id"),
+            "itemgroupid": (f.select.itemgroupid or "groupid"),
+            "groups": f.select.groups ? (f.select.groups.is_code ? (f.select.groups)() : f.select.groups ) : 0,
+            "grouplabel": (f.select.grouplabel or "label")
+          :>
+          <:-.else:>
+          <input type="text" name="<:= name |html:>" id="<:= name |html:>" value="<:= default |html:>"
+            <:-= f.maxlength ? ' maxlength="' _ f.maxlength _ '"' : '' :>
+            <:-= f.required ? ' required="required"' : '' :>
+            <:-= autofocus ? ' autofocus="autofocus"' : '' :>
+            <:-= f.width ? ' size="' _ f.width _ '"' : '' :>
+            <:-= request.field_errors.$name ? ' class="error"' : '' :> />
+          <:-.end if:>
+<:-.end define:>
+
+<:# paramaters:
+  name - field name
+  fields - hash of fields (may be set by page instead)
+:>
+<:-.define field -:>
+      <:-.set f = fields[name] :>
+      <div>
+        <label for="<:= name |html:>">
+          <:-= f.nolabel ? '' : f.description |html:>
+          <:-= f.required ? ' <span class="required">*</span>' : '' :>
+          <:-.call "error_img", "field":name -:>
+        </label>
+        <span>
+          <:-.call "input", "name":name :>
+          <:-.if f.units:>
+          <:-= f.units |html:>
+          <:-.end if:>
+        </span>
+      </div>
+<:-.end define:>
+
+<:-.define messages -:>
+    <:-.if request.messages.size:>
+    <div id="message">
+      <:-.for m in request.messages:>
+      <div class="message <:= m.class :> <:-= m.class eq 'error' ? ' red' : ' green' :>">
+        <:-= m.html -:>
+      </div>
+      <:-.end for:> 
+    </div>
+    <:-.end if:>
+<:-.end define:>
+
+<:- include includes/custom/preload.tmpl optional -:>
