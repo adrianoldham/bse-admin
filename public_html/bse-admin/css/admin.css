@@ -2220,6 +2220,10 @@ h1:first-child + *[data-role=toolbar],
     background-image: url(/bse-admin/images/buttons/help.svg);
 }
 
+*[data-icon=source]:before {
+    background-image: url(/bse-admin/images/buttons/source.svg);
+}
+
 /* @end */
 
 /* @end */

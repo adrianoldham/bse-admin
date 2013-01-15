@@ -117,6 +117,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/help.png);
 }
 
+*[data-icon=source]:before {
+    background-image: url(/bse-admin/images/buttons/source.png);
+}
+
 /* @end */
 
 /* @group launchpad */
