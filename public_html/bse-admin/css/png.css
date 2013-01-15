@@ -109,6 +109,14 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/previous.png);
 }
 
+*[data-icon=info]:before {
+    background-image: url(/bse-admin/images/buttons/info.png);
+}
+ 
+*[data-icon=help]:before {
+    background-image: url(/bse-admin/images/buttons/help.png);
+}
+
 /* @end */
 
 /* @group launchpad */
