@@ -121,6 +121,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/source.png);
 }
 
+*[data-icon=children]:before {
+    background-image: url(/bse-admin/images/buttons/children.png);
+}
+
 /* @end */
 
 /* @group launchpad */
@@ -179,6 +183,10 @@ ul.menu.header > li > a {
 
 .launchpad *[data-icon=reports]:before {
     background-image: url(/bse-admin/images/launcher/reports.png);
+}
+
+.launchpad *[data-icon=children]:before {
+    background-image: url(/bse-admin/images/launcher/children.png);
 }
 
 /* @end */
