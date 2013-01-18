@@ -129,6 +129,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/trash.png);
 }
 
+*[data-icon=timetables]:before {
+    background-image: url(/bse-admin/images/buttons/timetables.png);
+}
+
 /* @end */
 
 /* @group launchpad */
@@ -191,6 +195,10 @@ ul.menu.header > li > a {
 
 .launchpad *[data-icon=children]:before {
     background-image: url(/bse-admin/images/launcher/children.png);
+}
+
+.launchpad *[data-icon=timetables]:before {
+    background-image: url(/bse-admin/images/launcher/timetables.png);
 }
 
 /* @end */

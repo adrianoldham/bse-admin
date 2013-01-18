@@ -2232,6 +2232,10 @@ h1:first-child + *[data-role=toolbar],
     background-image: url(/bse-admin/images/buttons/trash.svg);
 }
 
+*[data-icon=timetables]:before {
+    background-image: url(/bse-admin/images/buttons/timetables.svg);
+}
+
 /* @end */
 
 /* @end */
