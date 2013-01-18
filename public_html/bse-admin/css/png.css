@@ -125,6 +125,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/children.png);
 }
 
+*[data-icon=trash]:before {
+    background-image: url(/bse-admin/images/buttons/trash.png);
+}
+
 /* @end */
 
 /* @group launchpad */
