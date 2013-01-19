@@ -66,7 +66,7 @@ var FormMonitor = Class.create({
     defaults: function() {
         return Object.extend({}, {
             inputs: "input:not([type=hidden]), select, textarea",
-            submits: "input[type=submit]",
+            submits: "[type=submit]",
             typemap: FormMonitorElements,
             onchanged: null,
             onsubmit: null
