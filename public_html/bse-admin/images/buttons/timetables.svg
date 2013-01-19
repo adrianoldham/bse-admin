@@ -3,18 +3,18 @@
 <svg version="1.1" baseProfile="basic" id="Button_Icons"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
 	 viewBox="0 0 24 15" xml:space="preserve">
-<g id="Button_Icons_1_">
+<g>
 	<g>
-		<path id="timetable_2_" fill="#FFFFFF" d="M4,2.75v12h15v-12H4z M18,13.75H5v-10h13V13.75z M11,6.75H9v-2h2V6.75z M14,6.75h-2v-2
+		<path fill="#FFFFFF" d="M4,2.75v12h15v-12H4z M18,13.75H5v-10h13V13.75z M11,6.75H9v-2h2V6.75z M14,6.75h-2v-2
 			h2V6.75z M17,6.75h-2v-2h2V6.75z M8,9.75H6v-2h2V9.75z M11,9.75H9v-2h2V9.75z M14,9.75h-2v-2h2V9.75z M17,9.75h-2v-2h2V9.75z
 			 M8,12.75H6v-2h2V12.75z M11,12.75H9v-2h2V12.75z M14,12.75h-2v-2h2V12.75z"/>
 	</g>
 	<g>
-		<linearGradient id="timetable_3_" gradientUnits="userSpaceOnUse" x1="11.5005" y1="14" x2="11.5005" y2="2.0005">
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="11.5005" y1="14" x2="11.5005" y2="2.0005">
 			<stop  offset="0" style="stop-color:#7A7B7B"/>
 			<stop  offset="1" style="stop-color:#404040"/>
 		</linearGradient>
-		<path id="timetable_1_" fill="url(#timetable_3_)" d="M4,2v12h15V2H4z M18,13H5V3h13V13z M11,6H9V4h2V6z M14,6h-2V4h2V6z M17,6h-2
+		<path fill="url(#SVGID_1_)" d="M4,2v12h15V2H4z M18,13H5V3h13V13z M11,6H9V4h2V6z M14,6h-2V4h2V6z M17,6h-2
 			V4h2V6z M8,9H6V7h2V9z M11,9H9V7h2V9z M14,9h-2V7h2V9z M17,9h-2V7h2V9z M8,12H6v-2h2V12z M11,12H9v-2h2V12z M14,12h-2v-2h2V12z"/>
 	</g>
 </g>
