@@ -2092,7 +2092,7 @@ h1:first-child + *[data-role=toolbar],
 
 /* @group button icons */
 
-*[data-icon=delete] {
+nav *[data-icon=delete]:last-child {
     float: right !important;
     margin-right: 0;
 }
@@ -2274,6 +2274,10 @@ h1:first-child + *[data-role=toolbar],
 
 *[data-icon=versions]:before {
     background-image: url(/bse-admin/images/buttons/versions.svg);
+}
+
+*[data-icon=redirect]:before {
+    background-image: url(/bse-admin/images/buttons/redirect.svg);
 }
 
 /* @end */

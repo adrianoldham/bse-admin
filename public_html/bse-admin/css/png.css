@@ -173,6 +173,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/versions.png);
 }
 
+*[data-icon=redirect]:before {
+    background-image: url(/bse-admin/images/buttons/redirect.png);
+}
+
 /* @end */
 
 /* @group launchpad */
