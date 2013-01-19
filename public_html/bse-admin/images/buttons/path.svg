@@ -3,18 +3,18 @@
 <svg version="1.1" baseProfile="basic" id="Button_Icons"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
 	 viewBox="0 0 24 15" xml:space="preserve">
-<g>
+<g id="Button_Icons_1_">
 	<g>
-		<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFDFD" d="M6,4.75H5v-1h1V4.75z M15,3.75H7v1h8V3.75z M7,6.753H6v1h1V6.753
-			z M16,6.753H8v1h8V6.753z M8,9.752H7v1h1V9.752z M17,9.752H9v1h8V9.752z M9,12.751H8v1h1V12.751z M18,12.751h-8v1h8V12.751z"/>
+		<path fill="#FFFFFF" d="M6,4.75H5v-1h1V4.75z M15,3.75H7v1h8V3.75z M7,6.75H6v1h1V6.75z M16,6.75H8v1h8V6.75z
+			 M8,9.75H7v1h1V9.75z M17,9.75H9v1h8V9.75z M9,12.75H8v1h1V12.75z M18,12.75h-8v1h8V12.75z"/>
 	</g>
 	<g>
-		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="11.5005" y1="13.001" x2="11.5005" y2="3.001">
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="11.5005" y1="13" x2="11.5005" y2="3.0005">
 			<stop  offset="0" style="stop-color:#7A7B7B"/>
 			<stop  offset="1" style="stop-color:#404040"/>
 		</linearGradient>
-		<path fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" d="M6,4H5V3h1V4z M15,3H7v1h8V3z M7,6.003H6v1h1V6.003z
-			 M16,6.003H8v1h8V6.003z M8,9.002H7v1h1V9.002z M17,9.002H9v1h8V9.002z M9,12.001H8v1h1V12.001z M18,12.001h-8v1h8V12.001z"/>
+		<path fill="url(#SVGID_1_)" d="M6,4H5V3h1V4z M15,3H7v1h8V3z M7,6H6v1h1V6z M16,6H8v1h8V6z M8,9H7v1h1V9z M17,9H9v1h8
+			V9z M9,12H8v1h1V12z M18,12h-8v1h8V12z"/>
 	</g>
 </g>
 </svg>
