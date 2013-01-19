@@ -2248,6 +2248,22 @@ h1:first-child + *[data-role=toolbar],
     background-image: url(/bse-admin/images/buttons/cross.svg);
 }
 
+*[data-icon=left]:before {
+    background-image: url(/bse-admin/images/buttons/left.svg);
+}
+
+*[data-icon=right]:before {
+    background-image: url(/bse-admin/images/buttons/right.svg);
+}
+
+*[data-icon=up]:before {
+    background-image: url(/bse-admin/images/buttons/up.svg);
+}
+
+*[data-icon=down]:before {
+    background-image: url(/bse-admin/images/buttons/down.svg);
+}
+
 /* @end */
 
 /* @end */
