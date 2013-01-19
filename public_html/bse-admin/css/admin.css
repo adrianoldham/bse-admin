@@ -2168,6 +2168,10 @@ h1:first-child + *[data-role=toolbar],
     background-image: url(/bse-admin/images/buttons/add.svg);
 }
 
+*[data-icon=subtract]:before {
+    background-image: url(/bse-admin/images/buttons/subtract.svg);
+}
+
 *[data-icon=images]:before {
     background-image: url(/bse-admin/images/buttons/images.svg);
 }

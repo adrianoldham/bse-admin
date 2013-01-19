@@ -65,6 +65,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/add.png);
 }
 
+*[data-icon=subtract]:before {
+    background-image: url(/bse-admin/images/buttons/subtract.png);
+}
+
 *[data-icon=images]:before {
     background-image: url(/bse-admin/images/buttons/images.png);
 }
