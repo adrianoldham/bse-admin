@@ -2240,6 +2240,14 @@ h1:first-child + *[data-role=toolbar],
     background-image: url(/bse-admin/images/buttons/alert.svg);
 }
 
+*[data-icon=tick]:before {
+    background-image: url(/bse-admin/images/buttons/tick.svg);
+}
+
+*[data-icon=cross]:before {
+    background-image: url(/bse-admin/images/buttons/cross.svg);
+}
+
 /* @end */
 
 /* @end */

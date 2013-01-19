@@ -137,6 +137,14 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/alert.png);
 }
 
+*[data-icon=tick]:before {
+    background-image: url(/bse-admin/images/buttons/tick.png);
+}
+
+*[data-icon=cross]:before {
+    background-image: url(/bse-admin/images/buttons/cross.png);
+}
+
 /* @end */
 
 /* @group launchpad */
