@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Button_Icons"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
+	 viewBox="0 0 24 15" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#FFFFFF" d="M18.928,12.975L12.427,1.997C12.336,1.844,12.175,1.75,12,1.75h0
+			c-0.175,0-0.336,0.093-0.427,0.244L5.073,12.973c-0.094,0.158-0.098,0.355-0.009,0.517S5.319,13.75,5.5,13.75h13
+			c0.181,0,0.347-0.1,0.436-0.261C19.024,13.329,19.021,13.133,18.928,12.975z M12,12.75c-0.553,0-1-0.447-1-1s0.447-1,1-1
+			s1,0.447,1,1S12.553,12.75,12,12.75z M12.75,9.75h-1.5l-0.25-5h2L12.75,9.75z"/>
+	</g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="12.0005" y1="13" x2="12.0005" y2="1.0005">
+			<stop  offset="0" style="stop-color:#7A7B7B"/>
+			<stop  offset="1" style="stop-color:#404040"/>
+		</linearGradient>
+		<path fill="url(#SVGID_1_)" d="M18.928,12.225L12.427,1.247C12.336,1.094,12.175,1,12,1h0
+			c-0.175,0-0.336,0.093-0.427,0.244L5.073,12.223c-0.094,0.158-0.098,0.355-0.009,0.517S5.319,13,5.5,13h13
+			c0.181,0,0.347-0.1,0.436-0.261C19.024,12.579,19.021,12.383,18.928,12.225z M12,12c-0.553,0-1-0.447-1-1s0.447-1,1-1s1,0.447,1,1
+			S12.553,12,12,12z M12.75,9h-1.5L11,4h2L12.75,9z"/>
+	</g>
+</g>
+</svg>

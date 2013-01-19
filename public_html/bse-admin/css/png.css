@@ -133,6 +133,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/timetables.png);
 }
 
+*[data-icon=alert]:before {
+    background-image: url(/bse-admin/images/buttons/alert.png);
+}
+
 /* @end */
 
 /* @group launchpad */
