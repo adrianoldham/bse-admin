@@ -5,14 +5,14 @@
 	 viewBox="0 0 24 15" xml:space="preserve">
 <g>
 	<g>
-		<polygon fill="#FFFFFF" points="16,2.75 18,4.75 9,13.75 4.516,9.266 6.516,7.266 9,9.75 		"/>
+		<polygon fill="#FFFFFF" points="17,2.75 19,4.75 10,13.75 5.516,9.266 7.516,7.266 10,9.75 		"/>
 	</g>
 	<g>
-		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="11.2583" y1="13" x2="11.2583" y2="2.0005">
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="12.2583" y1="13" x2="12.2583" y2="2.0005">
 			<stop  offset="0" style="stop-color:#7A7B7B"/>
 			<stop  offset="1" style="stop-color:#404040"/>
 		</linearGradient>
-		<polygon fill="url(#SVGID_1_)" points="16,2 18,4 9,13 4.516,8.516 6.516,6.516 9,9 		"/>
+		<polygon fill="url(#SVGID_1_)" points="17,2 19,4 10,13 5.516,8.516 7.516,6.516 10,9 		"/>
 	</g>
 </g>
 </svg>
