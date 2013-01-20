@@ -2280,6 +2280,10 @@ nav *[data-icon=delete]:last-child {
     background-image: url(/bse-admin/images/buttons/redirect.svg);
 }
 
+*[data-icon=close]:before {
+    background-image: url(/bse-admin/images/buttons/close.svg);
+}
+
 /* @end */
 
 /* @end */
