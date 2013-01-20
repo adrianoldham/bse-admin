@@ -181,6 +181,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/close.png);
 }
 
+*[data-icon=stop]:before {
+    background-image: url(/bse-admin/images/buttons/stop.png);
+}
+
 /* @end */
 
 /* @group launchpad */
