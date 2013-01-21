@@ -189,6 +189,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/filter.png);
 }
 
+*[data-icon=tag]:before {
+    background-image: url(/bse-admin/images/buttons/tag.png);
+}
+
 /* @end */
 
 /* @group launchpad */
