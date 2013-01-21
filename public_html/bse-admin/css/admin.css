@@ -2296,6 +2296,10 @@ nav *[data-icon=delete]:last-child {
     background-image: url(/bse-admin/images/buttons/tag.svg);
 }
 
+*[data-icon=mail]:before {
+    background-image: url(/bse-admin/images/buttons/mail.svg);
+}
+
 /* @end */
 
 /* @end */

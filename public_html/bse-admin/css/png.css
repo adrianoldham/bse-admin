@@ -193,6 +193,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/tag.png);
 }
 
+*[data-icon=mail]:before {
+    background-image: url(/bse-admin/images/buttons/mail.png);
+}
+
 /* @end */
 
 /* @group launchpad */
