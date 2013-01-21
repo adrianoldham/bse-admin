@@ -2288,6 +2288,10 @@ nav *[data-icon=delete]:last-child {
     background-image: url(/bse-admin/images/buttons/stop.svg);
 }
 
+*[data-icon=filter]:before {
+    background-image: url(/bse-admin/images/buttons/filter.svg);
+}
+
 /* @end */
 
 /* @end */

@@ -185,6 +185,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/stop.png);
 }
 
+*[data-icon=filter]:before {
+    background-image: url(/bse-admin/images/buttons/filter.png);
+}
+
 /* @end */
 
 /* @group launchpad */
