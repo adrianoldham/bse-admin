@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Button_Icons"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
+	 viewBox="0 0 24 15" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#FFFFFF" d="M4,6.75v4h4v4h1.5l2.5-2l2,2h4l3-13L4,6.75z M9.5,12.75v-2H10l1,1L9.5,12.75z M16,12.75h-1
+			l-3.5-3.5l6.5-5l-9,4.5H6v-1l13.5-4.5L16,12.75z"/>
+	</g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="12.5005" y1="14" x2="12.5005" y2="1.0005">
+			<stop  offset="0" style="stop-color:#7A7B7B"/>
+			<stop  offset="1" style="stop-color:#404040"/>
+		</linearGradient>
+		<path fill="url(#SVGID_1_)" d="M4,6v4h4v4h1.5l2.5-2l2,2h4l3-13L4,6z M9.5,12v-2H10l1,1L9.5,12z M16,12h-1l-3.5-3.5
+			l6.5-5L9,8H6V7l13.5-4.5L16,12z"/>
+	</g>
+</g>
+</svg>

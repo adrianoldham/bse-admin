@@ -197,6 +197,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/mail.png);
 }
 
+*[data-icon=send]:before {
+    background-image: url(/bse-admin/images/buttons/send.png);
+}
+
 /* @end */
 
 /* @group launchpad */
