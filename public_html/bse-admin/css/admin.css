@@ -2180,8 +2180,8 @@ nav *[data-icon=delete]:last-child {
     background-image: url(/bse-admin/images/buttons/files.svg);
 }
 
-*[data-icon=article]:before {
-    background-image: url(/bse-admin/images/buttons/article.svg);
+*[data-icon=star]:before {
+    background-image: url(/bse-admin/images/buttons/star.svg);
 }
 
 *[data-icon=load]:before {

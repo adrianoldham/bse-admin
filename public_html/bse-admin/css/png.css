@@ -77,8 +77,8 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/files.png);
 }
 
-*[data-icon=article]:before {
-    background-image: url(/bse-admin/images/buttons/article.png);
+*[data-icon=star]:before {
+    background-image: url(/bse-admin/images/buttons/star.png);
 }
 
 *[data-icon=load]:before {
