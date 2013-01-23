@@ -5,16 +5,16 @@
 	 viewBox="0 0 24 15" xml:space="preserve">
 <g>
 	<g>
-		<path fill="#FFFFFF" d="M4,6.75v4h4v4h1.5l2.5-2l2,2h4l3-13L4,6.75z M9.5,12.75v-2H10l1,1L9.5,12.75z M16,12.75h-1
-			l-3.5-3.5l6.5-5l-9,4.5H6v-1l13.5-4.5L16,12.75z"/>
+		<path fill="#FFFFFF" d="M4,6.75v4h4v4h1.5l2.5-2l1,1h3.5l4.5-12L4,6.75z M9.5,12.75v-2H10l1,1L9.5,12.75z M15,11.75
+			h-1l-3-2.5l7-5l-9,4.5H6v-1l13.5-4.5L15,11.75z"/>
 	</g>
 	<g>
 		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="12.5005" y1="14" x2="12.5005" y2="1.0005">
 			<stop  offset="0" style="stop-color:#7A7B7B"/>
 			<stop  offset="1" style="stop-color:#404040"/>
 		</linearGradient>
-		<path fill="url(#SVGID_1_)" d="M4,6v4h4v4h1.5l2.5-2l2,2h4l3-13L4,6z M9.5,12v-2H10l1,1L9.5,12z M16,12h-1l-3.5-3.5
-			l6.5-5L9,8H6V7l13.5-4.5L16,12z"/>
+		<path fill="url(#SVGID_1_)" d="M4,6v4h4v4h1.5l2.5-2l1,1h3.5L21,1L4,6z M9.5,12v-2H10l1,1L9.5,12z M15,11h-1l-3-2.5
+			l7-5L9,8H6V7l13.5-4.5L15,11z"/>
 	</g>
 </g>
 </svg>
