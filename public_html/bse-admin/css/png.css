@@ -125,8 +125,8 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/source.png);
 }
 
-*[data-icon=children]:before {
-    background-image: url(/bse-admin/images/buttons/children.png);
+*[data-icon=list]:before {
+    background-image: url(/bse-admin/images/buttons/list.png);
 }
 
 *[data-icon=trash]:before {
