@@ -34,6 +34,7 @@
     <:- if UserCan bse_reports_list:>
     <a href="<:adminurl report:>" accesskey="n" title="AccessKey = n" data-icon="reports" class="button white">Reports</a>
     <:- eif UserCan:>
+    <:- include admin/include/menu_custom.tmpl optional:>
     <a href="<:adminurl add _t load referer 1:>" accesskey="1" title="AccessKey = 1" data-icon="load" class="button white">Load Article…</a>
     <:- if UserCan bse_members_user_view:>
     <a href="<:adminurl siteusers _t load referer 1:>" accesskey="2" title="AccessKey = 2" data-icon="load" class="button white">Load User…</a>
