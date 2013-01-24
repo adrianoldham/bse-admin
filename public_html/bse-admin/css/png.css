@@ -197,6 +197,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/mail.png);
 }
 
+*[data-icon=refresh]:before {
+    background-image: url(/bse-admin/images/buttons/refresh.png);
+}
+
 *[data-icon=send]:before {
     background-image: url(/bse-admin/images/buttons/send.png);
 }

@@ -2300,6 +2300,10 @@ nav *[data-icon=delete]:last-child {
     background-image: url(/bse-admin/images/buttons/mail.svg);
 }
 
+*[data-icon=refresh]:before {
+    background-image: url(/bse-admin/images/buttons/refresh.svg);
+}
+
 *[data-icon=send]:before {
     background-image: url(/bse-admin/images/buttons/send.svg);
 }
