@@ -265,8 +265,8 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/launcher/reports.png);
 }
 
-.launchpad *[data-icon=children]:before {
-    background-image: url(/bse-admin/images/launcher/children.png);
+.launchpad *[data-icon=list]:before {
+    background-image: url(/bse-admin/images/launcher/list.png);
 }
 
 .launchpad *[data-icon=timetables]:before {
