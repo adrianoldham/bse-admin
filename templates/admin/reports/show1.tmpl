@@ -4,10 +4,18 @@
     <h1><:param title:></h1>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <nav data-role="toolbar">
-      <:- if Report has_params:>
-      <a href="<:script:>?s_prompt=1&amp;r=<:report id:>&amp;referer=1" class="button">Arguments</a>
-      <:- or Report:><:eif Report:>
-      <a href="<:adminurl2 report show r [report id] type csv:>&amp;<:repparams url:>" class="button">Download CSV</a>
+      <ul class="menu context">
+        <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:- if Report has_params:>
+            <li><a href="<:adminurl2 report prompt r [report id]:>&amp;<:repparams url:>&amp;referer=1" accesskey="a" title="AccessKey = a">Change Report Arguments…</a></li>
+            <li class="divider"></li>
+            <:- or Report:><:eif Report:>
+            <li><a href="<:adminurl2 report show r [report id] type csv:>&amp;<:repparams url:>" accesskey="d" title="AccessKey = d">Export Report Data…</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a href="<:adminurl report:>" data-icon="back" data-icon-only="true" class="button">Back</a>
     </nav>
   </header>
   <:- if Sort_select others:>
