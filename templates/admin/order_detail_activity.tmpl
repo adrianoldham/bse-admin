@@ -1,0 +1,39 @@
+<:wrap admin/base.tmpl title=>"Order Activity" :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+    <nav data-role="toolbar">
+      <a href="<:adminurl2 shopadmin order_list:>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <span data-role="controlgroup">
+        <a href="<:adminurl2 shopadmin order_detail id [order id]:>" class="button <:cond [ifEq [cgi _t] ""] selected:>">Order</a>
+        <:- if UserCan bse_log_list:>
+        <a href="<:adminurl2 shopadmin order_detail id [order id] _t activity:>" class="button <:cond [ifEq [cgi _t] activity] selected:>">Activity</a>
+        <:- or UserCan:><:eif UserCan:>
+      </span>
+    </nav>
+  </header>
+  <:- if Auditlog object_id [order id] object_type BSE::TB::Order:>
+  <fieldset>
+    <legend>Audit Log</legend>
+    <table class="list full">
+      <thead>
+<:include admin/log/head.tmpl:>
+      </thead>
+      <tbody>
+      <:- iterator begin auditlog object_id [order id] object_type BSE::TB::Order:>
+<:include admin/log/data.tmpl:>
+      <:- iterator end auditlog:>
+      </tbody>
+    </table>
+  </fieldset>
+  <:- or Auditlog:>
+    <fieldset>
+    <legend>Activity Log</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" /></p>
+      <p>No recent order activity to display</p>
+    </div>
+  </fieldset>
+  <:- eif Auditlog:>
+</div>
