@@ -4,8 +4,19 @@
     <h1><:param title:></h1>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <nav data-role="toolbar">
-      <a href="<:script:>?a_tags=1&amp;id=-1<:ifCgi showarts:><:or:>&amp;showarts=1<:eif:>&amp;cat=<:cgi cat:>&amp;p=<:systags_pagenum:>&amp;pp=<:systags_perpage:><:ifCgi nocat:>&amp;nocat=1<:or:><:eif:>" data-icon="preview" class="button"><:ifCgi showarts:>Hide<:or:>Show<:eif:> articles</a>
-      <a href="<:script:>?a_tagcleanup=1&amp;id=-1" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Unused Tags" data-icon="delete" class="button">Delete unused</a>
+      <ul class="menu context">
+        <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <li><a href="<:script:>?a_tags=1&amp;id=-1<:ifCgi showarts:><:or:>&amp;showarts=1<:eif:>&amp;cat=<:cgi cat:>&amp;p=<:systags_pagenum:>&amp;pp=<:systags_perpage:><:ifCgi nocat:>&amp;nocat=1<:or:><:eif:>" accesskey="t" title="AccessKey = t"><:ifCgi showarts:>Hide<:or:>Show<:eif:> Tagged Articles…</a></li>
+             <li class="divider"></li>
+             <li><a href="<:script:>?a_tagcleanup=1&amp;id=-1" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Tags" data-confirm="Are you sure you want to delete all unused Tags?">Delete Unused Tags…</a></li>
+          </ul>
+        </li>
+      </ul>
+      <span data-role="controlgroup">
+        <a href="<:adminurl add id -1 a_tags 1:>" class="button <:cond [cgi a_tags] selected:>">Tags</a>
+        <a href="<:adminurl add id -1 a_tagcats 1:>" class="button <:cond [cgi a_tagcats] selected:>">Dependencies</a>
+      </span>
     </nav>
   </header>
   <form action="<:script:>" method="post">
