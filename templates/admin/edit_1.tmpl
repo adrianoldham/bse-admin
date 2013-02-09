@@ -158,8 +158,8 @@
         <div>
           <label for="tier_price_<:price_tier id:>"><:price_tier description:> <:cfg shop currency $:> <:error_img [cat "tier_price_" [price_tier id]]:></label>
           <span>
-            <input type="text" name="tier_price_<:price_tier id:>" id="tier_price_<:price_tier id:>" value="<:ifEq [tier_price] "":><:oldi [cat "tier_price_" [price_tier id]] 0:><:or:><:oldi [cat "tier_price_" [price_tier id]] 0 money tier_price:><:eif:>" placeholder="0.00" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tier_price_<:price_tier id:>:>error<:eif:>" />
-            <:help edit [price_tier id]:>
+            <input type="text" name="tier_price_<:price_tier id:>" id="tier_price_<:price_tier id:>" value="<:ifEq [tier_price] "":><:oldi [cat "tier_price_" [price_tier id]] 0:><:or:><:oldi [cat "tier_price_" [price_tier id]] 0 money tier_price:><:eif:>" placeholder="0.00" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img [cat "tier_price_" [price_tier id]]:>error<:eif:>" />
+            <:help edit tier_price:>
           </span>
         </div>
         <:- iterator end price_tiers:>
