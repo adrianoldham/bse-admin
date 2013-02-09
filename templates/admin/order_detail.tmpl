@@ -349,7 +349,7 @@
   </form>
   <:- or UserCan:><:eif UserCan:>
   <:- or And:><:eif And:>
-  <:- .if !order.paidFor:>
+  <:-.if !order.paidFor:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Payment">
     <:csrfp shop_order_paid hidden:>
     <fieldset>
@@ -371,7 +371,7 @@
       </p>
     </fieldset>
   </form>
-  <:- .elsif order.is_manually_paid:>
+  <:-.elsif order.is_manually_paid:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Payment">
     <:csrfp shop_order_unpaid hidden:>
     <fieldset>
@@ -387,7 +387,7 @@
       </p>
     </fieldset>
   </form>
-  <:- .end if:>
+  <:-.end if:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Order">
     <:-switch:>
     <:-case Eq [order stage] "shipped":>

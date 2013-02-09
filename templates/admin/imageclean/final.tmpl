@@ -5,29 +5,29 @@
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
   </header>
   <:iterator begin messages:>
-  <:- .set msgbase = [ state, "msg:bse/admin/imageclean/", "NOMSGID" ][1] -:>
-  <:- .if state.type eq "stage" :>
+  <:-.set msgbase = [ state, "msg:bse/admin/imageclean/", "NOMSGID" ][1] -:>
+  <:-.if state.type eq "stage" :>
   <fieldset class="list">
     <legend id="<:= state.stage :>"><:= request.catmsg(msgbase _ "stage/" _ state.stage) :></legend>
     <ul class="list">
-      <:- .elsif state.type eq "orphanimage" :>
+      <:-.elsif state.type eq "orphanimage" :>
       <li>
         <span class="listed <:= acted ? "red" : "gray" :>"></span>
         <:= request.htmlmsg(msgbase _ "process/" _ ( acted ? "remove" : "skip" ) _ "image", [ state.image.id, state.image.image ]) :>
       </li>
-      <:- .elsif state.type eq "orphanfile" :>
+      <:-.elsif state.type eq "orphanfile" :>
       <li>
         <span class="listed <:= acted ? "red" : "gray" :>"></span>
         <:= request.htmlmsg(msgbase _ "process/" _ ( acted ? "remove" : "skip" ) _ "file", [ state.file ]) :>
       </li>
-      <:- .elsif state.type eq "substage" :>
+      <:-.elsif state.type eq "substage" :>
       <li><:= request.htmlmsg(msgbase _ "substage/" _ state.stage _ "/" _ state.substage) :></li>
-      <:- .elsif state.type eq "error" :>
+      <:-.elsif state.type eq "error" :>
       <li class="error"><:= state.error | html :></li>
-      <:- .elsif state.type eq "endstage" :>
+      <:-.elsif state.type eq "endstage" :>
     </ul>
   </fieldset>
-  <:- .end if -:>
+  <:-.end if -:>
   <:iterator end messages:>
   <p class="buttons">
     <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl imageclean:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Done</a>
