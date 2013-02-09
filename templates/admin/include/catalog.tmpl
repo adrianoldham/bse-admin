@@ -7,12 +7,12 @@
           <li><a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Catalog&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" accesskey="c" title="AccessKey = c">New Catalog…</a></li>
           <:- if Cfg seminars enabled:>
           <li><a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" accesskey="s" title="AccessKey = s">New Seminar…</a></li>
-          <:- or Cfg:><:eif Cfg:>
-          <:- or UserCan:><:eif UserCan:>
+          <:- eif Cfg:>
+          <:- eif UserCan:>
           <li class="divider"></li>
           <:- if UserCan bse_regen_article:catalog:>
           <li><a href="<:adminurl generate:>?id=<:catalog id:>&amp;r=<:adminurl shopadmin:>%3Fid=<:catalog id:>%26m=Catalog%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
-          <:- or UserCan:><:eif UserCan:>
+          <:- eif UserCan:>
           <li><a href="<:adminurl add:>?id=<:catalog id:>&amp;preview=1">Preview</a></li>
           <li class="divider"></li>
           <:- if UserCan bse_edit_delete_article:[catalog id]:>
@@ -37,7 +37,7 @@
       <li><a href="<:adminurl reorder:>?stepparent=<:catalog id:>&amp;sort=listed&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Blisted%23catalog<:catalog id:>">listed</a></li>
       <li><a href="<:adminurl reorder:>?stepparent=<:catalog id:>&amp;reverse=1&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bin%2Breverse%23catalog<:catalog id:>">reverse</a></li>
     </ul>
-    <:- or UserCan:><:eif UserCan:>
+    <:- eif UserCan:>
     <table class="full">
       <thead>
         <tr>
@@ -81,9 +81,9 @@
         <a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Product&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" data-icon="add" class="button white">New Product…</a>
         <:- if Cfg seminars enabled:>
         <a href="<:adminurl add:>?parentid=<:catalog id:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" data-icon="add" class="button white">New Seminar…</a>
-        <:- or Cfg:><:eif Cfg:>
+        <:- eif Cfg:>
       </p>
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </div>
   </fieldset>
   <:- eif Products:>
@@ -92,4 +92,4 @@
   <h2 id="catalog<:subcat id:>"><:subcat title:> <!--:movecat:--></h2>
 <:embed subcat include/catalog.tmpl:>
   <:- iterator end subcats:>
-  <:- or Subcats:><:eif Subcats:>
+  <:- eif Subcats:>

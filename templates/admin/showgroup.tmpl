@@ -55,7 +55,7 @@
       </ul>
       <:help addgroup users:>
     </fieldset>
-    <:- or Users:><:eif Users:>
+    <:- eif Users:>
     <:- if Gperms:>
     <fieldset>
       <legend>Permissions <:error_img gperms:></legend>
@@ -69,12 +69,12 @@
         <:- iterator end gperms:>
       </ul>
     </fieldset>
-    <:- or Gperms:><:eif Gperms:>
+    <:- eif Gperms:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?a_groups=1<:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if UserCan bse_admin_group_save:>
       <input type="submit" name="a_savegroup" value="Save Changes" accesskey="c" title="AccessKey = c" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
   </form>
 </div>

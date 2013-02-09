@@ -9,7 +9,7 @@
           <ul>
             <:- if UserCan bse_members_user_add_file:>
             <li><a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" accesskey="f" title="AccessKey = f">New File…</a></li>
-            <:- or UserCan:><:eif UserCan:>      
+            <:- eif UserCan:>      
             <:- if UserCan bse_members_user_delete:>
             <li class="divider"></li>
             <li><a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="User">Delete</a></li>
@@ -22,10 +22,10 @@
       <span data-role="controlgroup">
         <:- if UserCan bse_members_user_list:>
         <a href="<:script:>" class="button active">Users</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
         <:- if UserCan bse_members_group_list:>
         <a href="<:script:>?a_grouplist=1" class="button">Groups</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </span>
       <:- if Or [ifAnd [ifUserCan bse_log_list] [ifAuditlog actor_id [siteuser id] actor_type M]] [ifAnd [ifUserCan bse_shop_order_list] [ifUserorders]]:>
       <span data-role="controlgroup">
@@ -33,16 +33,16 @@
         <!--
         <:- if Userfiles:>
         <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;_t=files" class="button">Files</a>
-        <:- or Userfiles:><:eif Userfiles:>
+        <:- eif Userfiles:>
         -->
         <:- if And [ifUserCan bse_shop_order_list] [ifUserorders]:>
         <a href="<:script:>?a_view=1&amp;id=<:siteuser id:>&amp;_t=orders" class="button">Orders</a>
-        <:- or And:><:eif And:>
+        <:- eif And:>
         <:- if And [ifUserCan bse_log_list] [ifAuditlog actor_id [siteuser id] actor_type M]:>
         <a href="<:script:>?a_view=1&amp;id=<:siteuser id:>&amp;_t=activity" class="button selected">Activity</a>
-        <:- or And:><:eif And:>
+        <:- eif And:>
       </span>
-      <:- or Or:><:eif Or:>
+      <:- eif Or:>
       <:- if UserCan bse_members_user_delete:>
       <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="User" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
@@ -65,6 +65,6 @@
       </tbody>
     </table>
   </fieldset>
-  <:- or Auditlog:><:eif Auditlog:>
-  <:- or UserCan:><:eif UserCan:>
+  <:- eif Auditlog:>
+  <:- eif UserCan:>
 </div>

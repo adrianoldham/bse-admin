@@ -82,7 +82,7 @@
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?a_edit=1&amp;id=<:siteuser id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_members_user_add_file:>
       <input type="submit" name="a_adduserfile" value="Upload File" accesskey="u" title="AccessKey = u" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
   </form>
 </div>

@@ -44,7 +44,7 @@
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_id owner_type:>">(Remove)</a>-->
         </span>
       </div>
-      <:- or Owner:><:eif Owner:>
+      <:- eif Owner:>
       <:- if Siteuser:>
       <div>
         <label>User</label>
@@ -53,7 +53,7 @@
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>">(Remove)</a>-->
         </span>
       </div>
-      <:- or Siteuser:><:eif Siteuser:>
+      <:- eif Siteuser:>
       <:- if File:>
       <div>
         <label>File</label>
@@ -62,7 +62,7 @@
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>">(Remove)</a>-->
         </span>
       </div>
-      <:- or File:><:eif File:>
+      <:- eif File:>
       <:- if Category:>
       <div>
         <label>Category</label>
@@ -71,7 +71,7 @@
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>">(Remove)</a>-->
         </span>
       </div>
-      <:- or Category:><:eif Category:>
+      <:- eif Category:>
       <p class="buttons">
         <input type="submit" name="a_fileaccesslog" value="Update filter" class="button blue" />
       </p>
@@ -83,16 +83,16 @@
     <ul class="meta selected">
       <:- if Owner:>
       <li><span>Owner</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_id owner_type:>"><:owner_desc:> <b>&times;</b></a></li>
-      <:- or Owner:><:eif Owner:>
+      <:- eif Owner:>
       <:- if Siteuser:>
       <li><span>User</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>"><:siteuser userId:> <b>&times;</b></a></li>
-      <:- or Siteuser:><:eif Siteuser:>
+      <:- eif Siteuser:>
       <:- if File:>
       <li><span>File</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>"><:file display_name:> <b>&times;</b></a></li>
-      <:- or File:><:eif File:>
+      <:- eif File:>
       <:- if Category:>
       <li><span>Category</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>"><:category name:> <b>&times;</b></a></li>
-      <:- or Category:><:eif Category:>
+      <:- eif Category:>
     </ul>
     <table class="full">
       <thead>

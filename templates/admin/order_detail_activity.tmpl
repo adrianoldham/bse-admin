@@ -9,7 +9,7 @@
         <a href="<:adminurl2 shopadmin order_detail id [order id]:>" class="button <:cond [ifEq [cgi _t] ""] selected:>">Order</a>
         <:- if UserCan bse_log_list:>
         <a href="<:adminurl2 shopadmin order_detail id [order id] _t activity:>" class="button <:cond [ifEq [cgi _t] activity] selected:>">Activity</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </span>
     </nav>
   </header>

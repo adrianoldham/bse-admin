@@ -10,7 +10,7 @@
             <:- if Report has_params:>
             <li><a href="<:adminurl2 report prompt r [report id]:>&amp;<:repparams url:>&amp;referer=1" accesskey="a" title="AccessKey = a">Change Report Arguments…</a></li>
             <li class="divider"></li>
-            <:- or Report:><:eif Report:>
+            <:- eif Report:>
             <li><a href="<:adminurl2 report show r [report id] type csv:>&amp;<:repparams url:>" accesskey="d" title="AccessKey = d">Export Report Data…</a></li>
           </ul>
         </li>
@@ -35,7 +35,7 @@
       </p>
     </fieldset>
   </form>
-  <:- or Sort_select:><:eif Sort_select:>
+  <:- eif Sort_select:>
   <fieldset>
     <legend><:report name:></legend>
     <table class="full list">
@@ -46,7 +46,7 @@
           <:- iterator end level1_names:>
           <:- if Report has_level1_links:>
           <th><!--Actions--></th>
-          <:- or Report:><:eif Report:>
+          <:- eif Report:>
         </tr>
       </thead>
       <tbody>
@@ -62,7 +62,7 @@
             <:level1_link link:>
             <:- iterator end level1_links:>
           </td>
-          <:- or Level1_links:><:eif Level1_links:>
+          <:- eif Level1_links:>
         </tr>
         <:- iterator end level1:>
         <:- or Level1:>

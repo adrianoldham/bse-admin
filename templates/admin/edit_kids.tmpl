@@ -23,8 +23,8 @@
     </ul>
     <:- if Cgi sort:>
 <:include admin/include/edit_article_sort.tmpl optional:>
-    <:- or Cgi:><:eif Cgi:>
-    <:- or UserCan:><:eif UserCan:>
+    <:- eif Cgi:>
+    <:- eif UserCan:>
     <ul class="children">
       <:- iterator begin kids:>
       <li>
@@ -69,13 +69,13 @@
         <:- case default:>
         <a href="<:script:>?parentid=<:article id:>&amp;type=Article&amp;referer=1" data-icon="add" class="button white">New Child…</a>
         <:- endswitch:>
-        <:- or HaveChildType:><:eif HaveChildType:>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif HaveChildType:>
+        <:- eif UserCan:>
         <:- if UserCan bse_edit_stepkid_add:article:>
         <a href="<:script:>?id=<:article id:>&amp;_t=steps&amp;referer=1" data-icon="add" class="button white">New Stepchild…</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </p>
-      <:- or Or:><:eif Or:>
+      <:- eif Or:>
     </div>
   </fieldset>
   <:- eif Kids:>

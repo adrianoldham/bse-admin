@@ -26,18 +26,18 @@
       <span data-role="controlgroup">
         <:- if UserCan bse_subs_edit:>
         <a href="<:script:>?edit=1&amp;id=<:subscription id:>" class="button">Edit</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
         <:- if UserCan bse_subs_send:>
         <a href="<:script:>?start_send=1&amp;id=<:subscription id:>" class="button selected">Send</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </span>
-      <:- or Or:><:eif Or:>
+      <:- eif Or:>
       <:- if UserCan bse_subs_delete:>
       <a href="<:script:>?id=<:subscription id:>&amp;delete=1" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Mailing List" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>
-      <:- or Or:><:eif Or:>
+      <:- eif Or:>
     </nav>
   </header>
   <form action="<:script:>" method="post" data-object="Mailing List" data-confirm="Would you like to send this Mailing List?" data-info="If you don’t send, your composition will be lost, it cannot be saved." data-action="Send" target="preview">
@@ -71,7 +71,7 @@
       <summary>More attributes</summary>
       <:- if Filters:>
       <:include admin/subs/send_filters.tmpl optional:>
-      <:- or Filters:><:eif Filters:>
+      <:- eif Filters:>
       <fieldset>
         <legend>Testing</legend>
         <div>
@@ -151,11 +151,11 @@
       <input type="submit" name="text_preview" value="Text Preview" class="button blue" />
       <:- if Filters:>
       <input type="submit" name="filter_preview" value="Filter Preview" class="button blue" />
-      <:- or Filters:><:eif Filters:>
+      <:- eif Filters:>
       <input type="submit" name="send_test" value="Send Test" class="button green" />
       <:- if And [ifUserCan bse_subs_send] [recipient_count]:>
       <input type="submit" name="send" value="Send List" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- or And:><:eif And:>
+      <:- eif And:>
     </p>
   </form>
 </div>

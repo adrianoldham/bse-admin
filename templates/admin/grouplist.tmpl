@@ -10,15 +10,15 @@
           <ul>
             <:- if UserCan bse_admin_user_add:>
             <li><a href="<:script:>?a_adduserform=1" accesskey="u" title="AccessKey = u">New Admin User…</a></li>
-             <:- or UserCan:><:eif UserCan:>
+             <:- eif UserCan:>
              <:- if UserCan bse_admin_group_add:>
              <li class="divider"></li>
              <li><a href="<:script:>?a_addgroupform=1" accesskey="g" title="AccessKey = g">New Admin Group…</a></li>
-             <:- or UserCan:><:eif UserCan:>
+             <:- eif UserCan:>
           </ul>
         </li>
       </ul>
-      <:- or Or:><:eif Or:>
+      <:- eif Or:>
       <span data-role="controlgroup">
         <a href="<:script:>" class="button">Users</a>
         <a href="<:script:>?a_groups=1" class="button selected">Groups</a>
@@ -64,7 +64,7 @@
       <p>No admin groups to display</p>
       <:- if UserCan bse_admin_group_add:>
       <p><a href="<:script:>?a_addgroupform=1&amp;referer=1" data-icon="add" class="button white">New Admin Group…</a></p>
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </div>
   </fieldset>
   <:- eif Groups:>

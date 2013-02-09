@@ -9,7 +9,7 @@
           <ul>
             <:- if UserCan bse_members_group_add_file:>
             <li><a href="<:script:>?a_addgroupfileform=1&amp;id=<:group id:>" accesskey="f" title="AccessKey = f">New File…</a></li>
-            <:- or UserCan:><:eif UserCan:>      
+            <:- eif UserCan:>      
             <:- if UserCan bse_members_group_delete:>
             <li class="divider"></li>
             <li><a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Group">Delete</a></li>
@@ -22,16 +22,16 @@
       <span data-role="controlgroup">
         <:- if UserCan bse_members_user_list:>
         <a href="<:script:>" class="button">Users</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
         <:- if UserCan bse_members_group_list:>
         <a href="<:script:>?a_grouplist=1" class="button active">Groups</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </span>
       <span data-role="controlgroup">
         <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button selected">Group</a>
         <:- if UserCan bse_members_user_list:>
         <a href="<:script:>?a_groupmemberform=1&amp;id=<:group id:>" class="button">Members</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </span>
       <:- if UserCan bse_members_group_delete:>
       <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Group" data-icon="delete" class="button">Delete</a>
@@ -68,8 +68,8 @@
         <:- iterator end siteusers:>
       </ul>
     </fieldset>
-    <:- or Siteusers:><:eif Siteusers:>
-    <:- or UserCan:><:eif UserCan:>
+    <:- eif Siteusers:>
+    <:- eif UserCan:>
     -->
     <:- if Groupfiles:>
     <fieldset>
@@ -94,12 +94,12 @@
         <:- iterator end groupfiles:>
       </ul>
     </fieldset>
-    <:- or Groupfiles:><:eif Groupfiles:>
+    <:- eif Groupfiles:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?a_grouplist=1<:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if UserCan bse_members_group_edit:>
       <input type="submit" name="a_savegroup" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
   </form>
 </div>

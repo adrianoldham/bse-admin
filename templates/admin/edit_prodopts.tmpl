@@ -64,7 +64,7 @@
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_prodopt_add:article:>
       <input type="submit" name="a_add_option" value="Create Option" accesskey="c" title="AccessKey = c" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
   </form>
 </div>

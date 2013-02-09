@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="/bse-admin/css/admin.css" type="text/css" />
     <:- if Param css:>
     <link rel="stylesheet" href="/bse-admin/css/<:param css:>" type="text/css" />
-    <:- or Param:><:eif Param:>
+    <:- eif Param:>
     <script type="text/javascript" src="/bse-admin/js/lib/prototype.js"></script>
     <script type="text/javascript" src="/bse-admin/js/lib/scriptaculous.js?load=effects,dragdrop,controls"></script>
     <script type="text/javascript" src="/bse-admin/js/init.js"></script>
     <:- if Param api:>
     <script type="text/javascript" src="/js/bse_api.js"></script>
-    <:- or Param:><:eif Param:>
+    <:- eif Param:>
     <:- if Param jstools:>
     <script type="text/javascript" src="/js/admin_tools.js"></script>
-    <:- or Param:><:eif Param:>
+    <:- eif Param:>
     <:- if Param js:>
     <script type="text/javascript" src="/js/<:param js:>"></script>
-    <:- or Param:><:eif Param:>
+    <:- eif Param:>
     <:-.if request.user_agent =~ /MSIE/ :>
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <!--[if lt IE 9]>

@@ -39,7 +39,7 @@
           <input type="text" name="confirmemail" id="confirmemail" value="<:old confirmemail:>" required="required" class="<:ifError_img confirmemail:>error<:eif:>" />
         </span>
       </div>
-      <:- or Cfg:><:eif Cfg:>
+      <:- eif Cfg:>
     </fieldset>
     <fieldset class="name">
       <legend>Name</legend>
@@ -118,7 +118,7 @@
           </span>
         </div>
       </fieldset>
-      <:- or Cfg:><:eif Cfg:>
+      <:- eif Cfg:>
       <fieldset class="contact">
         <legend>Contact</legend>
         <div>
@@ -155,7 +155,7 @@
           <:- iterator end subscriptions:>
         </ul>
       </fieldset>
-      <:- or Subscriptions:><:eif Subscriptions:>
+      <:- eif Subscriptions:>
       <:- if Flags:>
       <fieldset>
         <legend>Flags <:error_img flags:></legend>
@@ -168,7 +168,7 @@
           <:- iterator end flags:>
         </ul>
       </fieldset>
-      <:- or Flags:><:eif Flags:>
+      <:- eif Flags:>
       <fieldset>
         <legend>Information</legend>
         <div class="full">
@@ -184,7 +184,7 @@
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_members_user_add:>
       <input type="submit" name="a_add" value="Create User" accesskey="c" Title="AccessKey = c" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
   </form>
 </div>

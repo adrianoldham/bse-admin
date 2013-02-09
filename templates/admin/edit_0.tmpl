@@ -19,8 +19,8 @@
     </ul>
     <:- if Cgi sort:>
 <:include admin/include/edit_article_sort.tmpl optional:>
-    <:- or Cgi:><:eif Cgi:>
-    <:- or UserCan:><:eif UserCan:>
+    <:- eif Cgi:>
+    <:- eif UserCan:>
     <ul class="children">
       <:- iterator begin children:>
       <li>
@@ -39,5 +39,5 @@
       <:- iterator end children:>
     </ul>
   </fieldset>
-  <:- or Children:><:eif Children:>
+  <:- eif Children:>
 </div>

@@ -122,7 +122,7 @@
               <:help file forSale:>
             </span>
           </div>
-          <:- or Match:><:eif Match:>
+          <:- eif Match:>
           <div>
             <label for="requireUser_<:file id:>">Require login <:error_img [concatenate requireUser_ [file id]]:></label>
             <span>
@@ -154,7 +154,7 @@
         <p>No files to display</p>
         <:- if UserCan bse_edit_files_add:article:>
         <p><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" data-icon="add" class="button white">New File…</a></p>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </div>
     </fieldset>
     <:- eif Files:>
@@ -162,7 +162,7 @@
       <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if And [ifFiles] [ifUserCan bse_edit_files_save:article]:>
       <input type="submit" name="filesave" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- or And:><:eif And:>
+      <:- eif And:>
     </p>
   </form>
 </div>

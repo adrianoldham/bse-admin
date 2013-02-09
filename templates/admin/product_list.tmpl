@@ -12,12 +12,12 @@
             <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Catalog&amp;r=<:adminurl shopadmin:>" accesskey="c" title="AccessKey = c">New Catalog…</a></li>
             <:- if Cfg seminars enabled:>
             <li><a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>" accesskey="s" title="AccessKey = s">New Seminar…</a></li>
-            <:- or Cfg:><:eif Cfg:>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif Cfg:>
+            <:- eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_regen_article:shopid:>
             <li><a href="<:adminurl generate:>?id=<:shopid:>&amp;r=<:adminurl shopadmin:>%26m=Shop%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <li><a href="<:adminurl add:>?id=<:shopid:>&amp;preview=1">Preview</a></li>
           </ul>
         </li>
@@ -37,7 +37,7 @@
       <li><a href="<:adminurl reorder:>?stepparent=<:shopid:>&amp;sort=listed&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bby%2Blisted">listed</a></li>
       <li><a href="<:adminurl reorder:>?stepparent=<:shopid:>&amp;reverse=1&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bin%2Breverse">reverse</a></li>
     </ul>
-    <:- or UserCan:><:eif UserCan:>
+    <:- eif UserCan:>
     <table class="full">
       <thead>
         <tr>
@@ -81,9 +81,9 @@
         <a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Product&amp;r=<:adminurl shopadmin:>" data-icon="add" class="button white">New Product…</a>
         <:- if Cfg seminars enabled:>
         <a href="<:adminurl add:>?parentid=<:shopid:>&amp;type=Seminar&amp;r=<:adminurl shopadmin:>" data-icon="add" class="button white">New Seminar…</a>
-        <:- or Cfg:><:eif Cfg:>
+        <:- eif Cfg:>
       </p>
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </div>
   </fieldset>
   <:- eif Products:>

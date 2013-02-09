@@ -9,11 +9,11 @@
           <ul>
             <:- if UserCan bse_subscr_add:>
             <li><a href="<:script:>?a_addform=1" accesskey="c" title="AccessKey = c">New Subscription…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_subscr_update:>
             <li><a href="<:script:>?a_update=1" accesskey="u" title="AccessKey = u">Update Expiry Dates</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
           </ul>
         </li>
       </ul>
@@ -84,7 +84,7 @@
       <p>No subscriptions to display</p>
       <:- if UserCan bse_subscr_add:>
       <p><a href="<:script:>?a_addform=1&amp;referer=1" data-icon="add" class="button white">New Subscription…</a></p>
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </div>
   </fieldset>
   <:- eif Subscriptions:>

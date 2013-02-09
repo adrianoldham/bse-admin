@@ -11,28 +11,28 @@
             <:- case default:>
             <li><a href="<:script:>?parentid=<:article id:>&amp;type=Article&amp;referer=1" accesskey="a" title="AccessKey = a">New Child…</a></li>
             <:- endswitch:>
-            <:- or HaveChildType:><:eif HaveChildType:>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif HaveChildType:>
+            <:- eif UserCan:>
             <:- if UserCan bse_edit_stepkid_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=steps&amp;referer=1" accesskey="t" title="AccessKey = t">New Stepchild…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_edit_images_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;referer=1" accesskey="i" title="AccessKey = i">New Image…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <:- if UserCan bse_edit_files_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" accesskey="f" title="AccessKey = f">New File…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <:- switch:>
             <:- case Match [article generator] "Product":>
             <:- if UserCan bse_edit_prodopt_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=prodopts&amp;referer=1" accesskey="o" title="AccessKey = o">New Option…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <:- endswitch:>
             <li class="divider"></li>
             <:- if UserCan bse_regen_article:article:>
             <li><a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1" accesskey="y" title="AccessKey = y">Preview</a></li>
             <:- if Or [ifUserCan bse_admin_user_save_artrights] [ifUserCan bse_admin_group_save_artrights]:>
             <li class="divider"></li>
@@ -42,16 +42,16 @@
                 <:- iterator begin adminusers:>
                 <li><a href="<:adminurl adminusers:>?a_showuserart=1&amp;id=<:article id:>&amp;userid=<:iadminuser id:>&amp;referer=1"><:iadminuser logon:><:ifIadminuser name:> (<:iadminuser name:>)<:eif:></a></li>
                 <:- iterator end adminusers:>
-                <:- or Adminusers:><:eif Adminusers:>
+                <:- eif Adminusers:>
                 <:- if Admingroups:>
                 <li class="divider"></li>
                 <:- iterator begin admingroups:>
                 <li><a href="<:adminurl adminusers:>?a_showgroupart=1&amp;id=<:article id:>&amp;groupid=<:iadmingroup id:>&amp;referer=1"><:iadmingroup name:><:ifIadmingroup description:> (<:iadmingroup description:>)<:eif:></a></li>
                 <:- iterator end admingroups:>
-                <:- or Admingroups:><:eif Admingroups:>
+                <:- eif Admingroups:>
               </ul>
             </li>
-            <:- or Or:><:eif Or:>
+            <:- eif Or:>
             <li class="divider"></li>
             <:- if UserCan bse_edit_delete_article:article:>
             <li><a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="<:typename article:>">Delete</a></li>
@@ -98,20 +98,20 @@
       <a href="<:script:>?id=<:article id:>&amp;preview=1" accesskey="y" title="AccessKey = y" data-icon="preview" data-icon-only="true" class="button">Preview</a>
       <:- if And [article parentid] [ifUserCan bse_regen_article:article]:>
       <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
-      <:- or And:><:eif And:>
+      <:- eif And:>
       <span data-role="controlgroup">
         <:- if Or [ifImages] [ifFiles] [ifKids] [ifEq [cgi _t] img] [ifEq [cgi _t] file] [ifEq [cgi _t] kids]:>
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>"><:typename article:></a>
-        <:- or Or:><:eif Or:>
+        <:- eif Or:>
         <:- if And [ifOr [ifImages] [ifEq [cgi _t] img]] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button <:cond [ifEq [cgi _t] img] selected:>">Images <span class="badge"><:image_count:></span></a>
-        <:- or And:><:eif And:>
+        <:- eif And:>
         <:- if And [ifOr [ifFiles] [ifEq [cgi _t] file]] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button <:cond [ifEq [cgi _t] file] selected:>">Files <span class="badge"><:file_count:></span></a>
-        <:- or And:><:eif And:>
+        <:- eif And:>
         <:- if And [ifOr [ifKids] [ifEq [cgi _t] kids]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=kids" class="button <:cond [ifEq [cgi _t] kids] selected:>">Children <span class="badge"><:kid_count:></span></a>
-        <:- or And:><:eif And:>
+        <:- eif And:>
       </span>
       <:- if UserCan bse_edit_delete_article:article:>
       <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>

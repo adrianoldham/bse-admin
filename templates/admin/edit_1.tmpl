@@ -83,7 +83,7 @@
           <:help edit titleAlias:>
         </span>
       </div>
-      <:- or Cfg:><:eif Cfg:>
+      <:- eif Cfg:>
       <:- if Match [article generator] "Product":>
       <div class="full">
         <label for="description">Description <:error_img description:></label>
@@ -92,7 +92,7 @@
           <:help edit description:>
         </span>
       </div>
-      <:- or Match:><:eif Match:>
+      <:- eif Match:>
       <div class="full">
         <label for="body">Body <:error_img body:></label>
         <span>
@@ -142,7 +142,7 @@
           <:help edit gst:>
         </span>
       </div>
-      <:- or Cfg:><:eif Cfg:>
+      <:- eif Cfg:>
       <:- if Cfg product legacy_wholesale:>
       <div>
         <label for="wholesalePrice">Wholesale <:cfg shop currency $:> <:error_img wholesalePrice:></label>
@@ -151,7 +151,7 @@
           <:help edit wholesalePrice:>
         </span>
       </div>
-      <:- or Cfg:><:eif Cfg:>
+      <:- eif Cfg:>
       <:- if Price_tiers:>
         <input type="hidden" name="save_pricing_tiers" value="1" />
         <:- iterator begin price_tiers:>
@@ -163,9 +163,9 @@
           </span>
         </div>
         <:- iterator end price_tiers:>
-      <:- or Price_tiers:><:eif Price_tiers:>
+      <:- eif Price_tiers:>
     </fieldset>
-    <:- or Match:><:eif Match:>
+    <:- eif Match:>
     <details>
       <summary>More attributes</summary>
       <:- include admin/include/article_cfg_custom.tmpl:>
@@ -244,8 +244,8 @@
           <:- iterator end dboptions:>
         </ul>
       </fieldset>
-      <:- or Dboptions:><:eif Dboptions:>
-      <:- or Match:><:eif Match:>
+      <:- eif Dboptions:>
+      <:- eif Match:>
       <fieldset>
         <legend>Structure</legend>
         <div>
@@ -271,7 +271,7 @@
             <:help edit menu:>
           </span>
         </div>
-        <:- or Cfgsection:><:eif Cfgsection:>
+        <:- eif Cfgsection:>
       </fieldset>
       <fieldset>
         <legend>Categorisation <:error_img tags:></legend>
@@ -377,7 +377,7 @@
         </ul>
         <:help edit groups:>
       </fieldset>
-      <:- or Groups:><:eif Groups:>
+      <:- eif Groups:>
       <fieldset>
         <legend>Flags <:error_img flags:></legend>
         <ul>
@@ -481,8 +481,8 @@
           </span>
         </div>
       </fieldset>
-      <:- or Subscriptions:><:eif Subscriptions:>
-      <:- or Or:><:eif Or:>
+      <:- eif Subscriptions:>
+      <:- eif Or:>
       <:- if Images:>
       <fieldset>
         <legend>Images</legend>
@@ -501,13 +501,13 @@
               <:- eif UserCan:>
               <:- if UserCan bse_edit_images_reorder:article:>
               <:imgmove:>
-              <:- or UserCan:><:eif UserCan:>
+              <:- eif UserCan:>
             </span>
           </li>
           <:- iterator end images:>
         </ul>
       </fieldset>
-      <:- or Images:><:eif Images:>
+      <:- eif Images:>
       <:- if Files:>
       <fieldset>
         <legend>Files</legend>
@@ -528,27 +528,27 @@
               <:- eif UserCan:>
               <:- if UserCan bse_edit_files_reorder:article:>
               <:movefiles:>
-              <:- or UserCan:><:eif UserCan:>
+              <:- eif UserCan:>
             </span>
           </li>
           <:- iterator end files:>
         </ul>
       </fieldset>
-      <:- or Files:><:eif Files:>
+      <:- eif Files:>
     </details>
     <:- if New:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article parentid:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_save:[article parentid]:>
       <input type="submit" name="save" value="Create <:typename article:>" accesskey="c" title="AccessKey = c" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
     <:- or New:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article parentid:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if UserCan bse_edit_save:article:>
       <input type="submit" name="save" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
     <:- eif New:>
   </form>

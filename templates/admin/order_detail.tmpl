@@ -9,7 +9,7 @@
         <a href="<:adminurl2 shopadmin order_detail id [order id]:>" class="button <:cond [ifEq [cgi _t] ""] selected:>">Order</a>
         <:- if UserCan bse_log_list:>
         <a href="<:adminurl2 shopadmin order_detail id [order id] _t activity:>" class="button <:cond [ifEq [cgi _t] activity] selected:>">Activity</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </span>
     </nav>
   </header>
@@ -30,13 +30,13 @@
           <th>Order Status:</th>
           <td><:stage_description:></td>
         </tr>
-        <:- or Order:><:eif Order:>
+        <:- eif Order:>
         <:- if Order purchase_order:>
         <tr>
           <th>Purchase Order:</th>
           <td><:order purchase_order:></td>
         </tr>
-        <:- or Order:><:eif Order:>
+        <:- eif Order:>
         <:- if Order freight_tracking:>
         <tr>
           <th>Tracking Code:</th>
@@ -48,25 +48,25 @@
             <:- eif Cfg:>
           </td>
         </tr>
-        <:- or Order:><:eif Order:>
+        <:- eif Order:>
         <:- if Order shipping_method:>
         <tr>
           <th>Shipping Method:</th>
           <td><:order shipping_method:></td>
         </tr>
-        <:- or Order:><:eif Order:>
+        <:- eif Order:>
         <:- if Order userId:>
         <tr>
           <th><:cfg "site user" display_userid "Username":>:</th>
           <td><a href="<:adminurl siteusers a_edit 1 id [siteuser id]:>"><:order userId:></a></td>
         </tr>
-        <:- or Order:><:eif Order:>
+        <:- eif Order:>
         <:- if Order affiliate_code:>
         <tr>
           <th><:cfg shop display_affiliate_code "Referrer":>:</th>
           <td><:order affiliate_code:></td>
         </tr>
-        <:- or Order:><:eif Order:>
+        <:- eif Order:>
       </tbody>
     </table>
     <table class="vertical right">
@@ -105,7 +105,7 @@
           <:- or:><:eif:>
         </tr>
         <:- endswitch:>
-        <:- or Order:><:eif Order:>
+        <:- eif Order:>
         <tr>
           <th><:cfg shop display_ccName "Name on Card":>:</th>
           <td><:order ccName:></td>
@@ -115,7 +115,7 @@
           <th><:cfg shop display_ccPAN "Card Number":>:</th>
           <td>**** **** **** <:order ccPAN:></td>
         </tr>
-        <:- or Order:><:eif Order:>
+        <:- eif Order:>
         <tr>
           <th><:cfg shop display_cardType "Card Type":>:</th>
           <td><:order ccType:></td>
@@ -196,10 +196,10 @@
             <:- eif Eq:>
             <:- if Options:>
             <span><:options:></span>
-            <:- or Options:><:eif Options:>
+            <:- eif Options:>
             <:- if And [item description] [cfg shop product_description 1]:>
             <div class="description"><:item description:></div>
-            <:- or And:><:eif And:>
+            <:- eif And:>
           </td>
           <td class="code"><:item product_code:></td>
           <td class="quantity"><:item units:> &times;</td>
@@ -276,7 +276,7 @@
         <:- or:><:eif:>
       </tbody>
     </table>
-    <:- or Order:><:eif Order:>
+    <:- eif Order:>
     <:- if Order delivStreet:>
     <table class="vertical right">
       <caption>Shipping details</caption>
@@ -329,7 +329,7 @@
         <:- or:><:eif:>
       </tbody>
     </table>
-    <:- or Order:><:eif Order:>
+    <:- eif Order:>
   </div>
   <:- if And [ifEq [order paymentType] "4"] [order paidFor] [ifEq [order paid_manually] "0"]:>
   <:- if UserCan bse_shop_order_refund_paypal:>
@@ -347,8 +347,8 @@
       </p>
     </fieldset>
   </form>
-  <:- or UserCan:><:eif UserCan:>
-  <:- or And:><:eif And:>
+  <:- eif UserCan:>
+  <:- eif And:>
   <:-.if !order.paidFor:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Payment">
     <:csrfp shop_order_paid hidden:>
@@ -432,7 +432,7 @@
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl shopadmin order_list 1:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if UserCan bse_shop_order_save:>
       <input type="submit" name="a_order_save" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
   </form>
 </div>

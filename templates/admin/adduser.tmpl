@@ -53,7 +53,7 @@
       </ul>
       <:help adduser groups:>
     </fieldset>
-    <:- or Groups:><:eif Groups:>
+    <:- eif Groups:>
     <:- if Gperms:>
     <input type="hidden" name="savegperms" value="1" />
     <fieldset>
@@ -67,13 +67,13 @@
         <:- iterator end gperms:>
       </ul>
     </fieldset>
-    <:- or Gperms:><:eif Gperms:>
+    <:- eif Gperms:>
     -->
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_admin_user_add:>
       <input type="submit" name="a_adduser" value="Create User" accesskey="c" title="AccessKey = c" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
   </form>
 </div>

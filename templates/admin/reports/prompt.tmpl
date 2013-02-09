@@ -27,7 +27,7 @@
           </select>
         </span>
       </div>
-      <:- or Sort_count:><:eif Sort_count:>
+      <:- eif Sort_count:>
     </fieldset>
     <p class="buttons">
       <a href="<:switch:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>

@@ -10,7 +10,7 @@
             <li class="divider"></li>
             <:- if UserCan bse_subscr_update:>
             <li><a href="<:script:>?a_update=1" accesskey="u" title="AccessKey = u">Update Expiry Dates</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <li class="divider"></li>
             <:- if And [ifUserCan bse_subscr_delete] [subscription is_removable]:>
             <li><a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Subscription">Delete</a></li>
@@ -24,12 +24,12 @@
       <span data-role="controlgroup">
         <:- if UserCan bse_subscr_edit:>
         <a href="<:script:>?a_edit=1&amp;subscription_id=<:subscription subscription_id:>" class="button">Subscription</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
         <:- if UserCan bse_subscr_list:>
         <a href="<:script:>?a_detail=1&amp;subscription_id=<:subscription subscription_id:>" class="button selected">Relationships</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </span>
-      <:- or Or:><:eif Or:>
+      <:- eif Or:>
       <:- if And [ifUserCan bse_subscr_delete] [subscription is_removable]:>
       <a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Subscription" data-icon="delete" class="button">Delete</a>
       <:- or And:>

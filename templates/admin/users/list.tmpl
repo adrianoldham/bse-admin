@@ -10,22 +10,22 @@
           <ul>
             <:- if UserCan bse_members_user_add:>
             <li><a href="<:script:>?a_addform=1" accesskey="u" title="AccessKey = u">New Site User…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <:- if UserCan bse_members_group_add:>
             <li class="divider"></li>
             <li><a href="<:script:>?a_addgroupform=1" accesskey="g" title="AccessKey = g">New Site Group…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
           </ul>
         </li>
       </ul>
-      <:- or Or:><:eif Or:>
+      <:- eif Or:>
       <span data-role="controlgroup">
         <:- if UserCan bse_members_user_list:>
         <a href="<:script:>" class="button selected">Users</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
         <:- if UserCan bse_members_group_list:>
         <a href="<:script:>?a_grouplist=1" class="button">Groups</a>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </span>
     </nav>
   </header>
@@ -159,7 +159,7 @@
       <p>No site users to display</p>
       <:- if UserCan bse_members_user_add:>
       <p><a href="<:script:>?a_addform=1&amp;referer=1" data-icon="add" class="button white">New Site User…</a></p>
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </div>
   </fieldset>
   <:- eif Siteusers:>

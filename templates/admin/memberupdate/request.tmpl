@@ -38,15 +38,15 @@
       </fieldset>
       <:- iterator end importspecs:>
     </details>
-    <:- or Cfgsection:><:eif Cfgsection:>
+    <:- eif Cfgsection:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl menu:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_siteuser_list:>
       <input type="submit" name="a_preview" value="Preview Data" accesskey="p" title="AccessKey = p" class="button blue" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
       <:- if UserCan bse_siteuser_edit:>
       <input type="submit" name="a_import" value="Import Data" accesskey="i" title="AccessKey = i" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
   </form>
 </div>

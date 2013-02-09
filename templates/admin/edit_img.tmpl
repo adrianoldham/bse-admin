@@ -119,7 +119,7 @@
         <p>No images to display</p>
         <:- if UserCan bse_edit_images_add:article:>
         <p><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;referer=1" data-icon="add" class="button white">New Image…</a></p>
-        <:- or UserCan:><:eif UserCan:>
+        <:- eif UserCan:>
       </div>
     </fieldset>
     <:- eif Images:>
@@ -127,7 +127,7 @@
       <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
       <:- if And [ifImages] [ifUserCan bse_edit_images_save:article]:>
       <input type="submit" name="process" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- or And:><:eif And:>
+      <:- eif And:>
     </p>
   </form>
 </div>

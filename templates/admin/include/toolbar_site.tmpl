@@ -4,14 +4,14 @@
           <ul>
             <:- if UserCan bse_edit_add_child:article:>
             <li><a href="<:script:>?parentid=<:article id:>&amp;type=Article&amp;referer=1" accesskey="a" title="AccessKey = a">New Article…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_edit_images_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;referer=1" accesskey="i" title="AccessKey = i">New Image…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <:- if UserCan bse_edit_files_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" accesskey="f" title="AccessKey = f">New File…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
             <li class="divider"></li>
             <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" accesskey="y" title="AccessKey = y">Preview</a></li>
           </ul>
@@ -21,12 +21,12 @@
       <span data-role="controlgroup">
         <:- if Or [ifImages] [ifFiles]:>
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>"><:typename article:></a>
-        <:- or Or:><:eif Or:>
+        <:- eif Or:>
         <:- if And [ifOr [ifImages] [ifEq [cgi _t] img]] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button <:cond [ifEq [cgi _t] img] selected:>">Images <span class="badge"><:image_count:></span></a>
-        <:- or And:><:eif And:>
+        <:- eif And:>
         <:- if And [ifOr [ifFiles] [ifEq [cgi _t] file]] [ifOr [ifUserCan bse_edit_files_save:article] [ifUserCan bse_edit_save:article]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button <:cond [ifEq [cgi _t] file] selected:>">Files <span class="badge"><:file_count:></span></a>
-        <:- or And:><:eif And:>
+        <:- eif And:>
       </span>
     </nav>

@@ -10,7 +10,7 @@
       <a data-icon="delete" class="button disabled">Delete</a>
       <:- eif UserCan:>
     </nav>
-    <:- or Cgi:><:eif Cgi:>
+    <:- eif Cgi:>
   </header>
   <form action="<:script:>" method="post" data-object="Stepchild">
     <input type="hidden" name="id" value="<:article id:>" />
@@ -46,9 +46,9 @@
       <a href="<:script:>?id=<:article id:>&amp;_t=kids" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_stepkid_save:article:>
       <input type="submit" name="save_stepkids" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
-    <:- or Eq:><:eif Eq:>
+    <:- eif Eq:>
     <:- iterator end kids:>
     <:- or Cgi:>
     <fieldset>
@@ -82,7 +82,7 @@
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:>&amp;_t=kids<:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_stepkid_add:article:>
       <input type="submit" name="add_stepkid" value="Create Stepchild" accesskey="c" title="AccessKey = c" class="button green" />
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </p>
     <:- eif Cgi:>
   </form>

@@ -10,11 +10,11 @@
           <ul>
             <:- if UserCan bse_subs_add:>
             <li><a href="<:script:>?a_add=1" accesskey="u" title="AccessKey = u">New Mailing List…</a></li>
-            <:- or UserCan:><:eif UserCan:>
+            <:- eif UserCan:>
           </ul>
         </li>
       </ul>
-      <:- or Or:><:eif Or:>
+      <:- eif Or:>
     </nav>
   </header>
   <:- if Subscriptions:>
@@ -68,7 +68,7 @@
       <p>No mailing lists to display</p>
       <:- if UserCan bse_subs_add:>
       <p><a href="<:script:>?a_add=1&amp;referer=1" data-icon="add" class="button white">New Mailing List…</a></p>
-      <:- or UserCan:><:eif UserCan:>
+      <:- eif UserCan:>
     </div>
   </fieldset>
   <:- eif Subscriptions:>
