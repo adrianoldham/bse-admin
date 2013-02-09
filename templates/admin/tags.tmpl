@@ -48,11 +48,11 @@
   <form action="<:script:>#tag_<:systag id:>" method="post" data-object="Tag">
     <fieldset>
       <div id="tag_<:systag id:>">
-        <label for="tag_<:systag_number:>">Tag #<:systag_number:> <:ifEq [cgi tag_id] [systag id]:><:error_img name:><:eif:></label>
+        <label for="systag_<:systag_number:>">Tag #<:systag_number:> <:ifEq [cgi tag_id] [systag id]:><:error_img name:><:eif:></label>
         <span>
           <input type="hidden" name="id" value="-1" />
           <input type="hidden" name="tag_id" value="<:systag id:>" />
-          <input type="text" name="name" id="tag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" class="<:ifError_img name:>error<:eif:>" />
+          <input type="text" name="name" id="systag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" class="<:ifError_img name:>error<:eif:>" />
           <input type="submit" name="a_tagrename" value="Save" class="button green small" />
           <a href="<:script:>?a_tagdelete=1&amp;id=-1&amp;tag_id=<:systag id:>" data-action="Delete" data-object="Tag" class="button red small">Delete</a>
         </span>
