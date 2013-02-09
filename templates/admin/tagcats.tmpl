@@ -19,7 +19,7 @@
       </span>
     </nav>
   </header>
-  <form action="<:= bse.admin_url("add") :>" method="get" data-object="Filter">
+  <form action="<:= cfg.admin_url2("add") :>" method="get" data-object="Filter">
     <input type="hidden" name="id" value="-1" />
     <:csrfp admin_tagcatsave hidden :>
     <fieldset>

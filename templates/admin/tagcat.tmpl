@@ -4,7 +4,7 @@
     <h1><:param title:></h1>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
   </header>
-  <form action="<:= bse.admin_url2("add") :>" method="post" data-object="Dependant">
+  <form action="<:= cfg.admin_url2("add") :>" method="post" data-object="Dependant">
     <input type="hidden" name="cat" value="<:= cat.cat |html :>" />
     <input type="hidden" name="id" value="-1" />
     <:csrfp admin_tagcatsave hidden :>
