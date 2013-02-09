@@ -142,8 +142,8 @@
       </fieldset>
       <:- if Subscriptions:>
       <fieldset class="newsletter">
-        <input type="hidden" name="checkedsubs" value="1" />
         <legend>Newsletter <:error_img subscription:></legend>
+        <input type="hidden" name="checkedsubs" value="1" />
         <ul>
           <:- iterator begin subscriptions:>
           <li>

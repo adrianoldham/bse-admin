@@ -67,9 +67,9 @@
     </fieldset>
     <:- or Groups:><:eif Groups:>
     <:- if Gperms:>
-    <input type="hidden" name="savegperms" value="1" />
     <fieldset>
       <legend>Permissions <:error_img gperms:></legend>
+      <input type="hidden" name="savegperms" value="1" />
       <ul>
         <:- iterator begin gperms:>
         <li>

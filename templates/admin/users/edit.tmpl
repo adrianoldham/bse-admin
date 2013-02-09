@@ -295,8 +295,8 @@
       <:- or Groups:><:eif Groups:>
       <:- if Subscriptions:>
       <fieldset class="subscribe">
-        <input type="hidden" name="checkedsubs" value="1" />
         <legend>Subscribe <:error_img subscription:></legend>
+        <input type="hidden" name="checkedsubs" value="1" />
         <ul>
           <:- iterator begin subscriptions:>
           <li>
@@ -337,8 +337,8 @@
       <:- if Cfg "notify files" active:>
       <:- if Filecats:>
       <fieldset>
-        <input type="hidden" name="save_file_subs" value="1" />
         <legend>File subscriptions <:error_img filecats:></legend>
+        <input type="hidden" name="save_file_subs" value="1" />
         <ul>
            <:- iterator begin filecats:>
           <li>
