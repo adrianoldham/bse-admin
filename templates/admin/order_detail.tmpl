@@ -102,7 +102,7 @@
           <:- ifOrder ccStatus2:>
           <th>Transaction Info:</th>
           <td><:order ccStatus2:></td>
-          <:- or:><:eif:>
+          <:- eif:>
         </tr>
         <:- endswitch:>
         <:- eif Order:>
@@ -233,11 +233,11 @@
           <td>
             <:- ifOrder billOrganization:>
             <:- order billOrganization:><br />
-            <:- or:><:eif:>
+            <:- eif:>
             <:- order billStreet:><br />
             <:- ifOrder billStreet2:>
             <:- order billStreet2:><br />
-            <:- or:><:eif:>
+            <:- eif:>
             <:- order billSuburb:> <:order billState:> <:order billPostCode:><br />
             <:- ifCfgsection "country selector":>
             <:cfg "country selector" [order billCountry]:>
@@ -251,19 +251,19 @@
           <th><:cfg "site users" display_telephone "Telephone":>:</th>
           <td><:order billTelephone:></td>
         </tr>
-        <:- or:><:eif:>
+        <:- eif:>
         <:- ifOrder billFacsimile:>
         <tr>
           <th><:cfg "site users" display_facsimile "Facsimile":>:</th>
           <td><:order billFacsimile:></td>
         </tr>
-        <:- or:><:eif:>
+        <:- eif:>
         <:- ifOrder billMobile:>
         <tr>
           <th><:cfg "site users" display_mobile "Mobile":>:</th>
           <td><:order billMobile:></td>
         </tr>
-        <:- or:><:eif:>
+        <:- eif:>
         <tr>
           <th><:cfg "site users" display_email "Email Address":>:</th>
           <td><:order billEmail:></td>
@@ -273,7 +273,7 @@
           <th>Instructions:</th>
           <td><:order instructions:></td>
         </tr>
-        <:- or:><:eif:>
+        <:- eif:>
       </tbody>
     </table>
     <:- eif Order:>
@@ -290,11 +290,11 @@
           <td>
             <:- ifOrder delivOrganization:>
             <:- order delivOrganization:><br />
-            <:- or:><:eif:>
+            <:- eif:>
             <:- order delivStreet:><br />
             <:- ifOrder delivStreet2:>
             <:- order delivStreet2:><br />
-            <:- or:><:eif:>
+            <:- eif:>
             <:- order delivSuburb:> <:order delivState:> <:order delivPostCode:><br />
             <:- ifCfgsection "country selector":>
             <:cfg "country selector" [order delivCountry]:>
@@ -308,25 +308,25 @@
           <th><:cfg "site users" display_telephone "Telephone":>:</th>
           <td><:order telephone:></td>
         </tr>
-        <:- or:><:eif:>
+        <:- eif:>
         <:- ifOrder facsimile:>
         <tr>
           <th><:cfg "site users" display_facsimile "Facsimile":>:</th>
           <td><:order facsimile:></td>
         </tr>
-        <:- or:><:eif:>
+        <:- eif:>
         <:- ifOrder delivMobile:>
         <tr>
           <th><:cfg "site users" display_mobile "Mobile":>:</th>
           <td><:order delivMobile:></td>
         </tr>
-        <:- or:><:eif:>
+        <:- eif:>
         <:- ifOrder emailAddress:>
         <tr>
           <th><:cfg "site users" display_email "Email Address":>:</th>
           <td><:order emailAddress:></td>
         </tr>
-        <:- or:><:eif:>
+        <:- eif:>
       </tbody>
     </table>
     <:- eif Order:>
