@@ -206,7 +206,7 @@
         <div>
           <label for="width">Width <:error_img width:></label>
           <span>
-            <input type="text" name="width" id="width" value="<:ifEq [old width default width] 0:><:or:><:old width default width:><:eif:>" placeholder="millimetres"maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>class="<:ifError_img width:>error<:eif:>" />
+            <input type="text" name="width" id="width" value="<:ifEq [old width default width] 0:><:or:><:old width default width:><:eif:>" placeholder="millimetres" maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>class="<:ifError_img width:>error<:eif:>" />
             <:help edit width:>
           </span>
         </div>
