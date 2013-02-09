@@ -34,7 +34,7 @@
     <:csrfp admin_add_image hidden:>
     <:- iterator begin images:>
     <div class="object">
-      <h2>Image <:image_number:> <:ifUserCan bse_edit_images_reorder:article:><:imgmove:><:or:><:eif:></h2>
+      <h2>Image <:image_number:> <:ifUserCan bse_edit_images_reorder:article:><:imgmove:><:eif:></h2>
       <p class="buttons">
         <:- if UserCan bse_edit_images_delete:article:>
         <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" data-action="Delete" data-object="Image" class="button red small">Delete</a>
@@ -47,14 +47,14 @@
         <div>
           <label for="image<:image id:>">Change image <:error_img [concatenate image [image id]]:></label>
           <span>
-            <input type="file" name="image<:image id:>" id="image<:image id:>" class="<:ifError_img [concatenate image [image id]]:>error<:or:><:eif:>" />
+            <input type="file" name="image<:image id:>" id="image<:image id:>" class="<:ifError_img [concatenate image [image id]]:>error<:eif:>" />
             <:help image image:>
           </span>
         </div>
         <div>
-          <label for="name<:image id:>">Name <:ifEq [article id] -1:><span class="required">*</span> <:or:><:eif:><:error_img [concatenate name [image id]]:></label>
+          <label for="name<:image id:>">Name <:ifEq [article id] -1:><span class="required">*</span> <:eif:><:error_img [concatenate name [image id]]:></label>
           <span>
-            <input type="text" name="name<:image id:>" id="name<:image id:>" value="<:oldi [concatenate name [image id]] 0 image name:>" <:ifEq [article id] -1:> required="required" <:or:><:eif:>class="<:ifError_img [concatenate name [image id]]:>error<:or:><:eif:>" />
+            <input type="text" name="name<:image id:>" id="name<:image id:>" value="<:oldi [concatenate name [image id]] 0 image name:>" <:ifEq [article id] -1:> required="required" <:eif:>class="<:ifError_img [concatenate name [image id]]:>error<:eif:>" />
             <:help image name:>
           </span>
         </div>
@@ -84,14 +84,14 @@
           <div>
             <label for="alt<:image id:>">Alt <:error_img [concatenate alt [image id]]:></label>
             <span>
-              <input type="text" name="alt<:image id:>" id="alt<:image id:>" value="<:oldi [concatenate alt [image id]] 0 image alt:>" class="<:ifError_img [concatenate alt [image id]]:>error<:or:><:eif:>" />
+              <input type="text" name="alt<:image id:>" id="alt<:image id:>" value="<:oldi [concatenate alt [image id]] 0 image alt:>" class="<:ifError_img [concatenate alt [image id]]:>error<:eif:>" />
               <:help image alt:>
             </span>
           </div>
           <div>
             <label for="url<:image id:>">URL <:error_img [concatenate url [image id]]:></label>
             <span>
-              <input type="text" name="url<:image id:>" id="url<:image id:>" value="<:oldi [concatenate url [image id]] 0 image url:>" class="<:ifError_img [concatenate url [image id]]:>error<:or:><:eif:>" />
+              <input type="text" name="url<:image id:>" id="url<:image id:>" value="<:oldi [concatenate url [image id]] 0 image url:>" class="<:ifError_img [concatenate url [image id]]:>error<:eif:>" />
               <:help image url:>
             </span>
           </div>
@@ -101,7 +101,7 @@
               <select name="storage<:image id:>" id="storage<:image id:>">
                 <option value="">(Auto)</option>
                 <:- iterator begin image_stores:>
-                <option value="<:image_store name:>" <:ifEq [oldi [concatenate storage [image id]] 0 image storage] [image_store name]:>selected="selected"<:or:><:eif:>><:image_store description:></option>
+                <option value="<:image_store name:>" <:ifEq [oldi [concatenate storage [image id]] 0 image storage] [image_store name]:>selected="selected"<:eif:>><:image_store description:></option>
                 <:- iterator end image_stores:>
               </select>
               <:help image storage:>

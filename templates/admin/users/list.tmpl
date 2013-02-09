@@ -67,22 +67,22 @@
       <div>
         <label for="disabled"><:cfg "site users" display_enabled "Disabled":></label>
         <span>
-          <input type="checkbox" name="disabled" id="disabled" value="1" <:ifCgi disabled:>checked="checked" <:or:><:eif:>/>
+          <input type="checkbox" name="disabled" id="disabled" value="1" <:ifCgi disabled:>checked="checked" <:eif:>/>
         </span>
       </div>
       <div>
         <label for="pp">Per Page</label>
         <span>
           <select name="pp" id="pp">
-            <option value="-1"<:ifEq [siteusers_perpage] "-1":> selected="selected"<:or:><:eif:>>All users</option>
-            <option value="1000"<:ifEq [siteusers_perpage] "1000":> selected="selected"<:or:><:eif:>>1000</option>
-            <option value="500"<:ifEq [siteusers_perpage] "500":> selected="selected"<:or:><:eif:>>500</option>
-            <option value="100"<:ifEq [siteusers_perpage] "100":> selected="selected"<:or:><:eif:>>100</option>
-            <option value="50"<:ifEq [siteusers_perpage] "50":> selected="selected"<:or:><:eif:>>50</option>
-            <option value="20"<:ifEq [siteusers_perpage] "20":> selected="selected"<:or:><:eif:>>20</option>
-            <option value="15"<:ifEq [siteusers_perpage] "15":> selected="selected"<:or:><:eif:>>15</option>
-            <option value="10"<:ifEq [siteusers_perpage] "10":> selected="selected"<:or:><:eif:>>10</option>
-            <option value="5"<:ifEq [siteusers_perpage] "5":> selected="selected"<:or:><:eif:>>5</option>
+            <option value="-1"<:ifEq [siteusers_perpage] "-1":> selected="selected"<:eif:>>All users</option>
+            <option value="1000"<:ifEq [siteusers_perpage] "1000":> selected="selected"<:eif:>>1000</option>
+            <option value="500"<:ifEq [siteusers_perpage] "500":> selected="selected"<:eif:>>500</option>
+            <option value="100"<:ifEq [siteusers_perpage] "100":> selected="selected"<:eif:>>100</option>
+            <option value="50"<:ifEq [siteusers_perpage] "50":> selected="selected"<:eif:>>50</option>
+            <option value="20"<:ifEq [siteusers_perpage] "20":> selected="selected"<:eif:>>20</option>
+            <option value="15"<:ifEq [siteusers_perpage] "15":> selected="selected"<:eif:>>15</option>
+            <option value="10"<:ifEq [siteusers_perpage] "10":> selected="selected"<:eif:>>10</option>
+            <option value="5"<:ifEq [siteusers_perpage] "5":> selected="selected"<:eif:>>5</option>
           </select>
         </span>
       </div>

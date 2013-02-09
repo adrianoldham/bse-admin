@@ -48,7 +48,7 @@
       <div>
         <label for="name">Name <span class="required">*</span> <:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name group name:>" required="required" class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name group name:>" required="required" class="<:ifError_img name:>error<:eif:>" />
           <:help editsiteuser name:>
         </span>
       </div>
@@ -62,8 +62,8 @@
         <:- iterator begin siteusers:>
         <li>
           <input type="hidden" name="set_is_member" value="<:siteuser id:>" />
-          <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:or:><:eif:>/>
-          <label for="userid_<:siteuser id:>"><a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a><:ifOr [siteuser name1] [siteuser name2]:> (<:siteuser name1:> <:siteuser name2:>)<:or:><:eif:></label>
+          <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:eif:>/>
+          <label for="userid_<:siteuser id:>"><a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a><:ifOr [siteuser name1] [siteuser name2]:> (<:siteuser name1:> <:siteuser name2:>)<:eif:></label>
         </li>
         <:- iterator end siteusers:>
       </ul>

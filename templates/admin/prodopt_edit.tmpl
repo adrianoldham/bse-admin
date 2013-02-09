@@ -21,14 +21,14 @@
       <div>
         <label for="name">Name <span class="required">*</span> <:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name option name:>" required="required" class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name option name:>" required="required" class="<:ifError_img name:>error<:eif:>" />
           <:help edit name:>
         </span>
       </div>
       <div>
         <label for="enabled">Enabled <:error_img Enabled:></label>
         <span>
-          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOld enabled option enabled:>checked="checked"<:or:><:eif:> />
+          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOld enabled option enabled:>checked="checked"<:eif:> />
           <:help edit Enabled:>
         </span>
       </div>
@@ -37,9 +37,9 @@
       <legend>Values</legend>
       <:- iterator begin dboptionvalues:>
       <div>
-        <label for="value<:dboptionvalue id:>">#<:dboptionvalue_number:> <:error_img [concatenate value [dboptionvalue id]]:> <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifEq [dboptionvalue id] [option default_value]:>checked="checked"<:or:><:eif:> /> <:error_img default_value:></label>
+        <label for="value<:dboptionvalue id:>">#<:dboptionvalue_number:> <:error_img [concatenate value [dboptionvalue id]]:> <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifEq [dboptionvalue id] [option default_value]:>checked="checked"<:eif:> /> <:error_img default_value:></label>
         <span>
-          <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [concatenate value [dboptionvalue id]] 0 dboptionvalue value:>" class="<:ifError_img [concatenate value [dboptionvalue id]]:>error<:or:><:eif:>" />
+          <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [concatenate value [dboptionvalue id]] 0 dboptionvalue value:>" class="<:ifError_img [concatenate value [dboptionvalue id]]:>error<:eif:>" />
           <:help edit name:>
           <button onclick="javascript: $(this).up('div').remove(); return false;" class="button red small">Delete</button>
         </span>

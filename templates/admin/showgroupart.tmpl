@@ -28,8 +28,8 @@
       <ul>
         <:- iterator begin aperms:>
         <li>
-          <input type="checkbox" name="aperms" id="aperm_<:aperm id:>" value="<:aperm id:>" <:ifAperm_set aperm:>checked="checked" <:or:><:eif:>/>
-          <label for="aperm_<:aperm id:>"><:aperm brief:><:ifAperm help:> (<:aperm help:>)<:or:><:eif:></label>
+          <input type="checkbox" name="aperms" id="aperm_<:aperm id:>" value="<:aperm id:>" <:ifAperm_set aperm:>checked="checked" <:eif:>/>
+          <label for="aperm_<:aperm id:>"><:aperm brief:><:ifAperm help:> (<:aperm help:>)<:eif:></label>
         </li>
         <:- iterator end aperms:>
       </ul>

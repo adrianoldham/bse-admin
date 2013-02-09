@@ -7,7 +7,7 @@
       <ul class="menu context">
         <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
           <ul>
-            <li><a href="<:script:>?a_tags=1&amp;id=-1<:ifCgi showarts:><:or:>&amp;showarts=1<:eif:>&amp;cat=<:cgi cat:>&amp;p=<:systags_pagenum:>&amp;pp=<:systags_perpage:><:ifCgi nocat:>&amp;nocat=1<:or:><:eif:>" accesskey="t" title="AccessKey = t"><:ifCgi showarts:>Hide<:or:>Show<:eif:> Tagged Articles…</a></li>
+            <li><a href="<:script:>?a_tags=1&amp;id=-1<:ifCgi showarts:><:or:>&amp;showarts=1<:eif:>&amp;cat=<:cgi cat:>&amp;p=<:systags_pagenum:>&amp;pp=<:systags_perpage:><:ifCgi nocat:>&amp;nocat=1<:eif:>" accesskey="t" title="AccessKey = t"><:ifCgi showarts:>Hide<:or:>Show<:eif:> Tagged Articles…</a></li>
              <li class="divider"></li>
              <li><a href="<:script:>?a_tagcleanup=1&amp;id=-1" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Tags" data-confirm="Are you sure you want to delete all unused Tags?">Delete Unused Tags…</a></li>
           </ul>
@@ -29,12 +29,12 @@
       <div>
         <label for="cat">Filter category</label>
         <span>
-          <input type="text" name="cat" id="cat" value="<:cgi cat:>" class="<:ifError_img cat:>error<:or:><:eif:>" />
+          <input type="text" name="cat" id="cat" value="<:cgi cat:>" class="<:ifError_img cat:>error<:eif:>" />
         </span>
       </div>
       <ul>
         <li>
-          <input type="checkbox" name="nocat" id="nocat" <:ifCgi nocat:>checked="checked" <:or:><:eif:>/>
+          <input type="checkbox" name="nocat" id="nocat" <:ifCgi nocat:>checked="checked" <:eif:>/>
           <label for="nocat">Uncategorized only</label>
         </li>
       </ul>
@@ -48,11 +48,11 @@
   <form action="<:script:>#tag_<:systag id:>" method="post" data-object="Tag">
     <fieldset>
       <div id="tag_<:systag id:>">
-        <label for="tag_<:systag_number:>">Tag #<:systag_number:> <:ifEq [cgi tag_id] [systag id]:><:error_img name:><:or:><:eif:></label>
+        <label for="tag_<:systag_number:>">Tag #<:systag_number:> <:ifEq [cgi tag_id] [systag id]:><:error_img name:><:eif:></label>
         <span>
           <input type="hidden" name="id" value="-1" />
           <input type="hidden" name="tag_id" value="<:systag id:>" />
-          <input type="text" name="name" id="tag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="tag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" class="<:ifError_img name:>error<:eif:>" />
           <input type="submit" name="a_tagrename" value="Save" class="button green small" />
           <a href="<:script:>?a_tagdelete=1&amp;id=-1&amp;tag_id=<:systag id:>" data-action="Delete" data-object="Tag" class="button red small">Delete</a>
         </span>

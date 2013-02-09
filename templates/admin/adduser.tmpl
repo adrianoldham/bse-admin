@@ -10,21 +10,21 @@
       <div>
         <label for="logon">Username <span class="required">*</span> <:error_img logon:></label>
         <span>
-          <input type="text" name="logon" id="logon" value="<:old logon:>" required="required" autofocus="autofocus" class="<:ifError_img logon:>error<:or:><:eif:>" />
+          <input type="text" name="logon" id="logon" value="<:old logon:>" required="required" autofocus="autofocus" class="<:ifError_img logon:>error<:eif:>" />
           <:help adduser logon:>
         </span>
       </div>
       <div>
         <label for="password">Password <span class="required">*</span> <:error_img password:></label>
         <span>
-          <input type="password" name="password" id="password" value="<:old password:>" required="required" class="<:ifError_img password:>error<:or:><:eif:>" />
+          <input type="password" name="password" id="password" value="<:old password:>" required="required" class="<:ifError_img password:>error<:eif:>" />
           <:help adduser password:>
         </span>
       </div>
       <div>
         <label for="confirm">Confirm Password <span class="required">*</span> <:error_img confirm:></label>
         <span>
-          <input type="password" name="confirm" id="confirm" value="<:old confirm:>" required="required" class="<:ifError_img confirm:>error<:or:><:eif:>" />
+          <input type="password" name="confirm" id="confirm" value="<:old confirm:>" required="required" class="<:ifError_img confirm:>error<:eif:>" />
           <:help adduser confirm:>
         </span>
       </div>
@@ -34,7 +34,7 @@
       <div>
         <label for="name">Full Name <:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name:>" class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name:>" class="<:ifError_img name:>error<:eif:>" />
           <:help adduser name:>
         </span>
       </div>
@@ -46,8 +46,8 @@
       <ul>
         <:- iterator begin groups:>
         <li>
-          <input type="checkbox" name="groups" id="group_<:igroup id:>" value="<:igroup id:>" <:ifMatch [old groups] [igroup id]:>checked="checked" <:or:><:eif:>/>
-          <label for="group_<:igroup id:>"><a href="<:script:>?a_showgroup=1&amp;groupid=<:igroup id:>"><:igroup name:></a><:ifIgroup description:> (<:igroup description:>)<:or:><:eif:></label>
+          <input type="checkbox" name="groups" id="group_<:igroup id:>" value="<:igroup id:>" <:ifMatch [old groups] [igroup id]:>checked="checked" <:eif:>/>
+          <label for="group_<:igroup id:>"><a href="<:script:>?a_showgroup=1&amp;groupid=<:igroup id:>"><:igroup name:></a><:ifIgroup description:> (<:igroup description:>)<:eif:></label>
         </li>
         <:- iterator end groups:>
       </ul>
@@ -61,7 +61,7 @@
       <ul>
         <:- iterator begin gperms:>
         <li>
-          <input type="checkbox" name="gperms" id="gperms_<:gperm id:>" value="<:gperm id:>" <:ifMatch [old gperms] [gperm id]:>checked="checked" <:or:><:eif:>/>
+          <input type="checkbox" name="gperms" id="gperms_<:gperm id:>" value="<:gperm id:>" <:ifMatch [old gperms] [gperm id]:>checked="checked" <:eif:>/>
           <label for="gperms_<:gperm id:>" title="<:gperm help:>"><:gperm brief:></label>
         </li>
         <:- iterator end gperms:>

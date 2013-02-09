@@ -11,7 +11,7 @@
       <div>
         <label for="id">ID <span class="required">*</span></label>
         <span>
-          <input type="text" name="id" id="id" required="required" autofocus="autofocus" class="<:ifError_img id:>error<:or:><:eif:>" />
+          <input type="text" name="id" id="id" required="required" autofocus="autofocus" class="<:ifError_img id:>error<:eif:>" />
           <:help menu id:>
         </span>
       </div>
@@ -19,8 +19,8 @@
         <label for="preview">Mode</label>
         <span>
           <select name="preview" id="preview">
-            <option value="0"<:ifEq [old [cgi preview]] "0":> selected="selected"<:or:><:eif:>>Edit</option>
-            <option value="1"<:ifEq [old [cgi preview]] "1":> selected="selected"<:or:><:eif:>>Preview</option>
+            <option value="0"<:ifEq [old [cgi preview]] "0":> selected="selected"<:eif:>>Edit</option>
+            <option value="1"<:ifEq [old [cgi preview]] "1":> selected="selected"<:eif:>>Preview</option>
           </select>
           <:help menu preview:>
         </span>

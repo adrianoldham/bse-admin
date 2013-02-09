@@ -14,14 +14,14 @@
       <div>
         <label for="file">File <span class="required">*</span> <:error_img file:></label>
         <span>
-          <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" required="required" autofocus="autofocus" class="<:ifError_img file:>error<:or:><:eif:>" />
+          <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" required="required" autofocus="autofocus" class="<:ifError_img file:>error<:eif:>" />
           <:help file file:>
         </span>
       </div>
       <div>
-        <label for="name">Name <:ifEq [article id] -1:><span class="required">*</span> <:or:><:eif:><:error_img name:></label>
+        <label for="name">Name <:ifEq [article id] -1:><span class="required">*</span> <:eif:><:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name:>" <:ifEq [article id] -1:>required="required" <:or:><:eif:>class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name:>" <:ifEq [article id] -1:>required="required" <:eif:>class="<:ifError_img name:>error<:eif:>" />
           <:help file name:>
         </span>
       </div>
@@ -33,14 +33,14 @@
         <div>
           <label for="description">Description <:error_img description:></label>
           <span>
-            <input type="text" name="description" id="description" value="<:old description:>" class="<:ifError_img description:>error<:or:><:eif:>" />
+            <input type="text" name="description" id="description" value="<:old description:>" class="<:ifError_img description:>error<:eif:>" />
             <:help file description:>
           </span>
         </div>
         <div>
           <label for="notes">Notes <:error_img notes:></label>
           <span>
-            <textarea name="notes" id="notes" class="<:ifError_img notes:>error<:or:><:eif:>"><:old notes:></textarea>
+            <textarea name="notes" id="notes" class="<:ifError_img notes:>error<:eif:>"><:old notes:></textarea>
             <:help file notes:>
           </span>
         </div>
@@ -50,21 +50,21 @@
         <div>
           <label for="contentType">Content type <:error_img contentType:></label>
           <span>
-            <input type="text" name="contentType" id="contentType" value="<:old contentType:>" placeholder="MIME format" class="<:ifError_img contentType:>error<:or:><:eif:>" />
+            <input type="text" name="contentType" id="contentType" value="<:old contentType:>" placeholder="MIME format" class="<:ifError_img contentType:>error<:eif:>" />
             <:help file contentType:>
           </span>
         </div>
         <div>
           <label for="download">Force download <:error_img download:></label>
           <span>
-            <input type="checkbox" name="download" id="download" value="1" <:ifOld download:>checked="checked" <:or:><:eif:>/>
+            <input type="checkbox" name="download" id="download" value="1" <:ifOld download:>checked="checked" <:eif:>/>
             <:help file download:>
           </span>
         </div>
         <div>
           <label for="hide_from_list">Hide from list <:error_img hide_from_list:></label>
           <span>
-            <input type="checkbox" name="hide_from_list" id="hide_from_list" value="1" <:ifOld hide_from_list:>checked="checked" <:or:><:eif:>/>
+            <input type="checkbox" name="hide_from_list" id="hide_from_list" value="1" <:ifOld hide_from_list:>checked="checked" <:eif:>/>
             <:help file hide_from_list:>
           </span>
         </div>
@@ -72,7 +72,7 @@
         <div>
           <label for="forSale">Require payment <:error_img forSale:></label>
           <span>
-            <input type="checkbox" name="forSale" id="forSale" value="1" <:ifOld forSale:>checked="checked" <:or:><:eif:>/>
+            <input type="checkbox" name="forSale" id="forSale" value="1" <:ifOld forSale:>checked="checked" <:eif:>/>
             <:help file forSale:>
           </span>
         </div>
@@ -80,7 +80,7 @@
         <div>
           <label for="requireUser">Require login <:error_img requireUser:></label>
           <span>
-            <input type="checkbox" name="requireUser" id="requireUser" value="1" <:ifOld requireUser:>checked="checked" <:or:><:eif:>/>
+            <input type="checkbox" name="requireUser" id="requireUser" value="1" <:ifOld requireUser:>checked="checked" <:eif:>/>
             <:help file requireUser:>
           </span>
         </div>
@@ -90,7 +90,7 @@
             <select name="storage" id="storage">
               <option value="">(Auto)</option>
               <:- iterator begin file_stores:>
-              <option value="<:file_store name:>" <:ifOld storage:>selected="selected"<:or:><:eif:>><:file_store description:></option>
+              <option value="<:file_store name:>" <:ifOld storage:>selected="selected"<:eif:>><:file_store description:></option>
               <:- iterator end file_stores:>
             </select>
             <:help file storage:>

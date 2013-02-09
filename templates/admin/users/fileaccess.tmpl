@@ -24,15 +24,15 @@
         <label for="pp">Per page</label>
         <span>
           <select name="pp" id="pp">
-            <option value="-1"<:ifEq [fileaccesses_perpage] "-1":> selected="selected"<:or:><:eif:>>All downloads</option>
-            <option value="1000"<:ifEq [fileaccesses_perpage] "1000":> selected="selected"<:or:><:eif:>>1000</option>
-            <option value="500"<:ifEq [fileaccesses_perpage] "500":> selected="selected"<:or:><:eif:>>500</option>
-            <option value="100"<:ifEq [fileaccesses_perpage] "100":> selected="selected"<:or:><:eif:>>100</option>
-            <option value="50"<:ifEq [fileaccesses_perpage] "50":> selected="selected"<:or:><:eif:>>50</option>
-            <option value="20"<:ifEq [fileaccesses_perpage] "20":> selected="selected"<:or:><:eif:>>20</option>
-            <option value="15"<:ifEq [fileaccesses_perpage] "15":> selected="selected"<:or:><:eif:>>15</option>
-            <option value="10"<:ifEq [fileaccesses_perpage] "10":> selected="selected"<:or:><:eif:>>10</option>
-            <option value="5"<:ifEq [fileaccesses_perpage] "5":> selected="selected"<:or:><:eif:>>5</option>
+            <option value="-1"<:ifEq [fileaccesses_perpage] "-1":> selected="selected"<:eif:>>All downloads</option>
+            <option value="1000"<:ifEq [fileaccesses_perpage] "1000":> selected="selected"<:eif:>>1000</option>
+            <option value="500"<:ifEq [fileaccesses_perpage] "500":> selected="selected"<:eif:>>500</option>
+            <option value="100"<:ifEq [fileaccesses_perpage] "100":> selected="selected"<:eif:>>100</option>
+            <option value="50"<:ifEq [fileaccesses_perpage] "50":> selected="selected"<:eif:>>50</option>
+            <option value="20"<:ifEq [fileaccesses_perpage] "20":> selected="selected"<:eif:>>20</option>
+            <option value="15"<:ifEq [fileaccesses_perpage] "15":> selected="selected"<:eif:>>15</option>
+            <option value="10"<:ifEq [fileaccesses_perpage] "10":> selected="selected"<:eif:>>10</option>
+            <option value="5"<:ifEq [fileaccesses_perpage] "5":> selected="selected"<:eif:>>5</option>
           </select>
         </span>
       </div>
@@ -120,7 +120,7 @@
             <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>&amp;file_id=<:fileaccess file_id:>" class="widget round">&plus;</a>
           </td>
           <td>
-            <a href="<:script:>?<:ifEq [fileaccess owner_type] "U":>a_edit<:or:>a_editgroup<:eif:>=1&amp;<:ifMatch [fileaccess owner_id] ^-:>_t=files&amp;<:or:><:eif:>=1&amp;id=<:fileaccess owner_id:>"><:fileowner desc:></a>
+            <a href="<:script:>?<:ifEq [fileaccess owner_type] "U":>a_edit<:or:>a_editgroup<:eif:>=1&amp;<:ifMatch [fileaccess owner_id] ^-:>_t=files&amp;<:eif:>=1&amp;id=<:fileaccess owner_id:>"><:fileowner desc:></a>
             <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_type owner_id:>&amp;owner_id=<:fileaccess owner_id:>&amp;owner_type=<:fileaccess owner_type:>" class="widget round">&plus;</a>
           </td>
           <td>

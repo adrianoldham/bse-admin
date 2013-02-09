@@ -11,21 +11,21 @@
       <div>
         <label for="min">Start user <span class="required">*</span> <!--:error_img min:--></label>
         <span>
-          <input type="text" name="min" id="min" required="required" autofocus="autofocus" class="<:ifError_img min:>error<:or:><:eif:>" />
+          <input type="text" name="min" id="min" required="required" autofocus="autofocus" class="<:ifError_img min:>error<:eif:>" />
           <:help userlist min:>
         </span>
       </div>
       <div>
         <label for="max">Finish user <!--:error_img max:--></label>
         <span>
-          <input type="text" name="max" id="max" class="<:ifError_img max:>error<:or:><:eif:>" />
+          <input type="text" name="max" id="max" class="<:ifError_img max:>error<:eif:>" />
           <:help userlist max:>
         </span>
       </div>
       <div>
         <label for="field">Field <!--:error_img field:--></label>
         <span>
-          <select name="field" id="field" class="<:ifError_img field:>error<:or:><:eif:>">
+          <select name="field" id="field" class="<:ifError_img field:>error<:eif:>">
             <option value="id">Id</option>
 	        <option value="userId"><:cfg "site users" display_userId "Username":></option>
           </select>

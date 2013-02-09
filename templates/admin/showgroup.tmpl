@@ -23,14 +23,14 @@
       <div>
         <label for="name">Name <span class="required">*</span> <:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name group name:>" required="required" class="<:ifError_img name:>error<:or:><:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name group name:>" required="required" class="<:ifError_img name:>error<:eif:>" />
           <:help addgroup name:>
         </span>
       </div>
       <div>
         <label for="description">Description <:error_img description:></label>
         <span>
-          <input type="text" name="description" id="description" value="<:old description group description:>" class="<:ifError_img description:>error<:or:><:eif:>" />
+          <input type="text" name="description" id="description" value="<:old description group description:>" class="<:ifError_img description:>error<:eif:>" />
           <:help addgroup description:>
         </span>
       </div>
@@ -48,8 +48,8 @@
       <ul>
         <:- iterator begin users:>
         <li>
-          <input type="checkbox" name="users" id="user_<:iuser id:>" value="<:iuser id:>" <:ifOr [ifMemberof iuser] [ifMatch [old users] [iuser id]]:>checked="checked" <:or:><:eif:>/>
-          <label for="user_<:iuser id:>"><a href="<:script:>?a_showuser=1&amp;userid=<:iuser id:>"><:iuser logon:></a><:ifIuser name:> (<:iuser name:>)<:or:><:eif:></label>
+          <input type="checkbox" name="users" id="user_<:iuser id:>" value="<:iuser id:>" <:ifOr [ifMemberof iuser] [ifMatch [old users] [iuser id]]:>checked="checked" <:eif:>/>
+          <label for="user_<:iuser id:>"><a href="<:script:>?a_showuser=1&amp;userid=<:iuser id:>"><:iuser logon:></a><:ifIuser name:> (<:iuser name:>)<:eif:></label>
         </li>
         <:- iterator end users:>
       </ul>
@@ -63,7 +63,7 @@
       <ul>
         <:- iterator begin gperms:>
         <li>
-          <input type="checkbox" name="gperms" id="gperms_<:gperm id:>" value="<:gperm id:>" <:ifGperm_set gperm:>checked="checked" <:or:><:eif:>/>
+          <input type="checkbox" name="gperms" id="gperms_<:gperm id:>" value="<:gperm id:>" <:ifGperm_set gperm:>checked="checked" <:eif:>/>
           <label for="gperms_<:gperm id:>" title="<:gperm help:>"><:gperm brief:></label>
         </li>
         <:- iterator end gperms:>

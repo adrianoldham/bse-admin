@@ -10,17 +10,17 @@
       <div>
         <label for="file">Data file <span class="required">*</span> <:error_img file:></label>
         <span>
-          <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" required="required" autofocus="autofocus" class="<:ifError_img file:>error<:or:><:eif:>" />
+          <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" required="required" autofocus="autofocus" class="<:ifError_img file:>error<:eif:>" />
           <:help userupdate file:>
         </span>
       </div>
       <div>
         <label for="importspec">Profile <span class="required">*</span> <:error_img importspec:></label>
         <span>
-          <select name="importspec" id="importspec" required="required" class="<:ifError_img importspec:>error<:or:><:eif:>">
+          <select name="importspec" id="importspec" required="required" class="<:ifError_img importspec:>error<:eif:>">
             <option value="">(select an import profile)</option>
             <:- iterator begin importspecs:>
-            <option value="<:importspec name:>"<:ifEq [old importspec] [importspec name]:> selected="selected"<:or:><:eif:>><:importspec description:> (<:capitalize [importspec name]:>)</option>
+            <option value="<:importspec name:>"<:ifEq [old importspec] [importspec name]:> selected="selected"<:eif:>><:importspec description:> (<:capitalize [importspec name]:>)</option>
             <:- iterator end importspecs:>
           </select>
           <:help userupdate importspecs:>
