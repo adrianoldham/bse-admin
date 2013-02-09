@@ -265,7 +265,7 @@
           <span>
             <select name="menu" id="menu"<:ifFieldPerm menu:><:or:> disabled="disabled"<:eif:>>
               <:- iterator begin cfgsection [concatenate level [article level] " menus"] sort=key:>
-              <option value="<:cfgentry key:>"<:if Eq [old menu] [cfgentry key]:> selected="selected"<:or Eq:><:eif Eq:>><:cfgentry value:></option>
+              <option value="<:cfgentry key:>"<:if Eq [old menu] [cfgentry key]:> selected="selected"<:eif Eq:>><:cfgentry value:></option>
               <:- iterator end cfgsection:>
             </select>
             <:help edit menu:>

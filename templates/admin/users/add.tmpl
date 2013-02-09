@@ -111,7 +111,7 @@
           <span><:if Cfgsection "country selector":>
             <select name="country" id="country" class="<:ifRequired userId:>required<:eif:><:ifError_img country:> error<:eif:>">
               <option value="">Please select a country</option><:iterator begin dyncfgsection "country selector" sort=value:>
-              <option value="<:uc [dyncfgentry key]:>"<:if Or [ifEq [old country] [uc [dyncfgentry key]]] [ifEq [old country] [uc [dyncfgentry value]]]:> selected="selected"<:or Or:><:eif Or:>><:dyncfgentry value:></option>
+              <option value="<:uc [dyncfgentry key]:>"<:if Or [ifEq [old country] [uc [dyncfgentry key]]] [ifEq [old country] [uc [dyncfgentry value]]]:> selected="selected"<:eif Or:>><:dyncfgentry value:></option>
               <:- iterator end dyncfgsection:>
             </select><:or Cfgsection:>
             <input type="text" name="country" id="country" value="<:old country:>" <:ifRequired country:>required="required" <:eif:> class="<:ifError_img country:>error<:eif:>" /><:eif Cfgsection:>
