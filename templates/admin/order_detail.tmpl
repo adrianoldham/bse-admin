@@ -331,7 +331,6 @@
     </table>
     <:- or Order:><:eif Order:>
   </div>
-  <div style="clear: both;" />
   <:- if And [ifEq [order paymentType] "4"] [order paidFor] [ifEq [order paid_manually] "0"]:>
   <:- if UserCan bse_shop_order_refund_paypal:>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Refund">

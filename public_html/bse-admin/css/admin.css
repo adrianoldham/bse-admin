@@ -66,6 +66,7 @@ select, input, textarea, button {
 
 form {
     position: relative;
+    clear: both;
 }
 
 p, table {
