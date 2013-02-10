@@ -88,8 +88,8 @@ function dom_init() {
     if (has_svg_support()) {
         $$("html").invoke('addClassName', 'svg');
         $$("label > img[src$='png'], p > img[src$='png']").each(function(img) {
-            var src = img.getAttribute('src').replace("png","svg");
-            img.setAttribute('src', src).addClassName("error");
+            var src = img.getAttribute('src').replace(/png$/,"svg");
+            img.setAttribute('src', src);
         });
     }
 
