@@ -195,7 +195,7 @@
     <:-.if request.messages.size:>
     <div id="message">
       <:-.for m in request.messages:>
-      <div class="message <:= m.class :> <:-= m.class eq 'error' ? ' red' : ' green' :>">
+      <div class="message <:= m.class :> <:-= m.class eq 'unknown' ? ' orange' : m.class eq 'error' ? ' red' : ' green' :>">
         <:-= m.html -:>
       </div>
       <:-.end for:> 
