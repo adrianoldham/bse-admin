@@ -134,7 +134,7 @@
           <:help edit retailPrice:>
         </span>
       </div>
-      <:- if Cfg product legacy_gst:>
+      <:- if Cfg products legacy_gst:>
       <div>
         <label for="gst">GST <:cfg shop currency $:> <:error_img gst:></label>
         <span>
@@ -143,7 +143,7 @@
         </span>
       </div>
       <:- eif Cfg:>
-      <:- if Cfg product legacy_wholesale:>
+      <:- if Cfg products legacy_wholesale:>
       <div>
         <label for="wholesalePrice">Wholesale <:cfg shop currency $:> <:error_img wholesalePrice:></label>
         <span>
@@ -483,6 +483,31 @@
       </fieldset>
       <:- eif Subscriptions:>
       <:- eif Or:>
+      <:- if Cfg articles legacy_thumbimage:>
+      <fieldset>
+        <legend>Thumbnail</legend>
+        <div>
+          <label for="thumbnail"><:ifArticle thumbImage:>Change image<:or:>Image<:eif:> <:error_img thumbnail:></label>
+          <span>
+            <input type="file" name="thumbnail" id="thumbnail"<:ifFieldPerm thumbnail:><:or:> disabled="disabled" <:eif:> />
+          </span>
+        </div>
+        <:- if Article thumbImage:>
+        <div>
+          <label>Original</label>
+          <span>
+            <img src="<:cfg uri images:>/<:article thumbImage:>" width="<:article thumbWidth:>" height="<:article thumbHeight:>" />
+          </span>
+          <span>
+            <:- if FieldPerm thumbnail:>
+            <a href="<:script:>?id=<:article id:>&amp;remove_thumb=1<:if Match [article generator] "Product":>&amp;retailPrice=<:money product retailPrice:>&amp;wholesalePrice=<:money product wholesalePrice:>&amp;gst=<:money product gst:><:or Match:><:eif Match:>&amp;flags=<:article flags:>&amp;save=1&amp;lastModified=<:article lastModified:>&amp;_csrfp=<:csrfp admin_save_article:>" data-action="Delete" data-object="Thumbnail" class="button red small">Delete</a>
+            <:- or FieldPerm:><a class="button red small disabled">Delete</a>
+            <:- eif FieldPerm:>
+          </span>
+        </div>
+        <:- eif Article:>
+      </fieldset>
+      <:- eif Cfg:>
       <:- if Images:>
       <fieldset>
         <legend>Images</legend>
