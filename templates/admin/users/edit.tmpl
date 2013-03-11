@@ -264,15 +264,15 @@
         </p>
         <:- or Siteuser_image:>
         <div>
-          <label for="image_<:imagetemplate id:>_file">Image <:error_img [concatenate [siteuser_image [imagetemplate id] file]]:></label>
+          <label for="image_<:imagetemplate id:>_file">Image <:error_img [concatenate "image_" [imagetemplate id] "_file"]:></label>
           <span>
-            <input type="file" name="image_<:imagetemplate id:>_file" id="image_<:imagetemplate id:>_file" class="<:ifError_img [concatenate [siteuser_image [imagetemplate id] file]]:>error<:eif:>" />
+            <input type="file" name="image_<:imagetemplate id:>_file" id="image_<:imagetemplate id:>_file" class="<:ifError_img [concatenate "image_" [imagetemplate id] "_file"]:>error<:eif:>" />
           </span>
         </div>
         <div>
-          <label for="image_<:imagetemplate id:>_alt">Alt <:error_img [concatenate [siteuser_image [imagetemplate id] alt]]:></label>
+          <label for="image_<:imagetemplate id:>_alt">Alt <:error_img [concatenate "image_" [imagetemplate id] "_alt"]:></label>
           <span>
-            <input type="text" name="image_<:imagetemplate id:>_alt" id="image_<:imagetemplate id:>_alt" value="<:siteuser_image [imagetemplate id] alt:>" class="<:ifError_img [concatenate [siteuser_image [imagetemplate id] alt]]:>error<:eif:>" />
+            <input type="text" name="image_<:imagetemplate id:>_alt" id="image_<:imagetemplate id:>_alt" value="<:siteuser_image [imagetemplate id] alt:>" class="<:ifError_img [concatenate "image_" [imagetemplate id] "_alt"]:>error<:eif:>" />
           </span>
         </div>
         <:- eif Siteuser_image:>
