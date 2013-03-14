@@ -2,7 +2,12 @@
     <legend><:= title |html:></legend>
     <table class="list full">
       <thead>
-        <:include admin/log/head.tmpl:>
+        <tr>
+          <th>When</th>
+          <th>Level</th>
+          <th>Message</th>
+          <th><!--Actions--></th>
+        </tr>
       </thead>
       <tbody>
         <:-.for auditentry in log:>
