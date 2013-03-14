@@ -7,11 +7,11 @@
       <ul class="menu context">
         <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
           <ul>
-            <:-.if ip.lockout_S:>
-            <li><a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"S" }) :>">Unlock Site Users</a></li>
+            <:-.if ip.lockout_S and request.user_can("bse_ipaddress_unlock"):>
+            <li><a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"S", "r":cfg.admin_url2("ipaddress", "detail", { "ip":ip.ip_address }) }):>">Unlock Site Users</a></li>
             <:-.end if:>
-            <:-.if ip.lockout_A:>
-            <a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"A", "r":cfg.admin_url2("ipaddress", "detail", { "ip":ip.ip_address }) }) :>">Unlock Admin Users</a>
+            <:-.if ip.lockout_A and request.user_can("bse_ipaddress_unlock"):>
+            <li><a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"A", "r":cfg.admin_url2("ipaddress", "detail", { "ip":ip.ip_address }) }):>">Unlock Admin Users</a></li>
             <:-.end if:>
           </ul>
         </li>

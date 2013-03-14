@@ -11,18 +11,34 @@
       <thead>
         <tr>
           <th>IP Address</th>
-          <th>Site users</th>
-          <th>Admin users</th>
+          <th>Site Users</th>
+          <th>Admin Users</th>
           <th><!--Actions--></th>
         </tr>
       </thead>
       <tbody>
         <:-.for ip in ips:>
-        <tr>
+        <tr class="warning">
           <td><:= ip.ip_address:></td>
-          <td><:.if ip.lockout_S:>Locked<:.end if:></td>
-          <td><:.if ip.lockout_A:>Locked<:.end if:></td>
-          <td class="actions"><a href="<:= cfg.admin_url2("ipaddress", "detail", { "ip":ip.ip_address }):>" class="button gray small">Details</a></td>
+          <td>
+            <:-.if ip.lockout_S and request.user_can("bse_ipaddress_unlock"):>
+            <a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"S" }):>" class="button orange small">Unlock</a>
+            <:-.elsif ip.lockout_S:>
+            Locked
+            <:-.end if:>
+          </td>
+          <td>
+            <:-.if ip.lockout_A and request.user_can("bse_ipaddress_unlock"):>
+            <a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"A" }):>" class="button orange small">Unlock</a>
+            <:-.elsif ip.lockout_A:>
+            Locked
+            <:-.end if:>
+          </td>
+          <td class="actions">
+            <:-.if request.user_can("bse_ipaddress_detail"):>
+            <a href="<:= cfg.admin_url2("ipaddress", "detail", { "ip":ip.ip_address }):>" class="button gray small">Details</a>
+            <:-.end if:>
+          </td>
         </tr>
         <:-.end for:>
       </tbody>
