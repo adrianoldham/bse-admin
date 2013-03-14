@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <:- iterator begin modules:>
-        <tr class="<:ifModule error:>error<:eif:>">
+        <tr <:- ifModule error:> class="error"<:eif:>>
           <td><:module name:></td>
           <td><:module version:></td>
           <td><:module found:></td>
