@@ -11,10 +11,10 @@
       </thead>
       <tbody>
         <:-.for auditentry in log:>
-        <tr class="audit<:= auditentry.level |html:>">
           <td><:= bse.date("%d-%b-%Y / %r", auditentry.when_at) |html:></td>
           <td><:= auditentry.level_name |html:></td>
           <td><:= auditentry.msg |html:></td>
+        <tr class="<:= auditentry.level_name |html:>">
           <td class="actions">
             <:-.if request.user_can("bse_log_detail"):>
             <a href="<:= cfg.admin_url2("log", "detail", { "id":auditentry.id, "referer":1 }) |html:>" class="button gray small">Details</a>
