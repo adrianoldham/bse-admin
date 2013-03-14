@@ -58,7 +58,10 @@ a {
     color: #333;
 }
 
-select, input, textarea, button {
+select,
+input,
+textarea,
+button {
     font: inherit;
     font-size: 1em;
     margin: 0;
@@ -69,7 +72,8 @@ form {
     clear: both;
 }
 
-p, table {
+p,
+table {
     margin-bottom: 1em;
 }
 
@@ -217,7 +221,10 @@ td span {
     white-space: nowrap;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: Helvetica-Neue, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 2.25em;
     font-weight: normal;
@@ -260,7 +267,8 @@ h4 {
     display: none;
 }
 
-.paid, .unpaid {
+.paid,
+.unpaid {
     float: left;
     margin-right: 0.5em;
     margin-top: -0.1em;
@@ -1052,7 +1060,8 @@ div + .meta {
     margin-top: 1em;
 }
 
-.meta li, .meta li div {
+.meta li,
+.meta li div {
     float: left;
     list-style: none;
     margin: 0 0.5em 0.5em 0;
