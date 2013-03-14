@@ -1279,8 +1279,8 @@ table.items td.item span {
     color: #666;
 }
 
-table.items th+th,
-table.items td+td {
+table.items th + th,
+table.items td + td {
     width: 10%;
 }
 
@@ -1397,8 +1397,8 @@ table.items td {
     text-align: left;
 }
 
-table.items th+th,
-table.items td+td {
+table.items th + th,
+table.items td + td {
     width: 10%;
     text-align: right;
     white-space: nowrap;
@@ -2278,7 +2278,7 @@ nav *[data-icon=delete]:last-child {
     background-image: url(/bse-admin/images/buttons/down.svg);
 }
 
-*[data-icon=versions+]:before {
+*[data-icon=versions\+]:before {
     background-image: url(/bse-admin/images/buttons/versions+.svg);
 }
 
