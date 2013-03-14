@@ -7,7 +7,7 @@
   <:iterator begin messages:>
   <:-.set msgbase = [ state, "msg:bse/admin/imageclean/", "NOMSGID" ][1] -:>
   <:-.if state.type eq "stage" :>
-  <fieldset class="list">
+  <fieldset>
     <legend id="<:= state.stage :>"><:= request.catmsg(msgbase _ "stage/" _ state.stage) :></legend>
     <ul class="list">
       <:-.elsif state.type eq "orphanimage" :>

@@ -27,7 +27,7 @@
     <a href="<:adminurl add:>?id=<:catalog id:>&amp;preview=1" title="Preview Catalog" data-icon="preview" data-icon-only="true" class="button">Preview</a>
   </nav> 
   <:- if Products:>
-  <fieldset class="list">
+  <fieldset>
     <legend>Products</legend>
     <:- if UserCan bse_edit_reorder_children:[catalog id]:>
     Sort by:
@@ -38,7 +38,7 @@
       <li><a href="<:adminurl reorder:>?stepparent=<:catalog id:>&amp;reverse=1&amp;refreshto=<:adminurl shopadmin:>%3Fm=Products%2Bsorted%2Bin%2Breverse%23catalog<:catalog id:>">reverse</a></li>
     </ul>
     <:- eif UserCan:>
-    <table class="full">
+    <table class="full list">
       <thead>
         <tr>
           <th>Id</th>

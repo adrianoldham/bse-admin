@@ -78,7 +78,7 @@
     </fieldset>
   </form>
   <:- if Fileaccesses:>
-  <fieldset class="list">
+  <fieldset>
     <legend>Downloads</legend>
     <ul class="meta selected">
       <:- if Owner:>
@@ -94,7 +94,7 @@
       <li><span>Category</span> <a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>"><:category name:> <b>&times;</b></a></li>
       <:- eif Category:>
     </ul>
-    <table class="full">
+    <table class="full list">
       <thead>
         <tr>
           <th>When</th>
