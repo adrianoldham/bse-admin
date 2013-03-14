@@ -10,7 +10,7 @@
     <:- eif Article:>
   </header>
   <:- if Kids:>
-  <fieldset class="children">
+  <fieldset>
     <legend>Children</legend>
     <:- if UserCan bse_edit_reorder_children:article:>
     Sort by:
@@ -25,7 +25,7 @@
 <:include admin/include/edit_article_sort.tmpl optional:>
     <:- eif Cgi:>
     <:- eif UserCan:>
-    <ul class="children">
+    <ul class="inset list">
       <:- iterator begin kids:>
       <li>
         <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>" <:ifStepKid:>data-widget="stepkid"<:eif:>><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" kid release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" kid expire]:>red<:case Eq [kid listed] 0:>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <:ifKid titleAlias:><:kid titleAlias:> (<:kid title:>)<:or:><:kid title:><:eif:></a>

@@ -39,7 +39,7 @@
   <:-.if pcats.items.size:>
   <fieldset>
     <legend>Categories</legend>
-    <ul class="children list">
+    <ul class="inset list">
       <:-.for cat in pcats.items :>
       <li>
         <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) |html:>"><:= cat | html :></a>

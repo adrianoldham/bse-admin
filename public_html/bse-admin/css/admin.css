@@ -1162,44 +1162,6 @@ div + .meta {
 
 /* @end */
 
-/* @group children */
-
-ul.children {
-    padding: 0.75em;
-    border: 0.083em solid;
-    border-color: #b5b5b5 #ddd #fff #ddd;
-    -webkit-border-radius: 0.25em;
-    -moz-border-radius: 0.25em;
-    border-radius: 0.25em;
-}
-
-ul.children li {
-    padding: 0.25em;
-    position: relative;
-    border-bottom: 0.083em solid #ddd;
-    overflow: hidden;
-}
-
-ul.children li:nth-child(odd) {
-    background-color: rgba(0,0,0,0.025);
-}
-
-ul.children li:hover {
-    background-color: rgba(255,255,255,0.5);
-}
-
-ul.children li > span {
-    display: none;
-    position: absolute;
-    right: 0.25em;
-}
-
-ul.children li:hover > span {
-    display: inline;
-}
-
-/* @end */
-
 /* @group list */
 
 .inset {

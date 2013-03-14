@@ -6,7 +6,7 @@
 <:include admin/include/toolbar_site.tmpl:>
   </header>
   <:- if Children:>
-  <fieldset class="children">
+  <fieldset>
     <legend>Sections</legend>
     <:- if UserCan bse_edit_reorder_children:article:>
     Sort by:
@@ -21,7 +21,7 @@
 <:include admin/include/edit_article_sort.tmpl optional:>
     <:- eif Cgi:>
     <:- eif UserCan:>
-    <ul class="children">
+    <ul class="inset list">
       <:- iterator begin children:>
       <li>
         <a href="<:script:>?id=<:child id:>&amp;preview=1" title="<:typename child:>"><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" child release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" child expire]:>red<:case Eq [child listed] 0 :>gray<:case Eq [child listed] 2 :>orange<:case default:>green<:endswitch:>"><:typename child:></span> <:ifChild titleAlias:><:child titleAlias:><:or:><:child title:><:eif:></a>
