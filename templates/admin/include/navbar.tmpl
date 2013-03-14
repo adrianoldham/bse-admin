@@ -195,6 +195,9 @@
         <:- if UserCan bse_log_list:>
         <li><a href="<:adminurl log:>">System Activity Log</a></li>
         <:- eif UserCan:>
+        <:- if UserCan bse_ipaddress_list:>
+        <li><a href="<:adminurl ipaddress:>">Manage IP Lockouts</a></li>
+        <:- eif UserCan:>
         <:- if UserCan bse_reports_list:>
         <!-- FIXME: this is not a real permission name -->
         <li><a href="<:adminurl report:>">System Reports</a></li>

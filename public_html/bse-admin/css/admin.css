@@ -203,6 +203,17 @@ iframe {
     color: orange;
 }
 
+tr.warning {
+    border: none;
+    color: #8c5c03;
+    color: #f78d1d;
+    background-color: rgba(255,165,0,0.15);
+}
+
+tr.warning:nth-child(odd) {
+    background-color: rgba(255,165,0,0.35) !important;
+}
+
 tr.error,
 tr.crit,
 li.error {
@@ -615,6 +626,17 @@ input[type=submit][disabled] {
 /* @end */
 
 /* @group color styles */
+
+.black,
+.gray,
+.orange,
+.red,
+.blue,
+.rosy,
+.green,
+.white {
+    text-shadow: 0 0.083em 0.083em rgba(0,0,0,0.3);
+}
 
 /* @group black */
 
@@ -2096,6 +2118,16 @@ h1:first-child + *[data-role=toolbar],
 
 *[data-role=controlgroup] + *[data-role=controlgroup] {
     margin-left: 3.5em;
+}
+
+/* @end */
+
+/* @group status bar */
+
+*[data-role=status] {
+    margin: -1em -2em 1em;
+    padding: 0.5em 2em;
+    border-bottom: 0.083em solid;    
 }
 
 /* @end */

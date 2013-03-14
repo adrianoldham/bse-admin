@@ -105,7 +105,7 @@
       </thead>
       <tbody>
         <:- iterator begin siteusers:>
-        <tr>
+        <tr <:- ifSiteuser locked_out:> class="warning"<:eif:>>
           <td><:siteuser userId:></td>
           <td><:siteuser name1:></td>
           <td><:siteuser name2:></td>

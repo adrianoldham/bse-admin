@@ -50,6 +50,14 @@
       <:- eif UserCan:>
     </nav>
   </header>
+  <:-.if siteuser.locked_out:>
+  <p data-role="status" class="orange">
+    <:-.if request.user_can("bse_member_user_unlock"):>
+    <a href="<:= cfg.admin_url2("siteusers", "unlock", { "id":siteuser.id, "r":cfg.admin_url2("siteusers", "edit", { "id":siteuser.id }) }):>" class="button red small right">Unlock</a>
+    <:-.end if:>
+    Account temporarily locked due to excessive login failures.
+  </p>
+  <:-.end if:>
   <form action="<:script:>" method="post" data-object="User" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<:siteuser id:>" />
     <input type="hidden" name="r" value="<:script:>?a_edit=1&amp;id=<:siteuser id:>&amp;m=User+'<:siteuser userId:>'+saved" />

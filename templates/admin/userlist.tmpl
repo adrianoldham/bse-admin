@@ -39,7 +39,7 @@
       </thead>
       <tbody>
         <:- iterator begin users:>
-        <tr>
+        <tr <:- ifIuser locked_out:> class="warning"<:eif:>>
           <td><:iuser logon:></td>
           <td><:iuser name:></td>
           <td><:ifUser_groups iuser:><:iterator begin user_groups iuser:><:user_group name:><:iterator separator user_groups:>, <:iterator end user_groups:><:or:>(none)<:eif:></td>

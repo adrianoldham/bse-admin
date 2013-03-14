@@ -1,0 +1,32 @@
+<:wrap admin/base.tmpl title=>"IP Address Activity", bodyid=>"auditlog":>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+    <nav data-role="toolbar">
+      <ul class="menu context">
+        <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:-.if ip.lockout_S:>
+            <li><a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"S" }) :>">Unlock Site Users</a></li>
+            <:-.end if:>
+            <:-.if ip.lockout_A:>
+            <a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"A", "r":cfg.admin_url2("ipaddress", "detail", { "ip":ip.ip_address }) }) :>">Unlock Admin Users</a>
+            <:-.end if:>
+          </ul>
+        </li>
+      </ul>
+      <a href="<:adminurl ipaddress:>" data-icon="back" data-icon-only="true" class="button">Back</a>
+    </nav>
+  </header>
+  <:-.set log =
+      [
+        auditlog().getBy2
+          ( [
+              [ "ip_address", ip.ip_address ]
+            ],
+            { "order":"id desc", "limit":50 }
+          )
+      ]:>      
+  <:-.call "admin/include/oauditlog.tmpl", "activity":log, "title":"Activity from " _ ip.ip_address:>
+</div>
