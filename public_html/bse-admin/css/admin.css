@@ -161,6 +161,14 @@ iframe {
     display: block;
 }
 
+.wrap {
+    white-space: normal !important;
+}
+
+.nowrap {
+    white-space: nowrap !important;
+}
+
 .badge {
     position: relative;
     display: inline-block;
@@ -203,29 +211,37 @@ iframe {
     color: orange;
 }
 
-tr.warning {
-    border: none;
-    color: #8c5c03;
-    color: #f78d1d;
-    background-color: rgba(255,165,0,0.15);
+.emerg,
+.crit,
+.error {
+    color: #980c10;
+    background-color: rgba(216,26,32,0.1) !important;
+    border-color: rgba(216,26,32,0.1) !important;
 }
 
-tr.warning:nth-child(odd) {
-    background-color: rgba(255,165,0,0.35) !important;
+.alert,
+.warning {
+    color: #da7c0c;
+    background-color: rgba(255,165,0,0.1) !important;
+    border-color: rgba(255,165,0,0.1) !important;
 }
 
-tr.error,
-tr.crit,
-li.error {
-    border: none;
-    color: #c03 !important;
-    background-color: rgba(255,0,0,0.05);
+.notice {
+    color: #0076a3;
+    background-color: rgba(0,148,205,0.1) !important;
+    border-color: rgba(0,148,205,0.1) !important;
 }
 
-tr.error:nth-child(odd),
-tr.crit:nth-child(odd),
-li.error:nth-child(odd) {
-    background-color: rgba(255,0,0,0.15) !important;
+.info {
+    color: #538312;
+    background-color: rgba(100,153,30,0.1) !important;
+    border-color: rgba(100,153,30,0.1) !important;
+}
+
+.debug {
+    color: #555555;
+    background-color: rgba(110,110,110,0.1) !important;
+    border-color: rgba(110,110,110,0.1) !important;
 }
 
 td span {
@@ -257,10 +273,6 @@ h4 {
 .images > li > a > img {
     display: block;
     float: left;
-}
-
-.children li {
-    overflow: hidden;
 }
 
 .bse_arrows,
@@ -1164,6 +1176,8 @@ ul.children {
 ul.children li {
     padding: 0.25em;
     position: relative;
+    border-bottom: 0.083em solid #ddd;
+    overflow: hidden;
 }
 
 ul.children li:nth-child(odd) {
@@ -1188,49 +1202,60 @@ ul.children li:hover > span {
 
 /* @group list */
 
+.inset {
+    padding: 0.75em;
+    border: 0.083em solid;
+    border-color: #b5b5b5 #ddd #fff #ddd;
+}
+
 .list {
     max-width: 76em;
 }
 
-.list tbody tr:nth-child(odd) {
-    background-color: rgba(0,0,0,0.025);
+.list tr,
+.list li {
+    vertical-align: top;
+    border-bottom: 0.083em solid #ddd;
 }
 
-.list tbody tr:hover {
-    background-color: rgba(255,255,255,0.5);
-}
-
-.list tr > * {
+.list th,
+.list td,
+.list li {
     padding: 0.25em;
     position: relative;
 }
 
-.wrap {
-    white-space: normal !important;
+.list tbody tr[class]:not([class=""]),
+.list li[class]:not([class=""]) {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255,255,255,0)), color-stop(0.75, rgba(255,255,255,0.3)));
+    background-image: -webkit-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
+    background-image: -moz-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 750%);
+    background-image: -ms-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
+    background-image: -o-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
+    background-image: linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
 }
 
-.nowrap {
-    white-space: nowrap !important;
+.list tbody tr:nth-child(odd),
+.list li:nth-child(odd) {
+    background-color: rgba(0,0,0,0.025);
 }
 
-td.buttons {
-    width: 1%;
-    white-space: nowrap !important;
+.list tbody tr:hover,
+.list li:hover {
+    background-image: none !important;
+    background-color: rgba(255,255,255,0.5) !important;
 }
 
-.list td:last-child span {
+.list td:last-child > span,
+.list li > span:last-child {
     display: none;
     position: absolute;
     right: 0.25em;
 }
 
-.list tr:hover td:last-child span {
+.list tr:hover td:last-child > span,
+.list li:hover > span:last-child {
     display: inline;
-}
-
-.list td span .button.small {
-    font-size: 0.7em;
-    margin: 0;
 }
 
 /* @end */
