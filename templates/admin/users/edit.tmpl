@@ -9,7 +9,7 @@
           <ul>
             <:- if UserCan bse_members_user_add_file:>
             <li><a href="<:script:>?a_adduserfileform=1&amp;id=<:siteuser id:>" accesskey="f" title="AccessKey = f">New File…</a></li>
-            <:- eif UserCan:>      
+            <:- eif UserCan:>
             <:- if UserCan bse_members_user_delete:>
             <li class="divider"></li>
             <li><a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="User">Delete</a></li>
