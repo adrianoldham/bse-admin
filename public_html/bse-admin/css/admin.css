@@ -212,14 +212,17 @@ iframe {
 }
 
 .emerg,
+.emergency,
 .alert,
 .crit,
+.critical,
 .error {
     color: #980c10;
     background-color: rgba(216,26,32,0.1) !important;
     border-color: rgba(216,26,32,0.1) !important;
 }
 
+.warn,
 .warning {
     color: #da7c0c;
     background-color: rgba(255,165,0,0.1) !important;
