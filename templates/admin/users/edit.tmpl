@@ -361,7 +361,7 @@
       <:- if Userfiles:>
       <fieldset>
         <legend>Files</legend>
-        <ul class="children files">
+        <ul class="full list">
           <:- iterator begin userfiles sort: -modwhen:>
           <li>
             <a href="<:target user downufile id [userfile id] |h:>" title="<:userfile title:>"><span class="listed <:switch:><:case default:>green<:endswitch:>"></span> <:userfile display_name |h:></a>
