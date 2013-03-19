@@ -213,9 +213,9 @@
             <:- if UserCan bse_modules:>
             <li><a href="<:adminurl modules:>">Check Module Versions</a></li>
             <:- eif UserCan:>
-            <:- if And [ifUserCan bse_pregen_view] [ifUserCan bse_regen_extras]:>
+            <:- if UserCan bse_pregen_view:>
             <li><a href="<:adminurl pregen:>">Preview Pregenerated Pages</a></li>
-            <:- eif And:>
+            <:- eif UserCan:>
             <:- if Or [ifUserCan bse_msg_view] [ifUserCan bse_msg_save] [ifUserCan bse_msg_delete]:>
             <li><a href="<:adminurl messages:>">Manage System Messages</a></li>
             <:- eif Or:>

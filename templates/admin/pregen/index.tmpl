@@ -19,7 +19,9 @@
           <td><:template id:></td>
           <td class="actions">
             <a href="<:script:>?a_show=1&amp;template=<:template id:>" class="button gray small">Preview</a>
+            <:- if UserCan bse_regen_extras:>
             <a href="<:adminurl generate r [adminurl pregen] id [cat "extra:" [template id]] m 1 |x:>" class="button green small">Regenerate</a>
+            <:- eif UserCan:>
           </td>
         </tr>
         <:- iterator end templates:>
