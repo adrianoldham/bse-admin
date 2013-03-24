@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>[cond [ifMatch [cgi id] "extras"] [cat "Regenerate extras"] [cat "Regenerate site"]] nomessage=>"1" :>
+<:wrap admin/base.tmpl title=>[cond [ifMatch [cgi id] "extras"] "Regenerate System Pages" "Regenerate Article and System Pages"] nomessage=>"1" :>
 <div class="window">
   <header>
     <h1><:param title:></h1>

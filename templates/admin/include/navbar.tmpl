@@ -64,10 +64,10 @@
         <li><a href="#">Regenerate</a>
           <ul>
             <:- if UserCan bse_regen_all:>
-            <li><a href="<:adminurl generate progress 1:>">All Site Pages</a></li>
+            <li><a href="<:adminurl generate progress 1:>">Article and System Pages</a></li>
             <:- eif UserCan:>
             <:- if UserCan bse_regen_extras:>
-            <li><a href="<:adminurl generate id extras progress 1:>">Extra System Pages</a></li>
+            <li><a href="<:adminurl generate id extras progress 1:>">System Pages</a></li>
             <:- eif UserCan:>
             <:- if UserCan bse_makeindex:>
             <li class="divider"></li>
@@ -214,7 +214,7 @@
             <li><a href="<:adminurl modules:>">Check Module Versions</a></li>
             <:- eif UserCan:>
             <:- if UserCan bse_pregen_view:>
-            <li><a href="<:adminurl pregen:>">Preview Pregenerated Pages</a></li>
+            <li><a href="<:adminurl pregen:>">Preview System Pages</a></li>
             <:- eif UserCan:>
             <:- if Or [ifUserCan bse_msg_view] [ifUserCan bse_msg_save] [ifUserCan bse_msg_delete]:>
             <li><a href="<:adminurl messages:>">Manage System Messages</a></li>
