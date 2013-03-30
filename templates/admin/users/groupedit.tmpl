@@ -77,7 +77,7 @@
       <ul class="full list">
         <:- iterator begin groupfiles:>
         <li>
-          <a href="<:target user downufile id [groupfile id] |h:>" title="<:groupfile title:>"><span class="listed <:switch:><:case default:>green<:endswitch:>"></span> <:groupfile display_name:></a>
+          <a href="<:target user downufile id [groupfile id] |h:>" title="<:groupfile title:>"><span class="indicator <:switch:><:case default:>green<:endswitch:>"></span> <:groupfile display_name:></a>
           <span>
             <:- if UserCan bse_members_group_edit_file:>
             <a href="<:script:>?a_editgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>" class="button gray small">Edit</a>

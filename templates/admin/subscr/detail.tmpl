@@ -98,7 +98,7 @@
       <tbody>
         <:- iterator begin products:>
         <tr>
-          <td><span class="listed <:switch:><:case Arithmetic [date "%Y%m%d" product release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" product expire]:>red<:case Eq [product listed] 0:>gray<:case Eq [product listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <a href="<:adminurl add:>?id=<:product id:>&amp;preview=1"><:product title:></a></td>
+          <td><span class="indicator <:switch:><:case Arithmetic [date "%Y%m%d" product release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" product expire]:>red<:case Eq [product listed] 0:>gray<:case Eq [product listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <a href="<:adminurl add:>?id=<:product id:>&amp;preview=1"><:product title:></a></td>
           <td>
             <:- switch:>
             <:- case Eq [subscription subscription_id] [product subscription_id]:>Yes

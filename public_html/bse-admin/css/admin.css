@@ -318,7 +318,7 @@ h4 {
 
 /* @group stoplight indicator */
 
-.listed {
+.indicator {
     display: block;
     margin: 0.25em 0.5em 0.25em 0.25em;
     float: left;

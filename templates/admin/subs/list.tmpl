@@ -33,7 +33,7 @@
         <:- iterator begin subscriptions:>
         <tr>
           <td>
-            <span class="listed <:switch:><:case subscription visible:>green<:case default:>gray<:endswitch:>"></span>
+            <span class="indicator <:switch:><:case subscription visible:>green<:case default:>gray<:endswitch:>"></span>
             <:subscription name:>
           </td>
           <td><:ifMatch [subscription lastSent] "0000-00-00":>Never<:or:><:date "%d-%b-%Y / %r" subscription lastSent:><:eif:></td>

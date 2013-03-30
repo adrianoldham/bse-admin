@@ -364,7 +364,7 @@
         <ul class="full list">
           <:- iterator begin userfiles sort: -modwhen:>
           <li>
-            <a href="<:target user downufile id [userfile id] |h:>" title="<:userfile title:>"><span class="listed <:switch:><:case default:>green<:endswitch:>"></span> <:userfile display_name |h:></a>
+            <a href="<:target user downufile id [userfile id] |h:>" title="<:userfile title:>"><span class="indicator <:switch:><:case default:>green<:endswitch:>"></span> <:userfile display_name |h:></a>
             <span>
               <:- if UserCan bse_members_user_edit_file:>
               <a href="<:script:>?a_edituserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>" class="button gray small">Edit</a>

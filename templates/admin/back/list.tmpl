@@ -23,11 +23,11 @@
           <td>
             <:- switch:>
             <:- case Task_running:>
-            <span class="listed green" title="PID: <:task task_pid:>">PID: <:task task_pid:></span>
+            <span class="indicator green" title="PID: <:task task_pid:>">PID: <:task task_pid:></span>
             <:- case Task last_exit:>
-            <span class="listed orange" title="Failed">Failed</span>
+            <span class="indicator orange" title="Failed">Failed</span>
             <:- case default:>
-            <span class="listed gray" title="Not running">Not running<:task task_pid:></span>
+            <span class="indicator gray" title="Not running">Not running<:task task_pid:></span>
             <:- endswitch:>
             <:task description:>
           </td>

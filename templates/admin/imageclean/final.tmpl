@@ -12,12 +12,12 @@
     <ul class="list">
       <:-.elsif state.type eq "orphanimage" :>
       <li>
-        <span class="listed <:= acted ? "red" : "gray" :>"></span>
+        <span class="indicator <:= acted ? "red" : "gray" :>"></span>
         <:= request.htmlmsg(msgbase _ "process/" _ ( acted ? "remove" : "skip" ) _ "image", [ state.image.id, state.image.image ]) :>
       </li>
       <:-.elsif state.type eq "orphanfile" :>
       <li>
-        <span class="listed <:= acted ? "red" : "gray" :>"></span>
+        <span class="indicator <:= acted ? "red" : "gray" :>"></span>
         <:= request.htmlmsg(msgbase _ "process/" _ ( acted ? "remove" : "skip" ) _ "file", [ state.file ]) :>
       </li>
       <:-.elsif state.type eq "substage" :>
