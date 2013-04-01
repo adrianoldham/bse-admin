@@ -44,7 +44,7 @@
     </fieldset>
     <p class="buttons">
       <a href="<:script:>?id=<:article id:>&amp;_t=kids" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
-      <:- if UserCan bse_edit_stepkid_save:article:>
+      <:- if UserCan bse_edit_stepkid_save:article,bse_edit_stepparent_save:kid:>
       <input type="submit" name="save_stepkids" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- eif UserCan:>
     </p>
