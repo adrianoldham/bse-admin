@@ -16,6 +16,9 @@
             <:- if UserCan bse_edit_stepkid_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=steps&amp;referer=1" accesskey="t" title="AccessKey = t">New Stepchild…</a></li>
             <:- eif UserCan:>
+            <:- if UserCan bse_edit_stepparent_add:article:>
+            <li><a href="<:script:>?id=<:article id:>&amp;_t=stepp&amp;referer=1" accesskey="v" title="AccessKey = v">New Stepparent…</a></li>
+            <:- eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_edit_images_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;referer=1" accesskey="i" title="AccessKey = i">New Image…</a></li>
@@ -100,7 +103,7 @@
       <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
       <:- eif And:>
       <span data-role="controlgroup">
-        <:- if Or [ifImages] [ifFiles] [ifKids] [ifEq [cgi _t] img] [ifEq [cgi _t] file] [ifEq [cgi _t] kids]:>
+        <:- if Or [ifImages] [ifFiles] [ifKids] [ifStepparents] [ifEq [cgi _t] img] [ifEq [cgi _t] file] [ifEq [cgi _t] kids]:>
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>"><:typename article:></a>
         <:- eif Or:>
         <:- if And [ifOr [ifImages] [ifEq [cgi _t] img]] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
@@ -111,6 +114,9 @@
         <:- eif And:>
         <:- if And [ifOr [ifKids] [ifEq [cgi _t] kids]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=kids" class="button <:cond [ifEq [cgi _t] kids] selected:>">Children <span class="badge"><:kid_count:></span></a>
+        <:- eif And:>
+        <:- if And [ifOr [ifStepparents] [ifEq [cgi _t] parent]]:>
+        <a href="<:script:>?id=<:article id:>&amp;_t=parents" class="button <:cond [ifEq [cgi _t] parents] selected:>">Parents <span class="badge"><:stepparent_count:></span></a>
         <:- eif And:>
       </span>
       <:- if UserCan bse_edit_delete_article:article:>

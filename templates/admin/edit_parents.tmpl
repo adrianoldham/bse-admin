@@ -1,0 +1,60 @@
+<:wrap admin/base.tmpl title=>"Manage Article Parents" :>
+<div class="window">
+  <header>
+    <h1><:param title:></h1>
+    <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+    <:- if Article parentid:>
+<:include admin/include/toolbar_article.tmpl:>
+    <:- or Article:>
+<:include admin/include/toolbar_site.tmpl:>
+    <:- eif Article:>
+  </header>
+  <:- if Stepparents:>
+  <fieldset>
+    <legend>Parents</legend>
+    <:- if UserCan bse_edit_reorder_stepparents:article:>
+    Sort by:
+    <ul class="meta group">
+      <li><a href="<:adminurl reorder:>?stepchild=<:article id:>&amp;sort=title&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=parents%26m=Parents%2Bsorted%2Bby%2Btitle">title</a></li>
+      <li><a href="<:adminurl reorder:>?stepchild=<:article id:>&amp;sort=id&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=parents%26m=Parents%2Bsorted%2Bby%2Bdate">date</a></li>
+      <li><a href="<:adminurl reorder:>?stepchild=<:article id:>&amp;sort=listed&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=parents%26m=Parents%2Bsorted%2Bby%2Blisted">listed</a></li>
+      <li><a href="<:adminurl reorder:>?stepchild=<:article id:>&amp;reverse=1&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=parents%26m=Parents%2Bsorted%2Bin%2Breverse">reverse</a></li>
+    </ul>
+    <:- eif UserCan:>
+    <ul class="inset list">
+      <:- iterator begin stepparents:>
+      <li>
+        <a href="<:script:>?id=<:stepparent parentId:>&amp;preview=1" title="<:typename stepparent_targ:>" data-widget="stepkid"><span class="indicator <:switch:><:case Arithmetic [date "%Y%m%d" stepparent_targ release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" stepparent_targ expire]:>red<:case Eq [stepparent_targ listed] 0:>gray<:case Eq [stepparent_targ listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <:ifStepparent_targ titleAlias:><:stepparent_targ titleAlias:> (<:stepparent_targ title:>)<:or:><:stepparent_targ title:><:eif:></a>
+        <span>
+          <a href="<:script:>?id=<:article id:>&amp;stepparent=<:stepparent parentId:>&amp;typename=<:typename stepparent_targ:>&amp;_t=stepp" class="button gray small">Edit</a>
+          <:- if UserCan bse_edit_stepparent_delete:stepparent_targ,bse_edit_stepparent_delete:article:>
+          <a href="<:script:>?id=<:stepparent childId:>&amp;stepparent=<:stepparent parentId:>&amp;typename=<:typename stepparent_targ:>&amp;del_stepparent=1&amp;_csrfp=<:csrfp admin_remove_stepparent:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=parents" data-action="Delete" data-object="Stepparent" data-confirm="Are you sure you want to remove the Stepparent relationship?" data-info="Continuing with this action will permanently remove this Stepparent relationship. This action does not delete the original <:typename stepparent_targ:>." class="button red small">Delete</a>
+          <:- or UserCan:>
+          <a class="button red small disabled">Delete</a>
+          <:- eif UserCan:>
+          <:movestepparent:>
+        </span>
+      </li>
+      <:- iterator end stepparents:>
+    </ul>
+  </fieldset>
+  <:- or Stepparents:>
+  <fieldset>
+    <legend>Parents</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+      <p>No stepparents to display</p>
+      <:- if Or [ifUserCan bse_edit_stepparent_add:article]:>
+      <p>
+        <:- if UserCan bse_edit_stepparent_add:article:>
+        <a href="<:script:>?id=<:article id:>&amp;_t=stepp&amp;referer=1" data-icon="add" class="button white">New Stepparent…</a>
+        <:- eif UserCan:>
+      </p>
+      <:- eif Or:>
+    </div>
+  </fieldset>
+  <:- eif Stepparents:>
+  <p class="buttons">
+    <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+  </p>
+</div>

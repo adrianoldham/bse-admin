@@ -1,0 +1,89 @@
+<:wrap admin/base.tmpl title=>[cond [cgi stepparent] "Edit Stepparent" "New Stepparent"] :>
+<div class="window dialog">
+  <header>
+    <h1><:param title:></h1>
+    <:- if Cgi stepparent:>
+    <nav data-role="toolbar">
+      <:- if UserCan bse_edit_stepparent_delete:article,bse_edit_stepparent_delete:[cgi stepparent]:>
+      <a href="<:script:>?id=<:article id:>&amp;stepparent=<:cgi stepparent:>&amp;del_stepparent=1&amp;_csrfp=<:csrfp admin_remove_stepparent:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=parents" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Stepparent" data-confirm="Are you sure you want to remove the Stepparent relationship?" data-info="Continuing with this action will permanently remove this Stepparent relationship. This action does not delete the original <:cgi typename:>." data-icon="delete" class="button">Delete</a>
+      <:- or UserCan:>
+      <a data-icon="delete" class="button disabled">Delete</a>
+      <:- eif UserCan:>
+    </nav>
+    <:- eif Cgi:>
+  </header>
+  <form action="<:script:>" method="post" data-object="Stepparent">
+    <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="_t" value="stepp" />
+    <input type="hidden" name="r" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?id=<:article id:>&amp;_t=parents<:endswitch:>" />
+    <:csrfp admin_save_stepparents hidden:>
+    <:csrfp admin_add_stepparent hidden:>
+    <:- if Cgi stepparent:>
+    <:- iterator begin stepparents:>
+    <:- if Eq [stepparent parentId] [cgi stepparent]:>
+    <fieldset>
+      <legend>Properties</legend>
+      <div>
+        <label for="stepparent">Article <:error_img stepparent:></label>
+        <span>
+          <input type="text" name="stepparent" value="<:stepparent_targ title:>" readonly="readonly"/>
+        </span>
+      </div>
+      <div>
+        <label for="release">Release <:error_img release:></label>
+        <span>
+          <input type="text" name="release_<:stepparent parentId:>" id="release" value="<:date "%d/%m/%Y" stepparent release:>" placeholder="DD/MM/YYYY" />
+        </span>
+      </div>
+      <div>
+        <label for="expire">Expire <:error_img expire:></label>
+        <span>
+          <input type="text" name="expire_<:stepparent parentId:>" id="expire" value="<:ifMatch [stepparent expire] "^2999-12-31":><:or:><:date "%d/%m/%Y" stepparent expire:><:eif:>" placeholder="DD/MM/YYYY" />
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:script:>?id=<:article id:>&amp;_t=parents" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <:- if UserCan bse_edit_stepparent_save:article,bse_edit_stepkid_save:stepparent_targ:>
+      <input type="submit" name="save_stepparents" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:- eif UserCan:>
+    </p>
+    <:- eif Eq:>
+    <:- iterator end stepparents:>
+    <:- or Cgi:>
+    <fieldset>
+      <legend>Properties</legend>
+      <div>
+        <label for="stepparent">Articles <span class="required">*</span> <:error_img stepparent:></label>
+        <span>
+          <:- if StepparentPossibles:>
+          <:replace [stepparent_possibles] "name=\"([a-z A-Z _]+)\">" "name=\"$1\" id=\"$1\" required=\"required\"><option>Select a stepparent</option>":>
+          <:- or StepparentPossibles:>
+          <select id="stepparent">
+            <option>No possible articles</option>
+          </select>
+          <:- eif StepparentPossibles:>
+        </span>
+      </div>
+      <div>
+        <label for="release">Release <:error_img release:></label>
+        <span>
+          <input type="text" name="release" id="release" value="<:today "%d/%m/%Y":>" placeholder="DD/MM/YYYY" />
+        </span>
+      </div>
+      <div>
+        <label for="expire">Expire <:error_img expire:></label>
+        <span>
+          <input type="text" name="expire" id="expire" value="" class="<:ifError_img expire:>error<:eif:>" placeholder="DD/MM/YYYY" />
+        </span>
+      </div>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:>&amp;_t=parents<:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <:- if UserCan bse_edit_stepparent_add:article:>
+      <input type="submit" name="add_stepparent" value="Create Stepparent" accesskey="c" title="AccessKey = c" class="button green" />
+      <:- eif UserCan:>
+    </p>
+    <:- eif Cgi:>
+  </form>
+</div>
