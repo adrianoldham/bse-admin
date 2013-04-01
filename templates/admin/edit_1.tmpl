@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>[cond [ifNew] [cat "New " [typename article] " (Level " [article level] ")"] [cat "Edit " [typename article] " (Level " [article level] ")"]] :>
+<:wrap admin/base.tmpl title=>[cat [cond [ifNew] "New " "Edit "] [typename article] " (Level " [article level] ")"] :>
 <div class="window">
   <header>
     <h1><:param title:></h1>
