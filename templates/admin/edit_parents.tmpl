@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Manage Article Parents" :>
 <div class="window">
   <header>
-    <h1><:param title:></h1>
+    <h1><:param title:> - (<:= article.titleAlias or article.title:>)</h1>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <:- if Article parentid:>
 <:include admin/include/toolbar_article.tmpl:>

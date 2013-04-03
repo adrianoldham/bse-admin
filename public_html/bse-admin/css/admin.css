@@ -171,6 +171,15 @@ iframe {
     white-space: nowrap !important;
 }
 
+h1,
+.truncate {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
 .badge {
     position: relative;
     display: inline-block;
