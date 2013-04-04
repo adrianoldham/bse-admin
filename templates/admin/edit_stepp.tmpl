@@ -14,6 +14,7 @@
   </header>
   <form action="<:script:>" method="post" data-object="Stepparent">
     <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="stepparent" value="<:cgi stepparent:>" />
     <input type="hidden" name="_t" value="stepp" />
     <input type="hidden" name="r" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?id=<:article id:>&amp;_t=parents<:endswitch:>" />
     <:csrfp admin_save_stepparents hidden:>
