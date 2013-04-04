@@ -38,7 +38,7 @@
       <div>
         <label for="expire">Expire <:error_img expire:></label>
         <span>
-          <input type="text" name="expire_<:stepkid childId:>" id="expire" value="<:ifMatch [stepkid expire] "^2999-12-31":><:or:><:date "%d/%m/%Y" stepkid expire:><:eif:>" placeholder="DD/MM/YYYY" />
+          <input type="text" name="expire_<:stepkid childId:>" id="expire" value="<:ifMatch [stepkid expire] "^[29]999-12-31":><:or:><:date "%d/%m/%Y" stepkid expire:><:eif:>" placeholder="DD/MM/YYYY" />
         </span>
       </div>
     </fieldset>
