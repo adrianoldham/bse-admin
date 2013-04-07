@@ -203,5 +203,32 @@
     <:-.end if:>
 <:-.end define:>
 
+<:-.define move -:>
+<:# expects loop, parent
+  which in most cases means you can just supply parent
+-:>
+<:-.if bse.admin:>
+<span class="bse_arrows">
+<:-.set distim = cfg.entryIfVar("uri", "dist_images", "/images") -:>
+<:-.set width = cfg.entry("arrows", "width", 17) -:>
+<:-.set height = cfg.entry("arrows", "height", 13) -:>
+<:-.set extras = 'width="' _ width _ '" height="' _ height _ '"' -:>
+<:-.set blankim = '<img src="' _ (distim _ "/trans_pixel.gif").escape("html") _ '" alt="" ' _ extras _ ' />' -:>
+<:-.if loop.prev:>
+<:-.set upimg = cfg.entry("arrows", "upimg", distim _ "/admin/move_up.gif") -:>
+<a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.prev.id, "r":top.admin }) :>"><img src="<:= upimg |raw:>" <:= extras :> /></a>
+<:-.else:>
+<:= blankim |raw:>
+<:-.end if:>
+<:-.if loop.next:>
+<:-.set downimg = cfg.entry("arrows", "downimg", distim _ "/admin/move_down.gif") -:>
+<a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.next.id, "r":top.admin }) :>"><img src="<:= downimg |raw:>" <:= extras :> /></a>
+<:-.else:>
+<:= blankim |raw:>
+<:-.end if:>
+</span>
+<:-.end if:>
+<:-.end define-:>
+
 <:- include include/custom/preload.tmpl optional -:>
 <:- include include/preload.tmpl optional -:>
