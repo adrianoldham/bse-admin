@@ -1186,6 +1186,7 @@ div + .meta {
 .list th,
 .list td,
 .list li {
+    text-align: left;
     padding: 0.25em;
     position: relative;
 }
