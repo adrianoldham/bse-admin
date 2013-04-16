@@ -20,7 +20,7 @@
           <:- iterator begin lines:>
           <tr>
             <:- iterator begin fields:>
-            <td><:line [field name]:> <:line_error [field name] [line_index]:></td>
+            <td<:ifLine_error [field name] [line_index]:> class="error"<:eif:>><:line [field name]:> <!--:line_error [field name] [line_index]:--></td>
             <:- iterator end fields:>
           </tr>
           <:- iterator end lines:>
