@@ -24,7 +24,7 @@
     <ul class="inset list">
       <:- iterator begin stepparents:>
       <li>
-        <a href="<:script:>?id=<:stepparent parentId:>&amp;preview=1" title="<:typename stepparent_targ:>" data-widget="stepkid"><span class="indicator <:switch:><:case Arithmetic [date "%Y%m%d" stepparent_targ release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" stepparent_targ expire]:>red<:case Eq [stepparent_targ listed] 0:>gray<:case Eq [stepparent_targ listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <:ifStepparent_targ titleAlias:><:stepparent_targ titleAlias:> (<:stepparent_targ title:>)<:or:><:stepparent_targ title:><:eif:></a>
+        <a href="<:script:>?id=<:stepparent parentId:>&amp;preview=1" title="<:typename stepparent_targ:>" data-widget="stepkid"><span class="indicator <:switch:><:case Arithmetic [date "%Y%m%d" stepparent_targ release] > [today "%Y%m%d"]:>white<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" stepparent_targ expire]:>red<:case Eq [stepparent_targ listed] 0:>gray<:case Eq [stepparent_targ listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <:ifStepparent_targ titleAlias:><:stepparent_targ titleAlias:> (<:stepparent_targ title:>)<:or:><:stepparent_targ title:><:eif:></a>
         <span>
           <a href="<:script:>?id=<:article id:>&amp;stepparent=<:stepparent parentId:>&amp;typename=<:typename stepparent_targ:>&amp;_t=stepp" class="button gray small">Edit</a>
           <:- if UserCan bse_edit_stepparent_delete:stepparent_targ,bse_edit_stepparent_delete:article:>

@@ -28,7 +28,7 @@
     <ul class="inset list">
       <:- iterator begin kids:>
       <li>
-        <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>" <:ifStepKid:>data-widget="stepkid"<:eif:>><span class="indicator <:switch:><:case Arithmetic [date "%Y%m%d" kid release] > [today "%Y%m%d"]:>gray<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" kid expire]:>red<:case Eq [kid listed] 0:>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <:ifKid titleAlias:><:kid titleAlias:> (<:kid title:>)<:or:><:kid title:><:eif:></a>
+        <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>" <:ifStepKid:>data-widget="stepkid"<:eif:>><span class="indicator <:switch:><:case Arithmetic [date "%Y%m%d" kid release] > [today "%Y%m%d"]:>white<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" kid expire]:>red<:case Eq [kid listed] 0:>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <:ifKid titleAlias:><:kid titleAlias:> (<:kid title:>)<:or:><:kid title:><:eif:></a>
         <span>
           <:- if StepKid:>
           <a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;typename=<:typename kid:>&amp;_t=steps" class="button gray small">Edit</a>
