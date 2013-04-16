@@ -14,12 +14,12 @@
   </header>
   <form action="<:script:>" method="post" data-object="Stepchild">
     <input type="hidden" name="id" value="<:article id:>" />
-    <input type="hidden" name="stepkid" value="<:cgi stepkid:>" />
     <input type="hidden" name="_t" value="steps" />
     <input type="hidden" name="r" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?id=<:article id:>&amp;_t=kids<:endswitch:>" />
     <:csrfp admin_save_stepkids hidden:>
     <:csrfp admin_add_stepkid hidden:>
     <:- if Cgi stepkid:>
+    <input type="hidden" name="stepkid" value="<:cgi stepkid:>" />
     <:- iterator begin kids:>
     <:- if Eq [stepkid childId] [cgi stepkid]:>
     <fieldset>
