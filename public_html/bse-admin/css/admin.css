@@ -157,6 +157,8 @@ iframe {
 }
 
 .scrollable {
+    max-width: 74em;
+    margin: 0 -0.083em;
     overflow: auto;
     display: block;
 }
@@ -1171,10 +1173,6 @@ div + .meta {
     padding: 0.75em;
     border: 0.083em solid;
     border-color: #b5b5b5 #ddd #fff #ddd;
-}
-
-.list {
-    max-width: 76em;
 }
 
 .list tr,
