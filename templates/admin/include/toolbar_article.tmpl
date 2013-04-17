@@ -37,6 +37,9 @@
             <li><a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
             <:- eif UserCan:>
             <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1 :>&amp;preview=1" accesskey="y" title="AccessKey = y">Preview</a></li>
+            <:- if UserCan bse_edit_field_edit_listed:[article id]:>
+            <li><a href="<:adminurl add:>?id=<:article id:>&amp;<:cond [article listed] hide unhide:>=1&amp;_csrfp=<:csrfp admin_save_article:>" accesskey="l" title="AccessKey = l"><:cond [article listed] Hide Show:></a></li>
+            <:- eif UserCan:>
             <:- if Or [ifUserCan bse_admin_user_save_artrights] [ifUserCan bse_admin_group_save_artrights]:>
             <li class="divider"></li>
             <li><a href="#">Permissions</a>
