@@ -108,10 +108,9 @@
       <:- if UserCan bse_edit_field_edit_listed:[article id]:>
       <a href="<:adminurl add:>?id=<:article id:>&amp;<:cond [article listed] hide unhide:>=1&amp;_csrfp=<:csrfp admin_save_article:>" data-icon="power" data-icon-only="true" class="button <:cond [article listed] active:>"><:cond [article listed] Hide Show:></a>
       <:- eif UserCan:>
+      <:- if Or [ifImages] [ifFiles] [ifKids] [ifStepparents] [ifEq [cgi _t] img] [ifEq [cgi _t] file] [ifEq [cgi _t] kids]:>
       <span data-role="controlgroup">
-        <:- if Or [ifImages] [ifFiles] [ifKids] [ifStepparents] [ifEq [cgi _t] img] [ifEq [cgi _t] file] [ifEq [cgi _t] kids]:>
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>"><:typename article:></a>
-        <:- eif Or:>
         <:- if And [ifOr [ifImages] [ifEq [cgi _t] img]] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button <:cond [ifEq [cgi _t] img] selected:>">Images <span class="badge"><:image_count:></span></a>
         <:- eif And:>
@@ -125,6 +124,7 @@
         <a href="<:script:>?id=<:article id:>&amp;_t=parents" class="button <:cond [ifEq [cgi _t] parents] selected:>">Parents <span class="badge"><:stepparent_count:></span></a>
         <:- eif And:>
       </span>
+      <:- eif Or:>
       <:- if UserCan bse_edit_delete_article:article:>
       <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>
       <:- or UserCan:>

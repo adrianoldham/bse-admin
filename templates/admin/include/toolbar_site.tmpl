@@ -18,10 +18,10 @@
         </li>
       </ul>
       <a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" accesskey="y" title="AccessKey = y" data-icon="preview" data-icon-only="true" class="button">Preview</a>
+      <a href="<:script:>?id=<:article id:>&amp;_t=tree" class="button <:cond [ifEq [cgi _t] tree] active:>" data-icon="sitemap" data-icon-only="true">Overview</a>
+      <:- if Or [ifImages] [ifFiles]:>
       <span data-role="controlgroup">
-        <:- if Or [ifImages] [ifFiles]:>
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>">Articles</a>
-        <:- eif Or:>
         <:- if And [ifOr [ifImages] [ifEq [cgi _t] img]] [ifOr [ifUserCan bse_edit_images_save:article] [ifUserCan bse_edit_save:article]]:>
         <a href="<:script:>?id=<:article id:>&amp;_t=img" class="button <:cond [ifEq [cgi _t] img] selected:>">Images <span class="badge"><:image_count:></span></a>
         <:- eif And:>
@@ -29,4 +29,5 @@
         <a href="<:script:>?id=<:article id:>&amp;_t=file" class="button <:cond [ifEq [cgi _t] file] selected:>">Files <span class="badge"><:file_count:></span></a>
         <:- eif And:>
       </span>
+      <:- eif Or:>
     </nav>
