@@ -30,9 +30,9 @@
       </span>
       <:- eif Or:>
       <:- if And [ifUserCan bse_subscr_delete] [subscription is_removable]:>
-      <a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Subscription" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?a_remove=1&amp;subscription_id=<:subscription subscription_id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Subscription" data-icon="trash" class="button">Delete</a>
       <:- or And:>
-      <a data-icon="delete" class="button disabled">Delete</a>
+      <a data-icon="trash" class="button disabled">Delete</a>
       <:- eif And:>
     </nav>
   </header>

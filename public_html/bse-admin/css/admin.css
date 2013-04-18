@@ -2123,7 +2123,7 @@ h1:first-child + *[data-role=toolbar],
 
 /* @group button icons */
 
-nav *[data-icon=delete]:last-child {
+nav *[data-icon=trash]:last-child {
     float: right !important;
     margin-right: 0;
 }

@@ -34,9 +34,9 @@
         <:- eif UserCan:>
       </span>
       <:- if UserCan bse_members_group_delete:>
-      <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Group" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Group" data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>
-      <a data-icon="delete" class="button disabled">Delete</a>
+      <a data-icon="trash" class="button disabled">Delete</a>
       <:- eif UserCan:>
     </nav>
   </header>

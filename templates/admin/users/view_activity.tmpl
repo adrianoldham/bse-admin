@@ -44,9 +44,9 @@
       </span>
       <:- eif Or:>
       <:- if UserCan bse_members_user_delete:>
-      <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="User" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="User" data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>
-      <a data-icon="delete" class="button disabled">Delete</a>
+      <a data-icon="trash" class="button disabled">Delete</a>
       <:- eif UserCan:>
     </nav>
   </header>

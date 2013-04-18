@@ -4,9 +4,9 @@
     <h1><:param title:></h1>
     <nav data-role="toolbar">
       <:- if UserCan bse_edit_images_delete:article:>
-      <a href="<:script:>?removeimg_<:eimage id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Image" data-icon="delete" class="button">Delete</a>
+      <a href="<:script:>?removeimg_<:eimage id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Image" data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>
-      <a data-icon="delete" class="button disabled">Delete</a>
+      <a data-icon="trash" class="button disabled">Delete</a>
       <:- eif UserCan:>
     </nav>
   </header>

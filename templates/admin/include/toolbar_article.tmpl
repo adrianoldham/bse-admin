@@ -126,8 +126,8 @@
       </span>
       <:- eif Or:>
       <:- if UserCan bse_edit_delete_article:article:>
-      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="<:typename article:>" data-icon="delete" class="button">Delete</a>
+      <a href="<:adminurl add:>?id=<:article id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="<:typename article:>" data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>
-      <a data-icon="delete" class="button disabled">Delete</a>
+      <a data-icon="trash" class="button disabled">Delete</a>
       <:- eif UserCan:>
     </nav>
