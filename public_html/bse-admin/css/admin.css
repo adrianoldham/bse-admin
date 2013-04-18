@@ -2339,6 +2339,22 @@ nav *[data-icon=delete]:last-child {
     background-image: url(/bse-admin/images/buttons/send.svg);
 }
 
+*[data-icon=sitemap]:before {
+    background-image: url(/bse-admin/images/buttons/sitemap.svg);
+}
+
+*[data-icon=on]:before {
+    background-image: url(/bse-admin/images/buttons/on.svg);
+}
+
+*[data-icon=off]:before {
+    background-image: url(/bse-admin/images/buttons/off.svg);
+}
+
+*[data-icon=power]:before {
+    background-image: url(/bse-admin/images/buttons/power.svg);
+}
+
 /* @end */
 
 /* @end */

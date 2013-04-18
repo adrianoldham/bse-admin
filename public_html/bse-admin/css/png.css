@@ -205,6 +205,22 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/send.png);
 }
 
+*[data-icon=sitemap]:before {
+    background-image: url(/bse-admin/images/buttons/sitemap.png);
+}
+
+*[data-icon=on]:before {
+    background-image: url(/bse-admin/images/buttons/on.png);
+}
+
+*[data-icon=off]:before {
+    background-image: url(/bse-admin/images/buttons/off.png);
+}
+
+*[data-icon=power]:before {
+    background-image: url(/bse-admin/images/buttons/power.png);
+}
+
 /* @end */
 
 /* @group launchpad */

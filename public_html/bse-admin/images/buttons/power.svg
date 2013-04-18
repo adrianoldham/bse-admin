@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Button_Icons"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
+	 viewBox="0 0 24 15" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#FFFFFF" d="M18.5,8.25c0,3.59-2.91,6.5-6.5,6.5s-6.5-2.91-6.5-6.5c0-2.897,1.897-5.35,4.516-6.189V4.23
+			C8.53,4.965,7.5,6.48,7.5,8.25c0,2.485,2.015,4.5,4.5,4.5s4.5-2.015,4.5-4.5c0-1.763-1.023-3.273-2.5-4.012V2.067
+			C16.61,2.911,18.5,5.358,18.5,8.25z M13,0.75h-2v9h2V0.75z"/>
+	</g>
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="12.0005" y1="14" x2="12.0005" y2="4.882812e-04">
+			<stop  offset="0" style="stop-color:#7A7B7B"/>
+			<stop  offset="1" style="stop-color:#404040"/>
+		</linearGradient>
+		<path fill="url(#SVGID_1_)" d="M18.5,7.5c0,3.59-2.91,6.5-6.5,6.5s-6.5-2.91-6.5-6.5
+			c0-2.897,1.897-5.35,4.516-6.189V3.48C8.53,4.215,7.5,5.73,7.5,7.5C7.5,9.985,9.515,12,12,12s4.5-2.015,4.5-4.5
+			c0-1.763-1.023-3.273-2.5-4.012V1.317C16.61,2.161,18.5,4.608,18.5,7.5z M13,0h-2v9h2V0z"/>
+	</g>
+</g>
+</svg>
