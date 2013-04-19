@@ -4,7 +4,7 @@
 	 width="14px" height="14px" viewBox="0 0 14 14" enable-background="new 0 0 14 14" xml:space="preserve">
 <g id="shade">
 	<g>
-		<polygon fill-rule="evenodd" clip-rule="evenodd" fill="#FFFDFD" points="7,4.767 10.494,9.767 14,4.767 		"/>
+		<polygon fill="#FFFFFF" points="7,4.767 10.494,9.767 14,4.767 		"/>
 	</g>
 	<g>
 		<g>
@@ -12,7 +12,7 @@
 				<stop  offset="0" style="stop-color:#7A7B7B"/>
 				<stop  offset="1" style="stop-color:#373737"/>
 			</linearGradient>
-			<polygon fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" points="7,4.017 10.494,9.017 14,4.017 			"/>
+			<polygon fill="url(#SVGID_1_)" points="7,4.017 10.494,9.017 14,4.017 			"/>
 		</g>
 	</g>
 </g>

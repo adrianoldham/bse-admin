@@ -5,7 +5,7 @@
 	 viewBox="0 0 24 15" xml:space="preserve">
 <g>
 	<g>
-		<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFDFD" d="M18.999,7.751l-0.003,5.997H4.004l0.003-5.997H6v4h11.003v-4
+		<path fill="#FFFFFF" d="M18.999,7.751l-0.003,5.997H4.004l0.003-5.997H6v4h11.003v-4
 			H18.999z M7.031,5.75L10,5.754V1.75h3v4.004l2.994-0.004l-4.499,5.009L7.031,5.75z"/>
 	</g>
 	<g>
@@ -13,7 +13,7 @@
 			<stop  offset="0" style="stop-color:#7A7B7B"/>
 			<stop  offset="1" style="stop-color:#404040"/>
 		</linearGradient>
-		<path fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" d="M18.999,7.001l-0.003,5.997H4.004l0.003-5.997H6v4h11.003
+		<path fill="url(#SVGID_1_)" d="M18.999,7.001l-0.003,5.997H4.004l0.003-5.997H6v4h11.003
 			v-4H18.999z M7.031,5L10,5.004V1h3v4.004L15.994,5l-4.499,5.009L7.031,5z"/>
 	</g>
 </g>

@@ -3,7 +3,7 @@
 <svg version="1.1" baseProfile="basic" id="Button_Icons"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
 	 viewBox="0 0 24 15" xml:space="preserve">
-<g id="Button_Icons_1_">
+<g>
 	<g>
 		<path fill="#FFFFFF" d="M6,4.75H5v-1h1V4.75z M15,3.75H7v1h8V3.75z M7,6.75H6v1h1V6.75z M16,6.75H8v1h8V6.75z
 			 M8,9.75H7v1h1V9.75z M17,9.75H9v1h8V9.75z M9,12.75H8v1h1V12.75z M18,12.75h-8v1h8V12.75z"/>

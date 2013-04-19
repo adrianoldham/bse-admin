@@ -3,12 +3,12 @@
 <svg version="1.1" baseProfile="basic" id="Alert" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 	 x="0px" y="0px" width="18px" height="18px" viewBox="0 0 18 18" xml:space="preserve">
 <g>
-	<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFE800" d="M9.031,2.985L1.688,15.014h14.624L9.031,2.985z"/>
+	<path fill="#FFE800" d="M9.031,2.985L1.688,15.014h14.624L9.031,2.985z"/>
 	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="9" y1="15.0137" x2="9" y2="2.9854">
 		<stop  offset="0" style="stop-color:#F9A61A"/>
 		<stop  offset="1" style="stop-color:#F9A61A;stop-opacity:0"/>
 	</linearGradient>
-	<path fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" d="M9.031,2.985L1.688,15.014h14.624L9.031,2.985z"/>
+	<path fill="url(#SVGID_1_)" d="M9.031,2.985L1.688,15.014h14.624L9.031,2.985z"/>
 	<g opacity="0.5">
 		<path fill="#FFE800" d="M9.029,3.947l6.396,10.566H2.579L9.029,3.947 M9.031,2.985L1.688,15.014h14.624L9.031,2.985L9.031,2.985z"
 			/>
@@ -21,20 +21,20 @@
 </g>
 <g>
 	<g opacity="0.5">
-		<circle fill-rule="evenodd" clip-rule="evenodd" fill="#FFE800" cx="9.25" cy="13.499" r="1.001"/>
+		<circle fill="#FFE800" cx="9.25" cy="13.499" r="1.001"/>
 	</g>
 	<g>
-		<circle fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" cx="9" cy="12.999" r="1.001"/>
+		<circle fill="#231F20" cx="9" cy="12.999" r="1.001"/>
 	</g>
 </g>
 <g>
 	<g opacity="0.5">
-		<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFE800" d="M10.039,10.755c-0.02,0.412-0.375,0.749-0.787,0.749H9.249
+		<path fill="#FFE800" d="M10.039,10.755c-0.02,0.412-0.375,0.749-0.787,0.749H9.249
 			c-0.413,0-0.767-0.337-0.788-0.749L8.286,7.252c-0.021-0.412,0.3-0.749,0.712-0.749h0.504c0.413,0,0.732,0.337,0.713,0.749
 			L10.039,10.755z"/>
 	</g>
 	<g>
-		<path fill-rule="evenodd" clip-rule="evenodd" fill="#231F20" d="M9.79,10.255c-0.021,0.412-0.375,0.749-0.788,0.749H8.999
+		<path fill="#231F20" d="M9.79,10.255c-0.021,0.412-0.375,0.749-0.788,0.749H8.999
 			c-0.413,0-0.767-0.337-0.788-0.749L8.036,6.752c-0.021-0.412,0.3-0.749,0.712-0.749h0.504c0.413,0,0.733,0.337,0.712,0.749
 			L9.79,10.255z"/>
 	</g>
