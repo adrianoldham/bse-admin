@@ -2363,6 +2363,10 @@ nav *[data-icon=trash]:last-child {
     background-image: url(/bse-admin/images/buttons/picture.svg);
 }
 
+*[data-icon=lock]:before {
+    background-image: url(/bse-admin/images/buttons/lock.svg);
+}
+
 /* @end */
 
 /* @end */
