@@ -225,6 +225,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/paperclip.png);
 }
 
+*[data-icon=picture]:before {
+    background-image: url(/bse-admin/images/buttons/picture.png);
+}
+
 /* @end */
 
 /* @group launchpad */
