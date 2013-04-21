@@ -233,6 +233,10 @@ ul.menu.header > li > a {
     background-image: url(/bse-admin/images/buttons/lock.png);
 }
 
+*[data-icon=key]:before {
+    background-image: url(/bse-admin/images/buttons/key.png);
+}
+
 /* @end */
 
 /* @group launchpad */
