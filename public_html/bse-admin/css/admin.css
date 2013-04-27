@@ -1185,21 +1185,31 @@ div + .meta {
 }
 
 .list tr,
-.list li {
+.list:not(.tree) li,
+.tree li > span:first-child {
     vertical-align: top;
     border-bottom: 0.083em solid #ddd;
 }
 
 .list th,
 .list td,
-.list li {
+.list:not(.tree) li,
+.tree li > span:first-child {
     text-align: left;
     padding: 0.25em;
     position: relative;
 }
 
+.tree ul {
+    margin-left: 3em;
+}
+
+.tree li > span:first-child {
+    display: block;
+}
+
 .list tbody tr[class]:not([class=""]),
-.list li[class]:not([class=""]) {
+.list:not(.tree) li[class]:not([class=""]) {
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255,255,255,0)), color-stop(0.75, rgba(255,255,255,0.3)));
     background-image: -webkit-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
     background-image: -moz-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 750%);
@@ -1209,26 +1219,31 @@ div + .meta {
 }
 
 .list tbody tr:nth-child(odd),
-.list li:nth-child(odd) {
+.list:not(.tree) li:nth-child(odd),
+.tree li > span.odd {
     background-color: rgba(0,0,0,0.025);
 }
 
 .list tbody tr:hover,
-.list li:hover {
+.list:not(.tree) li:hover,
+.tree li > span:first-child:hover {
     background-image: none !important;
     background-color: rgba(255,255,255,0.5) !important;
 }
 
-.list td:last-child > span,
-.list li > span:last-child {
-    display: none;
+.list td:last-child > span:first-child,
+.list:not(.tree) li > span:last-child,
+.tree li > span:first-child > span:last-child {
+    visibility: hidden;
     position: absolute;
     right: 0.25em;
 }
 
-.list tr:hover td:last-child > span,
-.list li:hover > span:last-child {
-    display: inline;
+.list tr:hover td:last-child > span:first-child,
+.list:not(.tree) li:hover > span:last-child,
+.tree li > span:first-child:hover > span:last-child {
+    visibility: visible;
+    width: auto;
 }
 
 /* @end */

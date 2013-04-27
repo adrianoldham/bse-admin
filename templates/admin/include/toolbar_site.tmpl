@@ -13,12 +13,14 @@
             <li><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" accesskey="f" title="AccessKey = f">New Site File…</a></li>
             <:- eif UserCan:>
             <li class="divider"></li>
+            <li><a href="<:script:>?id=<:article id:>&amp;tree=<:cond [cgi tree] 0 1 :>" accesskey="/" title="AccessKey = /"><:cond [cgi tree] Hide Show:> Descendants</a></li>
+            <li class="divider"></li>
             <li><a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" accesskey="y" title="AccessKey = y">Preview</a></li>
           </ul>
         </li>
       </ul>
       <a href="<:script:>?id=<:cond [article parentid] [article id] 1:>&amp;preview=1" accesskey="y" title="AccessKey = y" data-icon="preview" data-icon-only="true" class="button">Preview</a>
-      <a href="<:script:>?id=<:article id:>&amp;_t=tree" class="button <:cond [ifEq [cgi _t] tree] active:>" data-icon="sitemap" data-icon-only="true">Overview</a>
+      <a href="<:script:>?id=<:article id:>&amp;tree=<:cond [cgi tree] 0 1 :>" class="button <:cond [cgi tree] active:>" data-icon="sitemap" data-icon-only="true">Descendants</a>
       <:- if Or [ifImages] [ifFiles]:>
       <span data-role="controlgroup">
         <a href="<:script:>?id=<:article id:>" class="button <:cond [ifEq [cgi _t] ""] selected:>">Articles</a>

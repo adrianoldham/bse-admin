@@ -1,4 +1,5 @@
 <:wrap admin/base.tmpl title=>[cat "Manage " [cond [article parentid] [typename article] " Site" ] " Children"] :>
+<:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
 <div class="window">
   <header>
     <h1><:param title:> - (<:= article.titleAlias or article.title:>)</h1>
@@ -25,30 +26,67 @@
 <:include admin/include/edit_article_sort.tmpl optional:>
     <:- eif Cgi:>
     <:- eif UserCan:>
-    <ul class="inset list">
-      <:- iterator begin kids:>
+    <:-.define article :>
+      <:-.set indicator = [] -:>
+      <:-.if article.is_expired :>
+        <:-% indicator.push("red") :>
+      <:-.elsif !article.is_released :>
+        <:-% indicator.push("white") :>
+      <:-.elsif article.listed == 0 :>
+        <:-% indicator.push("gray") :>
+      <:-.elsif article.listed == 1 :>
+        <:-% indicator.push("green") :>
+      <:-.elsif article.listed == 2 :>
+        <:-% indicator.push("orange") :>
+      <:-.end if:>
       <li>
-        <a href="<:script:>?id=<:kid id:>&amp;preview=1" title="<:typename kid:>" <:ifStepKid:>data-widget="stepkid"<:eif:>><span class="indicator <:switch:><:case Arithmetic [date "%Y%m%d" kid release] > [today "%Y%m%d"]:>white<:case Arithmetic [today "%Y%m%d"] > [date "%Y%m%d" kid expire]:>red<:case Eq [kid listed] 0:>gray<:case Eq [kid listed] 2 :>orange<:case default:>green<:endswitch:>"></span> <:ifKid titleAlias:><:kid titleAlias:> (<:kid title:>)<:or:><:kid title:><:eif:></a>
-        <span>
-          <:- if StepKid:>
-          <a href="<:script:>?id=<:article id:>&amp;stepkid=<:stepkid childId:>&amp;typename=<:typename kid:>&amp;_t=steps" class="button gray small">Edit</a>
-          <:- if UserCan bse_edit_stepkid_delete:article,bse_edit_stepparent_delete:[stepkid childId]:>
-          <a href="<:script:>?id=<:stepkid parentId:>&amp;stepkid=<:stepkid childId:>&amp;typename=<:typename kid:>&amp;del_stepkid=1&amp;_csrfp=<:csrfp admin_remove_stepkid:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=kids" data-action="Delete" data-object="Stepchild" data-confirm="Are you sure you want to remove the Stepchild relationship?" data-info="Continuing with this action will permanently remove this Stepchild relationship. This action does not delete the original <:typename kid:>." class="button red small">Delete</a>
-          <:- or UserCan:>
-          <a class="button red small disabled">Delete</a>
-          <:- eif UserCan:>
-          <:- or StepKid:>
-          <a href="<:script:>?id=<:kid id:>&amp;referer=1" class="button gray small">Edit</a>
-          <:- if UserCan bse_edit_delete_article:kid:>
-          <a href="<:script:>?id=<:kid id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=kids" data-action="Delete" data-object="<:typename kid:>" class="button red small">Delete</a>
-          <:- or UserCan:>
-          <a class="button red small disabled">Delete</a>
-          <:- eif UserCan:>
-          <:- eif StepKid:>
-          <:movestepkid:>
+        <span class="<:-= globals.odd ? " odd" : "" :>">
+          <:-.set globals.odd = !globals.odd :>
+          <a href="<:= article.admin :>"<:.if article.parentid != parentid :> data-widget="stepkid"<:.end if:>>
+            <span class="indicator <:= indicator.join(" ") :>"></span>
+            <:= article.titleAlias or article.title :><:.if article.titleAlias:> (<:= article.title :>)<:.end if:>
+          </a>
+          <span class="actions">
+            <:-.set typename = article.generator.replace("Generate::", "") :>
+            <:-.if article.parentid != parentid :>
+            <a href="<:= cfg.admin_url("add", { "id": parentid, "referer": 1, "stepkid": article.id, "_t": "steps" }) :>" class="button gray small">Edit</a>
+            <:-.if request.user_can("bse_edit_stepkid_delete",article) and request.user_can("bse_edit_stepparent_delete",parentid) :>
+            <a href="<:= cfg.admin_url("add", { "id": parentid, "referer": 1, "stepkid": article.id, "typename": typename, "del_stepkid": 1, "_csrfp": request.get_csrf_token("admin_remove_stepkid"), "r": refresh }) :>" class="button red small" data-action="Delete" data-object="Stepchild" data-confirm="Are you sure you want to remove the Stepchild relationship?" data-info="Continuing with this action will permanently remove this Stepchild relationship. This action does not delete the original <:= typename :>.">Delete</a>
+            <:-.else:>
+            <a class="button red small disabled">Delete</a>
+            <:-.end if:>
+            <:-.else:>
+            <a href="<:= cfg.admin_url("add", { "id": article.id, "referer": 1 }) :>" class="button gray small">Edit</a>
+            <:-.if request.user_can("bse_edit_delete_article",article) :>
+            <a href="<:= cfg.admin_url("add", { "id": article.id, "referer": 1, "remove": 1, "_csrfp": request.get_csrf_token("admin_remove_article"), "r": refresh }) :>" class="button red small" data-action="Delete" data-object="<:= typename :>" >Delete</a>
+            <:-.else:>
+            <a class="button red small disabled">Delete</a>
+            <:-.end if:>
+            <:-.end if:>
+            <:-.if request.user_can("edit_reorder_children",parentid) :>
+            <:-.call "move", "article": article, "parent": { "id": parentid }, "admin": 1, "r": refresh :>
+            <:-.end if:>
+          </span>
         </span>
+      <:-# do not list children for step kids, could lead to infinite recursion :>
+      <:-.if article.parentid == parentid and level < 10 and cgi.param("tree") :>
+        <:-.set kids = [ article.allkids ] :>
+        <:-.if kids.size :>
+      <ul>
+        <:-.for kid in kids:>
+        <:-.call "article", "article": kid, "parentid": article.id, "level": level+1 :>
+        <:-.end for:>
+      </ul>
+        <:-.end if:>
+      <:-.end if:>
       </li>
-      <:- iterator end kids:>
+    <:-.end define :>
+    <:-.set globals.odd = 1 :>
+    <ul class="inset list tree">
+      <:-.set kids = [ article.allkids ] :>
+      <:-.for kid in kids :>
+      <:-.call "article", "article": kid, "parentid": article.id, "level": 1 :>
+      <:-.end for:>
     </ul>
   </fieldset>
   <:- or Kids:>

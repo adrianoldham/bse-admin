@@ -32,6 +32,10 @@
             <li><a href="<:script:>?id=<:article id:>&amp;_t=prodopts&amp;referer=1" accesskey="o" title="AccessKey = o">New Option…</a></li>
             <:- eif UserCan:>
             <:- endswitch:>
+            <:- if Kids:>
+            <li class="divider"></li>
+            <li><a href="<:script:>?id=<:article id:>&amp;_t=kids&amp;tree=<:cond [cgi tree] 0 1 :>" accesskey="/" title="AccessKey = /"><:cond [cgi tree] Hide Show:> Descendants</a></li>
+            <:- eif Kids:>
             <li class="divider"></li>
             <:- if UserCan bse_regen_article:article:>
             <li><a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r">Regenerate</a></li>
@@ -102,6 +106,9 @@
         </li>
       </ul>
       <a href="<:script:>?id=<:article id:>&amp;preview=1" accesskey="y" title="AccessKey = y" data-icon="preview" data-icon-only="true" class="button">Preview</a>
+      <:- if Kids:>
+      <a href="<:script:>?id=<:article id:>&amp;_t=kids&amp;tree=<:cond [cgi tree] 0 1 :>" class="button <:cond [cgi tree] active:>" data-icon="sitemap" data-icon-only="true">Descendants</a>
+      <:- eif Kids:>
       <:- if And [article parentid] [ifUserCan bse_regen_article:article]:>
       <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
       <:- eif And:>
