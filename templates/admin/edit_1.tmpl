@@ -11,6 +11,14 @@
     <:- eif Article:>
     <:- eif New:>
   </header>
+  <:- if !Article listed:>
+  <p data-role="status" class="warning">
+    <:- if UserCan bse_edit_field_edit_listed:article:>
+    <a href="<:adminurl add:>?id=<:article id:>&amp;unhide=1&amp;_csrfp=<:csrfp admin_save_article:>" class="button orange small right">Show</a>
+    <:- eif UserCan:>
+    This <:typename article:> is hidden, it will not be generated and it will not appear in menus or search results.
+  </p>
+  <:- eif Article:>
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="<:typename article:>">
     <input type="hidden" name="lastModified" value="<:article lastModified:>" />
     <input type="hidden" name="id" value="<:article id:>" />
