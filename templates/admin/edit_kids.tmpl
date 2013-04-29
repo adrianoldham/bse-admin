@@ -15,10 +15,10 @@
     <:- if UserCan bse_edit_reorder_children:article:>
     Sort by:
     <ul class="meta group">
-      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=title&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids%26m=Children%2Bsorted%2Bby%2Btitle">title</a></li>
-      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=id&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids%26m=Children%2Bsorted%2Bby%2Bdate">date</a></li>
-      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=listed&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids%26m=Children%2Bsorted%2Bby%2Blisted">listed</a></li>
-      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;reverse=1&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids%26m=Children%2Bsorted%2Bin%2Breverse">reverse</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=title&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids">title</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=id&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids">date</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;sort=listed&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids">listed</a></li>
+      <li><a href="<:adminurl reorder:>?stepparent=<:article id:>&amp;reverse=1&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=kids">reverse</a></li>
       <li><:ifCgi sort:><a href="<:script:>?id=<:article id:>&amp;_t=kids">advanced &times;</a><:or:><a href="<:script:>?id=<:article id:>&amp;_t=kids&amp;sort=1">advanced</a><:eif:></li>
     </ul>
     <:- if Cgi sort:>
