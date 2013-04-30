@@ -72,19 +72,6 @@
         </li>
       </ul>
       <ul class="menu context">
-        <li><a href="#" data-icon="path+" data-icon-only="true" class="button">Path</a>
-          <ul>
-            <li><a href="<:script:>?id=-1" accesskey="h" title="AccessKey = h">Manage Site Articles</a></li>
-            <li class="divider"></li>
-            <:- iterator begin crumbs:>
-            <li><a href="<:script:>?id=<:crumb id:>&amp;referer=1"><:crumb title:> (Level <:crumb level:>)</a></li>
-            <:- iterator end crumbs:>
-            <li class="divider"></li>
-            <li class="disabled"><span><:article title:> (Level <:article level:>)</span></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="menu context">
         <li><a href="#" data-icon="back+" data-icon-only="true" class="button">Parent</a>
           <ul>
             <li><a href="<:script:>?id=<:article parentid:>" accesskey="," title="AccessKey = ,">Manage Parent</a></li>

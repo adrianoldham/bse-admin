@@ -9,7 +9,20 @@
     <:-.else:>
       <:-.set title = params.title -:>
     <:-.end if:>
-    <h1><:= title:></h1>
+    <ul class="menu header">
+      <li>
+        <h1><a href="#"><:= title:></a></h1>
+        <ul>
+          <li><a href="<:script:>?id=-1" accesskey="h" title="AccessKey = h">Manage Site Articles</a></li>
+          <li class="divider"></li>
+          <:- iterator begin crumbs:>
+          <li><a href="<:script:>?id=<:crumb id:>&amp;referer=1"><:crumb title:> (Level <:crumb level:>)</a></li>
+          <:- iterator end crumbs:>
+          <li class="divider"></li>
+          <li class="disabled"><span><:article title:> (Level <:article level:>)</span></li>
+        </ul>
+      </li>
+    </ul>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <:- if Article parentid:>
 <:include admin/include/toolbar_article.tmpl:>

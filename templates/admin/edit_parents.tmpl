@@ -1,7 +1,22 @@
 <:wrap admin/base.tmpl title=>"Manage Article Parents" :>
 <div class="window">
   <header>
-    <h1><:param title:> - (<:= article.titleAlias or article.title:>)</h1>
+    <:-.set article_title = article.titleAlias or article.title -:>
+    <:-.set title = params.title _ " - (" _ article_title _ ")" -:>
+    <ul class="menu header">
+      <li>
+        <h1><a href="#"><:= title:></a></h1>
+        <ul>
+          <li><a href="<:script:>?id=-1" accesskey="h" title="AccessKey = h">Manage Site Articles</a></li>
+          <li class="divider"></li>
+          <:- iterator begin crumbs:>
+          <li><a href="<:script:>?id=<:crumb id:>&amp;referer=1"><:crumb title:> (Level <:crumb level:>)</a></li>
+          <:- iterator end crumbs:>
+          <li class="divider"></li>
+          <li class="disabled"><span><:article title:> (Level <:article level:>)</span></li>
+        </ul>
+      </li>
+    </ul>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <:- if Article parentid:>
 <:include admin/include/toolbar_article.tmpl:>
