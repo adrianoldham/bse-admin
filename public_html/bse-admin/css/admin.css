@@ -1871,19 +1871,28 @@ ul.menu.context > li > ul {
 
 /* @group header */
 
-ul.menu.header,
+ul.menu.header {
+    font-size: 1.17em;
+    text-align: center;
+    display: block;
+}
+
 ul.menu.header > li {
-    text-align: center;    
-    display: inline;
+    display: inline-block;
     position: relative;
     z-index: 3;
 }
 
-ul.menu.header > li > ul {
-    top: -0.75em;
+ul.menu.header > li > h1 {
+    display: inline-block;
+    font-size: inherit;
 }
 
-ul.menu.header > li > a {
+ul.menu.header > li > ul {
+    top: -0.5em;
+}
+
+ul.menu.header > li > h1 > a {
     padding: 0 1em;
     background: url(/bse-admin/images/widgets/caret.svg) no-repeat 100% 50%;
     -webkit-background-size: 1em;
