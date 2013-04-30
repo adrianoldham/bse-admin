@@ -12,11 +12,11 @@
     <:- if UserCan bse_edit_reorder_children:article:>
     Sort by:
     <ul class="meta group">
-      <li><a href="<:adminurl reorder:>?parentid=<:article id:>&amp;sort=title&amp;r=<:script:>%3Fid=<:article id:>">title</a></li>
-      <li><a href="<:adminurl reorder:>?parentid=<:article id:>&amp;sort=id&amp;r=<:script:>%3Fid=<:article id:>">date</a></li>
-      <li><a href="<:adminurl reorder:>?parentid=<:article id:>&amp;sort=listed&amp;r=<:script:>%3Fid=<:article id:>">listed</a></li>
-      <li><a href="<:adminurl reorder:>?parentid=<:article id:>&amp;reverse=1&amp;r=<:script:>%3Fid=<:article id:>">reverse</a></li>
-      <li><:ifCgi sort:><a href="<:script:>?id=<:article id:>">advanced &times;</a><:or:><a href="<:script:>?id=<:article id:>&amp;sort=1">advanced</a><:eif:></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "sort": "title", "r": refresh }) :>">title</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "sort": "id", "r": refresh }) :>">date</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "sort": "listed", "r": refresh }) :>">listed</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "reverse": 1, "r": refresh }) :>">reverse</a></li>
+      <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree") }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree"), "sort": 1 }) :>">advanced</a><:eif:></li>
     </ul>
     <:- if Cgi sort:>
 <:include admin/include/edit_article_sort.tmpl optional:>
