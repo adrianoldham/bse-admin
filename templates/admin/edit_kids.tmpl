@@ -42,7 +42,7 @@
       <li>
         <span class="<:-= globals.odd ? " odd" : "" :>">
           <:-.set globals.odd = !globals.odd :>
-          <a href="<:= article.admin :>"<:.if article.parentid != parentid :> data-widget="stepkid"<:.end if:>>
+          <a href="<:= cfg.admin_url("add", { "id": article.id, "preview": 1 }) :>"<:.if article.parentid != parentid :> data-widget="stepkid"<:.end if:>>
             <span class="indicator <:= indicator.join(" ") :>"></span>
             <:= article.titleAlias or article.title :><:.if article.titleAlias:> (<:= article.title :>)<:.end if:>
           </a>
