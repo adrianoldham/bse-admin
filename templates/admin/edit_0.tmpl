@@ -52,7 +52,7 @@
             <a class="button red small disabled">Delete</a>
             <:-.end if:>
             <:-.else:>
-            <a href="<:= cfg.admin_url("add", { "id": article.id, "r": refresh }) :>" class="button gray small">Edit</a>
+            <a href="<:= cfg.admin_url("add", { "id": article.id, "referer": 1 }) :>" class="button gray small">Edit</a>
             <:-.if request.user_can("bse_edit_delete_article",article) :>
             <a href="<:= cfg.admin_url("add", { "id": article.id, "remove": 1, "_csrfp": request.get_csrf_token("admin_remove_article"), "r": refresh }) :>" class="button red small" data-action="Delete" data-object="<:= typename :>" >Delete</a>
             <:-.else:>
