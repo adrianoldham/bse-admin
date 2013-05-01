@@ -2,8 +2,7 @@
 <:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
 <div class="window">
   <header>
-    <:-.set article_title = article.titleAlias or article.title -:>
-    <:-.set title = params.title _ " - (" _ article_title _ ")" -:>
+    <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
     <ul class="menu header">
       <li>
         <h1><a href="#"><:= title:></a></h1>

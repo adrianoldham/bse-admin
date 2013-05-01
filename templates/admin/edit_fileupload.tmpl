@@ -4,10 +4,9 @@
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>
     <:-.set article = !article.id ? bse.articles.getByPkey(id) : article -:>
     <:-.if id > 0 :>
-      <:-.set article_title = article.titleAlias or article.title -:>
-      <:-.set title = params.title _ " - (" _ article_title _ ")" -:>
+      <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
     <:-.else:>
-      <:-.set title = params.title -:>
+      <:-.set title = params.title :>
     <:-.end if:>
     <h1><:= title:></h1>
   </header>

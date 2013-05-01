@@ -1,7 +1,8 @@
 <:wrap admin/base.tmpl title=>[cond [cgi stepparent] "Edit Stepparent" "New Stepparent"] :>
 <div class="window dialog">
   <header>
-    <h1><:param title:> - (<:= article.titleAlias or article.title:>)</h1>
+    <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= title:></h1>
     <:- if Cgi stepparent:>
     <nav data-role="toolbar">
       <:- if UserCan bse_edit_stepparent_delete:article,bse_edit_stepparent_delete:[cgi stepparent]:>

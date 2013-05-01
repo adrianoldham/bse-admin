@@ -1,8 +1,7 @@
 <:wrap admin/base.tmpl title=>"Manage Article Parents" :>
 <div class="window">
   <header>
-    <:-.set article_title = article.titleAlias or article.title -:>
-    <:-.set title = params.title _ " - (" _ article_title _ ")" -:>
+    <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
     <ul class="menu header">
       <li>
         <h1><a href="#"><:= title:></a></h1>

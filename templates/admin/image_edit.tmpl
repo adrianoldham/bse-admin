@@ -1,7 +1,8 @@
 <:wrap admin/base.tmpl title=>"Edit Image" :>
 <div class="window dialog">
   <header>
-    <h1><:param title:> - (<:= article.titleAlias or article.title:>)</h1>
+    <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= title:></h1>
     <nav data-role="toolbar">
       <:- if UserCan bse_edit_images_delete:article:>
       <a href="<:script:>?removeimg_<:eimage id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Image" data-icon="trash" class="button">Delete</a>
