@@ -15,10 +15,10 @@
           <li><a href="<:script:>?id=-1" accesskey="h" title="AccessKey = h">Manage Site Articles</a></li>
           <li class="divider"></li>
           <:- iterator begin crumbs:>
-          <li><a href="<:script:>?id=<:crumb id:>&amp;referer=1"><:crumb title:> (Level <:crumb level:>)</a></li>
+          <li><a href="<:script:>?id=<:crumb id:>&amp;referer=1"><:ifCrumb titleAlias:><:crumb titleAlias:><:or:><:crumb title:><:eif:> (Level <:crumb level:>)</a></li>
           <:- iterator end crumbs:>
           <li class="divider"></li>
-          <li class="disabled"><span><:article title:> (Level <:article level:>)</span></li>
+          <li class="disabled"><span><:= article.titleAlias or article.title:> (Level <:= article.level:>)</span></li>
         </ul>
       </li>
     </ul>
