@@ -7,13 +7,14 @@
       <li>
         <h1><a href="#"><:= title:></a></h1>
         <ul>
-          <li><a href="<:script:>?id=-1" accesskey="h" title="AccessKey = h">Manage Site Articles</a></li>
-          <li class="divider"></li>
-          <:- iterator begin crumbs:>
-          <li><a href="<:script:>?id=<:crumb id:>&amp;referer=1"><:ifCrumb titleAlias:><:crumb titleAlias:><:or:><:crumb title:><:eif:> (Level <:crumb level:>)</a></li>
-          <:- iterator end crumbs:>
-          <li class="divider"></li>
           <li class="disabled"><span><:= article.titleAlias or article.title:> (Level <:= article.level:>)</span></li>
+          <li class="divider"></li>
+          <:-.set crumbs = [ article.ancestors ] -:>
+          <:-.for crumb in crumbs:>
+          <li><a href="<:= cfg.admin_url("add", { "id": crumb.id, "referer": 1 }) :>"><:= crumb.titleAlias or crumb.title:> (Level <:= crumb.level:>)</a></li>
+          <:-.end for:>
+          <li class="divider"></li>
+          <li><a href="<:= cfg.admin_url("add", { "id": -1 }) :>" accesskey="h" title="AccessKey = h">Manage Site Articles</a></li>
         </ul>
       </li>
     </ul>
