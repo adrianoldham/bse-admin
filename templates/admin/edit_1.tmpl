@@ -29,11 +29,7 @@
     <:- eif New:>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <:- if New:><:or New:>
-    <:- if Article parentid:>
 <:include admin/include/toolbar_article.tmpl:>
-    <:- or Article:>
-<:include admin/include/toolbar_site.tmpl:>
-    <:- eif Article:>
     <:- eif New:>
   </header>
   <:- if !Article listed:>
