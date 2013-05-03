@@ -8,6 +8,7 @@
     <:-.else:>
       <:-.set title = params.title :>
     <:-.end if:>
+    <:- if Article parentid:>
     <ul class="menu header">
       <li>
         <h1><a href="#"><:= title:></a></h1>
@@ -23,6 +24,9 @@
         </ul>
       </li>
     </ul>
+    <:- or Article:>
+    <h1><:= title:></h1>
+    <:- eif Article:>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <:- if Article parentid:>
 <:include admin/include/toolbar_article.tmpl:>
