@@ -175,11 +175,11 @@
           <:- case Eq [order paymentType] "12":>
           <td><b>Account</b></td>
         </tr>
+<:include include/order_payment_type.tmpl optional:>
           <:- case default:>
           <td><b>None</b></td>
         </tr>
         <:- endswitch:>
-<:include custom/order_payment_type.tmpl optional:>
       </tbody>
     </table>
     </div>
