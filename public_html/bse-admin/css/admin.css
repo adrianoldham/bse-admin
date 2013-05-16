@@ -72,6 +72,11 @@ form {
     clear: both;
 }
 
+progress {
+    display: block;
+    width: 100%;
+}
+
 p,
 table {
     margin-bottom: 1em;
@@ -2533,6 +2538,26 @@ ul.treeview ul {
 
 ul.treeview a {
     font-weight: bold;
+}
+
+/* @end */
+
+/* @group drop target */
+
+*[data-drop=target] {
+   text-align: center;
+   border: 0.5em dashed #ddd;
+   margin: 1em 0;
+   padding: 2em;
+}
+
+*[data-drop=target].over h2 {
+    opacity: 0.25;
+    color: inherit !important;
+}
+
+*[data-drop=list] {
+    margin: 1em 0;
 }
 
 /* @end */
