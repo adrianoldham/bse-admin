@@ -1,6 +1,6 @@
 # Bse-admin project
 
-The aim of the **bse-admin** project is to produce a modern familiar OS styled UI environment for the [BSE content management system](http://github.com/tonycoz/bse). The current state of the **bse-admin** project is highly usable and a significant improvement over the standard admin included in the BSE distribution.  This project represents well over 1,100 hours of work-to-date.
+The aim of the **bse-admin** project is to produce a modern familiar OS styled UI environment for the [BSE content management system](http://github.com/tonycoz/bse). The current state of the **bse-admin** project is highly usable and a significant improvement over the standard admin included in the BSE distribution.  This project represents well over 1,500 hours of work-to-date.
 
 ## Requirements
 
