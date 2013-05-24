@@ -9,6 +9,8 @@
   <span><:cfg "site users" display_email "Email Address":>:</span> <:user email:></dd>
 </dl>
 
+<:- include admin/include/registeremail_html_custom.tmpl optional:>
+
 <!--<a href="<:adminurl siteusers a_edit 1 id [user id]:>"><table cellspacing="0" border="0" cellpadding="0" class="bse-button"><tr><td>Edit user</td></tr></table></a>//-->
 
 <p class="bse-buttons"><a href="<:adminurl siteusers a_edit 1 id [user id]:>" class="bse-button">Edit user</a></p>
