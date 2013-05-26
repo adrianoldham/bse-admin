@@ -371,6 +371,7 @@ div.window {
     min-width: 34em;
     padding: 0 2em 1em;
     background-color: #ececec;
+    border-top: 0.083em solid #eee;
     border-bottom: 0.083em solid #444;
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
@@ -1997,9 +1998,7 @@ header {
     position: relative;
     margin: 0 -2em 1em;
     padding: 0 2em;
-    border: 0.083em solid transparent;
-    border-top-color: #fff;
-    border-bottom-color: #777;
+    border-bottom: 0.083em solid #777;
     -webkit-border-radius: 0.5em 0.5em 0 0;
     -moz-border-radius: 0.5em 0.5em 0 0;
     border-radius: 0.5em 0.5em 0 0;
