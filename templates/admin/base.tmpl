@@ -28,7 +28,7 @@
     <![endif]-->
     <:-.end if:>
   </head>
-  <body<:ifParam bodyid:> id="<:param bodyid:>"<:eif:> data-role="page">
+  <body<:ifParam bodyid:> id="<:param bodyid:>"<:eif:> data-role="page" class="<:param classes:> <:cond [cgi preview] "preview" :>">
     <:-.call "messages":>
     <:- switch:>
     <:- case Param nonavbar:>

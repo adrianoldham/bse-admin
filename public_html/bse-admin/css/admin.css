@@ -54,6 +54,23 @@ body#logon {
     padding-top: 0;
 }
 
+body.preview {
+    overflow: hidden;
+}
+
+body.toolbar {
+    padding-top: 5.5em;
+}
+
+body > header {
+    position: fixed;
+    top: 0;
+    margin: 0;
+    padding-top: 2em;
+    width: 100%;
+    z-index: 1;
+}
+
 a {
     color: #333;
 }
@@ -102,21 +119,13 @@ table {
 }
 
 .preview {
-    position: absolute;
-    top: 2em;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    position: fixed;
+    height: 100%;
 }
 
 iframe {
     width: 100%;
     height: 100%;
     border: 0; /* ie requires HTML iframe attribute frameborder="0" */
-    z-index: 1;
-    position: absolute;
 }
 
 .lightbox {
