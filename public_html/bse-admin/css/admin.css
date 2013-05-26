@@ -2000,7 +2000,7 @@ header {
     border: 0.083em solid transparent;
     border-top-color: #fff;
     border-bottom-color: #777;
-    -webkit-border-radius: 0.75em 0.75em 0 0;
+    -webkit-border-radius: 0.5em 0.5em 0 0;
     -moz-border-radius: 0.5em 0.5em 0 0;
     border-radius: 0.5em 0.5em 0 0;
     background-color: #aaa; /* Old browsers */
