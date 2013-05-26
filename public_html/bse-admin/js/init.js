@@ -107,7 +107,7 @@ function setup_fullscreen_widgets() {
         'data-widget': 'fullscreen'
     }).observe('click', toggle_fullscreen);
 
-    $$("header > nav").invoke('insert', { top: fullscreenToggle });
+    $$(".window:not('.dialog') header > nav").invoke('insert', { top: fullscreenToggle });
 
     windowToggle = new Element('div', {
         'data-widget': 'window'
