@@ -9,7 +9,7 @@ ul.menu > li ul li.active.parent > a {
     background-image: url(/bse-admin/images/widgets/arrow-white.png);
 }
 
-ul.menu.header > li > a {
+ul.menu.header > li > h1 > a {
     background-image: url(/bse-admin/images/widgets/caret.png);
 }
 
