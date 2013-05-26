@@ -648,6 +648,10 @@ input[type=submit][disabled] {
     top: 0.1em;
 }
 
+.button.selected {
+    cursor: default;
+}
+
 .button.small {
     font-size: 0.85em;
     margin: 0;
