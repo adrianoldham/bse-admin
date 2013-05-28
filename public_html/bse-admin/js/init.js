@@ -75,7 +75,7 @@ function dom_init() {
       </div>\
     </div>';
 
-    $$("header").invoke('insert', { after: sheetHtml });
+    $$(".window header").invoke('insert', { after: sheetHtml });
     $$("body").invoke('insert', { bottom: confirmHtml });
 
     var changesMonitor = new ChangesMonitor({ forms: 'form:[data-object]', onPrompt: hide_menu });
