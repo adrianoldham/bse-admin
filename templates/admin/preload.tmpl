@@ -181,7 +181,7 @@
       <div>
         <label for="<:= name |html:>">
           <:-= f.nolabel ? '' : f.description |html:>
-          <:-= f.required ? ' <span class="required">*</span>' : '' :>
+          <:-= f.required ? ' <span class="required">*</span>' : '' |raw:>
           <:-.call "error_img", "field":name -:>
         </label>
         <span>
