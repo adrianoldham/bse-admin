@@ -1,6 +1,9 @@
 <:# define globals :>
-<:-.set autofocus = 0 -:>
 <:-.set required = 0 -:>
+<:-.set autofocus = 0 -:>
+<:-.set placeholder = 0 -:>
+<:-.set readonly = 0 -:>
+<:-.set disabled = 0 -:>
 <:-.set groups = 0 -:>
 <:-.set grouplabel = "label" -:>
 <:-.set groupid = "id" -:>
@@ -11,48 +14,81 @@
 
 <:# utility definitions :>
 <:-.define make_select -:>
-          <:-.if !default.defined:>
+          <:-.if !default.defined :>
           <:-.set default = "" :>
-          <:-.end if:>
-          <select name="<:= name :>" id="<:= name |html:>"
-            <:-= autofocus ? ' autofocus="autofocus"' : '' -:>
-            <:-= required ? ' required="required"' : '' -:>
-            <:-= request.field_errors.$name ? ' class="error"' : '' -:>
+          <:-.end if :>
+          <select name="<:= name :>" id="<:= name :>"
+            <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
+            <:-= required ? ' required="required"' : '' | raw :>
+            <:-= disabled or readonly ? ' disabled="disabled"' : '' | raw :>
+            <:-= request.field_errors.$name ? ' class="error"' : '' | raw -:>
           >
-          <:-.if groups:>
-            <:-.for i in list:>
+          <:-.if groups :>
+            <:-.for i in list :>
             <:-.if i.$itemgroupid eq "" :>
-            <option value="<:= i.$id |html:>"
-              <:-= i.$id eq default ? ' selected="selected"' : '' -:>
+            <option value="<:= i.$id :>"
+              <:-= i.$id eq default ? ' selected="selected"' : '' | raw -:>
             >
-              <:-= i.$desc |html -:>
+              <:-= i.$desc -:>
             </option>
-            <:-.end if:>
-            <:-.end for:>
-            <:-.for g in groups:>
-            <optgroup label="<:= g.$grouplabel |html:>">
-              <:-.for i in list:>
+            <:-.end if :>
+            <:-.end for :>
+            <:-.for g in groups :>
+            <optgroup label="<:= g.$grouplabel :>">
+              <:-.for i in list :>
               <:-.if i.$itemgroupid == g.$groupid :>
-              <option value="<:= i.$id |html:>"
-                <:-= i.$id eq default ? ' selected="selected"' : '' -:>
+              <option value="<:= i.$id :>"
+                <:-= i.$id eq default ? ' selected="selected"' : '' | raw -:>
               >
-                <:-= i.$desc |html -:>
+                <:-= i.$desc -:>
               </option>
-              <:-.end if:>
-              <:-.end for:>
+              <:-.end if :>
+              <:-.end for :>
             </optgroup>
-            <:-.end for:>
-          <:-.else:>
-            <:-.for i in list:>
-            <option value="<:= i.$id |html:>"
-              <:-= i.$id eq default ? ' selected="selected"' : '' -:>
+            <:-.end for :>
+          <:-.else :>
+            <:-.for i in list :>
+            <option value="<:= i.$id :>"
+              <:-= i.$id eq default ? ' selected="selected"' : '' | raw -:>
             >
-              <:-= i.$desc |html -:>
+              <:-= i.$desc -:>
             </option>
-            <:-.end for:>
-          <:-.end if:>
+            <:-.end for :>
+          <:-.end if :>
           </select>
-<:-.end define:>
+<:-.end define :>
+
+<:# make_multicheck expects:
+  values - list of hashes
+  default - a list of ids of checks to be checked
+  id - the name of the id field
+  desc - the name of the description field.
+  name - the name of the input elements
+  readonly - true to make it readonly
+:>
+<:-.define make_multicheck -:>
+      <:-.if !readonly :>
+      <input type="hidden" name="_save_<:= name :>" value="1" />
+      <:-.end if :>
+      <:-.if !default.defined :>
+        <:-.set default = [] :>
+      <:-.end if :>
+      <:-.set checked = {} :>
+      <:-.for v in default :>
+        <:-% checked.set(v, 1) :>
+      <:-.end for :>
+      <ul>
+        <:-.for i in values :>
+        <li>
+          <:-.set element_id = name _ "-" _ i.$id :>
+          <input type="checkbox" name="<:= name :>" id="<:= element_id :>" value="<:= i.$id :>"
+            <:-= checked[i.$id] ? ' checked="checked" ' : '' | raw :>
+            <:-= disabled or readonly ? ' disabled="disabled"' : '' | raw :> />
+          <label for="<:= element_id :>"><:= i.$desc :></label>
+        </li>
+        <:-.end for :>
+      </ul>
+<:-.end define :>
 
 <:# paramaters:
   base - base url for links
@@ -63,64 +99,66 @@
 <:-.set base = base _ sep :>
   <p class="pagination">
     Page <:= pages.page :> of <:= pages.pagecount :>
-    <:-.if pages.previous_page:>
-    <a href="<:= base |html:><:= pages.pname | uri :>=1&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">|←</a>
-    <a href="<:= base |html:><:= pages.pname | uri :>=<:= pages.previous_page |uri:>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">←</a>
-    <:-.else:>
+    <:-.if pages.previous_page :>
+    <a href="<:= base :><:= pages.pname | uri :>=1&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">|←</a>
+    <a href="<:= base :><:= pages.pname | uri :>=<:= pages.previous_page | uri :>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">←</a>
+    <:-.else :>
     <span class="disabled">|←</span>
     <span class="disabled">←</span>
-    <:-.end if:>
-    <:-.for p in pcats.pages:>
-    <:-.if p.link:>
-    <a href="<:= base |html:><:= pages.pname | uri:>=<:= p.page | uri :>&amp;<:=pages.ppname | uri :>=<:= pages.pp | uri :>"><:= p.page |html:></a>
-    <:-.else:>
-    <span class="disabled"><:= p.page |html:></span>
-    <:-.end if:>
-    <:-.end for:>
-    <:-.if pages.next_page:>
-    <a href="<:= base |html:><:= pages.pname | uri :>=<:= pages.next_page |uri:>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">→</a>
-    <a href="<:= base |html:><:= pages.pname | uri :>=<:= pages.pagecount |uri:>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">→|</a>
-    <:-.else:>
+    <:-.end if :>
+    <:-.for p in pcats.pages :>
+    <:-.if p.link :>
+    <a href="<:= base :><:= pages.pname | uri :>=<:= p.page | uri :>&amp;<:=pages.ppname | uri :>=<:= pages.pp | uri :>"><:= p.page :></a>
+    <:-.else :>
+    <span class="disabled"><:= p.page :></span>
+    <:-.end if :>
+    <:-.end for :>
+    <:-.if pages.next_page :>
+    <a href="<:= base :><:= pages.pname | uri :>=<:= pages.next_page | uri :>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">→</a>
+    <a href="<:= base :><:= pages.pname | uri :>=<:= pages.pagecount | uri :>&amp;<:= pages.ppname | uri :>=<:= pages.pp | uri :>">→|</a>
+    <:-.else :>
     <span class="disabled">→</span>
     <span class="disabled">→|</span>
-    <:-.end if:>
+    <:-.end if :>
   </p>
-<:-.end define:>
+<:-.end define :>
 
-<:# parameters: field, default :>
+<:# parameters:
+  field - field name
+  default
+:>
 <:-.define old -:>
-<:-.if cgi.param(field).defined:>
+<:-.if cgi.param(field).defined :>
   <:-= cgi.param(field) :>
-<:-.else:>
-  <:-= default |html:>
-<:-.end if:>
-<:-.end define:>
+<:-.else :>
+  <:-= default :>
+<:-.end if :>
+<:-.end define :>
 
 <:# parameters:
    field - name of field
    index - index of field
    errors - hash of error messages (should be set by code)
 :>
-<:-.define error_img_n :>
-  <:-.if errors.$field:>
+<:-.define error_img_n -:>
+  <:-.if errors.$field :>
     <:-.set msg = errors.$field :>
     <:-.set msg = msg.is_list ? msg[index] : msg :>
     <:-.set image = cfg.entry("error_img", "image", dist_image_uri _ "/icons/error.png") :>
     <:-.set width = cfg.entry("error_img", "width", 18) :>
     <:-.set height = cfg.entry("error_img", "height", 18) :>
-    <img src="<:= image -:>" alt="<:= msg :>" title="<:= msg :>" width="<:= width :>" height="<:= height :>" class="error_img" />
-  <:-.end if:>
-<:-.end define:>
+    <img src="<:= image :>" alt="<:= msg :>" title="<:= msg :>" width="<:= width :>" height="<:= height :>" class="error_img" />
+  <:-.end if :>
+<:-.end define :>
 
-<:-.define error_img :>
+<:-.define error_img -:>
 <:-.call "error_img_n", "index":0 :>
-<:-.end define:>
+<:-.end define :>
 
 <:-.define required_indicator -:>
-<:.-if f.required:>
-<span class="required">*</span>
-<:-.end if:>
-<:-.end define:>
+<:-.if field.required :> <span class="required">*</span>
+<:-.end if :>
+<:-.end define :>
 
 <:# paramaters:
   name - field name
@@ -128,123 +166,234 @@
   object - source for defaults in edit mode
 :>
 <:-.define input :>
-    <:-.set f = fields[name] :>
-
-    <:-.if object:>
-      <:-.set default = object.get(name) :>
-    <:-.elsif f.default :>
-      <:-.set default = f.default:>
-    <:-.else:>
+    <:-.if object :>
+      <:-.set default = object.$name :>
+    <:-.elsif field.default :>
+      <:-.set default = field.default :>
+    <:-.else :>
       <:-.set default = "" :>
-    <:-.end if:>
+    <:-.end if :>
 
-    <:-.if f.type and f.type eq "date" and default ne "" :>
+    <:-.if field.type and field.type eq "date" and default ne "" :>
       <:-.set default = default.replace(/(\d+)\D+(\d+)\D+(\d+)/, "$3/$2/$1") :>
-    <:-.elsif f.type and f.type eq "time" and default ne "":>
-      <:-.set default = bse.date(default =~ /:00$/ ? "%I:%M%p" : "%I:%M:%S%p", default).replace(/^0/, "").lower:>
-    <:-.end if:>
+    <:-.elsif field.type and field.type eq "time" and default ne "" :>
+      <:-.set default = bse.date(default =~ /:00$/ ? "%I:%M%p" : "%I:%M:%S%p", default).replace(/^0/, "").lower :>
+    <:-.end if :>
 
-    <:-.if cgi.param(name).defined:>
+    <:-.if cgi.param(name).defined :>
       <:-.set default = cgi.param(name) :>
-    <:-.end if:>
-
-          <:-.if f.htmltype eq "textarea":>
-          <textarea name="<:= name |html:>" id="<:= name |html:>" rows="<:= f.height ? f.height : cfg.entry("forms", "textarea_rows", 10) :>" cols=<:= f.width ? f.width : cfg.entry("textarea_cols", 60) |html:>
-            <:-= f.required ? ' required="required"' : '' :>
-            <:-= autofocus ? ' autofocus="autofocus"' : '' :>
-            <:-= request.field_errors.$name ? ' class="error"' : '' -:>
+    <:-.end if :>
+          <:-.if field.htmltype eq "textarea" :>
+          <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols=<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>
+            <:-= field.required ? ' required="required"' : '' | raw :>
+            <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
+            <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
+            <:-= readonly ? ' readonly="readonly"' : '' | raw :>
+            <:-= disabled ? ' disabled="disabled"' : '' | raw :>
+            <:-= request.field_errors.$name ? ' class="error"' : '' | raw -:>
           >
-            <:-= default |html -:>
+            <:-= default -:>
           </textarea>
-          <:-.elsif f.htmltype eq "checkbox":>
+          <:-.elsif field.htmltype eq "checkbox" :>
           <:-.set is_checked = request.method() eq 'post' ? cgi.param(name).defined : default :>
-          <input type="checkbox" name="<:= name |html:>" id="<:= name |html:>" value="<:= f.value ? f.value : 1 |html:>"
-            <:-= is_checked ? ' checked="checked"' : '' -:>
-            <:-= f.required ? ' required="required"' : '' :> />
-          <:-.elsif f.htmltype eq "select":>
-          <:-.set values = f.select["values"] :>
+          <input type="hidden" name="_save_<:= name :>" value="1" />
+          <input type="checkbox" name="<:= name :>" id="<:= name :>" value="<:= field.value ? field.value : 1 :>"
+            <:-= is_checked ? ' checked="checked"' : '' | raw :>
+            <:-= field.required ? ' required="required"' : '' | raw :>
+            <:-= disabled or readonly ? ' disabled="disabled"' : '' | raw :> />
+          <:-.elsif field.htmltype eq "multicheck" :>
+          <:-# we expect default to be a list of selected checks :>
+          <:-.set values = field.select["values"] :>
+          <:-.set values = values.is_code ? values() : values :>
+          <:-.set default = cgi.param("_save_" _ name) ? [ cgi.param(name) ] : default :>
+          <:-.call "make_multicheck",
+            "id":field.select.id,
+            "desc":field.select.label,
+            "disabled":disabled
+          :>
+          <:-.elsif field.htmltype eq "select" and !readonly :>
+          <:-.set values = field.select["values"] :>
           <:-.set values = values.is_code ? values() : values :>
           <:-.call "make_select",
             "name":name,
             "default":default,
             "list":values,
-            "id":f.select.id,
-            "desc":f.select.label,
-            "required":f.required,
+            "id":field.select.id,
+            "desc":field.select.label,
+            "required":field.required,
             "autofocus":autofocus,
-            "groupid": (f.select.groupid or "id"),
-            "itemgroupid": (f.select.itemgroupid or "groupid"),
-            "groups": f.select.groups ? (f.select.groups.is_code ? (f.select.groups)() : f.select.groups ) : 0,
-            "grouplabel": (f.select.grouplabel or "label")
+            "disabled":disabled,
+            "groupid":(field.select.groupid or "id"),
+            "itemgroupid":(field.select.itemgroupid or "groupid"),
+            "groups":field.select.groups ? (field.select.groups.is_code ? (field.select.groups)() : field.select.groups ) : 0,
+            "grouplabel":(field.select.grouplabel or "label")
           :>
-          <:-.else:>
-          <input type="text" name="<:= name |html:>" id="<:= name |html:>" value="<:= default |html:>"
-            <:-= f.maxlength ? ' maxlength="' _ f.maxlength _ '"' : '' :>
-            <:-= f.required ? ' required="required"' : '' :>
-            <:-= autofocus ? ' autofocus="autofocus"' : '' :>
-            <:-= f.width ? ' size="' _ f.width _ '"' : '' :>
-            <:-= request.field_errors.$name ? ' class="error"' : '' :> />
-          <:-.end if:>
-<:-.end define:>
+          <:-.else :>
+          <input type="text" name="<:= name :>" id="<:= name :>" value="<:= default :>"
+            <:-= field.maxlength ? ' maxlength="' _ field.maxlength _ '"' : '' | raw :>
+            <:-= field.required ? ' required="required"' : '' | raw :>
+            <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
+            <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
+            <:-= readonly ? ' readonly="readonly"' : '' | raw :>
+            <:-= disabled ? ' disabled="disabled"' : '' | raw :>
+            <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
+            <:-= request.field_errors.$name ? ' class="error"' : '' | raw :> />
+          <:-.end if :>
+<:-.end define :>
 
 <:# paramaters:
   name - field name
   fields - hash of fields (may be set by page instead)
 :>
 <:-.define field -:>
-      <:-.set f = fields[name] :>
+  <:-.if fields.is_hash -:>
+    <:-.set field = fields[name] -:>
+    <:-.if field :>
+      <:-.call "inlinefield", "field":field, "name":name :>
+    <:-.else :>
+      <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
+    <:-.end if :>
+  <:-.else :>
+      <p>fields isn’t a hash, something is wrong.</p>
+  <:-.end if :>
+<:-.end define :>
+
+<:# parameters:
+  name - the field name
+  field - a field, as an entry in fields
+:>
+<:-.define inlinefield -:>
+    <:-.if field.is_hash -:>
       <div>
-        <label for="<:= name |html:>">
-          <:-= f.nolabel ? '' : f.description |html:>
-          <:-= f.required ? ' <span class="required">*</span>' : '' |raw:>
+        <label for="<:= name :>">
+          <:-= field.nolabel ? '' : field.description :>
+          <:-.call "required_indicator", "field":field :>
           <:-.call "error_img", "field":name -:>
         </label>
         <span>
           <:-.call "input", "name":name :>
-          <:-.if f.units:>
-          <:-= f.units |html:>
-          <:-.end if:>
+          <:-.if field.units :>
+          <:= field.units :>
+          <:-.end if :>
         </span>
       </div>
-<:-.end define:>
+    <:-.end if :>
+<:-.end define :>
+
+<:# like field, but wrap in a per-field field set.
+parameters:
+  name - field name
+  fields - hash of fields (may be set by page instead)
+:>
+<:-.define fieldset -:>
+  <:-.set field = fields[name] -:>
+  <:-.if field.is_hash -:>
+    <fieldset>
+      <:-.if !field.nolabel :>
+      <legend><:= field.description :></legend>
+      <:-.end if :>
+      <:-.call "input", "name":name, "field":field :>
+    </fieldset>
+  <:-.elsif fields.is_hash :>
+    <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
+    <:-.else :>
+    <p>fields isn’t a hash, something is wrong.</p>
+  <:-.end if :>
+<:-.end define :>
+
+<:# parameters:
+  name - the field name
+  field - a field, as an entry in fields
+:>
+<:-.define inlinefieldro -:>
+    <:-.if field.is_hash -:>
+      <div>
+        <label for="<:= name :>"><:= field.nolabel ? "" : field.description :></label>
+        <span>
+          <:-.call "input", "name":name, "readonly":1 :>
+          <:-.if field.units :>
+          <:= field.units :>
+          <:-.end if :>
+        </span>
+      </div>
+    <:-.end if :>
+<:-.end define :>
+
+<:# like field, but for display, not editing :>
+<:-.define fieldro -:>
+  <:-.if fields.is_hash -:>
+    <:-.set field = fields[name] -:>
+    <:-.if field :>
+    <:-.call "inlinefieldro", "field":field, "name":name :>
+    <:-.else :>
+    <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
+    <:-.end if :>
+  <:-.else :>
+    <p>fields isn’t a hash, something is wrong.</p>
+  <:-.end if :>
+<:-.end define :>
+
+<:# like fieldro, but wrap in a per-field field set.
+parameters:
+  name - field name
+  fields - hash of fields (may be set by page instead)
+:>
+<:-.define fieldsetro -:>
+  <:-.set field = fields[name] -:>
+  <:-.if field.is_hash -:>
+    <fieldset>
+      <:-.if !field.nolabel :>
+      <legend><:= field.description :></legend>
+      <:-.end if :>
+      <:-.call "input", "name":name, "field":field, "readonly":1 :>
+    </fieldset>
+  <:-.elsif fields.is_hash :>
+    <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
+    <:-.else :>
+    <p>fields isn’t a hash, something is wrong.</p>
+  <:-.end if :>
+<:-.end define :>
 
 <:-.define messages -:>
-    <:-.if request.messages.size:>
+  <:-.if request.messages.size :>
     <div id="message">
-      <:-.for m in request.messages:>
+      <:-.for m in request.messages :>
       <div class="message <:= m.class :> <:-= m.class eq 'error' ? ' red' : m.class eq 'warning' ? ' orange' : ' green' :>">
         <:-= m.html -:>
       </div>
-      <:-.end for:> 
+      <:-.end for :> 
     </div>
-    <:-.end if:>
-<:-.end define:>
+  <:-.end if :>
+<:-.end define :>
 
-<:-.define move -:>
-<:# expects loop, parent
+<:# expects:
+  loop
+  parent
+
   which in most cases means you can just supply parent
--:>
-<:-.if bse.admin or admin:>
+:>
+<:-.define move -:>
+<:-.if bse.admin or admin :>
 <span class="bse-admin bse-admin-buttons-mini arrows bse_arrows">
 <:-.set width = cfg.entry("arrows", "width", 17) -:>
 <:-.set height = cfg.entry("arrows", "height", 13) -:>
 <:-.set extras = 'width="' _ width _ '" height="' _ height _ '"' -:>
 <:-.set blankim = '<img src="' _ (dist_image_uri _ "/trans_pixel.gif").escape("html") _ '" alt="" ' _ extras _ ' />' -:>
-<:-.if loop.next:>
+<:-.if loop.next :>
 <:-.set downimg = cfg.entry("arrows", "downimg", dist_image_uri _ "/admin/move_down.gif") -:>
-<a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.next.id, "r":r }) :>"><img src="<:= downimg |raw:>" <:= extras :> /></a>
-<:-.else:>
-<:= blankim |raw:>
-<:-.end if:>
-<:-.if loop.prev:>
+<a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.next.id, "r":r }) :>"><img src="<:= downimg | raw :>" <:= extras :> /></a>
+<:-.else :>
+<:= blankim | raw :>
+<:-.end if :>
+<:-.if loop.prev :>
 <:-.set upimg = cfg.entry("arrows", "upimg", dist_image_uri _ "/admin/move_up.gif") -:>
-<a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.prev.id, "r":r }) :>"><img src="<:= upimg |raw:>" <:= extras :> /></a>
-<:-.else:>
-<:= blankim |raw:>
-<:-.end if:>
+<a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.prev.id, "r":r }) :>"><img src="<:= upimg | raw :>" <:= extras :> /></a>
+<:-.else :>
+<:= blankim | raw :>
+<:-.end if :>
 </span>
-<:-.end if:>
-<:-.end define-:>
+<:-.end if :>
+<:-.end define :>
 
 <:- include include/custom/preload.tmpl optional -:>
 <:- include include/preload.tmpl optional -:>
