@@ -225,20 +225,19 @@
   which in most cases means you can just supply parent
 -:>
 <:-.if bse.admin or admin:>
-<span class="bse_arrows">
-<:-.set distim = cfg.entryIfVar("uri", "dist_images", "/images") -:>
+<span class="bse-admin bse-admin-buttons-mini arrows bse_arrows">
 <:-.set width = cfg.entry("arrows", "width", 17) -:>
 <:-.set height = cfg.entry("arrows", "height", 13) -:>
 <:-.set extras = 'width="' _ width _ '" height="' _ height _ '"' -:>
-<:-.set blankim = '<img src="' _ (distim _ "/trans_pixel.gif").escape("html") _ '" alt="" ' _ extras _ ' />' -:>
+<:-.set blankim = '<img src="' _ (dist_image_uri _ "/trans_pixel.gif").escape("html") _ '" alt="" ' _ extras _ ' />' -:>
 <:-.if loop.next:>
-<:-.set downimg = cfg.entry("arrows", "downimg", distim _ "/admin/move_down.gif") -:>
+<:-.set downimg = cfg.entry("arrows", "downimg", dist_image_uri _ "/admin/move_down.gif") -:>
 <a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.next.id, "r":r }) :>"><img src="<:= downimg |raw:>" <:= extras :> /></a>
 <:-.else:>
 <:= blankim |raw:>
 <:-.end if:>
 <:-.if loop.prev:>
-<:-.set upimg = cfg.entry("arrows", "upimg", distim _ "/admin/move_up.gif") -:>
+<:-.set upimg = cfg.entry("arrows", "upimg", dist_image_uri _ "/admin/move_up.gif") -:>
 <a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.prev.id, "r":r }) :>"><img src="<:= upimg |raw:>" <:= extras :> /></a>
 <:-.else:>
 <:= blankim |raw:>
