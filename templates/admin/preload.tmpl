@@ -7,6 +7,7 @@
 <:-.set itemgroupid = "groupid" -:>
 <:-.set r = top.admin -:>
 <:-.set admin = 0 -:>
+<:-.set dist_image_uri = cfg.entryIfVar("uri", "dist_images", "/images") -:>
 
 <:# utility definitions :>
 <:-.define make_select -:>
@@ -95,10 +96,24 @@
 <:-.end if:>
 <:-.end define:>
 
-<:# parameters: field :>
-<:# this implementation should probably change :>
-<:-.define error_img -:>
-<:-= ("error_img " _ field).evaltag :>
+<:# parameters:
+   field - name of field
+   index - index of field
+   errors - hash of error messages (should be set by code)
+:>
+<:-.define error_img_n :>
+  <:-.if errors.$field:>
+    <:-.set msg = errors.$field :>
+    <:-.set msg = msg.is_list ? msg[index] : msg :>
+    <:-.set image = cfg.entry("error_img", "image", dist_image_uri _ "/icons/error.png") :>
+    <:-.set width = cfg.entry("error_img", "width", 18) :>
+    <:-.set height = cfg.entry("error_img", "height", 18) :>
+    <img src="<:= image -:>" alt="<:= msg :>" title="<:= msg :>" width="<:= width :>" height="<:= height :>" class="error_img" />
+  <:-.end if:>
+<:-.end define:>
+
+<:-.define error_img :>
+<:-.call "error_img_n", "index":0 :>
 <:-.end define:>
 
 <:-.define required_indicator -:>
