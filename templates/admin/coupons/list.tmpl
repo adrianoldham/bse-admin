@@ -1,0 +1,129 @@
+<:-.wrap "admin/base.tmpl", "title":"Manage Coupons" :>
+<div class="window">
+  <header>
+    <h1><:= params.title :></h1>
+    <a href="<:= cfg.admin_url("menu") :>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+    <:-.if request.user_can("bse_shop_coupon_add") :>
+    <nav data-role="toolbar">
+      <ul class="menu context">
+        <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:-.if request.user_can("bse_shop_coupon_add") :>
+            <li><a href="<:= cfg.admin_url2("shopadmin", "coupon_addform", { "referer":1 }) :>" accesskey="c" title="AccessKey = c">New Coupon…</a></li>
+            <:-.end if :>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <:-.end if :>
+  </header>
+  <form action="<:= cfg.admin_url("shopadmin") :>" method="post">
+    <:-.set object = 0 :>
+    <:-.set errors = {} :>
+    <fieldset>
+      <legend>Filter/sort</legend>
+      <:.call "inlinefield",
+          "name":"all",
+          "field":{
+              "description":"Show all",
+    	      "htmltype":"checkbox",
+    	      "default":coupons_all
+          }
+      -:>
+      <:.call "inlinefield",
+          "name":"sort",
+          "field":{
+              "description":"Sort",
+              "htmltype":"select",
+              "default":coupons_sort,
+              "select":{
+                  "values":[
+                      { "id":"expiry", "desc":"By Expiry date" },
+                      { "id":"release", "desc":"By Release date" },
+                      { "id":"code", "desc":"By code" }
+                  ],
+                  "id":"id",
+                  "label":"desc"
+    		     }
+          }
+      -:>
+      <:.call "inlinefield",
+          "name":"scode",
+          "field":{
+              "description":"Search code",
+              "units":"(code to search for exact code, otherwise prefix)",
+              "maxlength":40,
+              "size":20
+          }
+      -:>
+      <p class="buttons">
+        <input type="submit" name="a_coupon_list" value="Update filter" accesskey="u" title="AccessKey = u" class="button blue" />
+      </p>
+    </fieldset>
+  </form>
+  <:-.if coupons.size :>
+  <fieldset>
+    <legend>Coupons</legend>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Description</th>
+          <th>Release</th>
+          <th>Expires</th>
+          <th>Discount</th>
+          <!--<th>Tiers</th>-->
+          <th>Campaign</th>
+          <th><!-- Actions --></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:-.for coupon in coupons :>
+          <:-.set classes = [ loop.even ? "even":"odd"  ] -:>
+          <:-.if coupon.is_expired :>
+            <:-% classes.push("expired error") :>
+          <:-.elsif coupon.is_released :>
+            <:-% classes.push("released notice") -:>
+          <:-.end if -:>
+          <:-.set tier_names = [] -:>
+          <:-.for tier in [ coupon.tier_objects ] :>
+            <:-% tier_names.push(tier.description) -:>
+          <:-.end for :>
+        <tr class="<:= classes.join(" ") :>">
+          <td><:= coupon.code :></td>
+          <td><:= coupon.description :></td>
+          <td><:= bse.date("%d/%m/%Y", coupon.release) :></td>
+          <td><:= bse.date("%d/%m/%Y", coupon.expiry) :></td>
+          <td><:= coupon.discount_percent :>%</td>
+          <!--<td><:= tier_names.size ? tier_names.join(", ") : "(none)" :></td>-->
+          <td><:= coupon.campaign :></td>
+          <td class="actions">
+            <:-.if request.user_can("bse_shop_coupon_edit") :>
+            <a href="<:= cfg.admin_url2("shopadmin", "coupon_edit", { "id":coupon.id, "referer":1 }) :>" class="button gray small">Edit</a>
+            <:-.else :>
+            <a class="button gray small disabled">Edit</a>
+            <:-.end if :>
+            <:-.if request.user_can("bse_shop_coupon_delete") :>
+            <a href="<:= cfg.admin_url2("shopadmin", "coupon_delete", { "id":coupon.id, "_csrfp":request.get_csrf_token("admin_bse_coupon_delete") }) :>" class="button red small" data-action="Delete" data-object="Coupon">Delete</a>
+            <:-.else :>
+            <a class="button red small disabled">Delete</a>
+            <:-.end if :>
+          </td>
+        </tr>
+        <:-.end for :>
+      </tbody>
+    </table>
+  </fieldset>
+  <:-.else :>
+  <fieldset>
+    <legend>Coupons</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+      <p>No coupons to display</p>
+      <:-.if request.user_can("bse_shop_coupon_add") :>
+      <p><a href="<:= cfg.admin_url2("shopadmin", "coupon_addform", { "referer":1 }) :>" data-icon="add" class="button white">New Coupon…</a></p>
+      <:-.end if :>
+    </div>
+  </fieldset>
+  <:-.end if :>
+</div>

@@ -158,6 +158,18 @@
           </ul>
         </li>
         <:- eif UserCan:>
+        <:-.if request.user_can("bse_shop_coupon_list") or request.user_can("bse_shop_coupon_add") :>
+        <li><a href="#">Coupons</a>
+          <ul>
+            <:-.if request.user_can("bse_shop_coupon_list") :>
+            <li><a href="<:= cfg.admin_url2("shopadmin", "coupon_list") :>">Manage Coupons</a></li>
+            <:-.end if :>
+            <:-.if request.user_can("bse_shop_coupon_add") :>
+            <li><a href="<:= cfg.admin_url2("shopadmin", "coupon_addform", { "referer":1 }) :>">New Coupon…</a></li>
+            <:-.end if :>
+          </ul>
+        </li>
+        <:-.end if :>
         <:- if Or [ifUserCan bse_subscr_list] [ifUserCan bse_subscr_edit] [ifUserCan bse_subscr_add] [ifUserCan bse_subscr_detail] [ifUserCan bse_subscr_update]:>
         <li><a href="#">Subscriptions</a>
           <ul>

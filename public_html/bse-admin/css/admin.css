@@ -1420,7 +1420,7 @@ table.orders td.total {
 /* @group items table */
 
 table.items {
-    border: 0.083em solid #ccc;
+    border: solid #ccc;
     border-width: 0.083em 0;
     width: 100%;
 }
@@ -1432,8 +1432,11 @@ table.items caption {
     color: #666;
 }
 
-table.items th {
+table.items thead {
     border-bottom: 0.166em solid #ccc;
+}
+
+table.items th {
     padding: 0.5em;
     font-size: 0.9em;
     color: #999;
@@ -1489,9 +1492,16 @@ div.totals p {
     line-height: 1;
 }
 
-div.totals p.freight {
+div.totals p.freight,
+div.totals p.discount {
     margin-bottom: 0.75em;
     font-size: 1.1em;
+}
+
+div.totals p.discount {
+    border-bottom: 0.083em solid #ddd;
+    margin: 2em -0.5em 0.75em;
+    padding: 0 0.5em 0.75em;
 }
 
 div.totals p.total {

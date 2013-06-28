@@ -1,0 +1,27 @@
+<:-.wrap "admin/base.tmpl", "title":"Delete Coupon" :>
+<div class="window dialog">
+  <header>
+    <h1><:= params.title :></h1>
+    <a href="<:= cfg.admin_url("menu") :>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+  </header>
+  <:-.set object = coupon :>
+  <form action="<:= cfg.admin_url("shopadmin") :>" method="post">
+    <:csrfp admin_bse_coupon_delete hidden :>
+    <input type="hidden" name="id" value="<:= coupon.id :>" />
+    <p data-role="status" class="warning">Deleting a coupon cannot be reversed</p>
+    <fieldset>
+      <legend>Coupon</legend>
+      <:.call "fieldro", "name":"code" :>
+      <:.call "fieldro", "name":"description" :>
+      <:.call "fieldro", "name":"release" :>
+      <:.call "fieldro", "name":"expiry" :>
+      <:.call "fieldro", "name":"discount_percent" :>
+      <:.call "fieldro", "name":"campaign" :>
+    </fieldset>
+    <:.call "fieldsetro", "name":"tiers" :>
+    <p class="buttons">
+      <a href="<:= cfg.admin_url2("shopadmin", "coupon_list") :>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <input type="submit" name="a_coupon_delete" value="Delete Coupon" accesskey="d" title="AccessKey = d" class="button red" />
+    </p>
+  </form>
+</div>
