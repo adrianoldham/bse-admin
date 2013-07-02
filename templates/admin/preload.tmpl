@@ -271,7 +271,7 @@
           <:-.call "error_img", "field":name -:>
         </label>
         <span>
-          <:-.call "input", "name":name :>
+          <:-.call "input", "name":name, "readonly":field.readonly :>
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>

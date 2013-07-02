@@ -8,6 +8,11 @@
   <form action="<:= cfg.admin_url("shopadmin") :>" method="post" data-object="Coupon">
     <input type="hidden" name="id" value="<:= coupon.id :>" />
     <:csrfp admin_bse_coupon_edit hidden :>
+    <:-.if coupon.is_expired :>
+    <p data-role="status" class="error">This coupon has expired, modify its expiry date before use</p>
+    <:-.elsif !coupon.is_removable :>
+    <p data-role="status" class="warning">This coupon has been used, its code cannot be modified</p>
+    <:-.end if :>
     <fieldset>
       <legend>Coupon</legend>
       <:.call "field", "name":"code", "autofocus":1 :>

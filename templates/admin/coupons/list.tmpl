@@ -84,6 +84,8 @@
             <:-% classes.push("expired error") :>
           <:-.elsif coupon.is_released :>
             <:-% classes.push("released notice") -:>
+          <:-.else :>
+            <:-% classes.push("pending warning") -:>
           <:-.end if -:>
           <:-.set tier_names = [] -:>
           <:-.for tier in [ coupon.tier_objects ] :>
@@ -103,7 +105,7 @@
             <:-.else :>
             <a class="button gray small disabled">Edit</a>
             <:-.end if :>
-            <:-.if request.user_can("bse_shop_coupon_delete") :>
+            <:-.if request.user_can("bse_shop_coupon_delete") and coupon.is_removable :>
             <a href="<:= cfg.admin_url2("shopadmin", "coupon_delete", { "id":coupon.id, "_csrfp":request.get_csrf_token("admin_bse_coupon_delete") }) :>" class="button red small" data-action="Delete" data-object="Coupon">Delete</a>
             <:-.else :>
             <a class="button red small disabled">Delete</a>
