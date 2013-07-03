@@ -17,11 +17,14 @@
       <legend>Coupon</legend>
       <:.call "field", "name":"code", "autofocus":1 :>
       <:.call "field", "name":"description" :>
+      <:.call "field", "name":"discount_percent", "placeholder":"%" :>
+      <:.call "field", "name":"campaign" :>
+    </fieldset>
+    <fieldset>
+      <legend>Validity</legend>
       <:.call "field", "name":"release", "placeholder":"DD/MM/YYYY" :>
       <:.call "field", "name":"expiry", "placeholder":"DD/MM/YYYY" :>
-      <:.call "field", "name":"discount_percent", "placeholder":"%" :>
       <:.call "field", "name":"untiered" :>
-      <:.call "field", "name":"campaign" :>
     </fieldset>
     <:.call "fieldset", "name":"tiers" :>
     <p class="buttons">

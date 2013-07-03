@@ -13,10 +13,14 @@
       <legend>Coupon</legend>
       <:.call "fieldro", "name":"code" :>
       <:.call "fieldro", "name":"description" :>
-      <:.call "fieldro", "name":"release" :>
-      <:.call "fieldro", "name":"expiry" :>
       <:.call "fieldro", "name":"discount_percent" :>
       <:.call "fieldro", "name":"campaign" :>
+    </fieldset>
+    <fieldset>
+      <legend>Validity</legend>
+      <:.call "fieldro", "name":"release" :>
+      <:.call "fieldro", "name":"expiry" :>
+      <:.call "fieldro", "name":"untiered" :>
     </fieldset>
     <:.call "fieldsetro", "name":"tiers" :>
     <p class="buttons">
