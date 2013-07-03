@@ -286,15 +286,15 @@ h4 {
 }
 
 h2 {
-    font-size: 1.75em;    
+    font-size: 1.75em;
 }
 
 h3 {
-    font-size: 1.5em;    
+    font-size: 1.5em;
 }
 
 h4 {
-    font-size: 1.25em;    
+    font-size: 1.25em;
 }
 
 .images > li > a > img {
@@ -379,7 +379,7 @@ div.fullscreen {
     border: none;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
-    border-radius: 0;    
+    border-radius: 0;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -389,7 +389,7 @@ div.fullscreen header {
     border: none;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
-    border-radius: 0;    
+    border-radius: 0;
 }
 
 /* @end */
@@ -565,7 +565,7 @@ textarea[name=body] {
 div.window.dialog textarea,
 textarea[name=summary],
 textarea[name=adminNotes],
-textarea[name=description] {    
+textarea[name=description] {
    height: 10em;
 }
 
@@ -625,7 +625,7 @@ input[type=submit][disabled] {
     border: 0.083em solid;
     line-height: 1.25; /* Cannot modify because FF doesn't allow override on button element */
     color: #fff;
-    -webkit-border-radius: 0.5em; 
+    -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
     -webkit-box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.25);
@@ -1550,7 +1550,7 @@ table.vertical td {
 }
 
 .pagination a,
-.pagination span {  
+.pagination span {
     display: inline-block;
     min-width: 1.5em;
     margin: 0 0.5em 0.5em 0;
@@ -2113,21 +2113,21 @@ h1:first-child + *[data-role=toolbar],
 
 *[data-role=controlgroup] > :first-child:not(:last-child) {
     -webkit-border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 0;    
+    -webkit-border-bottom-right-radius: 0;
     -moz-border-radius-topright: 0;
-    -moz-border-radius-bottomright: 0;    
+    -moz-border-radius-bottomright: 0;
     border-top-right-radius: 0;
-    border-bottom-right-radius: 0;    
+    border-bottom-right-radius: 0;
     margin-right: 0;
 }
 
 *[data-role=controlgroup] > :last-child:not(:first-child) {
     -webkit-border-top-left-radius: 0;
-    -webkit-border-bottom-left-radius: 0;    
+    -webkit-border-bottom-left-radius: 0;
     -moz-border-radius-topleft: 0;
-    -moz-border-radius-bottomleft: 0;    
+    -moz-border-radius-bottomleft: 0;
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0;    
+    border-bottom-left-radius: 0;
     margin-left: 0;
 }
 
@@ -2153,7 +2153,7 @@ h1:first-child + *[data-role=toolbar],
 *[data-role=status] {
     margin: -1em -2em 1em;
     padding: 0.5em 2em;
-    border-bottom: 0.083em solid;    
+    border-bottom: 0.083em solid;
 }
 
 /* @end */
@@ -2287,7 +2287,7 @@ nav *[data-icon=trash]:last-child {
 *[data-icon=info]:before {
     background-image: url(/bse-admin/images/buttons/info.svg);
 }
- 
+
 *[data-icon=help]:before {
     background-image: url(/bse-admin/images/buttons/help.svg);
 }
