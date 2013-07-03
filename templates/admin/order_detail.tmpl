@@ -70,7 +70,7 @@
         <:- if Order coupon_code:>
         <tr>
           <th><:cfg shop display_coupon_code "Coupon Code":>:</th>
-          <td><:order coupon_code:> (<:order coupon_code_discount_pc:>%)</td>
+          <td><a href="<:adminurl2 shopadmin coupon_edit id [order coupon_id] referer 1:>"><:order coupon_code:></a> (<:order coupon_code_discount_pc:>%)</td>
         </tr>
         <:- eif Order:>
       </tbody>
