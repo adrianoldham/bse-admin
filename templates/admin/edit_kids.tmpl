@@ -75,7 +75,7 @@
             <:-.end if:>
             <:-.end if:>
             <:-.if request.user_can("edit_reorder_children",parentid) :>
-            <:-.call "move", "article": article, "parent": { "id": parentid }, "admin": 1, "r": refresh :>
+            <:.call "move", "article": article, "parent": { "id": parentid }, "admin": 1, "r": refresh :>
             <:-.end if:>
           </span>
         </span>

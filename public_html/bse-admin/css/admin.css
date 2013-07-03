@@ -302,17 +302,6 @@ h4 {
     float: left;
 }
 
-.bse_arrows,
-.bse_arrows img {
-    display: inline !important;
-    border: none !important;
-}
-
-.actions {
-    width: 1%;
-    white-space: nowrap;
-}
-
 .help {
     display: none;
 }
@@ -1341,7 +1330,7 @@ table.items .code,
 table.items .quantity,
 table.items .price,
 table.items .extended,
-table.items .action {
+table.items .actions {
     text-align: right;
     white-space: nowrap;
 }
@@ -1355,27 +1344,13 @@ table.items td.extended {
     font-weight: bold;
 }
 
-table.items .action {
+table.items .actions {
     width: 1%;
 }
 
-table.items th.action {
+table.items th.actions {
     text-align: left;
     text-indent: -9999em;
-}
-
-table.items td.action .arrows {
-    position: absolute;
-    display: none;
-    right: -2em;
-    padding-left: 1.25em;
-}
-
-table.items tr:hover .arrows, 
-table.items td.action .arrows a,
-table.items td.action .arrows img {
-    display: block;
-    line-height: 1;
 }
 
 /* @end */
@@ -2579,6 +2554,21 @@ ul.treeview a {
 
 *[data-drop=list] {
     margin: 1em 0;
+}
+
+/* @end */
+
+/* @group actions */
+
+.actions {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.bse_arrows img {
+    display: inline-block;
+    border: none !important;
+    margin: 2px 0 !important;
 }
 
 /* @end */
