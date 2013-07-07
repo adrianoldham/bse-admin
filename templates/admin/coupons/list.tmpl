@@ -94,8 +94,8 @@
         <tr class="<:= classes.join(" ") :>">
           <td><:= coupon.code :></td>
           <td><:= coupon.description :></td>
-          <td><:= bse.date("%d/%m/%Y", coupon.release) :></td>
-          <td><:= bse.date("%d/%m/%Y", coupon.expiry) :></td>
+          <td><:= bse.date("%d-%b-%Y", coupon.release) :></td>
+          <td><:= bse.date("%d-%b-%Y", coupon.expiry) :></td>
           <td><:= coupon.discount_percent :>%</td>
           <!--<td><:= tier_names.size ? tier_names.join(", ") : "(none)" :></td>-->
           <td><:= coupon.campaign :></td>
