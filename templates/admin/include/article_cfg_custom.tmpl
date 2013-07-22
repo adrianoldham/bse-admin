@@ -1,11 +1,21 @@
-      <:-.if custom.size -:>
+      <:-.if custom.size :>
       <fieldset>
-        <legend>Custom</legend>
+        <legend><:= cfg.entry("article custom fields", "legend", "Custom") :></legend>
         <:-.for f in custom.list:>
         <div>
           <label for="<:= f.key |html:>"><:= f.value.description |html:> <:-.call "error_img", "field":f.key -:></label>
           <span>
+            <:-.if f.value.htmltype eq "select" :>
+            <:-# the field config code uses an older mechanism, translate :>
+            <:-.set list = [] -:>
+            <:-.set baselist = f.value["values"] -:>
+            <:-.for i in baselist :>
+               <:-% list.push({ "id": i[0], "label": i[1] }) :>
+            <:-.end for :>
+            <:.call "make_select", "name":f.key, "list":list, "id":"id", "desc":"label", "default":ifnew ? f.value.default : article.get(f.key) :>
+            <:-.else :>
             <input type="text" name="<:= f.key |html:>" id="<:= f.key |html:>" value="<:.call "old", "field":f.key, "default": ifnew ? f.value.default : article.get(f.key) :>" placeholder="<:= f.value.placeholder |html:>" class="<:.if request.field_errors[f.key]:>error<:.end if:>" />
+            <:-.end if :>
           </span>
         </div>
         <:-.end for:>
