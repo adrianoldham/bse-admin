@@ -26,9 +26,9 @@
         </span>
       </div>
       <div>
-        <label for="name">Name <:ifEq [article id] -1:><span class="required">*</span> <:eif:><:error_img name:></label>
+        <label for="name">Name <:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name:>" <:ifEq [article id] -1:>required="required" <:eif:>class="<:ifError_img name:>error<:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name:>" class="<:ifError_img name:>error<:eif:>" />
           <:help file name:>
         </span>
       </div>
@@ -105,7 +105,6 @@
         </div>
       </fieldset>
     </details>
-    <:-.if id > 0 :>
     <div>
       <div id="drop-target" data-drop="target" style="display: none;">
         <h2>Quick File Upload</h2>
@@ -246,7 +245,6 @@
         });
     }
     </script>
-    <:-.end if:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_files_add:article:>

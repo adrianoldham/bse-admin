@@ -78,9 +78,9 @@
           </span>
         </div>
         <div>
-          <label for="name_<:file id:>">Name <:ifEq [article id] -1:><span class="required">*</span> <:eif:><:error_img [concatenate name_ [file id]]:></label>
+          <label for="name_<:file id:>">Name <:error_img [concatenate name_ [file id]]:></label>
           <span>
-            <input type="text" name="name_<:file id:>" id="name_<:file id:>" value="<:oldi [concatenate name_ [file id]] 0 file name:>" <:ifEq [article id] -1:>required="required" <:eif:>class="<:ifError_img [concatenate name_ [file id]]:>error<:eif:>" />
+            <input type="text" name="name_<:file id:>" id="name_<:file id:>" value="<:oldi [concatenate name_ [file id]] 0 file name:>" class="<:ifError_img [concatenate name_ [file id]]:>error<:eif:>" />
             <:help file name:>
           </span>
         </div>
