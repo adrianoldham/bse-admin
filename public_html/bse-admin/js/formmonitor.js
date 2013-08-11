@@ -151,7 +151,7 @@ FormMonitor.Element.Value = Class.create(FormMonitor.Element.Base, {
     },
     onblur: function(data, monitor) {
         data.element.stopObserving("keyup", monitor.onchange);
-    },
+    }
 });
 
 FormMonitor.Element.Button = Class.create(FormMonitor.Element.Base, {
