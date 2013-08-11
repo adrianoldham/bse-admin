@@ -364,8 +364,8 @@ div.window {
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
-    -webkit-box-shadow: 0.25em 0.25em 3em rgba(0,0,0,0.75);
-    -moz-box-shadow: 0.25em 0.25em 3em rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0.25em 0.25em 3em rgba(0,0,0,0.5);
+    -moz-box-shadow: 0.25em 0.25em 3em rgba(0,0,0,0.5);
     box-shadow: 0.25em 1em 3em rgba(0,0,0,0.5);
 }
 
@@ -446,8 +446,8 @@ div.sheet {
     -moz-border-radius-topright: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    -webkit-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.75);
-    -moz-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
+    -moz-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
     box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
 }
 
