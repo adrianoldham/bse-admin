@@ -2412,6 +2412,10 @@ nav *[data-icon=trash]:last-child {
     background-image: url(/bse-admin/images/buttons/key-alt.svg);
 }
 
+*[data-icon=pulse]:before {
+    background-image: url(/bse-admin/images/buttons/pulse.svg);
+}
+
 /* @end */
 
 /* @end */

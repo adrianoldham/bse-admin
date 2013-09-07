@@ -241,6 +241,10 @@ ul.menu.header > li > h1 > a {
     background-image: url(/bse-admin/images/buttons/key-alt.png);
 }
 
+*[data-icon=pulse]:before {
+    background-image: url(/bse-admin/images/buttons/pulse.png);
+}
+
 /* @end */
 
 /* @group launchpad */
