@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd">
+<svg version="1.1" baseProfile="basic" id="Button_Icons"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="15px"
+	 viewBox="0 0 24 15" xml:space="preserve">
+<g id="Button_Icons_1_">
+	<g>
+		<path id="search_2_" fill="#FFFFFF" d="M18.561,12.189l-3.26-3.26C15.745,8.136,16,7.224,16,6.25c0-3.038-2.462-5.5-5.5-5.5
+			S5,3.212,5,6.25s2.462,5.5,5.5,5.5c0.974,0,1.886-0.255,2.68-0.699l3.26,3.26c0.586,0.586,1.536,0.586,2.121,0
+			C19.146,13.725,19.146,12.775,18.561,12.189z M7,6.25c0-1.93,1.57-3.5,3.5-3.5S14,4.32,14,6.25s-1.57,3.5-3.5,3.5S7,8.18,7,6.25z"
+			/>
+	</g>
+	<g>
+		<linearGradient id="search_3_" gradientUnits="userSpaceOnUse" x1="12" y1="14" x2="12" y2="6.821210e-11">
+			<stop  offset="0" style="stop-color:#7A7B7B"/>
+			<stop  offset="1" style="stop-color:#404040"/>
+		</linearGradient>
+		<path id="search_1_" fill="url(#search_3_)" d="M18.561,11.439l-3.26-3.26C15.745,7.386,16,6.474,16,5.5C16,2.462,13.538,0,10.5,0
+			S5,2.462,5,5.5S7.462,11,10.5,11c0.974,0,1.886-0.255,2.68-0.699l3.26,3.26c0.586,0.586,1.536,0.586,2.121,0
+			C19.146,12.975,19.146,12.025,18.561,11.439z M7,5.5C7,3.57,8.57,2,10.5,2S14,3.57,14,5.5S12.43,9,10.5,9S7,7.43,7,5.5z"/>
+	</g>
+</g>
+</svg>

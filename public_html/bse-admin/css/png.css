@@ -257,6 +257,10 @@ ul.menu.header > li > h1 > a {
     background-image: url(/bse-admin/images/buttons/lightbulb.png);
 }
 
+*[data-icon=search]:before {
+    background-image: url(/bse-admin/images/buttons/search.png);
+}
+
 /* @end */
 
 /* @group launchpad */

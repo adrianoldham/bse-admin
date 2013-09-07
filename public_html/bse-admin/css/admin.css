@@ -2428,6 +2428,10 @@ nav *[data-icon=trash]:last-child {
     background-image: url(/bse-admin/images/buttons/lightbulb.svg);
 }
 
+*[data-icon=search]:before {
+    background-image: url(/bse-admin/images/buttons/search.svg);
+}
+
 /* @end */
 
 /* @end */
