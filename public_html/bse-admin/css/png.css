@@ -249,6 +249,10 @@ ul.menu.header > li > h1 > a {
     background-image: url(/bse-admin/images/buttons/sight.png);
 }
 
+*[data-icon=shield]:before {
+    background-image: url(/bse-admin/images/buttons/shield.png);
+}
+
 /* @end */
 
 /* @group launchpad */

@@ -2420,6 +2420,10 @@ nav *[data-icon=trash]:last-child {
     background-image: url(/bse-admin/images/buttons/sight.svg);
 }
 
+*[data-icon=shield]:before {
+    background-image: url(/bse-admin/images/buttons/shield.svg);
+}
+
 /* @end */
 
 /* @end */
