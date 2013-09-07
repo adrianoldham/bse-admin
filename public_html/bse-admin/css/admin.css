@@ -2424,6 +2424,10 @@ nav *[data-icon=trash]:last-child {
     background-image: url(/bse-admin/images/buttons/shield.svg);
 }
 
+*[data-icon=lightbulb]:before {
+    background-image: url(/bse-admin/images/buttons/lightbulb.svg);
+}
+
 /* @end */
 
 /* @end */
