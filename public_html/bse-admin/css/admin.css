@@ -2408,6 +2408,10 @@ nav *[data-icon=trash]:last-child {
     background-image: url(/bse-admin/images/buttons/key.svg);
 }
 
+*[data-icon=key-alt]:before {
+    background-image: url(/bse-admin/images/buttons/key-alt.svg);
+}
+
 /* @end */
 
 /* @end */
