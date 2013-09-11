@@ -10,7 +10,7 @@
             <:-.set list = [] -:>
             <:-.set baselist = f.value["values"] -:>
             <:-.for i in baselist :>
-               <:-% list.push({ "id": i[0], "label": i[1] }) :>
+              <:-% list.push({ "id": i[0], "label": i[1] }) :>
             <:-.end for :>
             <:.call "make_select", "name":f.key, "list":list, "id":"id", "desc":"label", "default":ifnew ? f.value.default : article.get(f.key) :>
             <:-.else :>
@@ -20,4 +20,4 @@
         </div>
         <:-.end for:>
       </fieldset>
-      <:-.end if:>
+      <:-.end if :>
