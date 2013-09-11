@@ -14,7 +14,11 @@
             <:-.end for :>
             <:.call "make_select", "name":f.key, "list":list, "id":"id", "desc":"label", "default":ifnew ? f.value.default : article.get(f.key) :>
             <:-.else :>
-            <input type="text" name="<:= f.key |html:>" id="<:= f.key |html:>" value="<:.call "old", "field":f.key, "default": ifnew ? f.value.default : article.get(f.key) :>" placeholder="<:= f.value.placeholder |html:>" class="<:.if request.field_errors[f.key]:>error<:.end if:>" />
+            <:-.set default = ifnew ? f.value.default : article.get(f.key) :>
+            <:-.if f.value.type eq "date" and default.defined and default ne "" :>
+            <:-.set default = bse.date("%d/%m/%Y", default) :>
+            <:-.end if :>
+            <input type="text" name="<:= f.key |html:>" id="<:= f.key |html:>" value="<:.call "old", "field":f.key, "default":default :>" placeholder="<:= f.value.placeholder |html:>" class="<:.if request.field_errors[f.key]:>error<:.end if:>" />
             <:-.end if :>
           </span>
         </div>
