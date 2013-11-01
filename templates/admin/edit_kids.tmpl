@@ -30,6 +30,7 @@
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "title", "r": refresh }) :>">title</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "id", "r": refresh }) :>">date</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "listed", "r": refresh }) :>">listed</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "shuffle", "r": refresh }) :>">shuffle</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "reverse": 1, "r": refresh }) :>">reverse</a></li>
       <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "_t": "kids", "tree": cgi.param("tree") }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "_t": "kids", "tree": cgi.param("tree"), "sort": 1 }) :>">advanced</a><:eif:></li>
     </ul>

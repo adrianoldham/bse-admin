@@ -30,6 +30,7 @@
       <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "sort": "title", "r": refresh }) :>">title</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "sort": "id", "r": refresh }) :>">date</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "sort": "listed", "r": refresh }) :>">listed</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "sort": "shuffle", "r": refresh }) :>">shuffle</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "reverse": 1, "r": refresh }) :>">reverse</a></li>
     </ul>
     <:- eif UserCan:>
