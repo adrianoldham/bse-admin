@@ -1,4 +1,5 @@
 <:wrap admin/base.tmpl title=>"Manage Article Parents" :>
+<:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
 <div class="window">
   <header>
     <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
@@ -26,10 +27,10 @@
     <:- if UserCan bse_edit_reorder_stepparents:article:>
     Sort by:
     <ul class="meta group">
-      <li><a href="<:adminurl reorder:>?stepchild=<:article id:>&amp;sort=title&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=parents%26m=Parents%2Bsorted%2Bby%2Btitle">title</a></li>
-      <li><a href="<:adminurl reorder:>?stepchild=<:article id:>&amp;sort=id&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=parents%26m=Parents%2Bsorted%2Bby%2Bdate">date</a></li>
-      <li><a href="<:adminurl reorder:>?stepchild=<:article id:>&amp;sort=listed&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=parents%26m=Parents%2Bsorted%2Bby%2Blisted">listed</a></li>
-      <li><a href="<:adminurl reorder:>?stepchild=<:article id:>&amp;reverse=1&amp;refreshto=<:script:>%3Fid=<:article id:>%26_t=parents%26m=Parents%2Bsorted%2Bin%2Breverse">reverse</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "sort": "title", "r": refresh }) :>">title</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "sort": "id", "r": refresh }) :>">date</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "sort": "listed", "r": refresh }) :>">listed</a></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "stepchild": article.id, "reverse": 1, "r": refresh }) :>">reverse</a></li>
     </ul>
     <:- eif UserCan:>
     <ul class="inset list">
