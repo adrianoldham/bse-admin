@@ -5,6 +5,7 @@
     <h1><:= title:></h1>
     <:- if Cgi stepparent:>
     <nav data-role="toolbar">
+      <a href="<:adminurl add:>?id=<:article id:>&amp;_t=parents" data-icon="back" data-icon-only="true" class="button">Back</a>
       <:- if UserCan bse_edit_stepparent_delete:article,bse_edit_stepparent_delete:[cgi stepparent]:>
       <a href="<:script:>?id=<:article id:>&amp;stepparent=<:cgi stepparent:>&amp;del_stepparent=1&amp;_csrfp=<:csrfp admin_remove_stepparent:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=parents" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Stepparent" data-confirm="Are you sure you want to remove the Stepparent relationship?" data-info="Continuing with this action will permanently remove this Stepparent relationship. This action does not delete the original <:cgi typename:>." data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>

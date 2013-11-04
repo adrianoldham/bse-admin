@@ -4,6 +4,7 @@
     <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
     <h1><:= title:></h1>
     <nav data-role="toolbar">
+      <a href="<:adminurl add:>?id=<:article id:>&amp;_t=img" data-icon="back" data-icon-only="true" class="button">Back</a>
       <:- if UserCan bse_edit_images_delete:article:>
       <a href="<:script:>?removeimg_<:eimage id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Image" data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>
