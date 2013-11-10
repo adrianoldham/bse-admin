@@ -1,15 +1,16 @@
 <:-.wrap "admin/base.tmpl", "title": "Manage Site Articles" :>
 <:-.set refresh = cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree") }) -:>
+<:-.set kids = [ bse.site.allkids ] :>
 <div class="window">
   <header>
     <h1><:= params.title:></h1>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
 <:include admin/include/toolbar_site.tmpl:>
   </header>
-  <:- if Children:>
+  <:-.if kids.size:>
   <fieldset>
     <legend>Sections</legend>
-    <:- if UserCan bse_edit_reorder_children:article:>
+    <:-.if request.user_can("bse_edit_reorder_children", article):>
     Sort by:
     <ul class="meta group">
       <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "sort": "title", "r": refresh }) :>">title</a></li>
@@ -19,10 +20,10 @@
       <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "shuffle": 1, "r": refresh }) :>">shuffle</a></li>
       <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree") }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree"), "sort": 1 }) :>">advanced</a><:eif:></li>
     </ul>
-    <:- if Cgi sort:>
+    <:-.if cgi.param("sort"):>
 <:include admin/include/edit_article_sort.tmpl optional:>
-    <:- eif Cgi:>
-    <:- eif UserCan:>
+    <:-.end if:>
+    <:-.end if:>
     <:-.define article :>
       <:-.set indicator = [] -:>
       <:-.if article.is_expired :>
@@ -80,11 +81,10 @@
     <:-.end define :>
     <:-.set globals.odd = 1 :>
     <ul class="inset list tree">
-      <:-.set kids = [ bse.site.allkids ] :>
       <:-.for kid in kids :>
       <:-.call "article", "article": kid, "parent": article, "level": 1 :>
       <:-.end for:>
     </ul>
   </fieldset>
-  <:- eif Children:>
+  <:-.end if:>
 </div>

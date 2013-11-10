@@ -1,6 +1,8 @@
-<:-.set typename = article.id > 0 ? article.generator.replace("Generate::", "") : "Site" -:>
+<:-.set is_article = article.id > 0 -:>
+<:-.set typename = is_article ? article.generator.replace("Generate::", "") : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Children" ) :>
 <:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
+<:-.set kids = [ article.allkids ] :>
 <div class="window">
   <header>
     <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
@@ -22,23 +24,23 @@
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
 <:include admin/include/toolbar_article.tmpl:>
   </header>
-  <:- if Kids:>
+  <:-.if kids.size:>
   <fieldset>
     <legend>Children</legend>
-    <:- if UserCan bse_edit_reorder_children:article:>
+    <:-.if request.user_can("bse_edit_reorder_children", article):>
     Sort by:
     <ul class="meta group">
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "title", "r": refresh }) :>">title</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "id", "r": refresh }) :>">date</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "listed", "r": refresh }) :>">listed</a></li>
-      <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "shuffle", "r": refresh }) :>">shuffle</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "reverse": 1, "r": refresh }) :>">reverse</a></li>
-      <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "_t": "kids", "tree": cgi.param("tree") }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "_t": "kids", "tree": cgi.param("tree"), "sort": 1 }) :>">advanced</a><:eif:></li>
+      <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "shuffle": 1, "r": refresh }) :>">shuffle</a></li>
+      <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree") }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "_t": "kids", "tree": cgi.param("tree"), "sort": 1 }) :>">advanced</a><:eif:></li>
     </ul>
-    <:- if Cgi sort:>
+    <:-.if cgi.param("sort"):>
 <:include admin/include/edit_article_sort.tmpl optional:>
-    <:- eif Cgi:>
-    <:- eif UserCan:>
+    <:-.end if:>
+    <:-.end if:>
     <:-.define article :>
       <:-.set indicator = [] -:>
       <:-.if article.is_expired :>
@@ -96,13 +98,12 @@
     <:-.end define :>
     <:-.set globals.odd = 1 :>
     <ul class="inset list tree">
-      <:-.set kids = [ article.allkids ] :>
       <:-.for kid in kids :>
       <:-.call "article", "article": kid, "parent": article, "level": 1 :>
       <:-.end for:>
     </ul>
   </fieldset>
-  <:- or Kids:>
+  <:-.else:>
   <fieldset>
     <legend>Children</legend>
     <div class="center">
@@ -128,7 +129,7 @@
       <:- eif Or:>
     </div>
   </fieldset>
-  <:- eif Kids:>
+  <:-.end if:>
   <p class="buttons">
     <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
   </p>

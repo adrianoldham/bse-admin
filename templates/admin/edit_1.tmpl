@@ -1,18 +1,16 @@
+<:-.set is_article = article.id > 0 -:>
 <:-.set typename = article.generator.replace("Generate::", "") -:>
 <:-.set is_new = not(article.id) -:>
-<:-.wrap "admin/base.tmpl", "title": ( ( is_new ? "New " : "Edit " ) _ typename ) :>
+<:-.set is_preview = cgi.param("preview") -:>
+<:-.wrap "admin/base.tmpl", "title": ( is_preview ? "Preview" : ( is_new ? "New " : "Edit " ) _ typename ) :>
 <div class="window">
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>
-    <:-.set article = !article.id ? bse.articles.getByPkey(id) : article -:>
-    <:-.if id > 0 :>
-      <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
-    <:-.else:>
-      <:-.set title = params.title :>
-    <:-.end if:>
-    <:- if New:>
+    <:-.set article = not(is_article) ? bse.articles.getByPkey(id) : article -:>
+    <:-.set title = params.title _ ( id > 0 ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
+    <:-.if is_new:>
     <h1><:= title:></h1>
-    <:- or New:>
+    <:-.else:>
     <ul class="menu header">
       <li>
         <h1><a href="#"><:= title:></a></h1>
@@ -30,16 +28,16 @@
     </ul>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
 <:include admin/include/toolbar_article.tmpl:>
-    <:- eif New:>
+    <:-.end if:>
   </header>
-  <:- if !Article listed:>
+  <:-.if is_article and not(article.listed) :>
   <p data-role="status" class="warning">
-    <:- if UserCan bse_edit_field_edit_listed:article:>
-    <a href="<:adminurl add:>?id=<:article id:>&amp;unhide=1&amp;_csrfp=<:csrfp admin_save_article:>" class="button orange small right">Show</a>
-    <:- eif UserCan:>
-    This <:typename article:> is hidden, it will not be generated and it will not appear in menus or search results.
+    <:-.if request.user_can("bse_edit_field_edit_listed", article):>
+    <a href="<:= cfg.admin_url("add", { "id": article.id, "unhide": 1, "_csrfp": request.get_csrf_token("admin_save_article") }) :>" class="button orange small right">Show</a>
+    <:-.end if:>
+    This <:= typename:> is hidden, it will not be generated and it will not appear in menus or search results.
   </p>
-  <:- eif Article:>
+  <:-.end if:>
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="<:typename article:>">
     <input type="hidden" name="lastModified" value="<:article lastModified:>" />
     <input type="hidden" name="id" value="<:article id:>" />

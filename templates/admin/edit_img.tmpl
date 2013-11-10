@@ -1,15 +1,12 @@
-<:-.set typename = article.id > 0 ? article.generator.replace("Generate::", "") : "Site" -:>
+<:-.set is_article = article.id > 0 -:>
+<:-.set typename = is_article ? article.generator.replace("Generate::", "") : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Images" ) :>
 <div class="window">
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>
-    <:-.set article = !article.id ? bse.articles.getByPkey(id) : article -:>
-    <:-.if id > 0 :>
-      <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
-    <:-.else:>
-      <:-.set title = params.title :>
-    <:-.end if:>
-    <:- if Article parentid:>
+    <:-.set article = not(is_article) ? bse.articles.getByPkey(id) : article -:>
+    <:-.set title = params.title _ ( id > 0 ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
+    <:-.if is_article :>
     <ul class="menu header">
       <li>
         <h1><a href="#"><:= title:></a></h1>
@@ -25,15 +22,15 @@
         </ul>
       </li>
     </ul>
-    <:- or Article:>
+    <:-.else:>
     <h1><:= title:></h1>
-    <:- eif Article:>
+    <:-.end if:>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
-    <:- if Article parentid:>
+    <:-.if is_article :>
 <:include admin/include/toolbar_article.tmpl:>
-    <:- or Article:>
+    <:-.else:>
 <:include admin/include/toolbar_site.tmpl:>
-    <:- eif Article:>
+    <:-.end if:>
   </header>
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="Image">
     <input type="hidden" name="id" value="<:article id:>" />
