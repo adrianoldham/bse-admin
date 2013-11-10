@@ -1,4 +1,4 @@
-<:uc [cfg site name]:> ADMINISTRATION
+<:= cfg.entry("site", "name").upper |raw:> ADMINISTRATION
 
 This noteworthy activity has occurred on your site.
 
@@ -11,7 +11,7 @@ ACTIVITY DETAILS:
   <:entry msg |z:>
 
 Regards
-The team at <:cfg site name:>
-(<:cfg site url:>)
+The team at <:= cfg.entry("site", "name") |raw:>
+(<:= cfg.entry("site", "url") |raw:>)
 
 <:set_subject Important activity notification:>

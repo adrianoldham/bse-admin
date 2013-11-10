@@ -1,4 +1,4 @@
-<:uc [cfg site name]:> ACCOUNT SERVICES.
+<:= cfg.entry("site", "name").upper |raw:> ACCOUNT SERVICES.
 
 A new user has signed up as a member on your site.
 
@@ -18,7 +18,7 @@ EDIT USER ACCESS LINK:
 
 
 Regards
-The team at <:cfg site name:>
-(<:cfg site url:>)
+The team at <:= cfg.entry("site", "name") |raw:>
+(<:= cfg.entry("site", "url") |raw:>)
 
 <:set_subject [concatenate "A new user has signed up (" [user userId] ")"]:>

@@ -1,4 +1,4 @@
-<:uc [cfg site name]:> SHOP ADMINISTRATION.
+<:= cfg.entry("site", "name").upper |raw:> SHOP ADMINISTRATION.
 
 A user registered interest in the following product.
 
@@ -11,7 +11,7 @@ PRODUCT DETAILS:
   Title: <:product:>
 
 Regards
-The team at <:cfg site name:>
-(<:cfg site url:>)
+The team at <:= cfg.entry("site", "name") |raw:>
+(<:= cfg.entry("site", "url") |raw:>)
 
 <:set_subject "A user registered interest":>
