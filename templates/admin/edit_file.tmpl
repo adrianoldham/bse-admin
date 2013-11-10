@@ -1,4 +1,5 @@
-<:wrap admin/base.tmpl title=>[cat "Manage " [cond [article parentid] [typename article] Site] " Files"] :>
+<:-.set typename = article.id > 0 ? article.generator.replace("Generate::", "") : "Site" -:>
+<:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Files" ) :>
 <div class="window">
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>

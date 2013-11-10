@@ -1,4 +1,5 @@
-<:wrap admin/base.tmpl title=>[cat [cond [ifNew] "New" "Edit"] " Mailing List"] :>
+<:-.set is_new = "ifNew".evaltag -:>
+<:-.wrap "admin/base.tmpl", "title": ( ( is_new ? "New" : "Edit" ) _ " Mailing List" ) :>
 <div class="window">
   <header>
     <h1><:= params.title:></h1>

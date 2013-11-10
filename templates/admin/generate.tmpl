@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>[cond [ifMatch [cgi id] "extras"] "Regenerate System Pages" "Regenerate Articles and System Pages"] :>
+<:-.wrap "admin/base.tmpl", "title": ( cgi.param("id") =~ "extras" ? "Regenerate System Pages" : "Regenerate Articles and System Pages" ) :>
 <div class="window">
   <header>
     <h1><:= params.title:></h1>

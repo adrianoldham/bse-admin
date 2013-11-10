@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>"Manage Article Parents" :>
+<:-.wrap "admin/base.tmpl", "title": "Manage Article Parents" :>
 <:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
 <div class="window">
   <header>

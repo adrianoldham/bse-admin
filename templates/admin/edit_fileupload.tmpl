@@ -1,4 +1,5 @@
-<:wrap admin/base.tmpl title=>[cat "New " [cond [article parentid] "" "Site "] "File"] :>
+<:-.set typename = article.id > 0 ? "" : "Site" -:>
+<:-.wrap "admin/base.tmpl", "title": "New " _ typename _ " File" :>
 <div class="window dialog">
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>

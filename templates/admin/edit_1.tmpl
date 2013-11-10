@@ -1,4 +1,6 @@
-<:wrap admin/base.tmpl title=>[cat [cond [ifNew] "New " "Edit "] [typename article] ] :>
+<:-.set typename = article.generator.replace("Generate::", "") -:>
+<:-.set is_new = not(article.id) -:>
+<:-.wrap "admin/base.tmpl", "title": ( ( is_new ? "New " : "Edit " ) _ typename ) :>
 <div class="window">
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>

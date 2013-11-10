@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>"New Option", js=>"admin_prodopts.js" :>
+<:-.wrap "admin/base.tmpl", "title": "New Option", "js": "admin_prodopts.js" :>
 <div class="window dialog">
   <header>
     <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>

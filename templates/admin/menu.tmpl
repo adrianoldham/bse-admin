@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>[cond [cgi workarea] [cat [cfg site name |h] " Administration"] "Quick Launch"] :>
+<:-.wrap "admin/base.tmpl", "title": ( cgi.param("workarea") ? "Administration" : "Quick Launch" ) :>
 <:- if Cgi workarea:>
 <div id="preview" class="preview">
   <iframe src="<:cgi workarea:>" name="workarea" onload="this.contentWindow.focus()">

@@ -1,4 +1,4 @@
-<:wrap admin/base.tmpl title=>[cond [cgi stepparent] "Edit Stepparent" "New Stepparent"] :>
+<:-.wrap "admin/base.tmpl", "title": ( cgi.param("stepparent") ? "Edit Stepparent" : "New Stepparent" ) :>
 <div class="window dialog">
   <header>
     <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
