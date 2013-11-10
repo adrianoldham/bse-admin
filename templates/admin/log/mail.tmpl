@@ -4,14 +4,14 @@ This noteworthy activity has occurred on your site.
 
 ACTIVITY DETAILS:
 
-  Level: <:entry level_name:>
-  When: <:date "%d-%b-%Y / %r" entry when_at:>
+  Level: <:= entry.level_name |raw:>
+  When:  <:= bse.date("%d-%b-%Y / %r", entry.when_at) |raw:>
 
   Message:
-  <:entry msg |z:>
+  <:= entry.msg |raw:>
 
 Regards
 The team at <:= cfg.entry("site", "name") |raw:>
 (<:= cfg.entry("site", "url") |raw:>)
 
-<:set_subject Important activity notification:>
+<:% set_subject("Important activity notification"):>

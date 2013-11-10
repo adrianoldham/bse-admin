@@ -4,15 +4,15 @@ A new user has signed up as a member on your site.
 
 USER DETAILS:
 
-  Username: <:user userId:>
-  Full Name : <:user name1:> <:user name2:>
-  Email Address: <:user email:>
+  <:= cfg.entry("site users", "display_userid", "Username") |raw:>: <:= user.userId |raw:>
+  Full Name : <:= user.name1:> <:= user.name2 |raw:>
+  <:= cfg.entry("site users", "display_email", "Email Address") |raw:>: <:= user.email |raw:>
 
 EDIT USER LINK:
-  <:adminurl siteusers a_edit 1 id [user id] |z:>
+  <:= cfg.admin_url("siteusers", { "a_edit": 1, "id": user.id }) |raw:>
 
 EDIT USER ACCESS LINK:
-  <:adminurl siteusers a_edit 1 id [user id] _t "groups" |z:>
+  <:= cfg.admin_url("siteusers", { "a_edit": 1, "id": user.id, "_t": "groups" }) |raw:>
   
 <:- include admin/include/registeremail_custom.tmpl optional:>
 
@@ -21,4 +21,4 @@ Regards
 The team at <:= cfg.entry("site", "name") |raw:>
 (<:= cfg.entry("site", "url") |raw:>)
 
-<:set_subject [concatenate "A new user has signed up (" [user userId] ")"]:>
+<:% set_subject("A new user has signed up (" _ user.userId _ ")"):>

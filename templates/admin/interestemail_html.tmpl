@@ -1,10 +1,10 @@
-<:wrap email/base.tmpl title=>"Registered interest" :>
+<:-.wrap "email/base.tmpl", "title": "Registered interest" :>
 
 <p>A user registered interest in the following product.</p>
 
 <dl>
   <dt>User Details:</dt>
-  <dd><span><:cfg "site users" display_email "Email Address":>:</span> <a href="mailto:<:email:>"></a><:email:></a></dd>
+  <dd><span><:= cfg.entry("site users", "display_email", "Email Address"):>:</span> <a href="mailto:<:email:>"></a><:email:></a></dd>
   <dt>Product Details:</dt>
   <dd><span>Title:</span> <:product |h:></dd>
 </dl>

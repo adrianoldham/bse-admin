@@ -1,18 +1,18 @@
-<:wrap email/base.tmpl title=>"A new user signed up" :>
+<:-.wrap "email/base.tmpl", "title": "A new user signed up" :>
 
 <p>A new user has signed up as a member on your site.</p>
 
 <dl>
   <dt>New Account Details:</dt>
-  <dd><span><:cfg "site users" display_userid "Username":>:</span> <:user userId:><br />
-  <span>Full Name:</span> <:user name1 |h:> <:user name2 |h:><br />
-  <span><:cfg "site users" display_email "Email Address":>:</span> <:user email:></dd>
+  <dd><span><:= cfg.entry("site users", "display_userid", "Username"):>:</span> <:= user.userId:><br />
+  <span>Full Name:</span> <:= user.name1:> <:= user.name2:><br />
+  <span><:= cfg.entry("site users", "display_email", "Email Address"):>:</span> <:= user.email:></dd>
 </dl>
 
 <:- include admin/include/registeremail_html_custom.tmpl optional:>
 
-<!--<a href="<:adminurl siteusers a_edit 1 id [user id]:>"><table cellspacing="0" border="0" cellpadding="0" class="bse-button"><tr><td>Edit user</td></tr></table></a>//-->
+<!--<a href="<:= cfg.admin_url("siteusers", { "a_edit": 1, "id": user.id }) :>"><table cellspacing="0" border="0" cellpadding="0" class="bse-button"><tr><td>Edit user</td></tr></table></a>//-->
 
-<p class="bse-buttons"><a href="<:adminurl siteusers a_edit 1 id [user id]:>" class="bse-button">Edit user</a></p>
+<p class="bse-buttons"><a href="<:= cfg.admin_url("siteusers", { "a_edit": 1, "id": user.id }) :>" class="bse-button">Edit user</a></p>
 
 <p><small>Registered from this IP: <:host:></small></p>
