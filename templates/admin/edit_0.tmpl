@@ -2,7 +2,7 @@
 <:-.set refresh = cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree") }) -:>
 <div class="window">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
 <:include admin/include/toolbar_site.tmpl:>
   </header>

@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Order Activity" :>
 <div class="window">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <nav data-role="toolbar">
       <a href="<:adminurl2 shopadmin order_list:>" data-icon="back" data-icon-only="true" class="button">Back</a>

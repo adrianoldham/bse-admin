@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Load Order" :>
 <div class="window dialog">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
   </header>
   <form action="<:adminurl shopadmin:>" method="post" data-object="Order" data-confirm="false">
     <input type="hidden" name="order_detail" value="1" />

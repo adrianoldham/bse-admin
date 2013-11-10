@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Export Site User Data" :>
 <div class="window dialog">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
   </header>
   <form action="<:adminurl userlist:>" method="post" data-object="Export" data-confirm="false">
     <input type="hidden" name="_t" value="export" />

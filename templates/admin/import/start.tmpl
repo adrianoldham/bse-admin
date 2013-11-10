@@ -10,7 +10,7 @@
 <:-.end if:>
 <div class="window dialog">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
   </header>
   <form action="<:adminurl importer:>" method="post" enctype="multipart/form-data" data-object="Import" data-confirm="false">
     <input type="hidden" name="r" value="<:cgi r:>" />

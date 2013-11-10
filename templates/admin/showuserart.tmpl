@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Admin User Article Permissions" :>
 <div class="window dialog">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
   </header>
   <form action="<:script:>" method="post" data-object="User">
     <input type="hidden" name="userid" value="<:user id:>" />

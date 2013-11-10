@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>[cfg site name |h], nonavbar=>"1", classes=>"nonavbar" :>
 <div class="window dialog">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
   </header>
   <form action="<:adminurl logon:>" method="post" data-object="User" data-confirm="false">
     <:- if Cgi r:>

@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"Load Site User" :>
 <div class="window dialog">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
   </header>
   <form action="<:adminurl siteusers:>" method="post" data-object="User" data-confirm="false">
     <input type="hidden" name="referer" value="1" />

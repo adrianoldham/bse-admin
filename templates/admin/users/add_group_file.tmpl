@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"New Site Group File" :>
 <div class="window dialog">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
   </header>
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="File">
     <input type="hidden" name="id" value="<:group id:>" />

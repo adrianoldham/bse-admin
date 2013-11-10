@@ -1,7 +1,7 @@
 <:wrap admin/base.tmpl title=>"System Activity", bodyid=>"auditlog" :>
 <div class="window">
   <header>
-    <h1><:param title:></h1>
+    <h1><:= params.title:></h1>
     <a href="<:adminurl menu:>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
   </header>
   <:- if Auditlog:>
