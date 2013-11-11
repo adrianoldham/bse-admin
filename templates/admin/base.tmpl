@@ -5,21 +5,21 @@
     <title><:= cfg.entry("site", "name"):> - <:= params.title:></title>
     <link rel="stylesheet" href="/bse-admin/css/reset.css" type="text/css" />
     <link rel="stylesheet" href="/bse-admin/css/admin.css" type="text/css" />
-    <:- if Param css:>
-    <link rel="stylesheet" href="/bse-admin/css/<:param css:>" type="text/css" />
-    <:- eif Param:>
+    <:-.if params.css:>
+    <link rel="stylesheet" href="/bse-admin/css/<:= params.css:>" type="text/css" />
+    <:-.end if:>
     <script type="text/javascript" src="/bse-admin/js/lib/prototype.js"></script>
     <script type="text/javascript" src="/bse-admin/js/lib/scriptaculous.js?load=effects,dragdrop,controls"></script>
     <script type="text/javascript" src="/bse-admin/js/init.js"></script>
-    <:- if Param api:>
+    <:-.if params.api:>
     <script type="text/javascript" src="/js/bse_api.js"></script>
-    <:- eif Param:>
-    <:- if Param jstools:>
+    <:-.end if:>
+    <:-.if params.jstools:>
     <script type="text/javascript" src="/js/admin_tools.js"></script>
-    <:- eif Param:>
-    <:- if Param js:>
-    <script type="text/javascript" src="/js/<:param js:>"></script>
-    <:- eif Param:>
+    <:-.end if:>
+    <:-.if params.js:>
+    <script type="text/javascript" src="/js/<:= params.js:>"></script>
+    <:-.end if:>
     <:-.if request.user_agent =~ /MSIE/ :>
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <!--[if lt IE 9]>
@@ -28,22 +28,20 @@
     <![endif]-->
     <:-.end if:>
   </head>
-  <body<:ifParam bodyid:> id="<:param bodyid:>"<:eif:> data-role="page" class="<:param classes:> <:cond [cgi preview] "preview" :>">
+  <body id="<:= params.bodyid:>" data-role="page" class="<:= params.classes:> <:= cgi.param("preview") ? "preview" : "" :>">
     <:-.call "messages":>
-    <:- switch:>
-    <:- case Param nonavbar:>
-    <:- case default:>
+    <:-.if params.nonavbar:>
+    <:-.else:>
 <:include admin/include/navbar.tmpl:>
-    <:- endswitch:>
-    <:- switch:>
-    <:- case Cgi preview:>
+    <:-.end if:>
+    <:-.if cgi.param("preview"):>
     <div id="preview" class="preview">
-      <iframe src="<:adminurl admin id [article id]:>" name="workarea" onload="this.contentWindow.focus()">
+      <iframe src="<:= cfg.admin_url("admin", { "id": article.id }) :>" name="workarea" onload="this.contentWindow.focus()">
         <p>Your browser does not support iframes.</p>
       </iframe>
     </div>
-    <:- case default:>
+    <:-.else:>
 <:wrap here:>
-    <:- endswitch:>
+    <:-.end if:>
   </body>
 </html>

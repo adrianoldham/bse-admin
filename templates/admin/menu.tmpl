@@ -1,59 +1,59 @@
 <:-.wrap "admin/base.tmpl", "title": ( cgi.param("workarea") ? "Administration" : "Quick Launch" ) :>
-<:- if Cgi workarea:>
+<:-.if cgi.param("workarea"):>
 <div id="preview" class="preview">
-  <iframe src="<:cgi workarea:>" name="workarea" onload="this.contentWindow.focus()">
+  <iframe src="<:= cgi.param("workarea"):>" name="workarea" onload="this.contentWindow.focus()">
     <p>Your browser does not support iframes.</p>
   </iframe>
 </div>
-<:- or Cgi:>
+<:-.else:>
 <div class="window dialog">
   <header>
     <h1><:= params.title:></h1>
   </header>
   <p class="launchpad">
-    <a href="<:adminurl add id 1 preview 1:>" accesskey="y" title="AccessKey = y" data-icon="preview" class="button white">Preview</a>
-    <a href="<:adminurl add id -1:>" accesskey="a" title="AccessKey = a" data-icon="list" class="button white">Articles</a>
-    <:- if UserCan bse_edit_images_add:-1 :>
-    <a href="<:adminurl add id -1 _t img referer 1:>" accesskey="i" title="AccessKey = i" data-icon="images" class="button white">Images</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_edit_files_add:-1 :>
-    <a href="<:adminurl add id -1 _t file referer 1:>" accesskey="f" title="AccessKey = f" data-icon="files" class="button white">Files</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_regen_all:>
-    <a href="<:adminurl generate progress 1:>" accesskey="r" title="AccessKey = r" data-icon="regen" class="button white">Regenerate</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_members_user_list:>
-    <a href="<:adminurl siteusers:>" accesskey="u" title="AccessKey = u" data-icon="users" class="button white">Users</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_shop_order_list:>
-    <a href="<:adminurl shopadmin order_list 1:>" accesskey="o" title="AccessKey = o" data-icon="orders" class="button white">Orders</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_edit_add_child:3 :>
-    <a href="<:adminurl shopadmin:>" accesskey="p" title="AccessKey = p" data-icon="products" class="button white">Products</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_reports_list:>
-    <a href="<:adminurl report:>" accesskey="n" title="AccessKey = n" data-icon="reports" class="button white">Reports</a>
-    <:- eif UserCan:>
+    <a href="<:= cfg.admin_url("add", { "id": 1, "preview": 1 }) :>" accesskey="y" title="AccessKey = y" data-icon="preview" class="button white">Preview</a>
+    <a href="<:= cfg.admin_url("add", { "id": -1 }) :>" accesskey="a" title="AccessKey = a" data-icon="list" class="button white">Articles</a>
+    <:-.if request.user_can("bse_edit_images_add", -1 ):>
+    <a href="<:= cfg.admin_url("add", { "id": -1, "_t": "img", "referer": 1 }) :>" accesskey="i" title="AccessKey = i" data-icon="images" class="button white">Images</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_edit_files_add", -1 ):>
+    <a href="<:= cfg.admin_url("add", { "id": -1, "_t": "file", "referer": 1 }) :>" accesskey="f" title="AccessKey = f" data-icon="files" class="button white">Files</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_regen_all"):>
+    <a href="<:= cfg.admin_url("generate", { "progress": 1 }) :>" accesskey="r" title="AccessKey = r" data-icon="regen" class="button white">Regenerate</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_members_user_list"):>
+    <a href="<:= cfg.admin_url("siteusers") :>" accesskey="u" title="AccessKey = u" data-icon="users" class="button white">Users</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_shop_order_list"):>
+    <a href="<:= cfg.admin_url2("shopadmin", "order_list") :>" accesskey="o" title="AccessKey = o" data-icon="orders" class="button white">Orders</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_edit_add_child", 3 ):>
+    <a href="<:= cfg.admin_url("shopadmin") :>" accesskey="p" title="AccessKey = p" data-icon="products" class="button white">Products</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_reports_list"):>
+    <a href="<:= cfg.admin_url("report") :>" accesskey="n" title="AccessKey = n" data-icon="reports" class="button white">Reports</a>
+    <:-.end if:>
     <:- include admin/include/menu_custom.tmpl optional:>
-    <a href="<:adminurl add _t load referer 1:>" accesskey="1" title="AccessKey = 1" data-icon="load" class="button white">Load Article…</a>
-    <:- if UserCan bse_members_user_view:>
-    <a href="<:adminurl siteusers _t load referer 1:>" accesskey="2" title="AccessKey = 2" data-icon="load" class="button white">Load User…</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_shop_order_detail:>
-    <a href="<:adminurl shopadmin order_list 1 template order_load referer 1:>" accesskey="3" title="AccessKey = 3" data-icon="load" class="button white">Load Order…</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_edit_add_child:>
-    <a href="<:adminurl add parentid -1 level 1 referer 1:>" accesskey="4" title="AccessKey = 4" data-icon="add" class="button white">New Article…</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_edit_images_add:-1 :>
-    <a href="<:adminurl add id -1 _t imgupload referer 1:>" accesskey="5" title="AccessKey = 5" data-icon="add" class="button white">New Image…</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_edit_files_add:-1 :>
-    <a href="<:adminurl add id -1 _t fileupload referer 1:>" accesskey="6" title="AccessKey = 6" data-icon="add" class="button white">New File…</a>
-    <:- eif UserCan:>
-    <:- if UserCan bse_members_user_add:>
-    <a href="<:adminurl siteusers a_addform 1 referer 1:>" accesskey="7" title="AccessKey = 7" data-icon="add" class="button white">New User…</a>
-    <:- eif UserCan:>
+    <a href="<:= cfg.admin_url("add", { "_t": "load", "referer": 1 }) :>" accesskey="1" title="AccessKey = 1" data-icon="load" class="button white">Load Article…</a>
+    <:-.if request.user_can("bse_members_user_view"):>
+    <a href="<:= cfg.admin_url("siteusers", { "_t": "load", "referer": 1 }) :>" accesskey="2" title="AccessKey = 2" data-icon="load" class="button white">Load User…</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_shop_order_detail"):>
+    <a href="<:= cfg.admin_url2("shopadmin", "order_list", { "template": "order_load", "referer": 1 }) :>" accesskey="3" title="AccessKey = 3" data-icon="load" class="button white">Load Order…</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_edit_add_child"):>
+    <a href="<:= cfg.admin_url("add", { "parentid": -1, "level": 1, "referer": 1 }) :>" accesskey="4" title="AccessKey = 4" data-icon="add" class="button white">New Article…</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_edit_images_add", -1 ):>
+    <a href="<:= cfg.admin_url("add", { "id": -1, "_t": "imgupload", "referer": 1 }) :>" accesskey="5" title="AccessKey = 5" data-icon="add" class="button white">New Image…</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_edit_files_add", -1 ):>
+    <a href="<:= cfg.admin_url("add", { "id": -1, "_t": "fileupload", "referer": 1 }) :>" accesskey="6" title="AccessKey = 6" data-icon="add" class="button white">New File…</a>
+    <:-.end if:>
+    <:-.if request.user_can("bse_members_user_add"):>
+    <a href="<:= cfg.admin_url2("siteusers", "addform", { "referer": 1 }) :>" accesskey="7" title="AccessKey = 7" data-icon="add" class="button white">New User…</a>
+    <:-.end if:>
   </p>
 </div>
-<:- eif Cgi:>
+<:-.end if:>
