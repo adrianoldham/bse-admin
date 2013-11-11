@@ -24,7 +24,7 @@
         <:-.elsif state.type eq "substage" :>
         <li><:= request.htmlmsg(msgbase _ "substage/" _ state.stage _ "/" _ state.substage) :></li>
         <:-.elsif state.type eq "error" :>
-        <li class="error"><:= state.error | html :></li>
+        <li class="error"><:= state.error :></li>
         <:-.elsif state.type eq "endstage" :>
       </ul>
     </fieldset>

@@ -27,7 +27,7 @@
       <div>
         <label for="cat">Filter category</label>
         <span>
-          <input type="text" name="cat" id="cat" value="<:= cgi.param("cat") |html:>" />
+          <input type="text" name="cat" id="cat" value="<:= cgi.param("cat") :>" />
         </span>
       </div>
       <p class="buttons">
@@ -42,9 +42,9 @@
     <ul class="inset list">
       <:-.for cat in pcats.items :>
       <li>
-        <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) |html:>"><:= cat | html :></a>
+        <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) :>"><:= cat :></a>
         <span>
-          <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) |html:>" class="button gray small">Edit</a>
+          <a href="<:= cfg.admin_url2("add", "tagcat", { "id":-1, "cat":cat}) :>" class="button gray small">Edit</a>
         </span>
       </li>
       <:-.end for:>

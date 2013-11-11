@@ -5,11 +5,11 @@
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
   </header>
   <form action="<:= cfg.admin_url2("add") :>" method="post" data-object="Dependant">
-    <input type="hidden" name="cat" value="<:= cat.cat |html :>" />
+    <input type="hidden" name="cat" value="<:= cat.cat :>" />
     <input type="hidden" name="id" value="-1" />
     <:csrfp admin_tagcatsave hidden :>
     <fieldset>
-      <legend><:= cat.cat |html :> Depends on…</legend>
+      <legend><:= cat.cat :> Depends on…</legend>
       <div>
         <label for="dep1">Tag name</label>
         <span>
@@ -22,7 +22,7 @@
       <div>
         <label for="dep_<:=loop.count:>">or<!--Tag #<:=loop.count:>--></label>
         <span>
-          <input type="text" name="dep" id="dep_<:=loop.count:>" value="<:= dep |html:>" />
+          <input type="text" name="dep" id="dep_<:=loop.count:>" value="<:= dep :>" />
         </span>
       </div>
       <:-.end for:>
