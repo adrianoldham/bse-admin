@@ -374,9 +374,9 @@ parameters:
 :>
 <:-.define move -:>
 <:-.if bse.admin or admin -:>
-<span class="bse-admin bse-admin-buttons-mini arrows bse_arrows">
-<:-.set width = cfg.entry("arrows", "width", 17) -:>
-<:-.set height = cfg.entry("arrows", "height", 13) -:>
+<span class="<:= cfg.entry("arrows", "class", "bse-arrows") :>">
+<:-.set width = cfg.entry("arrows", "image_width", 17) -:>
+<:-.set height = cfg.entry("arrows", "image_height", 13) -:>
 <:-.set extras = 'width="' _ width _ '" height="' _ height _ '"' -:>
 <:-.set blankim = '<img src="' _ (dist_image_uri _ "/trans_pixel.gif").escape("html") _ '" alt="" ' _ extras _ ' />' -:>
 <:-.if loop.next -:>
