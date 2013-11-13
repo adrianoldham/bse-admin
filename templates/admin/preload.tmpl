@@ -274,7 +274,7 @@
           <:-.call "error_img", "name":name -:>
         </label>
         <span>
-          <:-.call "input", "name":name, "readonly":field.readonly :>
+          <:-.call "input", "name":name, "field":field :>
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>
@@ -313,7 +313,7 @@ parameters:
       <div>
         <label for="<:= name :>"><:= field.nolabel ? "" : field.description :></label>
         <span>
-          <:-.call "input", "name":name, "readonly":1 :>
+          <:-.call "input", "name":name, "field":field, "readonly":1 :>
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>
