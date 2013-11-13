@@ -252,7 +252,7 @@
   <:-.if fields.is_hash -:>
     <:-.set field = fields[name] -:>
     <:-.if field :>
-      <:-.call "inlinefield", "field":field, "name":name :>
+      <:-.call "inlinefield", "name":name, "field":field :>
     <:-.else :>
       <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
     <:-.end if :>
@@ -327,7 +327,7 @@ parameters:
   <:-.if fields.is_hash -:>
     <:-.set field = fields[name] -:>
     <:-.if field :>
-    <:-.call "inlinefieldro", "field":field, "name":name :>
+    <:-.call "inlinefieldro", "name":name, "field":field :>
     <:-.else :>
     <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
     <:-.end if :>
