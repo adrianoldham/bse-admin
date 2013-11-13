@@ -187,7 +187,7 @@
       <:-.set default = cgi.param(name) :>
     <:-.end if :>
           <:-.if field.htmltype eq "textarea" :>
-          <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols=<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>
+          <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>"
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
