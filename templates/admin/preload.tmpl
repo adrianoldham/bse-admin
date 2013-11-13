@@ -157,7 +157,7 @@
 <:-.end define :>
 
 <:-.define required_indicator -:>
-<:-.if field.required :> <span class="required">*</span>
+<:-.if required :> <span class="required">*</span>
 <:-.end if :>
 <:-.end define :>
 
@@ -270,7 +270,7 @@
       <div>
         <label for="<:= name :>">
           <:-= field.nolabel ? '' : field.description :>
-          <:-.call "required_indicator", "field":field :>
+          <:-.call "required_indicator", "required":field.required :>
           <:-.call "error_img", "name":name -:>
         </label>
         <span>
