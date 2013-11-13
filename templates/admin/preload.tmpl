@@ -11,6 +11,7 @@
 <:-.set r = top.admin -:>
 <:-.set admin = 0 -:>
 <:-.set dist_image_uri = cfg.entryIfVar("uri", "dist_images", "/images") -:>
+<:-.set errors = request.field_errors -:>
 
 <:# utility definitions :>
 <:-.define make_select -:>
@@ -21,7 +22,7 @@
             <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= required ? ' required="required"' : '' | raw :>
             <:-= disabled or readonly ? ' disabled="disabled"' : '' | raw :>
-            <:-= request.field_errors.$name ? ' class="error"' : '' | raw -:>
+            <:-= errors.$field ? ' class="error"' : '' | raw -:>
           >
           <:-.if groups :>
             <:-.for i in list :>
@@ -192,7 +193,7 @@
             <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
             <:-= readonly ? ' readonly="readonly"' : '' | raw :>
             <:-= disabled ? ' disabled="disabled"' : '' | raw :>
-            <:-= request.field_errors.$name ? ' class="error"' : '' | raw -:>
+            <:-= errors.$field ? ' class="error"' : '' | raw -:>
           >
             <:-= default -:>
           </textarea>
@@ -239,7 +240,7 @@
             <:-= readonly ? ' readonly="readonly"' : '' | raw :>
             <:-= disabled ? ' disabled="disabled"' : '' | raw :>
             <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
-            <:-= request.field_errors.$name ? ' class="error"' : '' | raw :> />
+            <:-= errors.$field ? ' class="error"' : '' | raw :> />
           <:-.end if :>
 <:-.end define :>
 
