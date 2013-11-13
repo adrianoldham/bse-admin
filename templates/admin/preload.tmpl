@@ -232,7 +232,7 @@
             "grouplabel":(field.select.grouplabel or "label")
           :>
           <:-.else :>
-          <input type="text" name="<:= name :>" id="<:= name :>" value="<:= default :>"
+          <input type="<:= field.htmltype or "text" :>" name="<:= name :>" id="<:= name :>" value="<:= default :>"
             <:-= field.maxlength ? ' maxlength="' _ field.maxlength _ '"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
