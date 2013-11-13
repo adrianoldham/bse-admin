@@ -27,7 +27,7 @@
       <div>
         <label for="profile">Profile <span class="required">*</span> <:error_img profile:></label>
         <span>
-          <:.call "make_select", "name": "profile", "required": "required", "list": profiles, "id": "id", "desc": "label", "default": cgi.param('profile') :>
+          <:.call "make_select", "name": "profile", "required": 1, "list": profiles, "id": "id", "desc": "label", "default": cgi.param('profile') :>
           <:help importer profile:>
         </span>
       </div>
