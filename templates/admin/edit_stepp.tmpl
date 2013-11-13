@@ -1,8 +1,8 @@
 <:-.wrap "admin/base.tmpl", "title": ( cgi.param("stepparent") ? "Edit Stepparent" : "New Stepparent" ) :>
 <div class="window dialog">
   <header>
-    <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
-    <h1><:= title:></h1>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= pagetitle:></h1>
     <:- if Cgi stepparent:>
     <nav data-role="toolbar">
       <a href="<:adminurl add:>?id=<:article id:>&amp;_t=parents" data-icon="back" data-icon-only="true" class="button">Back</a>

@@ -5,11 +5,11 @@
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>
     <:-.set article = not(is_article) ? bse.articles.getByPkey(id) : article -:>
-    <:-.set title = params.title _ ( id > 0 ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
+    <:-.set pagetitle = params.title _ ( id > 0 ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
     <:-.if is_article :>
     <ul class="menu header">
       <li>
-        <h1><a href="#"><:= title:></a></h1>
+        <h1><a href="#"><:= pagetitle:></a></h1>
         <ul>
           <li class="disabled"><span><:= article.titleAlias or article.title:> (Level <:= article.level:>)</span></li>
           <li class="divider"></li>
@@ -23,7 +23,7 @@
       </li>
     </ul>
     <:-.else:>
-    <h1><:= title:></h1>
+    <h1><:= pagetitle:></h1>
     <:-.end if:>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <:-.if is_article :>

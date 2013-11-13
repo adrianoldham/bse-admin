@@ -1,8 +1,8 @@
 <:-.wrap "admin/base.tmpl", "title": "New Option", "js": "admin_prodopts.js" :>
 <div class="window dialog">
   <header>
-    <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
-    <h1><:= title:></h1>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= pagetitle:></h1>
   </header>
   <form action="<:script:>" method="post" data-object="Option">
     <:csrfp admin_add_option hidden:>

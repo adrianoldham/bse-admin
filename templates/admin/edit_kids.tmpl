@@ -5,10 +5,10 @@
 <:-.set kids = [ article.allkids ] :>
 <div class="window">
   <header>
-    <:-.set title = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
     <ul class="menu header">
       <li>
-        <h1><a href="#"><:= title:></a></h1>
+        <h1><a href="#"><:= pagetitle:></a></h1>
         <ul>
           <li class="disabled"><span><:= article.titleAlias or article.title:> (Level <:= article.level:>)</span></li>
           <li class="divider"></li>
