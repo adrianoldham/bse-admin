@@ -22,7 +22,7 @@
             <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= required ? ' required="required"' : '' | raw :>
             <:-= disabled or readonly ? ' disabled="disabled"' : '' | raw :>
-            <:-= errors.$field ? ' class="error"' : '' | raw -:>
+            <:-= errors.$name ? ' class="error"' : '' | raw -:>
           >
           <:-.if groups :>
             <:-.for i in list :>
@@ -125,25 +125,25 @@
 <:-.end define :>
 
 <:# parameters:
-  field - field name
+  name - field name
   default
 :>
 <:-.define old -:>
-<:-.if cgi.param(field).defined :>
-  <:-= cgi.param(field) :>
+<:-.if cgi.param(name).defined :>
+  <:-= cgi.param(name) :>
 <:-.else :>
   <:-= default :>
 <:-.end if :>
 <:-.end define :>
 
 <:# parameters:
-   field - name of field
+   name - name of field
    index - index of field
    errors - hash of error messages (should be set by code)
 :>
 <:-.define error_img_n -:>
-  <:-.if errors.$field :>
-    <:-.set msg = errors.$field :>
+  <:-.if errors.$name :>
+    <:-.set msg = errors.$name :>
     <:-.set msg = msg.is_list ? msg[index] : msg :>
     <:-.set image = cfg.entry("error_img", "image", dist_image_uri _ "/icons/error.png") :>
     <:-.set width = cfg.entry("error_img", "width", 18) :>
@@ -193,7 +193,7 @@
             <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
             <:-= readonly ? ' readonly="readonly"' : '' | raw :>
             <:-= disabled ? ' disabled="disabled"' : '' | raw :>
-            <:-= errors.$field ? ' class="error"' : '' | raw -:>
+            <:-= errors.$name ? ' class="error"' : '' | raw -:>
           >
             <:-= default -:>
           </textarea>
@@ -240,7 +240,7 @@
             <:-= readonly ? ' readonly="readonly"' : '' | raw :>
             <:-= disabled ? ' disabled="disabled"' : '' | raw :>
             <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
-            <:-= errors.$field ? ' class="error"' : '' | raw :> />
+            <:-= errors.$name ? ' class="error"' : '' | raw :> />
           <:-.end if :>
 <:-.end define :>
 
@@ -271,7 +271,7 @@
         <label for="<:= name :>">
           <:-= field.nolabel ? '' : field.description :>
           <:-.call "required_indicator", "field":field :>
-          <:-.call "error_img", "field":name -:>
+          <:-.call "error_img", "name":name -:>
         </label>
         <span>
           <:-.call "input", "name":name, "readonly":field.readonly :>
