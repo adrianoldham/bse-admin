@@ -1,24 +1,27 @@
       <:-.if custom.size :>
+      <:-.set object = 0 :>
       <fieldset>
         <legend><:= cfg.entry("article custom fields", "legend", "Custom") :></legend>
-        <:-.for f in custom.list:>
+        <:-.for field in custom.list:>
         <div>
-          <label for="<:= f.key :>"><:= f.value.description :> <:-.call "error_img", "field":f.key -:></label>
+          <label for="<:= field.key :>">
+            <:= field.value.description :>
+            <:-.call "required_indicator", "required":field.value.required :>
+            <:-.call "error_img", "name":field.key -:>
+          </label>
           <span>
-            <:-.if f.value.htmltype eq "select" :>
+            <:-.set default = ifnew ? field.value.default : article.get(field.key) :>
+            <:-.set is_disabled = not(ifnew or request.user_can("edit_field_edit_" _ field.key, article)) :>
+            <:-.if field.value.htmltype eq "select" :>
             <:-# the field config code uses an older mechanism, translate :>
             <:-.set list = [] -:>
-            <:-.set baselist = f.value["values"] -:>
+            <:-.set baselist = field.value["values"] -:>
             <:-.for i in baselist :>
               <:-% list.push({ "id": i[0], "label": i[1] }) :>
             <:-.end for :>
-            <:.call "make_select", "name":f.key, "list":list, "id":"id", "desc":"label", "default":ifnew ? f.value.default : article.get(f.key) :>
+            <:.call "make_select", "name":field.key, "list":list, "id":"id", "desc":"label", "default":default, "required":field.value.required, "disabled":is_disabled :>
             <:-.else :>
-            <:-.set default = ifnew ? f.value.default : article.get(f.key) :>
-            <:-.if f.value.type eq "date" and default.defined and default ne "" :>
-            <:-.set default = bse.date("%d/%m/%Y", default) :>
-            <:-.end if :>
-            <input type="text" name="<:= f.key :>" id="<:= f.key :>" value="<:.call "old", "field":f.key, "default":default :>" placeholder="<:= f.value.placeholder :>" class="<:.if request.field_errors[f.key]:>error<:.end if:>" />
+            <:.call "input", "name":field.key, "field": { "description":field.value.description, "default":default, "type":field.value.type, "htmltype":field.value.htmltype, "required":field.value.required }, "placeholder":field.value.placeholder, "disabled":is_disabled :>
             <:-.end if :>
           </span>
         </div>
