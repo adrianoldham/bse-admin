@@ -386,7 +386,7 @@ parameters:
 <:-.if bse.admin or admin -:>
 <span class="<:= cfg.entry("arrows", "class", "bse-arrows") :>">
 <:-.set width = cfg.entry("arrows", "image_width", 17) -:>
-<:-.set height = cfg.entry("arrows", "image_height", 13) -:>
+<:-.set height = cfg.entry("arrows", "image_height", 14) -:>
 <:-.set extras = 'width="' _ width _ '" height="' _ height _ '"' -:>
 <:-.set blankim = '<img src="' _ (dist_image_uri _ "/trans_pixel.gif").escape("html") _ '" alt="" ' _ extras _ ' />' -:>
 <:-.if loop.next -:>
