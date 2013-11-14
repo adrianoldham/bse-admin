@@ -308,12 +308,12 @@ var ChangesMonitor = Class.create({
         dontsave.stopObserving('click');
 
         if (form.valid()) {
-            save.removeClassName("disabled");
+            save.removeClassName(this.options.disabledClass);
             save.observe('click', function() {
                 form.submits().last().click();
             }.bind(this));
         } else {
-            save.addClassName("disabled");
+            save.addClassName(this.options.disabledClass);
         }
 
         cancel.observe('click', function(ev) {
@@ -342,6 +342,7 @@ var ChangesMonitor = Class.create({
             cancelButton: 'unsavedCancel',
             saveButton: 'unsavedSave',
             pageElement: 'body',
+            disabledClass: 'disabled',
             onPrompt: function() {}
         };
     }
