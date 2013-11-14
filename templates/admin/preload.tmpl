@@ -1,4 +1,6 @@
 <:# define globals :>
+<:-.set accesskey = 0 -:>
+<:-.set title = 0 -:>
 <:-.set autofocus = 0 -:>
 <:-.set placeholder = 0 -:>
 <:-.set readonly = 0 -:>
@@ -187,9 +189,11 @@
     <:-.end if :>
           <:-.if field.htmltype eq "textarea" :>
           <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>"
+            <:-= title ? ' title="' _ title _ '"' : '' | raw :>
+            <:-= accesskey ? ' accesskey="' _ accesskey _ '"' : '' | raw :>
+            <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
-            <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
             <:-= readonly ? ' readonly="readonly"' : '' | raw :>
             <:-= disabled ? ' disabled="disabled"' : '' | raw :>
             <:-= errors.$name ? ' class="error"' : '' | raw -:>
@@ -222,6 +226,8 @@
             "list":values,
             "id":field.select.id,
             "desc":field.select.label,
+            "accesskey":accesskey,
+            "title":title,
             "required":field.required,
             "autofocus":autofocus,
             "disabled":disabled,
@@ -232,13 +238,15 @@
           :>
           <:-.else :>
           <input type="<:= field.htmltype or "text" :>" name="<:= name :>" id="<:= name :>" value="<:= default :>"
+            <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
             <:-= field.maxlength ? ' maxlength="' _ field.maxlength _ '"' : '' | raw :>
+            <:-= accesskey ? ' accesskey="' _ accesskey _ '"' : '' | raw :>
+            <:-= title ? ' title="' _ title _ '"' : '' | raw :>
+            <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
-            <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
             <:-= readonly ? ' readonly="readonly"' : '' | raw :>
             <:-= disabled ? ' disabled="disabled"' : '' | raw :>
-            <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
             <:-= errors.$name ? ' class="error"' : '' | raw :> />
           <:-.end if :>
 <:-.end define :>
