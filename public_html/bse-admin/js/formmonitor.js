@@ -84,12 +84,15 @@ var FormMonitor = Class.create({
         }.bind(this);
         this.onchange = function(ev) {
             // handles anything that might cause a change
+            var element = ev.target;
             var entry = this._elements[ev.target.identify()];
             var new_changed = entry.handler.changed(entry);
             var old_changes = this.changes;
             if (new_changed && !entry.changed) {
+                element.addClassName(this.options.changedClass);
                 ++this.changes;
             } else if (!new_changed && entry.changed) {
+                element.removeClassName(this.options.changedClass);
                 --this.changes;
             }
             entry.changed = new_changed;
@@ -343,6 +346,7 @@ var ChangesMonitor = Class.create({
             saveButton: 'unsavedSave',
             pageElement: 'body',
             disabledClass: 'disabled',
+            changedClass: 'changed',
             onPrompt: function() {}
         };
     }

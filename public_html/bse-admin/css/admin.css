@@ -530,6 +530,7 @@ textarea {
     border-top-color: #aaa;
     line-height: 1.2;
     padding: 0.25em;
+    color: #000;
     background-color: #efefef;
     display: inline-block;/* because some odd margins persist on textareas */
     min-width: 20em;
@@ -608,6 +609,23 @@ select.error:focus,
     -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(204,0,50,0.75) !important;
     -moz-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(204,0,50,0.75) !important;
     box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(204,0,50,0.75) !important;
+}
+
+input.changed,
+textarea.changed,
+select.changed {
+    color: #000 !important;
+    background: inherit !important;
+    border-color: rgba(100,153,30,0.75) !important;
+    border-top-color: rgb(100,153,30) !important;
+}
+
+input.changed:focus,
+textarea.changed:focus,
+select.changed:focus {
+    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(100,153,30,0.75) !important;
+    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(100,153,30,0.75) !important;
+    box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(100,153,30,0.75) !important;
 }
 
 fieldset > label {
