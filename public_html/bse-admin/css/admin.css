@@ -25,28 +25,28 @@ body {
         linear,
         left top,
         left bottom,
-        color-stop(0, #rgba(255,255,255,0.35)),
-        color-stop(100%, rgba(255,255,255,0))
+        color-stop(0, rgba(255, 255, 255, 0.35)),
+        color-stop(100%, rgba(255, 255, 255, 0))
     );
     background-image: -webkit-linear-gradient(
         top,
-        rgba(255,255,255,0.35) 0,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.35) 0,
+        rgba(255, 255, 255, 0) 100%
     );
     background-image: -moz-linear-gradient(
         top,
-        rgba(255,255,255,0.35) 0,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.35) 0,
+        rgba(255, 255, 255, 0) 100%
     );
     background-image: -o-linear-gradient(
         top,
-        rgba(255,255,255,0.35) 0,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.35) 0,
+        rgba(255, 255, 255, 0) 100%
     );
     background-image: linear-gradient(
         top,
-        rgba(255,255,255,0.35) 0,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.35) 0,
+        rgba(255, 255, 255, 0) 100%
     );
 }
 
@@ -135,7 +135,7 @@ iframe {
     left: 0;
     margin: 0;
     padding: 0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     overflow: visible;
     height: 100%;
@@ -161,12 +161,12 @@ iframe {
     width: 100%;
     padding: 1em 2em;
     color: #fff;
-    text-shadow: 0 0.1em 0.1em rgba(0,0,0,0.3);
+    text-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.3);
     font-weight: bold;
     border: 0.083em solid;
-    -webkit-box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.4);
-    -moz-box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.4);
-    box-shadow: 0 0.1em 0.5em rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4);
 }
 
 .scrollable {
@@ -207,13 +207,13 @@ h1,
     font-size: 0.75em !important;
     line-height: 1;
     color: #fff !important;
-    text-shadow: 0 0.112em 0.056em rgba(0,0,0,0.5);
+    text-shadow: 0 0.112em 0.056em rgba(0, 0, 0, 0.5);
     -webkit-border-radius: 1.7em;
     -moz-border-radius: 1.7em;
     border-radius: 1.7em;
-    -webkit-box-shadow: inset 0 0.112em 0.112em rgba(0,0,0,0.4), 0 0.112em 0 rgba(255,255,255,0.5);
-    -moz-box-shadow: inset 0 0.112em 0.112em rgba(0,0,0,0.4), 0 0.112em 0 rgba(255,255,255,0.5);
-    box-shadow: inset 0 0.112em 0.112em rgba(0,0,0,0.4), 0 0.112em 0 rgba(255,255,255,0.5);
+    -webkit-box-shadow: inset 0 0.112em 0.112em rgba(0, 0, 0, 0.4), 0 0.112em 0 rgba(255, 255, 255, 0.5);
+    -moz-box-shadow: inset 0 0.112em 0.112em rgba(0, 0, 0, 0.4), 0 0.112em 0 rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0.112em 0.112em rgba(0, 0, 0, 0.4), 0 0.112em 0 rgba(255, 255, 255, 0.5);
 }
 
 .small {
@@ -242,33 +242,33 @@ h1,
 .critical,
 .error {
     color: #980c10;
-    background-color: rgba(216,26,32,0.1) !important;
-    border-color: rgba(216,26,32,0.1) !important;
+    background-color: rgba(216, 26, 32, 0.1) !important;
+    border-color: rgba(216, 26, 32, 0.1) !important;
 }
 
 .warn,
 .warning {
     color: #da7c0c;
-    background-color: rgba(255,165,0,0.1) !important;
-    border-color: rgba(255,165,0,0.1) !important;
+    background-color: rgba(255, 165, 0, 0.1) !important;
+    border-color: rgba(255, 165, 0, 0.1) !important;
 }
 
 .notice {
     color: #538312;
-    background-color: rgba(100,153,30,0.1) !important;
-    border-color: rgba(100,153,30,0.1) !important;
+    background-color: rgba(100, 153, 30, 0.1) !important;
+    border-color: rgba(100, 153, 30, 0.1) !important;
 }
 
 .info {
     color: #0076a3;
-    background-color: rgba(0,148,205,0.1) !important;
-    border-color: rgba(0,148,205,0.1) !important;
+    background-color: rgba(0, 148, 205, 0.1) !important;
+    border-color: rgba(0, 148, 205, 0.1) !important;
 }
 
 .debug {
     color: #555555;
-    background-color: rgba(110,110,110,0.1) !important;
-    border-color: rgba(110,110,110,0.1) !important;
+    background-color: rgba(110, 110, 110, 0.1) !important;
+    border-color: rgba(110, 110, 110, 0.1) !important;
 }
 
 td span {
@@ -364,9 +364,9 @@ div.window {
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
-    -webkit-box-shadow: 0.25em 0.25em 3em rgba(0,0,0,0.5);
-    -moz-box-shadow: 0.25em 0.25em 3em rgba(0,0,0,0.5);
-    box-shadow: 0.25em 1em 3em rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0.25em 0.25em 3em rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0.25em 0.25em 3em rgba(0, 0, 0, 0.5);
+    box-shadow: 0.25em 1em 3em rgba(0, 0, 0, 0.5);
 }
 
 /* @group fullscreen */
@@ -437,7 +437,7 @@ div.modal h2 {
 }
 
 div.sheet {
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     overflow:  hidden; /* prevent margin collapse */
     border-bottom: 0;
     -webkit-border-top-left-radius: 0;
@@ -446,9 +446,9 @@ div.sheet {
     -moz-border-radius-topright: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    -webkit-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
-    -moz-box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
-    box-shadow: 0.25em 0.25em 1em rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0.25em 0.25em 1em rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0.25em 0.25em 1em rgba(0, 0, 0, 0.5);
+    box-shadow: 0.25em 0.25em 1em rgba(0, 0, 0, 0.5);
 }
 
 /* @end */
@@ -535,9 +535,9 @@ textarea {
     display: inline-block;/* because some odd margins persist on textareas */
     min-width: 20em;
     width: 40%;
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1);
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1);
-    box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1);
+    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1);
 }
 
 input[type=file] {
@@ -573,29 +573,29 @@ textarea[name=description] {
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: rgba(3,153,212,0.75) !important;
-    border-top-color: rgb(3,153,212) !important;
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.5em rgba(3,153,212,0.75) !important;
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.5em rgba(3,153,212,0.75) !important;
-    box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.5em rgba(3,153,212,0.75) !important;
+    border-color: rgba(3, 153, 212, 0.75) !important;
+    border-top-color: rgb(3, 153, 212) !important;
+    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
+    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
+    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
 }
 
 input.error,
 textarea.error,
 select.error,
 .error:invalid {
-    color: rgb(204,0,50) !important;
-    border-color: rgba(204,0,50,0.75) !important;
-    border-top-color: rgb(204,0,50) !important;
+    color: rgb(204, 0, 50) !important;
+    border-color: rgba(204, 0, 50, 0.75) !important;
+    border-top-color: rgb(204, 0, 50) !important;
 }
 
 input.error:focus,
 textarea.error:focus,
 select.error:focus,
 .error:invalid:focus {
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(204,0,50,0.75) !important;
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(204,0,50,0.75) !important;
-    box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(204,0,50,0.75) !important;
+    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
+    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
+    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
 }
 
 input.changed,
@@ -603,33 +603,33 @@ textarea.changed,
 select.changed {
     color: #000 !important;
     background: inherit !important;
-    border-color: rgba(100,153,30,0.75) !important;
-    border-top-color: rgb(100,153,30) !important;
+    border-color: rgba(100, 153, 30, 0.75) !important;
+    border-top-color: rgb(100, 153, 30) !important;
 }
 
 input.changed:focus,
 textarea.changed:focus,
 select.changed:focus {
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(100,153,30,0.75) !important;
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(100,153,30,0.75) !important;
-    box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.35em rgba(100,153,30,0.75) !important;
+    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
+    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
+    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
 }
 
 input:invalid,
 textarea:invalid,
 select:invalid,
 .error.changed:invalid {
-    border-color: rgba(255,165,0,0.75) !important;
-    border-top-color: rgb(255,165,0) !important;
+    border-color: rgba(255, 165, 0, 0.75) !important;
+    border-top-color: rgb(255, 165, 0) !important;
 }
 
 input:invalid:focus,
 textarea:invalid:focus,
 select:invalid:focus,
 .error.changed:invalid:focus {
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.5em rgba(255,165,0,0.75) !important;
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.5em rgba(255,165,0,0.75) !important;
-    box-shadow: inset 0 0.083em 0.35em rgba(0,0,0,0.1), 0 0 0.5em rgba(255,165,0,0.75) !important;
+    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
+    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
+    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
 }
 
 fieldset > label {
@@ -638,7 +638,7 @@ fieldset > label {
 }
 
 div span img {
-    border: 0.083em solid rgba(0,0,0,0.1);
+    border: 0.083em solid rgba(0, 0, 0, 0.1);
 }
 
 /* @end */
@@ -660,16 +660,16 @@ input[type=submit][disabled] {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 0.083em 0.083em rgba(0,0,0,0.3);
+    text-shadow: 0 0.083em 0.083em rgba(0, 0, 0, 0.3);
     border: 0.083em solid;
     line-height: 1.25; /* Cannot modify because FF doesn't allow override on button element */
     color: #fff;
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
-    -webkit-box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.25);
-    -moz-box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.25);
-    box-shadow: 0 0.1em 0.2em rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.25);
 }
 
 .button:first-child {
@@ -707,7 +707,7 @@ input[type=submit][disabled] {
 .rosy,
 .green,
 .white {
-    text-shadow: 0 0.083em 0.083em rgba(0,0,0,0.3);
+    text-shadow: 0 0.083em 0.083em rgba(0, 0, 0, 0.3);
 }
 
 /* @group black */
@@ -967,60 +967,60 @@ input[type=submit][disabled] {
 .white {
     color: #333;
     border-color: #aaa;
-    text-shadow: 0 0.083em 0.083em rgba(255,255,255,0.9);
-    background: rgb(255,255,255); /* Old browsers */
+    text-shadow: 0 0.083em 0.083em rgba(255, 255, 255, 0.9);
+    background: rgb(255, 255, 255); /* Old browsers */
     background: -webkit-gradient(
         linear,
         left top,left bottom,
-        color-stop(0%,rgba(255,255,255,1)),
-        color-stop(50%,rgba(244,244,244,1)),
-        color-stop(56%,rgba(235,235,235,1)),
-        color-stop(94%,rgba(238,238,238,1)),
-        color-stop(100%,rgba(243,243,243,1))
+        color-stop(0%, rgba(255, 255, 255, 1)),
+        color-stop(50%, rgba(244, 244, 244, 1)),
+        color-stop(56%, rgba(235, 235, 235, 1)),
+        color-stop(94%, rgba(238, 238, 238, 1)),
+        color-stop(100%, rgba(243, 243, 243, 1))
     ); /* Chrome,Safari4+ */
     background: -moz-linear-gradient(
         top,
-        rgba(255,255,255,1) 0%,
-        rgba(244,244,244,1) 50%,
-        rgba(235,235,235,1) 56%,
-        rgba(238,238,238,1) 94%,
-        rgba(243,243,243,1) 100%
+        rgba(255, 255, 255, 1) 0%,
+        rgba(244, 244, 244, 1) 50%,
+        rgba(235, 235, 235, 1) 56%,
+        rgba(238, 238, 238, 1) 94%,
+        rgba(243, 243, 243, 1) 100%
     ); /* FF3.6+ */
     background: -webkit-linear-gradient(
         linear,
         left top,left bottom,
-        color-stop(0%,rgba(255,255,255,1)),
-        color-stop(50%,rgba(244,244,244,1)),
-        color-stop(56%,rgba(235,235,235,1)),
-        color-stop(94%,rgba(238,238,238,1)),
-        color-stop(100%,rgba(243,243,243,1))
+        color-stop(0%, rgba(255, 255, 255, 1)),
+        color-stop(50%, rgba(244, 244, 244, 1)),
+        color-stop(56%, rgba(235, 235, 235, 1)),
+        color-stop(94%, rgba(238, 238, 238, 1)),
+        color-stop(100%, rgba(243, 243, 243, 1))
     ); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(
         linear,
         left top,left bottom,
-        color-stop(0%,rgba(255,255,255,1)),
-        color-stop(50%,rgba(244,244,244,1)),
-        color-stop(56%,rgba(235,235,235,1)),
-        color-stop(94%,rgba(238,238,238,1)),
-        color-stop(100%,rgba(243,243,243,1))
+        color-stop(0%, rgba(255, 255, 255, 1)),
+        color-stop(50%, rgba(244, 244, 244, 1)),
+        color-stop(56%, rgba(235, 235, 235, 1)),
+        color-stop(94%, rgba(238, 238, 238, 1)),
+        color-stop(100%, rgba(243, 243, 243, 1))
     ); /* Opera 11.10+ */
     background: -ms-linear-gradient(
         linear,
         left top,left bottom,
-        color-stop(0%,rgba(255,255,255,1)),
-        color-stop(50%,rgba(244,244,244,1)),
-        color-stop(56%,rgba(235,235,235,1)),
-        color-stop(94%,rgba(238,238,238,1)),
-        color-stop(100%,rgba(243,243,243,1))
+        color-stop(0%, rgba(255, 255, 255, 1)),
+        color-stop(50%, rgba(244, 244, 244, 1)),
+        color-stop(56%, rgba(235, 235, 235, 1)),
+        color-stop(94%, rgba(238, 238, 238, 1)),
+        color-stop(100%, rgba(243, 243, 243, 1))
     ); /* IE10+ */
     background: linear-gradient(
         linear,
         left top,left bottom,
-        color-stop(0%,rgba(255,255,255,1)),
-        color-stop(50%,rgba(244,244,244,1)),
-        color-stop(56%,rgba(235,235,235,1)),
-        color-stop(94%,rgba(238,238,238,1)),
-        color-stop(100%,rgba(243,243,243,1))
+        color-stop(0%, rgba(255, 255, 255, 1)),
+        color-stop(50%, rgba(244, 244, 244, 1)),
+        color-stop(56%, rgba(235, 235, 235, 1)),
+        color-stop(94%, rgba(238, 238, 238, 1)),
+        color-stop(100%, rgba(243, 243, 243, 1))
     ); /* W3C */
 }
 
@@ -1068,7 +1068,7 @@ input[type=submit][disabled] {
     line-height: 2.5;
     margin-bottom: -2.5em;
     color: #fff;
-    text-shadow: 0 0.083em 0.083em rgba(0,0,0,0.3);
+    text-shadow: 0 0.083em 0.083em rgba(0, 0, 0, 0.3);
 }
 
 .buttons > span span.spinner {
@@ -1124,7 +1124,7 @@ div.object:hover .buttons {
     display: inline-block;
     margin: 0;
     padding: 0 0.75em;
-    background-color: rgba(0,0,0,0.25);
+    background-color: rgba(0, 0, 0, 0.25);
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
@@ -1147,7 +1147,7 @@ div.object:hover .buttons {
     padding: 0;
     font-size: 0.9em;
     color: #fff;
-    text-shadow: 0 0.112em 0.112em rgba(0,0,0,0.5);
+    text-shadow: 0 0.112em 0.112em rgba(0, 0, 0, 0.5);
 }
 
 div + .meta {
@@ -1161,7 +1161,7 @@ div + .meta {
     margin: 0 0.5em 0.5em 0;
     padding: 0 0.75em;
     background-color: #666;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
@@ -1205,9 +1205,9 @@ div + .meta {
     padding: 0.5em 0.75em;
     background-color: #eee;
     border: 0.112em solid #bbb;
-    -webkit-box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);
-    -moz-box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);
-    box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.25);
 }
 
 .meta li:hover div,
@@ -1256,25 +1256,25 @@ div + .meta {
 
 .list tbody tr[class]:not([class=""]),
 .list:not(.tree) li[class]:not([class=""]) {
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255,255,255,0)), color-stop(0.75, rgba(255,255,255,0.3)));
-    background-image: -webkit-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
-    background-image: -moz-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 750%);
-    background-image: -ms-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
-    background-image: -o-linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
-    background-image: linear-gradient(top, rgba(255,255,255,0) 0, rgba(255,255,255,0.3) 75%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 255, 255, 0)), color-stop(0.75, rgba(255, 255, 255, 0.3)));
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.3) 75%);
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.3) 750%);
+    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.3) 75%);
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.3) 75%);
+    background-image: linear-gradient(top, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.3) 75%);
 }
 
 .list tbody tr:nth-child(odd),
 .list:not(.tree) li:nth-child(odd),
 .tree li > span.odd {
-    background-color: rgba(0,0,0,0.025);
+    background-color: rgba(0, 0, 0, 0.025);
 }
 
 .list tbody tr:hover,
 .list:not(.tree) li:hover,
 .tree li > span:first-child:hover {
     background-image: none !important;
-    background-color: rgba(255,255,255,0.5) !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .list td:last-child > span:first-child,
@@ -1325,12 +1325,12 @@ table.items td {
     vertical-align: top;
     border-bottom: 0.083em solid #ddd;
     padding: 0.75em 0.5em;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0,0,0,0.05)), color-stop(0.5, rgba(0,0,0,0)));
-    background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
-    background-image: -moz-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
-    background-image: -ms-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
-    background-image: -o-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
-    background-image: linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0) 50%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.05)), color-stop(0.5, rgba(0, 0, 0, 0)));
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0) 50%);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0) 50%);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0) 50%);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0) 50%);
+    background-image: linear-gradient(top, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0) 50%);
 }
 
 table.items td.noitems {
@@ -1642,57 +1642,57 @@ ul.menu.global {
         linear,
         left top,
         left bottom,
-        color-stop(0, rgba(255,255,255,0.5)),
-        color-stop(2%, rgba(255,255,255,0.5)),
-        color-stop(3%, rgba(227,225,225,0.5)),
-        color-stop(97%, rgba(164,162,163,0.5)),
-        color-stop(98%, rgba(0,0,0,0.25)),
-        color-stop(100%, rgba(0,0,0,0.25))
+        color-stop(0, rgba(255, 255, 255, 0.5)),
+        color-stop(2%, rgba(255, 255, 255, 0.5)),
+        color-stop(3%, rgba(227, 225, 225, 0.5)),
+        color-stop(97%, rgba(164, 162, 163, 0.5)),
+        color-stop(98%, rgba(0, 0, 0, 0.25)),
+        color-stop(100%, rgba(0, 0, 0, 0.25))
     );
     background-image: -webkit-linear-gradient(
         top,
-        rgba(255,255,255,0.5) 0,
-        rgba(255,255,255,0.5) 2%,
-        rgba(227,225,225,0.5) 3%,
-        rgba(164,162,163,0.5) 97%,
-        rgba(0,0,0,0.3) 98%,
-        rgba(0,0,0,0.3) 100%
+        rgba(255, 255, 255, 0.5) 0,
+        rgba(255, 255, 255, 0.5) 2%,
+        rgba(227, 225, 225, 0.5) 3%,
+        rgba(164, 162, 163, 0.5) 97%,
+        rgba(0, 0, 0, 0.3) 98%,
+        rgba(0, 0, 0, 0.3) 100%
     );
     background-image: -moz-linear-gradient(
         top,
-        rgba(255,255,255,0.5) 0,
-        rgba(255,255,255,0.5) 2%,
-        rgba(227,225,225,0.5) 3%,
-        rgba(164,162,163,0.5) 97%,
-        rgba(0,0,0,0.25) 98%,
-        rgba(0,0,0,0.25) 100%
+        rgba(255, 255, 255, 0.5) 0,
+        rgba(255, 255, 255, 0.5) 2%,
+        rgba(227, 225, 225, 0.5) 3%,
+        rgba(164, 162, 163, 0.5) 97%,
+        rgba(0, 0, 0, 0.25) 98%,
+        rgba(0, 0, 0, 0.25) 100%
     );
     background-image: -ms-linear-gradient(
         top,
-        rgba(255,255,255,0.5) 0,
-        rgba(255,255,255,0.5) 2%,
-        rgba(227,225,225,0.5) 3%,
-        rgba(164,162,163,0.5) 97%,
-        rgba(0,0,0,0.25) 98%,
-        rgba(0,0,0,0.25) 100%
+        rgba(255, 255, 255, 0.5) 0,
+        rgba(255, 255, 255, 0.5) 2%,
+        rgba(227, 225, 225, 0.5) 3%,
+        rgba(164, 162, 163, 0.5) 97%,
+        rgba(0, 0, 0, 0.25) 98%,
+        rgba(0, 0, 0, 0.25) 100%
     );
     background-image: -o-linear-gradient(
         top,
-        rgba(255,255,255,0.5) 0,
-        rgba(255,255,255,0.5) 2%,
-        rgba(227,225,225,0.5) 3%,
-        rgba(164,162,163,0.5) 97%,
-        rgba(0,0,0,0.25) 98%,
-        rgba(0,0,0,0.25) 100%
+        rgba(255, 255, 255, 0.5) 0,
+        rgba(255, 255, 255, 0.5) 2%,
+        rgba(227, 225, 225, 0.5) 3%,
+        rgba(164, 162, 163, 0.5) 97%,
+        rgba(0, 0, 0, 0.25) 98%,
+        rgba(0, 0, 0, 0.25) 100%
     );
     background-image: linear-gradient(
         top,
-        rgba(255,255,255,0.5) 0,
-        rgba(255,255,255,0.5) 2%,
-        rgba(227,225,225,0.5) 3%,
-        rgba(164,162,163,0.5) 97%,
-        rgba(0,0,0,0.3) 98%,
-        rgba(0,0,0,0.3) 100%
+        rgba(255, 255, 255, 0.5) 0,
+        rgba(255, 255, 255, 0.5) 2%,
+        rgba(227, 225, 225, 0.5) 3%,
+        rgba(164, 162, 163, 0.5) 97%,
+        rgba(0, 0, 0, 0.3) 98%,
+        rgba(0, 0, 0, 0.3) 100%
     );
 }
 
@@ -1723,15 +1723,15 @@ ul.menu li li {
 ul.menu ul {
     position: absolute;
     background-color: #fff;
-    background-color: rgba(255,255,255,0.95);
+    background-color: rgba(255, 255, 255, 0.95);
     min-width: 20em;
     max-width: 30em;
     -webkit-border-radius: 0.3em;
     -moz-border-radius: 0.3em;
     border-radius: 0.3em;
-    -webkit-box-shadow: 0 0.4em 1.75em rgba(0,0,0,0.5);
-    -moz-box-shadow: 0 0.4em 1.75em rgba(0,0,0,0.5);
-    box-shadow: 0 0.4em 1.75em rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0.4em 1.75em rgba(0, 0, 0, 0.5);
 }
 
 ul.menu li ul {
@@ -1859,14 +1859,14 @@ ul.menu li.disabled span {
 
 ul.menu.global {
     background-color: #ccc;
-    background-color: rgba(255,255,255,0.75);
+    background-color: rgba(255, 255, 255, 0.75);
     font-size: 1.17em;
     /*height: 1.75em;*/ /* not required with .menu.global clearfix */
     width: 100%;
     float: left;
-    -webkit-box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
-    -moz-box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
-    box-shadow: 0 0.4em 1em rgba(0,0,0,0.35);
+    -webkit-box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.35);
 }
 
 ul.menu.global > li:first-child {
@@ -1960,8 +1960,8 @@ ul.menu li.divider {
     border-style: solid;
     border-top-color: #fff;
     border-bottom-color: #ccc;
-    border-top-color: rgba(0,0,0,0.1);
-    border-bottom-color: rgba(255,255,255,0.5);
+    border-top-color: rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
     background: none !important;
 }
 
@@ -2030,33 +2030,33 @@ header {
         linear,
         left top,
         left bottom,
-        color-stop(0%,rgba(255,255,255,0.4)),
-        color-stop(100%,rgba(255,255,255,0))
+        color-stop(0%, rgba(255, 255, 255, 0.4)),
+        color-stop(100%, rgba(255, 255, 255, 0))
     ); /* Chrome,Safari4+ */
     background-image: -webkit-linear-gradient(
         top,
-        rgba(255,255,255,0.4) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* Chrome10+,Safari5.1+ */
     background-image: -moz-linear-gradient(
         top,
-        rgba(255,255,255,0.4) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* FF3.6+ */
     background-image: -o-linear-gradient(
         top,
-        rgba(255,255,255,0.4) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* Opera 11.10+ */
     background-image: -ms-linear-gradient(
         top,
-        rgba(255,255,255,0.4) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* IE10+ */
     background-image: linear-gradient(
         top,
-        rgba(255,255,255,0.4) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* W3C */
 }
 
@@ -2082,42 +2082,42 @@ h1:first-child + *[data-role=toolbar],
     overflow: hidden;
     border: 0.083em solid;
     border-color: #7c7c7c #757575 #6b6b6b #757575;
-    -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
-    -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
-    box-shadow: 0 0.083em 0 rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5);
+    -moz-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5);
     border-radius: 0.35em;
     background: #ddd; /* Old browsers */
     background: -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0%,rgba(255,255,255,0.8)),
-        color-stop(100%,rgba(255,255,255,0))
+        color-stop(0%, rgba(255, 255, 255, 0.8)),
+        color-stop(100%, rgba(255, 255, 255, 0))
     ); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(
         top,
-        rgba(255,255,255,0.8) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* Chrome10+,Safari5.1+ */
     background: -moz-linear-gradient(
         top,
-        rgba(255,255,255,0.8) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* FF3.6+ */
     background: -o-linear-gradient(
         top,
-        rgba(255,255,255,0.8) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* Opera 11.10+ */
     background: -ms-linear-gradient(
         top,
-        rgba(255,255,255,0.8) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* IE10+ */
     background: linear-gradient(
         top,
-        rgba(255,255,255,0.8) 0%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0) 100%
     ); /* W3C */
 }
 
@@ -2128,18 +2128,18 @@ h1:first-child + *[data-role=toolbar],
 *[data-role=toolbar] .button:active,
 *[data-role=toolbar] .button.active,
 *[data-role=toolbar] .active .button {
-    -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
-    -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
-    box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.5em rgba(0,0,0,0.3), inset 0 -0.5em 0.5em rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
 }
 
 *[data-role=toolbar] .button.selected {
-    -webkit-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
-    -moz-box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
-    box-shadow: 0 0.083em 0 rgba(255,255,255,0.5), inset 0 0.2em 0.3em rgba(0,0,0,0.3), inset 0 -0.3em 0.75em rgba(255,255,255,0.2);
+    -webkit-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
     background: #888;
     background: #3F000000;
-    background: rgba(0,0,0,0.25);
+    background: rgba(0, 0, 0, 0.25);
     color: #eee !important;
     text-shadow: 0 0.083em 0 #444;
 }
