@@ -10,7 +10,7 @@
             <:-.call "error_img", "name":field.key -:>
           </label>
           <span>
-            <:-.set default = ifnew ? field.value.default : cgi.param(field.key).defined ? cgi.param(field.key) : article.get(field.key) :>
+            <:-.set default = cgi.param(field.key) ? cgi.param(field.key) : ifnew ? field.value.default : article.get(field.key) :>
             <:-.set is_disabled = not(ifnew or request.user_can("edit_field_edit_" _ field.key, article)) :>
             <:-.if field.value.htmltype eq "select" :>
             <:-# the field config code uses an older mechanism, translate :>
