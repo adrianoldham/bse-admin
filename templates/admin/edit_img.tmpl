@@ -59,6 +59,11 @@
     <div class="object">
       <h2>Image <:image_number:> <:ifUserCan bse_edit_images_reorder:article:><:imgmove:><:eif:></h2>
       <p class="buttons">
+        <:- if UserCan bse_edit_images_save:article:>
+        <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>" class="button gray small">Edit</a>
+        <:- or UserCan:>
+        <a class="button gray small disabled">Edit</a>
+        <:- eif UserCan:>
         <:- if UserCan bse_edit_images_delete:article:>
         <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" data-action="Delete" data-object="Image" class="button red small">Delete</a>
         <:- or UserCan:>

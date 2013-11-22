@@ -1,7 +1,9 @@
-<:-.wrap "admin/base.tmpl", "title": "Edit Image" :>
+<:-.set is_article = article.id > 0 -:>
+<:-.set typename = is_article ? "" : "Site" -:>
+<:-.wrap "admin/base.tmpl", "title": "Edit " _ typename _ " Image" :>
 <div class="window dialog">
   <header>
-    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <:-.set pagetitle = params.title _ ( is_article ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
     <h1><:= pagetitle:></h1>
     <nav data-role="toolbar">
       <a href="<:adminurl add:>?id=<:article id:>&amp;_t=img" data-icon="back" data-icon-only="true" class="button">Back</a>
@@ -99,6 +101,23 @@
           </span>
         </div>
       </fieldset>
+      <fieldset>
+        <legend>Tags</legend>
+        <input type="hidden" name="_save_tags" value="1" />
+        <:-.set tags = cgi.param("_save_tags") ? [ cgi.param("tags") ] : [ "", eimage.tags ] :>
+        <:-.for tag in tags :>
+        <div>
+          <label for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
+          <span>
+            <input type="text" name="tags" id="tag_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags", "index":loop.index :>"/>
+            <:-.if loop.is_first:>
+            <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
+            <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+            <:-.end if:>
+          </span>
+        </div>
+        <:-.end for:>
+      </fieldset>
     </details>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
@@ -108,3 +127,20 @@
     </p>
   </form>
 </div>
+<script type="text/javascript">
+    function plus(ele) {
+        var ele = $(ele).up('div');
+        var clone = ele.clone(true);
+        clone.down('input[name="tags"]').clear().removeAttribute("class");
+        clone.down('label').update(' ');
+        var disabled = clone.down('button[disabled]');
+        if (disabled) {
+            disabled.removeAttribute('disabled');
+        }
+        ele.insert({after: clone});
+    };
+
+    function minus(ele) {
+        var ele = $(ele).up('div').remove();
+    };
+</script>
