@@ -301,7 +301,7 @@
         <:- eif Cfgsection:>
       </fieldset>
       <fieldset>
-        <legend>Categorisation <:error_img tags:></legend>
+        <legend>Categorisation</legend>
         <div>
           <label for="category">Category <:error_img category:></label>
           <span><:ifFieldPerm category:>
@@ -310,24 +310,20 @@
             <:help edit category:>
           </span>
         </div>
+        <input type="hidden" name="_save_tags" value="1" />
+        <:-.set tags = cgi.param("_save_tags") ? [ cgi.param("tags") ] : [ "", article.tags ] :>
+        <:-.for tag in tags :>
         <div>
-          <label for="tag">Tag name <:error_img tags:></label>
+          <label for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
           <span>
-            <input type="hidden" name="_save_tags" value="1" />
-            <input type="text" name="tags" id="tag" value="<:old tags:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tags:>error<:eif:>" />
+            <input type="text" name="tags" id="tag_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags", "index":loop.index :>"/>
+            <:-.if loop.is_first:>
             <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
-            <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button> 
-            <:help edit tags:>
+            <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+            <:-.end if:>
           </span>
         </div>
-        <:- iterator begin tags:>
-        <div>
-          <label for="tag_<:tag_number:>">&nbsp; <:error_img tags:></label>
-          <span>
-            <input type="text" name="tags" id="tag_<:tag_number:>" value="<:tag name:>" <:ifFieldPerm tags:><:or:>disabled="disabled" <:eif:>class="<:ifError_img tags:>error<:eif:>"/>
-          </span>
-        </div>
-        <:- iterator end tags:>
+        <:-.end for:>
       </fieldset>
       <fieldset>
         <legend>Presentation</legend>
@@ -609,6 +605,7 @@
     function plus(ele) {
         var ele = $(ele).up('div');
         var clone = ele.clone(true);
+        clone.down('input[name="tags"]').clear().removeAttribute("class");
         clone.down('label').update(' ');
         var disabled = clone.down('button[disabled]');
         if (disabled) {

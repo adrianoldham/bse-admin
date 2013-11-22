@@ -147,10 +147,22 @@
   <:-.if errors.$name :>
     <:-.set msg = errors.$name :>
     <:-.set msg = msg.is_list ? msg[index] : msg :>
+    <:-.if msg.defined :>
     <:-.set image = cfg.entry("error_img", "image", dist_image_uri _ "/icons/error.png") :>
     <:-.set width = cfg.entry("error_img", "width", 18) :>
     <:-.set height = cfg.entry("error_img", "height", 18) :>
     <img src="<:= image :>" alt="<:= msg :>" title="<:= msg :>" width="<:= width :>" height="<:= height :>" class="error_img" />
+    <:-.end if :>
+  <:-.end if :>
+<:-.end define :>
+
+<:-.define error_classname -:>
+  <:-.if errors.$name :>
+    <:-.set msg = errors.$name :>
+    <:-.set msg = msg.is_list ? msg[index] : msg :>
+    <:-.if msg.defined :>
+    error
+    <:-.end if :>
   <:-.end if :>
 <:-.end define :>
 
