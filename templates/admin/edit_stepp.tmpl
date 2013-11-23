@@ -1,4 +1,4 @@
-<:-.wrap "admin/base.tmpl", "title": ( cgi.param("stepparent") ? "Edit Stepparent" : "New Stepparent" ) :>
+<:-.wrap "admin/base.tmpl", "title": ( cgi.param("stepparent") ? "Edit" : "New" ) _ " Stepparent" :>
 <div class="window dialog">
   <header>
     <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
