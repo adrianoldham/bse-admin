@@ -30,8 +30,7 @@
   </head>
   <body id="<:= params.bodyid:>" data-role="page" class="<:= params.classes:> <:= cgi.param("preview") ? "preview" : "" :>">
     <:-.call "messages":>
-    <:-.if params.nonavbar:>
-    <:-.else:>
+    <:-.if not(params.nonavbar):>
 <:include admin/include/navbar.tmpl:>
     <:-.end if:>
     <:-.if cgi.param("preview"):>
