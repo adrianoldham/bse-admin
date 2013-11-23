@@ -3,9 +3,7 @@
 <:-.wrap "admin/base.tmpl", "title": "New " _ typename _ " File" :>
 <div class="window dialog">
   <header>
-    <:-.set id = cgi.param("parentid") or cgi.param("id") -:>
-    <:-.set article = not(is_article) ? bse.articles.getByPkey(id) : article -:>
-    <:-.set pagetitle = params.title _ ( id > 0 ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
+    <:-.set pagetitle = params.title _ ( is_article ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
     <h1><:= pagetitle:></h1>
   </header>
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="File">
