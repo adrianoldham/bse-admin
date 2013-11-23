@@ -52,7 +52,7 @@
         <span>
           <input type="hidden" name="id" value="-1" />
           <input type="hidden" name="tag_id" value="<:systag id:>" />
-          <input type="text" name="name" id="systag_<:systag_number:>" value="<:ifAnd [cgi a_tagsave] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" class="<:ifAnd [error_img name] [ifEq [cgi tag_id] [systag id]]:>error<:eif:>" />
+          <input type="text" name="name" id="systag_<:systag_number:>" value="<:ifAnd [cgi a_tagrename] [ifEq [cgi tag_id] [systag id]]:><:cgi name:><:or:><:systag name:><:eif:>" class="<:ifAnd [error_img name] [ifEq [cgi tag_id] [systag id]]:>error<:eif:>" />
           <input type="submit" name="a_tagrename" value="Save" class="button green small" />
           <a href="<:script:>?a_tagdelete=1&amp;id=-1&amp;tag_id=<:systag id:>" data-action="Delete" data-object="Tag" class="button red small">Delete</a>
         </span>
