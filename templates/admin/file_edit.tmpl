@@ -1,7 +1,9 @@
-<:-.wrap "admin/base.tmpl", "title": "Edit File" :>
+<:-.set is_article = article.id > 0 -:>
+<:-.set typename = is_article ? "" : "Site" -:>
+<:-.wrap "admin/base.tmpl", "title": "Edit " _ typename _ " File" :>
 <div class="window dialog">
   <header>
-    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <:-.set pagetitle = params.title _ ( is_article ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
     <h1><:= pagetitle:></h1>
     <nav data-role="toolbar">
       <a href="<:adminurl add:>?id=<:article id:>&amp;_t=file" data-icon="back" data-icon-only="true" class="button">Back</a>
