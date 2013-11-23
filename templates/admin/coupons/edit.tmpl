@@ -15,7 +15,7 @@
     <:-.end if :>
     <fieldset>
       <legend>Coupon</legend>
-      <:.call "field", "name":"code", "autofocus":1 :>
+      <:.call "field", "name":"code", "autofocus":1, "readonly":!coupon.is_removable :>
       <:.call "field", "name":"description" :>
       <:.call "field", "name":"discount_percent", "placeholder":"%" :>
       <:.call "field", "name":"campaign" :>
