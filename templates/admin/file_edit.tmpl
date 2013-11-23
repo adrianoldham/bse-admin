@@ -34,6 +34,10 @@
     <:- case ifMatch [referer] [adminurl admin] -:>
     <:adminurl add id [article id] preview 1:>
 
+    <:- # from article files: refresh to article files -:>
+    <:- case Match [referer] "_t=file" -:>
+    <:adminurl add id [article id] _t file:>
+
     <:- endswitch -:>
     " />
     <fieldset>

@@ -60,7 +60,7 @@
       <h2>Image <:image_number:> <:ifUserCan bse_edit_images_reorder:article:><:imgmove:><:eif:></h2>
       <p class="buttons">
         <:- if UserCan bse_edit_images_save:article:>
-        <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>" class="button gray small">Edit</a>
+        <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>&amp;referer=1" class="button gray small">Edit</a>
         <:- or UserCan:>
         <a class="button gray small disabled">Edit</a>
         <:- eif UserCan:>

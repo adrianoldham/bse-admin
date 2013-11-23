@@ -33,6 +33,10 @@
     <:- case ifMatch [referer] [adminurl admin] -:>
     <:adminurl add id [article id] preview 1:>
 
+    <:- # from article images: refresh to article images -:>
+    <:- case Match [referer] "_t=img" -:>
+    <:adminurl add id [article id] _t img:>
+
     <:- endswitch -:>
     " />
     <fieldset>
