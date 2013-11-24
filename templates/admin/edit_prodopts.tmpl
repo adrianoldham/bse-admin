@@ -1,4 +1,4 @@
-<:-.wrap "admin/base.tmpl", "title": "New Option", "js": "admin_prodopts.js" :>
+<:-.wrap "admin/base.tmpl", "title": "New Option" :>
 <div class="window dialog">
   <header>
     <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
@@ -18,48 +18,45 @@
         </span>
       </div>
       <div>
-        <label for="enabled">Enabled <:error_img Enabled:></label>
+        <label for="enabled">Enabled <:error_img enabled:></label>
         <span>
-          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOld enabled option enabled:>checked="checked" <:eif:>/>
-          <:help edit Enabled:>
+          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOld enabled:>checked="checked" <:eif:>/>
+          <:help edit enabled:>
         </span>
       </div>
     </fieldset>
     <fieldset>
       <legend>Values</legend>
       <div>
-        <label for="value1">#1 <:error_img value1:> <input type="radio" name="default_value" value="value1" <:ifEq [old default_value] "value1":>checked="checked"<:eif:> /></label>
+        <label for="value1">#1 <span class="required">*</span> <:error_img value1:> <!--<input type="radio" name="default_value" value="value1" <:ifEq [old default_value] "value1":>checked="checked"<:eif:> />--></label>
         <span>
-          <input type="text" name="value1" id="value1" value="<:old value1:>" class="<:ifError_img value1:>error<:eif:>" />
+          <input type="text" name="value1" id="value1" value="<:old value1:>" required="required" class="<:ifError_img value1:>error<:eif:>" />
         </span>
       </div>
       <div>
-        <label for="value2">#2 <:error_img value2:> <input type="radio" name="default_value" value="value2" <:ifEq [old default_value] "value2":>checked="checked"<:eif:> /></label>
+        <label for="value2">#2 <span class="required">*</span> <:error_img value2:> <!--<input type="radio" name="default_value" value="value2" <:ifEq [old default_value] "value2":>checked="checked"<:eif:> />--></label>
         <span>
-          <input type="text" name="value2" id="value2" value="<:old value2:>" class="<:ifError_img value2:>error<:eif:>" />
+          <input type="text" name="value2" id="value2" value="<:old value2:>" required="required" class="<:ifError_img value2:>error<:eif:>" />
         </span>
       </div>
       <div>
-        <label for="value3">#3 <:error_img value3:> <input type="radio" name="default_value" value="value3" <:ifEq [old default_value] "value3":>checked="checked"<:eif:> /></label>
+        <label for="value3">#3 <:error_img value3:> <!--<input type="radio" name="default_value" value="value3" <:ifEq [old default_value] "value3":>checked="checked"<:eif:> />--></label>
         <span>
           <input type="text" name="value3" id="value3" value="<:old value3:>" class="<:ifError_img value3:>error<:eif:>" />
         </span>
       </div>
       <div>
-        <label for="value4">#4 <:error_img value4:> <input type="radio" name="default_value" value="value4" <:ifEq [old default_value] "value4":>checked="checked"<:eif:> /></label>
+        <label for="value4">#4 <:error_img value4:> <!--<input type="radio" name="default_value" value="value4" <:ifEq [old default_value] "value4":>checked="checked"<:eif:> />--></label>
         <span>
           <input type="text" name="value4" id="value4" value="<:old value4:>" class="<:ifError_img value4:>error<:eif:>" />
         </span>
       </div>
       <div>
-        <label for="value5">#5 <:error_img value5:> <input type="radio" name="default_value" value="value5" <:ifEq [old default_value] "value5":>checked="checked"<:eif:> /></label>
+        <label for="value5">#5 <:error_img value5:> <!--<input type="radio" name="default_value" value="value5" <:ifEq [old default_value] "value5":>checked="checked"<:eif:> />--></label>
         <span>
           <input type="text" name="value5" id="value5" value="<:old value5:>" class="<:ifError_img value5:>error<:eif:>" />
         </span>
       </div>
-      <p class="buttons">
-        <button onclick="javascript: var parent = $(this).up('p'); var ele = $(this).up('p').previous('div'); parent.insert({before: ele.clone(true)}); return false;" class="button blue small">Add Value</button>
-      </p>
     </fieldset>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>

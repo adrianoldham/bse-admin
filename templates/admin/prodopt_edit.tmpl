@@ -13,6 +13,7 @@
   <form action="<:script:>" method="post" data-object="Option">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="option_id" value="<:option id:>" />
+    <input type="hidden" name="newvaluecount" id="newvaluecount" value="0" />
     <input type="hidden" name="r" value="<:cgi r:>" />
     <:csrfp admin_save_option hidden:>
     <input type="hidden" name="save_enabled" value="1" />
@@ -26,28 +27,28 @@
         </span>
       </div>
       <div>
-        <label for="enabled">Enabled <:error_img Enabled:></label>
+        <label for="enabled">Enabled <:error_img enabled:></label>
         <span>
-          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOld enabled option enabled:>checked="checked"<:eif:> />
-          <:help edit Enabled:>
+          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOr [old enabled] [option enabled]:>checked="checked"<:eif:> />
+          <:help edit enabled:>
         </span>
       </div>
     </fieldset>
-    <fieldset>
-      <legend>Values</legend>
+    <fieldset id="option_values">
+      <legend>Values <:error_img default_value:></legend>
       <:- iterator begin dboptionvalues:>
       <div>
-        <label for="value<:dboptionvalue id:>">#<:dboptionvalue_number:> <:error_img [concatenate value [dboptionvalue id]]:> <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifEq [dboptionvalue id] [option default_value]:>checked="checked"<:eif:> /> <:error_img default_value:></label>
+        <label for="value<:dboptionvalue id:>">
+          <a href="<:script:>?id=<:article id:>&amp;a_delete_option_value=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_delete_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>" data-action="Delete" data-object="Value" class="button red small">&minus;</a>
+          <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifEq [dboptionvalue id] [option default_value]:>checked="checked"<:eif:> />
+          #<:dboptionvalue_number:> <:error_img [concatenate value [dboptionvalue id]]:>
+        </label>
         <span>
           <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [concatenate value [dboptionvalue id]] 0 dboptionvalue value:>" class="<:ifError_img [concatenate value [dboptionvalue id]]:>error<:eif:>" />
           <:help edit name:>
-          <button onclick="javascript: $(this).up('div').remove(); return false;" class="button red small">Delete</button>
         </span>
       </div>
       <:- iterator end dboptionvalues:>
-      <p class="buttons">
-        <button onclick="javascript: var parent = $(this).up('p'); var ele = $(this).up('p').previous('div'); parent.insert({before: ele.clone(true)}); return false;" class="button blue small">Add Value</button>
-      </p>
     </fieldset>
     <p class="buttons">
       <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
@@ -57,3 +58,31 @@
     </p>
   </form>
 </div>
+<script type="text/javascript">
+    var optionValues = $("option_values");
+    var addButton = new Element("button", { "class": "button gray small right" }).update("+");
+    optionValues.appendChild(addButton);
+    
+    var index = parseInt($("newvaluecount").value);
+    
+    addButton.observe("click", function(ev) {
+        ev.stop();
+        ++index;
+        var name = "newvalue" + index;
+
+        var div = new Element("div");
+
+        var label = new Element("label", { "for": name }).update("#" + parseInt(<:dboptionvalue_count:> + index) );
+        div.appendChild(label);
+    
+        var span = new Element("span");
+        div.appendChild(span);
+    
+        var input = new Element("input", { "type": "text", "name": name, "id": name });
+        span.appendChild(input);
+    
+        optionValues.insertBefore(div, addButton);
+    
+        $("newvaluecount").value = index;
+    });
+</script>
