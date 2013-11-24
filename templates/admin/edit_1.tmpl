@@ -259,7 +259,7 @@
               <a class="button gray small disabled">Edit</a>
               <:- eif UserCan:>
               <:- if UserCan bse_edit_prodopt_delete:article:>
-              <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:dboption id:>&amp;a_delconf_option=1&amp;_csrfp=<:csrfp admin_delete_option:>" data-action="Delete" data-object="Option" class="button red small">Delete</a>
+              <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:dboption id:>&amp;_csrfp=<:csrfp admin_delete_option:>" data-action="Delete" data-object="Option" class="button red small">Delete</a>
               <:- or UserCan:>
               <a class="button red small disabled">Delete</a>
               <:- eif UserCan:>
