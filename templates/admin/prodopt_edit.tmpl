@@ -40,19 +40,21 @@
       <div>
         <label for="value<:dboptionvalue id:>">
           <!--:dboptionvalue_move:-->
-          <span class="<:= cfg.entry("arrows", "class", "bse-arrows"):>">
-            <:- ifEq [add [dboptionvalue_index] 1] [ifDboptionvalues] -:>
-            <img src="<:= cfg.entry("arrows", "downimg_disabled", dist_image_uri _ "/admin/move-down-disabled.png").escape("html") :>" width="<:= cfg.entry("arrows", "image_width", 17):>" height="<:= cfg.entry("arrows", "image_height", 14):>" border="0" alt="Down" />
-            <:- or -:>
-            <a href="<:script:>?id=<:article id:>&amp;a_option_value_movedown=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_move_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>"><img src="<:= cfg.entry("arrows", "downimg", dist_image_uri _ "/admin/move-down.png").escape("html") :>" width="<:= cfg.entry("arrows", "image_width", 17):>" height="<:= cfg.entry("arrows", "image_height", 14):>" border="0" alt="Down" /></a>
-            <:- eif -:>
-            <:- ifEq [dboptionvalue_index] 0 -:>
-            <img src="<:= cfg.entry("arrows", "upimg_disabled", dist_image_uri _ "/admin/move-up-disabled.png").escape("html") :>" width="<:= cfg.entry("arrows", "image_width", 17):>" height="<:= cfg.entry("arrows", "image_height", 14):>" border="0" alt="Up" />
-            <:- or -:>
-            <a href="<:script:>?id=<:article id:>&amp;a_option_value_moveup=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_move_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>"><img src="<:= cfg.entry("arrows", "upimg", dist_image_uri _ "/admin/move-up.png").escape("html") :>" width="<:= cfg.entry("arrows", "image_width", 17):>" height="<:= cfg.entry("arrows", "image_height", 14):>" border="0" alt="Up" /></a>
-            <:- eif -:>
-          </span>
+          <:-.if request.user_can("admin_move_option_value", article) :>
+          <:-.set option_id = "option id".evaltag -:>
+          <:-.set dboptionvalue_id = "dboptionvalue id".evaltag -:>
+          <:-.set loop_next = "arithmetic [dboptionvalue_count] > [dboptionvalue_index] + 1".evaltag -:>
+          <:-.set loop_prev = "dboptionvalue_index".evaltag -:>
+          <:-.set refresh = cfg.admin_url2("add", "edit_option", { "id":article.id, "option_id": option_id }) -:>
+
+          <:-.set down_url = loop_next ? cfg.admin_url2("add", "option_value_movedown", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_move_option_value"), "r":refresh }) : 0 -:>
+          <:-.set up_url = loop_prev ? cfg.admin_url2("add", "option_value_moveup", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_move_option_value"), "r":refresh }) : 0 -:>
+          
+          <:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
+          <:-.end if :>
+          <:- if UserCan bse_edit_prodopt_edit:article:>
           <a href="<:script:>?id=<:article id:>&amp;a_delete_option_value=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_delete_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>" data-action="Delete" data-object="Value" class="button red small">&minus;</a>
+          <:- eif UserCan:>
           <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifOr [ifEq [dboptionvalue id] [cgi default_value]] [ifEq [dboptionvalue id] [option default_value]]:>checked="checked"<:eif:> />
           #<:dboptionvalue_number:> <span class="required">*</span> <:error_img [cat value [dboptionvalue id]]:>
         </label>
@@ -81,6 +83,7 @@
     </p>
   </form>
 </div>
+<:- if UserCan bse_edit_prodopt_edit:article:>
 <script type="text/javascript">
     var optionValues = $("option_values");
     var addButton = new Element("button", { "class": "button gray small right" }).update("+");
@@ -112,3 +115,4 @@
         $("newvaluecount").value = index;
     });
 </script>
+<:- eif UserCan:>
