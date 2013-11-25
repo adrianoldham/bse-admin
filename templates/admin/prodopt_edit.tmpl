@@ -53,7 +53,7 @@
             <:- eif -:>
           </span>
           <a href="<:script:>?id=<:article id:>&amp;a_delete_option_value=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_delete_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>" data-action="Delete" data-object="Value" class="button red small">&minus;</a>
-          <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifEq [dboptionvalue id] [option default_value]:>checked="checked"<:eif:> />
+          <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifOr [ifEq [dboptionvalue id] [cgi default_value]] [ifEq [dboptionvalue id] [option default_value]]:>checked="checked"<:eif:> />
           #<:dboptionvalue_number:> <:error_img [cat value [dboptionvalue id]]:>
         </label>
         <span>
