@@ -13,7 +13,7 @@
   <form action="<:script:>" method="post" data-object="Option">
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="option_id" value="<:option id:>" />
-    <input type="hidden" name="newvaluecount" id="newvaluecount" value="0" />
+    <input type="hidden" name="newvaluecount" id="newvaluecount" value="<:ifCgi newvaluecount:><:cgi newvaluecount:><:or:>0<:eif:>" />
     <input type="hidden" name="r" value="<:cgi r:>" />
     <:csrfp admin_save_option hidden:>
     <input type="hidden" name="save_enabled" value="1" />
@@ -41,14 +41,24 @@
         <label for="value<:dboptionvalue id:>">
           <a href="<:script:>?id=<:article id:>&amp;a_delete_option_value=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_delete_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>" data-action="Delete" data-object="Value" class="button red small">&minus;</a>
           <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifEq [dboptionvalue id] [option default_value]:>checked="checked"<:eif:> />
-          #<:dboptionvalue_number:> <:error_img [concatenate value [dboptionvalue id]]:>
+          #<:dboptionvalue_number:> <:error_img [cat value [dboptionvalue id]]:>
         </label>
         <span>
-          <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [concatenate value [dboptionvalue id]] 0 dboptionvalue value:>" class="<:ifError_img [concatenate value [dboptionvalue id]]:>error<:eif:>" />
+          <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [cat value [dboptionvalue id]] 0 dboptionvalue value:>" class="<:ifError_img [cat value [dboptionvalue id]]:>error<:eif:>" />
           <:help edit name:>
         </span>
       </div>
       <:- iterator end dboptionvalues:>
+      <:- if Cgi newvaluecount:>
+      <:- iterator begin repeats [cgi newvaluecount]:>
+      <div>
+        <label for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <:error_img [cat newvalue [repeat value]]:></label>
+        <span>
+          <input type="text" name="newvalue<:repeat value:>" id="newvalue<:repeat value:>" value="<:= cgi.param("newvalue" _ "repeat value".evaltag ):>" class="<:ifError_img [cat newvalue [repeat value]]:>error<:eif:>" />
+        </span>
+      </div>
+      <:- iterator end repeats:>
+      <:- eif Cgi:>
     </fieldset>
     <p class="buttons">
       <a href="<:script:>?id=<:article id:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
