@@ -1,7 +1,8 @@
 <:-.wrap "admin/base.tmpl", "title": "Edit Option" :>
 <div class="window dialog">
   <header>
-    <h1><:= params.title:></h1>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= pagetitle:></h1>
     <nav data-role="toolbar">
       <:- if UserCan bse_edit_prodopt_delete:article:>
       <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:option id:>&amp;_csrfp=<:csrfp admin_delete_option:>" data-action="Delete" data-object="Option" data-icon="trash" class="button">Delete</a>
