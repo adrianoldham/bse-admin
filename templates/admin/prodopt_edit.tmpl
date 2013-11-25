@@ -39,6 +39,19 @@
       <:- iterator begin dboptionvalues:>
       <div>
         <label for="value<:dboptionvalue id:>">
+          <!--:dboptionvalue_move:-->
+          <span class="<:= cfg.entry("arrows", "class", "bse-arrows"):>">
+            <:- ifEq [add [dboptionvalue_index] 1] [ifDboptionvalues] -:>
+            <img src="<:= cfg.entry("arrows", "downimg_disabled", dist_image_uri _ "/admin/move-down-disabled.png").escape("html") :>" width="<:= cfg.entry("arrows", "image_width", 17):>" height="<:= cfg.entry("arrows", "image_height", 14):>" border="0" alt="Down" />
+            <:- or -:>
+            <a href="<:script:>?id=<:article id:>&amp;a_option_value_movedown=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_move_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>"><img src="<:= cfg.entry("arrows", "downimg", dist_image_uri _ "/admin/move-down.png").escape("html") :>" width="<:= cfg.entry("arrows", "image_width", 17):>" height="<:= cfg.entry("arrows", "image_height", 14):>" border="0" alt="Down" /></a>
+            <:- eif -:>
+            <:- ifEq [dboptionvalue_index] 0 -:>
+            <img src="<:= cfg.entry("arrows", "upimg_disabled", dist_image_uri _ "/admin/move-up-disabled.png").escape("html") :>" width="<:= cfg.entry("arrows", "image_width", 17):>" height="<:= cfg.entry("arrows", "image_height", 14):>" border="0" alt="Up" />
+            <:- or -:>
+            <a href="<:script:>?id=<:article id:>&amp;a_option_value_moveup=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_move_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>"><img src="<:= cfg.entry("arrows", "upimg", dist_image_uri _ "/admin/move-up.png").escape("html") :>" width="<:= cfg.entry("arrows", "image_width", 17):>" height="<:= cfg.entry("arrows", "image_height", 14):>" border="0" alt="Up" /></a>
+            <:- eif -:>
+          </span>
           <a href="<:script:>?id=<:article id:>&amp;a_delete_option_value=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_delete_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>" data-action="Delete" data-object="Value" class="button red small">&minus;</a>
           <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifEq [dboptionvalue id] [option default_value]:>checked="checked"<:eif:> />
           #<:dboptionvalue_number:> <:error_img [cat value [dboptionvalue id]]:>
