@@ -88,6 +88,7 @@
           </select>
 <:-.end define :>
 
+
 <:# make_multicheck expects:
   values - list of hashes
   default - a list of ids of checks to be checked
@@ -119,6 +120,7 @@
         <:-.end for :>
       </ul>
 <:-.end define :>
+
 
 <:# paramaters:
   base - base url for links
@@ -153,6 +155,7 @@
   </p>
 <:-.end define :>
 
+
 <:# parameters:
   name - field name
   default
@@ -164,6 +167,7 @@
   <:-= default :>
 <:-.end if :>
 <:-.end define :>
+
 
 <:# parameters:
    name - name of field
@@ -183,6 +187,7 @@
   <:-.end if :>
 <:-.end define :>
 
+
 <:-.define error_classname -:>
   <:-.if errors.$name :>
     <:-.set msg = errors.$name :>
@@ -193,14 +198,17 @@
   <:-.end if :>
 <:-.end define :>
 
+
 <:-.define error_img -:>
 <:-.call "error_img_n", "index":0 :>
 <:-.end define :>
+
 
 <:-.define required_indicator -:>
 <:-.if required :> <span class="required">*</span>
 <:-.end if :>
 <:-.end define :>
+
 
 <:# paramaters:
   name - field name
@@ -291,6 +299,7 @@
           <:-.end if :>
 <:-.end define :>
 
+
 <:# paramaters:
   name - field name
   fields - hash of fields (may be set by page instead)
@@ -307,6 +316,7 @@
       <p>fields isn’t a hash, something is wrong.</p>
   <:-.end if :>
 <:-.end define :>
+
 
 <:# parameters:
   name - the field name
@@ -330,6 +340,7 @@
     <:-.end if :>
 <:-.end define :>
 
+
 <:# like field, but wrap in a per-field field set.
 parameters:
   name - field name
@@ -351,6 +362,7 @@ parameters:
   <:-.end if :>
 <:-.end define :>
 
+
 <:# parameters:
   name - the field name
   field - a field, as an entry in fields
@@ -369,6 +381,7 @@ parameters:
     <:-.end if :>
 <:-.end define :>
 
+
 <:# like field, but for display, not editing :>
 <:-.define fieldro -:>
   <:-.if fields.is_hash -:>
@@ -382,6 +395,7 @@ parameters:
     <p>fields isn’t a hash, something is wrong.</p>
   <:-.end if :>
 <:-.end define :>
+
 
 <:# like fieldro, but wrap in a per-field field set.
 parameters:
@@ -404,6 +418,7 @@ parameters:
   <:-.end if :>
 <:-.end define :>
 
+
 <:-.define messages -:>
   <:-.if request.messages.size :>
     <div id="message">
@@ -415,6 +430,7 @@ parameters:
     </div>
   <:-.end if :>
 <:-.end define :>
+
 
 <:# expects:
   loop
@@ -434,6 +450,35 @@ parameters:
 <:-.end if -:>
 <:-.end if -:>
 <:-.end define :>
+
+
+<:-.define move_image -:>
+<:-.if bse.admin or admin -:>
+<:-.if request.user_can("bse_edit_images_reorder", article) -:>
+
+<:-.set down_url = loop.next ? cfg.admin_url("add", { "moveimgdown":1, "id":article.id, "imageid":loop.current.id, "_csrfp":request.get_csrf_token("admin_move_image"), "r":r }) : 0 -:>
+<:-.set up_url = loop.prev ? cfg.admin_url("add", { "moveimgup":1, "id":article.id, "imageid":loop.current.id, "_csrfp":request.get_csrf_token("admin_move_image"), "r":r }) : 0 -:>
+
+<:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
+
+<:-.end if -:>
+<:-.end if -:>
+<:-.end define :>
+
+
+<:-.define move_file -:>
+<:-.if bse.admin or admin -:>
+<:-.if request.user_can("bse_edit_files_reorder", article) -:>
+
+<:-.set down_url = loop.next ? cfg.admin_url("add", { "fileswap":1, "id":article.id, "file1":loop.current.id, "file2":loop.next.id, "_csrfp":request.get_csrf_token("admin_move_file"), "r":r }) : 0 -:>
+<:-.set up_url = loop.prev ? cfg.admin_url("add", { "fileswap":1, "id":article.id, "file1":loop.current.id, "file2":loop.prev.id, "_csrfp":request.get_csrf_token("admin_move_file"), "r":r }) : 0 -:>
+
+<:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
+
+<:-.end if -:>
+<:-.end if -:>
+<:-.end define :>
+
 
 <:-.define make_arrows -:>
 <:-.set class = cfg.entry("arrows", "class", "bse-arrows") -:>
@@ -461,6 +506,7 @@ parameters:
 </span>
 
 <:-.end define :>
+
 
 <:- include admin/include/preload.tmpl optional -:>
 <:- include admin/include/custom/preload.tmpl optional -:>
