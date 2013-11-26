@@ -14,6 +14,7 @@
 <:-.set dist_image_uri = cfg.entryIfVar("uri", "dist_images", "/images") -:>
 <:-.set errors = request.field_errors -:>
 <:-.set object = 0 -:>
+<:-.set request = bse.admin ? generator.request : request -:>
 
 <:# utility definitions :>
 <:-.define make_select -:>
@@ -397,25 +398,42 @@ parameters:
 :>
 <:-.define move -:>
 <:-.if bse.admin or admin -:>
-<span class="<:= cfg.entry("arrows", "class", "bse-arrows") :>">
+<:-.if request.user_can("bse_edit_reorder_children", parent) -:>
+
+<:-.set down_url = loop.next ? cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.next.id, "r":r }) : 0 -:>
+<:-.set up_url = loop.prev ? cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.prev.id, "r":r }) : 0 -:>
+
+<:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
+
+<:-.end if -:>
+<:-.end if -:>
+<:-.end define :>
+
+<:-.define make_arrows -:>
+<:-.set class = cfg.entry("arrows", "class", "bse-arrows") -:>
 <:-.set width = cfg.entry("arrows", "image_width", 17) -:>
 <:-.set height = cfg.entry("arrows", "image_height", 14) -:>
-<:-.set extras = 'width="' _ width _ '" height="' _ height _ '"' -:>
-<:-.set blankim = '<img src="' _ (dist_image_uri _ "/trans_pixel.gif").escape("html") _ '" alt="" ' _ extras _ ' />' -:>
-<:-.if loop.next -:>
-<:-.set downimg = cfg.entry("arrows", "downimg", dist_image_uri _ "/admin/move_down.gif") -:>
-<a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.next.id, "r":r }) :>"><img src="<:= downimg | raw :>" <:= extras | raw :> /></a>
+<:-.set extras = 'width="' _ width _ '" height="' _ height _ '" border="0"' -:>
+
+<:-.set down_img = '<img src="' _ cfg.entry("arrows", "downimg", dist_image_uri _ "/admin/move-down.png").escape("html") _ '" ' _ extras _ ' alt="Down" />' -:>
+<:-.set up_img = '<img src="' _ cfg.entry("arrows", "upimg", dist_image_uri _ "/admin/move-up.png").escape("html") _ '" ' _ extras _ ' alt="Up" />' -:>
+<:-.set down_img_disabled = '<img src="' _ cfg.entry("arrows", "downimg_disabled", dist_image_uri _ "/admin/move-down-disabled.png").escape("html") _ '" ' _ extras _ ' alt="Down" />' -:>
+<:-.set up_img_disabled = '<img src="' _ cfg.entry("arrows", "upimg_disabled", dist_image_uri _ "/admin/move-up-disabled.png").escape("html") _ '" ' _ extras _ ' alt="Up" />' -:>
+
+<span class="<:= class :>">
+<:-.if down_url -:>
+<a href="<:= down_url :>"><:= down_img | raw :></a>
 <:-.else -:>
-<:= blankim | raw :>
+<:= down_img_disabled | raw :>
 <:-.end if -:>
-<:-.if loop.prev -:>
-<:-.set upimg = cfg.entry("arrows", "upimg", dist_image_uri _ "/admin/move_up.gif") -:>
-<a href="<:= cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.prev.id, "r":r }) :>"><img src="<:= upimg | raw :>" <:= extras | raw :> /></a>
+
+<:-.if up_url -:>
+<a href="<:= up_url :>"><:= up_img | raw :></a>
 <:-.else -:>
-<:= blankim | raw :>
+<:= up_img_disabled | raw :>
 <:-.end if -:>
 </span>
-<:-.end if -:>
+
 <:-.end define :>
 
 <:- include admin/include/preload.tmpl optional -:>
