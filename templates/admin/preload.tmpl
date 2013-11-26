@@ -16,6 +16,32 @@
 <:-.set object = 0 -:>
 <:-.set request = bse.admin ? generator.request : request -:>
 
+<:-.define admin_styles -:>
+<style>
+*[class^=bse-] {
+    position: relative;
+    z-index: 1;
+}
+
+.bse-label {
+    font-size: 10px;
+    line-height: 14px;
+    color: white;
+    background-color: #666;
+    min-width: 14px;
+    padding: 0 3px;
+    margin-right: 3px;
+    display: inline-block;
+    text-align: center;
+}
+
+.bse-arrows {
+    margin-left: 3px;
+    display: inline-block;
+}
+</style>
+<:-.end define :>
+
 <:# utility definitions :>
 <:-.define make_select -:>
           <:-.if !default.defined :>
