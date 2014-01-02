@@ -593,6 +593,8 @@ parameters:
 <:-.set down_img_disabled = '<img src="' _ cfg.entry("arrows", "downimg_disabled", dist_image_uri _ "/admin/move-down-disabled.png").escape("html") _ '" ' _ extras _ ' alt="Down" />' -:>
 <:-.set up_img_disabled = '<img src="' _ cfg.entry("arrows", "upimg_disabled", dist_image_uri _ "/admin/move-up-disabled.png").escape("html") _ '" ' _ extras _ ' alt="Up" />' -:>
 
+<:-.if down_url or up_url -:>
+
 <span class="<:= class :>">
 <:-.if down_url -:>
 <a href="<:= down_url :>"><:= down_img | raw :></a>
@@ -607,6 +609,7 @@ parameters:
 <:-.end if -:>
 </span>
 
+<:-.end if -:>
 <:-.end define :>
 
 
