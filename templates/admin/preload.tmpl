@@ -11,6 +11,10 @@
     z-index: 1;
 }
 
+*[class^=bse-] img {
+    border: 0;
+}
+
 .bse-label {
     font-size: 10px;
     line-height: 14px;
@@ -586,7 +590,7 @@ parameters:
 <:-.set class = cfg.entry("arrows", "class", "bse-arrows") -:>
 <:-.set width = cfg.entry("arrows", "image_width", 17) -:>
 <:-.set height = cfg.entry("arrows", "image_height", 14) -:>
-<:-.set extras = 'width="' _ width _ '" height="' _ height _ '" border="0"' -:>
+<:-.set extras = 'width="' _ width _ '" height="' _ height _ '"' -:>
 
 <:-.set down_img = '<img src="' _ cfg.entry("arrows", "downimg", dist_image_uri _ "/admin/move-down.png").escape("html") _ '" ' _ extras _ ' alt="Down" />' -:>
 <:-.set up_img = '<img src="' _ cfg.entry("arrows", "upimg", dist_image_uri _ "/admin/move-up.png").escape("html") _ '" ' _ extras _ ' alt="Up" />' -:>
