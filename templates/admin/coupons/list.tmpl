@@ -79,7 +79,7 @@
       </thead>
       <tbody>
         <:-.for coupon in coupons :>
-          <:-.set classes = [ loop.even ? "even":"odd"  ] -:>
+          <:-.set classes = [ loop.parity ] -:>
           <:-.if coupon.is_expired :>
             <:-% classes.push("expired error") :>
           <:-.elsif coupon.is_released :>
