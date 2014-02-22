@@ -450,7 +450,7 @@ parameters:
     <:-.call "make_button_img", "name":"delete" -:>
   </a>
 
-  <:-.elsif request.user_can("bse_edit_stepkid_delete", parent) and request.user_can("bse_edit_stepparent_delete", child) -:>
+  <:-.elsif request.user_can("bse_edit_stepkid_delete", parent) and request.user_can("bse_edit_stepparent_delete", child) and (parent.id != child.parentid) -:>
   <:-.set delete_url = cfg.admin_url("add", { "del_stepkid":1, "id":parent.id, "stepkid": child.id, "_csrfp":request.get_csrf_token("admin_remove_stepkid"), "r":r }) -:>
   <a href="<:= delete_url :>" title="Delete Stepchild (Id <:= child.id:>)" onclick="return window.confirm('Are you sure you want to remove the Stepchild relationship?')">
     <:-.call "make_button_img", "name":"delete" -:>
