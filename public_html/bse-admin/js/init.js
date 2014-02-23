@@ -9,6 +9,8 @@ document.write('<script type="text/javascript" src="/bse-admin/js/opendetails.js
 document.write('<script type="text/javascript" src="/bse-admin/js/formmonitor.js"></script>');
 document.write('<script type="text/javascript" src="/bse-admin/js/linkconfirmer.js"></script>');
 
+var changesMonitor;
+
 // wait for DOM to load before initialising
 
 document.observe("dom:loaded", dom_init);
@@ -78,7 +80,7 @@ function dom_init() {
     $$(".window header").invoke('insert', { after: sheetHtml });
     $$("body").invoke('insert', { bottom: confirmHtml });
 
-    var changesMonitor = new ChangesMonitor({ forms: 'form:[data-object]', onPrompt: hide_menu });
+    changesMonitor = new ChangesMonitor({ forms: 'form:[data-object]', onPrompt: hide_menu });
     var linkConfirmer = new LinkConfirmer({ onPrompt: hide_menu });
     
     if (/subs\.pl/.test(window.location.href)) {

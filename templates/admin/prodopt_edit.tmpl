@@ -115,6 +115,12 @@
         optionValues.insertBefore(div, addButton);
     
         $("newvaluecount").value = index;
+        
+        /*
+          Reinitialise changesMonitor to include new inputs
+          Originally initialised in init.js
+        */
+        changesMonitor.initialize();
     });
 </script>
 <:- eif UserCan:>
