@@ -1,28 +1,15 @@
 <:-.wrap "admin/base.tmpl", "title": "Administration Logon", "nonavbar": 1, "classes": "nonavbar" :>
+<:-.set object = 0 :>
 <div class="window dialog">
   <header>
     <h1><:= params.title:></h1>
   </header>
-  <form action="<:adminurl logon:>" method="post" data-object="User" data-confirm="false">
-    <:- if Cgi r:>
-    <input type="hidden" name="r" value="<:cgi r:>" />
-    <:- or Cgi:>
-    <input type="hidden" name="r" value="<:adminurl add id 1 preview 1:>" />
-    <:- eif Cgi:>
+  <form action="<:= cfg.admin_url("logon"):>" method="post" data-object="User" data-confirm="false">
+    <input type="hidden" name="r" value="<:= cgi.param("r") or cfg.admin_url("add", { "id": 1, "preview": 1 }):>" />
     <fieldset>
       <legend>Login</legend>
-      <div>
-        <label for="username">Username <span class="required">*</span> <:error_img logon:></label>
-        <span>
-          <input type="text" name="logon" id="username" value="<:old logon:>" required="required" autofocus="autofocus" class="<:ifError_img logon:>error<:eif:>" />
-        </span>
-      </div>
-      <div>
-        <label for="password">Password <span class="required">*</span> <:error_img password:></label>
-        <span>
-          <input type="password" name="password" id="password" value="" required="required" class="<:ifError_img password:>error<:eif:>" />
-        </span>
-      </div>
+      <:.call "inlinefield", "name": "logon", "field": { "description": "Username", "autofocus": 1, "required": 1 } :>
+      <:.call "inlinefield", "name": "password", "field": { "description": "Password", "htmltype": "password", "required": 1 } :>
     </fieldset>
     <p class="buttons">
       <input type="submit" name="a_logon" value="Login" accesskey="l" title="AccessKey = l" class="button blue" />
