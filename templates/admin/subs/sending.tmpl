@@ -4,7 +4,7 @@
     <h1><:= params.title:></h1>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
   </header>
-  <p><b>Warning</b> Do not interrupt this process. Attempting to stop, go-back or refresh may result in incomplete, or duplicate transmissions.</p>
+  <p data-role="status" class="warn"><b>Warning: Do not interrupt this process</b> — Attempting to stop, go back or refresh may result in incomplete or duplicate transmissions</p>
   <ul class="inset list">
     <:iterator begin messages:>
     <:switch:>
