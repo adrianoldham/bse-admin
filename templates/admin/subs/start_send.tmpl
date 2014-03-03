@@ -7,7 +7,7 @@
   </head>
   <frameset rows="50%,*">
     <frame src="<:script:>?send_form=1&amp;id=<:sub id:>" name="form" />
-    <frame src="<:script:>?html_preview=1&amp;id=<:sub id:>&amp;body=" name="preview" />
+    <frame src="<:script:>?<:cond [sub html_template] "html_preview" "text_preview":>=1&amp;id=<:sub id:>&amp;body=" name="preview" />
     <noframes>
       <body>
         <p>Your browser does not support frames.</p>
