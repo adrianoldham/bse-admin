@@ -7,14 +7,19 @@
   <p data-role="status" class="warn"><b>Warning: Do not interrupt this process</b> — Attempting to stop, go back or refresh may result in incomplete or duplicate transmissions</p>
   <ul class="inset list">
     <:iterator begin messages:>
-    <:switch:>
-    <:case Error:>
-    <li class="error"><:message:></li>
-    <:case User:>
-    <li>Sending to <:user email:></li>
-    <:case default:>
-    <li><:message:></li>
-    <:endswitch:>
+    <:-.if is_error:>
+      <:-.if sub_user:>
+    <li class="error"><b><:= sub_message:> sending to <:= sub_user.email:></b></li>
+      <:-.else :>
+    <li class="error"><b><:= sub_message:></b></li>
+      <:-.end if:>
+    <:-.else:>
+      <:-.if sub_user:>
+    <li>Sending to: <:= sub_user.email:></li>
+      <:-.else:>
+    <li><:= sub_message:></li>
+      <:-.end if:>
+    <:-.end if:>
     <:iterator end messages:>
   </ul>
 </div>
