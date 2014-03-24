@@ -1,4 +1,19 @@
 <:-.wrap "admin/base.tmpl", "title": ( cgi.param("stepkid") ? "Edit" : "New" ) _ " Stepchild":>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer -:>
+<:-.set done_url = referer.replace(/(&amp;|\?)referer=[\d]+/, "") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id, "_t": "kids" }) -:>
+
+<:-.end if -:>
+
 <div class="window dialog">
   <header>
     <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
@@ -65,7 +80,7 @@
       </div>
     </fieldset>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:>&amp;_kids<:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_stepkid_save:article,bse_edit_stepparent_save:kid:>
       <input type="submit" name="save_stepkids" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- eif UserCan:>
@@ -101,7 +116,7 @@
       </div>
     </fieldset>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:>&amp;_kids<:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_stepkid_add:article:>
       <input type="submit" name="add_stepkid" value="Create Stepchild" accesskey="c" title="AccessKey = c" class="button green" />
       <:- eif UserCan:>

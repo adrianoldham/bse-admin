@@ -1,6 +1,21 @@
 <:-.set is_article = article.id > 0 -:>
 <:-.set typename = is_article ? "" : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": "Edit " _ typename _ " File" :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer -:>
+<:-.set done_url = referer.replace(/(&amp;|\?)referer=[\d]+/, "") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.parentid }) -:>
+
+<:-.end if -:>
+ 
 <div class="window dialog">
   <header>
     <:-.set pagetitle = params.title _ ( is_article ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
@@ -148,7 +163,7 @@
       </fieldset>
     </details>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_files_save:article:>
       <input type="submit" name="a_save_file" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
       <:- eif UserCan:>

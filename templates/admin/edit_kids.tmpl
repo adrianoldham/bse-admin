@@ -3,6 +3,21 @@
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Children" ) :>
 <:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
 <:-.set kids = [ article.allkids ] :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer -:>
+<:-.set done_url = referer.replace(/(&amp;|\?)referer=[\d]+/, "") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
+
+<:-.end if -:>
+
 <div class="window">
   <header>
     <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
@@ -64,7 +79,7 @@
           <span class="actions">
             <:-.set typename = article.generator.replace("Generate::", "") :>
             <:-.if article.parentid != parent.id :>
-            <a href="<:= cfg.admin_url("add", { "id": parent.id, "stepkid": article.id, "_t": "steps", "r": refresh }) :>" class="button gray small">Edit</a>
+            <a href="<:= cfg.admin_url("add", { "id": parent.id, "stepkid": article.id, "referer": 1, "_t": "steps", "r": refresh }) :>" class="button gray small">Edit</a>
             <:-.if request.user_can("bse_edit_stepkid_delete", article) and request.user_can("bse_edit_stepparent_delete", parent) :>
             <a href="<:= cfg.admin_url("add", { "id": parent.id, "stepkid": article.id, "typename": typename, "del_stepkid": 1, "_csrfp": request.get_csrf_token("admin_remove_stepkid"), "r": refresh }) :>" class="button red small" data-action="Delete" data-object="Stepchild" data-confirm="Are you sure you want to remove the Stepchild relationship?" data-info="Continuing with this action will permanently remove this Stepchild relationship. This action does not delete the original <:= typename :>.">Delete</a>
             <:-.else:>
@@ -109,28 +124,27 @@
     <div class="center">
       <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
       <p>No children to display</p>
-      <:- if Or [ifUserCan bse_edit_add_child:article] [ifUserCan bse_edit_stepkid_add:article]:>
+      <:-.if request.user_can("bse_edit_add_child", article) or request.user_can("bse_edit_stepkid_add", article):>
       <p>
-        <:- if UserCan bse_edit_add_child:article:>
-        <:- if HaveChildType:>
-        <:- switch:>
-        <:- case Match [article generator] "Catalog":>
-        <a href="<:script:>?parentid=<:article id:>&amp;type=Catalog&amp;referer=1" data-icon="add" class="button white">New Catalog…</a>
-        <a href="<:script:>?parentid=<:article id:>&amp;type=Product&amp;referer=1" data-icon="add" class="button white">New Product…</a>
-        <:- case default:>
-        <a href="<:script:>?parentid=<:article id:>&amp;type=Article&amp;referer=1" data-icon="add" class="button white">New Child…</a>
-        <:- endswitch:>
-        <:- eif HaveChildType:>
-        <:- eif UserCan:>
-        <:- if UserCan bse_edit_stepkid_add:article:>
-        <a href="<:script:>?id=<:article id:>&amp;_t=steps&amp;referer=1" data-icon="add" class="button white">New Stepchild…</a>
-        <:- eif UserCan:>
+        <:-.if request.user_can("bse_edit_add_child", article) and cfg.entry("level names", article.level +1 ) :>
+        <:-# if HaveChildType:>
+        <:-.if article.generator =~ /Catalog/:>
+        <a href="<:= cfg.admin_url("add", { "parentid": article.id, "type": "Catalog", "referer": 1 }) :>" data-icon="add" class="button white">New Catalog…</a>
+        <a href="<:= cfg.admin_url("add", { "parentid": article.id, "type": "Product", "referer": 1 }) :>" data-icon="add" class="button white">New Product…</a>
+        <:-.else:>
+        <a href="<:= cfg.admin_url("add", { "parentid": article.id, "type": "Article", "referer": 1 }) :>" data-icon="add" class="button white">New Child…</a>
+        <:-.end if:>
+        <:-# eif HaveChildType:>
+        <:-.end if:>
+        <:-.if request.user_can("bse_edit_stepkid_add", article):>
+        <a href="<:= cfg.admin_url("add", { "id": article.id, "_t": "steps", "referer": 1 }) :>" data-icon="add" class="button white">New Stepchild…</a>
+        <:-.end if:>
       </p>
-      <:- eif Or:>
+      <:-.end if:>
     </div>
   </fieldset>
   <:-.end if:>
   <p class="buttons">
-    <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+    <a href="<:= done_url:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
   </p>
 </div>

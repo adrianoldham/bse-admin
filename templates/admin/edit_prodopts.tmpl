@@ -1,4 +1,19 @@
 <:-.wrap "admin/base.tmpl", "title": "New Option" :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer -:>
+<:-.set done_url = referer.replace(/(&amp;|\?)referer=[\d]+/, "") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
+
+<:-.end if -:>
+
 <div class="window dialog">
   <header>
     <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
@@ -59,7 +74,7 @@
       </div>
     </fieldset>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <:- if UserCan bse_edit_prodopt_add:article:>
       <input type="submit" name="a_add_option" value="Create Option" accesskey="c" title="AccessKey = c" class="button green" />
       <:- eif UserCan:>
