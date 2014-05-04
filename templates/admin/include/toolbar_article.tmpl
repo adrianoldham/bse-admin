@@ -76,19 +76,22 @@
           <ul>
             <li><a href="<:script:>?id=<:article parentid:>" accesskey="," title="AccessKey = ,">Manage Parent</a></li>
             <:-.set parent = article.parentid == -1 ? bse.site : article.parent :>
-            <:-.if [parent.images].size or [parent.files].size :>
+            <:-.set parent_images_size = [parent.images].size -:>
+            <:-.set parent_files_size = [parent.files].size -:>
+            <:-.if parent_images_size or parent_files_size :>
             <li class="divider"></li>
-            <:-.if [parent.images].size :>
-            <li><a href="<:script:>?id=<:article parentid:>&amp;_t=img">Manage Parent Images (<:= [parent.images].size :>)</a></li>
+            <:-.if parent_images_size :>
+            <li><a href="<:script:>?id=<:article parentid:>&amp;_t=img">Manage Parent Images (<:= parent_images_size :>)</a></li>
             <:-.end if :>
-            <:-.if [parent.files].size :>
-            <li><a href="<:script:>?id=<:article parentid:>&amp;_t=file">Manage Parent Files (<:= [parent.files].size :>)</a></li>
+            <:-.if parent_files_size :>
+            <li><a href="<:script:>?id=<:article parentid:>&amp;_t=file">Manage Parent Files (<:= parent_files_size :>)</a></li>
             <:-.end if :>
             <:-.end if :>
-            <:-.if parent.id != -1 and [parent.allkids].size > 1:>
+            <:-.set siblings = [parent.allkids] -:>
+            <:-.if parent.id != -1 and siblings.size > 1:>
             <li class="divider"></li>
-            <li><a href="<:script:>?id=<:article parentid:>&amp;_t=kids">Manage Siblings (<:= [parent.allkids].size :>)</a></li>
             <:-.end if :>
+            <li><a href="<:script:>?id=<:article parentid:>&amp;_t=kids">Manage Siblings (<:= siblings.size :>)</a></li>
           </ul>
         </li>
       </ul>
