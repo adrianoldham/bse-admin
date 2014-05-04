@@ -88,10 +88,19 @@
             <:-.end if :>
             <:-.end if :>
             <:-.set siblings = [parent.allkids] -:>
-            <:-.if parent.id != -1 and siblings.size > 1:>
+            <:-.if siblings.size > 1:>
+            <:-.for sibling in siblings -:>
+              <:-.if article.id == sibling.id -:>
+                <:-.set next = loop.next ? loop.next : loop.first -:>
+                <:-.set prev = loop.prev ? loop.prev : loop.last -:>
+              <:-.end if -:>
+            <:-.end for -:>
             <li class="divider"></li>
-            <:-.end if :>
             <li><a href="<:script:>?id=<:article parentid:>&amp;_t=kids">Manage Siblings (<:= siblings.size :>)</a></li>
+            <li class="divider"></li>
+            <li><a href="<:= cfg.admin_url("add", { "id": next.id, "_t": cgi.param("_t") }):>">Next Sibling</a></li>
+            <li><a href="<:= cfg.admin_url("add", { "id": prev.id, "_t": cgi.param("_t") }):>">Previous Sibling</a></li>
+            <:-.end if:>
           </ul>
         </li>
       </ul>
