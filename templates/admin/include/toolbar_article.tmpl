@@ -98,18 +98,24 @@
             <li class="divider"></li>
             <li><a href="<:script:>?id=<:article parentid:>&amp;_t=kids">Manage Siblings (<:= siblings.size :>)</a></li>
             <li class="divider"></li>
-            <li><a href="<:= cfg.admin_url("add", { "id": next.id, "_t": cgi.param("_t") }):>">Next Sibling</a></li>
-            <li><a href="<:= cfg.admin_url("add", { "id": prev.id, "_t": cgi.param("_t") }):>">Previous Sibling</a></li>
+            <li><a href="<:= cfg.admin_url("add", { "id": next.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }):>" accesskey="&gt;" title="Accesskey = &gt;">Next Sibling</a></li>
+            <li><a href="<:= cfg.admin_url("add", { "id": prev.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }):>" accesskey="&lt;" title="Accesskey = &lt;">Previous Sibling</a></li>
             <:-.end if:>
           </ul>
         </li>
       </ul>
+      <:-.if siblings.size > 1:>
+      <span data-role="controlgroup">
+        <a href="<:= cfg.admin_url("add", { "id": prev.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }):>" data-icon="previous" data-icon-only="true" class="button">Previous Sibling</a>
+        <a href="<:= cfg.admin_url("add", { "id": next.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }):>" data-icon="next" data-icon-only="true" class="button">Next Sibling</a>
+      </span>
+      <:-.end if:>
       <a href="<:script:>?id=<:article id:>&amp;preview=1" accesskey="y" title="AccessKey = y" data-icon="preview" data-icon-only="true" class="button">Preview</a>
       <:- if Kids:>
       <a href="<:script:>?id=<:article id:>&amp;_t=kids&amp;tree=<:cond [cgi tree] 0 1 :>" class="button <:cond [cgi tree] active:>" data-icon="sitemap" data-icon-only="true">Descendants</a>
       <:- eif Kids:>
       <:- if And [article parentid] [ifUserCan bse_regen_article:article]:>
-      <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
+      <a href="<:adminurl generate:>?id=<:article id:>&amp;r=<:adminurl add:>%3Fid=<:article id:>%26_t=<:cgi _t:>%26tree=<:cgi tree:>%26m=<:typename article:>%20regenerated" accesskey="r" title="AccessKey = r" data-icon="regen" data-icon-only="true" class="button">Regenerate</a>
       <:- eif And:>
       <:- if UserCan bse_edit_field_edit_listed:[article id]:>
       <a href="<:adminurl add:>?id=<:article id:>&amp;<:cond [article listed] hide unhide:>=1&amp;_csrfp=<:csrfp admin_save_article:>" data-icon="power" data-icon-only="true" class="button <:cond [article listed] active:>"><:cond [article listed] Hide Show:></a>
