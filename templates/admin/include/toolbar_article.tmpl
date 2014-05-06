@@ -106,8 +106,8 @@
       </ul>
       <:-.if siblings.size > 1:>
       <span data-role="controlgroup">
-        <a href="<:= cfg.admin_url("add", { "id": prev.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }):>" data-icon="previous" data-icon-only="true" class="button">Previous Sibling</a>
-        <a href="<:= cfg.admin_url("add", { "id": next.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }):>" data-icon="next" data-icon-only="true" class="button">Next Sibling</a>
+        <a href="<:= cfg.admin_url("add", { "id": prev.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }):>" accesskey="&lt;" title="<:= 'Previous sibling: ' _ ( prev.titleAlias or prev.title ):>" data-icon="previous" data-icon-only="true" class="button">Previous Sibling</a>
+        <a href="<:= cfg.admin_url("add", { "id": next.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }):>" accesskey="&gt;" title="<:= 'Next sibling: ' _ ( next.titleAlias or next.title ):>"data-icon="next" data-icon-only="true" class="button">Next Sibling</a>
       </span>
       <:-.end if:>
       <a href="<:script:>?id=<:article id:>&amp;preview=1" accesskey="y" title="AccessKey = y" data-icon="preview" data-icon-only="true" class="button">Preview</a>
