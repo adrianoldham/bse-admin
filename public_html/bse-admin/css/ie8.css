@@ -11,6 +11,9 @@
 input, 
 select,
 textarea {
+    border: 0.083em solid #ddd;
+    border-top-color: #aaa;
+    background-color: #fafafa;
     min-width: 20em;
     width: 40%;
 }
@@ -33,6 +36,31 @@ input[type=checkbox],
 input[type=radio] {
     min-width: auto;
     width: auto !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: rgb(3, 153, 212) !important;
+}
+
+input[required],
+textarea[required],
+select[required] {
+    border-color: rgb(255, 165, 0) !important;
+}
+
+input.error,
+textarea.error,
+select.error,
+.error {
+    border-color: rgb(204, 0, 50) !important;
+}
+
+input.changed,
+textarea.changed,
+select.changed {
+    border-color: rgb(100, 153, 30) !important;
 }
 
 ul.menu ul {
