@@ -17,7 +17,7 @@ body {
     margin: 0 auto;
     padding: 2em 0 0 0;
     font: normal normal 0.75em/1.5 "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
-    text-shadow: 0 0.083em 0 #fff;
+    text-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.75);
     color: #444;
     position: relative;
     background: #666 no-repeat 0 0 fixed;
@@ -358,7 +358,7 @@ div.window {
     max-width: 80em;
     min-width: 34em;
     padding: 0 2em 1em;
-    background-color: #ececec;
+    background-color: #efefef;
     border-top: 0.083em solid #eee;
     border-bottom: 0.083em solid #444;
     -webkit-border-radius: 0.5em;
@@ -531,8 +531,8 @@ textarea {
     line-height: 1.2;
     padding: 0.25em;
     color: #000;
-    background-color: #efefef;
-    display: inline-block;/* because some odd margins persist on textareas */
+    background-color: #fafafa;
+    display: inline-block; /* because some odd margins persist on textareas */
     min-width: 20em;
     width: 40%;
     -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1);
@@ -602,7 +602,7 @@ input.changed,
 textarea.changed,
 select.changed {
     color: #000 !important;
-    background: inherit !important;
+    background: #fafafa !important;
     border-color: rgba(100, 153, 30, 0.75) !important;
     border-top-color: rgb(100, 153, 30) !important;
 }
@@ -2021,42 +2021,42 @@ header {
     position: relative;
     margin: 0 -2em 1em;
     padding: 0 2em;
-    border-bottom: 0.083em solid #777;
+    border-bottom: 0.083em solid #868686;
     -webkit-border-radius: 0.5em 0.5em 0 0;
     -moz-border-radius: 0.5em 0.5em 0 0;
     border-radius: 0.5em 0.5em 0 0;
-    background-color: #aaa; /* Old browsers */
+    background-color: #b0b0b0; /* Old browsers */
     background-image: -webkit-gradient(
         linear,
         left top,
         left bottom,
-        color-stop(0%, rgba(255, 255, 255, 0.4)),
-        color-stop(100%, rgba(255, 255, 255, 0))
+        color-stop(10%, rgba(255, 255, 255, 0.5)),
+        color-stop(90%, rgba(255, 255, 255, 0))
     ); /* Chrome,Safari4+ */
     background-image: -webkit-linear-gradient(
         top,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 0) 100%
+        rgba(255, 255, 255, 0.5) 10%,
+        rgba(255, 255, 255, 0) 90%
     ); /* Chrome10+,Safari5.1+ */
     background-image: -moz-linear-gradient(
         top,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 0) 100%
+        rgba(255, 255, 255, 0.5) 10%,
+        rgba(255, 255, 255, 0) 90%
     ); /* FF3.6+ */
     background-image: -o-linear-gradient(
         top,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 0) 100%
+        rgba(255, 255, 255, 0.5) 10%,
+        rgba(255, 255, 255, 0) 90%
     ); /* Opera 11.10+ */
     background-image: -ms-linear-gradient(
         top,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 0) 100%
+        rgba(255, 255, 255, 0.5) 10%,
+        rgba(255, 255, 255, 0) 90%
     ); /* IE10+ */
     background-image: linear-gradient(
         top,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(255, 255, 255, 0) 100%
+        rgba(255, 255, 255, 0.5) 10%,
+        rgba(255, 255, 255, 0) 90%
     ); /* W3C */
 }
 
@@ -2077,14 +2077,14 @@ h1:first-child + *[data-role=toolbar],
     margin: 0 0.5em 0 0;
     font-size: 1em !important;
     color: #333 !important;
-    text-shadow: 0 0.083em 0 #fff;
+    text-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.75);
     white-space: nowrap;
     overflow: hidden;
     border: 0.083em solid;
-    border-color: #7c7c7c #757575 #6b6b6b #757575;
-    -webkit-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5);
-    -moz-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5);
+    border-color: #838383;
+    -webkit-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.25);
     border-radius: 0.35em;
     background: #ddd; /* Old browsers */
     background: -webkit-gradient(

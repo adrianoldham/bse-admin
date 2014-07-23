@@ -8,6 +8,10 @@
     border: 0.083em solid #CCC;
 }
 
+header {
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7FFFFFFF', endColorstr='#00FFFFFF', GradientType=0 );
+}
+
 input, 
 select,
 textarea {
