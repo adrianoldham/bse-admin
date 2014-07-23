@@ -88,14 +88,16 @@ input[disabled] {
     filter: alpha(opacity = 25);
 }
 
-*[data-role=controlgroup] :first-child,
-*[data-role=controlgroup] > .button + .button {
-    margin-left: -0.083em;
-    margin-right: 0;
+*[data-role=controlgroup] {
+    margin-right: 0.5em;
 }
 
-*[data-role=controlgroup] :first-child {
-    margin-left: 0;
+*[data-role=controlgroup] > .button {
+    margin: 0;
+}
+
+*[data-role=controlgroup] > .button + .button {
+    margin-left: -0.09em; /* should be 0.083em same as border, but IE has trouble with rouding */
 }
 
 *[data-role].fullscreen [data-role=navbar] {
