@@ -112,3 +112,8 @@ input[disabled] {
 *[data-role].fullscreen [data-role=navbar]:hover {
     filter: none;
 }
+
+nav *[data-icon=trash] {
+    float: right !important;
+    margin-right: 0 !important;
+}
