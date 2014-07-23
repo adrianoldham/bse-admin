@@ -36,7 +36,7 @@ input[type=radio] {
 }
 
 ul.menu ul {
-    border: 1px solid #CCC;
+    border: 1px solid #CCC; /* must be px units */ 
 }
 
 ul.menu li.disabled,
