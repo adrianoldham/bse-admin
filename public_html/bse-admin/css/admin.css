@@ -457,7 +457,7 @@ div.sheet {
 h1:first-child {
     padding: 0.25em;
     margin: 0;
-    font-size: 1.17em;
+    font-size: 1.083em;
     font-weight: normal;
     font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, sans-serif;
     text-align: center;
@@ -1905,7 +1905,7 @@ ul.menu.context > li {
 }
 
 ul.menu.context > li > ul {
-    font-size: 1.1em;
+    font-size: 1.083em;
     top: 2em;
 }
 
@@ -1914,7 +1914,7 @@ ul.menu.context > li > ul {
 /* @group header */
 
 ul.menu.header {
-    font-size: 1.17em;
+    font-size: 1.083em;
     text-align: center;
     display: block;
 }
@@ -1940,10 +1940,10 @@ ul.menu.header > li > ul {
 ul.menu.header > li > h1 > a {
     padding: 0 1em;
     background: url(/bse-admin/images/widgets/caret.svg) no-repeat 100% 50%;
-    -webkit-background-size: 1em;
-    -moz-background-size: 1em;
-    -o-background-size: 1em;
-    background-size: 1em;
+    -webkit-background-size: 0.923em;
+    -moz-background-size: 0.923em;
+    -o-background-size: 0.923em;
+    background-size: 0.923em;
 }
 
 ul.menu.header > li.active > a {
