@@ -523,6 +523,11 @@ fieldset > :last-child {
     margin-bottom: 0;
 }
 
+fieldset > div + ul {
+    margin-left: 9em;
+    padding: 0.35em 0;
+}
+
 input:not([type=submit]):not([type=checkbox]):not([type=radio]),
 select,
 textarea {
