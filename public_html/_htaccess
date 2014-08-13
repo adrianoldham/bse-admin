@@ -24,7 +24,7 @@ RewriteBase /
     #RewriteCond %{SERVER_PORT} ^443$
     #RewriteCond %{REQUEST_URI} !^/?(images|css|js|webfonts)
     #RewriteCond %{REQUEST_URI} !^/?[A-Za-z_-]+\/(user|nuser|shop|fmail|admin)
-    #RewriteRule ^/?(.*) http://www.example.com.au/$1 [R=303]
+    #RewriteRule ^/?(.*) http://www.example.com.au/$1 [R=301]
 
 # Map standard static URLs to dynamic
     #RewriteRule ^/?(index\.html)?$ /cgi-bin/page.pl?page=1 [QSA]
@@ -34,7 +34,7 @@ RewriteBase /
     #RewriteRule ^/?members/?(index\.html)?$ /cgi-bin/page.pl?page=7 [QSA]
 
 # Redirect legacy static URLs to dynamic
-    #RewriteRule ^/?(?:a|shop|members)/(?:shop)?([0-9]+)\.html /cgi-bin/page.pl?page=$1 [R=303]
+    #RewriteRule ^/?(?:a|shop|members)/(?:shop)?([0-9]+)\.html /cgi-bin/page.pl?page=$1 [R=301]
     #RewriteRule site\.rdf$ /cgi-bin/page.pl?page=2
 
 # Special case aliases
