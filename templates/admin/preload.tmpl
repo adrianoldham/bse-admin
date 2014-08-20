@@ -121,6 +121,7 @@
 <:-.define page_list -:>
 <:-.set sep = base =~ /\?/ ? "&" : "?" :>
 <:-.set base = base _ sep :>
+  <:-.if pages.pages.size > 1:>
   <p class="pagination">
     Page <:= pages.page :> of <:= pages.pagecount :>
     <:-.if pages.previous_page :>
@@ -145,6 +146,7 @@
     <span class="disabled">→|</span>
     <:-.end if :>
   </p>
+  <:-.end if:>
 <:-.end define :>
 
 
