@@ -20,8 +20,12 @@
       </ul>
       <:- eif Or:>
       <span data-role="controlgroup">
-        <a href="<:script:>" class="button selected">Users</a>
-        <a href="<:script:>?a_groups=1" class="button">Groups</a>
+        <:-.if request.user_can("bse_admin_user_list"):>
+        <a href="<:= cfg.admin_url("adminusers"):>" class="button selected">Users</a>
+        <:-.end if:>
+        <:-.if request.user_can("bse_admin_group_list"):>
+        <a href="<:= cfg.admin_url2("adminusers", "groups"):>" class="button">Groups</a>
+        <:-.end if:>
       </span>
     </nav>
   </header>

@@ -20,8 +20,12 @@
       </ul>
       <:- eif Or:>
       <span data-role="controlgroup">
-        <a href="<:script:>" class="button">Users</a>
-        <a href="<:script:>?a_groups=1" class="button selected">Groups</a>
+        <:-.if request.user_can("bse_admin_user_list"):>
+        <a href="<:= cfg.admin_url("adminusers"):>" class="button">Users</a>
+        <:-.end if:>
+        <:-.if request.user_can("bse_admin_group_list"):>
+        <a href="<:= cfg.admin_url2("adminusers", "groups"):>" class="button selected">Groups</a>
+        <:-.end if:>
       </span>
     </nav>
   </header>
@@ -44,7 +48,11 @@
           <td><:igroup description:></td>
           <td><:ifGroup_users igroup:><:iterator begin group_users igroup:><:group_user logon:><:iterator separator group_users:>, <:iterator end group_users:><:or:>(none)<:eif:></td>
           <td class="actions">
+            <:- if UserCan bse_admin_group_save:>
             <a href="<:script:>?a_showgroup=1&amp;groupid=<:igroup id:>" class="button gray small">Edit</a>
+            <:- or UserCan:>
+            <a class="button gray small disabled">Edit</a>
+            <:- eif UserCan:>
             <:- if UserCan bse_admin_group_del:>
             <a href="<:script:>?a_delgroup=1&amp;groupid=<:igroup id:>" data-action="Delete" data-object="Group" class="button red small">Delete</a>
             <:- or UserCan:>
