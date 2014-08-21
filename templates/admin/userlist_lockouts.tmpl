@@ -1,0 +1,59 @@
+<:-.wrap "admin/base.tmpl", "title": "Manage Admin User Lockouts", "bodyid": "auditlog" :>
+<div class="window">
+  <header>
+    <h1><:= params.title:></h1>
+    <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+  </header>
+  <:-.set lockouts = [] :>
+  <:-.set adminusers = [ users.all ] -:>
+
+  <:-.for adminuser in adminusers -:>
+    <:-.if adminuser.locked_out:>
+      <:-% lockouts.push(adminuser) -:>
+    <:-.end if:>
+  <:-.end for:>
+  <:-.if lockouts.size:>
+  <fieldset>
+    <legend>Lockouts</legend>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Full Name</th>
+          <th>Lock Expiry</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:-.for adminuser in lockouts:>
+        <tr class="warning">
+          <td><:= adminuser.logon:></td>
+          <td><:= adminuser.name:></td>
+          <td><:= bse.date("%d-%b-%Y / %r", adminuser.lockout_end):></td>
+          <td class="actions">
+            <:-.if request.user_can("bse_admin_user_save") :>
+            <a href="<:= cfg.admin_url2("adminusers", "showuser", { "userid":adminuser.id }):>" class="button gray small">Edit</a>
+            <:-.else:>
+            <a class="button gray small disabled">Edit</a>
+            <:-.end if:>
+            <:-.if request.user_can("bse_admin_user_unlock") :>
+            <a href="<:= cfg.admin_url2("adminusers", "unlock", { "userid":adminuser.id, "r":cfg.admin_url("adminusers", { "_t":"lockouts" }) }):>" class="button orange small">Unlock</a>
+            <:-.else:>
+            <a class="button gray small disabled">Unlock</a>
+            <:-.end if:>
+          </td>
+        </tr>
+        <:-.end for:>
+      </tbody>
+    </table>
+  </fieldset>
+  <:-.else:>
+  <fieldset>
+    <legend>Lockouts</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+      <p>No locked accounts to display</p>
+    </div>
+  </fieldset>
+  <:-.end if:>
+</div>

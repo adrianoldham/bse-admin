@@ -1,0 +1,57 @@
+<:-.wrap "admin/base.tmpl", "title": "Manage Site User Lockouts", "bodyid": "auditlog" :>
+<div class="window">
+  <header>
+    <h1><:= params.title:></h1>
+    <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+  </header>
+  <:-.set lockouts = [] :>
+  <:-.for siteuser in siteusers -:>
+    <:-.if siteuser.locked_out:>
+      <:-% lockouts.push(siteuser) -:>
+    <:-.end if:>
+  <:-.end for:>
+  <:-.if lockouts.size:>
+  <fieldset>
+    <legend>Lockouts</legend>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th><:cfg "site users" display_userid "Username":></th>
+          <th><:cfg "site users" display_fullname "Full Name":></th>
+          <th>Lock Expiry</th>
+          <th><!--Actions--></th>
+        </tr>
+      </thead>
+      <tbody>
+        <:-.for siteuser in lockouts:>
+        <tr class="warning">
+          <td><:= siteuser.userId:></td>
+          <td><:= siteuser.name1:> <:= siteuser.name2:></td>
+          <td><:= bse.date("%d-%b-%Y / %r", siteuser.lockout_end):></td>
+          <td class="actions">
+            <:-.if request.user_can("bse_members_user_edit") :>
+            <a href="<:= cfg.admin_url2("siteusers", "edit", { "id":siteuser.id }):>" class="button gray small">Edit</a>
+            <:-.else:>
+            <a class="button gray small disabled">Edit</a>
+            <:-.end if:>
+            <:-.if request.user_can("bse_members_user_unlock") :>
+            <a href="<:= cfg.admin_url2("siteusers", "unlock", { "id":siteuser.id, "r":cfg.admin_url("siteusers", { "_t":"lockouts" }) }):>" class="button orange small">Unlock</a>
+            <:-.else:>
+            <a class="button gray small disabled">Unlock</a>
+            <:-.end if:>
+          </td>
+        </tr>
+        <:-.end for:>
+      </tbody>
+    </table>
+  </fieldset>
+  <:-.else:>
+  <fieldset>
+    <legend>Lockouts</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+      <p>No locked accounts to display</p>
+    </div>
+  </fieldset>
+  <:-.end if:>
+</div>

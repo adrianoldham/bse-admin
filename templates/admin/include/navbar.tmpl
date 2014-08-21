@@ -95,8 +95,8 @@
             <:- if UserCan bse_members_user_view:>
             <li><a href="<:adminurl siteusers _t load referer 1:>">Load Site User…</a></li>
             <:- eif UserCan:>
-            <li class="divider"></li>
             <:- if UserCan bse_members_group_list:>
+            <li class="divider"></li>
             <li><a href="<:adminurl siteusers a_grouplist 1:>">Manage Site Groups</a></li>
             <:- eif UserCan:>
             <:- if UserCan bse_members_group_add:>
@@ -207,15 +207,28 @@
         <:- if UserCan bse_log_list:>
         <li><a href="<:adminurl log:>">System Activity Log</a></li>
         <:- eif UserCan:>
-        <:- if UserCan bse_ipaddress_list:>
-        <li><a href="<:adminurl ipaddress:>">Manage IP Lockouts</a></li>
-        <:- eif UserCan:>
         <:- if UserCan bse_reports_list:>
         <!-- FIXME: this is not a real permission name -->
         <li><a href="<:adminurl report:>">System Reports</a></li>
         <:- eif UserCan:>
         <:- if Or [ifUserCan bse_back_start] [ifUserCan bse_back_stop] [ifUserCan bse_back_detail]:>
         <li><a href="<:adminurl backmon:>">Background Processing</a></li>
+        <:- eif Or:>
+        <:- if Or [ifUserCan bse_members_user_list] [ifUserCan bse_member_user_unlock] [ifUserCan bse_admin_user_list] [ifUserCan bse_admin_user_unlock] [ifUserCan bse_ipaddress_list]:>
+        <li class="divider"></li>
+        <li><a href="#">Access Lockouts</a>
+          <ul>
+            <:- if Or [ifUserCan bse_members_user_list] [ifUserCan bse_member_user_unlock]:>
+            <li><a href="<:= cfg.admin_url("siteusers", { "_t":"lockouts" }):>">Manage Site User Lockouts</a></li>
+            <:- eif Or:>
+            <:- if Or [ifUserCan bse_admin_user_list] [ifUserCan bse_admin_user_unlock]:>
+            <li><a href="<:= cfg.admin_url("adminusers", { "_t":"lockouts" }):>">Manage Admin User Lockouts</a></li>
+            <:- eif Or:>
+            <:- if Or [ifUserCan bse_ipaddress_list]:>
+            <li><a href="<:= cfg.admin_url("ipaddress"):>">Manage IP Address Lockouts</a></li>
+            <:- eif Or:>
+          </ul>
+        </li>
         <:- eif Or:>
         <:- switch:>
         <:- case Or [ifUserCan bse_modules] [ifAnd [ifUserCan bse_pregen_view] [ifUserCan bse_regen_extras]] [ifUserCan bse_msg_view] [ifUserCan bse_msg_save] [ifUserCan bse_msg_delete] [ifUserCan bse_imageclean]:>
