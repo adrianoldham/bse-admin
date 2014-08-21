@@ -1,4 +1,4 @@
-<:-.wrap "admin/base.tmpl", "title": "Manage IP Lockouts", "bodyid": "auditlog" :>
+<:-.wrap "admin/base.tmpl", "title": "Manage IP Address Lockouts", "bodyid": "auditlog" :>
 <div class="window">
   <header>
     <h1><:= params.title:></h1>
@@ -6,13 +6,15 @@
   </header>
   <:-.if ips.size:>
   <fieldset>
-    <legend>IP Lockouts</legend>
+    <legend>Lockouts</legend>
     <table class="full list">
       <thead>
         <tr>
           <th>IP Address</th>
-          <th>Site Users</th>
-          <th>Admin Users</th>
+          <th>Site Users / Lock Expiry</th>
+          <th></th>
+          <th>Admin Users / Lock Expiry</th>
+          <th></th>
           <th><!--Actions--></th>
         </tr>
       </thead>
@@ -20,6 +22,7 @@
         <:-.for ip in ips:>
         <tr class="warning">
           <td><:= ip.ip_address:></td>
+          <td><:= ip.lockout_S ? bse.date("%d-%b-%Y / %r", ip.lockout_S) : '(none)':></td>
           <td>
             <:-.if ip.lockout_S and request.user_can("bse_ipaddress_unlock"):>
             <a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"S" }):>" class="button orange small">Unlock</a>
@@ -27,6 +30,7 @@
             Locked
             <:-.end if:>
           </td>
+          <td><:= ip.lockout_A ? bse.date("%d-%b-%Y / %r", ip.lockout_A) : '(none)':></td>
           <td>
             <:-.if ip.lockout_A and request.user_can("bse_ipaddress_unlock"):>
             <a href="<:= cfg.admin_url2("ipaddress", "unlock", { "ip":ip.ip_address, "type":"A" }):>" class="button orange small">Unlock</a>
@@ -46,7 +50,7 @@
   </fieldset>
   <:-.else:>
   <fieldset>
-    <legend>IP Lockouts</legend>
+    <legend>Lockouts</legend>
     <div class="center">
       <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
       <p>No locked IP addresses to display</p>
