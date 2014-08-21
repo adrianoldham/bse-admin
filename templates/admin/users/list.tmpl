@@ -4,70 +4,70 @@
     <h1><:= params.title:></h1>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <nav data-role="toolbar">
-      <:- if Or [ifUserCan bse_members_user_add] [ifUserCan bse_members_group_add]:>
+      <:-.if request.user_can("bse_members_user_add") or request.user_can("bse_members_group_add"):>
       <ul class="menu context">
         <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
           <ul>
-            <:- if UserCan bse_members_user_add:>
-            <li><a href="<:script:>?a_addform=1" accesskey="u" title="AccessKey = u">New Site User…</a></li>
-            <:- eif UserCan:>
-            <:- if UserCan bse_members_group_add:>
+            <:-.if request.user_can("bse_members_user_add"):>
+            <li><a href="<:= cfg.admin_url2("siteusers", "addform"):>" accesskey="u" title="AccessKey = u">New Site User…</a></li>
+            <:-.end if:>
+            <:-.if request.user_can("bse_members_group_add"):>
             <li class="divider"></li>
-            <li><a href="<:script:>?a_addgroupform=1" accesskey="g" title="AccessKey = g">New Site Group…</a></li>
-            <:- eif UserCan:>
+            <li><a href="<:= cfg.admin_url2("siteusers", "addgroupform"):>" accesskey="g" title="AccessKey = g">New Site Group…</a></li>
+            <:-.end if:>
           </ul>
         </li>
       </ul>
-      <:- eif Or:>
+      <:-.end if:>
       <span data-role="controlgroup">
-        <:- if UserCan bse_members_user_list:>
-        <a href="<:script:>" class="button selected">Users</a>
-        <:- eif UserCan:>
-        <:- if UserCan bse_members_group_list:>
-        <a href="<:script:>?a_grouplist=1" class="button">Groups</a>
-        <:- eif UserCan:>
+        <:-.if request.user_can("bse_members_user_list"):>
+        <a href="<:= cfg.admin_url("siteusers"):>" class="button selected">Users</a>
+        <:-.end if:>
+        <:-.if request.user_can("bse_members_group_list"):>
+        <a href="<:= cfg.admin_url2("siteusers", "grouplist"):>" class="button">Groups</a>
+        <:-.end if:>
       </span>
     </nav>
   </header>
-  <form action="<:script:>" method="post">
-    <input type="hidden" name="s" value="<:sortby:>" />
-    <input type="hidden" name="r" value="<:reverse:>" />
+  <form action="<:= cfg.admin_url("siteusers"):>" method="post">
+    <input type="hidden" name="s" value="<:= cgi.param("s"):>" />
+    <input type="hidden" name="r" value="<:= cgi.param("r"):>" />
     <fieldset>
       <legend>Filter users</legend>
       <div>
         <label for="userId"><:cfg "site users" display_userid "Username":></label>
         <span>
-          <input type="text" name="userId" id="userId" value="<:cgi userId:>" />
+          <input type="text" name="userId" id="userId" value="<:= cgi.param("userId"):>" />
         </span>
       </div>
       <div>
         <label for="name1"><:cfg "site users" display_name1 "First Name":></label>
         <span>
-          <input type="text" name="name1" id="name1" value="<:cgi name1:>" />
+          <input type="text" name="name1" id="name1" value="<:= cgi.param("name1"):>" />
         </span>
       </div>
       <div>
         <label for="name2"><:cfg "site users" display_name2 "Last Name":></label>
         <span>
-          <input type="text" name="name2" id="name2" value="<:cgi name2:>" />
+          <input type="text" name="name2" id="name2" value="<:= cgi.param("name2"):>" />
         </span>
       </div>
       <div>
         <label for="organization"><:cfg "site users" display_organization "Organisation Name":></label>
         <span>
-          <input type="text" name="organization" id="organization" value="<:cgi organization:>" />
+          <input type="text" name="organization" id="organization" value="<:= cgi.param("organization"):>" />
         </span>
       </div>
       <div>
         <label for="email"><:cfg "site users" display_email "Email Address":></label>
         <span>
-          <input type="text" name="email" id="email" value="<:cgi email:>" />
+          <input type="text" name="email" id="email" value="<:= cgi.param("email"):>" />
         </span>
       </div>
       <div>
         <label for="disabled"><:cfg "site users" display_enabled "Disabled":></label>
         <span>
-          <input type="checkbox" name="disabled" id="disabled" value="1" <:ifCgi disabled:>checked="checked" <:eif:>/>
+          <input type="checkbox" name="disabled" id="disabled" value="1" <:-= cgi.param("disabled") ? ' checked="checked"' : '' -:> />
         </span>
       </div>
       <div>
@@ -91,7 +91,8 @@
       </p>
     </fieldset>
   </form>
-  <:- if Siteusers:>
+  <:-.set siteusers = bse.paged(siteusers) :>
+  <:-.if siteusers.size:>
   <fieldset>
     <legend>Users</legend>
     <table class="full list">
@@ -104,54 +105,30 @@
         </tr>
       </thead>
       <tbody>
-        <:- iterator begin siteusers:>
-        <tr <:- ifSiteuser locked_out:> class="warning"<:eif:>>
-          <td><:siteuser userId:></td>
-          <td><:siteuser name1:></td>
-          <td><:siteuser name2:></td>
+        <:-.for siteuser in siteusers.items:>
+        <tr <:-.if siteuser.locked_out:> class="warning"<:.end if:>>
+          <td><:= siteuser.userId:></td>
+          <td><:= siteuser.name1:></td>
+          <td><:= siteuser.name2:></td>
           <td class="actions">
-            <:- if UserCan bse_members_user_view:>
-            <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>" class="button gray small">Edit</a>
-            <:- or UserCan:>
+            <:-.if request.user_can("bse_members_user_view") or request.user_can("bse_members_user_edit") :>
+            <a href="<:= cfg.admin_url2("siteusers", "edit", { "id":siteuser.id }):>" class="button gray small">Edit</a>
+            <:-.else:>
             <a class="button gray small disabled">Edit</a>
-            <:- eif UserCan:>
-            <:- if UserCan bse_members_user_delete:>
-            <a href="<:script:>?id=<:siteuser id:>&amp;a_delete=1&amp;_csrfp=<:csrfp admin_siteuser_delete:>&amp;r=<:script:>%3F<:search_param:>" data-action="Delete" data-object="User" class="button red small">Delete</a>
-            <:- or UserCan:>
+            <:-.end if:>
+            <:-.if request.user_can("bse_members_user_delete") :>
+            <a href="<:= cfg.admin_url2("siteusers", "delete", { "id":siteuser.id, "_csrfp":request.get_csrf_token("admin_siteuser_delete"), "r":cfg.admin_url("siteusers") }):>" data-action="Delete" data-object="User" class="button red small">Delete</a>
+            <:-.else:>
             <a class="button red small disabled">Delete</a>
-            <:- eif UserCan:>
+            <:-.end if:>
           </td>
         </tr>
-        <:- iterator end siteusers:>
+        <:-.end for:>
       </tbody>
     </table>
   </fieldset>
-  <p class="pagination">
-    Page <:siteusers_pagenum:> of <:siteusers_pagecount:>
-    <:- if FirstSiteusersPage:>
-    <span class="disabled">|←</span>
-    <:- or FirstSiteusersPage:>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=1&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">|←</a>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:prevSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">←</a>
-    <:- eif FirstSiteusersPage:>
-    <:- iterator begin siteusers_pagec:>
-    <:- switch:>
-    <:- case siteuser_pagec gap:>
-    <span class="truncation">...</span>
-    <:- case siteuser_pagec link:>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteuser_pagec page:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:siteuser_pagec page:></a>
-    <:- case default:>
-    <span class="disabled"><:siteuser_pagec page:></span>
-    <:- endswitch:>
-    <:- iterator end siteusers_pagec:>
-    <:- if LastSiteusersPage:>
-    <span class="disabled">→|</span>
-    <:- or LastSiteusersPage:>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:nextSiteusersPage:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">→</a>
-    <a href="<:script:>?s=<:sortby:>&amp;r=<:reverse:>&amp;p=<:siteusers_pagecount:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>">→|</a>
-    <:- eif LastSiteusersPage:>
-  </p>
-  <:- or Siteusers:>
+  <:-.call "page_list", "base":cfg.admin_url("siteusers"), "pages":siteusers :>
+  <:-.else:>
   <fieldset>
     <legend>Users</legend>
     <div class="center">
@@ -162,5 +139,5 @@
       <:- eif UserCan:>
     </div>
   </fieldset>
-  <:- eif Siteusers:>
+  <:-.end if:>
 </div>

@@ -4,21 +4,21 @@
     <h1><:= params.title:></h1>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <nav data-role="toolbar">
-      <:- if Or [ifUserCan bse_admin_user_add] [ifUserCan bse_admin_group_add]:>
+      <:-.if request.user_can("bse_admin_user_add") or request.user_can("bse_admin_group_add"):>
       <ul class="menu context">
         <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
           <ul>
-            <:- if UserCan bse_admin_user_add:>
-            <li><a href="<:script:>?a_adduserform=1" accesskey="u" title="AccessKey = u">New Admin User…</a></li>
-             <:- eif UserCan:>
-             <:- if UserCan bse_admin_group_add:>
-             <li class="divider"></li>
-             <li><a href="<:script:>?a_addgroupform=1" accesskey="g" title="AccessKey = g">New Admin Group…</a></li>
-             <:- eif UserCan:>
+            <:-.if request.user_can("bse_admin_user_add"):>
+            <li><a href="<:= cfg.admin_url2("adminusers", "adduserform"):>" accesskey="u" title="AccessKey = u">New Admin User…</a></li>
+            <:-.end if:>
+            <:-.if request.user_can("bse_admin_group_add"):>
+            <li class="divider"></li>
+            <li><a href="<:= cfg.admin_url2("adminusers", "addgroupform"):>" accesskey="g" title="AccessKey = g">New Admin Group…</a></li>
+            <:-.end if:>
           </ul>
         </li>
       </ul>
-      <:- eif Or:>
+      <:-.end if:>
       <span data-role="controlgroup">
         <:-.if request.user_can("bse_admin_user_list"):>
         <a href="<:= cfg.admin_url("adminusers"):>" class="button selected">Users</a>
@@ -29,7 +29,8 @@
       </span>
     </nav>
   </header>
-  <:- if Users:>
+  <:-.set adminusers = [ users.all ] -:>
+  <:-.if adminusers.size:>
   <fieldset>
     <legend>Users</legend>
     <table class="full list">
@@ -42,34 +43,47 @@
         </tr>
       </thead>
       <tbody>
-        <:- iterator begin users:>
-        <tr <:- ifIuser locked_out:> class="warning"<:eif:>>
-          <td><:iuser logon:></td>
-          <td><:iuser name:></td>
-          <td><:ifUser_groups iuser:><:iterator begin user_groups iuser:><:user_group name:><:iterator separator user_groups:>, <:iterator end user_groups:><:or:>(none)<:eif:></td>
+        <:-.for user in adminusers :>
+        <:-.set usergroups = [ user.groups ] :>
+        <tr <:-.if user.locked_out:> class="warning"<:.end if:>>
+          <td><:= user.logon:></td>
+          <td><:= user.name:></td>
+          <td>
+            <:-.if usergroups.size:>
+            <:-.for group in usergroups :>
+            <:= group.name :><:= loop.is_last ? "" : ", " :>
+            <:-.end for:>
+	        <:-.else:>
+	        (none)
+	        <:-.end if:>
+	      </td>
           <td class="actions">
-            <a href="<:script:>?a_showuser=1&amp;userid=<:iuser id:>" class="button gray small">Edit</a>
-            <:- if UserCan bse_admin_user_del:>
-            <a href="<:script:>?a_deluser=1&amp;userid=<:iuser id:>" data-action="Delete" data-object="User" class="button red small">Delete</a>
-            <:- or UserCan:>
+            <:-.if request.user_can("bse_admin_user_save"):>
+            <a href="<:= cfg.admin_url2("adminusers", "showuser", { "userid": user.id }):>" class="button gray small">Edit</a>
+            <:-.else:>
+            <a class="button gray small disabled">Edit</a>
+            <:-.end if:>
+            <:-.if request.user_can("bse_admin_user_del"):>
+            <a href="<:= cfg.admin_url2("adminusers", "deluser", { "userid": user.id }):>" data-action="Delete" data-object="User" class="button red small">Delete</a>
+            <:-.else:>
             <a class="button red small disabled">Delete</a>
-            <:- eif UserCan:>
+            <:-.end if:>
           </td>
         </tr>
-        <:- iterator end users:>
+        <:-.end for:>
       </tbody>
     </table>
   </fieldset>
-  <:- or Users:>
+  <:-.else:>
   <fieldset>
     <legend>Users</legend>
     <div class="center">
       <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
       <p>No admin users to display</p>
-      <:- if UserCan bse_admin_user_add:>
-      <p><a href="<:script:>?a_adduserform=1&amp;referer=1" data-icon="add" class="button white">New Admin User…</a></p>
-      <:- eif UserCan:>
+      <:-.if request.user_can("bse_admin_user_add"):>
+      <p><a href="<:= cfg.admin_url2("adminusers", "adduserform", { "referer": 1 }):>" data-icon="add" class="button white">New Admin User…</a></p>
+      <:-.end if:>
     </div>
   </fieldset>
-  <:- eif Users:>
+  <:-.end if:>
 </div>
