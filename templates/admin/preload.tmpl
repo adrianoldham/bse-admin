@@ -426,36 +426,38 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_child; "admin":0, "label":0, "referer_id":top.id, "r":top.admin -:>
+<:-.define edit_child; "admin":0, "label":0, "referer_id":top.id, "r":top.admin, "parent":loop.current.parent, "child":loop.current -:>
 <:-.if bse.admin or admin -:>
-<:-.set child = loop.current -:>
+<:-.set parent_id = parent.id -:>
+<:-.set child_id = child.id -:>
+<:-.set child_parentid = child.parentid -:>
 <span class="bse-admin bse-admin-buttons-mini">
   <:-.if label :>
   <b class="bse-label"><:= label :></b>
   <:-.end if:>
 
-  <:-.if parent.id == child.parentid -:>
-  <:-.set action_url = cfg.admin_url("add", { "id":child.id, "referer":referer_id }) -:>
-  <a href="<:= action_url :>" title="Edit Article… (Id <:= child.id:>)" target="_top">
+  <:-.if parent_id == child_parentid -:>
+  <:-.set action_url = cfg.admin_url("add", { "id":child_id, "referer":referer_id }) -:>
+  <a href="<:= action_url :>" title="Edit Article… (Id <:= child_id:>)" target="_top">
     <:-.call "make_button_img", "name":"action" -:>
   </a>
 
   <:-.else -:>
-  <:-.set action_url = cfg.admin_url("add", { "id":parent.id, "stepkid":child.id, "_t":"steps", "referer":referer_id }) -:>
-  <a href="<:= action_url :>" title="Edit Stepchild… (Id <:= child.id:>)" target="_top">
+  <:-.set action_url = cfg.admin_url("add", { "id":parent_id, "stepkid":child_id, "_t":"steps", "referer":referer_id }) -:>
+  <a href="<:= action_url :>" title="Edit Stepchild… (Id <:= child_id:>)" target="_top">
     <:-.call "make_button_img", "name":"action" -:>
   </a>
   <:-.end if -:>
 
-  <:-.if request.user_can("bse_edit_delete_article", child) and (parent.id == child.parentid) -:>
-  <:-.set delete_url = cfg.admin_url("add", { "remove":1, "id":child.id, "_csrfp":request.get_csrf_token("admin_remove_article"), "r":r }) -:>
-  <a href="<:= delete_url :>" title="Delete Article (Id <:= child.id:>)" onclick="return window.confirm('Are you sure you want to delete this Article?')">
+  <:-.if request.user_can("bse_edit_delete_article", child_id) and (parent_id == child_parentid) -:>
+  <:-.set delete_url = cfg.admin_url("add", { "remove":1, "id":child_id, "_csrfp":request.get_csrf_token("admin_remove_article"), "r":r }) -:>
+  <a href="<:= delete_url :>" title="Delete Article (Id <:= child_id:>)" onclick="return window.confirm('Are you sure you want to delete this Article?')">
     <:-.call "make_button_img", "name":"delete" -:>
   </a>
 
-  <:-.elsif request.user_can("bse_edit_stepkid_delete", parent) and request.user_can("bse_edit_stepparent_delete", child) and (parent.id != child.parentid) -:>
-  <:-.set delete_url = cfg.admin_url("add", { "del_stepkid":1, "id":parent.id, "stepkid": child.id, "_csrfp":request.get_csrf_token("admin_remove_stepkid"), "r":r }) -:>
-  <a href="<:= delete_url :>" title="Delete Stepchild (Id <:= child.id:>)" onclick="return window.confirm('Are you sure you want to remove the Stepchild relationship?')">
+  <:-.elsif request.user_can("bse_edit_stepkid_delete", parent_id) and request.user_can("bse_edit_stepparent_delete", child_id) and (parent_id != child_parentid) -:>
+  <:-.set delete_url = cfg.admin_url("add", { "del_stepkid":1, "id":parent_id, "stepkid": child_id, "_csrfp":request.get_csrf_token("admin_remove_stepkid"), "r":r }) -:>
+  <a href="<:= delete_url :>" title="Delete Stepchild (Id <:= child_id:>)" onclick="return window.confirm('Are you sure you want to remove the Stepchild relationship?')">
     <:-.call "make_button_img", "name":"delete" -:>
   </a>
 
@@ -467,11 +469,9 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_image; "admin":0, "label":0, "referer_id":top.id, "r":top.admin -:>
+<:-.define edit_image; "admin":0, "label":0, "referer_id":top.id, "r":top.admin, "article_id":article.id, "image_id":loop.current.id -:>
 <:-.if bse.admin or admin -:>
-<:-.if request.user_can("bse_edit_images_save", article) -:>
-<:-.set article_id = article.id -:>
-<:-.set image_id = loop.current.id -:>
+<:-.if request.user_can("bse_edit_images_save", article_id) -:>
 <span class="bse-admin bse-admin-buttons-mini">
   <:-.if label :>
   <b class="bse-label"><:= label :></b>
@@ -482,7 +482,7 @@ parameters:
     <:-.call "make_button_img", "name":"action" -:>
   </a>
 
-  <:-.if request.user_can("bse_edit_images_delete", article) -:>
+  <:-.if request.user_can("bse_edit_images_delete", article_id) -:>
   <:-.set delete_url = cfg.admin_url("add", { "removeimg_" _ image_id:1, "id":article_id, "_csrfp":request.get_csrf_token("admin_remove_image"), "r":r }) -:>
   <a href="<:= delete_url :>" title="Delete Image (Id <:= image_id:>)" onclick="return window.confirm('Are you sure you want to delete this Image?')">
     <:-.call "make_button_img", "name":"delete" -:>
@@ -497,11 +497,9 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_file; "admin":0, "label":0, "referer_id":0, "r":top.admin -:>
+<:-.define edit_file; "admin":0, "label":0, "referer_id":0, "r":top.admin, "article_id":article.id, "file_id":loop.current.id -:>
 <:-.if bse.admin or admin -:>
-<:-.if request.user_can("bse_edit_files_save", article) -:>
-<:-.set article_id = article.id -:>
-<:-.set file_id = loop.current.id -:>
+<:-.if request.user_can("bse_edit_files_save", article_id) -:>
 <span class="bse-admin bse-admin-buttons-mini">
   <:-.if label :>
   <b class="bse-label"><:= label :></b>
@@ -512,7 +510,7 @@ parameters:
     <:-.call "make_button_img", "name":"action" -:>
   </a>
 
-  <:-.if request.user_can("bse_edit_files_delete", article) -:>
+  <:-.if request.user_can("bse_edit_files_delete", article_id) -:>
   <:-.set delete_url = cfg.admin_url("add", { "filedel":1, "id":article_id, "file":file_id, "_csrfp":request.get_csrf_token("admin_remove_file"), "r":r }) -:>
   <a href="<:= delete_url :>" title="Delete File (Id <:= file_id:>)" onclick="return window.confirm('Are you sure you want to delete this File?')">
     <:-.call "make_button_img", "name":"delete" -:>
