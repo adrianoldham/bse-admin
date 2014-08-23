@@ -412,10 +412,10 @@ parameters:
 <:-.end define :>
 
 
-<:-.define messages -:>
-  <:-.if request.messages.size :>
+<:-.define messages; "messages":request.messages -:>
+  <:-.if messages.size :>
     <div id="message">
-      <:-.for message in request.messages :>
+      <:-.for message in messages :>
       <div class="message <:= message.class :> <:-= message.class eq 'error' ? ' red' : message.class eq 'warning' ? ' orange' : ' green' :>">
         <:-= message.html -:>
       </div>
