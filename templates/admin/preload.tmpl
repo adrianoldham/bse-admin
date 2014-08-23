@@ -1,7 +1,6 @@
 <:# define globals :>
 <:-.set dist_image_uri = cfg.entryIfVar("uri", "dist_images", "/images") -:>
 <:-.set errors = request.field_errors -:>
-<:-.set request = bse.admin ? generator.request : request -:>
 
 <:-.define admin_styles -:>
 <style>
@@ -426,8 +425,9 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_child; "admin":0, "label":0, "referer_id":top.id, "r":top.admin, "parent":loop.current.parent, "child":loop.current -:>
+<:-.define edit_child; "admin":0, "label":0, "referer_id":top.id, "r":top.admin, "parent":loop.current.parent, "child":loop.current, "req":0 -:>
 <:-.if bse.admin or admin -:>
+<:-.set request = req ? req : bse.admin ? generator.request : request -:>
 <:-.set parent_id = parent.id -:>
 <:-.set child_id = child.id -:>
 <:-.set child_parentid = child.parentid -:>
@@ -469,8 +469,9 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_image; "admin":0, "label":0, "referer_id":top.id, "r":top.admin, "article_id":article.id, "image_id":loop.current.id -:>
+<:-.define edit_image; "admin":0, "label":0, "referer_id":top.id, "r":top.admin, "article_id":article.id, "image_id":loop.current.id, "req":0 -:>
 <:-.if bse.admin or admin -:>
+<:-.set request = req ? req : bse.admin ? generator.request : request -:>
 <:-.if request.user_can("bse_edit_images_save", article_id) -:>
 <span class="bse-admin bse-admin-buttons-mini">
   <:-.if label :>
@@ -497,8 +498,9 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_file; "admin":0, "label":0, "referer_id":0, "r":top.admin, "article_id":article.id, "file_id":loop.current.id -:>
+<:-.define edit_file; "admin":0, "label":0, "referer_id":0, "r":top.admin, "article_id":article.id, "file_id":loop.current.id, "req":0 -:>
 <:-.if bse.admin or admin -:>
+<:-.set request = req ? req : bse.admin ? generator.request : request -:>
 <:-.if request.user_can("bse_edit_files_save", article_id) -:>
 <span class="bse-admin bse-admin-buttons-mini">
   <:-.if label :>
@@ -544,8 +546,9 @@ parameters:
 
   which in most cases means you can just supply parent
 :>
-<:-.define move; "admin":0, "r":top.admin -:>
+<:-.define move; "admin":0, "r":top.admin, "req":0 -:>
 <:-.if bse.admin or admin -:>
+<:-.set request = req ? req : bse.admin ? generator.request : request -:>
 <:-.if request.user_can("bse_edit_reorder_children", parent) -:>
 
 <:-.set down_url = loop.next ? cfg.admin_url("move", { "stepparent":parent.id, "d":"swap", "id":loop.current.id, "other":loop.next.id, "r":r }) : 0 -:>
@@ -558,8 +561,9 @@ parameters:
 <:-.end define :>
 
 
-<:-.define move_image; "admin":0, "r":top.admin -:>
+<:-.define move_image; "admin":0, "r":top.admin, "req":0 -:>
 <:-.if bse.admin or admin -:>
+<:-.set request = req ? req : bse.admin ? generator.request : request -:>
 <:-.if request.user_can("bse_edit_images_reorder", article) -:>
 
 <:-.set down_url = loop.next ? cfg.admin_url("add", { "moveimgdown":1, "id":article.id, "imageid":loop.current.id, "_csrfp":request.get_csrf_token("admin_move_image"), "r":r }) : 0 -:>
@@ -572,8 +576,9 @@ parameters:
 <:-.end define :>
 
 
-<:-.define move_file; "admin":0, "r":top.admin -:>
+<:-.define move_file; "admin":0, "r":top.admin, "req":0 -:>
 <:-.if bse.admin or admin -:>
+<:-.set request = req ? req : bse.admin ? generator.request : request -:>
 <:-.if request.user_can("bse_edit_files_reorder", article) -:>
 
 <:-.set down_url = loop.next ? cfg.admin_url("add", { "fileswap":1, "id":article.id, "file1":loop.current.id, "file2":loop.next.id, "_csrfp":request.get_csrf_token("admin_move_file"), "r":r }) : 0 -:>
