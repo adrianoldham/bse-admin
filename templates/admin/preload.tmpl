@@ -208,7 +208,7 @@
   fields - hash of fields (may be set by page instead)
   object - source for defaults in edit mode
 :>
-<:-.define input; "accesskey":0, "title":0, "autofocus":0, "placeholder":0, "readonly":0, "disabled":0 :>
+<:-.define input; "options":{}, "accesskey":0, "title":0, "autofocus":0, "placeholder":0, "readonly":0, "disabled":0 :>
     <:-.if object :>
       <:-.set default = object.$name :>
     <:-.elsif field.default :>
@@ -297,11 +297,11 @@
   name - field name
   fields - hash of fields (may be set by page instead)
 :>
-<:-.define field -:>
+<:-.define field; "options":{} -:>
   <:-.if fields.is_hash -:>
     <:-.set field = fields[name] -:>
     <:-.if field :>
-      <:-.call "inlinefield", "name":name, "field":field :>
+      <:-.call "inlinefield", "name":name, "field":field, "options": options :>
     <:-.else :>
       <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
     <:-.end if :>
@@ -315,7 +315,7 @@
   name - the field name
   field - a field, as an entry in fields
 :>
-<:-.define inlinefield -:>
+<:-.define inlinefield; "options":{} -:>
     <:-.if field.is_hash -:>
       <div>
         <label for="<:= name :>">
@@ -324,7 +324,7 @@
           <:-.call "error_img", "name":name -:>
         </label>
         <span>
-          <:-.call "input", "name":name, "field":field :>
+          <:-.call "input", "name":name, "field":field, "options": options :>
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>
