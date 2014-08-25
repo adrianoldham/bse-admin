@@ -298,9 +298,9 @@
   name - field name
   fields - hash of fields (may be set by page instead)
 :>
-<:-.define field; "options":{} -:>
+<:-.define field; "options":{}, "field":{} -:>
   <:-.if fields.is_hash -:>
-    <:-.set field = fields[name] -:>
+    <:-.set field = fields[name].extend(field) -:>
     <:-.if field :>
       <:-.call "inlinefield", "name":name, "field":field, "options":options :>
     <:-.else :>
