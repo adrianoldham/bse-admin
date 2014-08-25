@@ -208,7 +208,7 @@
   fields - hash of fields (may be set by page instead)
   object - source for defaults in edit mode
 :>
-<:-.define input; "options":{}, "accesskey":0, "title":0, "autofocus":0, "placeholder":0, "readonly":0, "disabled":0 :>
+<:-.define input; "options":{} :>
     <:-.if object :>
       <:-.set default = object.$name :>
     <:-.elsif field.default :>
@@ -230,13 +230,13 @@
     <:-.end if :>
           <:-.if field.htmltype eq "textarea" :>
           <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>"
-            <:-= title ? ' title="' _ title _ '"' : '' | raw :>
-            <:-= accesskey ? ' accesskey="' _ accesskey _ '"' : '' | raw :>
-            <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
+            <:-= options.title ? ' title="' _ options.title _ '"' : '' | raw :>
+            <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
+            <:-= options.placeholder ? ' placeholder="' _ options.placeholder _ '"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
-            <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
-            <:-= readonly ? ' readonly="readonly"' : '' | raw :>
-            <:-= disabled ? ' disabled="disabled"' : '' | raw :>
+            <:-= options.autofocus ? ' autofocus="autofocus"' : '' | raw :>
+            <:-= options.readonly ? ' readonly="readonly"' : '' | raw :>
+            <:-= options.disabled ? ' disabled="disabled"' : '' | raw :>
             <:-= errors.$name ? ' class="error"' : '' | raw -:>
           >
             <:-= default -:>
@@ -247,7 +247,7 @@
           <input type="checkbox" name="<:= name :>" id="<:= name :>" value="<:= field.value ? field.value : 1 :>"
             <:-= is_checked ? ' checked="checked"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
-            <:-= disabled or readonly ? ' disabled="disabled"' : '' | raw :> />
+            <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :> />
           <:-.elsif field.htmltype eq "multicheck" :>
           <:-# we expect default to be a list of selected checks :>
           <:-.set values = field.select["values"] :>
@@ -256,9 +256,10 @@
           <:-.call "make_multicheck",
             "id":field.select.id,
             "desc":field.select.label,
-            "disabled":disabled
+            "readonly":options.readonly,
+            "disabled":options.disabled
           :>
-          <:-.elsif field.htmltype eq "select" and !readonly :>
+          <:-.elsif field.htmltype eq "select" and !options.readonly :>
           <:-.set values = field.select["values"] :>
           <:-.set values = values.is_code ? values() : values :>
           <:-.call "make_select",
@@ -267,11 +268,11 @@
             "list":values,
             "id":field.select.id,
             "desc":field.select.label,
-            "accesskey":accesskey,
-            "title":title,
+            "accesskey":options.accesskey,
+            "title":options.title,
             "required":field.required,
-            "autofocus":autofocus,
-            "disabled":disabled,
+            "autofocus":options.autofocus,
+            "disabled":options.disabled,
             "groupid":(field.select.groupid or "id"),
             "itemgroupid":(field.select.itemgroupid or "groupid"),
             "groups":field.select.groups ? (field.select.groups.is_code ? (field.select.groups)() : field.select.groups ) : 0,
@@ -281,13 +282,13 @@
           <input type="<:= field.htmltype or "text" :>" name="<:= name :>" id="<:= name :>" value="<:= default :>"
             <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
             <:-= field.maxlength ? ' maxlength="' _ field.maxlength _ '"' : '' | raw :>
-            <:-= accesskey ? ' accesskey="' _ accesskey _ '"' : '' | raw :>
-            <:-= title ? ' title="' _ title _ '"' : '' | raw :>
-            <:-= placeholder ? ' placeholder="' _ placeholder _ '"' : '' | raw :>
+            <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
+            <:-= options.title ? ' title="' _ options.title _ '"' : '' | raw :>
+            <:-= options.placeholder ? ' placeholder="' _ options.placeholder _ '"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
-            <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
-            <:-= readonly ? ' readonly="readonly"' : '' | raw :>
-            <:-= disabled ? ' disabled="disabled"' : '' | raw :>
+            <:-= options.autofocus ? ' autofocus="autofocus"' : '' | raw :>
+            <:-= options.readonly ? ' readonly="readonly"' : '' | raw :>
+            <:-= options.disabled ? ' disabled="disabled"' : '' | raw :>
             <:-= errors.$name ? ' class="error"' : '' | raw :> />
           <:-.end if :>
 <:-.end define :>
@@ -301,7 +302,7 @@
   <:-.if fields.is_hash -:>
     <:-.set field = fields[name] -:>
     <:-.if field :>
-      <:-.call "inlinefield", "name":name, "field":field, "options": options :>
+      <:-.call "inlinefield", "name":name, "field":field, "options":options :>
     <:-.else :>
       <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
     <:-.end if :>
@@ -324,7 +325,7 @@
           <:-.call "error_img", "name":name -:>
         </label>
         <span>
-          <:-.call "input", "name":name, "field":field, "options": options :>
+          <:-.call "input", "name":name, "field":field, "options":options :>
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>
@@ -365,7 +366,7 @@ parameters:
       <div>
         <label for="<:= name :>"><:= field.nolabel ? "" : field.description :></label>
         <span>
-          <:-.call "input", "name":name, "field":field, "readonly":1 :>
+          <:-.call "input", "name":name, "field":field, "options":{ "readonly":1 } :>
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>
@@ -402,7 +403,7 @@ parameters:
       <:-.if !field.nolabel :>
       <legend><:= field.description :></legend>
       <:-.end if :>
-      <:-.call "input", "name":name, "field":field, "readonly":1 :>
+      <:-.call "input", "name":name, "field":field, "options":{ "readonly":1 } :>
     </fieldset>
   <:-.elsif fields.is_hash :>
     <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
