@@ -18,7 +18,7 @@
     <:csrfp bse_admin_import hidden:>
     <fieldset>
       <legend>Selection</legend>
-      <:.call "inlinefield", "name":"file", "field": { "description":"Data file", "required":1, "htmltype":"file" }, "accesskey":"f", "title":"AccessKey = f", "autofocus": 1 :>
+      <:.call "inlinefield", "name":"file", "field": { "description":"Data file", "required":1, "htmltype":"file" }, "options": { "accesskey":"f", "title":"AccessKey = f", "autofocus": 1 } :>
       <:.call "inlinefield", "name":"profile", "field": { "description":"Profile", "required":1, "htmltype":"select", "select": { "values":profiles, "id":"id", "label":"label" } }, "default":cgi.param('profile') :>
     </fieldset>
     <p class="buttons">

@@ -15,15 +15,15 @@
     <:-.end if :>
     <fieldset>
       <legend>Coupon</legend>
-      <:.call "field", "name":"code", "autofocus":1, "readonly":!coupon.is_removable :>
+      <:.call "field", "name":"code", "options":{ "readonly":!coupon.is_removable } :>
       <:.call "field", "name":"description" :>
-      <:.call "field", "name":"discount_percent", "placeholder":"%" :>
+      <:.call "field", "name":"discount_percent", "options":{ "placeholder":"%" } :>
       <:.call "field", "name":"campaign" :>
     </fieldset>
     <fieldset>
       <legend>Validity</legend>
-      <:.call "field", "name":"release", "placeholder":"DD/MM/YYYY" :>
-      <:.call "field", "name":"expiry", "placeholder":"DD/MM/YYYY" :>
+      <:.call "field", "name":"release", "options":{ "placeholder":"DD/MM/YYYY" } :>
+      <:.call "field", "name":"expiry", "options":{ "placeholder":"DD/MM/YYYY" } :>
     </fieldset>
     <:-.if tiers.size != 0 :>
     <:.call "fieldset", "name":"tiers" :>

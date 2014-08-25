@@ -8,7 +8,7 @@
     <input type="hidden" name="r" value="<:= cgi.param("r") or cfg.admin_url("add", { "id": 1, "preview": 1 }):>" />
     <fieldset>
       <legend>Login</legend>
-      <:.call "inlinefield", "name": "logon", "field": { "description": "Username", "autofocus": 1, "required": 1 } :>
+      <:.call "inlinefield", "name": "logon", "field": { "description": "Username", "required": 1 }, "options": { "autofocus": 1 } :>
       <:.call "inlinefield", "name": "password", "field": { "description": "Password", "htmltype": "password", "required": 1 } :>
     </fieldset>
     <p class="buttons">
