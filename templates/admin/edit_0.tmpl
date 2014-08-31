@@ -45,7 +45,7 @@
             <:= article.titleAlias or article.title :><:.if article.titleAlias:> (<:= article.title :>)<:.end if:>
           </a>
           <span class="actions">
-            <:-.set typename = article.generator.replace("Generate::", "") :>
+            <:-.set typename = article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") :>
             <:-.if article.parentid != parent.id :>
             <a href="<:= cfg.admin_url("add", { "id": parent.id, "stepkid": article.id, "referer": 1, "_t": "steps", "r": refresh }) :>" class="button gray small">Edit</a>
             <:-.if request.user_can("bse_edit_stepkid_delete", article) and request.user_can("bse_edit_stepparent_delete", parent) :>

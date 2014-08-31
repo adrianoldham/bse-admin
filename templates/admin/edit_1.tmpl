@@ -1,5 +1,5 @@
 <:-.set is_article = article.id > 0 -:>
-<:-.set typename = article.generator.replace("Generate::", "") -:>
+<:-.set typename = article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") -:>
 <:-.set is_new = not(article.id) -:>
 <:-.set is_preview = cgi.param("preview") -:>
 <:-.wrap "admin/base.tmpl", "title": ( is_preview ? "Preview" : ( is_new ? "New " : "Edit " ) _ typename ) :>

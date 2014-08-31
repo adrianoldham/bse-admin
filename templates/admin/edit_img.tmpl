@@ -1,5 +1,5 @@
 <:-.set is_article = article.id > 0 -:>
-<:-.set typename = is_article ? article.generator.replace("Generate::", "") : "Site" -:>
+<:-.set typename = is_article ? article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Images" ) :>
 <div class="window">
   <header>
