@@ -1,4 +1,4 @@
-<:-.set is_article = article.id > 0 -:>
+<:-.set is_article = article.id and article.id > 0 -:>
 <:-.set typename = is_article ? "" : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": "New " _ typename _ " Image" :>
 <div class="window dialog">

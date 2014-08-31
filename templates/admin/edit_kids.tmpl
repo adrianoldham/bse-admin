@@ -1,4 +1,4 @@
-<:-.set is_article = article.id > 0 -:>
+<:-.set is_article = article.id and article.id > 0 -:>
 <:-.set typename = is_article ? article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Children" ) :>
 <:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
