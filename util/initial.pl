@@ -5,7 +5,7 @@
 use strict;
 use lib '../cgi-bin/modules';
 use DBI;
-use Article;
+use BSE::TB::Article;
 use Constants qw($DSN $UN $PW $CGI_URI $SHOP_URI $ROOT_URI);
 use BSE::API qw(bse_init bse_cfg);
 use BSE::Util::SQL qw(now_sqldate now_sqldatetime);
@@ -41,7 +41,7 @@ my @prebuilt =
     admin => $CGI_URI.'/admin/admin.pl?id=1',
     threshold => 10000, # needs to be high
     summaryLength => 0, # should be ignored
-    generator => 'Generate::Article',
+    generator => 'BSE::Generate::Article',
     thumbImage => '',
     thumbWidth => 0,
     thumbHeight => 0,
@@ -81,7 +81,7 @@ my @prebuilt =
     admin => $CGI_URI.'/admin/admin.pl?id=2',
     threshold => 10000, # needs to be high
     summaryLength => 0, # should be ignored
-    generator => 'Generate::Article',
+    generator => 'BSE::Generate::Article',
     thumbImage => '',
     thumbWidth => 0,
     thumbHeight => 0,
@@ -121,7 +121,7 @@ my @prebuilt =
     admin => $CGI_URI.'/admin/admin.pl?id=3',
     threshold => 1, # ignored
     summaryLength => 0, # ignored
-    generator => 'Generate::Catalog',
+    generator => 'BSE::Generate::Catalog',
     thumbImage => '',
     thumbWidth => 0,
     thumbHeight => 0,
@@ -161,7 +161,7 @@ my @prebuilt =
     admin => $CGI_URI.'/admin/admin.pl?id=6',
     threshold => 0, # ignored
     summaryLength => 0, #ignored
-    generator => 'Generate::Article',
+    generator => 'BSE::Generate::Article',
     thumbImage => '',
     thumbWidth => 0,
     thumbHeight => 0,
@@ -201,7 +201,7 @@ my @prebuilt =
     admin => $CGI_URI.'/admin/admin.pl?id=7',
     threshold => 0, # ignored
     summaryLength => 0, #ignored
-    generator => 'Generate::Article',
+    generator => 'BSE::Generate::Article',
     thumbImage => '',
     thumbWidth => 0,
     thumbHeight => 0,
@@ -241,7 +241,7 @@ my @prebuilt =
     admin => $CGI_URI.'/admin/admin.pl?id=8',
     threshold => 0, # ignored
     summaryLength => 0, #ignored
-    generator => 'Generate::Article',
+    generator => 'BSE::Generate::Article',
     thumbImage => '',
     thumbWidth => 0,
     thumbHeight => 0,
@@ -268,7 +268,7 @@ my @prebuilt =
 
 my $dbh = BSE::DB->single->dbh
   or die "Cannot connect to database: ",DBI->errstr;
-my @columns = Article->columns;
+my @columns = BSE::TB::Article->columns;
 $dbh->do('delete from article')
   or die "Cannot delete articles: ",$dbh->errstr;
 $dbh->do('delete from product')
