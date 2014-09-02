@@ -331,6 +331,8 @@
           <:-.end if :>
         </span>
       </div>
+    <:-.else :>
+      <p>field isn’t a hash, something is wrong.</p>
     <:-.end if :>
 <:-.end define :>
 
@@ -372,6 +374,8 @@ parameters:
           <:-.end if :>
         </span>
       </div>
+    <:-.else :>
+      <p>field isn’t a hash, something is wrong.</p>
     <:-.end if :>
 <:-.end define :>
 
@@ -408,7 +412,7 @@ parameters:
   <:-.elsif fields.is_hash :>
     <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
     <:-.else :>
-    <p>fields isn’t a hash, something is wrong.</p>
+    <p>field isn’t a hash, something is wrong.</p>
   <:-.end if :>
 <:-.end define :>
 
