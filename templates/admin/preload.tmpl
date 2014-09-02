@@ -228,7 +228,7 @@
     <:-.if cgi.param(name).defined :>
       <:-.set default = cgi.param(name) :>
     <:-.end if :>
-          <:-.if field.htmltype eq "textarea" :>
+          <:-.if field.htmltype and field.htmltype eq "textarea" :>
           <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>"
             <:-= options.title ? ' title="' _ options.title _ '"' : '' | raw :>
             <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
@@ -241,14 +241,14 @@
           >
             <:-= default -:>
           </textarea>
-          <:-.elsif field.htmltype eq "checkbox" :>
+          <:-.elsif field.htmltype and field.htmltype eq "checkbox" :>
           <:-.set is_checked = request.method() eq 'post' ? cgi.param(name).defined : default :>
           <input type="hidden" name="_save_<:= name :>" value="1" />
           <input type="checkbox" name="<:= name :>" id="<:= name :>" value="<:= field.value ? field.value : 1 :>"
             <:-= is_checked ? ' checked="checked"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :> />
-          <:-.elsif field.htmltype eq "multicheck" :>
+          <:-.elsif field.htmltype and field.htmltype eq "multicheck" :>
           <:-# we expect default to be a list of selected checks :>
           <:-.set values = field.select["values"] :>
           <:-.set values = values.is_code ? values() : values :>
@@ -259,7 +259,7 @@
             "readonly":options.readonly,
             "disabled":options.disabled
           :>
-          <:-.elsif field.htmltype eq "select" and !options.readonly :>
+          <:-.elsif field.htmltype and field.htmltype eq "select" and !options.readonly :>
           <:-.set values = field.select["values"] :>
           <:-.set values = values.is_code ? values() : values :>
           <:-.call "make_select",
