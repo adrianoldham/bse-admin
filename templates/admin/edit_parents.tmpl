@@ -1,5 +1,4 @@
 <:-.wrap "admin/base.tmpl", "title": "Manage Article Parents" :>
-<:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
 <div class="window">
   <header>
     <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>

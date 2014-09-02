@@ -1,7 +1,6 @@
 <:-.set is_article = article.id and article.id > 0 -:>
 <:-.set typename = is_article ? article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Children" ) :>
-<:-.set refresh = cfg.admin_url("add", { "id": article.id, "_t": cgi.param("_t"), "tree": cgi.param("tree") }) -:>
 <:-.set kids = [ article.allkids ] :>
 
 <:-.set referer = request.referer -:>
@@ -50,7 +49,7 @@
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "listed", "r": refresh }) :>">listed</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "sort": "shuffle", "r": refresh }) :>">shuffle</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "stepparent": article.id, "reverse": 1, "r": refresh }) :>">reverse</a></li>
-      <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree") }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "_t": "kids", "tree": cgi.param("tree"), "sort": 1 }) :>">advanced</a><:eif:></li>
+      <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi_tree }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "_t": "kids", "tree": cgi_tree, "sort": 1 }) :>">advanced</a><:eif:></li>
     </ul>
     <:-.if cgi.param("sort"):>
 <:include admin/include/edit_article_sort.tmpl optional:>
@@ -99,7 +98,7 @@
           </span>
         </span>
       <:-# do not list children for step kids, could lead to infinite recursion :>
-      <:-.if article.parentid == parent.id and level < 10 and cgi.param("tree") :>
+      <:-.if article.parentid == parent.id and level < 10 and cgi_tree :>
         <:-.set kids = [ article.allkids ] :>
         <:-.if kids.size :>
       <ul>

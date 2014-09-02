@@ -1,3 +1,7 @@
+<:-.set cgi_t = cgi.param("_t") -:>
+<:-.set cgi_tree = cgi.param("tree") -:>
+<:-.set article_id = bse.site.id -:>
+<:-.set refresh = cfg.admin_url("add", { "id": article_id, "_t": cgi_t, "tree": cgi_tree }) :>
     <nav data-role="toolbar">
       <ul class="menu context">
         <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>

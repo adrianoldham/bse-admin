@@ -1,6 +1,6 @@
 <:-.wrap "admin/base.tmpl", "title": "Manage Site Articles" :>
-<:-.set refresh = cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree") }) -:>
-<:-.set kids = [ bse.site.allkids ] :>
+<:-.set kids = [ bse.site.allkids ] -:>
+
 <div class="window">
   <header>
     <h1><:= params.title:></h1>
@@ -18,7 +18,7 @@
       <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "sort": "listed", "r": refresh }) :>">listed</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "reverse": 1, "r": refresh }) :>">reverse</a></li>
       <li><a href="<:= cfg.admin_url("reorder", { "parentid": article.id, "shuffle": 1, "r": refresh }) :>">shuffle</a></li>
-      <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree") }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi.param("tree"), "sort": 1 }) :>">advanced</a><:eif:></li>
+      <li><:ifCgi sort:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi_tree }) :>">advanced &times;</a><:or:><a href="<:= cfg.admin_url("add", { "id": article.id, "tree": cgi_tree, "sort": 1 }) :>">advanced</a><:eif:></li>
     </ul>
     <:-.if cgi.param("sort"):>
 <:include admin/include/edit_article_sort.tmpl optional:>
