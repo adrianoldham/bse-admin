@@ -17,7 +17,7 @@ body {
     margin: 0 auto;
     padding: 2em 0 0 0;
     font: normal normal 0.75em/1.5 "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
-    text-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.75);
     color: #444;
     position: relative;
     background: #666 no-repeat 0 0 fixed;
@@ -163,7 +163,7 @@ iframe {
     color: #fff;
     text-shadow: 0 0.1em 0.1em rgba(0, 0, 0, 0.3);
     font-weight: bold;
-    border: 0.083em solid;
+    border: 0.0833333333333334em solid;
     -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4);
     box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4);
@@ -171,7 +171,7 @@ iframe {
 
 .scrollable {
     max-width: 74em;
-    margin: 0 -0.083em;
+    margin: 0 -0.0833333333333334em;
     overflow: auto;
     display: block;
 }
@@ -341,7 +341,7 @@ h4 {
     text-indent: -9999em;
     overflow: hidden;
     line-height: 1;
-    border: 0.083em solid;
+    border: 0.0833333333333334em solid;
     -webkit-border-radius: 1em;
     -moz-border-radius: 1em;
     border-radius: 1em;
@@ -359,8 +359,8 @@ div.window {
     min-width: 34em;
     padding: 0 2em 1em;
     background-color: #efefef;
-    border-top: 0.083em solid #eee;
-    border-bottom: 0.083em solid #444;
+    border-top: 0.0833333333333334em solid #eee;
+    border-bottom: 0.0833333333333334em solid #444;
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
@@ -466,7 +466,7 @@ h1:first-child {
 
 fieldset {
     /*display: table; opera encloses the legend if set as table */
-    border: 0.083em solid #ddd;
+    border: 0.0833333333333334em solid #ddd;
     border-color: #bbb #ddd #fff #ddd;
     margin-bottom: 1em;
     padding: 1em;
@@ -531,7 +531,7 @@ fieldset > div + ul {
 input:not([type=submit]):not([type=checkbox]):not([type=radio]),
 select,
 textarea {
-    border: 0.083em solid #ddd;
+    border: 0.0833333333333334em solid #ddd;
     border-top-color: #aaa;
     line-height: 1.2;
     padding: 0.25em;
@@ -540,9 +540,9 @@ textarea {
     display: inline-block; /* because some odd margins persist on textareas */
     min-width: 20em;
     width: 40%;
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1);
 }
 
 input[type=file] {
@@ -580,9 +580,9 @@ textarea:focus,
 select:focus {
     border-color: rgba(3, 153, 212, 0.75) !important;
     border-top-color: rgb(3, 153, 212) !important;
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
-    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
+    -webkit-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
+    -moz-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
+    box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(3, 153, 212, 0.75) !important;
 }
 
 input.error,
@@ -598,9 +598,9 @@ input.error:focus,
 textarea.error:focus,
 select.error:focus,
 .error:invalid:focus {
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
-    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
+    -webkit-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
+    -moz-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
+    box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(204, 0, 50, 0.75) !important;
 }
 
 input.changed,
@@ -615,9 +615,9 @@ select.changed {
 input.changed:focus,
 textarea.changed:focus,
 select.changed:focus {
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
-    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
+    -webkit-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
+    -moz-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
+    box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.35em rgba(100, 153, 30, 0.75) !important;
 }
 
 input:invalid,
@@ -632,9 +632,9 @@ input:invalid:focus,
 textarea:invalid:focus,
 select:invalid:focus,
 .error.changed:invalid:focus {
-    -webkit-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
-    -moz-box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
-    box-shadow: inset 0 0.083em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
+    -webkit-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
+    -moz-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
+    box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
 }
 
 fieldset > label {
@@ -643,7 +643,7 @@ fieldset > label {
 }
 
 div span img {
-    border: 0.083em solid rgba(0, 0, 0, 0.1);
+    border: 0.0833333333333334em solid rgba(0, 0, 0, 0.1);
 }
 
 /* @end */
@@ -665,8 +665,8 @@ input[type=submit][disabled] {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 0.083em 0.083em rgba(0, 0, 0, 0.3);
-    border: 0.083em solid;
+    text-shadow: 0 0.0833333333333334em 0.0833333333333334em rgba(0, 0, 0, 0.3);
+    border: 0.0833333333333334em solid;
     line-height: 1.25; /* Cannot modify because FF doesn't allow override on button element */
     color: #fff;
     -webkit-border-radius: 0.5em;
@@ -712,7 +712,7 @@ input[type=submit][disabled] {
 .rosy,
 .green,
 .white {
-    text-shadow: 0 0.083em 0.083em rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0.0833333333333334em 0.0833333333333334em rgba(0, 0, 0, 0.3);
 }
 
 /* @group black */
@@ -972,7 +972,7 @@ input[type=submit][disabled] {
 .white {
     color: #333;
     border-color: #aaa;
-    text-shadow: 0 0.083em 0.083em rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0.0833333333333334em 0.0833333333333334em rgba(255, 255, 255, 0.9);
     background: rgb(255, 255, 255); /* Old browsers */
     background: -webkit-gradient(
         linear,
@@ -1056,7 +1056,7 @@ input[type=submit][disabled] {
     text-align: left;
     text-indent: -9999em;
     height: 2.5em;
-    border-width: 0.083em !important;
+    border-width: 0.0833333333333334em !important;
 }
 
 .buttons span.progress {
@@ -1073,7 +1073,7 @@ input[type=submit][disabled] {
     line-height: 2.5;
     margin-bottom: -2.5em;
     color: #fff;
-    text-shadow: 0 0.083em 0.083em rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0.0833333333333334em 0.0833333333333334em rgba(0, 0, 0, 0.3);
 }
 
 .buttons > span span.spinner {
@@ -1231,7 +1231,7 @@ div + .meta {
 
 .inset {
     padding: 0.75em;
-    border: 0.083em solid;
+    border: 0.0833333333333334em solid;
     border-color: #b5b5b5 #ddd #fff #ddd;
 }
 
@@ -1239,7 +1239,7 @@ div + .meta {
 .list:not(.tree) li,
 .tree li > span:first-child {
     vertical-align: top;
-    border-bottom: 0.083em solid #ddd;
+    border-bottom: 0.0833333333333334em solid #ddd;
 }
 
 .list th,
@@ -1310,7 +1310,7 @@ table.items caption {
 
 table.items {
     border: solid #ccc;
-    border-width: 0.083em 0;
+    border-width: 0.0833333333333334em 0;
     width: 100%;
     clear: both;
 }
@@ -1328,7 +1328,7 @@ table.items th {
 
 table.items td {
     vertical-align: top;
-    border-bottom: 0.083em solid #ddd;
+    border-bottom: 0.0833333333333334em solid #ddd;
     padding: 0.75em 0.5em;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, 0.05)), color-stop(0.5, rgba(0, 0, 0, 0)));
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.05) 0, rgba(0, 0, 0, 0) 50%);
@@ -1440,7 +1440,7 @@ table.orders td.total {
 
 table.items {
     border: solid #ccc;
-    border-width: 0.083em 0;
+    border-width: 0.0833333333333334em 0;
     width: 100%;
 }
 
@@ -1462,7 +1462,7 @@ table.items th {
 }
 
 table.items td {
-    border-bottom: 0.083em solid #ddd;
+    border-bottom: 0.0833333333333334em solid #ddd;
     padding: 0.75em 0.5em;
 }
 
@@ -1518,7 +1518,7 @@ div.totals p.discount {
 }
 
 div.totals p.discount {
-    border-bottom: 0.083em solid #ddd;
+    border-bottom: 0.0833333333333334em solid #ddd;
     margin: 2em -0.5em 0.75em;
     padding: 0 0.5em 0.75em;
 }
@@ -1601,7 +1601,7 @@ table.vertical td {
     text-align: center;
     text-decoration: none !important;
     color: #777;
-    border: 0.083em solid #555;
+    border: 0.0833333333333334em solid #555;
     -webkit-border-radius: 0.25em;
     -moz-border-radius: 0.25em;
     border-radius: 0.25em;
@@ -1961,7 +1961,7 @@ ul.menu.header > li.active > a {
 
 ul.menu li.divider {
     margin: 0.3em 0;
-    border-width: 0.083em 0;
+    border-width: 0.0833333333333334em 0;
     border-style: solid;
     border-top-color: #fff;
     border-bottom-color: #ccc;
@@ -2000,7 +2000,7 @@ details[open] summary {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.083em;
+    top: 0.0833333333333334em;
     width: 1.167em;
     height: 1.167em;
     background: url(/bse-admin/images/widgets/arrow.svg) no-repeat 0 50%;
@@ -2026,7 +2026,7 @@ header {
     position: relative;
     margin: 0 -2em 1em;
     padding: 0 2em;
-    border-bottom: 0.083em solid #868686;
+    border-bottom: 0.0833333333333334em solid #868686;
     -webkit-border-radius: 0.5em 0.5em 0 0;
     -moz-border-radius: 0.5em 0.5em 0 0;
     border-radius: 0.5em 0.5em 0 0;
@@ -2082,14 +2082,14 @@ h1:first-child + *[data-role=toolbar],
     margin: 0 0.5em 0 0;
     font-size: 1em !important;
     color: #333 !important;
-    text-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.75);
     white-space: nowrap;
     overflow: hidden;
-    border: 0.083em solid;
+    border: 0.0833333333333334em solid;
     border-color: #838383;
-    -webkit-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.25);
-    -moz-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.25);
+    -webkit-box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.25);
     border-radius: 0.35em;
     background: #ddd; /* Old browsers */
     background: -webkit-gradient(
@@ -2133,20 +2133,20 @@ h1:first-child + *[data-role=toolbar],
 *[data-role=toolbar] .button:active,
 *[data-role=toolbar] .button.active,
 *[data-role=toolbar] .active .button {
-    -webkit-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
-    box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.5em rgba(0, 0, 0, 0.3), inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.2);
 }
 
 *[data-role=toolbar] .button.selected {
-    -webkit-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
-    -moz-box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0.083em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0.0833333333333334em 0 rgba(255, 255, 255, 0.5), inset 0 0.2em 0.3em rgba(0, 0, 0, 0.3), inset 0 -0.3em 0.75em rgba(255, 255, 255, 0.2);
     background: #888;
     background: #3F000000;
     background: rgba(0, 0, 0, 0.25);
     color: #eee !important;
-    text-shadow: 0 0.083em 0 #444;
+    text-shadow: 0 0.0833333333333334em 0 #444;
 }
 
 /* @group control group */
@@ -2183,7 +2183,7 @@ h1:first-child + *[data-role=toolbar],
 }
 
 *[data-role=controlgroup] > :not(:first-child) {
-    margin-left: -0.083em !important;
+    margin-left: -0.0833333333333334em !important;
 }
 
 *[data-role=controlgroup] + *[data-role=controlgroup] {
@@ -2197,7 +2197,7 @@ h1:first-child + *[data-role=toolbar],
 *[data-role=status] {
     margin: -1em -2em 1em;
     padding: 0.5em 2em;
-    border-bottom: 0.083em solid;
+    border-bottom: 0.0833333333333334em solid;
 }
 
 /* @end */
