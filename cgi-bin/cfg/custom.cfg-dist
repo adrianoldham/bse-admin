@@ -19,13 +19,6 @@ dsn=dbi:mysql:example_bse
 user=example_bse
 password=p455w0rd
 
-[rss]
-;sections=1
-;enabled=1
-
-[interest]
-;notify=interest@example.com.au
-
 [site users]
 ;user_register=1
 
