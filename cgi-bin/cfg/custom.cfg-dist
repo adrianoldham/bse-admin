@@ -10,6 +10,7 @@ secureurl=http://example.vtc.net.au
 ;access_control=1
 ;jit_dynamic_pregen=1
 cache_thumbnails=0
+cache_templates_locally=1
 
 [paths]
 siteroot=/home/example
