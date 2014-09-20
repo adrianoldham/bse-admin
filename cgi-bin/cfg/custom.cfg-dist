@@ -23,6 +23,6 @@ password=p455w0rd
 ;user_register=1
 
 [shop]
-from=admin@example.com.au
-to_name=Administrator
-to_email=<admin@example.com.au>
+;from=user@example.com.au
+;to_name=Administrator
+;to_email=<user@example.com.au>
