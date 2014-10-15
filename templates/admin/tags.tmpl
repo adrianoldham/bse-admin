@@ -61,7 +61,15 @@
       <:- if Systagarts:>
       <ul class="inset list">
         <:- iterator begin systagarts:>
-        <li><a href="<:script:>?id=<:systagart id:>&amp;referer=1"><:systagart title:></a></li>
+        <li>
+          <a href="<:adminurl add id [systagart id] preview 1:>">
+            <span class="indicator <:switch:><:case systagart is_expired:>red<:case !systagart is_released:>white<:case Eq [systagart listed] 0:>gray<:case Eq [systagart listed] 2:>orange<:case default:>green<:endswitch:>"></span>
+            <:systagart title:>
+          </a>
+          <span class="actions">
+            <a href="<:adminurl add id [systagart id] referer 1:>" class="button gray small">Edit</a>
+          </span>
+        </li>
         <:- iterator end systagarts:>
       </ul>
       <:- or Systagarts:>
