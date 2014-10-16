@@ -69,6 +69,11 @@
           </a>
           <span class="actions">
             <a href="<:adminurl add id [systagart id] referer 1:>" class="button gray small">Edit</a>
+            <:-if UserCan bse_edit_delete_article(systagart):>
+            <a href="<:adminurl add id [systagart id] remove 1 _csrfp [csrfp admin_remove_article] r [adminurl2 add tags id -1 showarts [cgi showarts] nocat [cgi nocat] p [cgi p] pp [cgi pp]] |x:>" class="button red small" data-action="Delete" data-object="<:replace [systagart generator] "BSE::Generate::" :>" >Delete</a>
+            <:-or UserCan:>
+            <a class="button red small disabled">Delete</a>
+            <:-eif UserCan:>
           </span>
         </li>
         <:- iterator end systagarts:>
