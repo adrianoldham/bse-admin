@@ -11,17 +11,15 @@
     <legend id="<:= state.stage :>"><:= request.catmsg(msgbase _ "stage/" _ state.stage) :></legend>
     <ul class="list">
       <:-.elsif state.type eq "orphanimage" :>
-      <li>
-        <span class="indicator <:= acted ? "red" : "gray" :>"></span>
+      <li class="<:= acted ? 'notice' : 'warning' :>">
         <:= request.htmlmsg(msgbase _ "process/" _ ( acted ? "remove" : "skip" ) _ "image", [ state.image.id, state.image.image ]) :>
       </li>
       <:-.elsif state.type eq "orphanfile" :>
-      <li>
-        <span class="indicator <:= acted ? "red" : "gray" :>"></span>
+      <li class="<:= acted ? 'notice' : 'warning' :>">
         <:= request.htmlmsg(msgbase _ "process/" _ ( acted ? "remove" : "skip" ) _ "file", [ state.file ]) :>
       </li>
       <:-.elsif state.type eq "substage" :>
-      <li><:= request.htmlmsg(msgbase _ "substage/" _ state.stage _ "/" _ state.substage) :></li>
+      <li class="info"><:= request.htmlmsg(msgbase _ "substage/" _ state.stage _ "/" _ state.substage) :></li>
       <:-.elsif state.type eq "error" :>
       <li class="error"><:= state.error :></li>
       <:-.elsif state.type eq "endstage" :>
