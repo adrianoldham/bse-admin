@@ -59,8 +59,8 @@
         </span>
       </div>
       <:- if Cgi showarts:>
-      <:- if Systagarts:>
       <ul class="inset list">
+        <:- if Systagarts:>
         <:- iterator begin systagarts:>
         <li>
           <a href="<:adminurl add id [systagart id] preview 1:>">
@@ -77,10 +77,10 @@
           </span>
         </li>
         <:- iterator end systagarts:>
+        <:- or Systagarts:>
+        <li class="warning">No articles use this tag</li>
+        <:- eif Systagarts:>
       </ul>
-      <:- or Systagarts:>
-      <p>No articles use this tag.</p>
-      <:- eif Systagarts:>
       <:- eif Cgi:>
     </fieldset>
   </form>
