@@ -4,7 +4,7 @@
 
 <dl>
   <dt>User Details:</dt>
-  <dd><span><:= cfg.entry("site users", "display_email", "Email Address"):>:</span> <a href="mailto:<:email:>"></a><:email:></a></dd>
+  <dd><span><:= cfg.entry("site users", "display_email", "Email Address"):>:</span> <a href="mailto:<:= email :>"></a><:email:></a></dd>
   <dt>Product Details:</dt>
-  <dd><span>Title:</span> <:product |h:></dd>
+  <dd><span>Title:</span> <:= product.title:></dd>
 </dl>
