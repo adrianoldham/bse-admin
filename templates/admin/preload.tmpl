@@ -34,15 +34,14 @@
 <:-.end define :>
 
 <:# utility definitions :>
-<:-.define make_select; "groups":0, "grouplabel":"label", "groupid":"id", "itemgroupid":"groupid", "autofocus":0, "readonly":0, "disabled":0 -:>
+<:-.define make_select; "groups":0, "id":"id", "desc":"desc", "grouplabel":"label", "groupid":"id", "itemgroupid":"groupid", "autofocus":0, "readonly":0, "disabled":0, "class":0 -:>
           <:-.if !default.defined :>
           <:-.set default = "" :>
           <:-.end if :>
-          <select name="<:= name :>" id="<:= name :>"
+          <select name="<:= name :>" id="<:= name :>" class="<:= class ? class : '' :><:= errors and errors.$name ? ' error' : '' :>"
             <:-= autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= required ? ' required="required"' : '' | raw :>
-            <:-= disabled or readonly ? ' disabled="disabled"' : '' | raw :>
-            <:-= errors.$name ? ' class="error"' : '' | raw -:>
+            <:-= disabled or readonly ? ' disabled="disabled"' : '' | raw -:>
           >
           <:-.if groups :>
             <:-.for i in list :>
@@ -229,21 +228,20 @@
       <:-.set default = cgi.param(name) :>
     <:-.end if :>
           <:-.if field.htmltype and field.htmltype eq "textarea" :>
-          <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>"
+          <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>" class="<:= options.class ? options.class : '' :><:= errors and errors.$name ? ' error' : '' :>"
             <:-= options.title ? ' title="' _ options.title _ '"' : '' | raw :>
             <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
             <:-= options.placeholder ? ' placeholder="' _ options.placeholder _ '"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= options.autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= options.readonly ? ' readonly="readonly"' : '' | raw :>
-            <:-= options.disabled ? ' disabled="disabled"' : '' | raw :>
-            <:-= errors.$name ? ' class="error"' : '' | raw -:>
+            <:-= options.disabled ? ' disabled="disabled"' : '' | raw -:>
           >
             <:-= default -:>
           </textarea>
           <:-.elsif field.htmltype and field.htmltype eq "checkbox" :>
           <:-.set is_checked = request.method() eq 'post' ? cgi.param(name).defined : default :>
-          <input type="hidden" name="_save_<:= name :>" value="1" />
+          <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="1" />
           <input type="checkbox" name="<:= name :>" id="<:= name :>" value="<:= field.value ? field.value : 1 :>"
             <:-= is_checked ? ' checked="checked"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
@@ -273,13 +271,14 @@
             "required":field.required,
             "autofocus":options.autofocus,
             "disabled":options.disabled,
+            "class":options.class,
             "groupid":(field.select.groupid or "id"),
             "itemgroupid":(field.select.itemgroupid or "groupid"),
             "groups":field.select.groups ? (field.select.groups.is_code ? (field.select.groups)() : field.select.groups ) : 0,
             "grouplabel":(field.select.grouplabel or "label")
           :>
           <:-.else :>
-          <input type="<:= field.htmltype or "text" :>" name="<:= name :>" id="<:= name :>" value="<:= default :>"
+          <input type="<:= field.htmltype or 'text' :>" name="<:= name :>" id="<:= name :>" value="<:= default :>" class="<:= options.class ? options.class : '' :><:= errors and errors.$name ? ' error' : '' :>"
             <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
             <:-= field.maxlength ? ' maxlength="' _ field.maxlength _ '"' : '' | raw :>
             <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
@@ -288,8 +287,7 @@
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= options.autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= options.readonly ? ' readonly="readonly"' : '' | raw :>
-            <:-= options.disabled ? ' disabled="disabled"' : '' | raw :>
-            <:-= errors.$name ? ' class="error"' : '' | raw :> />
+            <:-= options.disabled ? ' disabled="disabled"' : '' | raw :> />
           <:-.end if :>
 <:-.end define :>
 
