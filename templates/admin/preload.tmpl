@@ -420,7 +420,7 @@ parameters:
     <div id="message">
       <:-.for message in messages :>
       <div class="message <:= message.class :> <:-= message.class eq 'error' ? ' red' : message.class eq 'warning' ? ' orange' : ' green' :>">
-        <:-= message.text -:>
+        <:-= message.html |raw -:>
       </div>
       <:-.end for :> 
     </div>
