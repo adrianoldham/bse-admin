@@ -7,8 +7,8 @@ RewriteBase /
     RewriteRule ^/?admin/?(index\.html)?$ /cgi-bin/admin/menu.pl [R=301,L]
 
 # Redirect unless it's the development domain
-    #RewriteCond %{HTTP_HOST} !example.vtc.net.au$
-    #RewriteCond %{REQUEST_URI} !^/?home
+    #RewriteCond %{HTTP_HOST} !example.vtc.net.au$ [NC]
+    #RewriteCond %{REQUEST_URI} !^/?home [NC]
     #RewriteRule ^/?(.*) http://www.example.com.au/home/ [R=302,L]
 
 # Redirect all to primary domain
