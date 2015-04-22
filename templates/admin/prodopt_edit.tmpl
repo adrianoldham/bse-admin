@@ -50,6 +50,16 @@
           <:help edit enabled:>
         </span>
       </div>
+      <!--<div>
+        <label for="type">HTML Type <:error_img type:></label>
+        <span>
+          <select name="type" id="type">
+            <option value="select"<:ifOr [ifMatch [old type] "select"] [ifMatch [option type] "select"]:> selected="selected"<:eif:>>Select Popup</option>
+            <option value="radio"<:ifOr [ifMatch [old type] "radio"] [ifMatch [option type] "radio"]:> selected="selected"<:eif:>>Radio Buttons</option>
+          </select>
+          <:help edit type:>
+        </span>
+      </div>-->
     </fieldset>
     <fieldset id="option_values">
       <legend>Values <:error_img default_value:></legend>
