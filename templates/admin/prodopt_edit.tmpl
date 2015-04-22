@@ -33,7 +33,6 @@
     <input type="hidden" name="newvaluecount" id="newvaluecount" value="<:ifCgi newvaluecount:><:cgi newvaluecount:><:or:>0<:eif:>" />
     <input type="hidden" name="r" value="<:cgi r:>" />
     <:csrfp admin_save_option hidden:>
-    <input type="hidden" name="save_enabled" value="1" />
     <fieldset>
       <legend>Option</legend>
       <div>
@@ -46,7 +45,8 @@
       <div>
         <label for="enabled">Enabled <:error_img enabled:></label>
         <span>
-          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOr [old enabled] [option enabled]:>checked="checked"<:eif:> />
+          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOr [old enabled] [option enabled]:>checked="checked" <:eif:>/>
+          <input type="hidden" name="save_enabled" value="1" />
           <:help edit enabled:>
         </span>
       </div>
@@ -70,7 +70,7 @@
           <:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
           <:-.end if :>
           <:- if UserCan bse_edit_prodopt_edit:article:>
-          <a href="<:script:>?id=<:article id:>&amp;a_delete_option_value=1&amp;value_id=<:dboptionvalue id:>&amp;_csrfp=<:csrfp admin_delete_option_value:>&amp;r=<:script:>%3Fid=<:article id:>%26a_edit_option=1%26option_id=<:option id:>" data-action="Delete" data-object="Value" class="button red small">&minus;</a>
+          <a href="<:= cfg.admin_url2("add", "delete_option_value", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_delete_option_value"), "r":refresh }):>" data-action="Delete" data-object="Value" class="button red small">&minus;</a>
           <:- eif UserCan:>
           <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifOr [ifEq [dboptionvalue id] [cgi default_value]] [ifEq [dboptionvalue id] [option default_value]]:>checked="checked"<:eif:> />
           #<:dboptionvalue_number:> <span class="required">*</span> <:error_img [cat value [dboptionvalue id]]:>
