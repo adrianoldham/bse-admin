@@ -214,12 +214,15 @@
   object - source for defaults in edit mode
 :>
 <:-.define input; "options":{} :>
-    <:-.if object :>
-      <:-.set default = object.$name :>
-    <:-.elsif field.default :>
-      <:-.set default = field.default :>
-    <:-.else :>
-      <:-.set default = "" :>
+    <:-.set default = options.default -:>
+    <:-.if !default.defined -:>
+      <:-.if object :>
+        <:-.set default = object.$name :>
+      <:-.elsif field.default -:>
+        <:-.set default = field.default :>
+      <:-.else -:>
+        <:-.set default = "" :>
+      <:-.end if :>
     <:-.end if :>
 
     <:-.if field.type and field.type eq "date" and default ne "" :>
@@ -316,6 +319,10 @@
 <:# parameters:
   name - the field name
   field - a field, as an entry in fields
+  options - various options, including:
+     note - display this text as a note below the field
+     delete - add a delete checkbox
+     default - a custom default value, overrides object
 :>
 <:-.define inlinefield; "options":{} -:>
     <:-.if field.is_hash -:>
@@ -330,6 +337,10 @@
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>
+          <:-.if options["delete"] :>
+          <input type="checkbox" name="delete_<:= name :>" value="1" id="delete_<:= name :>" />
+          <label for="delete_<:= name :>">Delete</label>
+          <:-.end if:>
         </span>
       </div>
     <:-.else :>
@@ -364,12 +375,13 @@ parameters:
   name - the field name
   field - a field, as an entry in fields
 :>
-<:-.define inlinefieldro -:>
+<:-.define inlinefieldro; "options":{} -:>
     <:-.if field.is_hash -:>
+      <:-.set options = options.extend({ "readonly":1 }) -:>
       <div>
         <label for="<:= name :>"><:= field.nolabel ? "" : field.description :></label>
         <span>
-          <:-.call "input", "name":name, "field":field, "options":{ "readonly":1 } :>
+          <:-.call "input", "name":name, "field":field, "options":options :>
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>
@@ -404,11 +416,12 @@ parameters:
 <:-.define fieldsetro -:>
   <:-.set field = fields[name] -:>
   <:-.if field.is_hash -:>
+    <:-.set options = options.extend({ "readonly":1 }) -:>
     <fieldset>
       <:-.if !field.nolabel :>
       <legend><:= field.description :></legend>
       <:-.end if :>
-      <:-.call "input", "name":name, "field":field, "options":{ "readonly":1 } :>
+      <:-.call "input", "name":name, "field":field, "options":options :>
     </fieldset>
   <:-.elsif fields.is_hash :>
     <p>Unknown field id '<b><:= name :></b>', available fields are '<:= fields.keys.join("', '") :>'</p>
@@ -625,6 +638,29 @@ parameters:
 </span>
 
 <:-.end if -:>
+<:-.end define :>
+
+
+<:-.define edit_metadata; "object":article :>
+<:-.set metas = [ object.metafields ] :>
+<:-.if metas.size :>
+        <input type="hidden" name="_save_meta" value="1" />
+<:-.for meta in metas -:>
+  <:-.set name = "meta_" _ meta.name -:>
+  <:-.set metadata = object.meta_by_name(meta.name) -:>
+  <:-.if meta.type eq 'image' -:>
+    <:-.set default = object.meta_by_name(meta.display_name) -:>
+    <:-.set default = default ? default.value_text : "" -:>
+  <:-.else -:>
+    <:-.set default = metadata ? metadata.value_text : "" -:>
+  <:-.end if -:>
+  <:-.if meta.ro :>
+        <:.call "inlinefieldro", "name":name, "field":meta.field, "options":{ "default":default } :>
+  <:-.else:>
+        <:.call "inlinefield", "name":name, "field":meta.field, "options":{ "default":default, "delete":1 } :>
+  <:-.end if:>
+<:-.end for:>
+<:-.end if:>
 <:-.end define :>
 
 
