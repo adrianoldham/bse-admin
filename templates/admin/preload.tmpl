@@ -155,10 +155,12 @@
 <:# parameters:
   name - field name
   default
+  index
 :>
-<:-.define old -:>
-<:-.if cgi.param(name).defined :>
-  <:-= cgi.param(name) :>
+<:-.define old; "default":"", "index":0 -:>
+<:-.set vals = [ cgi.param(name) ] :>
+<:-.if index < vals.size :>
+<:= vals[index] :>
 <:-.else :>
   <:-= default :>
 <:-.end if :>

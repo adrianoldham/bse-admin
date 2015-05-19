@@ -1,6 +1,21 @@
 <:-.set is_article = article.id and article.id > 0 -:>
 <:-.set typename = is_article ? article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Images" ) :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer -:>
+<:-.set done_url = referer.replace(/(&amp;|\?)referer=[\d]+/, "") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
+
+<:-.end if -:>
+
 <div class="window">
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>
@@ -32,8 +47,8 @@
 <:include admin/include/toolbar_site.tmpl:>
     <:-.end if:>
   </header>
-  <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="Image">
-    <input type="hidden" name="id" value="<:article id:>" />
+  <form action="<:= cfg.admin_url("add"):>" method="post" enctype="multipart/form-data" data-object="Image">
+    <input type="hidden" name="id" value="<:= article.id:>" />
     <input type="hidden" name="_t" value="img" />
     <input type="hidden" name="r" value="
     <:- switch -:>
@@ -52,56 +67,57 @@
 
     <:- endswitch -:>
     " />
-    <:- if Images:>
+    <:-.set images = [ article.images ] -:>
+    <:-.if images.size:>
     <:csrfp admin_save_images hidden:>
     <:csrfp admin_add_image hidden:>
-    <:- iterator begin images:>
+    <:-.for image in images:>
     <div class="object">
-      <h2>Image <:image_number:> <:ifUserCan bse_edit_images_reorder:article:><:imgmove:><:eif:></h2>
+      <h2>Image <:= loop.count:> <:.call "move_image", "admin":1, "r":refresh :></h2>
       <p class="buttons">
-        <:- if UserCan bse_edit_images_save:article:>
-        <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>&amp;referer=1" class="button gray small">Edit</a>
-        <:- or UserCan:>
+        <:-.if request.user_can("bse_edit_images_save", article ):>
+        <a href="<:= cfg.admin_url2("add", "edit_image", { "id":article.id, "image_id":image.id, "referer":1 }):>" class="button gray small">Edit</a>
+        <:-.else:>
         <a class="button gray small disabled">Edit</a>
-        <:- eif UserCan:>
-        <:- if UserCan bse_edit_images_delete:article:>
-        <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=img" data-action="Delete" data-object="Image" class="button red small">Delete</a>
-        <:- or UserCan:>
+        <:-.end if:>
+        <:-.if request.user_can("bse_edit_images_delete", article ):>
+        <a href="<:= cfg.admin_url("add", { "id":article.id, "removeimg_" _ image.id:1, _t:"img", _csrfp:request.get_csrf_token("admin_remove_image") }):>" data-action="Delete" data-object="Image" class="button red small">Delete</a>
+        <:-.else:>
         <a class="button red small disabled">Delete</a>
-        <:- eif UserCan:>
+        <:-.end if:>
       </p>
       <fieldset>
         <legend>Resource</legend>
         <div>
-          <label for="image<:image id:>">Change image <:error_img [concatenate image [image id]]:></label>
+          <label for="image<:= image.id:>">Change image <:.call "error_img", "name":"image" _ image.id :></label>
           <span>
-            <input type="file" name="image<:image id:>" id="image<:image id:>" class="<:ifError_img [concatenate image [image id]]:>error<:eif:>" />
+            <input type="file" name="image<:= image.id:>" id="image<:= image.id:>" class="<:.call "error_classname", "name":"image" _ image.id :>" />
             <:help image image:>
           </span>
         </div>
         <div>
-          <label for="name<:image id:>">Name <:error_img [concatenate name [image id]]:></label>
+          <label for="name<:= image.id:>">Name <:.call "error_img", "name":"name" _ image.id :></label>
           <span>
-            <input type="text" name="name<:image id:>" id="name<:image id:>" value="<:oldi [concatenate name [image id]] 0 image name:>" class="<:ifError_img [concatenate name [image id]]:>error<:eif:>" />
+            <input type="text" name="name<:= image.id:>" id="name<:= image.id:>" value="<:.call "old", "name": "name" _ image.id, "default":image.name:>" class="<:.call "error_classname", "name":"name" _ image.id :>" />
             <:help image name:>
           </span>
         </div>
         <div>
           <label>Thumbnail</label>
           <span>
-            <a href="<:image src:>"><:thumbimage editor:></a>
+            <a href="<:= image.src:>"><:= image.thumb("geo","editor") |raw:></a>
           </span>
         </div>
         <div>
           <label>Original</label>
           <span>
-            <a href="<:image src:>"><:replace [image image] ^[0-9]+_ :></a>
+            <a href="<:= image.src:>"><:= image.image.replace('^[0-9]+_', '' ):></a>
           </span>
         </div>
         <div>
           <label>Size</label>
           <span>
-            <:image width:> &times; <:image height:> px
+            <:= image.width:> &times; <:= image.height:> px
           </span>
         </div>
       </fieldset>
@@ -110,52 +126,89 @@
         <fieldset>
           <legend>Properties</legend>
           <div>
-            <label for="alt<:image id:>">Alt <:error_img [concatenate alt [image id]]:></label>
+            <label for="alt<:= image.id:>">Alt <:.call "error_img", "name":"alt" _ image.id :></label>
             <span>
-              <input type="text" name="alt<:image id:>" id="alt<:image id:>" value="<:oldi [concatenate alt [image id]] 0 image alt:>" class="<:ifError_img [concatenate alt [image id]]:>error<:eif:>" />
+              <input type="text" name="alt<:= image.id:>" id="alt<:= image.id:>" value="<:.call "old", "name": "alt" _ image.id, "default":image.alt:>" class="<:.call "error_classname", "name":"alt" _ image.id :>" />
               <:help image alt:>
             </span>
           </div>
           <div>
-            <label for="url<:image id:>">URL <:error_img [concatenate url [image id]]:></label>
+            <label for="url<:= image.id:>">URL <:.call "error_img", "name":"url" _ image.id :></label>
             <span>
-              <input type="text" name="url<:image id:>" id="url<:image id:>" value="<:oldi [concatenate url [image id]] 0 image url:>" class="<:ifError_img [concatenate url [image id]]:>error<:eif:>" />
+              <input type="text" name="url<:= image.id:>" id="url<:= image.id:>" value="<:.call "old", "name": "url" _ image.id, "default":image.url :>" class="<:.call "error_classname", "name":"url" _ image.id :>" />
               <:help image url:>
             </span>
           </div>
+          <:-.set stores = [ image_stores() ] :>
+          <:-.set oldstore = cgi.param("storage").defined ? cgi.param("storage") : image.storage :>
           <div>
-            <label for="storage<:image id:>">Storage <:error_img [concatenate storage [image id]]:></label>
+            <label for="storage<:= image.id:>">Storage <:.call "error_img", "name":"storage" _ image.id :></label>
             <span>
-              <select name="storage<:image id:>" id="storage<:image id:>">
+              <select name="storage<:= image.id:>" id="storage<:= image.id:>">
                 <option value="">(Auto)</option>
-                <:- iterator begin image_stores:>
-                <option value="<:image_store name:>" <:ifEq [oldi [concatenate storage [image id]] 0 image storage] [image_store name]:>selected="selected"<:eif:>><:image_store description:></option>
-                <:- iterator end image_stores:>
+                <:-.for store in stores :>
+                <option value="<:= store.name:>"<:= oldstore eq store.name ? " selected" : "" :>><:= store.description:></option>
+                <:-.end for:>
               </select>
               <:help image storage:>
             </span>
           </div>
         </fieldset>
+        <fieldset>
+          <legend>Tags</legend>
+          <input type="hidden" name="_save_image_tags<:= image.id:>" value="1" />
+    	  <:-.set image_tags = cgi.param("_save_image_tags") ? [ cgi.param("tags" _ image.id ) ] : [ "", image.tags ]:>
+    	  <:-.for tag in image_tags :>
+          <div>
+            <label for="tags<:= image.id :>_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
+            <span>
+              <input type="text" name="tags<:= image.id :>" id="tags<:= image.id :>_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags" _ image.id, "index":loop.index :>"/>
+              <:-.if loop.is_first:>
+              <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
+              <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+              <:-.end if:>
+            </span>
+          </div>
+          <:-.end for:>
+        </fieldset>
+
       </details>
     </div>
-    <:- iterator end images:>
-    <:- or Images:>
+    <:-.end for:>
+    <:-.else:>
     <fieldset>
       <legend>Images</legend>
       <div class="center">
         <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
         <p>No images to display</p>
-        <:- if UserCan bse_edit_images_add:article:>
-        <p><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;referer=1" data-icon="add" class="button white">New Image…</a></p>
-        <:- eif UserCan:>
+        <:-.if request.user_can("bse_edit_images_add", article ):>
+        <p><a href="<:= cfg.admin_url("add", { "id":article.id, _t:"imgupload", "referer":1 }):>" data-icon="add" class="button white">New Image…</a></p>
+        <:-.end if:>
       </div>
     </fieldset>
-    <:- eif Images:>
+    <:-.end if:>
     <p class="buttons">
       <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
-      <:- if And [ifImages] [ifUserCan bse_edit_images_save:article]:>
+      <:-.if images.size and request.user_can("bse_edit_images_save", article ):>
       <input type="submit" name="process" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- eif And:>
+      <:-.end if:>
     </p>
   </form>
 </div>
+<script type="text/javascript">
+    function plus(ele) {
+        var ele = $(ele).up('div');
+        var clone = ele.clone(true);
+        clone.down('input[name^="tags"]').clear().removeAttribute("class");
+        clone.down('label').update(' ');
+        var disabled = clone.down('button[disabled]');
+        if (disabled) {
+            disabled.removeAttribute('disabled');
+        }
+        ele.insert({after: clone});
+    };
+
+    function minus(ele) {
+        var ele = $(ele).up('div').remove();
+    };
+</script>
