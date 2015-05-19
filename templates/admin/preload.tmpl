@@ -337,7 +337,7 @@
           <:-.if field.units :>
           <:= field.units :>
           <:-.end if :>
-          <:-.if options["delete"] :>
+          <:-.if options["delete"] and options.default :>
           <input type="checkbox" name="delete_<:= name :>" value="1" id="delete_<:= name :>" />
           <label for="delete_<:= name :>">Delete</label>
           <:-.end if:>
