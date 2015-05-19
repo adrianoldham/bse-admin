@@ -128,7 +128,7 @@
         <div>
           <label for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
           <span>
-            <input type="text" name="tags" id="tag_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags", "index":loop.index :>"/>
+            <input type="text" name="tags" id="tag_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags", "index":loop.index :>" />
             <:-.if loop.is_first:>
             <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
             <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
