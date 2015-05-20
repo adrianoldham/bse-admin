@@ -89,7 +89,7 @@
       </fieldset>
       <fieldset>
         <legend>Properties</legend>
-        <:.call "field", "name":"contentType" :>
+        <:.call "field", "name":"contentType", "field": { "description":"Content type" }, "options": { "placeholder":"MIME format" } :>
         <:.call "field", "name":"download", "field": { "description":"Force download" } :>
         <:.call "field", "name":"hide_from_list" :>
         <:-.if article.generator =~ "Product":>
