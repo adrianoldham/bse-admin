@@ -4,7 +4,7 @@
     <h1><:= params.title:></h1>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
   </header>
-  <form action="<:adminurl imageclean:>" method="post" data-action="Delete" data-object="Images" data-confirm="false">
+  <form action="<:= cfg.admin_url("imageclean"):>" method="post" data-action="Delete" data-object="Images" data-confirm="false">
     <:iterator begin messages:>
     <:-.set msgbase = [ state, "msg:bse/admin/imageclean/", "NOMSGID" ][1] -:>
     <:-.if state.type eq "stage" :>
