@@ -73,7 +73,7 @@
       <div>
         <label>Thumbnail</label>
         <span>
-          <a href="<:eimage src:>"><:= eimage.thumb("geo", "editor") |raw:></a>
+          <a href="<:= eimage.src:>" onclick="window.open(this.href, 'fullimage', 'width=<:= 40 + eimage.width:>,height=<:= 90 + eimage.height:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:= eimage.thumb("geo", "editor") |raw:></a>
         </span>
       </div>
       <div>
