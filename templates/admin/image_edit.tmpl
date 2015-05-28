@@ -21,17 +21,17 @@
     <:-.set pagetitle = params.title _ ( is_article ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
     <h1><:= pagetitle:></h1>
     <nav data-role="toolbar">
-      <a href="<:adminurl add:>?id=<:article id:>&amp;_t=img" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"img" }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
       <:- if UserCan bse_edit_images_delete:article:>
-      <a href="<:script:>?removeimg_<:eimage id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Image" data-icon="trash" class="button">Delete</a>
+      <a href="<:= cfg.admin_url("add", { "id":article.id, "removeimg_" _ eimage.id:1, _csrfp:request.get_csrf_token("admin_remove_image") }):>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Image" data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="trash" class="button disabled">Delete</a>
       <:- eif UserCan:>
     </nav>
   </header>
-  <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="Image">
-    <input type="hidden" name="id" value="<:article id:>" />
-    <input type="hidden" name="image_id" value="<:eimage id:>" />
+  <form action="<:= cfg.admin_url("add"):>" method="post" enctype="multipart/form-data" data-object="Image">
+    <input type="hidden" name="id" value="<:= article.id:>" />
+    <input type="hidden" name="image_id" value="<:= eimage.id:>" />
     <:csrfp admin_save_image hidden:>
     <input type="hidden" name="r" value="
     <:- switch -:>
@@ -57,16 +57,16 @@
     <fieldset>
       <legend>Resource</legend>
       <div>
-        <label for="image">Change image <:error_img image:></label>
+        <label for="image">Change image <:.call "error_img", "name":"image" :></label>
         <span>
-          <input type="file" name="image" id="image" accesskey="f" title="AccessKey = f" class="<:ifError_img image:>error<:eif:>" />
+          <input type="file" name="image" id="image" accesskey="f" title="AccessKey = f" class="<:.call "error_classname", "name":"image" :>" />
           <:help image image:>
         </span>
       </div>
       <div>
-        <label for="name">Name <:error_img name:></label>
+        <label for="name">Name <:.call "error_img", "name":"name" :></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name eimage name:>" class="<:ifError_img name:>error<:eif:>" />
+          <input type="text" name="name" id="name" value="<:.call "old", "name": "name", "default":eimage.name :>" class="<:.call "error_classname", "name":"name" :>" />
           <:help image name:>
         </span>
       </div>
@@ -79,13 +79,13 @@
       <div>
         <label>Original</label>
         <span>
-          <a href="<:eimage src:>"><:replace [eimage image] ^[0-9]+_ :></a>
+          <a href="<:= eimage.src:>"><:= eimage.image.replace('^[0-9]+_', '' ):></a>
         </span>
       </div>
       <div>
         <label>Size</label>
         <span>
-          <:eimage width:> &times; <:eimage height:> px
+          <:= eimage.width:> &times; <:= eimage.height:> px
         </span>
       </div>
     </fieldset>
@@ -94,27 +94,29 @@
       <fieldset>
         <legend>Properties</legend>
         <div>
-          <label for="alt">Alt <:error_img alt:></label>
+          <label for="alt">Alt <:.call "error_img", "name":"alt" :></label>
           <span>
-            <input type="text" name="alt" id="alt" value="<:old alt eimage alt:>" class="<:ifError_img alt:>error<:eif:>" />
+            <input type="text" name="alt" id="alt" value="<:.call "old", "name": "name", "default":eimage.alt :>" class="<:.call "error_classname", "name":"alt" :>" />
             <:help image alt:>
           </span>
         </div>
         <div>
-          <label for="url">URL <:error_img url:></label>
+          <label for="url">URL <:.call "error_img", "name":"url" :></label>
           <span>
-            <input type="text" name="url" id="url" value="<:old url eimage url:>" class="<:ifError_img url:>error<:eif:>" />
+            <input type="text" name="url" id="url" value="<:.call "old", "name": "name", "default":eimage.url :>" class="<:.call "error_classname", "name":"url" :>" />
             <:help image url:>
           </span>
         </div>
+        <:-.set stores = [ image_stores() ] :>
+        <:-.set oldstore = cgi.param("storage").defined ? cgi.param("storage") : eimage.storage :>
         <div>
-          <label for="storage">Storage <:error_img storage:></label>
+          <label for="storage">Storage <:.call "error_img", "name":"storage" :></label>
           <span>
             <select name="storage" id="storage">
               <option value="">(Auto)</option>
-              <:- iterator begin image_stores:>
-              <option value="<:image_store name:>" <:ifEq [old storage eimage storage] [image_store name]:>selected="selected"<:eif:>><:image_store description:></option>
-              <:- iterator end image_stores:>
+              <:-.for store in stores :>
+              <option value="<:= store.name:>"<:= oldstore eq store.name ? " selected" : "" :>><:= store.description:></option>
+              <:-.end for:>
             </select>
             <:help image storage:>
           </span>
