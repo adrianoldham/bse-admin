@@ -66,14 +66,14 @@
       <div>
         <label for="name">Name <:.call "error_img", "name":"name" :></label>
         <span>
-          <input type="text" name="name" id="name" value="<:.call "old", "name": "name", "default":eimage.name :>" class="<:.call "error_classname", "name":"name" :>" />
+          <input type="text" name="name" id="name" value="<:.call "old", "name":"name", "default":eimage.name :>" class="<:.call "error_classname", "name":"name" :>" />
           <:help image name:>
         </span>
       </div>
       <div>
         <label>Thumbnail</label>
         <span>
-          <a href="<:= eimage.src:>" onclick="window.open(this.href, 'fullimage', 'width=<:= 40 + eimage.width:>,height=<:= 90 + eimage.height:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:= eimage.thumb("geo", "editor") |raw:></a>
+          <a href="<:= eimage.src:>" onclick="window.open(this.href, 'fullimage', 'width=<:= 40 + eimage.width:>,height=<:= 90 + eimage.height:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:= eimage.thumb("geo", "editor", "nolink", 1 ) |raw:></a>
         </span>
       </div>
       <div>
@@ -96,14 +96,14 @@
         <div>
           <label for="alt">Alt <:.call "error_img", "name":"alt" :></label>
           <span>
-            <input type="text" name="alt" id="alt" value="<:.call "old", "name": "name", "default":eimage.alt :>" class="<:.call "error_classname", "name":"alt" :>" />
+            <input type="text" name="alt" id="alt" value="<:.call "old", "name":"name", "default":eimage.alt :>" class="<:.call "error_classname", "name":"alt" :>" />
             <:help image alt:>
           </span>
         </div>
         <div>
           <label for="url">URL <:.call "error_img", "name":"url" :></label>
           <span>
-            <input type="text" name="url" id="url" value="<:.call "old", "name": "name", "default":eimage.url :>" class="<:.call "error_classname", "name":"url" :>" />
+            <input type="text" name="url" id="url" value="<:.call "old", "name":"name", "default":eimage.url :>" class="<:.call "error_classname", "name":"url" :>" />
             <:help image url:>
           </span>
         </div>

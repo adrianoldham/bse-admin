@@ -98,14 +98,14 @@
         <div>
           <label for="name<:= image.id:>">Name <:.call "error_img", "name":"name" _ image.id :></label>
           <span>
-            <input type="text" name="name<:= image.id:>" id="name<:= image.id:>" value="<:.call "old", "name": "name" _ image.id, "default":image.name:>" class="<:.call "error_classname", "name":"name" _ image.id :>" />
+            <input type="text" name="name<:= image.id:>" id="name<:= image.id:>" value="<:.call "old", "name":"name" _ image.id, "default":image.name:>" class="<:.call "error_classname", "name":"name" _ image.id :>" />
             <:help image name:>
           </span>
         </div>
         <div>
           <label>Thumbnail</label>
           <span>
-            <a href="<:= image.src:>" onclick="window.open(this.href, 'fullimage', 'width=<:= 40 + image.width:>,height=<:= 90 + image.height:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:= image.thumb("geo","editor") |raw:></a>
+            <a href="<:= image.src:>" onclick="window.open(this.href, 'fullimage', 'width=<:= 40 + image.width:>,height=<:= 90 + image.height:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:= image.thumb("geo","editor", "nolink", 1 ) |raw:></a>
           </span>
         </div>
         <div>
@@ -128,14 +128,14 @@
           <div>
             <label for="alt<:= image.id:>">Alt <:.call "error_img", "name":"alt" _ image.id :></label>
             <span>
-              <input type="text" name="alt<:= image.id:>" id="alt<:= image.id:>" value="<:.call "old", "name": "alt" _ image.id, "default":image.alt:>" class="<:.call "error_classname", "name":"alt" _ image.id :>" />
+              <input type="text" name="alt<:= image.id:>" id="alt<:= image.id:>" value="<:.call "old", "name":"alt" _ image.id, "default":image.alt:>" class="<:.call "error_classname", "name":"alt" _ image.id :>" />
               <:help image alt:>
             </span>
           </div>
           <div>
             <label for="url<:= image.id:>">URL <:.call "error_img", "name":"url" _ image.id :></label>
             <span>
-              <input type="text" name="url<:= image.id:>" id="url<:= image.id:>" value="<:.call "old", "name": "url" _ image.id, "default":image.url :>" class="<:.call "error_classname", "name":"url" _ image.id :>" />
+              <input type="text" name="url<:= image.id:>" id="url<:= image.id:>" value="<:.call "old", "name":"url" _ image.id, "default":image.url :>" class="<:.call "error_classname", "name":"url" _ image.id :>" />
               <:help image url:>
             </span>
           </div>
