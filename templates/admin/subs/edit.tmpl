@@ -108,12 +108,9 @@
       <fieldset>
         <legend>Publication</legend>
         <div>
-          <label for="visible">Listed <:ifError visible:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error visible:>" /><:eif:></label>
+          <label for="visible">Publically listed <:ifError visible:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error visible:>" /><:eif:></label>
           <span>
-            <select name="visible" id="visible">
-              <option value="1>"<:if Eq [old visible] 1:> selected="selected"<:eif Eq:>>Yes</option>
-              <option value="0"<:if Eq [old visible] 0:> selected="selected"<:eif Eq:>>No</option>
-            </select>
+            <input type="checkbox" name="visible" id="visible" value="1"<:ifOld visible:> checked="checked"<:eif:> />
             <:help edit visible:>
           </span>
         </div>
