@@ -42,7 +42,7 @@
       <thead>
         <tr>
           <:- iterator begin level1_names:>
-          <th class="<:lc [level1_name name]:>"><:ifSort - sortable:><a href="<:sort - url:>"><:level1_name name:></a><:or:><:level1_name name:><:eif:></th>
+          <th class="<:replace [lc [level1_name name]] " " "-":>"><:ifSort - sortable:><a href="<:sort - url:>"><:level1_name name:></a><:or:><:level1_name name:><:eif:></th>
           <:- iterator end level1_names:>
           <:- if Report has_level1_links:>
           <th><!--Actions--></th>
@@ -54,7 +54,7 @@
         <:- iterator begin level1:>
         <tr>
           <:- iterator begin level1_cols:>
-          <td class="<:level1_col name:>"><:level1_col value:></td>
+          <td class="<:replace [level1_col name] " " "-":>"><:level1_col value:></td>
           <:- iterator end level1_cols:>
           <:- if Level1_links:>
           <td class="actions">
