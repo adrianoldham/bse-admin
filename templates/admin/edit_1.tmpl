@@ -553,7 +553,7 @@
         <ul class="full list">
           <:- iterator begin images:>
           <li>
-            <a href="<:image src:>"><:thumbimage editor:></a> <:ifImage name:>(<:image name:>)<:eif:>
+            <a href="<:image src:>" onclick="window.open(this.href, 'fullimage', 'width=<:arithmetic 40 + [image width]:>,height=<:arithmetic 90 + [image height]:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:thumbimage editor:></a> <:ifImage name:>(<:image name:>)<:eif:>
             <span>
               <:- if UserCan bse_edit_images_save:article:>
               <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>" class="button gray small">Edit</a>
