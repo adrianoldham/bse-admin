@@ -387,7 +387,7 @@ div.fullscreen {
     box-shadow: none;
 }
 
-div.fullscreen header {
+body.fullscreen header {
     border: none;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
