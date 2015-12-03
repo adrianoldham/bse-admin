@@ -1300,6 +1300,22 @@ div + .meta {
     width: auto;
 }
 
+.list .price,
+.list .total {
+    text-align: right;
+}
+
+.list .units,
+.list [class$="orders"],
+.list .status,
+.list .payment,
+.list .discount,
+.list .quarter,
+.list .week {
+    text-align: center;
+}
+
+
 /* @end */
 
 /* @group items */
