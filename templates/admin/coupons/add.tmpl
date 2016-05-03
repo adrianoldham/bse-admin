@@ -11,7 +11,22 @@
       <legend>Coupon</legend>
       <:.call "field", "name":"code", "options":{ "autofocus":1 } :>
       <:.call "field", "name":"description" :>
-      <:.call "field", "name":"discount_percent", "options":{ "placeholder":"%" } :>
+      <:.call "field", "name":"classid" :>
+      <:.set classid = cgi.param("classid") ? [ cgi.param("classid") ][0] : behaviours[0].id :>
+      <:-.for bh in behaviours :>
+        <:-.set fs = bh.behaviour.config_fields :>
+        <:-.set ordered_f = fs.keys.sort(@{a,b: fs[a].order <=> fs[b].order }) :>
+        <:-.set attr = { "data-behaviour": bh.id } :>
+        <:-.if classid ne bh.id :>
+          <:-% attr.set("style", "display: none") :>
+          <:-.set disabled = "disabled":>
+        <:-.else:>
+          <:.set disabled = "":>
+        <:-.end if:>
+        <:-.for f in ordered_f :>
+          <:.call "field", "name":f, "fields":fs, "options": { "disabled":disabled, "htmlattr":attr } :>
+        <:-.end for:>
+      <:-.end for:>
       <:.call "field", "name":"campaign" :>
     </fieldset>
     <fieldset>
@@ -32,3 +47,16 @@
     </p>
   </form>
 </div>
+<script type="text/javascript">
+    var classid = $$("select[name=classid]")[0];
+    classid.observe("change", function(ev) {
+	    var val = ev.target.value;
+	    var val_sel = "[data-behaviour=" + val + "]";
+	    $$("[data-behaviour]").invoke("hide");
+	    $$("[data-behaviour] input, [data-behaviour] select").invoke("setAttribute", "disabled", true);
+	    $$(val_sel + " input, " + val_sel + " select").invoke("removeAttribute", "disabled");
+	    $$(val_sel).invoke("show");
+
+        changesMonitor.initialize();
+    });
+</script>

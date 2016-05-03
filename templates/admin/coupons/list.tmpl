@@ -88,6 +88,9 @@
             <:-% classes.push("pending warning") -:>
           <:-.end if -:>
           <:-.set tier_names = [] -:>
+          <:-.if coupon.untiered -:>
+          <:-% tier_names.push("(untiered)") -:>
+          <:-.end if :>
           <:-.for tier in [ coupon.tier_objects ] :>
             <:-% tier_names.push(tier.description) -:>
           <:-.end for :>
@@ -96,7 +99,7 @@
           <td><:= coupon.description :></td>
           <td><:= bse.date("%d-%b-%Y", coupon.release) :></td>
           <td><:= bse.date("%d-%b-%Y", coupon.expiry) :></td>
-          <td><:= coupon.discount_percent :>%</td>
+          <td><:= coupon.describe :></td>
           <!--<td><:= tier_names.size ? tier_names.join(", ") : "(none)" :></td>-->
           <td><:= coupon.campaign :></td>
           <td class="actions">

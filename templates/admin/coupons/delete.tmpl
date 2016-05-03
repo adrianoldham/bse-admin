@@ -13,7 +13,7 @@
       <legend>Coupon</legend>
       <:.call "fieldro", "name":"code" :>
       <:.call "fieldro", "name":"description" :>
-      <:.call "fieldro", "name":"discount_percent" :>
+      <:.call "fieldro", "name":"classid" :>
       <:.call "fieldro", "name":"campaign" :>
     </fieldset>
     <fieldset>
@@ -21,7 +21,6 @@
       <:.call "fieldro", "name":"release" :>
       <:.call "fieldro", "name":"expiry" :>
     </fieldset>
-    <:.call "fieldsetro", "name":"tiers" :>
     <p class="buttons">
       <a href="<:= cfg.admin_url2("shopadmin", "coupon_list") :>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <input type="submit" name="a_coupon_delete" value="Delete Coupon" accesskey="d" title="AccessKey = d" class="button red" />

@@ -325,10 +325,17 @@
      note - display this text as a note below the field
      delete - add a delete checkbox
      default - a custom default value, overrides object
+     htmlattr - attributes for the wrapper div
 :>
 <:-.define inlinefield; "options":{} -:>
     <:-.if field.is_hash -:>
-      <div>
+      <:-.set divextra = "" :>
+      <:-.if options.htmlattr :>
+        <:-.for n in options.htmlattr.keys :>
+          <:-.set divextra = divextra _ " " _ n _ '="' _ options.htmlattr[n].escape("html") _ '"' :>
+        <:-.end for:>
+      <:-.end if:>
+      <div <:-= divextra |raw :>>
         <label for="<:= name :>">
           <:-= field.nolabel ? '' : field.description :>
           <:-.call "required_indicator", "required":field.required :>
@@ -342,7 +349,7 @@
           <:-.if options["delete"] and options.default :>
           <input type="checkbox" name="delete_<:= name :>" value="1" id="delete_<:= name :>" />
           <label for="delete_<:= name :>">Delete</label>
-          <:-.end if:>
+          <:-.end if :>
         </span>
       </div>
     <:-.else :>
