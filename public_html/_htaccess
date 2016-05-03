@@ -74,7 +74,7 @@ RewriteBase /
     RewriteRule ^/?affiliate/u/([A-Za-z0-9_-]+)$ /cgi-bin/affiliate.pl?co=$1 [PT]
 
 
-AuthType Basic
-AuthName "Web Development Area"
-AuthUserFile "/home/example/.htpasswds/public_html/passwd"
+#AuthType Basic
+#AuthName "Web Development Area"
+#AuthUserFile "/home/example/.htpasswds/public_html/passwd"
 #require valid-user
