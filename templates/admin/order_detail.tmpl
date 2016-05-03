@@ -195,33 +195,39 @@
         <tr>
           <th class="item">Item</th>
           <th class="code">Code</th>
+          <th class="tier">Tier</th>
           <th class="quantity">Qty</th>
           <th class="price">Price</th>
           <th class="extended">Extended</th>
         </tr>
       </thead>
       <tbody>
-        <:- iterator begin items:>
+        <:-.for item in [order.items]:>
+          <:-.set product = @undef :>
+          <:-.if item.productId > 0 :>
+          <:-.set product = bse.products.getByPkey(item.productId):>
+          <:-.end if:>
         <tr>
           <td class="item">
-            <:- if Eq [item productId] -1:>
-            <:item title:> (product deleted)
-            <:- or Eq:>
-            <a href="<:adminurl add id [product id] referer 1 :>"><:item title:></a>
-            <:- eif Eq:>
-            <:- if Options:>
-            <span><:options:></span>
-            <:- eif Options:>
-            <:- if And [item description] [cfg shop product_description 1]:>
-            <div class="description"><:item description:></div>
-            <:- eif And:>
+            <:-.if item.productId == -1:>
+            <:= item.title:> (product deleted)
+            <:-.else:>
+            <a href="<:= cfg.admin_url("add", { "id":product.id, "referer":1}) :>"><:= item.title:></a>
+            <:-.end if:>
+            <:-.if item.nice_options:>
+            <span><:= item.nice_options:></span>
+            <:-.end if:>
+            <:-.if item.description and cfg.entry("shop", "product_description", 1):>
+            <div class="description"><:= item.description:></div>
+            <:-.end if:>
           </td>
-          <td class="code"><:item product_code:></td>
-          <td class="quantity"><:item units:> &times;</td>
-          <td class="price"><:cfg shop currency "$":><:number money [item price]:></td>
-          <td class="extended"><:cfg shop currency "$":><:number money [arithmetic [item units] * [item price]]:></td>
+          <td class="code"><:= item.product_code:></td>
+          <td class="tier"><:= item.tier_id ? item.tier.description : cfg.entry("shop", "base_tier_name", "Retail"):></td>
+          <td class="quantity"><:= item.units:> &times;</td>
+          <td class="price"><:= cfg.entry("shop", "currency", "$"):><:= bse.number("money", item.price):></td>
+          <td class="extended"><:= cfg.entry("shop", "currency", "$"):><:= bse.number("money", item.extended("price")):></td>
         </tr>
-        <:- iterator end items:>
+        <:-.end for:>
       </tbody>
     </table>
     <div class="totals">
