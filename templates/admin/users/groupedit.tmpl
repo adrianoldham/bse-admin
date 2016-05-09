@@ -48,7 +48,7 @@
       <div>
         <label for="name">Name <span class="required">*</span> <:error_img name:></label>
         <span>
-          <input type="text" name="name" id="name" value="<:old name group name:>" required="required" class="<:ifError_img name:>error<:eif:>" />
+          <input type="text" name="name" id="name" value="<:old name group name:>" required="required" class="<:ifError_img name:>error<:eif:>"<:if!Match [group id] ^\d:> readonly="readonly"<:eif:> />
           <:help editsiteuser name:>
         </span>
       </div>
@@ -97,9 +97,9 @@
     <:- eif Groupfiles:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?a_grouplist=1<:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
-      <:- if UserCan bse_members_group_edit:>
+      <:- if And [ifUserCan bse_members_group_edit] [ifMatch [group id] ^\d]:>
       <input type="submit" name="a_savegroup" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- eif UserCan:>
+      <:- eif And:>
     </p>
   </form>
 </div>

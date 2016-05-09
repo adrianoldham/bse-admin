@@ -61,7 +61,7 @@
         <:- iterator begin siteusers:>
         <li>
           <input type="hidden" name="set_is_member" value="<:siteuser id:>" />
-          <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:eif:>/>
+          <input type="checkbox" name="is_member" id="userid_<:siteuser id:>" value="<:siteuser id:>" <:ifMember:>checked="checked" <:eif:> <:if!Match [group id] ^\d:>disabled="disabled" <:eif:>/>
           <label for="userid_<:siteuser id:>"><a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a><:ifOr [siteuser name1] [siteuser name2]:> (<:siteuser name1:> <:siteuser name2:>)<:eif:></label>
         </li>
         <:- iterator end siteusers:>
@@ -71,9 +71,9 @@
     <:- eif UserCan:>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?a_editgroup=1&amp;id=<:group id:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
-      <:- if UserCan bse_members_group_edit:>
+      <:- if And [ifUserCan bse_members_group_edit] [ifMatch [group id] ^\d]:>
       <input type="submit" name="a_savegroupmembers" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- eif UserCan:>
+      <:- eif And:>
     </p>
   </form>
 </div>
