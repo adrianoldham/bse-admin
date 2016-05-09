@@ -1,4 +1,20 @@
 <:-.wrap "admin/base.tmpl", "title":"Edit Coupon" :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+<:-.set cgi_r = cgi.param("r") -:>
+
+<:-.if cgi_r -:>
+<:-.set done_url = cgi_r -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|\?)referer=[\d]+/, "") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url2("shopadmin", "coupon_list") -:>
+
+<:-.end if -:>
+
 <div class="window dialog">
   <header>
     <h1><:= params.title :></h1>
@@ -47,7 +63,7 @@
     <input type="hidden" name="tiers" value="0" />
     <:-.end if :>
     <p class="buttons">
-      <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl2 shopadmin coupon_list:><:endswitch:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
       <input type="submit" name="a_coupon_save" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
     </p>
   </form>
