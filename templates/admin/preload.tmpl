@@ -335,22 +335,26 @@
           <:-.set divextra = divextra _ " " _ n _ '="' _ options.htmlattr[n].escape("html") _ '"' :>
         <:-.end for:>
       <:-.end if:>
-      <div <:-= divextra |raw :>>
+      <div class="field"<:-= divextra |raw :>>
         <label for="<:= name :>">
           <:-= field.nolabel ? '' : field.description :>
           <:-.call "required_indicator", "required":field.required :>
           <:-.call "error_img", "name":name -:>
         </label>
-        <span>
+        <span class="field-input">
           <:-.call "input", "name":name, "field":field, "options":options :>
-          <:-.if field.units :>
+        </span>
+        <:-.if field.units :>
+        <span class="field-units">
           <:= field.units :>
-          <:-.end if :>
-          <:-.if options["delete"] and options.default :>
+        </span>
+        <:-.end if :>
+        <:-.if options["delete"] and options.default :>
+        <span class="field-actions">
           <input type="checkbox" name="delete_<:= name :>" value="1" id="delete_<:= name :>" />
           <label for="delete_<:= name :>">Delete</label>
-          <:-.end if :>
         </span>
+        <:-.end if :>
       </div>
     <:-.else :>
       <p>field isn’t a hash, something is wrong.</p>
@@ -387,14 +391,16 @@ parameters:
 <:-.define inlinefieldro; "options":{} -:>
     <:-.if field.is_hash -:>
       <:-.set options = options.extend({ "readonly":1 }) -:>
-      <div>
+      <div class="field">
         <label for="<:= name :>"><:= field.nolabel ? "" : field.description :></label>
-        <span>
+        <span class="field-input">
           <:-.call "input", "name":name, "field":field, "options":options :>
-          <:-.if field.units :>
-          <:= field.units :>
-          <:-.end if :>
         </span>
+        <:-.if field.units :>
+        <span class="field-units">
+          <:= field.units :>
+        </span>
+        <:-.end if :>
       </div>
     <:-.else :>
       <p>field isn’t a hash, something is wrong.</p>
