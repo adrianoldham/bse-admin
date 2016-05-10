@@ -663,7 +663,7 @@ parameters:
 
 
 <:-.define edit_metadata; "object":article :>
-<:-.set metas = [ object.metafields ] :>
+<:-.set metas = object ? [ object.metafields ] : [] :>
 <:-.if metas.size :>
         <input type="hidden" name="_save_meta" value="1" />
 <:-.for meta in metas -:>
