@@ -159,15 +159,17 @@
           <input type="hidden" name="_save_image_tags<:= image.id:>" value="1" />
     	  <:-.set image_tags = cgi.param("_save_image_tags") ? [ cgi.param("tags" _ image.id ) ] : [ "", image.tags ]:>
     	  <:-.for tag in image_tags :>
-          <div>
+          <div class="field">
             <label for="tags<:= image.id :>_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
-            <span>
+            <span class="field-input">
               <input type="text" name="tags<:= image.id :>" id="tags<:= image.id :>_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags" _ image.id, "index":loop.index :>"/>
-              <:-.if loop.is_first:>
+            </span>
+            <:-.if loop.is_first:>
+            <span class="field-actions">
               <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
               <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
-              <:-.end if:>
             </span>
+            <:-.end if:>
           </div>
           <:-.end for:>
         </fieldset>
