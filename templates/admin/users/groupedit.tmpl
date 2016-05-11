@@ -10,12 +10,12 @@
             <:- if UserCan bse_members_group_add_file:>
             <li><a href="<:script:>?a_addgroupfileform=1&amp;id=<:group id:>" accesskey="f" title="AccessKey = f">New File…</a></li>
             <:- eif UserCan:>      
-            <:- if UserCan bse_members_group_delete:>
+            <:- if And [ifUserCan bse_members_group_delete] [ifMatch [group id] ^\d]:>
             <li class="divider"></li>
             <li><a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Group">Delete</a></li>
-            <:- or UserCan:>
+            <:- or And:>
             <li class="disabled"><span>Delete</span></li>
-            <:- eif UserCan:>
+            <:- eif And:>
           </ul>
         </li>
       </ul>
@@ -33,11 +33,11 @@
         <a href="<:script:>?a_groupmemberform=1&amp;id=<:group id:>" class="button">Members</a>
         <:- eif UserCan:>
       </span>
-      <:- if UserCan bse_members_group_delete:>
+      <:- if And [ifUserCan bse_members_group_delete] [ifMatch [group id] ^\d]:>
       <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Group" data-icon="trash" class="button">Delete</a>
-      <:- or UserCan:>
+      <:- or And:>
       <a data-icon="trash" class="button disabled">Delete</a>
-      <:- eif UserCan:>
+      <:- eif And:>
     </nav>
   </header>
   <form action="<:script:>" method="post" data-object="Group">
