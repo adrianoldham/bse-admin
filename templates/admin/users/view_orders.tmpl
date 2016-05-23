@@ -50,7 +50,8 @@
       <:- eif UserCan:>
     </nav>
   </header>
-  <:- if And [ifUserCan bse_shop_order_list] [ifUserorders]:>
+  <:-.set userorders = [ siteuser.orders ].reverse:>
+  <:-.if request.user_can("bse_shop_order_list") and userorders.size :>
   <fieldset>
     <legend>Orders</legend>
     <table class="full list">
@@ -65,24 +66,24 @@
         </tr>
       </thead>
       <tbody>
-        <:- iterator begin userorders:>
+        <:-.for userorder in userorders:>
         <tr>
-          <td><span class="indicator <:ifUserorder filled:>green<:or:>gray<:eif:>"></span><:userorder id |%06d:></td>
-          <td><:date userorder orderDate:></td>
-          <td><:userorder stage:></td>
-          <td><:ifUserorder paidFor:>Paid<:or:>Unpaid<:eif:></td>
-          <td><:cfg shop currency "$":><:number money [userorder total]:></td>
+          <td><span class="indicator <:.if userorder.filled:>green<:.else:>gray<:.end if:>"></span><:= userorder.id.format("%06d"):></td>
+          <td><:= bse.date("%e-%b-%Y", userorder.orderDate):></td>
+          <td><:= userorder.stage:></td>
+          <td><:.if userorder.paidFor:>Paid<:.else:>Unpaid<:.end if:></td>
+          <td><:= cfg.entry("shop", "currency", "$"):><:= bse.number("money", userorder.total ):></td>
           <td class="actions">
-            <:- if UserCan bse_shop_order_detail:>
-            <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:userorder id:>&amp;referer=1" class="button gray small">Details</a>
-            <:- or UserCan:>
+            <:-.if request.user_can("bse_shop_order_detail"):>
+            <a href="<:= cfg.admin_url2("shopadmin", "order_detail", { "id":userorder.id, "referer":1 }):>" class="button gray small">Details</a>
+            <:-.else:>
             <a class="button gray small disabled">Details</a>
-            <:- eif UserCan:>
+            <:-.end if:>
           </td>
         </tr>
-        <:- iterator end userorders:>
+        <:-.end for:>
       </tbody>
     </table>
   </fieldset>
-  <:- or And:> <:eif And:>
+  <:.end if:>
 </div>
