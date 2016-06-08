@@ -50,7 +50,7 @@
       <:- eif UserCan:>
     </nav>
   </header>
-  <:-.set userorders = [ siteuser.orders ].reverse:>
+  <:-.set userorders = [ siteuser.orders ].grep(@{o: o.complete == 1 }).reverse:>
   <:-.if request.user_can("bse_shop_order_list") and userorders.size :>
   <fieldset>
     <legend>Orders</legend>
