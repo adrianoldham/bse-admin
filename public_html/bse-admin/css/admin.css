@@ -309,7 +309,8 @@ h4 {
 }
 
 .paid,
-.unpaid {
+.unpaid,
+.processing {
     float: left;
     margin-right: 0.5em;
     margin-top: -0.1em;
@@ -324,6 +325,10 @@ h4 {
 
 .paid {
     background-color: green;
+}
+
+.processing {
+    background-color: orange;
 }
 
 #auditlog tr td:nth-child(1),

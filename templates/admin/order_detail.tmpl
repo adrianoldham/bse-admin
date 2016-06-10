@@ -4,11 +4,11 @@
     <h1><:= params.title:></h1>
     <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
     <nav data-role="toolbar">
-      <a href="<:adminurl2 shopadmin order_list:>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <a href="<:= cfg.admin_url2("shopadmin", "order_list"):>" data-icon="back" data-icon-only="true" class="button">Back</a>
       <span data-role="controlgroup">
-        <a href="<:adminurl2 shopadmin order_detail id [order id]:>" class="button <:cond [ifEq [cgi _t] ""] selected:>">Order</a>
+        <a href="<:= cfg.admin_url2("shopadmin", "order_detail", { "id": order.id }):>" class="button <:= cgi.param('_t') eq '' ? 'selected' : '':>">Order</a>
         <:- if UserCan bse_log_list:>
-        <a href="<:adminurl2 shopadmin order_detail id [order id] _t activity:>" class="button <:cond [ifEq [cgi _t] activity] selected:>">Activity</a>
+        <a href="<:= cfg.admin_url2("shopadmin", "order_detail", { "id": order.id, "_t": "activity" }):>" class="button <:= cgi.param('_t') eq 'activity' ? 'selected' : '':>">Activity</a>
         <:- eif UserCan:>
       </span>
     </nav>
@@ -19,173 +19,152 @@
       <tbody>
         <tr>
           <th>Order No.:</th>
-          <td><b><:order id |%06d:></b></td>
+          <td><b><:= order.id.format("%06d"):></b></td>
         </tr>
         <tr>
           <th>Order Date:</th>
-          <td><:date order orderDate:></td>
+          <td><:= bse.date("%e-%b-%Y", order.orderDate):></td>
         </tr>
-        <:- if Order stage_description_id:>
+        <:-.if order.stage_description_id:>
         <tr>
           <th>Order Status:</th>
-          <td><:stage_description:></td>
+          <td><:= order.stage_description:></td>
         </tr>
-        <:- eif Order:>
-        <:- if Order purchase_order:>
+        <:-.end if:>
+        <:-.if order.purchase_order:>
         <tr>
           <th>Purchase Order:</th>
-          <td><:order purchase_order:></td>
+          <td><:= order.purchase_order:></td>
         </tr>
-        <:- eif Order:>
-        <:- if Order freight_tracking:>
+        <:-.end if:>
+        <:-.if order.freight_tracking:>
         <tr>
           <th>Tracking Code:</th>
           <td>
-            <:- if Cfg "shipping tracking urls" [order shipping_name]:>
-            <a href="<:cfg "shipping tracking urls" [order shipping_name] |h:><:order freight_tracking:>"><:order freight_tracking:></a>
-            <:- or Cfg:>
-            <:order freight_tracking:>
-            <:- eif Cfg:>
+            <:-.if cfg.entry("shipping tracking urls", order.shipping_name ):>
+            <a href="<:= cfg.entry("shipping tracking urls", order.shipping_name ) _ order.freight_tracking :>"><:= order.freight_tracking:></a>
+            <:-.else:>
+            <:= order.freight_tracking:>
+            <:-.end if:>
           </td>
         </tr>
-        <:- eif Order:>
-        <:- if Order shipping_method:>
+        <:-.end if:>
+        <:-.if order.shipping_method:>
         <tr>
           <th>Shipping Method:</th>
-          <td><:order shipping_method:></td>
+          <td><:= order.shipping_method:></td>
         </tr>
-        <:- eif Order:>
-        <:- if Order userId:>
+        <:-.end if:>
+        <:-.if order.userId:>
         <tr>
-          <th><:cfg "site user" display_userid "Username":>:</th>
-          <td><a href="<:adminurl siteusers a_edit 1 id [siteuser id]:>"><:order userId:></a></td>
+          <th><:= cfg.entry("site user", "display_userid", "Username"):>:</th>
+          <td><:= order.userId:></td>
         </tr>
-        <:- eif Order:>
-        <:- if Order affiliate_code:>
+        <:-.end if:>
+        <:-.if order.affiliate_code:>
         <tr>
-          <th><:cfg shop display_affiliate_code "Referrer":>:</th>
-          <td><:order affiliate_code:></td>
+          <th><:= cfg.entry("shop", "display_affiliate_code", "Referrer"):>:</th>
+          <td><:= order.affiliate_code:></td>
         </tr>
-        <:- eif Order:>
-        <:- if Order coupon_code:>
+        <:-.end if:>
+        <:-.if order.coupon :>
         <tr>
-          <th><:cfg shop display_coupon_code "Coupon Code":>:</th>
-          <td><a href="<:adminurl2 shopadmin coupon_edit id [order coupon_id] referer 1:>"><:order coupon_code:></a> (<:order coupon_code_discount_pc:>%)</td>
+          <th><:= cfg.entry("shop", "display_coupon_code", "Coupon Code"):>:</th>
+          <td><:= order.coupon_code:> <:.if order.coupon_code_discount_pc :>(<:= order.coupon_code_discount_pc :>%)<:.end if:></td>
         </tr>
-        <:- eif Order:>
+        <:-.end if :>
       </tbody>
     </table>
     <table class="vertical right">
-      <caption>Payment details <span class="<:ifOrder paidFor:>paid<:or:>unpaid<:eif:>"><:ifOrder paidFor:>Paid<:or:>Unpaid<:eif:></span></caption>
+      <:-.set payment = order.paidFor ? "Paid" : order.paymentType ? "Unpaid" : "Processing":>
+      <caption>Payment details <span class="<:= payment.lower:>"><:= payment:></span></caption>
       <tbody>
        <tr>
           <th>Payment Method:</th>
-          <:- switch:>
-          <:- case Eq [order paymentType] "0":>
+          <:-.if order.paymentType == 0:>
           <td><b>Credit Card</b></td>
         </tr>
-        <:- if Order ccOnline:>
-        <:- switch:>
-        <:- case Order ccSuccess:>
-        <tr>
+        <:-.if order.ccOnline:>        <tr>
           <th>Receipt No.:</th>
-          <td><:order ccReceipt:></td>
+          <td><:= order.ccReceipt:></td>
         </tr>
-        <:- ifOrder ccTranId:>
+        <:-.end if:>        <tr>
+          <th><:= cfg.entry("shop", "display_ccName", "Name on Card"):>:</th>
+          <td><:= order.ccName:></td>
+        </tr>
+        <:-.if order.ccPAN:>
         <tr>
-          <th>Transaction Id:</th>
-          <td><:order ccTranId:></td>
+          <th><:= cfg.entry("shop", "display_ccPAN", "Card Number"):>:</th>
+          <td>**** **** **** <:= order.ccPAN:></td>
         </tr>
-        <:- or:><:eif:>
-        <:- case default:>
+        <:-.end if:>
         <tr>
-          <th>Transaction Status:</th>
-          <td><:order ccStatus:></td>
+          <th><:= cfg.entry("shop", "display_ccType", "Card Type"):>:</th>
+          <td><:= order.ccType:></td>
         </tr>
-        <tr>
-          <th>Transaction Error:</th>
-          <td><:order ccStatusText:></td>
-          <:- ifOrder ccStatus2:>
-          <th>Transaction Info:</th>
-          <td><:order ccStatus2:></td>
-          <:- eif:>
-        </tr>
-        <:- endswitch:>
-        <:- eif Order:>
-        <tr>
-          <th><:cfg shop display_ccName "Name on Card":>:</th>
-          <td><:order ccName:></td>
-        </tr>
-        <:- if Order ccPAN:>
-        <tr>
-          <th><:cfg shop display_ccPAN "Card Number":>:</th>
-          <td>**** **** **** <:order ccPAN:></td>
-        </tr>
-        <:- eif Order:>
-        <tr>
-          <th><:cfg shop display_ccType "Card Type":>:</th>
-          <td><:order ccType:></td>
-        </tr>
-          <:- case Eq [order paymentType] "1":>
+          <:-.elsif order.paymentType == 1:>
           <td><b>Cheque</b></td>
         </tr>
         <tr>
           <th>Payee:</th>
           <td>
-            <b><:cfg shop address1 |h:></b>
+            <b><:= cfg.entry("shop", "address1"):></b>
           </td>
         </tr>
         <tr>
           <th>Address:</th>
           <td>
-            <:cfg shop address2 |h:><br />
-            <:cfg shop address3 |h:><br />
-            <:cfg shop address4 |h:>
+            <:= cfg.entry("shop", "address2"):><br />
+            <:= cfg.entry("shop", "address3"):><br />
+            <:= cfg.entry("shop", "address4"):>
           </td>
         </tr>
-          <:- case Eq [order paymentType] "2":>
+          <:-.elsif order.paymentType == 2:>
           <td><b>Contact</b></td>
         </tr>
-          <:- case Eq [order paymentType] "3":>
-          <td><b>Manual</b></td>
-        </tr>
-          <:- case Eq [order paymentType] "4":>
+          <:-.elsif order.paymentType == 4:>
           <td><b>PayPal</b></td>
         </tr>
         <tr>
           <th>Transaction Id:</th>
-          <td><:order paypal_tran_id:></td>
+          <td><:= order.paypal_tran_id:></td>
         </tr>
-          <:- case Eq [order paymentType] "10":>
+          <:-.elsif order.paymentType == 10:>
           <td><b>EFT</b></td>
         </tr>
         <tr>
           <th>Name:</th>
-          <td><:cfg shop accountname |h:></td>
+          <td><:= cfg.entry("shop", "accountname"):></td>
         </tr>
         <tr>
           <th>BSB:</th>
-          <td><:cfg shop bsb:></td>
+          <td><:= cfg.entry("shop", "bsb"):></td>
         </tr>
+        <:-.if cfg.entry("shop", "swiftcode"):>
+        <tr>
+          <th>SWIFT Code:</th>
+          <td><:= cfg.entry("shop", "swiftcode"):></td>
+        </tr>
+        <:-.end if:>
         <tr>
           <th>Account:</th>
-          <td><:cfg shop accountno:></td>
+          <td><:= cfg.entry("shop", "accountno"):></td>
         </tr>
         <tr>
           <th>Reference:</th>
-          <td><:order id |%06d:></td>
+          <td><:= order.id.format("%06d"):></td>
         </tr>
-          <:- case Eq [order paymentType] "11":>
+          <:-.elsif order.paymentType == 11:>
           <td><b>Invoice</b></td>
         </tr>
-          <:- case Eq [order paymentType] "12":>
+          <:-.elsif order.paymentType == 12:>
           <td><b>Account</b></td>
         </tr>
-<:include include/order_payment_type.tmpl optional:>
-          <:- case default:>
+          <:- include include/order_payment_type.tmpl optional:>
+          <:-.else:>
           <td><b>None</b></td>
         </tr>
-        <:- endswitch:>
+        <:-.end if:>
       </tbody>
     </table>
     </div>
@@ -196,6 +175,9 @@
           <th class="item">Item</th>
           <th class="code">Code</th>
           <th class="tier">Tier</th>
+          <:-.if order.coupon_active and !order.coupon_cart_wide :>
+          <th class="discount">Discount</th>
+          <:-.end if :>
           <th class="quantity">Qty</th>
           <th class="price">Price</th>
           <th class="extended">Extended</th>
@@ -223,6 +205,13 @@
           </td>
           <td class="code"><:= item.product_code:></td>
           <td class="tier"><:= item.tier_id ? item.tier.description : cfg.entry("shop", "base_tier_name", "Retail"):></td>
+          <:-.if order.coupon_active and !order.coupon_cart_wide :>
+          <td class="discount">
+            <:-.if item.product_discount:>
+            <:= item.product_discount_units:> &times; <:= cfg.entry("shop", "currency", "$") :><:= bse.number("money", item.product_discount ):>
+            <:-.end if:>
+          </td>
+          <:-.end if :>
           <td class="quantity"><:= item.units:> &times;</td>
           <td class="price"><:= cfg.entry("shop", "currency", "$"):><:= bse.number("money", item.price):></td>
           <td class="extended"><:= cfg.entry("shop", "currency", "$"):><:= bse.number("money", item.extended("price")):></td>
@@ -231,133 +220,126 @@
       </tbody>
     </table>
     <div class="totals">
-      <:- if Order coupon:>
-      <p class="discount"><span>(<:order coupon_code_discount_pc:>% Coupon)</span> <label>Discount:</label> &minus;<:cfg shop currency "$":><:number money [order product_cost_discount]:></p>
-      <:- eif Order:>
-      <:- switch:>
-      <:- case Order shipping_cost:>
-      <p class="freight"><span>(<:order shipping_method:>)</span> <label>Freight:</label> <:cfg shop currency "$":><:number money [order shipping_cost]:></p>
-      <:- case Match [order shipping_name] ^contact$:>
-      <p class="freight"><span>(<:order shipping_method:>)</span> <label>Freight:</label> TBA</p>
-      <:- case default:>
-      <:- endswitch:>
-      <p class="total"><abbr><:cfg shop currency_code "AUD":></abbr> <label>Total:</label> <:cfg shop currency "$":><:number money [order total]:></p>
+      <:-.if order.coupon :>
+      <p class="discount">
+        <:-.if order.coupon_code_discount_pc:>
+        <span>(<:= order.coupon_code_discount_pc:>% Coupon)</span>
+        <:-.end if:>
+        <label>Discount:</label> &minus;<:= cfg.entry("shop", "currency", "$") :><:= bse.number("money", order.product_cost_discount ) :>
+      </p>
+      <:-.end if :>
+      <:-.if order.shipping_cost:>
+      <p class="freight"><span>(<:= order.shipping_method:>)</span> <label>Freight:</label> <:= cfg.entry("shop", "currency", "$"):><:= bse.number("money", order.shipping_cost ):></p>
+      <:-.elsif order.shipping_name eq "contact" :>
+      <p class="freight"><span>(<:= order.shipping_method:>)</span> <label>Freight:</label> TBA</p>
+      <:-.end if:>
+      <p class="total"><abbr><:= cfg.entry("shop", "currency_code", "AUD"):></abbr> <label>Total:</label> <:= cfg.entry("shop", "currency", "$"):><:= bse.number("money", order.total ):></p>
     </div>
     <div class="group">
-    <:- if Order billStreet:>
+    <:-.if order.billStreet:>
     <table class="vertical left">
       <caption>Billing details</caption>
       <tbody>
         <tr>
           <th>Name:</th>
-          <td><b><:order billFirstName:> <:order billLastName:></b></td>
+          <td><b><:= order.billFirstName:> <:= order.billLastName:></b></td>
         </tr>
         <tr>
           <th>Address:</th>
-          <td>
-            <:- ifOrder billOrganization:>
-            <:- order billOrganization:><br />
-            <:- eif:>
-            <:- order billStreet:><br />
-            <:- ifOrder billStreet2:>
-            <:- order billStreet2:><br />
-            <:- eif:>
-            <:- order billSuburb:> <:order billState:> <:order billPostCode:><br />
-            <:- ifCfgsection "country selector":>
-            <:cfg "country selector" [order billCountry]:>
-            <:- or:>
-            <:- order billCountry:>
-            <:- eif:>
+          <td>            <:-.if order.billOrganization:>
+            <:= order.billOrganization:><br />
+            <:-.end if:>
+            <:= order.billStreet:><br />
+            <:-.if order.billStreet2:>
+            <:= order.billStreet2:><br />
+            <:-.end if:>
+            <:= order.billSuburb:> <:= order.billState:> <:= order.billPostCode:><br />
+            <:-.if [cfg.entries("country selector")].size :>
+            <:= cfg.entry("country selector", order.billCountry ):>
+            <:-.else:>
+            <:= order.billCountry:>
+            <:-.end if:>
           </td>
         </tr>
-        <:- ifOrder billTelephone:>
-        <tr>
-          <th><:cfg "site users" display_telephone "Telephone":>:</th>
-          <td><:order billTelephone:></td>
+        <:-.if order.billTelephone:>        <tr>
+          <th><:= cfg.entry("site users", "display_telephone", "Telephone"):>:</th>
+          <td><:= order.billTelephone:></td>
         </tr>
-        <:- eif:>
-        <:- ifOrder billFacsimile:>
-        <tr>
-          <th><:cfg "site users" display_facsimile "Facsimile":>:</th>
-          <td><:order billFacsimile:></td>
+        <:-.end if:>
+        <:-.if order.billFacsimile:>        <tr>
+          <th><:= cfg.entry("site users", "display_facsimile", "Facsimile"):>:</th>
+          <td><:= order.billFacsimile:></td>
         </tr>
-        <:- eif:>
-        <:- ifOrder billMobile:>
-        <tr>
-          <th><:cfg "site users" display_mobile "Mobile":>:</th>
-          <td><:order billMobile:></td>
+        <:-.end if:>
+        <:-.if order.billMobile:>        <tr>
+          <th><:= cfg.entry("site users", "display_mobile", "Mobile"):>:</th>
+          <td><:= order.billMobile:></td>
         </tr>
-        <:- eif:>
+        <:-.end if:>
         <tr>
-          <th><:cfg "site users" display_email "Email Address":>:</th>
-          <td><:order billEmail:></td>
+          <th><:= cfg.entry("site users", "display_email", "Email Address"):>:</th>
+          <td><:= order.billEmail:></td>
         </tr>
-        <:- ifOrder instructions:>
-        <tr>
+        <:-.if order.instructions:>        <tr>
           <th>Instructions:</th>
-          <td><:order instructions:></td>
+          <td><:= order.instructions:></td>
         </tr>
-        <:- eif:>
+        <:-.end if:>
       </tbody>
     </table>
-    <:- eif Order:>
-    <:- if Order delivStreet:>
+    <:-.end if:>
+    <:-.if order.delivStreet:>
     <table class="vertical right">
       <caption>Shipping details</caption>
       <tbody>
         <tr>
           <th>Name:</th>
-          <td><b><:order delivFirstName:> <:order delivLastName:></b></td>
+          <td><b><:= order.delivFirstName:> <:= order.delivLastName:></b></td>
         </tr>
         <tr>
           <th>Address:</th>
-          <td>
-            <:- ifOrder delivOrganization:>
-            <:- order delivOrganization:><br />
-            <:- eif:>
-            <:- order delivStreet:><br />
-            <:- ifOrder delivStreet2:>
-            <:- order delivStreet2:><br />
-            <:- eif:>
-            <:- order delivSuburb:> <:order delivState:> <:order delivPostCode:><br />
-            <:- ifCfgsection "country selector":>
-            <:cfg "country selector" [order delivCountry]:>
-            <:- or:>
-            <:- order delivCountry:>
-            <:- eif:>
+          <td>            <:-.if order.delivOrganization:>
+            <:= order.delivOrganization:><br />
+            <:-.end if:>
+            <:= order.delivStreet:><br />
+            <:-.if order.delivStreet2:>
+            <:= order.delivStreet2:><br />
+            <:-.end if:>
+            <:= order.delivSuburb:> <:= order.delivState:> <:= order.delivPostCode:><br />
+            <:-.if [cfg.entries("country selector")].size :>
+            <:= cfg.entry("country selector", order.delivCountry ):>
+            <:-.else:>
+            <:= order.delivCountry:>
+            <:-.end if:>
           </td>
         </tr>
-        <:- ifOrder telephone:>
-        <tr>
-          <th><:cfg "site users" display_telephone "Telephone":>:</th>
-          <td><:order telephone:></td>
+        <:-.if order.telephone:>        <tr>
+          <th><:= cfg.entry("site users", "display_telephone", "Telephone"):>:</th>
+          <td><:= order.telephone:></td>
         </tr>
-        <:- eif:>
-        <:- ifOrder facsimile:>
-        <tr>
-          <th><:cfg "site users" display_facsimile "Facsimile":>:</th>
-          <td><:order facsimile:></td>
+        <:-.end if:>
+        <:-.if order.facsimile:>        <tr>
+          <th><:= cfg.entry("site users", "display_facsimile", "Facsimile"):>:</th>
+          <td><:= order.facsimile:></td>
         </tr>
-        <:- eif:>
-        <:- ifOrder delivMobile:>
-        <tr>
-          <th><:cfg "site users" display_mobile "Mobile":>:</th>
-          <td><:order delivMobile:></td>
+        <:-.end if:>
+        <:-.if order.delivMobile:>        <tr>
+          <th><:= cfg.entry("site users", "display_mobile", "Mobile"):>:</th>
+          <td><:= order.delivMobile:></td>
         </tr>
-        <:- eif:>
-        <:- ifOrder emailAddress:>
-        <tr>
-          <th><:cfg "site users" display_email "Email Address":>:</th>
-          <td><:order emailAddress:></td>
+        <:-.end if:>
+        <:-.if order.emailAddress:>        <tr>
+          <th><:= cfg.entry("site users", "display_email", "Email Address"):>:</th>
+          <td><:= order.emailAddress:></td>
         </tr>
-        <:- eif:>
+        <:-.end if:>
       </tbody>
     </table>
-    <:- eif Order:>
+    <:-.end if:>
   </div>
-  <:- if And [ifEq [order paymentType] "4"] [order paidFor] [ifEq [order paid_manually] "0"]:>
-  <:- if UserCan bse_shop_order_refund_paypal:>
-  <form action="<:adminurl shopadmin:>" method="post" data-object="Refund">
+  <:-.if (order.paymentType == 4) and order.paidFor (order.paid_manually == 0):>
+  <:-.if request.user_can("bse_shop_order_refund_paypal"):>
+  <form action="<:= cfg.admin_url("shopadmin"):>" method="post" data-object="Refund">
     <fieldset>
       <legend>Payment</legend>
       <ul>
@@ -371,10 +353,10 @@
       </p>
     </fieldset>
   </form>
-  <:- eif UserCan:>
-  <:- eif And:>
+  <:-.end if:>
+  <:-.end if:>
   <:-.if !order.paidFor:>
-  <form action="<:adminurl shopadmin:>" method="post" data-object="Payment">
+  <form action="<:= cfg.admin_url("shopadmin"):>" method="post" data-object="Payment">
     <:csrfp shop_order_paid hidden:>
     <fieldset>
       <legend>Payment</legend>
@@ -396,7 +378,7 @@
     </fieldset>
   </form>
   <:-.elsif order.is_manually_paid:>
-  <form action="<:adminurl shopadmin:>" method="post" data-object="Payment">
+  <form action="<:= cfg.admin_url("shopadmin"):>" method="post" data-object="Payment">
     <:csrfp shop_order_unpaid hidden:>
     <fieldset>
       <legend>Payment</legend>
@@ -412,14 +394,13 @@
     </fieldset>
   </form>
   <:-.end if:>
-  <form action="<:adminurl shopadmin:>" method="post" data-object="Order">
-    <:-switch:>
-    <:-case Eq [order stage] "shipped":>
-    <:-case Eq [order shipping_name] "none":>
-    <:-case default:>
+  <form action="<:= cfg.admin_url("shopadmin"):>" method="post" data-object="Order">
+    <:-.if order.stage eq "shipped":>
+    <:-.elsif order.shipping_name eq "none":>
+    <:-.else:>
     <fieldset>
       <legend>Freight</legend>
-      <input type="hidden" name="id" value="<:order id:>" />
+      <input type="hidden" name="id" value="<:= order.id:>" />
       <:csrfp shop_order_save hidden:>
       <div>
         <label for="shipping_name">Shipping method</label>
@@ -430,14 +411,14 @@
       <div>
         <label for="freight_tracking">Tracking code</label>
         <span>
-          <input type="text" name="freight_tracking" id="freight_tracking" value="<:order freight_tracking:>" />
+          <input type="text" name="freight_tracking" id="freight_tracking" value="<:= order.freight_tracking:>" />
         </span>
       </div>
     </fieldset>
-    <:-endswitch:>
+    <:-.end if:>
     <fieldset>
       <legend>Status</legend>
-      <input type="hidden" name="id" value="<:order id:>" />
+      <input type="hidden" name="id" value="<:= order.id:>" />
       <:csrfp shop_order_save hidden:>
       <div>
         <label for="stage">Order stage</label>
@@ -454,9 +435,9 @@
     </fieldset>
     <p class="buttons">
       <a href="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:adminurl shopadmin order_list 1:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
-      <:- if UserCan bse_shop_order_save:>
+      <:-.if request.user_can("bse_shop_order_save") :>
       <input type="submit" name="a_order_save" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- eif UserCan:>
+      <:-.end if:>
     </p>
   </form>
 </div>
