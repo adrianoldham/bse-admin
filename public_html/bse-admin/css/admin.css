@@ -172,10 +172,11 @@ iframe {
 }
 
 .scrollable {
-    max-width: 74em;
+    /* FIXME: I still haven’t managed to make scrolling work */
+    /*max-width: 74em;*/
     margin: 0 -0.0833333333333334em;
-    overflow: auto;
-    display: block;
+    overflow-x: auto;
+    display: block !important;
 }
 
 .wrap {
