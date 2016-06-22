@@ -115,7 +115,7 @@ table {
 
 .center {
     text-align: center;
-    display: block;
+    display: block !important;
 }
 
 .preview {
@@ -489,7 +489,7 @@ fieldset legend {
     padding: 0 0.25em;
 }
 
-fieldset > div {
+fieldset > div:not(.scrollable):not(.center)) {
     display: table-row;
 }
 
