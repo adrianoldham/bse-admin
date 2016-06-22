@@ -38,40 +38,42 @@
   <:- eif Sort_select:>
   <fieldset>
     <legend><:report name:></legend>
-    <table class="full list">
-      <thead>
-        <tr>
-          <:- iterator begin level1_names:>
-          <th class="<:replace [lc [level1_name name]] " " "-":>"><:ifSort - sortable:><a href="<:sort - url:>"><:level1_name name:></a><:or:><:level1_name name:><:eif:></th>
-          <:- iterator end level1_names:>
-          <:- if Report has_level1_links:>
-          <th><!--Actions--></th>
-          <:- eif Report:>
-        </tr>
-      </thead>
-      <tbody>
-        <:- if Level1:>
-        <:- iterator begin level1:>
-        <tr>
-          <:- iterator begin level1_cols:>
-          <td class="<:replace [level1_col name] " " "-":>"><:level1_col value:></td>
-          <:- iterator end level1_cols:>
-          <:- if Level1_links:>
-          <td class="actions">
-            <:- iterator begin level1_links:>
-            <:level1_link link:>
-            <:- iterator end level1_links:>
-          </td>
-          <:- eif Level1_links:>
-        </tr>
-        <:- iterator end level1:>
-        <:- or Level1:>
-        <tr>
-          <td colspan="<:add [level1_name_count] 1:>">No rows returned.</td>
-        </tr>
-        <:- eif Level1:>
-      </tbody>
-    </table>
+    <div class="scrollable">
+      <table class="full list">
+        <thead>
+          <tr>
+            <:- iterator begin level1_names:>
+            <th class="<:replace [lc [level1_name name]] " " "-":>"><:ifSort - sortable:><a href="<:sort - url:>"><:level1_name name:></a><:or:><:level1_name name:><:eif:></th>
+            <:- iterator end level1_names:>
+            <:- if Report has_level1_links:>
+            <th><!--Actions--></th>
+            <:- eif Report:>
+          </tr>
+        </thead>
+        <tbody>
+          <:- if Level1:>
+          <:- iterator begin level1:>
+          <tr>
+            <:- iterator begin level1_cols:>
+            <td class="<:replace [level1_col name] " " "-":>"><:level1_col value:></td>
+            <:- iterator end level1_cols:>
+            <:- if Level1_links:>
+            <td class="actions">
+              <:- iterator begin level1_links:>
+              <:level1_link link:>
+              <:- iterator end level1_links:>
+            </td>
+            <:- eif Level1_links:>
+          </tr>
+          <:- iterator end level1:>
+          <:- or Level1:>
+          <tr>
+            <td colspan="<:add [level1_name_count] 1:>">No rows returned.</td>
+          </tr>
+          <:- eif Level1:>
+        </tbody>
+      </table>
+    </div>
   </fieldset>
   <p class="buttons">
     <a href="<:switch:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>

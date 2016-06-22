@@ -269,9 +269,9 @@
             <label><span class="indicator <:switch:><:case Dboption enabled:>green<:case default:>gray<:endswitch:>"></span> <:dboption name:></label>
             <span>
               <:- if UserCan bse_edit_prodopt_edit:article:>
-              <a id="editoption<:dboption id:>" href="<:script:>?id=<:article id:>&amp;a_edit_option=1&amp;option_id=<:dboption id:>" class="button gray small">Edit</a>
+              <a id="editoption<:dboption id:>" href="<:script:>?id=<:article id:>&amp;a_edit_option=1&amp;option_id=<:dboption id:>" class="button white small">Edit</a>
               <:- or UserCan:>
-              <a class="button gray small disabled">Edit</a>
+              <a class="button white small disabled">Edit</a>
               <:- eif UserCan:>
               <:- if UserCan bse_edit_prodopt_delete:article:>
               <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:dboption id:>&amp;_csrfp=<:csrfp admin_delete_option:>" data-action="Delete" data-object="Option" class="button red small">Delete</a>
@@ -335,8 +335,8 @@
           </span>
           <span class="field-actions">
             <:-.if loop.is_first:>
-            <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
-            <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+            <button class="button white small" onclick="plus(this); return false;">&plus;</button>
+            <button class="button white small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
             <:-.end if:>
           </span>
         </div>
@@ -558,8 +558,8 @@
             <a href="<:image src:>" onclick="window.open(this.href, 'fullimage', 'width=<:arithmetic 40 + [image width]:>,height=<:arithmetic 90 + [image height]:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:thumbimage editor:></a> <:ifImage name:>(<:image name:>)<:eif:>
             <span>
               <:- if UserCan bse_edit_images_save:article:>
-              <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>" class="button gray small">Edit</a>
-              <:- or UserCan:><a class="button gray small disabled">Edit</a>
+              <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>" class="button white small">Edit</a>
+              <:- or UserCan:><a class="button white small disabled">Edit</a>
               <:- eif UserCan:>
               <:- if UserCan bse_edit_images_delete:article:>
               <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" data-action="Delete" data-object="Image" class="button red small">Delete</a>
@@ -583,9 +583,9 @@
             <a href="<:target user download_file file [file id] |h:>"><span class="indicator <:switch:><:case File hide_from_list:>orange<:case FileExists:>green<:case default:>red<:endswitch:>"></span> <:file displayName |h:></a><:ifFile name:> (<:file name:>)<:eif:>
             <span>
               <:- if UserCan bse_edit_files_save:article:>
-              <a href="<:script:>?a_edit_file=1&amp;id=<:article id:>&amp;file_id=<:file id:>" class="button gray small">Edit</a>
+              <a href="<:script:>?a_edit_file=1&amp;id=<:article id:>&amp;file_id=<:file id:>" class="button white small">Edit</a>
               <:- or UserCan:>
-              <a class="button gray small disabled">Edit</a>
+              <a class="button white small disabled">Edit</a>
               <:- eif UserCan:>
               <:- if UserCan bse_edit_files_delete:article:>
               <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>" data-action="Delete" data-object="File" class="button red small">Delete</a>

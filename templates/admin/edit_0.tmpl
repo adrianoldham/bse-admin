@@ -47,14 +47,14 @@
           <span class="actions">
             <:-.set typename = article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") :>
             <:-.if article.parentid != parent.id :>
-            <a href="<:= cfg.admin_url("add", { "id": parent.id, "stepkid": article.id, "referer": 1, "_t": "steps", "r": refresh }) :>" class="button gray small">Edit</a>
+            <a href="<:= cfg.admin_url("add", { "id": parent.id, "stepkid": article.id, "referer": 1, "_t": "steps", "r": refresh }) :>" class="button white small">Edit</a>
             <:-.if request.user_can("bse_edit_stepkid_delete", article) and request.user_can("bse_edit_stepparent_delete", parent) :>
             <a href="<:= cfg.admin_url("add", { "id": parent.id, "stepkid": article.id, "typename": typename, "del_stepkid": 1, "_csrfp": request.get_csrf_token("admin_remove_stepkid"), "r": refresh }) :>" class="button red small" data-action="Delete" data-object="Stepchild" data-confirm="Are you sure you want to remove the Stepchild relationship?" data-info="Continuing with this action will permanently remove this Stepchild relationship. This action does not delete the original <:= typename :>.">Delete</a>
             <:-.else:>
             <a class="button red small disabled">Delete</a>
             <:-.end if:>
             <:-.else:>
-            <a href="<:= cfg.admin_url("add", { "id": article.id, "referer": 1 }) :>" class="button gray small">Edit</a>
+            <a href="<:= cfg.admin_url("add", { "id": article.id, "referer": 1 }) :>" class="button white small">Edit</a>
             <:-.if request.user_can("bse_edit_delete_article", article) :>
             <a href="<:= cfg.admin_url("add", { "id": article.id, "remove": 1, "_csrfp": request.get_csrf_token("admin_remove_article"), "r": refresh }) :>" class="button red small" data-action="Delete" data-object="<:= typename :>" >Delete</a>
             <:-.else:>

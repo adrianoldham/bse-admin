@@ -40,7 +40,7 @@
           </td>
           <td class="actions">
             <:-.if request.user_can("bse_ipaddress_detail"):>
-            <a href="<:= cfg.admin_url2("ipaddress", "detail", { "ip":ip.ip_address }):>" class="button gray small">Details</a>
+            <a href="<:= cfg.admin_url2("ipaddress", "detail", { "ip":ip.ip_address }):>" class="button white small">Details</a>
             <:-.end if:>
           </td>
         </tr>

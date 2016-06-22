@@ -40,9 +40,9 @@
           <td><:ifAnd [recipient_count]:><:recipient_count:><:or:>None<:eif:></td>
           <td class="actions">
             <:- if UserCan bse_subs_edit:>
-            <a href="<:script:>?edit=1&amp;id=<:subscription id:>" class="button gray small">Edit</a>
+            <a href="<:script:>?edit=1&amp;id=<:subscription id:>" class="button white small">Edit</a>
             <:or UserCan:>
-            <a class="button gray small disabled">Edit</a>
+            <a class="button white small disabled">Edit</a>
             <:- eif UserCan:>
             <:- if UserCan bse_subs_delete:>
             <a href="<:script:>?delete=1&amp;id=<:subscription id:>" data-action="Delete" data-object="Mailing List" class="button red small">Delete</a>

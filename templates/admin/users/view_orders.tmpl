@@ -75,9 +75,9 @@
           <td><:= cfg.entry("shop", "currency", "$"):><:= bse.number("money", userorder.total ):></td>
           <td class="actions">
             <:-.if request.user_can("bse_shop_order_detail"):>
-            <a href="<:= cfg.admin_url2("shopadmin", "order_detail", { "id":userorder.id, "referer":1 }):>" class="button gray small">Details</a>
+            <a href="<:= cfg.admin_url2("shopadmin", "order_detail", { "id":userorder.id, "referer":1 }):>" class="button white small">Details</a>
             <:-.else:>
-            <a class="button gray small disabled">Details</a>
+            <a class="button white small disabled">Details</a>
             <:-.end if:>
           </td>
         </tr>

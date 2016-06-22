@@ -44,7 +44,7 @@
         <tr>
           <td><:group name:></td>
           <td class="actions">
-            <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button gray small">Edit</a>
+            <a href="<:script:>?a_editgroup=1&amp;id=<:group id:>" class="button white small">Edit</a>
             <:- if And [ifUserCan bse_members_group_delete] [ifMatch [group id] ^\d]:>
             <a href="<:script:>?a_deletegroup=1&amp;id=<:group id:>" data-action="Delete" data-object="Group" class="button red small">Delete</a>
             <:- or And:>

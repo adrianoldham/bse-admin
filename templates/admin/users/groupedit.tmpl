@@ -80,9 +80,9 @@
           <a href="<:target user downufile id [groupfile id] |h:>" title="<:groupfile title:>"><span class="indicator <:switch:><:case default:>green<:endswitch:>"></span> <:groupfile display_name:></a>
           <span>
             <:- if UserCan bse_members_group_edit_file:>
-            <a href="<:script:>?a_editgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>" class="button gray small">Edit</a>
+            <a href="<:script:>?a_editgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>" class="button white small">Edit</a>
             <:- or UserCan:>
-            <a class="button gray small disabled">Edit</a>
+            <a class="button white small disabled">Edit</a>
             <:- eif UserCan:>
             <:- if UserCan bse_members_group_del_file:>
             <a href="<:script:>?a_delgroupfile=1&amp;id=<:group id:>&amp;file_id=<:groupfile id:>&amp;_csrfp=<:csrfp admin_group_del_file:>" data-action="Delete" data-object="File" class="button red small">Delete</a>

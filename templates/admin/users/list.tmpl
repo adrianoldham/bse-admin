@@ -112,9 +112,9 @@
           <td><:= siteuser.name2:></td>
           <td class="actions">
             <:-.if request.user_can("bse_members_user_view") or request.user_can("bse_members_user_edit") :>
-            <a href="<:= cfg.admin_url2("siteusers", "edit", { "id":siteuser.id }):>" class="button gray small">Edit</a>
+            <a href="<:= cfg.admin_url2("siteusers", "edit", { "id":siteuser.id }):>" class="button white small">Edit</a>
             <:-.else:>
-            <a class="button gray small disabled">Edit</a>
+            <a class="button white small disabled">Edit</a>
             <:-.end if:>
             <:-.if request.user_can("bse_members_user_delete") :>
             <a href="<:= cfg.admin_url2("siteusers", "delete", { "id":siteuser.id, "_csrfp":request.get_csrf_token("admin_siteuser_delete"), "r":cfg.admin_url("siteusers") }):>" data-action="Delete" data-object="User" class="button red small">Delete</a>

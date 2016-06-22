@@ -104,9 +104,9 @@
           <td><:= coupon.campaign :></td>
           <td class="actions">
             <:-.if request.user_can("bse_shop_coupon_edit") :>
-            <a href="<:= cfg.admin_url2("shopadmin", "coupon_edit", { "id":coupon.id, "referer":1 }) :>" class="button gray small">Edit</a>
+            <a href="<:= cfg.admin_url2("shopadmin", "coupon_edit", { "id":coupon.id, "referer":1 }) :>" class="button white small">Edit</a>
             <:-.else :>
-            <a class="button gray small disabled">Edit</a>
+            <a class="button white small disabled">Edit</a>
             <:-.end if :>
             <:-.if request.user_can("bse_shop_coupon_delete") and coupon.is_removable :>
             <a href="<:= cfg.admin_url2("shopadmin", "coupon_delete", { "id":coupon.id, "_csrfp":request.get_csrf_token("admin_bse_coupon_delete") }) :>" class="button red small" data-action="Delete" data-object="Coupon">Delete</a>

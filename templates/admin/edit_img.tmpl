@@ -76,9 +76,9 @@
       <h2>Image <:= loop.count:> <:.call "move_image", "admin":1, "r":refresh :></h2>
       <p class="buttons">
         <:-.if request.user_can("bse_edit_images_save", article ):>
-        <a href="<:= cfg.admin_url2("add", "edit_image", { "id":article.id, "image_id":image.id, "referer":1 }):>" class="button gray small">Edit</a>
+        <a href="<:= cfg.admin_url2("add", "edit_image", { "id":article.id, "image_id":image.id, "referer":1 }):>" class="button white small">Edit</a>
         <:-.else:>
-        <a class="button gray small disabled">Edit</a>
+        <a class="button white small disabled">Edit</a>
         <:-.end if:>
         <:-.if request.user_can("bse_edit_images_delete", article ):>
         <a href="<:= cfg.admin_url("add", { "id":article.id, "removeimg_" _ image.id:1, _t:"img", _csrfp:request.get_csrf_token("admin_remove_image") }):>" data-action="Delete" data-object="Image" class="button red small">Delete</a>
@@ -166,8 +166,8 @@
             </span>
             <:-.if loop.is_first:>
             <span class="field-actions">
-              <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
-              <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+              <button class="button white small" onclick="plus(this); return false;">&plus;</button>
+              <button class="button white small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
             </span>
             <:-.end if:>
           </div>

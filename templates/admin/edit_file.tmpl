@@ -61,9 +61,9 @@
       <h2>File <:arithmetic [file_index] + 1:> <:ifUserCan bse_edit_files_reorder:article:><:movefiles:><:eif:></h2>
       <p class="buttons">
         <:- if UserCan bse_edit_files_save:article:>
-        <a href="<:script:>?a_edit_file=1&amp;id=<:article id:>&amp;file_id=<:file id:>&amp;referer=1" class="button gray small">Edit</a>
+        <a href="<:script:>?a_edit_file=1&amp;id=<:article id:>&amp;file_id=<:file id:>&amp;referer=1" class="button white small">Edit</a>
         <:- or UserCan:>
-        <a class="button gray small disabled">Edit</a>
+        <a class="button white small disabled">Edit</a>
         <:- eif UserCan:>
         <:- if UserCan bse_edit_files_delete:article:>
         <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" data-action="Delete" data-object="File" class="button red small">Delete</a>

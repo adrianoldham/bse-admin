@@ -32,14 +32,14 @@
           <td><:= bse.date("%d-%b-%Y / %r", adminuser.lockout_end):></td>
           <td class="actions">
             <:-.if request.user_can("bse_admin_user_save") :>
-            <a href="<:= cfg.admin_url2("adminusers", "showuser", { "userid":adminuser.id }):>" class="button gray small">Edit</a>
+            <a href="<:= cfg.admin_url2("adminusers", "showuser", { "userid":adminuser.id }):>" class="button white small">Edit</a>
             <:-.else:>
-            <a class="button gray small disabled">Edit</a>
+            <a class="button white small disabled">Edit</a>
             <:-.end if:>
             <:-.if request.user_can("bse_admin_user_unlock") :>
             <a href="<:= cfg.admin_url2("adminusers", "unlock", { "userid":adminuser.id, "r":cfg.admin_url("adminusers", { "_t":"lockouts" }) }):>" class="button orange small">Unlock</a>
             <:-.else:>
-            <a class="button gray small disabled">Unlock</a>
+            <a class="button white small disabled">Unlock</a>
             <:-.end if:>
           </td>
         </tr>

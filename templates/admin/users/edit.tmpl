@@ -367,9 +367,9 @@
             <a href="<:target user downufile id [userfile id] |h:>" title="<:userfile title:>"><span class="indicator <:switch:><:case default:>green<:endswitch:>"></span> <:userfile display_name |h:></a>
             <span>
               <:- if UserCan bse_members_user_edit_file:>
-              <a href="<:script:>?a_edituserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>" class="button gray small">Edit</a>
+              <a href="<:script:>?a_edituserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>" class="button white small">Edit</a>
               <:- or UserCan:>
-              <a class="button gray small disabled">Edit</a>
+              <a class="button white small disabled">Edit</a>
               <:- eif UserCan:>
               <:- if UserCan bse_members_user_del_file:>
               <a href="<:script:>?a_deluserfile=1&amp;id=<:siteuser id:>&amp;file_id=<:userfile id:>&amp;_csrfp=<:csrfp admin_user_del_file:>" data-action="Delete" data-object="File" class="button red small">Delete</a>

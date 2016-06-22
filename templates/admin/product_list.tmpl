@@ -56,7 +56,7 @@
           <td><:product product_code:></td>
           <td><:cfg shop currency "$":><:number money [product retailPrice]:></td>
           <td class="actions">
-            <a href="<:adminurl add:>?id=<:product id:>&amp;r=<:adminurl shopadmin:>" class="button gray small">Edit</a>
+            <a href="<:adminurl add:>?id=<:product id:>&amp;r=<:adminurl shopadmin:>" class="button white small">Edit</a>
             <:- if UserCan bse_edit_delete_article:product:>
             <a href="<:adminurl add:>?id=<:product id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:adminurl shopadmin:>" data-action="Delete" data-object="Product" class="button red small">Delete</a>
             <:- or UserCan:>

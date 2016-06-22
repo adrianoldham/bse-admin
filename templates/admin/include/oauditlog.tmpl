@@ -17,7 +17,7 @@
           <td><:= auditentry.msg:></td>
           <td class="actions">
             <:-.if request.user_can("bse_log_detail"):>
-            <a href="<:= cfg.admin_url2("log", "detail", { "id":auditentry.id, "referer":1 }):>" class="button gray small">Details</a>
+            <a href="<:= cfg.admin_url2("log", "detail", { "id":auditentry.id, "referer":1 }):>" class="button white small">Details</a>
             <:-.end if:>
           </td>
         </tr>

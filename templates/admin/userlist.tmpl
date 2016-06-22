@@ -59,9 +59,9 @@
 	      </td>
           <td class="actions">
             <:-.if request.user_can("bse_admin_user_save"):>
-            <a href="<:= cfg.admin_url2("adminusers", "showuser", { "userid": user.id }):>" class="button gray small">Edit</a>
+            <a href="<:= cfg.admin_url2("adminusers", "showuser", { "userid": user.id }):>" class="button white small">Edit</a>
             <:-.else:>
-            <a class="button gray small disabled">Edit</a>
+            <a class="button white small disabled">Edit</a>
             <:-.end if:>
             <:-.if request.user_can("bse_admin_user_del"):>
             <a href="<:= cfg.admin_url2("adminusers", "deluser", { "userid": user.id }):>" data-action="Delete" data-object="User" class="button red small">Delete</a>

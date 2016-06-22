@@ -72,7 +72,7 @@
           <td><:user name1:> <:user name2:></td>
           <td><a href="<:adminurl siteusers:>?a_edit=1&amp;id=<:user id:>&amp;referer=1"><:user userId:></a></td>
           <td><:date user ends_at:></td>
-          <td class="actions"><a href="<:adminurl siteusers:>?a_edit=1&amp;id=<:user id:>&amp;referer=1" class="button gray small">Edit</a></td>
+          <td class="actions"><a href="<:adminurl siteusers:>?a_edit=1&amp;id=<:user id:>&amp;referer=1" class="button white small">Edit</a></td>
         </tr>
         <:- iterator end users:>
       </tbody>
@@ -121,7 +121,7 @@
             <:- case default:><a href="<:script:>?a_detail=1&amp;subscription_id=<:product subscription_required:>">Other</a>
             <:- endswitch:>
           </td>
-          <td class="actions"><a href="<:adminurl add:>?id=<:product id:>&amp;referer=1" class="button gray small">Edit</a></td>
+          <td class="actions"><a href="<:adminurl add:>?id=<:product id:>&amp;referer=1" class="button white small">Edit</a></td>
         </tr>
         <:- iterator end products:>
       </tbody>
@@ -154,7 +154,7 @@
           <td><:order subscription_period:></td>
           <td class="actions">
             <:- if UserCan bse_shop_order_detail:>
-            <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:order id:>&amp;referer=1" class="button gray small">Details</a>
+            <a href="<:adminurl shopadmin:>?order_detail=1&amp;id=<:order id:>&amp;referer=1" class="button white small">Details</a>
             <:- or UserCan:>
             <a class="button gray disabled">Details</a>
             <:- eif UserCan:>

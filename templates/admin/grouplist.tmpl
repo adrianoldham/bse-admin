@@ -49,9 +49,9 @@
           <td><:ifGroup_users igroup:><:iterator begin group_users igroup:><:group_user logon:><:iterator separator group_users:>, <:iterator end group_users:><:or:>(none)<:eif:></td>
           <td class="actions">
             <:- if UserCan bse_admin_group_save:>
-            <a href="<:script:>?a_showgroup=1&amp;groupid=<:igroup id:>" class="button gray small">Edit</a>
+            <a href="<:script:>?a_showgroup=1&amp;groupid=<:igroup id:>" class="button white small">Edit</a>
             <:- or UserCan:>
-            <a class="button gray small disabled">Edit</a>
+            <a class="button white small disabled">Edit</a>
             <:- eif UserCan:>
             <:- if UserCan bse_admin_group_del:>
             <a href="<:script:>?a_delgroup=1&amp;groupid=<:igroup id:>" data-action="Delete" data-object="Group" class="button red small">Delete</a>
