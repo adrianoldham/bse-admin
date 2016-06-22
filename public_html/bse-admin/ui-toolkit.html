@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <title>Bse-admin UI Toolkit</title>
+    <link rel="stylesheet" href="/bse-admin/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="/bse-admin/css/admin.css" type="text/css" />
+    <script type="text/javascript" src="/bse-admin/js/lib/prototype.js"></script>
+    <script type="text/javascript" src="/bse-admin/js/lib/scriptaculous.js?load=effects,dragdrop,controls"></script>
+    <script type="text/javascript" src="/bse-admin/js/init.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="stylesheet" href="/bse-admin/css/ie8.css" type="text/css" />
+    <![endif]-->
+    <style type="text/css">
+        *[data-role=controlgroup] {
+            margin: 0 3.5em 0.75em 0 !important;
+        }
+        *[data-role=controlgroup]:last-child {
+            margin-bottom: 0.75em;
+        }
+        .window *[data-role=toolbar] {
+            padding-bottom: 0;
+        }
+    </style>
+  </head>
+  <body data-role="page" class="toolbar">
+    <nav data-role="navbar">
+      <ul class="menu global">
+        <li><a href="#">Menu</a>
+          <ul>
+            <li class="disabled"><span>Disabled Menu Item</span></li>
+            <li class="divider"></li>
+            <li><a href="#">Menu Item Parent</a>
+               <ul>
+                 <li><a>Menu Item…</a></li>
+                 <li><a>Long Menu Item Only Just Long Enough To Be Truncated</a></li>
+               </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div id="message">
+      <div data-icon="cross" class="message red">Error Message</div>
+      <div data-icon="alert" class="message orange">Warning Message</div>
+      <div data-icon="tick" class="message green">Success Message</div>
+    </div>
+    <header>
+      <nav data-role="toolbar">
+        <a href="buttons.html" data-icon="back" data-icon-only="true" class="button"></a>
+        <a href="buttons.html" data-icon="trash" data-icon-only="true" data-action="Delete" data-object="Object" class="button">Trash</a>
+        <a class="button selected">Secondary Toolbar</a>
+      </nav>
+    </header>
+    <div class="window">
+      <header>
+        <ul class="menu header">
+          <li>
+            <h1><a href="#">Window Title Menu</a></h1>
+            <ul>
+              <li class="disabled"><span>Window Title Menu</span></li>
+              <li class="divider"></li>
+              <li><a>Title Menu Item</a></li>
+            </ul>
+          </li>
+        </ul>
+        <a data-widget="close">Close</a>
+        <nav data-role="toolbar">
+          <ul class="menu context">
+            <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
+              <ul>
+                <li class="disabled"><span>Disabled Menu Item</span></li>
+                <li class="divider"></li>
+                <li><a href="#">Menu Item Parent</a>
+                  <ul>
+                    <li><a>Menu Item…</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <a data-icon="menu" data-icon-only="true" class="button">Menu</a>
+          <a data-icon="path" data-icon-only="true" class="button">Path</a>
+          <a data-icon="preview" data-icon-only="true" class="button">Preview</a>
+          <a data-icon="sitemap" data-icon-only="true" class="button">Sitemap</a>
+          <a data-icon="regen" data-icon-only="true" class="button">Regen</a>
+          <a data-icon="refresh" data-icon-only="true" class="button">Refresh</a>
+          <span data-role="controlgroup">
+            <a data-icon="back" data-icon-only="true" class="button">Back</a>
+            <a data-icon="load" data-icon-only="true" class="button">Load</a>
+          </span>
+          <a data-icon="versions" data-icon-only="true" class="button">Versions</a>
+          <span data-role="controlgroup">
+            <a data-icon="left" data-icon-only="true" class="button">Left</a>
+            <a data-icon="right" data-icon-only="true" class="button">Right</a>
+            <a data-icon="up" data-icon-only="true" class="button">Up</a>
+            <a data-icon="down" data-icon-only="true" class="button">Down</a>
+          </span>
+          <a data-icon="redirect" data-icon-only="true" class="button">Redirect</a>
+          <span data-role="controlgroup">
+            <a data-icon="previous" data-icon-only="true" class="button">Previous</a>
+            <a data-icon="next" data-icon-only="true" class="button">Next</a>
+          </span>
+          <span data-role="controlgroup">
+            <a data-icon="source" data-icon-only="true" class="button">Source</a>
+            <a data-icon="images" data-icon-only="true" class="button">Images <span class="badge">6</span></a>
+            <a data-icon="picture" data-icon-only="true" class="button">Picture</a>
+            <a data-icon="files" data-icon-only="true" class="button">Files <span class="badge">2</span></a>
+            <a data-icon="paperclip" data-icon-only="true" class="button">Paperclip <span class="badge">2</span></a>
+            <a data-icon="list" data-icon-only="true" class="button">List</a>
+          </span>
+          <span data-role="controlgroup">
+            <a data-icon="users" data-icon-only="true" class="button">Users</a>
+            <a data-icon="products" data-icon-only="true" class="button">Products</a>
+            <a data-icon="reports" data-icon-only="true" class="button">Reports</a>
+            <a data-icon="timetables" data-icon-only="true" class="button">Timetables</a>
+          </span>
+          <span data-role="controlgroup">
+            <a data-icon="delete" data-icon-only="true" class="button">Delete</a>
+            <a data-icon="trash" data-icon-only="true" class="button">Trash</a>
+            <a data-icon="mail" data-icon-only="true" class="button">Mail</a>
+            <a data-icon="send" data-icon-only="true" class="button">Send</a>
+          </span>
+          <span data-role="controlgroup">
+            <a data-icon="add" data-icon-only="true" class="button">Add</a>
+            <a data-icon="subtract" data-icon-only="true" class="button">Subtract</a>
+            <a data-icon="tick" data-icon-only="true" class="button">Tick</a>
+            <a data-icon="cross" data-icon-only="true" class="button">Cross</a>
+          </span>
+          <span data-role="controlgroup">
+            <a data-icon="close" data-icon-only="true" class="button">Close</a>
+            <a data-icon="orders" data-icon-only="true" class="button">Orders</a>
+            <a data-icon="info" data-icon-only="true" class="button">Info</a>
+            <a data-icon="help" data-icon-only="true" class="button">Help</a>
+            <a data-icon="alert" data-icon-only="true" class="button">Alert</a>
+            <a data-icon="stop" data-icon-only="true" class="button">Stop</a>
+          </span>
+          <span data-role="controlgroup">
+            <a data-icon="tag" data-icon-only="true" class="button">Tag</a>
+            <a data-icon="star" data-icon-only="true" class="button">Star</a>
+            <a data-icon="filter" data-icon-only="true" class="button">Filter</a>
+            <a data-icon="sight" data-icon-only="true" class="button">Sight</a>
+            <a data-icon="pulse" data-icon-only="true" class="button">Pulse</a>
+            <a data-icon="lightbulb" data-icon-only="true" class="button">Lightbulb</a>
+          </span>
+          <span data-role="controlgroup">
+            <a data-icon="on" data-icon-only="true" class="button">On</a>
+            <a data-icon="off" data-icon-only="true" class="button">Off</a>
+            <a data-icon="power" data-icon-only="true" class="button">Power</a>
+            <a data-icon="lock" data-icon-only="true" class="button">Lock</a>
+            <a data-icon="key" data-icon-only="true" class="button">Key</a>
+            <a data-icon="key-alt" data-icon-only="true" class="button">Key (alt)</a>
+            <a data-icon="shield" data-icon-only="true" class="button">Shield</a>
+            <a data-icon="search" data-icon-only="true" class="button">Search</a>
+          </span>
+          <span data-role="controlgroup">
+            <a class="button">Default <span class="badge">1</span></a>
+            <a class="button active">Active <span class="badge">2</span></a>
+            <a class="button selected">Selected <span class="badge">3</span></a>
+            <a class="button disabled">Disabled <span class="badge">4</span></a>
+          </span>
+        </nav>
+      </header>
+      <p data-role="status" class="error">Error status</p>
+      <p data-role="status" class="warning">Warning status</p>
+      <p data-role="status" class="notice">Notice status</p>
+      <p data-role="status" class="info">Info status</p>
+      <p data-role="status" class="debug">Debug status</p>
+      <p class="launchpad">
+        <a data-icon="action" class="button white">Actions</a>
+        <a data-icon="menu" class="button white">Menu</a>
+        <a data-icon="path" class="button white">Path</a>
+        <a data-icon="list" class="button white">List</a>
+        <a data-icon="regen" class="button white">Regen</a>
+        <a data-icon="versions" class="button white">Versions</a>
+        <a data-icon="refresh" class="button white">Refresh</a>
+        <a data-icon="back" class="button white">Back</a>
+        <a data-icon="load" class="button white">Load</a>
+        <a data-icon="previous" class="button white">Previous</a>
+        <a data-icon="next" class="button white">Next</a>
+        <a data-icon="left" class="button white">Left</a>
+        <a data-icon="right" class="button white">Right</a>
+        <a data-icon="up" class="button white">Up</a>
+        <a data-icon="down" class="button white">Down</a>
+        <a data-icon="redirect" class="button white">Redirect</a>
+        <a data-icon="source" class="button white">Source</a>
+        <a data-icon="preview" class="button white">Preview</a>
+        <a data-icon="images" class="button white">Images <span class="badge">6</span></a>
+        <a data-icon="files" class="button white">Files <span class="badge">2</span></a>
+        <a data-icon="users" class="button white">Users</a>
+        <a data-icon="products" class="button white">Products</a>
+        <a data-icon="reports" class="button white">Reports</a>
+        <a data-icon="timetables" class="button white">Timetables</a>
+        <a data-icon="delete" class="button white">Delete</a>
+        <a data-icon="trash" class="button white">Trash</a>
+        <a data-icon="mail" class="button white">Mail</a>
+        <a data-icon="send" class="button white">Send</a>
+        <a data-icon="add" class="button white">Add</a>
+        <a data-icon="subtract" class="button white">Subtract</a>
+        <a data-icon="tick" class="button white">Tick</a>
+        <a data-icon="cross" class="button white">Cross</a>
+        <a data-icon="close" class="button white">Close</a>
+        <a data-icon="orders" class="button white">Orders</a>
+        <a data-icon="info" class="button white">Info</a>
+        <a data-icon="help" class="button white">Help</a>
+        <a data-icon="alert" class="button white">Alert</a>
+        <a data-icon="stop" class="button white">Stop</a>
+        <a data-icon="tag" class="button white">Tag</a>
+        <a data-icon="star" class="button white">Star</a>
+        <a data-icon="filter" class="button white">Filter</a>
+        <a data-icon="sight" class="button white">Sight</a>
+        <a data-icon="pulse" class="button white">Pulse</a>
+        <a data-icon="lightbulb" class="button white">Lightbulb</a>
+        <a data-icon="sitemap" class="button white">Sitemap</a>
+        <a data-icon="on" class="button white">On</a>
+        <a data-icon="off" class="button white">Off</a>
+        <a data-icon="power" class="button white">Power</a>
+        <a data-icon="paperclip" class="button white">Paperclip</a>
+        <a data-icon="picture" class="button white">Picture</a>
+        <a data-icon="lock" class="button white">Lock</a>
+        <a data-icon="key" class="button white">Key</a>
+        <a data-icon="key-alt" class="button white">Key (alt)</a>
+        <a data-icon="shield" class="button white">Shield</a>
+        <a data-icon="search" class="button white">Search</a>
+      </p>
+      <br />
+      <p class="buttons">
+        <a data-icon="back" class="button white">White</a>
+        <a data-icon="tick" class="button green">Green</a>
+        <a data-icon="cross" class="button red">Red</a>
+        <a class="button blue">Blue</a>
+        <a class="button gray">Gray</a>
+        <a class="button orange">Orange</a>
+        <a class="button black">Black</a>
+      </p>
+      <form method="post" action="#" data-object="Object">
+        <fieldset>
+          <legend>Fieldset</legend>
+          <div>
+            <label for="text">Default input</label>
+            <span>
+              <input type="text" name="text" id="text" value="" placeholder="Default text input" />
+            </span>
+          </div>
+          <div>
+            <label for="text2">Required input <span class="required">*</span></label>
+            <span>
+              <input type="text" name="text2" id="text2" value="" placeholder="Required text input" required="required" />
+            </span>
+          </div>
+          <div>
+            <label for="text3">Error input</label>
+            <span>
+              <input type="text" name="text3" id="text3" value="Invalid Value" placeholder="Error text input" class="error" />
+            </span>
+          </div>
+          <div>
+            <label for="text4">Disabled input</label>
+            <span>
+              <input type="text" name="text4" id="text4" value="" placeholder="Disabled text input" disabled="disabled" />
+            </span>
+          </div>
+          <div class="field">
+            <label for="text4">Action input</label>
+            <span class="field-input">
+              <input type="text" name="text5" id="text5" value="" placeholder="Action text input" />
+            </span>
+            <span class="field-actions">
+              <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
+              <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+            </span>
+          </div>
+          <fieldset>
+            <legend>Nested Checkbox Fieldset</legend>
+            <ul>
+              <li>
+                <input type="checkbox" name="checkbox" id="checkbox" value="1" />
+                <label for="checkbox">Default checkbox item</label>
+              </li>
+              <li>
+                <input type="checkbox" name="checkbox" id="checkbox2" value="1" checked="checked" />
+                <label for="checkbox2">Checked checkbox item</label>
+              </li>
+              <li>
+                <input type="checkbox" name="checkbox" id="checkbox3" value="2" disabled="disabled" />
+                <label for="checkbox3">Disabled checkbox item</label>
+              </li>
+            </ul>
+          </fieldset>
+          <fieldset>
+            <legend>Nested Radio Fieldset</legend>
+            <ul>
+              <li>
+                <input type="radio" name="radio" id="radio" value="1" />
+                <label for="radio">Default radio item</label>
+              </li>
+              <li>
+                <input type="radio" name="radio" id="radio2" value="1" checked="checked" />
+                <label for="radio2">Checked radio item</label>
+              </li>
+              <li>
+                <input type="radio" name="radio" id="radio3" value="2" disabled="disabled" />
+                <label for="radio3">Disabled radio item</label>
+              </li>
+            </ul>
+          </fieldset>
+        </fieldset>
+        <fieldset>
+          <legend>Status List</legend>
+          <ul class="list">
+            <li class="error">Error list item</li>
+            <li class="warning">Warning list item</li>
+            <li class="notice">Notice list item</li>
+            <li class="info">Info list item</li>
+            <li class="debug">Debug list item</li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <legend>Tree List</legend>
+          <ul class="list tree">
+            <li><span class="odd"><a><span class="indicator green"></span> List item with indicator</a></span>
+              <ul>
+                <li><span><a><span class="indicator orange"></span> List item with indicator</a></span></li>
+                  <ul>
+                    <li><span class="odd"><a><span class="indicator red"></span> List item with indicator</a></span></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span><a><span class="indicator gray"></span> List item with indicator</a></span>
+              <ul>
+                <li><span class="odd"><a><span class="indicator white"></span> List item with indicator</a></span></li>
+                  <ul>
+                    <li><span><a><span class="indicator blue"></span> List item with indicator</a></span></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <legend>Action List</legend>
+          <ul class="list">
+            <li>List item with actions
+              <span class="actions">
+                <a href="#" class="button gray small">Edit</a>
+                <a href="#" class="button red small" data-action="Delete" data-object="Object">Delete</a>
+              </span>
+            </li>
+            <li>List item with actions
+              <span class="actions">
+                <a href="#" class="button gray small">Edit</a>
+                <a href="#" class="button red small" data-action="Delete" data-object="Object">Delete</a>
+              </span>
+            </li>
+            <li>ist item with disabled actions
+              <span class="actions">
+                <a href="#" class="button gray small disabled">Edit</a>
+                <a href="#" class="button red small disabled" data-action="Delete" data-object="Object">Delete</a>
+              </span>
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <legend>Table</legend>
+          <table class="list full">
+            <thead>
+              <tr>
+                <th>Table Head</th>
+                <th>Table Head</th>
+                <th>Table Head</th>
+                <th><!--Actions--></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td class="actions">
+                  <a href="#" class="button gray small">Edit</a>
+                  <a href="#" class="button red small" data-action="Delete" data-object="Object">Delete</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td class="actions">
+                  <a href="#" class="button gray small">Edit</a>
+                  <a href="#" class="button red small" data-action="Delete" data-object="Object">Delete</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td>Table Data</td>
+                <td class="actions">
+                  <a class="button gray small disabled">Edit</a>
+                  <a class="button red small disabled">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+        <fieldset>
+          <legend>Objects</legend>
+          <div class="center">
+            <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+            <p>No objects to display</p>
+            <p><a href="#" data-icon="add" class="button white">New Object…</a></p>
+          </div>
+        </fieldset>
+        <p class="buttons">
+          <a href="buttons.html" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+          <input type="submit" name="save" value="Save changes" accesskey="s" title="AccessKey = s" class="button green" />
+        </p>
+      </form>
+    </div>
+    <div class="window dialog">
+      <header>
+        <h1>Dialog Title</h1>
+      </header>
+      <form method="post" action="#"></form>
+        <fieldset>
+          <legend>Fieldset</legend>
+          <div>
+            <label for="file1">File input <span class="required">*</span></label>
+            <span>
+              <input type="file" name="file1" id="file1" accesskey="f" title="AccessKey = f" required="required" autofocus="autofocus" />
+            </span>
+          </div>
+          <div>
+            <label for="text6">Text input</label>
+            <span>
+              <input type="text" name="text6" id="text6" value="" class="" />
+            </span>
+          </div>
+        </fieldset>
+        <details>
+          <summary>More attributes</summary>
+          <fieldset>
+            <legend>Collapsed Fieldset</legend>
+            <div>
+              <label for="text7">Text Input</label>
+              <span>
+                <input type="text" name="text7" id="text7" value="" class="" />
+              </span>
+            </div>
+            <div>
+              <label for="checkbox4">Checkbox input</label>
+              <span>
+                <input type="checkbox" name="checkbox4" id="checkbox4" value="1" checked="checked" />
+              </span>
+            </div>
+            <div>
+              <label for="options">Select input</label>
+              <span>
+                <select name="storage" id="storage">
+                  <option value="">Option one</option>
+                  <option value="1">Option two</option>
+                </select>
+              </span>
+            </div>
+            <div class="field">
+              <label for="tag">Action input</label>
+              <span class="field-input">
+                <input type="text" name="tags" id="tag" value="" />
+              </span>
+              <span class="field-actions">
+                <button class="button gray small" onclick="plus(this); return false;">&plus;</button>
+                <button class="button gray small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+              </span>
+            </div>
+          </fieldset>
+        </details>
+        <div>
+          <div id="drop-target" data-drop="target">
+            <h2>Object Drop-Zone</h2>
+            Drag and drop objects here
+          </div>
+          <ul id="drop-list" data-drop="list" class="full list inset">
+            <li class="notice">Success status</li>
+            <li class="error">Error status</li>
+            <li class="info">Active status with progress <progress value="22" max="100"></progress></li>
+            <li class="debug">Pending status with progress <progress value="0" max="100"></progress></li>
+          </ul>
+        </div>
+        <p class="buttons">
+          <a href="buttons.html" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+          <input type="submit" name="upload" value="Upload Object" accesskey="u" title="AccessKey = u" class="button green" />
+        </p>
+      </form>
+    </div>
+    <script type="text/javascript">
+        function plus(ele) {
+            var ele = $(ele).up('div');
+            var clone = ele.clone(true);
+            clone.down('input').clear().removeAttribute("class");
+            clone.down('label').update(' ');
+            var disabled = clone.down('button[disabled]');
+            if (disabled) {
+                disabled.removeAttribute('disabled');
+            }
+            ele.insert({after: clone});
+        };
+    
+        function minus(ele) {
+            var ele = $(ele).up('div').remove();
+        };
+    </script>
+  </body>
+</html>
