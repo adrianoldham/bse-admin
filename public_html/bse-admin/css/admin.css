@@ -665,6 +665,7 @@ input[type=submit][disabled] {
 
 .button {
     display: inline-block;
+    overflow: hidden;
     vertical-align: top;
     margin: 0 0 0 0.5em;
     padding: 0.5em 1.5em;
@@ -2236,6 +2237,7 @@ nav *[data-icon=trash]:last-child {
     width: 3em;
     padding-left: 0;
     padding-right: 0;
+    white-space: nowrap;
 }
 
 *[data-icon][data-icon-only].small {
