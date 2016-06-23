@@ -76,6 +76,7 @@
                 <li><a href="#">Menu Item Parent</a>
                   <ul>
                     <li><a>Menu Item…</a></li>
+                    <li><a>Long Menu Item Only Just Long Enough To Be Truncated</a></li>
                   </ul>
                 </li>
               </ul>
@@ -268,8 +269,8 @@
               <input type="text" name="text5" id="text5" value="" placeholder="Action text input" />
             </span>
             <span class="field-actions">
-              <button class="button white small" onclick="plus(this); return false;">&plus;</button>
-              <button class="button white small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+              <button class="button white small" onclick="plus(this); return false;" data-icon="add" data-icon-only="true">Add</button>
+              <button class="button white small" onclick="minus(this); return false;" disabled="disabled" data-icon="subtract" data-icon-only="true">Delete</button>
             </span>
           </div>
           <fieldset>
@@ -470,8 +471,8 @@
                 <input type="text" name="tags" id="tag" value="" />
               </span>
               <span class="field-actions">
-                <button class="button white small" onclick="plus(this); return false;">&plus;</button>
-                <button class="button white small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+                <button class="button white small" onclick="plus(this); return false;" data-icon="add" data-icon-only="true">Add</button>
+                <button class="button white small" onclick="minus(this); return false;" disabled="disabled" data-icon="subtract" data-icon-only="true">Delete</button>
               </span>
             </div>
           </fieldset>

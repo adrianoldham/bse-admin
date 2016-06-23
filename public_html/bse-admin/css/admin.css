@@ -2238,6 +2238,10 @@ nav *[data-icon=trash]:last-child {
     padding-right: 0;
 }
 
+*[data-icon][data-icon-only].small {
+    width: 2.25em;
+}
+
 *[data-icon]:before {
     font-size: 1em;
     line-height: 1.25;

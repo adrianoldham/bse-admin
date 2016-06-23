@@ -14,8 +14,8 @@
         <label for="dep1">Tag name</label>
         <span>
           <input type="text" name="dep" id="dep1" value="" />
-          <button class="button white small" onclick="plus(this); return false;">&plus;</button>
-          <button class="button white small" onclick="minus(this); return false;" disabled="disabled">&minus;</button>
+          <button class="button white small" onclick="plus(this); return false;" data-icon="add" data-icon-only="true">Add</button>
+          <button class="button white small" onclick="minus(this); return false;" disabled="disabled" data-icon="subtract" data-icon-only="true">Delete</button>
         </span>
       </div>
       <:-.for dep in cat.deps :>
