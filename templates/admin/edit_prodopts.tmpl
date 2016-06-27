@@ -24,6 +24,7 @@
     <input type="hidden" name="_t" value="prodopts" />
     <input type="hidden" name="id" value="<:article id:>" />
     <input type="hidden" name="r" value="<:switch:><:case Cgi r:><:cgi r:><:case default:><:script:>?id=<:article id:><:endswitch:>" />
+    <input type="hidden" name="newvaluecount" id="newvaluecount" value="<:ifCgi newvaluecount:><:cgi newvaluecount:><:or:>0<:eif:>" />
     <fieldset>
       <legend>Option</legend>
       <div>
@@ -51,7 +52,7 @@
         </span>
       </div>-->
     </fieldset>
-    <fieldset>
+    <fieldset id="option_values">
       <legend>Values</legend>
       <div>
         <label for="value1">#1 <span class="required">*</span> <:error_img value1:> <!--<input type="radio" name="default_value" value="value1" <:ifEq [old default_value] "value1":>checked="checked"<:eif:> />--></label>
@@ -65,24 +66,20 @@
           <input type="text" name="value2" id="value2" value="<:old value2:>" required="required" class="<:ifError_img value2:>error<:eif:>" />
         </span>
       </div>
+      <:- if Cgi newvaluecount:>
+      <:- iterator begin repeats [cgi newvaluecount]:>
       <div>
-        <label for="value3">#3 <:error_img value3:> <!--<input type="radio" name="default_value" value="value3" <:ifEq [old default_value] "value3":>checked="checked"<:eif:> />--></label>
+        <label for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
         <span>
-          <input type="text" name="value3" id="value3" value="<:old value3:>" class="<:ifError_img value3:>error<:eif:>" />
+          <input type="text" name="value<:repeat value:>" value="<:= cgi.param("newvalue" _ "repeat value".evaltag ):>" data-new="true" required="required" class="<:ifError_img [cat newvalue [repeat value]]:>error<:eif:>" />
+        </span>
+        <span class="field-actions">
+          <button class="button white small" data-icon="add" data-icon-only="true">Add</button>
+          <button class="button white small" data-icon="subtract" data-icon-only="true">Delete</button>
         </span>
       </div>
-      <div>
-        <label for="value4">#4 <:error_img value4:> <!--<input type="radio" name="default_value" value="value4" <:ifEq [old default_value] "value4":>checked="checked"<:eif:> />--></label>
-        <span>
-          <input type="text" name="value4" id="value4" value="<:old value4:>" class="<:ifError_img value4:>error<:eif:>" />
-        </span>
-      </div>
-      <div>
-        <label for="value5">#5 <:error_img value5:> <!--<input type="radio" name="default_value" value="value5" <:ifEq [old default_value] "value5":>checked="checked"<:eif:> />--></label>
-        <span>
-          <input type="text" name="value5" id="value5" value="<:old value5:>" class="<:ifError_img value5:>error<:eif:>" />
-        </span>
-      </div>
+      <:- iterator end repeats:>
+      <:- eif Cgi:>
     </fieldset>
     <p class="buttons">
       <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
@@ -92,3 +89,117 @@
     </p>
   </form>
 </div>
+<script type="text/javascript">
+    var optionValues = $("option_values");
+    var oldValueCount = $$("input[name^=value][type=text]:not([data-new])").length;
+    var newValueCount = $("newvaluecount").value;
+    var requiredIndicator = new Element("span", { "class":"required" }).update(" *");
+
+    var addButton = new Element("button", {
+        "class":"button white small",
+        "data-icon":"add",
+        "data-icon-only":"true"
+     }).update("Add");
+
+    var delButton = new Element("button", {
+        "class":"button white small",
+        "data-icon":"subtract",
+        "data-icon-only":"true"
+    }).update("Delete");
+
+    var firstAddButton = addButton.clone(true).addClassName("right");
+    
+    // On page load append first add button if there are new values
+    if (newValueCount == 0) {
+        optionValues.appendChild(firstAddButton.observe("click", plus));
+    }
+    // Otherwise on page load attatch events to in page buttons    
+    else {
+        $$("[data-icon=add]").invoke("observe", "click", plus);
+        $$("[data-icon=subtract]").invoke("observe", "click", minus);
+    }
+    
+    function plus(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // cache the current newValueCount for later
+        var currentNewValueCount = newValueCount;
+        ++newValueCount;
+
+        var name = "value" + newValueCount;
+
+        var div = new Element("div", { "class":"field" });
+
+        var label = new Element("label", { "for":name }).update("#" + parseInt(oldValueCount + newValueCount));
+        div.appendChild(label);
+
+        label.appendChild(requiredIndicator.clone(true));
+    
+        var span = new Element("span", { "class":"field-input" });
+        div.appendChild(span);
+    
+        var input = new Element("input", { "type":"text", "name":name, "id":name, "data-new":"true", "required":"required" });
+        span.appendChild(input);
+
+        var actions = new Element("span", { "class":"field-actions" });
+        actions.appendChild(addButton.clone(true).observe("click", plus));
+        // add a space so our buttons don’t collide
+        actions.appendChild(document.createTextNode(" "));
+        actions.appendChild(delButton.clone(true).observe("click", minus));
+        div.appendChild(actions);
+    
+        if (currentNewValueCount == 0) {
+            optionValues.insertBefore(div, firstAddButton);
+            firstAddButton.remove();
+        }
+        else {
+            optionValues.insertBefore(div, this.up("div").nextSibling);
+            update();
+        }
+
+        $("newvaluecount").value = newValueCount;
+        
+        //Reinitialise changesMonitor to include new inputs
+        //Originally initialised in init.js
+
+        changesMonitor.initialize();
+    };
+    
+    function minus(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        --newValueCount;
+
+        this.up("div").remove();
+        
+        if (newValueCount == 0) {
+            optionValues.appendChild(firstAddButton.observe("click", plus));
+        }
+
+        update();
+
+        $("newvaluecount").value = newValueCount;
+
+        //Reinitialise changesMonitor to include new inputs
+        //Originally initialised in init.js
+
+        changesMonitor.initialize();
+    };
+    
+    function update() {
+        var newValueInputs = $$("input[name^=value][type=text][data-new]");
+
+        for (var i = 0; i < newValueInputs.length; ++i) {
+            var loop = parseInt(i + 1 + oldValueCount);
+            var name = "value" + loop;
+
+            var input = newValueInputs[i];
+            input.setAttribute("name", name);
+            input.setAttribute("id", name);
+            
+            var label = input.up("div").down("label");
+            label.update("#" + parseInt(loop)).appendChild(requiredIndicator.clone(true));
+            label.setAttribute("for", name);
+        }    
+    };
+</script>
