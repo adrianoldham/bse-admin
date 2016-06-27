@@ -79,9 +79,6 @@
           
           <:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
           <:-.end if :>
-          <:- if UserCan bse_edit_prodopt_edit:article:>
-          <a href="<:= cfg.admin_url2("add", "delete_option_value", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_delete_option_value"), "r":refresh }):>" data-action="Delete" data-object="Value" class="button red small">&minus;</a>
-          <:- eif UserCan:>
           <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifOr [ifEq [dboptionvalue id] [cgi default_value]] [ifEq [dboptionvalue id] [option default_value]]:>checked="checked"<:eif:> />
           #<:dboptionvalue_number:> <span class="required">*</span> <:error_img [cat value [dboptionvalue id]]:>
         </label>
@@ -89,6 +86,11 @@
           <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [cat value [dboptionvalue id]] 0 dboptionvalue value:>" required="required" class="<:ifError_img [cat value [dboptionvalue id]]:>error<:eif:>" />
           <:help edit name:>
         </span>
+        <span class="field-actions">
+          <:- if UserCan bse_edit_prodopt_edit:article:>
+          <a href="<:= cfg.admin_url2("add", "delete_option_value", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_delete_option_value"), "r":refresh }):>" data-action="Delete" data-object="Value" class="button red small">Delete</a>
+          <:- eif UserCan:>
+         </span>
       </div>
       <:- iterator end dboptionvalues:>
       <:- if Cgi newvaluecount:>
@@ -97,6 +99,10 @@
         <label for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
         <span>
           <input type="text" name="newvalue<:repeat value:>" value="<:= cgi.param("newvalue" _ "repeat value".evaltag ):>" required="required" class="<:ifError_img [cat newvalue [repeat value]]:>error<:eif:>" />
+        </span>
+        <span class="field-actions">
+          <button class="button white small" data-icon="add" data-icon-only="true">Add</button>
+          <button class="button white small" data-icon="subtract" data-icon-only="true">Delete</button>
         </span>
       </div>
       <:- iterator end repeats:>
@@ -113,39 +119,116 @@
 <:- if UserCan bse_edit_prodopt_edit:article:>
 <script type="text/javascript">
     var optionValues = $("option_values");
-    var addButton = new Element("button", { "class": "button white small right" }).update("+");
-    optionValues.appendChild(addButton);
-    
-    var index = parseInt($("newvaluecount").value);
-    
-    addButton.observe("click", function(ev) {
-        ev.stop();
-        ++index;
-        var name = "newvalue" + index;
+    var oldValueCount = $$("input[name^=value][type=text]").length;
+    var newValueCount = $("newvaluecount").value;
+    var requiredIndicator = new Element("span", { "class":"required" }).update(" *");
 
-        var div = new Element("div");
+    var addButton = new Element("button", {
+        "class":"button white small",
+        "data-icon":"add",
+        "data-icon-only":"true"
+     }).update("Add");
 
-        var label = new Element("label", { "for": name }).update("#" + parseInt(<:dboptionvalue_count:> + index) );
+    var delButton = new Element("button", {
+        "class":"button white small",
+        "data-icon":"subtract",
+        "data-icon-only":"true"
+    }).update("Delete");
+
+    var firstAddButton = addButton.clone(true).addClassName("right");
+    
+    // On page load append first add button if there are new values
+    if (newValueCount == 0) {
+        optionValues.appendChild(firstAddButton.observe("click", plus));
+    }
+    // Otherwise on page load attatch events to in page buttons    
+    else {
+        $$("[data-icon=add]").invoke("observe", "click", plus);
+        $$("[data-icon=subtract]").invoke("observe", "click", minus);
+    }
+    
+    function plus(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // cache the current newValueCount for later
+        var currentNewValueCount = newValueCount;
+        ++newValueCount;
+
+        var name = "newvalue" + newValueCount;
+
+        var div = new Element("div", { "class":"field" });
+
+        var label = new Element("label", { "for":name }).update("#" + parseInt(oldValueCount + newValueCount));
         div.appendChild(label);
 
-        var requiredIndicator = new Element("span", { "class": "required" }).update(" *");
-        label.appendChild(requiredIndicator);
+        label.appendChild(requiredIndicator.clone(true));
     
-        var span = new Element("span");
+        var span = new Element("span", { "class":"field-input" });
         div.appendChild(span);
     
-        var input = new Element("input", { "type": "text", "name": name, "id": name, "required": "required" });
+        var input = new Element("input", { "type":"text", "name":name, "id":name, "required":"required" });
         span.appendChild(input);
+
+        var actions = new Element("span", { "class":"field-actions" });
+        actions.appendChild(addButton.clone(true).observe("click", plus));
+        // add a space so our buttons don’t collide
+        actions.appendChild(document.createTextNode(" "));
+        actions.appendChild(delButton.clone(true).observe("click", minus));
+        div.appendChild(actions);
     
-        optionValues.insertBefore(div, addButton);
+        if (currentNewValueCount == 0) {
+            optionValues.insertBefore(div, firstAddButton);
+            firstAddButton.remove();
+        }
+        else {
+            optionValues.insertBefore(div, this.up("div").nextSibling);
+            update();
+        }
     
-        $("newvaluecount").value = index;
+        $("newvaluecount").value = newValueCount;
         
-        /*
-          Reinitialise changesMonitor to include new inputs
-          Originally initialised in init.js
-        */
+        //Reinitialise changesMonitor to include new inputs
+        //Originally initialised in init.js
+
         changesMonitor.initialize();
-    });
+    };
+    
+    function minus(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        --newValueCount;
+
+        this.up("div").remove();
+        
+        if (newValueCount == 0) {
+            optionValues.appendChild(firstAddButton.observe("click", plus));
+        }
+
+        update();
+
+        $("newvaluecount").value = newValueCount;
+
+        //Reinitialise changesMonitor to include new inputs
+        //Originally initialised in init.js
+
+        changesMonitor.initialize();
+    };
+    
+    function update() {
+        var newValueInputs = $$("input[name^=newvalue][type=text]");
+        
+        for (var i = 0; i < newValueInputs.length; ++i) {
+            var loop = parseInt(i + 1);
+            var name = "newvalue" + loop;
+
+            var input = newValueInputs[i];
+            input.setAttribute("name", name);
+            input.setAttribute("id", name);
+            
+            var label = input.up("div").down("label");
+            label.update("#" + parseInt(oldValueCount + loop)).appendChild(requiredIndicator.clone(true));
+            label.setAttribute("for", name);
+        }    
+    };
 </script>
 <:- eif UserCan:>
