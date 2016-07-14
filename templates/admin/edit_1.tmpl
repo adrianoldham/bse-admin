@@ -630,9 +630,15 @@
             disabled.removeAttribute('disabled');
         }
         ele.insert({after: clone});
+        update();
     };
 
     function minus(ele) {
         var ele = $(ele).up('div').remove();
+        update();
+    };
+    
+    function update() {
+        changesMonitor.initialize();
     };
 </script>

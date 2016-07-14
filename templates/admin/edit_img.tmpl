@@ -200,16 +200,22 @@
     function plus(ele) {
         var ele = $(ele).up('div');
         var clone = ele.clone(true);
-        clone.down('input[name^="tags"]').clear().removeAttribute("class");
+        clone.down('input[name="tags"]').clear().removeAttribute("class");
         clone.down('label').update(' ');
         var disabled = clone.down('button[disabled]');
         if (disabled) {
             disabled.removeAttribute('disabled');
         }
         ele.insert({after: clone});
+        update();
     };
 
     function minus(ele) {
         var ele = $(ele).up('div').remove();
+        update();
+    };
+    
+    function update() {
+        changesMonitor.initialize();
     };
 </script>
