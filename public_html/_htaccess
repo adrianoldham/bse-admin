@@ -64,7 +64,7 @@ RewriteBase /
     #RewriteRule ^/?video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)\.flv$ /cgi-bin/user.pl?download_file=1&page=$1&file=$2 [PT]
 
 # File download shortcut
-    RewriteRule ^/?download/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ /cgi-bin/user.pl?download_file=1&page=$1&file=$2 [QSA]
+    RewriteRule ^/?download/([0-9]+)$ /cgi-bin/user.pl?download_file=1&file=$1 [QSA]
 
 # Wishlist
     RewriteRule ^/?wishlist/([A-Za-z0-9_-]+)$ /cgi-bin/user.pl?a_wishlist=1&user=$1 [PT]
