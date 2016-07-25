@@ -1,6 +1,22 @@
 <:-.set is_article = article.id and article.id > 0 -:>
 <:-.set typename = is_article ? article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") : "Site" -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Files" ) :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
+
+<:-.end if -:>
+
+<:-.set files = [ article.files ]:>
 <div class="window">
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>
@@ -33,7 +49,7 @@
     <:-.end if:>
   </header>
   <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="File">
-    <input type="hidden" name="id" value="<:article id:>" />
+    <input type="hidden" name="id" value="<:= article.id:>" />
     <input type="hidden" name="_t" value="file" />
     <input type="hidden" name="r" value="
     <:- switch -:>
@@ -52,57 +68,57 @@
 
     <:- endswitch -:>
     " />
-    <:- if Files:>
+    <:-.if files.size:>
     <input type="hidden" name="save_file_flags" value="1" />
     <:csrfp admin_save_files hidden:>
     <:csrfp admin_add_file hidden:>
-    <:- iterator begin files:>
+    <:-.for file in files:>
     <div class="object">
-      <h2>File <:arithmetic [file_index] + 1:> <:ifUserCan bse_edit_files_reorder:article:><:movefiles:><:eif:></h2>
+      <h2>File <:= loop.count:> <:.call "move_file", "admin":1, "r":refresh :></h2>
       <p class="buttons">
-        <:- if UserCan bse_edit_files_save:article:>
-        <a href="<:script:>?a_edit_file=1&amp;id=<:article id:>&amp;file_id=<:file id:>&amp;referer=1" class="button white small">Edit</a>
-        <:- or UserCan:>
+        <:-.if request.user_can("bse_edit_files_save:article") :>
+        <a href="<:script:>?a_edit_file=1&amp;id=<:= article.id:>&amp;file_id=<:= file.id:>&amp;referer=1" class="button white small">Edit</a>
+        <:-.else:>
         <a class="button white small disabled">Edit</a>
-        <:- eif UserCan:>
-        <:- if UserCan bse_edit_files_delete:article:>
-        <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>&amp;r=<:script:>%3Fid=<:article id:>%26_t=file" data-action="Delete" data-object="File" class="button red small">Delete</a>
-        <:- or UserCan:>
+        <:-.end if:>
+        <:-.if request.user_can("bse_edit_files_delete:article") :>
+        <a href="<:script:>?filedel=1&amp;id=<:= article.id:>&amp;file=<:= file.id:>&amp;_csrfp=<:csrfp admin_remove_file:>&amp;r=<:script:>%3Fid=<:= article.id:>%26_t=file" data-action="Delete" data-object="File" class="button red small">Delete</a>
+        <:-.else:>
         <a class="button red small disabled">Delete</a>
-        <:- eif UserCan:>
+        <:-.end if:>
       </p>
       <fieldset>
         <legend>Resource</legend>
         <div>
-          <label for="file_<:file id:>">Change file <:error_img [concatenate file_ [file id]]:></label>
+          <label for="file_<:= file.id:>">Change file <:.call "error_img_n", "name":"file_" _ file.id :></label>
           <span>
-            <input type="file" name="file_<:file id:>" id="file_<:file id:>" class="<:ifError_img [concatenate file_ [file id]]:>error<:eif:>" />
+            <input type="file" name="file_<:= file.id:>" id="file_<:= file.id:>" class="<:.call "error_classname", "name":"file_" _ file.id :>" />
             <:help file file:>
           </span>
         </div>
         <div>
-          <label for="name_<:file id:>">Name <:error_img [concatenate name_ [file id]]:></label>
+          <label for="name_<:= file.id:>">Name <:.call "error_img_n", "name":"name_" _ file.id :></label>
           <span>
-            <input type="text" name="name_<:file id:>" id="name_<:file id:>" value="<:oldi [concatenate name_ [file id]] 0 file name:>" class="<:ifError_img [concatenate name_ [file id]]:>error<:eif:>" />
+            <input type="text" name="name_<:= file.id:>" id="name_<:= file.id:>" value="<:.call "old", "name":"name_" _ file.id, "default":file.name:>" class="<:.call "error_classname", "name":"name_" _ file.id :>" />
             <:help file name:>
           </span>
         </div>
         <div>
           <label>Original</label>
           <span>
-            <a href="<:target user download_file file [file id] |h:>"><span class="indicator <:switch:><:case File hide_from_list:>orange<:case File file_exists:>green<:case default:>red<:endswitch:>"></span> <:file displayName:></a>
+          <a href="<:= cfg.user_url("user", "download_file", "file", file.id ):>"><span class="indicator <:= file.hide_from_list ? "orange" : file.file_exists ? "green" : "red":>"></span> <:= file.displayName:></a>
           </span>
         </div>
         <div>
           <label>Size</label>
           <span>
-            <:arithmetic d1:([file sizeInBytes] / 1024):>kB
+            <:= filesize(file.sizeInBytes):>
           </span>
         </div>
         <div>
           <label>Upload date</label>
           <span>
-            <:date "%d-%b-%Y / %r" file whenUploaded:>
+            <:= bse.date("%d-%b-%Y / %r", file.whenUploaded ):>
           </span>
         </div>
       </fieldset>
@@ -111,16 +127,16 @@
         <fieldset>
           <legend>Content</legend>
           <div>
-            <label for="description_<:file id:>">Description <:error_img [concatenate description_ [file id]]:></label>
+            <label for="description_<:= file.id:>">Description <:.call "error_img_n", "name":"description_" _ file.id :></label>
             <span>
-              <input type="text" name="description_<:file id:>" id="description_<:file id:>" value="<:oldi [concatenate description_ [file id]] 0 file description:>" class="<:ifError_img [concatenate description_ [file id]]:>error<:eif:>" />
+              <input type="text" name="description_<:= file.id:>" id="description_<:= file.id:>" value="<:.call "old", "name":"description_" _ file.id, "default":file.description:>" class="<:.call "error_classname", "name":"description_" _ file.id :>" />
               <:help file description:>
             </span>
           </div>
           <div>
-            <label for="notes_<:file id:>">Notes <:error_img [concatenate notes_ [file id]]:></label>
+            <label for="notes_<:= file.id:>">Notes <:.call "error_img_n", "name":"notes_" _ file.id :></label>
             <span>
-              <textarea name="notes_<:file id:>" id="notes_<:file id:>" class="<:ifError_img [concatenate notes_ [file id]]:>error<:eif:>"><:oldi [concatenate notes_ [file id]] 0 file notes:></textarea>
+              <textarea name="notes_<:= file.id:>" id="notes_<:= file.id:>" class="<:.call "error_classname", "name":"notes_" _ file.id :>"><:.call "old", "name":"notes_" _ file.id, "default":file.notes:></textarea>
               <:help file notes:>
             </span>
           </div>
@@ -128,50 +144,52 @@
         <fieldset>
           <legend>Properties</legend>
           <div>
-            <label for="contentType_<:file id:>">Content type <:error_img [concatenate contentType_ [file id]]:></label>
+            <label for="contentType_<:= file.id:>">Content type <:.call "error_img_n", "name":"contentType_" _ file.id :></label>
             <span>
-              <input type="text" name="contentType_<:file id:>" id="contentType_<:file id:>" value="<:file contentType:>" placeholder="MIME format" class="<:ifError_img [concatenate contentType_ [file id]]:>error<:eif:>" />
+              <input type="text" name="contentType_<:= file.id:>" id="contentType_<:= file.id:>" value="<:.call "old", "name":"contentType_" _ file.id, "default":file.contentType:>" placeholder="MIME format" class="<:.call "error_classname", "name":"contentType_" _ file.id :>" />
               <:help file contentType:>
             </span>
           </div>
           <div>
-            <label for="download_<:file id:>">Force download <:error_img  [concatenate download_ [file id]]:></label>
+            <label for="download_<:= file.id:>">Force download <:.call "error_img_n", "name":"download_" _ file.id :></label>
             <span>
-              <input type="checkbox" name="download_<:file id:>" id="download_<:file id:>" value="1" <:ifFile download:>checked="checked" <:eif:>/>
+              <input type="checkbox" name="download_<:= file.id:>" id="download_<:= file.id:>" value="1" <:.if cgi.param("download_" _ file.id) or file.download:>checked="checked" <:.end if:>/>
               <:help file download:>
             </span>
           </div>
           <div>
-            <label for="hide_from_list_<:file id:>">Hide from list <:error_img  [concatenate hide_from_list_ [file id]]:></label>
+            <label for="hide_from_list_<:= file.id:>">Hide from list <:.call "error_img_n", "name":"hide_from_list_" _ file.id :></label>
             <span>
-              <input type="checkbox" name="hide_from_list_<:file id:>" id="hide_from_list_<:file id:>" value="1" <:ifFile hide_from_list:>checked="checked" <:eif:>/>
+              <input type="checkbox" name="hide_from_list_<:= file.id:>" id="hide_from_list_<:= file.id:>" value="1" <:.if cgi.param("hide_from_list_" _ file.id) or file.hide_from_list:>checked="checked" <:.end if:>/>
               <:help file hide_from_list:>
             </span>
           </div>
           <:- if Match [article generator] "Product":>
           <div>
-            <label for="forSale_<:file id:>">Require payment <:error_img [concatenate forSale_ [file id]]:></label>
+            <label for="forSale_<:= file.id:>">Require payment <:.call "error_img_n", "name":"forSale_" _ file.id :></label>
             <span>
-              <input type="checkbox" name="forSale_<:file id:>" id="forSale_<:file id:>" <:ifFile forSale:>checked="checked" <:eif:>/>
+              <input type="checkbox" name="forSale_<:= file.id:>" id="forSale_<:= file.id:>" <:.if cgi.param("forSale_" _ file.id) or file.forSale:>checked="checked" <:.end if:>/>
               <:help file forSale:>
             </span>
           </div>
           <:- eif Match:>
           <div>
-            <label for="requireUser_<:file id:>">Require login <:error_img [concatenate requireUser_ [file id]]:></label>
+            <label for="requireUser_<:= file.id:>">Require login <:.call "error_img_n", "name":"requireUser_" _ file.id :></label>
             <span>
-              <input type="checkbox" name="requireUser_<:file id:>" id="requireUser_<:file id:>" <:ifFile requireUser:>checked="checked" <:eif:>/>
+              <input type="checkbox" name="requireUser_<:= file.id:>" id="requireUser_<:= file.id:>" <:.if cgi.param("requireUser_" _ file.id) or file.requireUser:>checked="checked" <:.end if:>/>
               <:help file requireUser:>
             </span>
           </div>
+          <:-.set stores = [ file_stores() ] :>
+          <:-.set oldstore = cgi.param("storage_" _ file.id).defined ? cgi.param("storage_" _ file.id) : file.storage :>
           <div>
-            <label for="storage_<:file id:>">Storage <:error_img storage:></label>
+            <label for="storage_<:= file.id:>">Storage <:.call "error_img", "name":"storage_" _ file.id :></label>
             <span>
-              <select name="storage_<:file id:>" id="storage_<:file id:>">
+              <select name="storage_<:= file.id:>" id="storage_<:= file.id:>">
                 <option value="">(Auto)</option>
-                <:- iterator begin file_stores:>
-                <option value="<:file_store name:>" <:ifEq [oldi [concatenate storage_ [file id]] 0 file storage] [file_store name]:>selected="selected"<:eif:>><:file_store description:></option>
-                <:- iterator end file_stores:>
+                <:-.for store in stores :>
+                <option value="<:= store.name:>"<:= oldstore eq store.name ? " selected" : "" :>><:= store.description:></option>
+                <:-.end for:>
               </select>
               <:help file storage:>
             </span>
@@ -179,25 +197,25 @@
         </fieldset>
       </details>
     </div>
-    <:- iterator end files:>
-    <:- or Files:>
+    <:-.end for:>
+    <:-.else:>
     <fieldset>
       <legend>Files</legend>
       <div class="center">
         <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
         <p>No files to display</p>
-        <:- if UserCan bse_edit_files_add:article:>
-        <p><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" data-icon="add" class="button white">New File…</a></p>
-        <:- eif UserCan:>
+        <:-.if request.user_can("bse_edit_files_add", article ):>
+        <p><a href="<:= cfg.admin_url("add", { "id":article.id, _t:"fileupload", "referer":1 }):>" data-icon="add" class="button white">New File…</a></p>
+        <:-.end if:>
       </div>
       <:-.call "admin/include/ajax_dropzone.tmpl", "type":"file", "target":"fileadd":>
     </fieldset>
-    <:- eif Files:>
+    <:-.end if:>
     <p class="buttons">
-      <a href="<:switch:><:case Match [referer] [adminurl admin]:><:adminurl add id [cond [cgi referer] [cgi referer] [article id]] preview 1:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
-      <:- if And [ifFiles] [ifUserCan bse_edit_files_save:article]:>
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <:-.if files.size and request.user_can("bse_edit_files_save", article ):>
       <input type="submit" name="filesave" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- eif And:>
+      <:-.end if:>
     </p>
   </form>
 </div>
