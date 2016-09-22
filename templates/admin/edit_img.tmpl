@@ -200,7 +200,7 @@
     function plus(ele) {
         var ele = $(ele).up('div');
         var clone = ele.clone(true);
-        clone.down('input[name="tags"]').clear().removeAttribute("class");
+        clone.down('input[name^="tags"]').clear().removeAttribute("class");
         clone.down('label').update(' ');
         var disabled = clone.down('button[disabled]');
         if (disabled) {
