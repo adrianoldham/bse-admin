@@ -64,12 +64,12 @@
     <fieldset class="account">
       <legend>Account</legend>
       <:- if Cfg "site users" nopassword:><:or Cfg:>
-      <div>
+      <!--<div>
         <label for="old_password"><:cfg "site users" display_old_password "Old Password":> <:error_img old_password:></label>
         <span>
           <input type="password" name="old_password" id="old_password" value="<:old old_password:>" class="<:ifError_img old_password:>error<:eif:>" />
         </span>
-      </div>
+      </div>-->
       <div>
         <label for="password"><:cfg "site users" display_new_password "New Password":> <:error_img password:></label>
         <span>
