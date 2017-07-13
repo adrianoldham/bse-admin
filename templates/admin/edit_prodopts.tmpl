@@ -93,6 +93,7 @@
     var optionValues = $("option_values");
     var oldValueCount = $$("input[name^=value][type=text]:not([data-new])").length;
     var newValueCount = $("newvaluecount").value;
+    var maxValueCount = 3;
     var requiredIndicator = new Element("span", { "class":"required" }).update(" *");
 
     var addButton = new Element("button", {
@@ -152,9 +153,14 @@
             optionValues.insertBefore(div, firstAddButton);
             firstAddButton.remove();
         }
-        else {
+        // prevent insertion of new fields maxValueCount is reached
+        else if (currentNewValueCount < maxValueCount) {
             optionValues.insertBefore(div, this.up("div").nextSibling);
             update();
+        }
+        // diasable all add buttons when maxValueCount is reached
+        if (newValueCount == maxValueCount) {
+            $$("[data-icon=add]").invoke("writeAttribute", "disabled", true);
         }
 
         $("newvaluecount").value = newValueCount;
@@ -174,6 +180,10 @@
         
         if (newValueCount == 0) {
             optionValues.appendChild(firstAddButton.observe("click", plus));
+        }
+        // enable all add buttons when leaving maxValueCount
+        if (newValueCount == (maxValueCount - 1)) {
+            $$("[data-icon=add]").invoke("writeAttribute", "disabled", false);
         }
 
         update();
