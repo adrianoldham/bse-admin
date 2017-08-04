@@ -1,2 +1,14 @@
 ﻿User-agent: *
-Disallow:
+Disallow: /cgi-bin/admin
+Disallow: /cgi-bin/fmail
+Disallow: /cgi-bin/shop
+Disallow: /cgi-bin/user
+Disallow: /cgi-bin/nuser
+Disallow: /cgi-bin/thumb
+Disallow: /cgi-bin/search
+Disallow: /cgi-bin/printable
+Disallow: /cgi-bin/interest
+Disallow: /cgi-bin/image
+Disallow: /cgi-bin/api
+Disallow: /cgi-bin/affiliate
+Disallow: /cgi-bin/fileprogress
