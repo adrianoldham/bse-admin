@@ -26,6 +26,11 @@ RewriteBase /
     #RewriteCond %{REQUEST_URI} !^/?[A-Za-z_-]+\/(user|nuser|shop|fmail|admin)
     #RewriteRule ^/?(.*) http://www.example.com.au/$1 [R=301]
 
+# Redirect urls requiring HTTPS from HTTP
+    #RewriteCond %{SERVER_PORT} ^80$
+    #RewriteCond %{REQUEST_URI} ^/?[A-Za-z_-]+\/(user|nuser|shop)
+    #RewriteRule ^/?(.*) https://www.example.com.au/$1 [R=301]
+
 # Map standard static URLs to dynamic
     #RewriteRule ^/?(index\.html)?$ /cgi-bin/page.pl?page=1 [QSA]
     #RewriteRule ^/?index\.xml /cgi-bin/page.pl?page=2 [QSA]
