@@ -22,7 +22,7 @@ RewriteBase /
 
 # Redirect urls not requiring HTTPS to HTTP
     #RewriteCond %{SERVER_PORT} ^443$
-    #RewriteCond %{REQUEST_URI} !^/?(images|css|js|webfonts)
+    #RewriteCond %{REQUEST_URI} !^/?(images|css|js|webfonts|bse-admin)
     #RewriteCond %{REQUEST_URI} !^/?[A-Za-z_-]+\/(user|nuser|shop|fmail|admin)
     #RewriteRule ^/?(.*) http://www.example.com.au/$1 [R=301]
 
@@ -52,7 +52,7 @@ RewriteBase /
     RewriteRule ^/?tellafriend/([A-Za-z0-9_-]+)$ /cgi-bin/nuser.pl/tellafriend?page=$1 [QSA]
 
 # linkAlias & Alias Recursion
-    RewriteCond %{REQUEST_URI} !^/?(images|css|js|admin|help|shop|members)
+    RewriteCond %{REQUEST_URI} !^/?(images|css|js|admin|help|shop|members|bse-admin)
     RewriteCond %{REQUEST_URI} !^/?(wishlist|affiliate|tellafriend|download|video|form|stats)
     #RewriteRule ^/?([A-Za-z0-9_-]+)/?([A-Za-z0-9_-]+/?)?$ /cgi-bin/page.pl/$1 [QSA]
     RewriteRule ^/?([A-Za-z0-9_/-]+)$ /cgi-bin/page.pl/$1 [QSA]
