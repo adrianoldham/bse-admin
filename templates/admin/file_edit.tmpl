@@ -9,7 +9,7 @@
 <:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
 
 <:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
-<:-.set done_url = referer.replace(/(&amp;|\?)referer=[\d]+/, "") -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
 
 <:-.else -:>
 <:-.set done_url = cfg.admin_url("add", { "id": article.parentid }) -:>
