@@ -1,4 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Disallow: /cgi-bin/admin
 Disallow: /cgi-bin/fmail
 Disallow: /cgi-bin/shop
