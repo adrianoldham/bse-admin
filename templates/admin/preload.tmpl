@@ -503,10 +503,10 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_image; "admin":0, "label":0, "referer_id":top.id, "r":top.admin, "article":article, "image_id":loop.current.id, "req":0 -:>
+<:-.define edit_image; "admin":0, "label":0, "referer_id":top.id, "r":top.admin, "article_id":article.id, "image_id":loop.current.id, "req":0 -:>
 <:-.if bse.admin or admin -:>
 <:-.set request = req ? req : bse.admin ? generator.request : request -:>
-<:-.set article_id = article.id -:>
+<:-.set article_id = article.id == article_id ? article.id : article_id -:>
 <:-.if request.user_can("bse_edit_images_save", article_id) -:>
 <span class="bse-admin bse-admin-buttons-mini">
   <:-.if label :>
@@ -533,10 +533,10 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_file; "admin":0, "label":0, "referer_id":0, "r":top.admin, "article":article, "file_id":loop.current.id, "req":0 -:>
+<:-.define edit_file; "admin":0, "label":0, "referer_id":0, "r":top.admin, "article_id":article.id, "file_id":loop.current.id, "req":0 -:>
 <:-.if bse.admin or admin -:>
 <:-.set request = req ? req : bse.admin ? generator.request : request -:>
-<:-.set article_id = article.id -:>
+<:-.set article_id = article.id == article_id ? article.id : article_id -:>
 <:-.if request.user_can("bse_edit_files_save", article_id) -:>
 <span class="bse-admin bse-admin-buttons-mini">
   <:-.if label :>
@@ -599,10 +599,10 @@ parameters:
 <:-.end define :>
 
 
-<:-.define move_image; "admin":0, "r":top.admin, "article":article, "image_id":loop.current.id, "req":0 -:>
+<:-.define move_image; "admin":0, "r":top.admin, "article_id":article.id, "image_id":loop.current.id, "req":0 -:>
 <:-.if bse.admin or admin -:>
 <:-.set request = req ? req : bse.admin ? generator.request : request -:>
-<:-.set article_id = article.id -:>
+<:-.set article_id = article.id == article_id ? article.id : article_id -:>
 <:-.if request.user_can("bse_edit_images_reorder", article_id) -:>
 
 <:-.set down_url = loop.next ? cfg.admin_url("add", { "moveimgdown":1, "id":article_id, "imageid":image_id, "_csrfp":request.get_csrf_token("admin_move_image"), "r":r }) : 0 -:>
@@ -615,10 +615,10 @@ parameters:
 <:-.end define :>
 
 
-<:-.define move_file; "admin":0, "r":top.admin, "article":article, "file_id":loop.current.id, "req":0 -:>
+<:-.define move_file; "admin":0, "r":top.admin, "article_id":article.id, "file_id":loop.current.id, "req":0 -:>
 <:-.if bse.admin or admin -:>
 <:-.set request = req ? req : bse.admin ? generator.request : request -:>
-<:-.set article_id = article.id -:>
+<:-.set article_id = article.id == article_id ? article.id : article_id -:>
 <:-.if request.user_can("bse_edit_files_reorder", article_id) -:>
 
 <:-.set down_url = loop.next ? cfg.admin_url("add", { "fileswap":1, "id":article_id, "file1":file_id, "file2":loop.next.id, "_csrfp":request.get_csrf_token("admin_move_file"), "r":r }) : 0 -:>
