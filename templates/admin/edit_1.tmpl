@@ -71,6 +71,14 @@
         <:- case !Referer -:>
         <:adminurl add:>
 
+        <:- # from admin children: refresh to children admin on creation -:>
+        <:- case Match [referer] "kids" -:>
+        <:adminurl add id [cgi parentid] _t "kids" m [cat [typename article] " " Created]:>
+
+        <:- # from admin tree: refresh to tree admin on creation -:>
+        <:- case Match [referer] "tree" -:>
+        <:adminurl add id [cgi parentid] _t "tree" m [cat [typename article] " " Created]:>
+
         <:- # from admin: refresh to new article admin on creation -:>
         <:- case Match [referer] [adminurl add] -:>
         <:adminurl add m [cat [typename article] " " Created]:>
