@@ -186,6 +186,7 @@
         <p><a href="<:= cfg.admin_url("add", { "id":article.id, _t:"imgupload", "referer":1 }):>" data-icon="add" class="button white">New Image…</a></p>
         <:-.end if:>
       </div>
+      <:-.call "admin/include/ajax_dropzone.tmpl", "type":"image", "target":"addimg":>
     </fieldset>
     <:-.end if:>
     <p class="buttons">

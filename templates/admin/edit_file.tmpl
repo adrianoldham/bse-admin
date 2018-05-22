@@ -190,6 +190,7 @@
         <p><a href="<:script:>?id=<:article id:>&amp;_t=fileupload&amp;referer=1" data-icon="add" class="button white">New File…</a></p>
         <:- eif UserCan:>
       </div>
+      <:-.call "admin/include/ajax_dropzone.tmpl", "type":"file", "target":"fileadd":>
     </fieldset>
     <:- eif Files:>
     <p class="buttons">
