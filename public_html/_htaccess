@@ -18,7 +18,7 @@ RewriteBase /
 
 # Limit file linking to the primary domain referrer
     #RewriteCond %{HTTP_REFERER} !^https?://www.example.com.au/.*$ [NC]
-    #RewriteRule .*\.(jpe?g|gif|png|bmp|svgz?|eot|ttf|woff|css|js)$ - [F]
+    #RewriteRule .*\.(jpe?g|gif|png|bmp|svgz?|eot|ttf|woff|css|js)$ - [F,NC]
 
 # Redirect urls not requiring HTTPS to HTTP
     #RewriteCond %{SERVER_PORT} ^443$
@@ -32,51 +32,51 @@ RewriteBase /
     #RewriteRule ^/?(.*) https://www.example.com.au/$1 [R=301]
 
 # Map standard static URLs to dynamic
-    #RewriteRule ^/?(index\.html)?$ /cgi-bin/page.pl?page=1 [QSA]
-    #RewriteRule ^/?index\.xml /cgi-bin/page.pl?page=2 [QSA]
-    #RewriteRule ^/?shop/?(index\.html)?$ /cgi-bin/page.pl?page=3 [QSA]
-    #RewriteRule ^/?sitemap/?(index\.html)?$ /cgi-bin/page.pl?page=6 [QSA]
-    #RewriteRule ^/?members/?(index\.html)?$ /cgi-bin/page.pl?page=7 [QSA]
+    #RewriteRule ^/?(index\.html)?$ /cgi-bin/page.pl?page=1 [QSA,NC]
+    #RewriteRule ^/?index\.xml /cgi-bin/page.pl?page=2 [QSA,NC]
+    #RewriteRule ^/?shop/?(index\.html)?$ /cgi-bin/page.pl?page=3 [QSA,NC]
+    #RewriteRule ^/?sitemap/?(index\.html)?$ /cgi-bin/page.pl?page=6 [QSA,NC]
+    #RewriteRule ^/?members/?(index\.html)?$ /cgi-bin/page.pl?page=7 [QSA,NC]
 
 # Redirect legacy static URLs to dynamic
     #RewriteRule ^/?(?:a|shop|members)/(?:shop)?([0-9]+)\.html /cgi-bin/page.pl?page=$1 [R=301]
     #RewriteRule site\.rdf$ /cgi-bin/page.pl?page=2
 
 # Special case aliases
-    RewriteRule ^/?contact/?$ /cgi-bin/fmail.pl [PT]
+    RewriteRule ^/?contact/?$ /cgi-bin/fmail.pl [PT,NC]
 
 # Form shortcut
-    RewriteRule ^/?form/?([A-Za-z0-9_-]+)?$ /cgi-bin/fmail.pl?form=$1 [QSA]
+    RewriteRule ^/?form/?([A-Za-z0-9_-]+)?$ /cgi-bin/fmail.pl?form=$1 [QSA,NC]
 
 # Tell a Friend
-    RewriteRule ^/?tellafriend/([A-Za-z0-9_-]+)$ /cgi-bin/nuser.pl/tellafriend?page=$1 [QSA]
+    RewriteRule ^/?tellafriend/([A-Za-z0-9_-]+)$ /cgi-bin/nuser.pl/tellafriend?page=$1 [QSA,NC]
 
 # linkAlias & Alias Recursion
     RewriteCond %{REQUEST_URI} !^/?(images|css|js|admin|help|shop|members|bse-admin)
     RewriteCond %{REQUEST_URI} !^/?(wishlist|affiliate|tellafriend|download|video|form|stats)
-    #RewriteRule ^/?([A-Za-z0-9_-]+)/?([A-Za-z0-9_-]+/?)?$ /cgi-bin/page.pl/$1 [QSA]
-    RewriteRule ^/?([A-Za-z0-9_/-]+)$ /cgi-bin/page.pl/$1 [QSA]
+    #RewriteRule ^/?([A-Za-z0-9_-]+)/?([A-Za-z0-9_-]+/?)?$ /cgi-bin/page.pl/$1 [QSA,NC]
+    RewriteRule ^/?([A-Za-z0-9_/-]+)$ /cgi-bin/page.pl/$1 [QSA,NC]
 
 # FastCGI
-    #RewriteRule ^/?cgi-bin/(page|thumb|search|shop|nuser|fmail)\.pl(.*)$ /cgi-bin/$1.fcgi$2 [QSA]
+    #RewriteRule ^/?cgi-bin/(page|thumb|search|shop|nuser|fmail)\.pl(.*)$ /cgi-bin/$1.fcgi$2 [QSA,NC]
 
 # FastCGI Nuser
-    #RewriteRule ^/?cgi-bin/thumb\.pl(.*)$ /cgi-bin/thumb.fcgi$1 [QSA]
-    #RewriteRule ^/?cgi-bin/nuser\.pl(.*)$ /cgi-bin/nuser.fcgi$1 [QSA]
-    #RewriteRule ^/?cgi-bin/(page|search|shop|fmail)\.pl(.*)$ /cgi-bin/nuser.fcgi/$1$2 [QSA]
+    #RewriteRule ^/?cgi-bin/thumb\.pl(.*)$ /cgi-bin/thumb.fcgi$1 [QSA,NC]
+    #RewriteRule ^/?cgi-bin/nuser\.pl(.*)$ /cgi-bin/nuser.fcgi$1 [QSA,NC]
+    #RewriteRule ^/?cgi-bin/(page|search|shop|fmail)\.pl(.*)$ /cgi-bin/nuser.fcgi/$1$2 [QSA,NC]
     
 # PopFlash
-    #RewriteRule ^/?video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)\.flv$ /cgi-bin/user.pl?download_file=1&page=$1&file=$2 [PT]
+    #RewriteRule ^/?video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)\.flv$ /cgi-bin/user.pl?download_file=1&page=$1&file=$2 [PT,NC]
 
 # File download shortcut
-    RewriteRule ^/?download/([0-9]+)$ /cgi-bin/user.pl?download_file=1&file=$1 [QSA]
+    RewriteRule ^/?download/([0-9]+)$ /cgi-bin/user.pl?download_file=1&file=$1 [QSA,NC]
 
 # Wishlist
-    RewriteRule ^/?wishlist/([A-Za-z0-9_-]+)$ /cgi-bin/user.pl?a_wishlist=1&user=$1 [PT]
+    RewriteRule ^/?wishlist/([A-Za-z0-9_-]+)$ /cgi-bin/user.pl?a_wishlist=1&user=$1 [PT,NC]
 
 # Affiliate
-    RewriteRule ^/?affiliate/([A-Za-z0-9_-]+)$ /cgi-bin/affiliate.pl?lo=$1 [PT]
-    RewriteRule ^/?affiliate/u/([A-Za-z0-9_-]+)$ /cgi-bin/affiliate.pl?co=$1 [PT]
+    RewriteRule ^/?affiliate/([A-Za-z0-9_-]+)$ /cgi-bin/affiliate.pl?lo=$1 [PT,NC]
+    RewriteRule ^/?affiliate/u/([A-Za-z0-9_-]+)$ /cgi-bin/affiliate.pl?co=$1 [PT,NC]
 
 
 #AuthType Basic
