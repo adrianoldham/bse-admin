@@ -4,7 +4,7 @@
 <div class="window">
   <header>
     <:-.set id = cgi.param("parentid") or cgi.param("id") -:>
-    <:-.set article = not(is_article) ? bse.articles.getByPkey(id) : article -:>
+    <:-.set article = is_article ? article : id > 0 ? bse.articles.getByPkey(id) : bse.site -:>
     <:-.set pagetitle = params.title _ ( id > 0 ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
     <:-.if is_article :>
     <ul class="menu header">
