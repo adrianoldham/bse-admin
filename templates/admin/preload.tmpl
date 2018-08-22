@@ -4,6 +4,8 @@
 
 <:-.set filesize = @{ size: ( size < 1024 ? size : size < 1024000 ? bse.number("kilobytes", size ) _ "k" : size < 1024000000 ? bse.number("megabytes", size ) _ "M" : bse.number("gigabytes", size ) _ "G") _ "B" } :>
 
+<:-.set capitalize = @{s: s.lower.replace(/(?:^|\b)([a-z])/, @{m: m.text.upper }, 1)}:>
+
 <:-.define admin_styles -:>
 <style>
 *[class^=bse-] {

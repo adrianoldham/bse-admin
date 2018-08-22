@@ -1,7 +1,7 @@
     <div>
       <div id="drop-target" data-drop="target" style="display: none;">
-        <h2>Quick Image Upload</h2>
-        Drag and drop images here
+        <h2>Quick <:= capitalize(type):> Upload</h2>
+        Drag and drop <:= type:>s here
       </div>
       <ul id="drop-list" data-drop="list" class="full list inset" style="display: none;"></ul>
     </div>
@@ -65,6 +65,8 @@
                                 error = resp.message;
                             } else if (resp.errors && resp.errors.image) {
                                 error = resp.errors.image;
+                            } else if (resp.errors && resp.errors.file) {
+                                error = resp.errors.file;
                             } else if (resp.error_code) {
                                 error = resp.error_code;
                             }
