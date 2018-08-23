@@ -140,7 +140,7 @@
             </span>
           </div>
           <:-.set stores = [ image_stores() ] :>
-          <:-.set oldstore = cgi.param("storage").defined ? cgi.param("storage") : image.storage :>
+          <:-.set oldstore = cgi.param("storage" _ image.id).defined ? cgi.param("storage" _ image.id) : image.storage :>
           <div>
             <label for="storage<:= image.id:>">Storage <:.call "error_img", "name":"storage" _ image.id :></label>
             <span>
