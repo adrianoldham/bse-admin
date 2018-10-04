@@ -13,9 +13,9 @@ The **bse-admin** is designed and tested for use in modern standards compliant w
 
 ## Contributors
 
-* [Adrian Oldham](http://github.com/adrianoldham)
-* [Tony Cook](http://github.com/tonycoz)
-* Edmond Leung
+* [Adrian Oldham](https://github.com/adrianoldham)
+* [Tony Cook](https://github.com/tonycoz)
+* [Edmond Leung](https://github.com/eleung)
 
 ## License
 
