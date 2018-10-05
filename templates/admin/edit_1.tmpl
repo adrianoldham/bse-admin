@@ -300,8 +300,10 @@
           <label for="parentid">Parent <:error_img parentid:></label>
           <span>
             <select name="parentid" id="parentid"<:ifFieldPerm parentid:><:or:> disabled="disabled"<:eif:>>
-              <option value="">Please select a <:if Eq [article parentid] "-1":>Section<:or Eq:><:parentType:><:eif Eq:></option><:ifFieldPerm parentid:>
-              <:list:><:or:>
+              <option value="">Please select a <:ifArticle id:><:parentType:><:or:>Section<:eif:></option><:ifFieldPerm parentid:><:if Article id:>
+              <:list:><:or Article:>
+              <option value="-1" selected="selected">No parent - this is a section</option><:eif Article:>
+              <:or:>
               <option value="" selected="selected"><:parent title:> (<:parent id:>)</option><:eif:>
             </select>
             <:help edit section:>
