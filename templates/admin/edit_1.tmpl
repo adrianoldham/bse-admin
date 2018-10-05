@@ -53,10 +53,10 @@
     This <:= typename:> is hidden, it will not be generated and it will not appear in menus or search results.
   </p>
   <:-.end if:>
-  <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="<:typename article:>">
-    <input type="hidden" name="lastModified" value="<:article lastModified:>" />
-    <input type="hidden" name="id" value="<:article id:>" />
-    <input type="hidden" name="type" value="<:typename article:>" />
+  <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="<:= typename:>">
+    <input type="hidden" name="lastModified" value="<:= article.lastModified:>" />
+    <input type="hidden" name="id" value="<:= article.id:>" />
+    <input type="hidden" name="type" value="<:= typename:>" />
     <input type="hidden" name="r" value="
     <:- switch -:>
 
@@ -610,21 +610,21 @@
       </fieldset>
       <:- eif Files:>
     </details>
-    <:- if New:>
+    <:-.if is_new:>
     <p class="buttons">
       <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
-      <:- if UserCan bse_edit_save:[article parentid]:>
-      <input type="submit" name="save" value="Create <:typename article:>" accesskey="c" title="AccessKey = c" class="button green" />
-      <:- eif UserCan:>
+      <:-.if request.user_can("bse_edit_save", article.parentid ):>
+      <input type="submit" name="save" value="Create <:= typename:>" accesskey="c" title="AccessKey = c" class="button green" />
+      <:-.end if:>
     </p>
-    <:- or New:>
+    <:-.else:>
     <p class="buttons">
       <a href="<:= done_url:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
-      <:- if UserCan bse_edit_save:article:>
+      <:-.if request.user_can("bse_edit_save", article ):>      
       <input type="submit" name="save" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- eif UserCan:>
+      <:-.end if:>
     </p>
-    <:- eif New:>
+    <:-.end if:>
   </form>
 </div>
 <script type="text/javascript">
