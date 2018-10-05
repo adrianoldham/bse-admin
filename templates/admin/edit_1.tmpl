@@ -20,9 +20,7 @@
 
 <div class="window">
   <header>
-    <:-.set id = is_new ? cgi.param("parentid") or cgi.param("id") : 1 -:>
-    <:-.set article = is_new ? bse.articles.getByPkey(id) : article -:>
-    <:-.set pagetitle = params.title _ ( id > 0 ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
+    <:-.set pagetitle = params.title _ ( is_article ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
     <:-.if is_new:>
     <h1><:= pagetitle:></h1>
     <:-.else:>
