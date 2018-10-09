@@ -18,6 +18,9 @@
 
 <:-.end if -:>
 
+<:-.set object = article -:>
+<:-.set is_disabled = @{ name: is_new ? 0 : not(request.user_can("edit_field_edit_" _ name, article )) } -:>
+
 <div class="window">
   <header>
     <:-.set pagetitle = params.title _ ( is_article ? " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" : "" ) :>
@@ -117,89 +120,89 @@
     <fieldset>
       <legend>Content</legend>
       <div class="full">
-        <label for="title">Title <span class="required">*</span> <:error_img title:></label>
+        <label for="title">Title <span class="required">*</span> <:.call "error_img_n", "name":"title":></label>
         <span>
-          <input type="text" name="title" id="title" value="<:old title default title:>" maxlength="<:cfg fields title_size 255:>" required="required" <:ifNew:>autofocus="autofocus" <:eif:><:ifFieldPerm title:><:or:>disabled="disabled" <:eif:>class="<:ifError_img title:>error<:eif:>" />
+          <:.call "input", "name":"title", "field": { "required":1, "maxlength":255 }, "options": { "disabled":is_disabled("title"), "autofocus":is_new } :>
           <:help edit title:>
         </span>
       </div>
-      <:- if Cfg "title alias" [concatenate level [article level]]:>
+      <:-.if cfg.entry("title alias", "level" _ article.level):>
       <div>
-        <label for="titleAlias">Title alias <:error_img titleAlias:></label>
+        <label for="titleAlias">Title alias <:.call "error_img_n", "name":"titleAlias":></label>
         <span>
-          <input type="text" name="titleAlias" id="titleAlias" value="<:old titleAlias default titleAlias:>" maxlength="<:cfg fields alias_size 60:>" <:ifFieldPerm titleAlias:><:or:>disabled="disabled" <:eif:>class="<:ifError_img titleAlias:>error<:eif:>" />
+          <:.call "input", "name":"titleAlias", "field": { "maxlength":60 }, "options": { "disabled":is_disabled("titleAlias") } :>
           <:help edit titleAlias:>
         </span>
       </div>
-      <:- eif Cfg:>
-      <:- if Match [article generator] "Product":>
+      <:-.end if:>
+      <:-.if article.generator =~ "Product":>
       <div class="full">
-        <label for="description">Description <:error_img description:></label>
+        <label for="description">Description <:.call "error_img_n", "name":"description":></label>
         <span>
-          <input type="text" name="description" id="description" value="<:old description default description:>" maxlength="<:cfg fields description_size 255:>" <:ifFieldPerm description:><:or:>disabled="disabled" <:eif:>class="<:ifError_img description:>error<:eif:>" />
+          <:.call "input", "name":"description", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("description") } :>
           <:help edit description:>
         </span>
       </div>
-      <:- eif Match:>
+      <:-.end if:>
       <div class="full">
-        <label for="body">Body <:error_img body:></label>
+        <label for="body">Body <:.call "error_img_n", "name":"body":></label>
         <span>
-          <textarea name="body" id="body" <:ifFieldPerm body:><:or:>disabled="disabled" <:eif:>class="<:ifError_img body:>error<:eif:>"><:old body default body:></textarea>
+          <:.call "input", "name":"body", "field": { "htmltype":"textarea" }, "options": { "disabled":is_disabled("body") } :>
           <:help edit body:>
         </span>
       </div>
       <div class="full">
-        <label for="summary">Summary <:error_img summary:></label>
+        <label for="summary">Summary <:.call "error_img_n", "name":"summary":></label>
         <span>
-          <textarea name="summary" id="summary" <:ifFieldPerm summary:><:or:>disabled="disabled" <:eif:>class="<:ifError_img summary:>error<:eif:>"><:old summary default summary:></textarea>
+          <:.call "input", "name":"summary", "field": { "htmltype":"textarea" }, "options": { "disabled":is_disabled("summary") } :>
           <:help edit summary:>
         </span>
       </div>
       <div>
-        <label for="linkAlias">Link alias <:error_img linkAlias:></label>
+        <label for="linkAlias">Link alias <:.call "error_img_n", "name":"linkAlias":></label>
         <span>
-          <input type="text" name="linkAlias" id="linkAlias" value="<:old linkAlias default linkAlias:>" maxlength="<:cfg fields linkAlias_size 255:>" <:ifFieldPerm linkAlias:><:or:>disabled="disabled" <:eif:>class="<:ifError_img linkAlias:>error<:eif:>" />
+          <:.call "input", "name":"linkAlias", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("linkAlias") } :>
           <:help edit linkAlias:>
         </span>
       </div>
-      <:- if New:><:or New:>
+      <:-.if is_article:>
       <ul class="meta data">
-        <li><span><:typename article:> Id</span> <:article id:></li>
-        <li><span>Created</span> <:date "%d-%b-%Y / %r" article created:></li>
-        <li><span>Created by</span> <:ifArticle createdBy:><:article createdBy:><:or:>unknown<:eif:></li>
-        <li><span>Modified</span> <:date "%d-%b-%Y / %r" article lastModified:></li>
-        <li><span>Modified by</span> <:ifArticle lastModifiedBy:><:article lastModifiedBy:><:or:>unknown<:eif:></li>
+        <li><span><:= typename:> Id</span> <:= article.id:></li>
+        <li><span>Created</span> <:= bse.date("%d-%b-%Y / %r", article.created ):></li>
+        <li><span>Created by</span> <:= article.createdBy ? article.createdBy : "unknown":></li>
+        <li><span>Modified</span> <:= bse.date("%d-%b-%Y / %r", article.lastModified ):></li>
+        <li><span>Modified by</span> <:= article.lastModifiedBy ? article.lastModifiedBy : "unknown":></li>
       </ul>
-      <:- eif New:>
+      <:-.end if:>
     </fieldset>
-    <:- if Match [article generator] "Product":>
+    <:-.if article.generator =~ "Product":>
     <fieldset>
       <legend>Pricing</legend>
       <div>
-        <label for="retailPrice">Retail <:cfg shop currency $:> <:error_img retailPrice:></label>
+        <label for="retailPrice">Retail <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"retailPrice":></label>
         <span>
-          <input type="text" name="retailPrice" id="retailPrice" value="<:old retailPrice money product retailPrice:>" placeholder="0.00" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img retailPrice:>error<:eif:>" />
+          <:.call "input", "name":"retailPrice", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("retailPrice") } :>
           <:help edit retailPrice:>
         </span>
       </div>
-      <:- if Cfg products legacy_gst:>
+      <:-.if cfg.entry("products", "legacy_gst"):>
       <div>
-        <label for="gst">GST <:cfg shop currency $:> <:error_img gst:></label>
+        <label for="gst">GST <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"gst":></label>
         <span>
-          <input type="text" name="gst" id="gst" value="<:old gst money product gst:>" placeholder="0.00" <:ifFieldPerm gst:><:or:>disabled="disabled" <:eif:>class="<:ifError_img gst:>error<:eif:>" />
+          <:.call "input", "name":"gst", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("gst") } :>
           <:help edit gst:>
         </span>
       </div>
-      <:- eif Cfg:>
-      <:- if Cfg products legacy_wholesale:>
+      <:-.end if:>
+      <:-.if cfg.entry("products", "legacy_wholesale"):>
       <div>
-        <label for="wholesalePrice">Wholesale <:cfg shop currency $:> <:error_img wholesalePrice:></label>
+        <label for="wholesalePrice">Wholesale <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"wholesalePrice":></label>
         <span>
-          <input type="text" name="wholesalePrice" id="wholesalePrice" value="<:old wholesalePrice money product wholesalePrice:>" placeholder="0.00" <:ifFieldPerm wholesalePrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img wholesalePrice:>error<:eif:>" />
+          <:.call "input", "name":"wholesalePrice", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("wholesalePrice") } :>
           <:help edit wholesalePrice:>
         </span>
       </div>
-      <:- eif Cfg:>
+      <:-.end if:>
       <:- if Price_tiers:>
         <input type="hidden" name="save_pricing_tiers" value="1" />
         <:- iterator begin price_tiers:>
@@ -213,24 +216,24 @@
         <:- iterator end price_tiers:>
       <:- eif Price_tiers:>
     </fieldset>
-    <:- eif Match:>
+    <:-.end if:>
     <details>
       <summary>More attributes</summary>
       <:- include admin/include/article_cfg_custom.tmpl:>
-      <:- if Match [article generator] "Product":>
+      <:-.if article.generator =~ "Product":>
       <fieldset>
         <legend>Stock</legend>
         <div>
-          <label for="product_code">Product code <:error_img product_code:></label>
+          <label for="product_code">Product code <:.call "error_img_n", "name":"product_code":></label>
           <span>
-            <input type="text" name="product_code" id="product_code" value="<:old product_code:>" <:ifFieldPerm product_code:><:or:>disabled="disabled" <:eif:>class="<:ifError_img product_code:>error<:eif:>" />
+            <:.call "input", "name":"product_code", "field": { "maxlength":80 }, "options": { "disabled":is_disabled("product_code") } :>
             <:help edit product_code:>
           </span>
         </div>
         <div>
-          <label for="leadTime">Lead time <:error_img leadTime:></label>
+          <label for="leadTime">Lead time <:.call "error_img_n", "name":"leadTime":></label>
           <span>
-            <input type="text" name="leadTime" id="leadTime" value="<:ifEq [old leadTime default leadTime] 0:><:or:><:old leadTime default leadTime:><:eif:>" placeholder="days" <:ifFieldPerm leadTime:><:or:>disabled="disabled" <:eif:>class="<:ifError_img leadTime:>error<:eif:>" />
+            <:.call "input", "name":"leadTime", "field": { "maxlength":80 }, "options": { "placeholder":"days", "disabled":is_disabled("leadTime") } :>
             <:help edit leadTime:>
           </span>
         </div>
@@ -238,30 +241,30 @@
       <fieldset>
         <legend>Measurements</legend>
         <div>
-          <label for="weight">Weight <:error_img weight:></label>
+          <label for="weight">Weight <:.call "error_img_n", "name":"weight":></label>
           <span>
-            <input type="text" name="weight" id="weight" value="<:ifEq [old weight default weight] 0:><:or:><:old weight default weight:><:eif:>" placeholder="grams" maxlength="<:cfg fields weight_size 6:>" <:ifFieldPerm weight:><:or:>disabled="disabled" <:eif:>class="<:ifError_img weight:>error<:eif:>" />
+            <:.call "input", "name":"weight", "field": { "maxlength":11 }, "options": { "placeholder":"grams", "disabled":is_disabled("weight") } :>
             <:help edit weight:>
           </span>
         </div>
         <div>
-          <label for="length">Length <:error_img length:></label>
+          <label for="length">Length <:.call "error_img_n", "name":"length":></label>
           <span>
-            <input type="text" name="length" id="length" value="<:ifEq [old length default length] 0:><:or:><:old length default length:><:eif:>" placeholder="millimetres" maxlength="<:cfg fields length_size 6:>" <:ifFieldPerm length:><:or:>disabled="disabled" <:eif:>class="<:ifError_img length:>error<:eif:>" />
+            <:.call "input", "name":"length", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("length") } :>
             <:help edit length:>
           </span>
         </div>
         <div>
-          <label for="width">Width <:error_img width:></label>
+          <label for="width">Width <:.call "error_img_n", "name":"width":></label>
           <span>
-            <input type="text" name="width" id="width" value="<:ifEq [old width default width] 0:><:or:><:old width default width:><:eif:>" placeholder="millimetres" maxlength="<:cfg fields width_size 6:>" <:ifFieldPerm width:><:or:>disabled="disabled" <:eif:>class="<:ifError_img width:>error<:eif:>" />
+            <:.call "input", "name":"width", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("width") } :>
             <:help edit width:>
           </span>
         </div>
         <div>
-          <label for="height">Height <:error_img height:></label>
+          <label for="height">Height <:.call "error_img_n", "name":"height":></label>
           <span>
-            <input type="text" name="height" id="height" value="<:ifEq [old height default height] 0:><:or:><:old height default height:><:eif:>" placeholder="millimetres" maxlength="<:cfg fields height_size 6:>" <:ifFieldPerm height:><:or:>disabled="disabled" <:eif:>class="<:ifError_img height:>error<:eif:>" />
+            <:.call "input", "name":"height", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("height") } :>
             <:help edit height:>
           </span>
         </div>
@@ -293,7 +296,7 @@
         </ul>
       </fieldset>
       <:- eif Dboptions:>
-      <:- eif Match:>
+      <:-.end if:>
       <fieldset>
         <legend>Structure</legend>
         <div>
@@ -372,16 +375,16 @@
           </span>
         </div>
         <div>
-          <label for="summaryLength">Summary length <:error_img summaryLength:></label>
+          <label for="summaryLength">Summary length <:.call "error_img_n", "name":"summaryLength":></label>
           <span>
-            <input type="text" name="summaryLength" id="summaryLength" value="<:ifEq [old summaryLength default summaryLength] 0:><:or:><:old summaryLength default summaryLength:><:eif:>" placeholder="characters" maxlength="10" <:ifFieldPerm summaryLength:><:or:>disabled="disabled" <:eif:>class="<:ifError_img summaryLength:>error<:eif:>" />
+            <:.call "input", "name":"summaryLength", "field": { "maxlength":5 }, "options": { "placeholder":"characters", "disabled":is_disabled("summaryLength") } :>
             <:help edit summaryLength:>
           </span>
         </div>
         <div>
-          <label for="threshold">Embed threshold <:error_img threshold:></label>
+          <label for="threshold">Embed threshold <:.call "error_img_n", "name":"threshold":></label>
           <span>
-            <input type="text" name="threshold" id="threshold" value="<:ifEq [old threshold default threshold] 0:><:or:><:old threshold default threshold:><:eif:>" placeholder="children" maxlength="10" <:ifFieldPerm threshold:><:or:>disabled="disabled" <:eif:>class="<:ifError_img threshold:>error<:eif:>" />
+            <:.call "input", "name":"threshold", "field": { "maxlength":10 }, "options": { "placeholder":"children", "disabled":is_disabled("threshold") } :>
             <:help edit threshold:>
           </span>
         </div>
@@ -397,16 +400,16 @@
           </span>
         </div>
         <div>
-          <label for="release">Release date <:error_img release:></label>
+          <label for="release">Release date <:.call "error_img_n", "name":"release":></label>
           <span>
-            <input type="text" name="release" id="release" value="<:old release date "%d/%m/%Y" default release:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm release:><:or:>disabled="disabled" <:eif:>class="<:ifError_img release:>error<:eif:>" />
+            <:.call "input", "name":"release", "field": { "type":"date", "maxlength":10 }, "options": { "placeholder":"DD/MM/YYYY", "disabled":is_disabled("release") } :>
             <:help edit listed:>
           </span>
         </div>
         <div>
-          <label for="expire">Expiry date <:error_img expire:></label>
+          <label for="expire">Expiry date <:.call "error_img_n", "name":"expire":></label>
           <span>
-            <input type="text" name="expire" id="expire" value="<:switch:><:case New:><:old expire:><:case Match [article expire] "^[29]999-12-31":><:case default:><:old expire date "%d/%m/%Y" article expire:><:endswitch:>" placeholder="DD/MM/YYYY" maxlength="10" <:ifFieldPerm expire:><:or:>disabled="disabled" <:eif:>class="<:ifError_img expire:>error<:eif:>" />
+            <:.call "input", "name":"expire", "field": { "type":"date", "maxlength":10 }, "options": { "placeholder":"DD/MM/YYYY", "disabled":is_disabled("expire") } :>
             <:help edit expire:>
           </span>
         </div>
@@ -441,48 +444,47 @@
       <fieldset>
         <legend>Metadata</legend>
         <div>
-          <label for="pageTitle">Page title <:error_img pageTitle:></label>
+          <label for="pageTitle">Page title <:.call "error_img_n", "name":"pageTitle":></label>
           <span>
-            <input type="text" name="pageTitle" id="pageTitle" value="<:old pageTitle article pageTitle:>" maxlength="255" <:ifFieldPerm pageTitle:><:or:>disabled="disabled" <:eif:>class="<:ifError_img pageTitle:>error<:eif:>" />
+            <:.call "input", "name":"pageTitle", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("pageTitle") } :>
             <:help edit pageTitle:>
           </span>
         </div>
         <div>
-          <label for="metaDescription">Meta description <:error_img metaDescription:></label>
+          <label for="metaDescription">Meta description <:.call "error_img_n", "name":"metaDescription":></label>
           <span>
-            <input type="text" name="metaDescription" id="metaDescription" value="<:old metaDescription article metaDescription:>" maxlength="255" <:ifFieldPerm metaDescription:><:or:>disabled="disabled" <:eif:>class="<:ifError_img metaDescription:>error<:eif:>" />
+            <:.call "input", "name":"metaDescription", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("metaDescription") } :>
             <:help edit metaDescription:>
           </span>
         </div>
         <div>
-          <label for="metaKeywords">Meta keywords <:error_img metaKeywords:></label>
+          <label for="metaKeywords">Meta keywords <:.call "error_img_n", "name":"metaKeywords":></label>
           <span>
-            <input type="text" name="metaKeywords" id="metaKeywords" value="<:old metaKeywords article metaKeywords:>" placeholder="comma separated" maxlength="255" <:ifFieldPerm metaKeywords:><:or:>disabled="disabled" <:eif:>class="<:ifError_img metaKeywords:>error<:eif:>" />
+            <:.call "input", "name":"metaKeywords", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("metaKeywords") } :>
             <:help edit metaKeywords:>
           </span>
         </div>
         <div>
-          <label for="author">Author name <:error_img author:></label>
+          <label for="author">Author name <:.call "error_img_n", "name":"author":></label>
           <span>
-            <input type="text" name="author" id="author" value="<:ifCfg editor auto_author:><:old author adminuser name:><:or:><:old author article author:><:eif:>" maxlength="255" <:ifFieldPerm author:><:or:>disabled="disabled" <:eif:>class="<:ifError_img author:>error<:eif:>" />
+            <:.call "input", "name":"author", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("author") } :>
             <:help edit author:>
           </span>
         </div>
         <div>
-          <label for="keyword">Local keywords <:error_img keyword:></label>
+          <label for="keyword">Local keywords <:.call "error_img_n", "name":"keyword":></label>
           <span>
-            <input type="text" name="keyword" id="keyword" value="<:old keyword article keyword:>" placeholder="comma separated" maxlength="255" <:ifFieldPerm keyword:><:or:>disabled="disabled" <:eif:>class="<:ifError_img keyword:>error<:eif:>" />
+            <:.call "input", "name":"keyword", "field": { "maxlength":255 }, "options": { "placeholder":"comma separated", "disabled":is_disabled("keyword") } :>
             <:help edit keyword:>
           </span>
         </div>
         <:.call "edit_metadata" :>
       </fieldset>
-      <:- switch:>
-      <:- case Match [article generator] "Article":><:include admin/include/article_custom.tmpl optional:>
-      <:- case Match [article generator] "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
-      <:- case Match [article generator] "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
-      <:- case Match [article generator] "Product":><:include admin/include/product_custom.tmpl optional:>
-      <:- endswitch:>
+      <:-.if article.generator =~ "Article":><:include admin/include/article_custom.tmpl optional:>
+      <:-.elsif article.generator =~ "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
+      <:-.elsif article.generator =~ "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
+      <:-.elsif article.generator =~ "Product":><:include admin/include/product_custom.tmpl optional:>
+      <:-.end if:>
       <:- if Or [ifMatch [article generator] "Product"] [ifMatch [article generator] "Seminar"]:>
       <:- if Subscriptions:>
       <fieldset>
@@ -500,9 +502,9 @@
           </span>
         </div>
         <div>
-          <label for="subscription_period">Duration <:error_img subscription_period:></label>
+          <label for="subscription_period">Duration <:.call "error_img_n", "name":"subscription_period":></label>
           <span>
-            <input type="text" name="subscription_period" id="subscription_period" value="<:old subscription_period default subscription_period:>" placeholder="months" <:ifFieldPerm subscription_period:><:or:>disabled="disabled" <:eif:>class="<:ifError_img subscription_period:>error<:eif:>" />
+            <:.call "input", "name":"subscription_period", "field": { "maxlength":11 }, "options": { "placeholder":"months", "disabled":is_disabled("subscription_period") } :>
             <:help edit subscription_period:>
           </span>
         </div>
@@ -550,65 +552,68 @@
           <span>
             <:- if FieldPerm thumbnail:>
             <a href="<:script:>?id=<:article id:>&amp;remove_thumb=1<:if Match [article generator] "Product":>&amp;retailPrice=<:money product retailPrice:>&amp;wholesalePrice=<:money product wholesalePrice:>&amp;gst=<:money product gst:><:or Match:><:eif Match:>&amp;flags=<:article flags:>&amp;save=1&amp;lastModified=<:article lastModified:>&amp;_csrfp=<:csrfp admin_save_article:>" data-action="Delete" data-object="Thumbnail" class="button red small">Delete</a>
-            <:- or FieldPerm:><a class="button red small disabled">Delete</a>
+            <:- or FieldPerm:>
+            <a class="button red small disabled">Delete</a>
             <:- eif FieldPerm:>
           </span>
         </div>
         <:- eif Article:>
       </fieldset>
       <:- eif Cfg:>
-      <:- if Images:>
+      <:-.set images = [ article.images ]:>
+      <:-.if images.size:>
       <fieldset>
         <legend>Images</legend>
         <ul class="full list">
-          <:- iterator begin images:>
+          <:-.for image in images:>
           <li>
-            <a href="<:image src:>" onclick="window.open(this.href, 'fullimage', 'width=<:arithmetic 40 + [image width]:>,height=<:arithmetic 90 + [image height]:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:thumbimage editor:></a> <:ifImage name:>(<:image name:>)<:eif:>
+            <a href="<:= image.src:>" onclick="window.open(this.href, 'fullimage', 'width=<:= 40 + image.width:>,height=<:= 90 + image.height:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:= image.thumb("geo","editor", "nolink", 1 ) |raw:></a> <:.if image.name:>(<:= image.name:>)<:.end if:>
             <span>
-              <:- if UserCan bse_edit_images_save:article:>
-              <a href="<:script:>?a_edit_image=1&amp;id=<:article id:>&amp;image_id=<:image id:>" class="button white small">Edit</a>
-              <:- or UserCan:><a class="button white small disabled">Edit</a>
-              <:- eif UserCan:>
-              <:- if UserCan bse_edit_images_delete:article:>
-              <a href="<:script:>?removeimg_<:image id:>=1&amp;id=<:article id:>&amp;_csrfp=<:csrfp admin_remove_image:>" data-action="Delete" data-object="Image" class="button red small">Delete</a>
-              <:- or UserCan:><a class="button red small disabled">Delete</a>
-              <:- eif UserCan:>
-              <:- if UserCan bse_edit_images_reorder:article:>
-              <:imgmove:>
-              <:- eif UserCan:>
+              <:-.if request.user_can("bse_edit_images_save", article ):>
+              <a href="<:= cfg.admin_url2("add", "edit_image", { "id":article.id, "image_id":image.id }):>" class="button white small">Edit</a>
+              <:-.else:><a class="button white small disabled">Edit</a>
+              <:-.end if:>
+              <:-.if request.user_can("bse_edit_images_delete", article ):>
+              <a href="<:= cfg.admin_url("add", { "removeimg_" _ image.id:1, "id":article.id, "_csrfp":request.get_csrf_token("admin_remove_image") }):>" data-action="Delete" data-object="Image" class="button red small">Delete</a>
+              <:-.else:><a class="button red small disabled">Delete</a>
+              <:-.end if:>
+              <:-.if request.user_can("bse_edit_images_reorder", article ):>
+              <:.call "move_image", "admin":1, "r":refresh :>
+              <:-.end if:>
             </span>
           </li>
-          <:- iterator end images:>
+          <:-.end for:>
         </ul>
       </fieldset>
-      <:- eif Images:>
-      <:- if Files:>
+      <:-.end if:>
+      <:-.set files = [ article.files ]:>
+      <:-.if files.size:>
       <fieldset>
         <legend>Files</legend>
         <ul class="full list">
-          <:- iterator begin files:>
+          <:-.for file in files:>
           <li>
-            <a href="<:target user download_file file [file id] |h:>"><span class="indicator <:switch:><:case File hide_from_list:>orange<:case FileExists:>green<:case default:>red<:endswitch:>"></span> <:file displayName |h:></a><:ifFile name:> (<:file name:>)<:eif:>
+            <a href="<:= cfg.user_url("user", "download_file", "file", file.id ):>"><span class="indicator <:= file.hide_from_list ? "orange" : file.file_exists ? "green" : "red":>"></span> <:= file.displayName:></a><:.if file.name:> (<:= file.name:>)<:.end if:>
             <span>
-              <:- if UserCan bse_edit_files_save:article:>
-              <a href="<:script:>?a_edit_file=1&amp;id=<:article id:>&amp;file_id=<:file id:>" class="button white small">Edit</a>
-              <:- or UserCan:>
+              <:-.if request.user_can("bse_edit_files_save", article ):>
+              <a href="<:= cfg.admin_url2("add", "edit_file", { "id":article.id, "file_id":file.id }):>" class="button white small">Edit</a>
+              <:-.else:>
               <a class="button white small disabled">Edit</a>
-              <:- eif UserCan:>
-              <:- if UserCan bse_edit_files_delete:article:>
-              <a href="<:script:>?filedel=1&amp;id=<:article id:>&amp;file=<:file id:>&amp;_csrfp=<:csrfp admin_remove_file:>" data-action="Delete" data-object="File" class="button red small">Delete</a>
-              <:- or UserCan:>
+              <:-.end if:>
+              <:-.if request.user_can("bse_edit_files_delete", article ):>
+              <a href="<:= cfg.admin_url2("add", "filedel", { "id":article.id, "file":file.id, "_csrfp":request.get_csrf_token("admin_remove_file") }):>" data-action="Delete" data-object="File" class="button red small">Delete</a>
+              <:-.else:>
               <a class="button red small disabled">Delete</a>
-              <:- eif UserCan:>
-              <:- if UserCan bse_edit_files_reorder:article:>
-              <:movefiles:>
-              <:- eif UserCan:>
+              <:-.end if:>
+              <:-.if request.user_can("bse_edit_files_reorder", article ):>
+              <:.call "move_file", "admin":1, "r":refresh :>
+              <:-.end if:>
             </span>
           </li>
-          <:- iterator end files:>
+          <:-.end for:>
         </ul>
       </fieldset>
-      <:- eif Files:>
+      <:-.end if:>
     </details>
     <:-.if is_new:>
     <p class="buttons">

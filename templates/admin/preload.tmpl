@@ -41,8 +41,9 @@
 <:-.define make_select; "groups":0, "id":"id", "desc":"desc", "grouplabel":"label", "groupid":"id", "itemgroupid":"groupid", "options":{} -:>
           <:-.if !default.defined :>
           <:-.set default = "" :>
+          <:-.set class = options.class _ ' ' _ (errors and errors.$name ? ' error' : '') :>
           <:-.end if :>
-          <select name="<:= name :>" id="<:= name :>" class="<:= options.class ? options.class : '' :><:= errors and errors.$name ? ' error' : '' :>"
+          <select name="<:= name :>" id="<:= name :>" class="<:= class :>"
             <:-= options.autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= options.required ? ' required="required"' : '' | raw :>
             <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :>
@@ -217,31 +218,44 @@
   fields - hash of fields (may be set by page instead)
   object - source for defaults in edit mode
 :>
-<:-.define input; "options":{} :>
-    <:-.set default = options.default -:>
-    <:-.if !default.defined -:>
-      <:-.if object :>
-        <:-.set default = object.$name :>
-      <:-.elsif field.default -:>
+<:-.define input; "options":{}, "index":0 :>
+    <:-.set id = options.id or name :>
+    <:-.set class = options.class :>
+    <:-.set is_file = field.htmltype eq "file" :>
+    <:-.set default = options.default :>
+
+    <:-.if !default.defined :>
+      <:-.if object and not(is_file) :>
+        <:-.set fname = field.name or options.name or name :>
+        <:-.set default = object.$fname :>
+      <:-.elsif field.default :>
         <:-.set default = field.default :>
-      <:-.else -:>
+      <:-.else :>
         <:-.set default = "" :>
       <:-.end if :>
     <:-.end if :>
 
     <:-.if field.type and field.type eq "date" and default ne "" :>
-      <:-.set default = bse.date("%d/%m/%Y", default ) :>
+      <:-.set default = default =~ /^[29]999-12-31/ ? "" : bse.date("%d/%m/%Y", default ) :>
     <:-.elsif field.type and field.type eq "time" and default ne "" :>
       <:-.set default = bse.date(default =~ /:00$/ ? "%I:%M%p" : "%I:%M:%S%p", default).replace(/^0/, "").lower :>
     <:-.elsif field.type and field.type eq "money" and default ne "" :>
       <:-.set default = bse.number("money", default ) :>
     <:-.end if :>
 
-    <:-.if errors and cgi.param(name).defined :>
-      <:-.set default = cgi.param(name) :>
+    <:-.if errors.$name and cgi.param(name).defined :>
+      <:-.set values = [ cgi.param(name) ] :>
+      <:-.if values.size > 1 :>
+        <:-.set default = values[index] :>
+        <:-.set class = class _ ' ' _ (errors.$name[index] ? 'error' : '') :>
+      <:-.else :>
+        <:-.set default = cgi.param(name) :>
+        <:-.set class = class _ ' ' _ (errors.$name ? 'error' : '') :>
+      <:-.end if :>
     <:-.end if :>
+
           <:-.if field.htmltype and field.htmltype eq "textarea" :>
-          <textarea name="<:= name :>" id="<:= name :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>" class="<:= options.class ? options.class : '' :><:= errors and errors.$name ? ' error' : '' :>"
+          <textarea name="<:= name :>" id="<:= id :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>" class="<:= class :>"
             <:-= options.title ? ' title="' _ options.title _ '"' : '' | raw :>
             <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
             <:-= options.placeholder ? ' placeholder="' _ options.placeholder _ '"' : '' | raw :>
@@ -257,7 +271,7 @@
           <:-.if field.save_name ne "none" :>
           <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="1" />
           <:-.end if:>
-          <input type="checkbox" name="<:= name :>" id="<:= name :>" value="<:= field.value ? field.value : 1 :>" class="<:= options.class ? options.class : '' :>"
+          <input type="checkbox" name="<:= name :>" id="<:= id :>" value="<:= field.value ? field.value : 1 :>" class="<:= class :>"
             <:-= is_checked ? ' checked="checked"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :>
@@ -288,7 +302,7 @@
             "options":options
           :>
           <:-.else :>
-          <input type="<:= field.htmltype or 'text' :>" name="<:= name :>" id="<:= name :>" value="<:= default :>" class="<:= options.class ? options.class : '' :><:= errors and errors.$name ? ' error' : '' :>"
+          <input type="<:= field.htmltype or 'text' :>" name="<:= name :>" id="<:= id :>" value="<:= default :>" class="<:= class :>"
             <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
             <:-= field.maxlength ? ' maxlength="' _ field.maxlength _ '"' : '' | raw :>
             <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
@@ -337,7 +351,7 @@
           <:-.set divextra = divextra _ " " _ n _ '="' _ options.htmlattr[n].escape("html") _ '"' :>
         <:-.end for:>
       <:-.end if:>
-      <div class="field"<:-= divextra |raw :>>
+      <div class="field <:= field.class:>"<:-= divextra |raw :>>
         <label for="<:= name :>">
           <:-= field.nolabel ? '' : field.description :>
           <:-.call "required_indicator", "required":field.required :>

@@ -1,5 +1,6 @@
 <:-.set is_article = article.id and article.id > 0 -:>
 <:-.set typename = is_article ? article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") : "Site" -:>
+<:-.set is_new = not(is_article) -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Images" ) :>
 
 <:-.set referer = request.referer -:>
@@ -15,6 +16,8 @@
 <:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
 
 <:-.end if -:>
+
+<:-.set is_disabled = is_new ? 0 : not(request.user_can("bse_edit_images_save", article)) :>
 
 <div class="window">
   <header>
@@ -70,6 +73,7 @@
     <:csrfp admin_save_images hidden:>
     <:csrfp admin_add_image hidden:>
     <:-.for image in images:>
+    <:-.set object = image :>
     <div class="object">
       <h2>Image <:= loop.count:> <:.call "move_image", "admin":1, "r":refresh :></h2>
       <p class="buttons">
@@ -89,14 +93,14 @@
         <div>
           <label for="image<:= image.id:>">Change image <:.call "error_img", "name":"image" _ image.id :></label>
           <span>
-            <input type="file" name="image<:= image.id:>" id="image<:= image.id:>" class="<:.call "error_classname", "name":"image" _ image.id :>" />
+            <:.call "input", "name":"image" _ image.id, "field": { "name":"image", "htmltype":"file" }, "options": { "disabled":is_disabled } :>
             <:help image image:>
           </span>
         </div>
         <div>
           <label for="name<:= image.id:>">Name <:.call "error_img", "name":"name" _ image.id :></label>
           <span>
-            <input type="text" name="name<:= image.id:>" id="name<:= image.id:>" value="<:.call "old", "name":"name" _ image.id, "default":image.name:>" class="<:.call "error_classname", "name":"name" _ image.id :>" />
+            <:.call "input", "name":"name" _ image.id, "field": { "name":"name", "maxlength":255 }, "options": { "disabled":is_disabled } :>
             <:help image name:>
           </span>
         </div>
@@ -126,14 +130,14 @@
           <div>
             <label for="alt<:= image.id:>">Alt <:.call "error_img", "name":"alt" _ image.id :></label>
             <span>
-              <input type="text" name="alt<:= image.id:>" id="alt<:= image.id:>" value="<:.call "old", "name":"alt" _ image.id, "default":image.alt:>" class="<:.call "error_classname", "name":"alt" _ image.id :>" />
+              <:.call "input", "name":"alt" _ image.id, "field": { "name":"alt", "maxlength":255 }, "options": { "disabled":is_disabled } :>
               <:help image alt:>
             </span>
           </div>
           <div>
             <label for="url<:= image.id:>">URL <:.call "error_img", "name":"url" _ image.id :></label>
             <span>
-              <input type="text" name="url<:= image.id:>" id="url<:= image.id:>" value="<:.call "old", "name":"url" _ image.id, "default":image.url :>" class="<:.call "error_classname", "name":"url" _ image.id :>" />
+              <:.call "input", "name":"url" _ image.id, "field": { "name":"url", "maxlength":255 }, "options": { "disabled":is_disabled } :>
               <:help image url:>
             </span>
           </div>
@@ -155,12 +159,12 @@
         <fieldset>
           <legend>Tags</legend>
           <input type="hidden" name="_save_image_tags<:= image.id:>" value="1" />
-    	  <:-.set image_tags = cgi.param("_save_image_tags") ? [ cgi.param("tags" _ image.id ) ] : [ "", image.tags ]:>
+    	  <:-.set image_tags = cgi.param("tags" _ image.id ) ? [ cgi.param("tags" _ image.id ) ] : [ "", image.tags ]:>
     	  <:-.for tag in image_tags :>
           <div class="field">
-            <label for="tags<:= image.id :>_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
+            <label for="tags<:= image.id :>_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags" _ image.id, "index":loop.index :></label>
             <span class="field-input">
-              <input type="text" name="tags<:= image.id :>" id="tags<:= image.id :>_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags" _ image.id, "index":loop.index :>"/>
+              <:.call "input", "name":"tags" _ image.id, "field": { "maxlength":80 }, "options": { "default":tag, "id":"tags" _ image.id _ "_" _ loop.count, "disabled":is_disabled }, "index":loop.index :>
             </span>
             <:-.if loop.is_first:>
             <span class="field-actions">

@@ -1,5 +1,6 @@
 <:-.set is_article = article.id and article.id > 0 -:>
 <:-.set typename = is_article ? article.generator.replace(/^(?:BSE::)?Generate::(\w+)$/, "$1") : "Site" -:>
+<:-.set is_new = not(is_article) -:>
 <:-.wrap "admin/base.tmpl", "title": ( "Manage " _ typename _ " Files" ) :>
 
 <:-.set referer = request.referer -:>
@@ -15,6 +16,8 @@
 <:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
 
 <:-.end if -:>
+
+<:-.set is_disabled = is_new ? 0 : not(request.user_can("bse_edit_files_save", article)) :>
 
 <:-.set files = [ article.files ]:>
 <div class="window">
@@ -71,6 +74,7 @@
     <:csrfp admin_save_files hidden:>
     <:csrfp admin_add_file hidden:>
     <:-.for file in files:>
+    <:-.set object = file :>
     <div class="object">
       <h2>File <:= loop.count:> <:.call "move_file", "admin":1, "r":refresh :></h2>
       <p class="buttons">
@@ -90,14 +94,14 @@
         <div>
           <label for="file_<:= file.id:>">Change file <:.call "error_img_n", "name":"file_" _ file.id :></label>
           <span>
-            <input type="file" name="file_<:= file.id:>" id="file_<:= file.id:>" class="<:.call "error_classname", "name":"file_" _ file.id :>" />
+            <:.call "input", "name":"file_" _ file.id, "field": { "name":"filename", "htmltype":"file" }, "options": { "disabled":is_disabled } :>
             <:help file file:>
           </span>
         </div>
         <div>
           <label for="name_<:= file.id:>">Name <:.call "error_img_n", "name":"name_" _ file.id :></label>
           <span>
-            <input type="text" name="name_<:= file.id:>" id="name_<:= file.id:>" value="<:.call "old", "name":"name_" _ file.id, "default":file.name:>" class="<:.call "error_classname", "name":"name_" _ file.id :>" />
+            <:.call "input", "name":"name_" _ file.id, "field": { "name":"name", "maxlength":40 }, "options": { "disabled":is_disabled } :>
             <:help file name:>
           </span>
         </div>
@@ -127,14 +131,14 @@
           <div>
             <label for="description_<:= file.id:>">Description <:.call "error_img_n", "name":"description_" _ file.id :></label>
             <span>
-              <input type="text" name="description_<:= file.id:>" id="description_<:= file.id:>" value="<:.call "old", "name":"description_" _ file.id, "default":file.description:>" class="<:.call "error_classname", "name":"description_" _ file.id :>" />
+              <:.call "input", "name":"description_" _ file.id, "field": { "name":"description", "maxlength":255 }, "options": { "disabled":is_disabled } :>
               <:help file description:>
             </span>
           </div>
           <div>
             <label for="notes_<:= file.id:>">Notes <:.call "error_img_n", "name":"notes_" _ file.id :></label>
             <span>
-              <textarea name="notes_<:= file.id:>" id="notes_<:= file.id:>" class="<:.call "error_classname", "name":"notes_" _ file.id :>"><:.call "old", "name":"notes_" _ file.id, "default":file.notes:></textarea>
+              <:.call "input", "name":"notes_" _ file.id, "field": { "name":"notes", "htmltype":"textarea" }, "options": { "disabled":is_disabled } :>
               <:help file notes:>
             </span>
           </div>
@@ -144,21 +148,21 @@
           <div>
             <label for="contentType_<:= file.id:>">Content type <:.call "error_img_n", "name":"contentType_" _ file.id :></label>
             <span>
-              <input type="text" name="contentType_<:= file.id:>" id="contentType_<:= file.id:>" value="<:.call "old", "name":"contentType_" _ file.id, "default":file.contentType:>" placeholder="MIME format" class="<:.call "error_classname", "name":"contentType_" _ file.id :>" />
+              <:.call "input", "name":"contentType_" _ file.id, "field": { "name":"contentType", "maxlength":80 }, "options": { "placeholder":"MIME format", "disabled":is_disabled } :>
               <:help file contentType:>
             </span>
           </div>
           <div>
             <label for="download_<:= file.id:>">Force download <:.call "error_img_n", "name":"download_" _ file.id :></label>
             <span>
-              <input type="checkbox" name="download_<:= file.id:>" id="download_<:= file.id:>" value="1" <:.if cgi.param("download_" _ file.id) or file.download:>checked="checked" <:.end if:>/>
+              <:.call "input", "name":"download_" _ file.id, "field": { "name":"download", "htmltype":"checkbox", "save_name":"none" }, "options": { "disabled":is_disabled } :>
               <:help file download:>
             </span>
           </div>
           <div>
             <label for="hide_from_list_<:= file.id:>">Hide from list <:.call "error_img_n", "name":"hide_from_list_" _ file.id :></label>
             <span>
-              <input type="checkbox" name="hide_from_list_<:= file.id:>" id="hide_from_list_<:= file.id:>" value="1" <:.if cgi.param("hide_from_list_" _ file.id) or file.hide_from_list:>checked="checked" <:.end if:>/>
+              <:.call "input", "name":"hide_from_list_" _ file.id, "field": { "name":"hide_from_list", "htmltype":"checkbox", "save_name":"none" }, "options": { "disabled":is_disabled } :>
               <:help file hide_from_list:>
             </span>
           </div>
@@ -166,7 +170,7 @@
           <div>
             <label for="forSale_<:= file.id:>">Require payment <:.call "error_img_n", "name":"forSale_" _ file.id :></label>
             <span>
-              <input type="checkbox" name="forSale_<:= file.id:>" id="forSale_<:= file.id:>" <:.if cgi.param("forSale_" _ file.id) or file.forSale:>checked="checked" <:.end if:>/>
+              <:.call "input", "name":"forSale_" _ file.id, "field": { "name":"forSale", "htmltype":"checkbox", "save_name":"none" }, "options": { "disabled":is_disabled } :>
               <:help file forSale:>
             </span>
           </div>
@@ -174,7 +178,7 @@
           <div>
             <label for="requireUser_<:= file.id:>">Require login <:.call "error_img_n", "name":"requireUser_" _ file.id :></label>
             <span>
-              <input type="checkbox" name="requireUser_<:= file.id:>" id="requireUser_<:= file.id:>" <:.if cgi.param("requireUser_" _ file.id) or file.requireUser:>checked="checked" <:.end if:>/>
+              <:.call "input", "name":"requireUser_" _ file.id, "field": { "name":"requireUser", "htmltype":"checkbox", "save_name":"none" }, "options": { "disabled":is_disabled } :>
               <:help file requireUser:>
             </span>
           </div>
