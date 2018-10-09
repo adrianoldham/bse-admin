@@ -243,14 +243,14 @@
       <:-.set default = bse.number("money", default ) :>
     <:-.end if :>
 
-    <:-.if errors.$name and cgi.param(name).defined :>
+    <:-.if cgi.param(name).defined :>
       <:-.set values = [ cgi.param(name) ] :>
       <:-.if values.size > 1 :>
         <:-.set default = values[index] :>
-        <:-.set class = class _ ' ' _ (errors.$name[index] ? 'error' : '') :>
+        <:-.set class = errors.$name[index] ? class _ ' ' _ (errors.$name[index] ? 'error' : '') : class :>
       <:-.else :>
         <:-.set default = cgi.param(name) :>
-        <:-.set class = class _ ' ' _ (errors.$name ? 'error' : '') :>
+        <:-.set class = errors.$name ? class _ ' ' _ (errors.$name ? 'error' : '') : class :>
       <:-.end if :>
     <:-.end if :>
 
