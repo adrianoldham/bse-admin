@@ -334,7 +334,7 @@
           </span>
         </div>
         <input type="hidden" name="_save_tags" value="1" />
-        <:-.set tags = is_new ? [""] : cgi.param("_save_tags") ? [ cgi.param("tags") ] : [ "", article.tags ] :>
+        <:-.set tags = cgi.param("_save_tags") ? [ cgi.param("tags") ] : [ "", article.tags ] :>
         <:-.for tag in tags :>
         <div class="field">
           <label for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
