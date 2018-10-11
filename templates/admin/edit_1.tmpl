@@ -342,7 +342,8 @@
         <div class="field">
           <label for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
           <span class="field-input">
-            <input type="text" name="tags" id="tag_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags", "index":loop.index :>"/>
+            <:.call "input", "name":"tags", "field": { "maxlength":80 }, "options": { "default":tag, "id":"tag_" _ loop.count, "disabled":is_disabled("tags") }, "index":loop.index :>
+            <:help edit tags:>
           </span>
           <span class="field-actions">
             <:-.if loop.is_first:>
