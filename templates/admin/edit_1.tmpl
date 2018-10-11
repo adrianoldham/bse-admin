@@ -303,7 +303,7 @@
           <label for="parentid">Parent <:error_img parentid:></label>
           <span>
             <select name="parentid" id="parentid"<:ifFieldPerm parentid:><:or:> disabled="disabled"<:eif:>>
-              <option value="">Please select a <:ifArticle id:><:parentType:><:or:>Section<:eif:></option><:ifFieldPerm parentid:><:if Article id:>
+              <option value="">Please select a <:ifArticle id:><:parentType:><:or:>Section<:eif:></option><:ifFieldPerm parentid:><:if Article parentid:>
               <:list:><:or Article:>
               <option value="-1" selected="selected">No parent - this is a section</option><:eif Article:>
               <:or:>
