@@ -93,13 +93,10 @@
   name - the name of the input elements
   readonly - true to make it readonly
 :>
-<:-.define make_multicheck; "options":{} -:>
-      <:-.if field.save_name ne "none" :>
+<:-.define make_multicheck; "options":{}, "field":{} -:>
+      <:-.if field.save_name ne "none" and !options.readonly :>
       <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="1" />
       <:-.end if:>
-      <:-.if !options.readonly :>
-      <input type="hidden" name="_save_<:= name :>" value="1" />
-      <:-.end if :>
       <:-.if !default.defined :>
         <:-.set default = [] :>
       <:-.end if :>
