@@ -41,8 +41,8 @@
 <:-.define make_select; "groups":0, "id":"id", "desc":"desc", "grouplabel":"label", "groupid":"id", "itemgroupid":"groupid", "options":{} -:>
           <:-.if !default.defined :>
           <:-.set default = "" :>
-          <:-.set class = options.class _ ' ' _ (errors and errors.$name ? ' error' : '') :>
           <:-.end if :>
+          <:-.set class = options.class _ ' ' _ (errors and errors.$name ? ' error' : '') :>
           <select name="<:= name :>" id="<:= name :>" class="<:= class :>"
             <:-= options.autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= options.required ? ' required="required"' : '' | raw :>
