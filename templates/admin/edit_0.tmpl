@@ -61,9 +61,7 @@
             <a class="button red small disabled">Delete</a>
             <:-.end if:>
             <:-.end if:>
-            <:-.if request.user_can("edit_reorder_children", parent) :>
             <:.call "move", "article": article, "parent": parent, "admin": 1, "r": refresh :>
-            <:-.end if:>
           </span>
         </span>
       <:-# do not list children for step kids, could lead to infinite recursion :>

@@ -578,9 +578,7 @@
               <a href="<:= cfg.admin_url("add", { "removeimg_" _ image.id:1, "id":article.id, "_csrfp":request.get_csrf_token("admin_remove_image") }):>" data-action="Delete" data-object="Image" class="button red small">Delete</a>
               <:-.else:><a class="button red small disabled">Delete</a>
               <:-.end if:>
-              <:-.if request.user_can("bse_edit_images_reorder", article ):>
               <:.call "move_image", "admin":1, "r":refresh :>
-              <:-.end if:>
             </span>
           </li>
           <:-.end for:>
@@ -606,9 +604,7 @@
               <:-.else:>
               <a class="button red small disabled">Delete</a>
               <:-.end if:>
-              <:-.if request.user_can("bse_edit_files_reorder", article ):>
               <:.call "move_file", "admin":1, "r":refresh :>
-              <:-.end if:>
             </span>
           </li>
           <:-.end for:>
