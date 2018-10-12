@@ -107,7 +107,7 @@
       <ul>
         <:-.for i in values :>
         <li>
-          <:-.set element_id = name _ "-" _ i.$id :>
+          <:-.set element_id = name _ "_" _ i.$id :>
           <input type="checkbox" name="<:= name :>" id="<:= element_id :>" value="<:= i.$id :>"
             <:-= checked[i.$id] ? ' checked="checked" ' : '' | raw :>
             <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :> />
