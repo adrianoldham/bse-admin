@@ -691,9 +691,9 @@ parameters:
     <:-.set default = metadata ? metadata.value_text : "" -:>
   <:-.end if -:>
   <:-.if meta.ro :>
-        <:.call "inlinefieldro", "name":name, "field":meta.field, "options":{ "default":default } :>
+        <:.call "inlinefieldro", "name":name, "field":meta.field, "options":{ "default":default, "disabled":is_disabled(name) } :>
   <:-.else:>
-        <:.call "inlinefield", "name":name, "field":meta.field, "options":{ "default":default, "delete":1 } :>
+        <:.call "inlinefield", "name":name, "field":meta.field, "options":{ "default":default, "delete":1, "disabled":is_disabled(name) } :>
   <:-.end if:>
 <:-.end for:>
 <:-.end if:>

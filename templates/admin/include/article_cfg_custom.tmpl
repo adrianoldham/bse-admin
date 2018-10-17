@@ -11,7 +11,6 @@
           </label>
           <span>
             <:-.set default = cgi.param(field.key) ? cgi.param(field.key) : ifnew ? field.value.default : article.get(field.key) :>
-            <:-.set is_disabled = not(ifnew or request.user_can("edit_field_edit_" _ field.key, article)) :>
             <:-.if field.value.htmltype eq "select" :>
             <:-# the field config code uses an older mechanism, translate :>
             <:-.set list = [] -:>
@@ -19,9 +18,9 @@
             <:-.for i in baselist :>
               <:-% list.push({ "id": i[0], "label": i[1] }) :>
             <:-.end for :>
-            <:.call "make_select", "name":field.key, "list":list, "id":"id", "desc":"label", "default":default, "required":field.value.required, "options": { "disabled":is_disabled } :>
+            <:.call "make_select", "name":field.key, "list":list, "id":"id", "desc":"label", "default":default, "required":field.value.required, "options": { "disabled":is_disabled{field.key) } :>
             <:-.else :>
-            <:.call "input", "name":field.key, "field": { "description":field.value.description, "default":default, "type":field.value.type, "htmltype":field.value.htmltype, "required":field.value.required }, "options": { "placeholder":field.value.placeholder, "disabled":is_disabled } :>
+            <:.call "input", "name":field.key, "field": { "description":field.value.description, "default":default, "type":field.value.type, "htmltype":field.value.htmltype, "required":field.value.required }, "options": { "placeholder":field.value.placeholder, "disabled":is_disabled(field.key) } :>
             <:-.end if :>
           </span>
         </div>
