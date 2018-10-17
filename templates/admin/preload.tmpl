@@ -6,6 +6,8 @@
 
 <:-.set capitalize = @{s: s.lower.replace(/(?:^|\b)([a-z])/, @{m: m.text.upper }, 1)}:>
 
+<:-.set empty_if_zero = @{ name: object.$name == 0 ? '' : object.$name } -:>
+
 <:-.define admin_styles -:>
 <style>
 *[class^=bse-] {
