@@ -95,7 +95,7 @@
 :>
 <:-.define make_multicheck; "options":{}, "field":{} -:>
       <:-.if field.save_name ne "none" and !options.readonly :>
-      <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="1" />
+      <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="<:= field.save_value ? field.save_value : 1 :>" />
       <:-.end if:>
       <:-.if !default.defined :>
         <:-.set default = [] :>
@@ -266,7 +266,7 @@
           <:-.elsif field.htmltype and field.htmltype eq "checkbox" :>
           <:-.set is_checked = request.method() eq 'post' ? cgi.param(name).defined : default :>
           <:-.if field.save_name ne "none" :>
-          <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="1" />
+          <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="<:= field.save_value ? field.save_value : 1  :>" />
           <:-.end if:>
           <input type="checkbox" name="<:= name :>" id="<:= id :>" value="<:= field.value ? field.value : 1 :>" class="<:= class :>"
             <:-= is_checked ? ' checked="checked"' : '' | raw :>
