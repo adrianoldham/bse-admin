@@ -362,9 +362,9 @@
           <:= field.units :>
         </span>
         <:-.end if :>
-        <:-.if options["delete"] and options.default :>
+        <:-.if options["delete"] and options.default and !options.disabled:>
         <span class="field-actions">
-          <input type="checkbox" name="delete_<:= name :>" value="1" id="delete_<:= name :>" />
+          <:-.call "input", "name":"delete_" _ name, "field":{ "htmltype":"checkbox" }, "options": { "default":0 } :>
           <label for="delete_<:= name :>">Delete</label>
         </span>
         <:-.end if :>
