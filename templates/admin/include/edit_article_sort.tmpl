@@ -1,6 +1,6 @@
-    <form method="post" action="<:adminurl reorder:>" data-object="Sort Order">
-      <input name="r" type="hidden" value="<:script:>?id=<:article id:>&amp;sort=1&amp;_t=<:cgi _t:>" />
-      <input type="hidden" name="<:cond [article parentid] stepparent parentid:>" value="<:article id:>" />
+    <form method="post" action="<:= cfg.admin_url("reorder"):>" data-object="Sort Order">
+      <input name="r" type="hidden" value="<:= cfg.admin_url("add", { "id":article.id, "sort":1, "_t":cgi.param("_t") }):>" />
+      <input type="hidden" name="<:= article.parentid ? "stepparent" : "parentid":>" value="<:= article.id:>" />
       <fieldset>
         <legend>Sort children</legend>
         <div>
@@ -19,6 +19,9 @@
                 <option value="summaryLength">&plus; Summary Length</option>
                 <option value="generator">&plus; Article Type</option>
                 <option value="template">&plus; Template</option>
+                <:-.if typename =~ "Catalog":>
+                <option value="retailPrice">&plus; Retail Price</option>
+                <:-.end if:>
               </optgroup>
               <optgroup label="Descending">
                 <option value="-title">&minus; Title Alphabetical</option>
@@ -31,6 +34,9 @@
                 <option value="-summaryLength">&minus; Summary Length</option>
                 <option value="-generator">&minus; Article Type</option>
                 <option value="-template">&minus; Template</option>
+                <:-.if typename =~ "Catalog":>
+                <option value="-retailPrice">&minus; Retail Price</option>
+                <:-.end if:>
               </optgroup>
             </select>
             <button class="button white small" onclick="plus(this); return false;" data-icon="add" data-icon-only="true">Add</button>
@@ -39,7 +45,7 @@
         </div>
       </fieldset>
       <p class="buttons">
-        <a href="<:script:>?id=<:article id:>&amp;_t=<:cgi _t:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+        <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":cgi.param("_t") }):>" accesskey="." title="AccessKey = ." class="button white">Done</a>
         <input type="submit" name="save" value="Update Sorting" accesskey="u" title="AccessKey = u"  class="button green" />
       </p>
     </form>
