@@ -1,7 +1,7 @@
       <:-.if custom.size :>
       <:-.set object = 0 :>
       <fieldset>
-        <legend><:= cfg.entry("article custom fields", "legend", "Custom") :></legend>
+        <legend><:= cfg.entry(typename _ " custom fields", "legend", "Custom") :></legend>
         <:-.for field in custom.list:>
         <div>
           <label for="<:= field.key :>">
