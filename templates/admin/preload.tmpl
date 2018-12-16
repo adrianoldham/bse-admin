@@ -44,7 +44,7 @@
           <:-.if !default.defined :>
           <:-.set default = "" :>
           <:-.end if :>
-          <:-.set class = options.class _ ' ' _ (errors and errors.$name ? ' error' : '') :>
+          <:-.set class = options.class _ (errors and errors.$name ? ' error' : '') :>
           <select name="<:= name :>" id="<:= name :>" class="<:= class :>"
             <:-= options.autofocus ? ' autofocus="autofocus"' : '' | raw :>
             <:-= options.required ? ' required="required"' : '' | raw :>
@@ -96,8 +96,10 @@
   readonly - true to make it readonly
 :>
 <:-.define make_multicheck; "options":{}, "field":{} -:>
-      <:-.if field.save_name ne "none" and !options.readonly :>
-      <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="<:= field.save_value ? field.save_value : 1 :>" />
+      <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
+      <:-.set field_save_value = field.save_value ? field.save_value : 1 :>
+      <:-.if field_save_name ne "none" and !options.readonly :>
+      <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
       <:-.end if:>
       <:-.if !default.defined :>
         <:-.set default = [] :>
@@ -218,7 +220,7 @@
   object - source for defaults in edit mode
 :>
 <:-.define input; "options":{}, "index":0 :>
-    <:-.set id = options.id or name :>
+    <:-.set element_id = options.id or name :>
     <:-.set class = options.class :>
     <:-.set is_file = field.htmltype eq "file" :>
     <:-.set default = options.default :>
@@ -254,7 +256,7 @@
     <:-.end if :>
 
           <:-.if field.htmltype and field.htmltype eq "textarea" :>
-          <textarea name="<:= name :>" id="<:= id :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>" class="<:= class :>"
+          <textarea name="<:= name :>" id="<:= element_id :>" rows="<:= field.height ? field.height : cfg.entry("forms", "textarea_rows", 10) :>" cols="<:= field.width ? field.width : cfg.entry("textarea_cols", 60) :>" class="<:= class :>"
             <:-= options.title ? ' title="' _ options.title _ '"' : '' | raw :>
             <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
             <:-= options.placeholder ? ' placeholder="' _ options.placeholder _ '"' : '' | raw :>
@@ -266,11 +268,14 @@
             <:-= default -:>
           </textarea>
           <:-.elsif field.htmltype and field.htmltype eq "checkbox" :>
+          <:-.set field_value = field.value ? field.value : 1 :>
+          <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
+          <:-.set field_save_value = field.save_value ? field.save_value : 1 :>
           <:-.set is_checked = request.method() eq 'post' ? cgi.param(name).defined : default :>
-          <:-.if field.save_name ne "none" :>
-          <input type="hidden" name="<:= field.save_name ? field.save_name : ('_save_' _ name ) :>" value="<:= field.save_value ? field.save_value : 1  :>" />
+          <:-.if field_save_name ne "none" :>
+          <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
           <:-.end if:>
-          <input type="checkbox" name="<:= name :>" id="<:= id :>" value="<:= field.value ? field.value : 1 :>" class="<:= class :>"
+          <input type="checkbox" name="<:= name :>" id="<:= element_id :>" value="<:= field_value :>" class="<:= class :>"
             <:-= is_checked ? ' checked="checked"' : '' | raw :>
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :>
@@ -301,7 +306,7 @@
             "options":options
           :>
           <:-.else :>
-          <input type="<:= field.htmltype or 'text' :>" name="<:= name :>" id="<:= id :>" value="<:= default :>" class="<:= class :>"
+          <input type="<:= field.htmltype or 'text' :>" name="<:= name :>" id="<:= element_id :>" value="<:= default :>" class="<:= class :>"
             <:-= field.width ? ' size="' _ field.width _ '"' : '' | raw :>
             <:-= field.maxlength ? ' maxlength="' _ field.maxlength _ '"' : '' | raw :>
             <:-= options.accesskey ? ' accesskey="' _ options.accesskey _ '"' : '' | raw :>
