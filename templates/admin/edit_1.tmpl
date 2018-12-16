@@ -6,6 +6,8 @@
 
 <:-.set referer = request.referer -:>
 <:-.set cgi_referer = cgi.param("referer") -:>
+<:-.set cgi_r = cgi.param("r") -:>
+<:-.set cgi_parentid = cgi.param("parentid") -:>
 
 <:-.if referer =~ cfg.admin_url("admin") -:>
 <:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
@@ -54,66 +56,71 @@
     This <:= typename:> is hidden, it will not be generated and it will not appear in menus or search results.
   </p>
   <:-.end if:>
-  <form action="<:script:>" method="post" enctype="multipart/form-data" data-object="<:= typename:>">
+  <:-.if article.is_expired:>
+  <p data-role="status" class="warning">
+    This <:= typename:> is expired, it will not be generated and it will not appear in menus or search results.
+  </p>
+  <:-.end if:>
+  <form action="<:= cfg.admin_url("add"):>" method="post" enctype="multipart/form-data" data-object="<:= typename:>">
     <input type="hidden" name="lastModified" value="<:= article.lastModified:>" />
     <input type="hidden" name="id" value="<:= article.id:>" />
     <input type="hidden" name="type" value="<:= typename:>" />
     <input type="hidden" name="r" value="
-    <:- switch -:>
 
     <:- # from anywhere: refresh to supplied r param -:>
-    <:- case Cgi r -:>
-    <:cgi r:>
-
-    <:- case New -:>
-        <:- switch -:>
+    <:-.if cgi_r -:>
+    <:= cgi_r :>
+    
+    <:-.elsif is_new -:>
 
         <:- # from nowhere: refresh to article admin on creation -:>
-        <:- case !Referer -:>
-        <:adminurl add:>
-
+        <:-.if !referer -:>
+        <:= cfg.admin_url("add"):>
+        
         <:- # from admin children: refresh to children admin on creation -:>
-        <:- case Match [referer] "kids" -:>
-        <:adminurl add id [cgi parentid] _t "kids" m [cat [typename article] " " Created]:>
-
+        <:-.elsif referer =~ "kids" -:>
+        <:= cfg.admin_url("add", { "id":cgi_parentid, "_t":"kids", "m":typename _ " Created" }):>
+        
         <:- # from admin tree: refresh to tree admin on creation -:>
-        <:- case Match [referer] "tree" -:>
-        <:adminurl add id [cgi parentid] _t "tree" m [cat [typename article] " " Created]:>
+        <:-.elsif referer =~ "tree" -:>
+        <:= cfg.admin_url("add", { "id":cgi_parentid, "_t":"tree", "m":typename _ " Created" }):>
 
         <:- # from admin: refresh to new article admin on creation -:>
-        <:- case Match [referer] [adminurl add] -:>
-        <:adminurl add m [cat [typename article] " " Created]:>
+        <:-.elsif referer =~ cfg.admin_url("add") -:>
+        <:= cfg.admin_url("add", { "m":typename _ " Created" }):>
 
         <:- # from preview with referer: refresh to top article preview on creation -:>
-        <:- case Cgi referer -:>
-        <:adminurl add id [cgi referer] preview 1:>
+        <:-.elsif referer -:>
+        <:= cfg.admin_url("add", { "id":cgi_referer, "preview":1 }):>
 
         <:- # from preview: refresh to new article preview on creation -:>
-        <:- case Match [referer] [adminurl admin] -:>
-        <:adminurl add preview 1:>
+        <:-.elsif referer =~ cfg.admin_url("admin") -:>
+        <:= cfg.admin_url("add", { "preview":1 }):>
 
-        <:- endswitch -:>
-    <:- case default -:>
-        <:- switch -:>
+        <:-.end if -:>
+    
+    <:-.else -:>
 
         <:- # from nowhere: refresh to article admin on save changes -:>
-        <:- case !Referer -:>
-        <:adminurl add id [article id]:>
+        <:-.if !referer -:>
+        <:= cfg.admin_url("add", { "id":article.id }):>
 
         <:- # from admin: refresh to article admin on save changes -:>
-        <:- case Match [referer] [adminurl add] -:>
-        <:adminurl add id [article id]:>
+        <:-.elsif referer =~ cfg.admin_url("add") -:>
+        <:= cfg.admin_url("add", { "id":article.id }):>
 
         <:- # from preview with referer: refresh to top article preview on save changes -:>
-        <:- case Cgi referer -:>
-        <:adminurl add id [cgi referer] preview 1:>
+        <:-.elsif cgi_referer -:>
+        <:= cfg.admin_url("add", { "id":cgi_referer, "preview":1 }):>
 
         <:- # from preview: refresh to article preview on save changes -:>
-        <:- case Match [referer] [adminurl admin] -:>
-        <:adminurl add id [article id] preview 1:>
+        <:-.elsif referer =~ cfg.admin_url("admin") -:>
+        <:= cfg.admin_url("add", { "id":article.id, "preview":1 }):>
+        
+        <:-.end if -:>
 
-        <:- endswitch -:>
-    <:- endswitch -:>
+    <:-.end if -:>
+
     " />
     <:csrfp admin_add_article hidden:>
     <:csrfp admin_save_article hidden:>
@@ -135,7 +142,7 @@
         </span>
       </div>
       <:-.end if:>
-      <:-.if article.generator =~ "Product":>
+      <:-.if typename eq "Product":>
       <div class="full">
         <label for="description">Description <:.call "error_img_n", "name":"description":></label>
         <span>
@@ -175,7 +182,7 @@
       </ul>
       <:-.end if:>
     </fieldset>
-    <:-.if article.generator =~ "Product":>
+    <:-.if typename eq "Product":>
     <fieldset>
       <legend>Pricing</legend>
       <div>
@@ -220,7 +227,7 @@
     <details>
       <summary>More attributes</summary>
       <:- include admin/include/article_cfg_custom.tmpl:>
-      <:-.if article.generator =~ "Product":>
+      <:-.if typename eq "Product":>
       <fieldset>
         <legend>Stock</legend>
         <div>
