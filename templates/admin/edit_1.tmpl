@@ -210,18 +210,20 @@
         </span>
       </div>
       <:-.end if:>
-      <:- if Price_tiers:>
-        <input type="hidden" name="save_pricing_tiers" value="1" />
-        <:- iterator begin price_tiers:>
-        <div>
-          <label for="tier_price_<:price_tier id:>"><:price_tier description:> <:cfg shop currency $:> <:error_img [cat "tier_price_" [price_tier id]]:></label>
-          <span>
-            <input type="text" name="tier_price_<:price_tier id:>" id="tier_price_<:price_tier id:>" value="<:ifEq [tier_price] "":><:oldi [cat "tier_price_" [price_tier id]] 0:><:or:><:oldi [cat "tier_price_" [price_tier id]] 0 money tier_price:><:eif:>" placeholder="0.00" <:ifFieldPerm retailPrice:><:or:>disabled="disabled" <:eif:>class="<:ifError_img [cat "tier_price_" [price_tier id]]:>error<:eif:>" />
-            <:help edit tier_price:>
-          </span>
-        </div>
-        <:- iterator end price_tiers:>
-      <:- eif Price_tiers:>
+      <:-.set price_tiers = [ bse.products.pricing_tiers ]:>
+      <:-.if price_tiers.size:>
+      <input type="hidden" name="save_pricing_tiers" value="1" />
+      <:-.set tier_prices = [ article.prices ].maphash("tier_id", "retailPrice") :>
+      <:-.for price_tier in price_tiers:>
+      <div>
+        <label for="<:= "tier_price_" _ price_tier.id:>"><:= price_tier.description _ " " _ cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"tier_price_" _ price_tier.id:></label>
+        <span>
+          <:.call "input", "name":"tier_price_" _ price_tier.id, "object":tier_prices, "field": { "type":"money", "maxlength":11 }, "options": { "default":tier_prices[price_tier.id], "placeholder":"0.00", "disabled":is_disabled("price_tier_" _ price_tier.id) } :>
+          <:help edit tier_price:>
+        </span>
+      </div>
+      <:-.end for:>
+      <:-.end if:>
     </fieldset>
     <:-.end if:>
     <details>
@@ -319,27 +321,25 @@
             <:help edit section:>
           </span>
         </div>
-        <:- if Cfgsection [concatenate level [article level] " menus"]:>
+        <:-.set menus_cfg_section = "level" _ article.level _ " menus":>
+        <:-.if cfg.entries(menus_cfg_section):>
+        <:-.set menu_list = [ cfg.orderCS(menus_cfg_section) ].map(@{k: { id: k, desc: cfg.entry(menus_cfg_section, k ) }}) :>
         <div>
-          <label for="menu">Menu <:error_img menu:></label>
+          <label for="menu">Menu <:.call "error_img_n", "name":"menu":></label>
           <span>
-            <select name="menu" id="menu"<:ifFieldPerm menu:><:or:> disabled="disabled"<:eif:>>
-              <:- iterator begin cfgsection [concatenate level [article level] " menus"] sort=key:>
-              <option value="<:cfgentry key:>"<:if Eq [old menu] [cfgentry key]:> selected="selected"<:eif Eq:>><:cfgentry value:></option>
-              <:- iterator end cfgsection:>
-            </select>
+            <:-.call "input", "name":"menu", "field": { "htmltype":"select", "select": { "values":menu_list, "id":"id", "label":"desc" } }, "default":article.menu, "options": { "disabled":is_disabled("menu") } :>
             <:help edit menu:>
           </span>
         </div>
-        <:- eif Cfgsection:>
+        <:-.end if:>
       </fieldset>
       <fieldset>
         <legend>Categorisation</legend>
+        <:-.set categories = [ bse.articles.categories ]:>
         <div>
-          <label for="category">Category <:error_img category:></label>
-          <span><:ifFieldPerm category:>
-            <:replace [category] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
-            <:replace [category] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
+          <label for="category">Category <:.call "error_img_n", "name":"category":></label>
+          <span class="field-input">
+            <:-.call "input", "name":"category", "field": { "htmltype":"select", "select": { "values":categories, "id":"id", "label":"name" } }, "default":article.category, "options": { "disabled":is_disabled("category") } :>
             <:help edit category:>
           </span>
         </div>
@@ -372,13 +372,24 @@
           </span>
         </div>
         <div>
-          <label for="force_dynamic">Page display <:error_img force_dynamic:></label>
+          <label for="force_dynamic">Page display <:.call "error_img_n", "name":"force_dynamic":></label>
           <span>
-            <input type="hidden" name="save_force_dynamic" value="1" />
-            <select name="force_dynamic" id="force_dynamic" <:ifFieldPerm force_dynamic:><:or:>disabled="disabled"<:eif:>>
-              <option value=""><:ifAnd [article cached_dynamic] [ifEq [article force_dynamic] "0"]:>Dynamic (Inherited)<:or:>Static<:eif:></option>
-              <option value="1"<:ifArticle force_dynamic:> selected="selected"<:eif:>>Dynamic</option>
-            </select>
+            <:.call "input",
+              "name":"force_dynamic",
+              "field":{
+                  "htmltype":"select",
+                  "default":article.force_dynamic,
+                  "select":{
+                      "values":[
+                          { "id":"0", "desc":( article.cached_dynamic and article.force_dynamic == 0 ? "Dynamic (Inherited)" : "Static" ) },
+                          { "id":"1", "desc":"Dynamic" }
+                      ],
+                      "id":"id",
+                      "label":"desc"
+            		}
+              },
+            	"options":{ "disabled":is_disabled("force_dynamic") }
+            -:>
             <:help edit force_dynamic:>
           </span>
         </div>
@@ -400,10 +411,25 @@
       <fieldset>
         <legend>Publication</legend>
         <div>
-          <label for="listed">List article <:error_img listed:></label>
-          <span><:if FieldPerm listed:>
-            <:replace [list listed] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":><:or FieldPerm:>
-            <:replace [list listed] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif FieldPerm:>
+          <label for="listed">List article <:.call "error_img_n", "name":"listed":></label>
+          <span>
+            <:.call "input",
+              "name":"listed",
+              "field":{
+                  "htmltype":"select",
+                  "default":article.listed,
+                  "select":{
+                      "values":[
+                          { "id":"1", "desc":"Yes" },
+                          { "id":"0", "desc":"No" },
+                          { "id":"2", "desc":"In Sections, but not menus" }
+                      ],
+                      "id":"id",
+                      "label":"desc"
+                  }
+              },
+              "options":{ "disabled":is_disabled("listed") }
+            -:>
             <:help edit listed:>
           </span>
         </div>
@@ -488,10 +514,10 @@
         </div>
         <:.call "edit_metadata" :>
       </fieldset>
-      <:-.if article.generator =~ "Article":><:include admin/include/article_custom.tmpl optional:>
-      <:-.elsif article.generator =~ "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
-      <:-.elsif article.generator =~ "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
-      <:-.elsif article.generator =~ "Product":><:include admin/include/product_custom.tmpl optional:>
+      <:-.if typename =~ "Article":><:include admin/include/article_custom.tmpl optional:>
+      <:-.elsif typename =~ "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
+      <:-.elsif typename =~ "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
+      <:-.elsif typename =~ "Product":><:include admin/include/product_custom.tmpl optional:>
       <:-.end if:>
       <:- if Or [ifMatch [article generator] "Product"] [ifMatch [article generator] "Seminar"]:>
       <:- if Subscriptions:>
@@ -540,34 +566,52 @@
           </span>
         </div>
       </fieldset>
+      <script type="text/javascript">
+          var form = document.forms[0];
+              
+          if (form.subscription_id.value != '-1') {
+              form.subscription_usage.disabled = false,
+              form.subscription_period.disabled = false
+          } else {
+              form.subscription_usage.disabled = true,
+              form.subscription_period.disabled = true
+          };
+      </script>
       <:- eif Subscriptions:>
       <:- eif Or:>
-      <:- if Cfg articles legacy_thumbimage:>
+      <:-.if cfg.entry("articles", "legacy_thumbimage"):>
       <fieldset>
         <legend>Thumbnail</legend>
-        <div>
-          <label for="thumbnail"><:ifArticle thumbImage:>Change image<:or:>Image<:eif:> <:error_img thumbnail:></label>
-          <span>
-            <input type="file" name="thumbnail" id="thumbnail"<:ifFieldPerm thumbnail:><:or:> disabled="disabled" <:eif:> />
-          </span>
-        </div>
-        <:- if Article thumbImage:>
+        <:.call "inlinefield", "name":"thumbnail", "field": { "name":"thumbImage", "description":(article.thumbImage ? "Change image" : "Image"), "htmltype":"file" }, "options": { "disabled":is_disabled("thumbnail") } :>
+        <:-.if article.thumbImage:>
         <div>
           <label>Original</label>
           <span>
-            <img src="<:cfg uri images:>/<:article thumbImage:>" width="<:article thumbWidth:>" height="<:article thumbHeight:>" />
+            <img src="<:= cfg.entry("uri", "images") _ "/" _ article.thumbImage:>" width="<:= article.thumbWidth:>" height="<:= article.thumbHeight:>" style="max-width: 100%; height: auto;" />
           </span>
           <span>
-            <:- if FieldPerm thumbnail:>
-            <a href="<:script:>?id=<:article id:>&amp;remove_thumb=1<:if Match [article generator] "Product":>&amp;retailPrice=<:money product retailPrice:>&amp;wholesalePrice=<:money product wholesalePrice:>&amp;gst=<:money product gst:><:or Match:><:eif Match:>&amp;flags=<:article flags:>&amp;save=1&amp;lastModified=<:article lastModified:>&amp;_csrfp=<:csrfp admin_save_article:>" data-action="Delete" data-object="Thumbnail" class="button red small">Delete</a>
-            <:- or FieldPerm:>
+            <:-.if request.user_can("edit_field_edit_thumbnail", article ):>
+            <:-.if typename eq /(Product|Seminar)/:>
+            <a href="<:= cfg.admin_url("add", { "id":article.id, "remove_thumb":1, "save":1, "lastModified":article.lastModified, "flags":article.flags, "_csrfp":request.get_csrf_token("admin_save_article"), "retailPrice":bse.number("money", article.retailPrice), "wholesalePrice":bse.number("money", article.wholesalePrice), "gst":bse.number("money", article.gst) }):>" data-action="Delete" data-object="Thumbnail" class="button red small">Delete</a>
+
+            <:-.else:>
+            <a href="<:= cfg.admin_url("add", { "id":article.id, "remove_thumb":1, "save":1, "lastModified":article.lastModified, "flags":article.flags, "_csrfp":request.get_csrf_token("admin_save_article") }):>" data-action="Delete" data-object="Thumbnail" class="button red small">Delete</a>
+            <:-.end if:>
+
+            <:-.else:>
             <a class="button red small disabled">Delete</a>
-            <:- eif FieldPerm:>
+            <:-.end if:>
           </span>
         </div>
-        <:- eif Article:>
+        <div>
+          <label>Size</label>
+          <span>
+            <:= article.thumbWidth:> &times; <:= article.thumbHeight:> px
+          </span>
+        </div>
+        <:-.end if:>
       </fieldset>
-      <:- eif Cfg:>
+      <:-.end if:>
       <:-.set images = [ article.images ]:>
       <:-.if images.size:>
       <fieldset>
