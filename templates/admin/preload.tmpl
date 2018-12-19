@@ -241,7 +241,7 @@
     <:-.elsif field.type and field.type eq "time" and default ne "" :>
       <:-.set default = bse.date(default =~ /:00$/ ? "%I:%M%p" : "%I:%M:%S%p", default).replace(/^0/, "").lower :>
     <:-.elsif field.type and field.type eq "money" and default ne "" :>
-      <:-.set default = bse.number("money", default ) :>
+      <:-.set default = bse.number("money_input", default ) :>
     <:-.end if :>
 
     <:-.if cgi.param(name).defined :>
