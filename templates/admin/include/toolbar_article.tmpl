@@ -23,6 +23,11 @@
             <:- if UserCan bse_edit_stepparent_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=stepp&amp;referer=1" accesskey="v" title="AccessKey = v">New Stepparent…</a></li>
             <:- eif UserCan:>
+            <:- if UserCan bse_edit_add_child:[parent id]:>
+            <:- if Or [ifMatch [parent generator] "Article"] [ifEq [parent id] -1]:>
+            <li><a href="<:script:>?parentid=<:parent id:>&amp;type=Article&amp;referer=1" accesskey="b" title="AccessKey = b">New Sibling…</a></li>
+            <:- eif Or:>
+            <:- eif UserCan:>
             <li class="divider"></li>
             <:- if UserCan bse_edit_images_add:article:>
             <li><a href="<:script:>?id=<:article id:>&amp;_t=imgupload&amp;referer=1" accesskey="i" title="AccessKey = i">New Image…</a></li>
