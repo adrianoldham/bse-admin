@@ -20,6 +20,10 @@ RewriteBase /
     #RewriteCond %{HTTP_REFERER} !^https?://www.example.com.au/.*$ [NC]
     #RewriteRule .*\.(jpe?g|gif|png|bmp|svgz?|eot|ttf|woff|css|js)$ - [F,NC]
 
+# Redirect all HTTP requests to HTTPS
+    #RewriteCond %{SERVER_PORT} !^443$
+    #RewriteRule ^/?(.*) https://www.example.com.au/$1 [R=303]
+
 # Redirect urls not requiring HTTPS to HTTP
     #RewriteCond %{SERVER_PORT} ^443$
     #RewriteCond %{REQUEST_URI} !^/?(images|css|js|webfonts|bse-admin)
