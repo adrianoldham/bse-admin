@@ -94,7 +94,7 @@
       <tbody>
         <:- iterator begin orders:>
         <tr>
-          <td><span class="indicator <:ifOrder filled:>green<:or:>gray<:eif:>"></span><:order id |%06d:></td>
+          <td><span class="indicator <:switch:><:case Order filled:>green<:case Order paidFor:>orange<:case default:>gray<:endswitch:>"></span><:order id |%06d:></td>
           <td><:date order orderDate:></td>
           <td><:order billFirstName:> <:order billLastName:></td>
           <td><:ifOrder userId:><:order userId:><:or:>-<:eif:></td>
