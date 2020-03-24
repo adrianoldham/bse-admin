@@ -228,7 +228,7 @@
     <:-.if !default.defined :>
       <:-.if object and not(is_file) :>
         <:-.set fname = field.name or options.name or name :>
-        <:-.set default = object.$fname :>
+        <:-.set default = object.$fname or field.type =~ "money" ? object.$fname : ''  :>
       <:-.elsif field.default :>
         <:-.set default = field.default :>
       <:-.else :>
