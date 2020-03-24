@@ -305,6 +305,24 @@
         </ul>
       </fieldset>
       <:- eif Dboptions:>
+      <:-.if cfg.entries("shop", "product options"):>
+      <fieldset>
+        <legend>Global Options</legend>
+        <div>
+          <label for="options">Options <:.call "error_img_n", "name":"options":></label>
+          <span>
+            <:.call "input", "name":"options", "field": { "maxlength":255 }, "options": { "placeholder":"comma separated", "disabled":is_disabled("options") } :>
+            <:help edit options:>
+          </span>
+        </div>
+        <div>
+          <label for="cfg_opts">Available</label>
+          <span>
+            <:alloptions:>
+          </span>
+        </div>
+      </fieldset>
+      <:-.end if:>
       <:-.end if:>
       <fieldset>
         <legend>Structure</legend>
