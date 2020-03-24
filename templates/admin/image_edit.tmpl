@@ -12,7 +12,7 @@
 <:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
 
 <:-.else -:>
-<:-.set done_url = cfg.admin_url("add", { "id": article.parentid }) -:>
+<:-.set done_url = cfg.admin_url("add", { "id":article.id, "_t":"img" }) -:>
 
 <:-.end if -:>
  
@@ -22,6 +22,20 @@
     <h1><:= pagetitle:></h1>
     <nav data-role="toolbar">
       <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"img" }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <:-.set images = [article.images] -:>
+      <:-.set images_size = images.size -:>
+      <:-.if images_size > 1 :>
+      <:-.for image in images -:>
+        <:-.if cgi.param("image_id") == image.id -:>
+          <:-.set next = loop.next ? loop.next : loop.first -:>
+          <:-.set prev = loop.prev ? loop.prev : loop.last -:>
+        <:-.end if -:>
+      <:-.end for -:>
+      <span data-role="controlgroup">
+        <a href="<:= cfg.admin_url2("add", "edit_image", { "id":article.id, "image_id":next.id }):>" accesskey="&lt;" title="Previous Image" data-icon="previous" data-icon-only="true" class="button">Previous Image</a>
+        <a href="<:= cfg.admin_url2("add", "edit_image", { "id":article.id, "image_id":prev.id }):>" accesskey="&gt;" title="Next Image"data-icon="next" data-icon-only="true" class="button">Next Image</a>
+      </span>
+      <:-.end if:>
       <:- if UserCan bse_edit_images_delete:article:>
       <a href="<:= cfg.admin_url("add", { "id":article.id, "removeimg_" _ eimage.id:1, _csrfp:request.get_csrf_token("admin_remove_image") }):>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Image" data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>
