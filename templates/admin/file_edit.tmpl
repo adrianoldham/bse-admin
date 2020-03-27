@@ -12,7 +12,7 @@
 <:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
 
 <:-.else -:>
-<:-.set done_url = cfg.admin_url("add", { "id": article.parentid }) -:>
+<:-.set done_url = cfg.admin_url("add", { "id":article.id, "_t":"file" }) -:>
 
 <:-.end if -:>
  
@@ -22,11 +22,25 @@
     <h1><:= pagetitle:></h1>
     <nav data-role="toolbar">
       <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"file" }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
-      <:- if UserCan bse_edit_files_delete:article:>
+      <:-.set files = [article.files] -:>
+      <:-.set files_size = files.size -:>
+      <:-.if files_size > 1 :>
+      <:-.for file in files -:>
+        <:-.if cgi.param("file_id") == file.id -:>
+          <:-.set next = loop.next ? loop.next : loop.first -:>
+          <:-.set prev = loop.prev ? loop.prev : loop.last -:>
+        <:-.end if -:>
+      <:-.end for -:>
+      <span data-role="controlgroup">
+        <a href="<:= cfg.admin_url2("add", "edit_file", { "id":article.id, "file_id":next.id }):>" accesskey="&lt;" title="Previous File" data-icon="previous" data-icon-only="true" class="button">Previous File</a>
+        <a href="<:= cfg.admin_url2("add", "edit_file", { "id":article.id, "file_id":prev.id }):>" accesskey="&gt;" title="Next File"data-icon="next" data-icon-only="true" class="button">Next File</a>
+      </span>
+      <:-.end if:>
+      <:-.if request.user_can("bse_edit_files_delete", article):>
       <a href="<:= cfg.admin_url2("add", "filedel", { "id":article.id, "file":file.id, "_csrfp":request.get_csrf_token("admin_remove_file") }):>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="File" data-icon="trash" class="button">Delete</a>
-      <:- or UserCan:>
+      <:-.else:>
       <a data-icon="trash" class="button disabled">Delete</a>
-      <:- eif UserCan:>
+      <:-.end if:>
     </nav>
   </header>
   <form action="<:= cfg.admin_url("add"):>" method="post" enctype="multipart/form-data" data-object="File">
