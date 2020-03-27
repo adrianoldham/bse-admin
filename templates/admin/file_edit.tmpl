@@ -106,7 +106,7 @@
         <:.call "field", "name":"contentType", "field": { "description":"Content type" }, "options": { "placeholder":"MIME format" } :>
         <:.call "field", "name":"download", "field": { "description":"Force download" } :>
         <:.call "field", "name":"hide_from_list" :>
-        <:-.if article.generator =~ "Product":>
+        <:-.if is_article and article.generator =~ "Product":>
         <:.call "field", "name":"forSale" :>
         <:-.end if:>
         <:.call "field", "name":"requireUser" :>
@@ -116,7 +116,7 @@
       <:-.if metas.size :>
       <fieldset>
         <legend>Metadata</legend>
-        <:.call "edit_metadata", "object":file :>
+        <:.call "edit_metadata", "object":file, "object_type":"file" :>
       </fieldset>
       <:-.end if:>
     </details>

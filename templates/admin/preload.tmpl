@@ -682,23 +682,30 @@ parameters:
 <:-.end define :>
 
 
-<:-.define edit_metadata; "object":article :>
-<:-.set metas = object ? [ object.metafields ] : [] :>
+<:-.define edit_metadata; "metas":0, "object":article, "object_type":"article" :>
+<:-.set metas = metas ? metas : object ? [ object.metafields ] : [] :>
 <:-.if metas.size :>
         <input type="hidden" name="_save_meta" value="1" />
 <:-.for meta in metas -:>
   <:-.set name = "meta_" _ meta.name -:>
+  <:-.set disabled = 
+                     object_type eq "file" ? not(request.user_can("bse_edit_files_save", article)) :
+                     object_type eq "article" ? is_disabled(name) :
+                     0
+  :>
   <:-.set metadata = object.meta_by_name(meta.name) -:>
   <:-.if meta.type eq 'image' -:>
     <:-.set default = object.meta_by_name(meta.display_name) -:>
     <:-.set default = default ? default.value_text : "" -:>
+    <:-.set title = "Filename: " _ default -:>
   <:-.else -:>
     <:-.set default = metadata ? metadata.value_text : "" -:>
+    <:-.set title = 0:>
   <:-.end if -:>
   <:-.if meta.ro :>
-        <:.call "inlinefieldro", "name":name, "field":meta.field, "options":{ "default":default, "disabled":is_disabled(name) } :>
+        <:.call "inlinefieldro", "name":name, "field":meta.field, "options":{ "default":default, "disabled":disabled, "title":title } :>
   <:-.else:>
-        <:.call "inlinefield", "name":name, "field":meta.field, "options":{ "default":default, "delete":1, "disabled":is_disabled(name) } :>
+        <:.call "inlinefield", "name":name, "field":meta.field, "options":{ "default":default, "delete":1, "disabled":disabled, "title":title } :>
   <:-.end if:>
 <:-.end for:>
 <:-.end if:>
