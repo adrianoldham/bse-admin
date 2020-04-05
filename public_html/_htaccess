@@ -26,13 +26,13 @@ RewriteBase /
 
 # Redirect urls not requiring HTTPS to HTTP
     #RewriteCond %{SERVER_PORT} ^443$
-    #RewriteCond %{REQUEST_URI} !^/?(images|css|js|webfonts|bse-admin)
-    #RewriteCond %{REQUEST_URI} !^/?[A-Za-z_-]+\/(user|nuser|shop|fmail|admin)
+    #RewriteCond %{REQUEST_URI} !^/?(images|css|js|webfonts|bse-admin) [NC]
+    #RewriteCond %{REQUEST_URI} !^/?[A-Za-z_-]+\/(user|nuser|shop|fmail|admin) [NC]
     #RewriteRule ^/?(.*) http://www.example.com.au/$1 [R=301]
 
 # Redirect urls requiring HTTPS from HTTP
     #RewriteCond %{SERVER_PORT} ^80$
-    #RewriteCond %{REQUEST_URI} ^/?[A-Za-z_-]+\/(user|nuser|shop)
+    #RewriteCond %{REQUEST_URI} ^/?[A-Za-z_-]+\/(user|nuser|shop) [NC]
     #RewriteRule ^/?(.*) https://www.example.com.au/$1 [R=301]
 
 # Map standard static URLs to dynamic
@@ -43,7 +43,7 @@ RewriteBase /
     #RewriteRule ^/?members/?(index\.html)?$ /cgi-bin/page.pl?page=7 [QSA,NC]
 
 # Redirect legacy static URLs to dynamic
-    #RewriteRule ^/?(?:a|shop|members)/(?:shop)?([0-9]+)\.html /cgi-bin/page.pl?page=$1 [R=301]
+    #RewriteRule ^/?(?:a|shop|members)/(?:shop)?([0-9]+)\.html /cgi-bin/page.pl?page=$1 [R=301,NC]
     #RewriteRule site\.rdf$ /cgi-bin/page.pl?page=2
 
 # Special case aliases
@@ -56,8 +56,8 @@ RewriteBase /
     RewriteRule ^/?tellafriend/([A-Za-z0-9_-]+)$ /cgi-bin/nuser.pl/tellafriend?page=$1 [QSA,NC]
 
 # linkAlias & Alias Recursion
-    RewriteCond %{REQUEST_URI} !^/?(images|css|js|admin|help|shop|members|bse-admin)
-    RewriteCond %{REQUEST_URI} !^/?(wishlist|affiliate|tellafriend|download|video|form|stats)
+    RewriteCond %{REQUEST_URI} !^/?(images|css|js|admin|help|shop|members|bse-admin)/ [NC]
+    RewriteCond %{REQUEST_URI} !^/?(wishlist|affiliate|tellafriend|download|video|form|stats)/ [NC]
     #RewriteRule ^/?([A-Za-z0-9_-]+)/?([A-Za-z0-9_-]+/?)?$ /cgi-bin/page.pl/$1 [QSA,NC]
     RewriteRule ^/?([A-Za-z0-9_/-]+)$ /cgi-bin/page.pl/$1 [QSA,NC]
 
