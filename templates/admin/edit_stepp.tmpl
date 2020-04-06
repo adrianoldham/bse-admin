@@ -60,21 +60,21 @@
     <:- if Eq [stepparent parentId] [cgi stepparent]:>
     <fieldset>
       <legend>Properties</legend>
-      <div>
-        <label for="stepparent">Article <:error_img stepparent:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="stepparent">Article <:error_img stepparent:></label>
+        <span class="field-input">
           <input type="text" name="stepparent" value="<:stepparent_targ title:>" readonly="readonly" />
         </span>
       </div>
-      <div>
-        <label for="release">Release <:error_img release:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="release">Release <:error_img release:></label>
+        <span class="field-input">
           <input type="text" name="release_<:stepparent parentId:>" id="release" value="<:date "%d/%m/%Y" stepparent release:>" placeholder="DD/MM/YYYY" />
         </span>
       </div>
-      <div>
-        <label for="expire">Expire <:error_img expire:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="expire">Expire <:error_img expire:></label>
+        <span class="field-input">
           <input type="text" name="expire_<:stepparent parentId:>" id="expire" value="<:ifMatch [stepparent expire] "^[29]999-12-31":><:or:><:date "%d/%m/%Y" stepparent expire:><:eif:>" placeholder="DD/MM/YYYY" />
         </span>
       </div>
@@ -90,9 +90,9 @@
     <:- or Cgi:>
     <fieldset>
       <legend>Properties</legend>
-      <div>
-        <label for="stepparent">Articles <span class="required">*</span> <:error_img stepparent:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="stepparent">Articles <span class="required">*</span> <:error_img stepparent:></label>
+        <span class="field-input">
           <:- if StepparentPossibles:>
           <:replace [stepparent_possibles] "name=\"([a-z A-Z _]+)\">" "name=\"$1\" id=\"$1\" required=\"required\"><option>Select a stepparent</option>":>
           <:- or StepparentPossibles:>
@@ -102,15 +102,15 @@
           <:- eif StepparentPossibles:>
         </span>
       </div>
-      <div>
-        <label for="release">Release <:error_img release:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="release">Release <:error_img release:></label>
+        <span class="field-input">
           <input type="text" name="release" id="release" value="<:today "%d/%m/%Y":>" placeholder="DD/MM/YYYY" />
         </span>
       </div>
-      <div>
-        <label for="expire">Expire <:error_img expire:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="expire">Expire <:error_img expire:></label>
+        <span class="field-input">
           <input type="text" name="expire" id="expire" value="" class="<:ifError_img expire:>error<:eif:>" placeholder="DD/MM/YYYY" />
         </span>
       </div>

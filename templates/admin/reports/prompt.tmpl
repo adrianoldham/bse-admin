@@ -9,17 +9,17 @@
     <fieldset>
       <legend><:report name:></legend>
       <:- iterator begin fields:>
-      <div>
-        <label for="p<:arithmetic [field_index] + 1:>"><:field label:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="p<:arithmetic [field_index] + 1:>"><:field label:></label>
+        <span class="field-input">
           <:replace [field html] "name=\"([a-z A-Z 0-9 _]+)\"" "name=\"$1\" id=\"$1\"":>
         </span>
       </div>
       <:- iterator end fields:>
       <:- if Sort_count:>
-      <div>
-        <label for="sort">Sort order</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="sort">Sort order</label>
+        <span class="field-input">
           <select name="sort" id="sort">
             <:- iterator begin sorts:>
             <option value="<:sort id:>"><:sort label:></option>

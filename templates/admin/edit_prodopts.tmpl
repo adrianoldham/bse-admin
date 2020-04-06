@@ -27,23 +27,23 @@
     <input type="hidden" name="newvaluecount" id="newvaluecount" value="<:ifCgi newvaluecount:><:cgi newvaluecount:><:or:>0<:eif:>" />
     <fieldset>
       <legend>Option</legend>
-      <div>
-        <label>Name <span class="required">*</span> <:error_img name:></label>
-        <span>
+      <div class="field">
+        <label class="field-label">Name <span class="required">*</span> <:error_img name:></label>
+        <span class="field-input">
           <input type="text" name="name" value="<:old name:>" required="required" autofocus="autofocus" class="<:ifError_img name:>error<:eif:>" />
         </span>
       </div>
-      <!--<div>
-        <label for="enabled">Enabled <:error_img enabled:></label>
-        <span>
+      <!--<div class="field">
+        <label class="field-label" for="enabled">Enabled <:error_img enabled:></label>
+        <span class="field-input">
           <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOld enabled:>checked="checked" <:eif:>/>
           <input type="hidden" name="save_enabled" value="1" />
           <:help edit enabled:>
         </span>
       </div>
-      <div>
-        <label for="type">HTML Type <:error_img type:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="type">HTML Type <:error_img type:></label>
+        <span class="field-input">
           <select name="type" id="type">
             <option value="select"<:ifMatch [old type] "select":> selected="selected"<:eif:>>Select Popup</option>
             <option value="radio"<:ifMatch [old type] "radio":> selected="selected"<:eif:>>Radio Buttons</option>
@@ -54,23 +54,23 @@
     </fieldset>
     <fieldset id="option_values">
       <legend>Values</legend>
-      <div>
-        <label for="value1">#1 <span class="required">*</span> <:error_img value1:> <!--<input type="radio" name="default_value" value="value1" <:ifEq [old default_value] "value1":>checked="checked"<:eif:> />--></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="value1">#1 <span class="required">*</span> <:error_img value1:> <!--<input type="radio" name="default_value" value="value1" <:ifEq [old default_value] "value1":>checked="checked"<:eif:> />--></label>
+        <span class="field-input">
           <input type="text" name="value1" id="value1" value="<:old value1:>" required="required" class="<:ifError_img value1:>error<:eif:>" />
         </span>
       </div>
-      <div>
-        <label for="value2">#2 <span class="required">*</span> <:error_img value2:> <!--<input type="radio" name="default_value" value="value2" <:ifEq [old default_value] "value2":>checked="checked"<:eif:> />--></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="value2">#2 <span class="required">*</span> <:error_img value2:> <!--<input type="radio" name="default_value" value="value2" <:ifEq [old default_value] "value2":>checked="checked"<:eif:> />--></label>
+        <span class="field-input">
           <input type="text" name="value2" id="value2" value="<:old value2:>" required="required" class="<:ifError_img value2:>error<:eif:>" />
         </span>
       </div>
       <:- if Cgi newvaluecount:>
       <:- iterator begin repeats [cgi newvaluecount]:>
-      <div>
-        <label for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
+        <span class="field-input">
           <input type="text" name="value<:repeat value:>" value="<:= cgi.param("newvalue" _ "repeat value".evaltag ):>" data-new="true" required="required" class="<:ifError_img [cat newvalue [repeat value]]:>error<:eif:>" />
         </span>
         <span class="field-actions">
@@ -131,7 +131,7 @@
 
         var div = new Element("div", { "class":"field" });
 
-        var label = new Element("label", { "for":name }).update("#" + parseInt(oldValueCount + newValueCount));
+        var label = new Element("label", { "for":name, "class":"field-label" }).update("#" + parseInt(oldValueCount + newValueCount));
         div.appendChild(label);
 
         label.appendChild(requiredIndicator.clone(true));

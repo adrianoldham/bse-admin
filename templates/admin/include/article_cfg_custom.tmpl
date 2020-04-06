@@ -2,13 +2,13 @@
       <fieldset>
         <legend><:= cfg.entry(typename _ " custom fields", "legend", "Custom") :></legend>
         <:-.for field in custom.list:>
-        <div>
-          <label for="<:= field.key :>">
+        <div class="field">
+          <label class="field-label" for="<:= field.key :>">
             <:= field.value.description :>
             <:-.call "required_indicator", "required":field.value.required :>
             <:-.call "error_img", "name":field.key -:>
           </label>
-          <span>
+          <span class="field-input">
             <:-.set default = cgi.param(field.key) ? cgi.param(field.key) : ifnew ? field.value.default : article.get(field.key) :>
             <:-.if field.value.htmltype eq "select" :>
             <:-# the field config code uses an older mechanism, translate :>

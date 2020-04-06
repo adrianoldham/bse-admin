@@ -8,23 +8,23 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Selection</legend>
-      <div>
-        <label for="min">Start user <span class="required">*</span> <!--:error_img min:--></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="min">Start user <span class="required">*</span> <!--:error_img min:--></label>
+        <span class="field-input">
           <input type="text" name="min" id="min" required="required" autofocus="autofocus" class="<:ifError_img min:>error<:eif:>" />
           <:help userlist min:>
         </span>
       </div>
-      <div>
-        <label for="max">Finish user <!--:error_img max:--></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="max">Finish user <!--:error_img max:--></label>
+        <span class="field-input">
           <input type="text" name="max" id="max" class="<:ifError_img max:>error<:eif:>" />
           <:help userlist max:>
         </span>
       </div>
-      <div>
-        <label for="field">Field <!--:error_img field:--></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="field">Field <!--:error_img field:--></label>
+        <span class="field-input">
           <select name="field" id="field" class="<:ifError_img field:>error<:eif:>">
             <option value="id">Id</option>
 	        <option value="userId"><:cfg "site users" display_userId "Username":></option>

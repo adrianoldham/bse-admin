@@ -9,16 +9,16 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Resource</legend>
-      <div>
-        <label for="file">File <span class="required">*</span> <:error_img file:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="file">File <span class="required">*</span> <:error_img file:></label>
+        <span class="field-input">
           <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" required="required" autofocus="autofocus" class="<:ifError_img file:>error<:eif:>" />
           <:help editsiteuser file:>
         </span>
       </div>
-      <div>
-        <label for="category">Category <:error_img category:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="category">Category <:error_img category:></label>
+        <span class="field-input">
           <:replace [userfile_category] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
           <:help editsiteuser category:>
         </span>
@@ -28,16 +28,16 @@
         <summary>More attributes</summary>
         <fieldset>
         <legend>Content</legend>
-         <div>
-          <label for="title">Description <:error_img title:></label>
-          <span>
+         <div class="field">
+          <label class="field-label" for="title">Description <:error_img title:></label>
+          <span class="field-input">
             <input type="text" name="title" id="title" value="<:old title:>" class="<:ifError_img title:>error<:eif:>" />
             <:help editsiteuser title:>
           </span>
         </div>
-        <div>
-          <label for="body">Notes <:error_img body:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="body">Notes <:error_img body:></label>
+          <span class="field-input">
             <textarea name="body" id="body" class="<:ifError_img body:>error<:eif:>"><:old body:></textarea>
             <:help editsiteuser body:>
           </span>
@@ -45,16 +45,16 @@
       </fieldset>
       <fieldset>
         <legend>Last Modified</legend>
-        <div>
-          <label for="modwhen_date">Date <:error_img modwhen_date:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="modwhen_date">Date <:error_img modwhen_date:></label>
+          <span class="field-input">
             <input type="text" name="modwhen_date" id="modwhen_date" value="<:old modwhen_date:>" placeholder="DD/MM/YYYY" class="<:ifError_img modwhen_date:>error<:eif:>" />
             <:help editsiteuser modwhen_date:>
           </span>
         </div>
-         <div>
-          <label for="modwhen_time">Time <:error_img modwhen_time:></label>
-          <span>
+         <div class="field">
+          <label class="field-label" for="modwhen_time">Time <:error_img modwhen_time:></label>
+          <span class="field-input">
             <input type="text" name="modwhen_time" id="modwhen_time" value="<:old modwhen_time:>" placeholder="HH:MM:SS" class="<:ifError_img modwhen_time:>error<:eif:>" />
             <:help editsiteuser modwhen_time:>
           </span>
@@ -62,16 +62,16 @@
       </fieldset>
       <fieldset>
         <legend>Properties</legend>
-        <div>
-          <label for="content_type">Content type <:error_img content_type:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="content_type">Content type <:error_img content_type:></label>
+          <span class="field-input">
             <input type="text" name="content_type" id="content_type" value="<:old content_type:>" placeholder="MIME format" class="<:ifError_img content_type:>error<:eif:>" />
             <:help editsiteuser content_type:>
           </span>
         </div>
-        <div>
-          <label for="download">Force download <:error_img download:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="download">Force download <:error_img download:></label>
+          <span class="field-input">
             <input type="checkbox" name="download" id="download" value="1" <:ifOld download:>checked="checked" <:eif:>/>
             <:help editsiteuser download:>
           </span>

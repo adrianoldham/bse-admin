@@ -7,23 +7,23 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Account</legend>
-      <div>
-        <label for="logon">Username <span class="required">*</span> <:error_img logon:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="logon">Username <span class="required">*</span> <:error_img logon:></label>
+        <span class="field-input">
           <input type="text" name="logon" id="logon" value="<:old logon:>" required="required" autofocus="autofocus" class="<:ifError_img logon:>error<:eif:>" />
           <:help adduser logon:>
         </span>
       </div>
-      <div>
-        <label for="password">Password <span class="required">*</span> <:error_img password:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="password">Password <span class="required">*</span> <:error_img password:></label>
+        <span class="field-input">
           <input type="password" name="password" id="password" value="<:old password:>" required="required" class="<:ifError_img password:>error<:eif:>" />
           <:help adduser password:>
         </span>
       </div>
-      <div>
-        <label for="confirm">Confirm Password <span class="required">*</span> <:error_img confirm:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="confirm">Confirm Password <span class="required">*</span> <:error_img confirm:></label>
+        <span class="field-input">
           <input type="password" name="confirm" id="confirm" value="<:old confirm:>" required="required" class="<:ifError_img confirm:>error<:eif:>" />
           <:help adduser confirm:>
         </span>
@@ -31,9 +31,9 @@
     </fieldset>
     <fieldset>
       <legend>Name</legend>
-      <div>
-        <label for="name">Full Name <:error_img name:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="name">Full Name <:error_img name:></label>
+        <span class="field-input">
           <input type="text" name="name" id="name" value="<:old name:>" class="<:ifError_img name:>error<:eif:>" />
           <:help adduser name:>
         </span>

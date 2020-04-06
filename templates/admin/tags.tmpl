@@ -27,13 +27,13 @@
       <:- ifCgi showarts:>
       <input type="hidden" name="showarts" value="1" />
       <:- eif:>
-      <div>
-        <label for="cat">Filter category</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="cat">Filter category</label>
+        <span class="field-input">
           <input type="text" name="cat" id="cat" value="<:cgi cat:>" class="<:ifError_img cat:>error<:eif:>" />
         </span>
       </div>
-      <ul>
+      <ul class="field-list">
         <li>
           <input type="checkbox" name="nocat" id="nocat" <:ifCgi nocat:>checked="checked" <:eif:>/>
           <label for="nocat">Uncategorized only</label>
@@ -48,8 +48,8 @@
   <:- iterator begin systags:>
   <form action="<:script:>#tag_<:systag id:>" method="post" data-object="Tag">
     <fieldset>
-      <div id="tag_<:systag id:>" class="field">
-        <label for="systag_<:systag_number:>">Tag #<:systag_number:> <:ifEq [cgi tag_id] [systag id]:><:error_img name:><:eif:></label>
+      <div class="field" id="tag_<:systag id:>">
+        <label class="field-label" for="systag_<:systag_number:>">Tag #<:systag_number:> <:ifEq [cgi tag_id] [systag id]:><:error_img name:><:eif:></label>
         <span class="field-input">
           <input type="hidden" name="id" value="-1" />
           <input type="hidden" name="tag_id" value="<:systag id:>" />

@@ -8,9 +8,9 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>User</legend>
-      <div>
-        <label for="userId"><:cfg "site users" display_userid "Username":> <span class="required">*</span></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="userId"><:cfg "site users" display_userid "Username":> <span class="required">*</span></label>
+        <span class="field-input">
           <input type="text" name="userId" id="userId" value="<:old userId:>" required="required" autofocus="autofocus" />
           <:help siteuser userId:>
         </span>

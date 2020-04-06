@@ -41,23 +41,23 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Subscription</legend>
-      <div>
-        <label for="title">Title <span class="required">*</span> <:error_img title:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="title">Title <span class="required">*</span> <:error_img title:></label>
+        <span class="field-input">
           <input type="text" name="title" id="title" value="<:old title subscription title:>" required="required" class="<:ifError_img title:>error<:eif:>" />
           <:help addsubscr title:>
         </span>
       </div>
-      <div>
-        <label for="text_id">Name <span class="required">*</span> <:error_img text_id:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="text_id">Name <span class="required">*</span> <:error_img text_id:></label>
+        <span class="field-input">
           <input type="text" name="text_id" id="text_id" value="<:old text_id subscription text_id:>" maxlength="20" required="required" class="<:ifError_img text_id:>error<:eif:>" />
           <:help addsubscr text_id:>
         </span>
       </div>
-      <div>
-        <label for="max_lapsed">Max Lapsed <span class="required">*</span> <:error_img max_lapsed:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="max_lapsed">Max Lapsed <span class="required">*</span> <:error_img max_lapsed:></label>
+        <span class="field-input">
           <input type="text" name="max_lapsed" id="max_lapsed" value="<:old max_lapsed subscription max_lapsed:>" required="required" placeholder="days" class="<:ifError_img max_lapsed:>error<:eif:>" />
           <:help addsubscr max_lapsed:>
         </span>
@@ -67,9 +67,9 @@
       <summary>More attributes</summary>
       <fieldset>
         <legend>Content</legend>
-        <div class="full">
-          <label for="description">Description <:error_img description:></label>
-          <span>
+        <div class="field full">
+          <label class="field-label" for="description">Description <:error_img description:></label>
+          <span class="field-input">
             <textarea name="description" id="description" class="<:ifError_img description:>error<:eif:>"><:old description subscription description:></textarea>
             <:help addsubscr description:>
           </span>

@@ -45,9 +45,9 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Group</legend>
-      <div>
-        <label for="name">Name <span class="required">*</span> <:error_img name:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="name">Name <span class="required">*</span> <:error_img name:></label>
+        <span class="field-input">
           <input type="text" name="name" id="name" value="<:old name group name:>" required="required" class="<:ifError_img name:>error<:eif:>"<:if!Match [group id] ^\d:> readonly="readonly"<:eif:> />
           <:help editsiteuser name:>
         </span>

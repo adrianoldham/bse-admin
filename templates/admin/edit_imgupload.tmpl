@@ -14,16 +14,16 @@
     <input type="hidden" name="r" value="<:switch:><:case Cgi r:><:cgi r:><:case And [cgi referer] [referer]:><:replace [referer] "&amp;referer=[0-9]+":><:case default:><:script:>?id=<:article id:><:endswitch:>" />
     <fieldset>
       <legend>Resource</legend>
-      <div>
-        <label for="image">Image <span class="required">*</span> <:error_img image:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="image">Image <span class="required">*</span> <:error_img image:></label>
+        <span class="field-input">
           <input type="file" name="image" id="image" accesskey="f" title="AccessKey = f" required="required" autofocus="autofocus" class="<:ifError_img image:>error<:eif:>" />
           <:help image image:>
         </span>
       </div>
-      <div>
-        <label for="name">Name <:error_img name:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="name">Name <:error_img name:></label>
+        <span class="field-input">
           <input type="text" name="name" id="name" value="<:old name:>" class="<:ifError_img name:>error<:eif:>" />
           <:help image name:>
         </span>
@@ -33,23 +33,23 @@
       <summary>More attributes</summary>
       <fieldset>
         <legend>Properties</legend>
-        <div>
-          <label for="alt">Alt <:error_img altIn:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="alt">Alt <:error_img altIn:></label>
+          <span class="field-input">
             <input type="text" name="altIn" id="alt" value="<:old altIn:>" class="<:ifError_img altIn:>error<:eif:>" />
             <:help image alt:>
           </span>
         </div>
-        <div>
-          <label for="url">URL <:error_img url:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="url">URL <:error_img url:></label>
+          <span class="field-input">
             <input type="text" name="url" id="url" value="<:old url:>" class="<:ifError_img url:>error<:eif:>" />
             <:help image url:>
           </span>
         </div>
-        <div>
-          <label for="storage">Storage <:error_img storage:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="storage">Storage <:error_img storage:></label>
+          <span class="field-input">
             <select name="storage" id="storage">
               <option value="">(Auto)</option>
               <:- iterator begin image_stores:>
@@ -69,7 +69,7 @@
         <:-.end if :>
         <:-.for tag in tags :>
         <div class="field">
-          <label for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
+          <label class="field-label" for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
           <span class="field-input">
             <input type="text" name="tags" id="tag_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags", "index":loop.index :>"/>
           </span>

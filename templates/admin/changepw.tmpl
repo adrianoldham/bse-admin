@@ -7,23 +7,23 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Account</legend>
-      <div>
-        <label for="oldpassword">Old password <span class="required">*</span> <:error_img oldpassword:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="oldpassword">Old password <span class="required">*</span> <:error_img oldpassword:></label>
+        <span class="field-input">
           <input type="password" name="oldpassword" id="oldpassword" value="<:old oldpassword:>" required="required" autofocus="autofocus" class="<:ifError_img oldpassword:>error<:eif:>" />
           <:help changepw oldpassword:>
         </span>
       </div>
-      <div>
-        <label for="newpassword">New password <span class="required">*</span> <:error_img newpassword:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="newpassword">New password <span class="required">*</span> <:error_img newpassword:></label>
+        <span class="field-input">
           <input type="password" name="newpassword" id="newpassword" value="<:old newpassword:>" required="required" class="<:ifError_img newpassword:>error<:eif:>" />
           <:help changepw newpassword:>
         </span>
       </div>
-      <div>
-        <label for="confirm">Confirm password <span class="required">*</span> <:error_img confirm:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="confirm">Confirm password <span class="required">*</span> <:error_img confirm:></label>
+        <span class="field-input">
           <input type="password" name="confirm" id="confirm" value="<:old confirm:>" required="required" class="<:ifError_img confirm:>error<:eif:>" />
           <:help changepw confirm:>
         </span>

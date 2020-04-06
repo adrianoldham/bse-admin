@@ -8,21 +8,21 @@
     <fieldset>
       <legend>Filter downloads</legend>
       <:page_argsh from to:>
-      <div>
-        <label for="from">From date</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="from">From date</label>
+        <span class="field-input">
           <input type="text" name="from" id="from" value="<:cgi from:>" />
         </span>
       </div>
-      <div>
-        <label for="to">To date</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="to">To date</label>
+        <span class="field-input">
           <input type="text" name="to" id="to" value="<:cgi to:>" />
         </span>
       </div>
-      <div>
-        <label for="pp">Per page</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="pp">Per page</label>
+        <span class="field-input">
           <select name="pp" id="pp">
             <option value="-1"<:ifEq [fileaccesses_perpage] "-1":> selected="selected"<:eif:>>All downloads</option>
             <option value="1000"<:ifEq [fileaccesses_perpage] "1000":> selected="selected"<:eif:>>1000</option>
@@ -37,36 +37,36 @@
         </span>
       </div>
       <:- if Owner:>
-      <div>
-        <label>Owner</label>
-        <span>
+      <div class="field">
+        <label class="field-label">Owner</label>
+        <span class="field-input">
           <a href="<:script:>?id=<:owner id:>&amp;_t=files&amp;<:ifEq [owner_type] G:>a_editgroup=1<:or:>a_edit=1<:eif:>"><:owner_desc:></a>
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args owner_id owner_type:>">(Remove)</a>-->
         </span>
       </div>
       <:- eif Owner:>
       <:- if Siteuser:>
-      <div>
-        <label>User</label>
-        <span>
+      <div class="field">
+        <label class="field-label">User</label>
+        <span class="field-input">
           <a href="<:script:>?a_edit=1&amp;id=<:siteuser id:>"><:siteuser userId:></a>
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args siteuser_id:>">(Remove)</a>-->
         </span>
       </div>
       <:- eif Siteuser:>
       <:- if File:>
-      <div>
-        <label>File</label>
-        <span>
+      <div class="field">
+        <label class="field-label">File</label>
+        <span class="field-input">
           <a href="<:script:>?<:ifEq [file owner_type] U:>a_edituserfile<:or:>a_editgroupfile<:eif:>=1&amp;id=<:file owner_id:>&amp;file_id=<:file id:>"><:file display_name:></a>
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args file_id:>">(Remove)</a>-->
         </span>
       </div>
       <:- eif File:>
       <:- if Category:>
-      <div>
-        <label>Category</label>
-        <span>
+      <div class="field">
+        <label class="field-label">Category</label>
+        <span class="field-input">
           <:category name:>
           <!--<a href="<:script:>?a_fileaccesslog=1&amp;<:page_args category:>">(Remove)</a>-->
         </span>

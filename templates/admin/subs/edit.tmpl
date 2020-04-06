@@ -48,30 +48,30 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Content</legend>
-      <div>
-        <label for="name">Name <span class="required">*</span> <:ifError name:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error name:>" /><:eif:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="name">Name <span class="required">*</span> <:ifError name:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error name:>" /><:eif:></label>
+        <span class="field-input">
           <input type="text" name="name" id="name" value="<:old name:>" maxlength="255" required="required" <:ifNew:>autofocus="autofocus" <:eif:> class="<:ifError name:>error<:eif:>" />
           <:help subs name:>
         </span>
       </div>
-      <div class="full">
-        <label for="title">Subject <span class="required">*</span> <:ifError title:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error title:>" /><:eif:></label>
-        <span>
+      <div class="field full">
+        <label class="field-label" for="title">Subject <span class="required">*</span> <:ifError title:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error title:>" /><:eif:></label>
+        <span class="field-input">
           <input type="text" name="title" id="title" value="<:old title:>" maxlength="255" required="required" class="<:ifError title:>error<:eif:>" />
           <:help subs title:>
         </span>
       </div>
-      <div class="full">
-        <label for="description">Description <span class="required">*</span> <:ifError description:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error description:>" /><:eif:></label>
-        <span>
+      <div class="field full">
+        <label class="field-label" for="description">Description <span class="required">*</span> <:ifError description:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error description:>" /><:eif:></label>
+        <span class="field-input">
           <textarea name="description" id="description" class="<:ifError description:>error<:eif:>" required="required"><:old description:></textarea>
           <:help subs description:>
         </span>
       </div>
-      <div>
-        <label for="frequency">Frequency <span class="required">*</span> <:ifError frequency:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error frequency:>" /><:eif:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="frequency">Frequency <span class="required">*</span> <:ifError frequency:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error frequency:>" /><:eif:></label>
+        <span class="field-input">
           <input type="text" name="frequency" id="frequency" value="<:old frequency:>" required="required" class="<:ifError frequency:>error<:eif:>" />
           <:help subs frequency:>
         </span>
@@ -90,16 +90,16 @@
       <summary>More attributes</summary>
       <fieldset>
         <legend>Presentation</legend>
-        <div>
-          <label for="html_template">HTML Template <:ifError html_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error html_template:>" /><:eif:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="html_template">HTML Template <:ifError html_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error html_template:>" /><:eif:></label>
+          <span class="field-input">
             <:replace [template html_template htmlemail 1] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
             <:help subs html_template:>
           </span>
         </div>
-        <div>
-          <label for="text_template">Text Template <:ifError text_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error text_template:>" /><:eif:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="text_template">Text Template <:ifError text_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error text_template:>" /><:eif:></label>
+          <span class="field-input">
             <:replace [template text_template textemail] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
             <:help subs text_template:>
           </span>
@@ -107,9 +107,9 @@
       </fieldset>      
       <fieldset>
         <legend>Publication</legend>
-        <div>
-          <label for="visible">Publically listed <:ifError visible:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error visible:>" /><:eif:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="visible">Publically listed <:ifError visible:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error visible:>" /><:eif:></label>
+          <span class="field-input">
             <input type="checkbox" name="visible" id="visible" value="1"<:ifOld visible:> checked="checked"<:eif:> />
             <:help edit visible:>
           </span>
@@ -117,29 +117,29 @@
       </fieldset>
       <fieldset>
         <legend>Archiving</legend>
-        <div>
-          <label for="archive">Enable archive <:ifError archive:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error archive:>" /><:eif:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="archive">Enable archive <:ifError archive:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error archive:>" /><:eif:></label>
+          <span class="field-input">
             <input type="checkbox" name="archive" id="archive" value="1" <:ifOld archive:>checked="checked" <:eif:>/>
           </span>
         </div>
-        <div>
-          <label for="parentId">Parent <:ifError parentId:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error parentId:>" /><:eif:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="parentId">Parent <:ifError parentId:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error parentId:>" /><:eif:></label>
+          <span class="field-input">
             <:replace [parent] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
             <:help subs parentId:>
           </span>
         </div>
-        <div>
-          <label for="article_template">Template <:ifError article_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error article_template:>" /><:eif:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="article_template">Template <:ifError article_template:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error article_template:>" /><:eif:></label>
+          <span class="field-input">
             <:replace [template article_template] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
             <:help subs article_template:>
           </span>
         </div>
-        <div>
-          <label for="keyword">Local keywords <:ifError keyword:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error keyword:>" /><:eif:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="keyword">Local keywords <:ifError keyword:><img src="/images/admin/error.gif" width="16" height="16" alt="<:error keyword:>" /><:eif:></label>
+          <span class="field-input">
             <input type="text" name="keyword" id="keyword" value="<:old keyword:>" placeholder="comma separated" maxlength="255" class="<:ifError keyword:>error<:eif:>" />
             <:help subs keyword:>
           </span>

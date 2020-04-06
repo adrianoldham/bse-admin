@@ -6,54 +6,54 @@
   </header>
   <fieldset>
     <legend>Log Entry #<:auditentry id:></legend>
-    <div>
-      <label>When</label>
-      <span>
+    <div class="field">
+      <label class="field-label">When</label>
+      <span class="field-input">
         <:date "%d-%b-%Y / %r" auditentry when_at:>
       </span>
     </div>
-    <div>
-      <label>Facility</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Facility</label>
+      <span class="field-input">
         <:auditentry facility:>
       </span>
     </div>
-    <div>
-      <label>Component</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Component</label>
+      <span class="field-input">
         <:auditentry component:>
       </span>
     </div>
-    <div>
-      <label>Module</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Module</label>
+      <span class="field-input">
         <:auditentry module:>
       </span>
     </div>
-    <div>
-      <label>Function</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Function</label>
+      <span class="field-input">
         <:auditentry function:>
       </span>
     </div>
     <div class="<:auditentry level_name:>">
       <label>Level</label>
-      <span>
+      <span class="field-input">
         <:auditentry level_name:>
       </span>
     </div>
-    <div>
-      <label>Actor</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Actor</label>
+      <span class="field-input">
         <:- if Auditentry actor_link:>
         <a href="<:auditentry actor_link:>"><:auditentry actor_name:></a>
         <:- or Auditentry:><:auditentry actor_name:>
         <:- eif Auditentry:>
       </span>
     </div>
-    <div>
-      <label>Object</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Object</label>
+      <span class="field-input">
         <:- if Auditentry object_link:>
         <a href="<:auditentry object_link:>"><:auditentry object_name:></a>
         <:- or Auditentry:>
@@ -61,22 +61,22 @@
         <:- eif Auditentry:>
       </span>
     </div>
-    <div>
-      <label>Message</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Message</label>
+      <span class="field-input">
         <:auditentry msg:>
       </span>
     </div>
-    <div>
-      <label>IP Address</label>
-      <span>
+    <div class="field">
+      <label class="field-label">IP Address</label>
+      <span class="field-input">
         <:auditentry ip_address:>
       </span>
     </div>
     <:- if Auditentry dump:>
-    <div class="full">
-      <label>Log</label>
-      <span>
+    <div class="field full">
+      <label class="field-label">Log</label>
+      <span class="field-input">
         <textarea><:auditentry dump:></textarea>
       </span>
     </div>

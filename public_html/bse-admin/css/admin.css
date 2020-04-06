@@ -490,41 +490,70 @@ fieldset legend {
     padding: 0 0.25em;
 }
 
-fieldset > div:not(.scrollable):not(.center)) {
+.field {
     display: table-row;
 }
 
-fieldset > div > label,
-fieldset > div > span {
+.field-label,
+.field-input,
+.field-actions {
     white-space: nowrap;
     display: table-cell;
     vertical-align: top;
     padding: 0.35em 0;
+    /*line-height: 1.95;*/
 }
 
-fieldset > div > label {
+.field-label {
     padding-right: 0.5em;
     text-align: right;
     min-width: 10em;
 }
 
-fieldset > div > span {
+.field-input {
     width: 25em;
 }
 
-div.full > span,
-div.dialog fieldset > div > span {
+.full .field-input,
+.dialog .field-input {
     width: 100%;
 }
 
-fieldset > div > span + span {
+.field-input img {
+    border: 0.0833333333333334em solid rgba(0, 0, 0, 0.1);
+}
+
+.field-actions {
     padding-left: 5px;
     width: auto;
 }
 
-fieldset div > label > img {
+.field-label .error_img {
     width: 1.5em;
     height: 1.5em;
+}
+
+.field-list {
+    margin-left: 10em;
+    padding: 0.35em 0;
+}
+
+.field-row {
+    overflow: hidden;
+}
+
+.field-row .field {
+    width: 65%;
+    float: left;
+}
+
+.field-row .field + .field {
+    width: 35%;
+}
+
+.field-row .field + .field .field-label {
+    padding-left: 0.5em;
+    min-width: 1em;
 }
 
 fieldset > div > span > button {
@@ -539,9 +568,9 @@ fieldset > :last-child {
     margin-bottom: 0;
 }
 
-fieldset > div + ul {
-    margin-left: 10em;
-    padding: 0.35em 0;
+fieldset > label {
+    text-align: left;
+    display: block;
 }
 
 input:not([type=submit]):not([type=checkbox]):not([type=radio]),
@@ -574,7 +603,7 @@ textarea[name=body] {
     height: 30em;
 }
 
-div.window.dialog textarea,
+.dialog textarea,
 textarea[name=summary],
 textarea[name=adminNotes],
 textarea[name=description] {
@@ -641,15 +670,6 @@ select:invalid:focus,
     -webkit-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
     -moz-box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
     box-shadow: inset 0 0.0833333333333334em 0.35em rgba(0, 0, 0, 0.1), 0 0 0.5em rgba(255, 165, 0, 0.75) !important;
-}
-
-fieldset > label {
-    text-align: left;
-    display: block;
-}
-
-div span img {
-    border: 0.0833333333333334em solid rgba(0, 0, 0, 0.1);
 }
 
 /* @end */
@@ -1296,6 +1316,7 @@ div + .meta {
     visibility: hidden;
     position: absolute;
     right: 0.25em;
+    top: 0.15em;
 }
 
 .list tr:hover td:last-child > span:first-child,

@@ -90,35 +90,35 @@
       </p>
       <fieldset>
         <legend>Resource</legend>
-        <div>
-          <label for="image<:= image.id:>">Change image <:.call "error_img", "name":"image" _ image.id :></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="image<:= image.id:>">Change image <:.call "error_img", "name":"image" _ image.id :></label>
+          <span class="field-input">
             <:.call "input", "name":"image" _ image.id, "field": { "name":"image", "htmltype":"file" }, "options": { "disabled":is_disabled } :>
             <:help image image:>
           </span>
         </div>
-        <div>
-          <label for="name<:= image.id:>">Name <:.call "error_img", "name":"name" _ image.id :></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="name<:= image.id:>">Name <:.call "error_img", "name":"name" _ image.id :></label>
+          <span class="field-input">
             <:.call "input", "name":"name" _ image.id, "field": { "name":"name", "maxlength":255 }, "options": { "disabled":is_disabled } :>
             <:help image name:>
           </span>
         </div>
-        <div>
-          <label>Thumbnail</label>
-          <span>
+        <div class="field">
+          <label class="field-label">Thumbnail</label>
+          <span class="field-input">
             <a href="<:= image.src:>" onclick="window.open(this.href, 'fullimage', 'width=<:= 40 + image.width:>,height=<:= 90 + image.height:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:= image.thumb("geo","editor", "nolink", 1 ) |raw:></a>
           </span>
         </div>
-        <div>
-          <label>Original</label>
-          <span>
+        <div class="field">
+          <label class="field-label">Original</label>
+          <span class="field-input">
             <a href="<:= image.src:>"><:= image.image.replace('^[0-9]+_', '' ):></a>
           </span>
         </div>
-        <div>
-          <label>Size</label>
-          <span>
+        <div class="field">
+          <label class="field-label">Size</label>
+          <span class="field-input">
             <:= image.width:> &times; <:= image.height:> px
           </span>
         </div>
@@ -127,25 +127,25 @@
         <summary>More attributes</summary>
         <fieldset>
           <legend>Properties</legend>
-          <div>
-            <label for="alt<:= image.id:>">Alt <:.call "error_img", "name":"alt" _ image.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="alt<:= image.id:>">Alt <:.call "error_img", "name":"alt" _ image.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"alt" _ image.id, "field": { "name":"alt", "maxlength":255 }, "options": { "disabled":is_disabled } :>
               <:help image alt:>
             </span>
           </div>
-          <div>
-            <label for="url<:= image.id:>">URL <:.call "error_img", "name":"url" _ image.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="url<:= image.id:>">URL <:.call "error_img", "name":"url" _ image.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"url" _ image.id, "field": { "name":"url", "maxlength":255 }, "options": { "disabled":is_disabled } :>
               <:help image url:>
             </span>
           </div>
           <:-.set stores = [ image_stores() ] :>
           <:-.set oldstore = cgi.param("storage" _ image.id).defined ? cgi.param("storage" _ image.id) : image.storage :>
-          <div>
-            <label for="storage<:= image.id:>">Storage <:.call "error_img", "name":"storage" _ image.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="storage<:= image.id:>">Storage <:.call "error_img", "name":"storage" _ image.id :></label>
+            <span class="field-input">
               <select name="storage<:= image.id:>" id="storage<:= image.id:>">
                 <option value="">(Auto)</option>
                 <:-.for store in stores :>
@@ -162,7 +162,7 @@
     	  <:-.set image_tags = cgi.param("tags" _ image.id ) ? [ cgi.param("tags" _ image.id ) ] : [ "", image.tags ]:>
     	  <:-.for tag in image_tags :>
           <div class="field">
-            <label for="tags<:= image.id :>_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags" _ image.id, "index":loop.index :></label>
+            <label class="field-label" for="tags<:= image.id :>_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags" _ image.id, "index":loop.index :></label>
             <span class="field-input">
               <:.call "input", "name":"tags" _ image.id, "field": { "maxlength":80 }, "options": { "default":tag, "id":"tags" _ image.id _ "_" _ loop.count, "disabled":is_disabled }, "index":loop.index :>
             </span>

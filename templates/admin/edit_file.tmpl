@@ -91,35 +91,35 @@
       </p>
       <fieldset>
         <legend>Resource</legend>
-        <div>
-          <label for="file_<:= file.id:>">Change file <:.call "error_img_n", "name":"file_" _ file.id :></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="file_<:= file.id:>">Change file <:.call "error_img_n", "name":"file_" _ file.id :></label>
+          <span class="field-input">
             <:.call "input", "name":"file_" _ file.id, "field": { "name":"filename", "htmltype":"file" }, "options": { "disabled":is_disabled } :>
             <:help file file:>
           </span>
         </div>
-        <div>
-          <label for="name_<:= file.id:>">Name <:.call "error_img_n", "name":"name_" _ file.id :></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="name_<:= file.id:>">Name <:.call "error_img_n", "name":"name_" _ file.id :></label>
+          <span class="field-input">
             <:.call "input", "name":"name_" _ file.id, "field": { "name":"name", "maxlength":40 }, "options": { "disabled":is_disabled } :>
             <:help file name:>
           </span>
         </div>
-        <div>
-          <label>Original</label>
-          <span>
+        <div class="field">
+          <label class="field-label">Original</label>
+          <span class="field-input">
           <a href="<:= cfg.user_url("user", "download_file", "file", file.id ):>"><span class="indicator <:= file.hide_from_list ? "orange" : file.file_exists ? "green" : "red":>"></span> <:= file.displayName:></a>
           </span>
         </div>
-        <div>
-          <label>Size</label>
-          <span>
+        <div class="field">
+          <label class="field-label">Size</label>
+          <span class="field-input">
             <:= filesize(file.sizeInBytes):>
           </span>
         </div>
-        <div>
-          <label>Upload date</label>
-          <span>
+        <div class="field">
+          <label class="field-label">Upload date</label>
+          <span class="field-input">
             <:= bse.date("%d-%b-%Y / %r", file.whenUploaded ):>
           </span>
         </div>
@@ -128,16 +128,16 @@
         <summary>More attributes</summary>
         <fieldset>
           <legend>Content</legend>
-          <div>
-            <label for="description_<:= file.id:>">Description <:.call "error_img_n", "name":"description_" _ file.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="description_<:= file.id:>">Description <:.call "error_img_n", "name":"description_" _ file.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"description_" _ file.id, "field": { "name":"description", "maxlength":255 }, "options": { "disabled":is_disabled } :>
               <:help file description:>
             </span>
           </div>
-          <div>
-            <label for="notes_<:= file.id:>">Notes <:.call "error_img_n", "name":"notes_" _ file.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="notes_<:= file.id:>">Notes <:.call "error_img_n", "name":"notes_" _ file.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"notes_" _ file.id, "field": { "name":"notes", "htmltype":"textarea" }, "options": { "disabled":is_disabled } :>
               <:help file notes:>
             </span>
@@ -145,48 +145,48 @@
         </fieldset>
         <fieldset>
           <legend>Properties</legend>
-          <div>
-            <label for="contentType_<:= file.id:>">Content type <:.call "error_img_n", "name":"contentType_" _ file.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="contentType_<:= file.id:>">Content type <:.call "error_img_n", "name":"contentType_" _ file.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"contentType_" _ file.id, "field": { "name":"contentType", "maxlength":80 }, "options": { "placeholder":"MIME format", "disabled":is_disabled } :>
               <:help file contentType:>
             </span>
           </div>
-          <div>
-            <label for="download_<:= file.id:>">Force download <:.call "error_img_n", "name":"download_" _ file.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="download_<:= file.id:>">Force download <:.call "error_img_n", "name":"download_" _ file.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"download_" _ file.id, "field": { "name":"download", "htmltype":"checkbox", "save_name":"none" }, "options": { "disabled":is_disabled } :>
               <:help file download:>
             </span>
           </div>
-          <div>
-            <label for="hide_from_list_<:= file.id:>">Hide from list <:.call "error_img_n", "name":"hide_from_list_" _ file.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="hide_from_list_<:= file.id:>">Hide from list <:.call "error_img_n", "name":"hide_from_list_" _ file.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"hide_from_list_" _ file.id, "field": { "name":"hide_from_list", "htmltype":"checkbox", "save_name":"none" }, "options": { "disabled":is_disabled } :>
               <:help file hide_from_list:>
             </span>
           </div>
           <:- if Match [article generator] "Product":>
-          <div>
-            <label for="forSale_<:= file.id:>">Require payment <:.call "error_img_n", "name":"forSale_" _ file.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="forSale_<:= file.id:>">Require payment <:.call "error_img_n", "name":"forSale_" _ file.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"forSale_" _ file.id, "field": { "name":"forSale", "htmltype":"checkbox", "save_name":"none" }, "options": { "disabled":is_disabled } :>
               <:help file forSale:>
             </span>
           </div>
           <:- eif Match:>
-          <div>
-            <label for="requireUser_<:= file.id:>">Require login <:.call "error_img_n", "name":"requireUser_" _ file.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="requireUser_<:= file.id:>">Require login <:.call "error_img_n", "name":"requireUser_" _ file.id :></label>
+            <span class="field-input">
               <:.call "input", "name":"requireUser_" _ file.id, "field": { "name":"requireUser", "htmltype":"checkbox", "save_name":"none" }, "options": { "disabled":is_disabled } :>
               <:help file requireUser:>
             </span>
           </div>
           <:-.set stores = [ file_stores() ] :>
           <:-.set oldstore = cgi.param("storage_" _ file.id).defined ? cgi.param("storage_" _ file.id) : file.storage :>
-          <div>
-            <label for="storage_<:= file.id:>">Storage <:.call "error_img", "name":"storage_" _ file.id :></label>
-            <span>
+          <div class="field">
+            <label class="field-label" for="storage_<:= file.id:>">Storage <:.call "error_img", "name":"storage_" _ file.id :></label>
+            <span class="field-input">
               <select name="storage_<:= file.id:>" id="storage_<:= file.id:>">
                 <option value="">(Auto)</option>
                 <:-.for store in stores :>

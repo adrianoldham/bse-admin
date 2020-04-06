@@ -8,16 +8,16 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Article</legend>
-      <div>
-        <label for="id">ID <span class="required">*</span></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="id">ID <span class="required">*</span></label>
+        <span class="field-input">
           <input type="text" name="id" id="id" required="required" autofocus="autofocus" class="<:ifError_img id:>error<:eif:>" />
           <:help menu id:>
         </span>
       </div>
-      <div>
-        <label for="preview">Mode</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="preview">Mode</label>
+        <span class="field-input">
           <select name="preview" id="preview">
             <option value="0"<:ifEq [old [cgi preview]] "0":> selected="selected"<:eif:>>Edit</option>
             <option value="1"<:ifEq [old [cgi preview]] "1":> selected="selected"<:eif:>>Preview</option>

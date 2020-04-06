@@ -75,21 +75,21 @@
       <legend>Resource</legend>
       <:.call "field", "name":"file", "field": { "description":"Change file" }, "options": { "default":"", "accesskey":"f", "title":"AccessKey = f" } :>
       <:.call "field", "name":"name", "field": { "description":"Name" } :>
-      <div>
-        <label>Original</label>
-        <span>
+      <div class="field">
+        <label class="field-label">Original</label>
+        <span class="field-input">
           <a href="<:= cfg.user_url("user", "download_file", "file", file.id ):>"><span class="indicator <:= file.hide_from_list ? "orange" : file.file_exists ? "green" : "red":>"></span> <:= file.displayName:></a>
         </span>
       </div>
-      <div>
-        <label>Size</label>
-        <span>
+      <div class="field">
+        <label class="field-label">Size</label>
+        <span class="field-input">
           <:= filesize(file.sizeInBytes):>
         </span>
       </div>
-      <div>
-        <label>Upload date</label>
-        <span>
+      <div class="field">
+        <label class="field-label">Upload date</label>
+        <span class="field-input">
           <:= bse.date("%d-%b-%Y / %r", file.whenUploaded ):>
         </span>
       </div>

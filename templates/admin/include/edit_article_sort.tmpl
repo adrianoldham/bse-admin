@@ -3,9 +3,9 @@
       <input type="hidden" name="<:= article.parentid ? "stepparent" : "parentid":>" value="<:= article.id:>" />
       <fieldset>
         <legend>Sort children</legend>
-        <div>
-          <label for="sort">Sort by</label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="sort">Sort by</label>
+          <span class="field-input">
             <select name="sort" id="sort" required="required">
               <option value="">Select article attribute</option>
               <optgroup label="Ascending">

@@ -34,45 +34,45 @@
     <input type="hidden" name="r" value="<:= cgi.param("r"):>" />
     <fieldset>
       <legend>Filter users</legend>
-      <div>
-        <label for="userId"><:cfg "site users" display_userid "Username":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="userId"><:cfg "site users" display_userid "Username":></label>
+        <span class="field-input">
           <input type="text" name="userId" id="userId" value="<:= cgi.param("userId"):>" />
         </span>
       </div>
-      <div>
-        <label for="name1"><:cfg "site users" display_name1 "First Name":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="name1"><:cfg "site users" display_name1 "First Name":></label>
+        <span class="field-input">
           <input type="text" name="name1" id="name1" value="<:= cgi.param("name1"):>" />
         </span>
       </div>
-      <div>
-        <label for="name2"><:cfg "site users" display_name2 "Last Name":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="name2"><:cfg "site users" display_name2 "Last Name":></label>
+        <span class="field-input">
           <input type="text" name="name2" id="name2" value="<:= cgi.param("name2"):>" />
         </span>
       </div>
-      <div>
-        <label for="organization"><:cfg "site users" display_organization "Organisation Name":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="organization"><:cfg "site users" display_organization "Organisation Name":></label>
+        <span class="field-input">
           <input type="text" name="organization" id="organization" value="<:= cgi.param("organization"):>" />
         </span>
       </div>
-      <div>
-        <label for="email"><:cfg "site users" display_email "Email Address":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="email"><:cfg "site users" display_email "Email Address":></label>
+        <span class="field-input">
           <input type="text" name="email" id="email" value="<:= cgi.param("email"):>" />
         </span>
       </div>
-      <div>
-        <label for="disabled"><:cfg "site users" display_enabled "Disabled":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="disabled"><:cfg "site users" display_enabled "Disabled":></label>
+        <span class="field-input">
           <input type="checkbox" name="disabled" id="disabled" value="1" <:-= cgi.param("disabled") ? ' checked="checked"' : '' -:> />
         </span>
       </div>
-      <div>
-        <label for="pp">Per Page</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="pp">Per Page</label>
+        <span class="field-input">
           <select name="pp" id="pp">
             <option value="-1"<:ifEq [siteusers_perpage] "-1":> selected="selected"<:eif:>>All users</option>
             <option value="1000"<:ifEq [siteusers_perpage] "1000":> selected="selected"<:eif:>>1000</option>

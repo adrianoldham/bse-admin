@@ -7,16 +7,16 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Selection</legend>
-      <div>
-        <label for="file">Data file <span class="required">*</span> <:error_img file:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="file">Data file <span class="required">*</span> <:error_img file:></label>
+        <span class="field-input">
           <input type="file" name="file" id="file" accesskey="f" title="AccessKey = f" required="required" autofocus="autofocus" class="<:ifError_img file:>error<:eif:>" />
           <:help userupdate file:>
         </span>
       </div>
-      <div>
-        <label for="importspec">Profile <span class="required">*</span> <:error_img importspec:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="importspec">Profile <span class="required">*</span> <:error_img importspec:></label>
+        <span class="field-input">
           <select name="importspec" id="importspec" required="required" class="<:ifError_img importspec:>error<:eif:>">
             <option value="">(select an import profile)</option>
             <:- iterator begin importspecs:>

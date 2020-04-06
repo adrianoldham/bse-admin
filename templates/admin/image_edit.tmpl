@@ -70,35 +70,35 @@
     " />
     <fieldset>
       <legend>Resource</legend>
-      <div>
-        <label for="image">Change image <:.call "error_img", "name":"image" :></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="image">Change image <:.call "error_img", "name":"image" :></label>
+        <span class="field-input">
           <input type="file" name="image" id="image" accesskey="f" title="AccessKey = f" class="<:.call "error_classname", "name":"image" :>" />
           <:help image image:>
         </span>
       </div>
-      <div>
-        <label for="name">Name <:.call "error_img", "name":"name" :></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="name">Name <:.call "error_img", "name":"name" :></label>
+        <span class="field-input">
           <input type="text" name="name" id="name" value="<:.call "old", "name":"name", "default":eimage.name :>" class="<:.call "error_classname", "name":"name" :>" />
           <:help image name:>
         </span>
       </div>
-      <div>
-        <label>Thumbnail</label>
-        <span>
+      <div class="field">
+        <label class="field-label">Thumbnail</label>
+        <span class="field-input">
           <a href="<:= eimage.src:>" onclick="window.open(this.href, 'fullimage', 'width=<:= 40 + eimage.width:>,height=<:= 90 + eimage.height:>,location=no,status=no,menubar=no,scrollbars=yes'); return false;"><:= eimage.thumb("geo", "editor", "nolink", 1 ) |raw:></a>
         </span>
       </div>
-      <div>
-        <label>Original</label>
-        <span>
+      <div class="field">
+        <label class="field-label">Original</label>
+        <span class="field-input">
           <a href="<:= eimage.src:>"><:= eimage.image.replace('^[0-9]+_', '' ):></a>
         </span>
       </div>
-      <div>
-        <label>Size</label>
-        <span>
+      <div class="field">
+        <label class="field-label">Size</label>
+        <span class="field-input">
           <:= eimage.width:> &times; <:= eimage.height:> px
         </span>
       </div>
@@ -107,25 +107,25 @@
       <summary>More attributes</summary>
       <fieldset>
         <legend>Properties</legend>
-        <div>
-          <label for="alt">Alt <:.call "error_img", "name":"alt" :></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="alt">Alt <:.call "error_img", "name":"alt" :></label>
+          <span class="field-input">
             <input type="text" name="alt" id="alt" value="<:.call "old", "name":"name", "default":eimage.alt :>" class="<:.call "error_classname", "name":"alt" :>" />
             <:help image alt:>
           </span>
         </div>
-        <div>
-          <label for="url">URL <:.call "error_img", "name":"url" :></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="url">URL <:.call "error_img", "name":"url" :></label>
+          <span class="field-input">
             <input type="text" name="url" id="url" value="<:.call "old", "name":"name", "default":eimage.url :>" class="<:.call "error_classname", "name":"url" :>" />
             <:help image url:>
           </span>
         </div>
         <:-.set stores = [ image_stores() ] :>
         <:-.set oldstore = cgi.param("storage").defined ? cgi.param("storage") : eimage.storage :>
-        <div>
-          <label for="storage">Storage <:.call "error_img", "name":"storage" :></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="storage">Storage <:.call "error_img", "name":"storage" :></label>
+          <span class="field-input">
             <select name="storage" id="storage">
               <option value="">(Auto)</option>
               <:-.for store in stores :>
@@ -142,7 +142,7 @@
         <:-.set tags = cgi.param("_save_tags") ? [ cgi.param("tags") ] : [ "", eimage.tags ] :>
         <:-.for tag in tags :>
         <div class="field">
-          <label for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
+          <label class="field-label" for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
           <span class="field-input">
             <input type="text" name="tags" id="tag_<:= loop.count :>" value="<:= tag :>" class="<:.call "error_classname", "name":"tags", "index":loop.index :>" />
           </span>

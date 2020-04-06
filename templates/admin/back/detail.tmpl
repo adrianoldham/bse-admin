@@ -7,22 +7,22 @@
   <fieldset>
     <legend><:task description:></legend>
     <:- if Task long_desc:>
-    <div>
-      <label>Description</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Description</label>
+      <span class="field-input">
         <:task long_desc |z:>
       </span>
     </div>
     <:- eif Task:>
-    <div>
-      <label>Status</label>
-      <span><:ifTask_running:>Running (<:task task_pid:>)<:or:>Stopped<:eif:>
+    <div class="field">
+      <label class="field-label">Status</label>
+      <span class="field-input"<:ifTask_running:>Running (<:task task_pid:>)<:or:>Stopped<:eif:>
       </span>
     </div>
     <:- if Task_running:><:or Task_running:>
-    <div>
-      <label>Result</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Result</label>
+      <span class="field-input">
         <:- switch:>
         <:- case Task_running:>
         Running
@@ -34,23 +34,23 @@
       </span>
     </div>
     <:- eif Task_running:>
-    <div>
-      <label>Started</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Started</label>
+      <span class="field-input">
         <:date "%d-%b-%Y / %r" task last_started:>
       </span>
     </div>
     <:- if Task_running:><:or Task_running:>
-    <div>
-      <label>Completed</label>
-      <span>
+    <div class="field">
+      <label class="field-label">Completed</label>
+      <span class="field-input">
         <:date "%d-%b-%Y / %r" task last_completion:>
       </span>
     </div>
     <:- eif Task_running:>
-    <div class="full">
-      <label>Log</label>
-      <span>
+    <div class="field full">
+      <label class="field-label">Log</label>
+      <span class="field-input">
         <textarea><:log:></textarea>
       </span>
     </div>

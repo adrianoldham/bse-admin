@@ -8,9 +8,9 @@
     <input type="hidden" name="r" value="<:cgi r:>" />
     <fieldset>
       <legend>Order</legend>
-      <div>
-        <label for="id">Order No. <span class="required">*</span></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="id">Order No. <span class="required">*</span></label>
+        <span class="field-input">
           <input type="text" name="id" id="id" value="<:old id:>" required="required" autofocus="autofocus" class="<:ifError_img id:>error<:eif:>" />
           <:help order id:>
         </span>

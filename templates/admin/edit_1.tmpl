@@ -126,48 +126,48 @@
     <:csrfp admin_save_article hidden:>
     <fieldset>
       <legend>Content</legend>
-      <div class="full">
-        <label for="title">Title <span class="required">*</span> <:.call "error_img_n", "name":"title":></label>
-        <span>
+      <div class="field full">
+        <label class="field-label" for="title">Title <span class="required">*</span> <:.call "error_img_n", "name":"title":></label>
+        <span class="field-input">
           <:.call "input", "name":"title", "field": { "required":1, "maxlength":255 }, "options": { "disabled":is_disabled("title"), "autofocus":is_new } :>
           <:help edit title:>
         </span>
       </div>
       <:-.if cfg.entry("title alias", "level" _ article.level):>
-      <div>
-        <label for="titleAlias">Title alias <:.call "error_img_n", "name":"titleAlias":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="titleAlias">Title alias <:.call "error_img_n", "name":"titleAlias":></label>
+        <span class="field-input">
           <:.call "input", "name":"titleAlias", "field": { "maxlength":60 }, "options": { "disabled":is_disabled("titleAlias") } :>
           <:help edit titleAlias:>
         </span>
       </div>
       <:-.end if:>
       <:-.if typename eq "Product":>
-      <div class="full">
-        <label for="description">Description <:.call "error_img_n", "name":"description":></label>
-        <span>
+      <div class="field full">
+        <label class="field-label" for="description">Description <:.call "error_img_n", "name":"description":></label>
+        <span class="field-input">
           <:.call "input", "name":"description", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("description") } :>
           <:help edit description:>
         </span>
       </div>
       <:-.end if:>
-      <div class="full">
-        <label for="body">Body <:.call "error_img_n", "name":"body":></label>
-        <span>
+      <div class="field full">
+        <label class="field-label" for="body">Body <:.call "error_img_n", "name":"body":></label>
+        <span class="field-input">
           <:.call "input", "name":"body", "field": { "htmltype":"textarea" }, "options": { "disabled":is_disabled("body") } :>
           <:help edit body:>
         </span>
       </div>
-      <div class="full">
-        <label for="summary">Summary <:.call "error_img_n", "name":"summary":></label>
-        <span>
+      <div class="field full">
+        <label class="field-label" for="summary">Summary <:.call "error_img_n", "name":"summary":></label>
+        <span class="field-input">
           <:.call "input", "name":"summary", "field": { "htmltype":"textarea" }, "options": { "disabled":is_disabled("summary") } :>
           <:help edit summary:>
         </span>
       </div>
-      <div>
-        <label for="linkAlias">Link alias <:.call "error_img_n", "name":"linkAlias":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="linkAlias">Link alias <:.call "error_img_n", "name":"linkAlias":></label>
+        <span class="field-input">
           <:.call "input", "name":"linkAlias", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("linkAlias") } :>
           <:help edit linkAlias:>
         </span>
@@ -185,26 +185,26 @@
     <:-.if typename eq "Product":>
     <fieldset>
       <legend>Pricing</legend>
-      <div>
-        <label for="retailPrice">Retail <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"retailPrice":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="retailPrice">Retail <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"retailPrice":></label>
+        <span class="field-input">
           <:.call "input", "name":"retailPrice", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("retailPrice") } :>
           <:help edit retailPrice:>
         </span>
       </div>
       <:-.if cfg.entry("products", "legacy_gst"):>
-      <div>
-        <label for="gst">GST <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"gst":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="gst">GST <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"gst":></label>
+        <span class="field-input">
           <:.call "input", "name":"gst", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("gst") } :>
           <:help edit gst:>
         </span>
       </div>
       <:-.end if:>
       <:-.if cfg.entry("products", "legacy_wholesale"):>
-      <div>
-        <label for="wholesalePrice">Wholesale <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"wholesalePrice":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="wholesalePrice">Wholesale <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"wholesalePrice":></label>
+        <span class="field-input">
           <:.call "input", "name":"wholesalePrice", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("wholesalePrice") } :>
           <:help edit wholesalePrice:>
         </span>
@@ -215,9 +215,9 @@
       <input type="hidden" name="save_pricing_tiers" value="1" />
       <:-.set tier_prices = [ article.prices ].maphash("tier_id", "retailPrice") :>
       <:-.for price_tier in price_tiers:>
-      <div>
-        <label for="<:= "tier_price_" _ price_tier.id:>"><:= price_tier.description _ " " _ cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"tier_price_" _ price_tier.id:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="<:= "tier_price_" _ price_tier.id:>"><:= price_tier.description _ " " _ cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"tier_price_" _ price_tier.id:></label>
+        <span class="field-input">
           <:.call "input", "name":"tier_price_" _ price_tier.id, "object":tier_prices, "field": { "type":"money", "maxlength":11 }, "options": { "default":tier_prices[price_tier.id], "placeholder":"0.00", "disabled":is_disabled("price_tier_" _ price_tier.id) } :>
           <:help edit tier_price:>
         </span>
@@ -232,16 +232,16 @@
       <:-.if typename eq "Product":>
       <fieldset>
         <legend>Stock</legend>
-        <div>
-          <label for="product_code">Product code <:.call "error_img_n", "name":"product_code":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="product_code">Product code <:.call "error_img_n", "name":"product_code":></label>
+          <span class="field-input">
             <:.call "input", "name":"product_code", "field": { "maxlength":80 }, "options": { "disabled":is_disabled("product_code") } :>
             <:help edit product_code:>
           </span>
         </div>
-        <div>
-          <label for="leadTime">Lead time <:.call "error_img_n", "name":"leadTime":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="leadTime">Lead time <:.call "error_img_n", "name":"leadTime":></label>
+          <span class="field-input">
             <:.call "input", "name":"leadTime", "field": { "maxlength":80 }, "options": { "placeholder":"days", "disabled":is_disabled("leadTime") } :>
             <:help edit leadTime:>
           </span>
@@ -249,30 +249,30 @@
       </fieldset>
       <fieldset>
         <legend>Measurements</legend>
-        <div>
-          <label for="weight">Weight <:.call "error_img_n", "name":"weight":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="weight">Weight <:.call "error_img_n", "name":"weight":></label>
+          <span class="field-input">
             <:.call "input", "name":"weight", "field": { "maxlength":11 }, "options": { "placeholder":"grams", "disabled":is_disabled("weight") } :>
             <:help edit weight:>
           </span>
         </div>
-        <div>
-          <label for="length">Length <:.call "error_img_n", "name":"length":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="length">Length <:.call "error_img_n", "name":"length":></label>
+          <span class="field-input">
             <:.call "input", "name":"length", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("length") } :>
             <:help edit length:>
           </span>
         </div>
-        <div>
-          <label for="width">Width <:.call "error_img_n", "name":"width":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="width">Width <:.call "error_img_n", "name":"width":></label>
+          <span class="field-input">
             <:.call "input", "name":"width", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("width") } :>
             <:help edit width:>
           </span>
         </div>
-        <div>
-          <label for="height">Height <:.call "error_img_n", "name":"height":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="height">Height <:.call "error_img_n", "name":"height":></label>
+          <span class="field-input">
             <:.call "input", "name":"height", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("height") } :>
             <:help edit height:>
           </span>
@@ -285,7 +285,7 @@
           <:- iterator begin dboptions:>
           <li>
             <label><span class="indicator <:switch:><:case Dboption enabled:>green<:case default:>gray<:endswitch:>"></span> <:dboption name:></label>
-            <span>
+            <span class="field-input">
               <:- if UserCan bse_edit_prodopt_edit:article:>
               <a id="editoption<:dboption id:>" href="<:script:>?id=<:article id:>&amp;a_edit_option=1&amp;option_id=<:dboption id:>" class="button white small">Edit</a>
               <:- or UserCan:>
@@ -308,16 +308,16 @@
       <:-.if cfg.entries("shop", "product options"):>
       <fieldset>
         <legend>Global Options</legend>
-        <div>
-          <label for="options">Options <:.call "error_img_n", "name":"options":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="options">Options <:.call "error_img_n", "name":"options":></label>
+          <span class="field-input">
             <:.call "input", "name":"options", "field": { "maxlength":255 }, "options": { "placeholder":"comma separated", "disabled":is_disabled("options") } :>
             <:help edit options:>
           </span>
         </div>
-        <div>
-          <label for="cfg_opts">Available</label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="cfg_opts">Available</label>
+          <span class="field-input">
             <:alloptions:>
           </span>
         </div>
@@ -326,9 +326,9 @@
       <:-.end if:>
       <fieldset>
         <legend>Structure</legend>
-        <div>
-          <label for="parentid">Parent <:error_img parentid:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="parentid">Parent <:error_img parentid:></label>
+          <span class="field-input">
             <select name="parentid" id="parentid"<:ifFieldPerm parentid:><:or:> disabled="disabled"<:eif:>>
               <option value="">Please select a <:ifArticle parent:><:parentType:><:or:>Section<:eif:></option><:ifFieldPerm parentid:><:if Article parentid:>
               <:list:><:or Article:>
@@ -342,9 +342,9 @@
         <:-.set menus_cfg_section = "level" _ article.level _ " menus":>
         <:-.if cfg.entries(menus_cfg_section):>
         <:-.set menu_list = [ cfg.orderCS(menus_cfg_section) ].map(@{k: { id: k, desc: cfg.entry(menus_cfg_section, k ) }}) :>
-        <div>
-          <label for="menu">Menu <:.call "error_img_n", "name":"menu":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="menu">Menu <:.call "error_img_n", "name":"menu":></label>
+          <span class="field-input">
             <:-.call "input", "name":"menu", "field": { "htmltype":"select", "select": { "values":menu_list, "id":"id", "label":"desc" } }, "default":article.menu, "options": { "disabled":is_disabled("menu") } :>
             <:help edit menu:>
           </span>
@@ -354,8 +354,8 @@
       <fieldset>
         <legend>Categorisation</legend>
         <:-.set categories = [ bse.articles.categories ]:>
-        <div>
-          <label for="category">Category <:.call "error_img_n", "name":"category":></label>
+        <div class="field">
+          <label class="field-label" for="category">Category <:.call "error_img_n", "name":"category":></label>
           <span class="field-input">
             <:-.call "input", "name":"category", "field": { "htmltype":"select", "select": { "values":categories, "id":"id", "label":"name" } }, "default":article.category, "options": { "disabled":is_disabled("category") } :>
             <:help edit category:>
@@ -365,7 +365,7 @@
         <:-.set tags = cgi.param("_save_tags") ? [ cgi.param("tags") ] : [ "", article.tags ] :>
         <:-.for tag in tags :>
         <div class="field">
-          <label for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
+          <label class="field-label" for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
           <span class="field-input">
             <:.call "input", "name":"tags", "field": { "maxlength":80 }, "options": { "default":tag, "id":"tag_" _ loop.count, "disabled":is_disabled("tags") }, "index":loop.index :>
             <:help edit tags:>
@@ -381,17 +381,17 @@
       </fieldset>
       <fieldset>
         <legend>Presentation</legend>
-        <div>
-          <label for="template">Template <:error_img template:></label>
-          <span><:ifFieldPerm template:>
+        <div class="field">
+          <label class="field-label" for="template">Template <:error_img template:></label>
+          <span class="field-input"<:ifFieldPerm template:>
             <:replace [templates] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
             <:replace [templates] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
             <:help edit template:>
           </span>
         </div>
-        <div>
-          <label for="force_dynamic">Page display <:.call "error_img_n", "name":"force_dynamic":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="force_dynamic">Page display <:.call "error_img_n", "name":"force_dynamic":></label>
+          <span class="field-input">
             <:.call "input",
               "name":"force_dynamic",
               "field":{
@@ -411,16 +411,16 @@
             <:help edit force_dynamic:>
           </span>
         </div>
-        <div>
-          <label for="summaryLength">Summary length <:.call "error_img_n", "name":"summaryLength":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="summaryLength">Summary length <:.call "error_img_n", "name":"summaryLength":></label>
+          <span class="field-input">
             <:.call "input", "name":"summaryLength", "field": { "maxlength":5 }, "options": { "placeholder":"characters", "disabled":is_disabled("summaryLength") } :>
             <:help edit summaryLength:>
           </span>
         </div>
-        <div>
-          <label for="threshold">Embed threshold <:.call "error_img_n", "name":"threshold":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="threshold">Embed threshold <:.call "error_img_n", "name":"threshold":></label>
+          <span class="field-input">
             <:.call "input", "name":"threshold", "field": { "maxlength":10 }, "options": { "placeholder":"children", "disabled":is_disabled("threshold") } :>
             <:help edit threshold:>
           </span>
@@ -428,9 +428,9 @@
       </fieldset>
       <fieldset>
         <legend>Publication</legend>
-        <div>
-          <label for="listed">List article <:.call "error_img_n", "name":"listed":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="listed">List article <:.call "error_img_n", "name":"listed":></label>
+          <span class="field-input">
             <:.call "input",
               "name":"listed",
               "field":{
@@ -451,16 +451,16 @@
             <:help edit listed:>
           </span>
         </div>
-        <div>
-          <label for="release">Release date <:.call "error_img_n", "name":"release":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="release">Release date <:.call "error_img_n", "name":"release":></label>
+          <span class="field-input">
             <:.call "input", "name":"release", "field": { "type":"date", "maxlength":10 }, "options": { "placeholder":"DD/MM/YYYY", "disabled":is_disabled("release") } :>
             <:help edit listed:>
           </span>
         </div>
-        <div>
-          <label for="expire">Expiry date <:.call "error_img_n", "name":"expire":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="expire">Expiry date <:.call "error_img_n", "name":"expire":></label>
+          <span class="field-input">
             <:.call "input", "name":"expire", "field": { "type":"date", "maxlength":10 }, "options": { "placeholder":"DD/MM/YYYY", "disabled":is_disabled("expire") } :>
             <:help edit expire:>
           </span>
@@ -495,37 +495,37 @@
       </fieldset>
       <fieldset>
         <legend>Metadata</legend>
-        <div>
-          <label for="pageTitle">Page title <:.call "error_img_n", "name":"pageTitle":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="pageTitle">Page title <:.call "error_img_n", "name":"pageTitle":></label>
+          <span class="field-input">
             <:.call "input", "name":"pageTitle", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("pageTitle") } :>
             <:help edit pageTitle:>
           </span>
         </div>
-        <div>
-          <label for="metaDescription">Meta description <:.call "error_img_n", "name":"metaDescription":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="metaDescription">Meta description <:.call "error_img_n", "name":"metaDescription":></label>
+          <span class="field-input">
             <:.call "input", "name":"metaDescription", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("metaDescription") } :>
             <:help edit metaDescription:>
           </span>
         </div>
-        <div>
-          <label for="metaKeywords">Meta keywords <:.call "error_img_n", "name":"metaKeywords":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="metaKeywords">Meta keywords <:.call "error_img_n", "name":"metaKeywords":></label>
+          <span class="field-input">
             <:.call "input", "name":"metaKeywords", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("metaKeywords") } :>
             <:help edit metaKeywords:>
           </span>
         </div>
-        <div>
-          <label for="author">Author name <:.call "error_img_n", "name":"author":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="author">Author name <:.call "error_img_n", "name":"author":></label>
+          <span class="field-input">
             <:.call "input", "name":"author", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("author") } :>
             <:help edit author:>
           </span>
         </div>
-        <div>
-          <label for="keyword">Local keywords <:.call "error_img_n", "name":"keyword":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="keyword">Local keywords <:.call "error_img_n", "name":"keyword":></label>
+          <span class="field-input">
             <:.call "input", "name":"keyword", "field": { "maxlength":255 }, "options": { "placeholder":"comma separated", "disabled":is_disabled("keyword") } :>
             <:help edit keyword:>
           </span>
@@ -541,9 +541,9 @@
       <:- if Subscriptions:>
       <fieldset>
         <legend>Subscription</legend>
-        <div>
-          <label for="subscription_id">Subscription <:error_img subscription_id:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="subscription_id">Subscription <:error_img subscription_id:></label>
+          <span class="field-input">
             <select name="subscription_id" id="subscription_id" onchange="if (this.value != '-1') { this.form.subscription_usage.disabled = false, this.form.subscription_period.disabled = false } else { this.form.subscription_usage.disabled = true, this.form.subscription_period.disabled = true };"<:ifFieldPerm subscription_id:><:or:> disabled=disabled"<:eif:>>
               <option value="-1"<:ifEq [old subscription_id] "-1":> selected="selected"<:eif:>>(nothing)</option>
               <:- iterator begin subscriptions:>
@@ -553,16 +553,16 @@
             <:help edit subscription_id:>
           </span>
         </div>
-        <div>
-          <label for="subscription_period">Duration <:.call "error_img_n", "name":"subscription_period":></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="subscription_period">Duration <:.call "error_img_n", "name":"subscription_period":></label>
+          <span class="field-input">
             <:.call "input", "name":"subscription_period", "field": { "maxlength":11 }, "options": { "placeholder":"months", "disabled":is_disabled("subscription_period") } :>
             <:help edit subscription_period:>
           </span>
         </div>
-        <div>
-          <label for="subscription_usage">Usage <:error_img subscription_usage:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="subscription_usage">Usage <:error_img subscription_usage:></label>
+          <span class="field-input">
             <select name="subscription_usage" id="subscription_usage"<:ifFieldPerm subscription_usage:><:or:> disabled="disabled"<:eif:>>
               <option value="3"<:ifEq [old subscription_usage] "3":> selected="selected"<:eif:>>Start or renew a subscription</option>
               <option value="1"<:ifEq [old subscription_usage] "1":> selected="selected"<:eif:>>Start a subscription only</option>
@@ -571,9 +571,9 @@
             <:help edit subscription_usage:>
           </span>
         </div>
-        <div>
-          <label for="subscription_required">Requires <:error_img subscription_required:></label>
-          <span>
+        <div class="field">
+          <label class="field-label" for="subscription_required">Requires <:error_img subscription_required:></label>
+          <span class="field-input">
             <select name="subscription_required" id="subscription_required"<:ifFieldPerm subscription_required:><:or:> disabled="disabled"<:eif:>>
               <option value="-1"<:ifEq [old subscription_required] "-1":> selected="selected"<:eif:>>(nothing)</option>
               <:- iterator begin subscriptions:>
@@ -602,9 +602,9 @@
         <legend>Thumbnail</legend>
         <:.call "inlinefield", "name":"thumbnail", "field": { "name":"thumbImage", "description":(article.thumbImage ? "Change image" : "Image"), "htmltype":"file" }, "options": { "disabled":is_disabled("thumbnail") } :>
         <:-.if article.thumbImage:>
-        <div>
-          <label>Original</label>
-          <span>
+        <div class="field">
+          <label class="field-label">Original</label>
+          <span class="field-input">
             <img src="<:= cfg.entry("uri", "images") _ "/" _ article.thumbImage:>" width="<:= article.thumbWidth:>" height="<:= article.thumbHeight:>" style="max-width: 100%; height: auto;" />
           </span>
           <span>
@@ -621,9 +621,9 @@
             <:-.end if:>
           </span>
         </div>
-        <div>
-          <label>Size</label>
-          <span>
+        <div class="field">
+          <label class="field-label">Size</label>
+          <span class="field-input">
             <:= article.thumbWidth:> &times; <:= article.thumbHeight:> px
           </span>
         </div>

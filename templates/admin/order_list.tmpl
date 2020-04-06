@@ -8,57 +8,57 @@
     <input type="hidden" name="a_<:param target:>" value="1" />
     <fieldset>
       <legend>Filter orders</legend>
-      <div>
-        <label for="userId"><:cfg "site users" display_userid "Username":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="userId"><:cfg "site users" display_userid "Username":></label>
+        <span class="field-input">
           <input type="text" name="userId" id="userId" value="<:cgi userId:>" />
         </span>
       </div>
-      <div>
-        <label for="billFirstName"><:cfg "site users" display_name1 "First Name":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="billFirstName"><:cfg "site users" display_name1 "First Name":></label>
+        <span class="field-input">
           <input type="text" name="billFirstName" id="billFirstName" value="<:cgi billFirstName:>" />
         </span>
       </div>
-      <div>
-        <label for="billLastName"><:cfg "site users" display_name2 "Last Name":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="billLastName"><:cfg "site users" display_name2 "Last Name":></label>
+        <span class="field-input">
           <input type="text" name="billLastName" id="billLastName" value="<:cgi billLastName:>" />
         </span>
       </div>
-      <div>
-        <label for="billOrganization"><:cfg "site users" display_organization "Organisation Name":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="billOrganization"><:cfg "site users" display_organization "Organisation Name":></label>
+        <span class="field-input">
           <input type="text" name="billOrganization" id="billOrganization" value="<:cgi billOrganization:>" />
         </span>
       </div>
-      <div>
-        <label for="billEmail"><:cfg "site users" display_email "Email Address":></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="billEmail"><:cfg "site users" display_email "Email Address":></label>
+        <span class="field-input">
           <input type="text" name="billEmail" id="billEmail" value="<:cgi billEmail:>" />
         </span>
       </div>
-      <div>
-        <label for="stage">Order stage</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="stage">Order stage</label>
+        <span class="field-input">
           <:replace [stage_select] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
         </span>
       </div>
-      <div>
-        <label for="from">From date</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="from">From date</label>
+        <span class="field-input">
           <input type="text" name="from" id="from" value="<:cgi from:>" placeholder="DD/MM/YYYY" />
         </span>
       </div>
-      <div>
-        <label for="to">To date</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="to">To date</label>
+        <span class="field-input">
           <input type="text" name="to" id="to" value="<:ifMatch [cgi to] "31/12/2999":><:or:><:cgi to:><:eif:>" placeholder="DD/MM/YYYY" />
         </span>
       </div>
-      <div>
-        <label for="pp">Per Page</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="pp">Per Page</label>
+        <span class="field-input">
           <select name="pp" id="pp">
             <option value="-1"<:ifEq [orders_perpage] "-1":> selected="selected"<:eif:>>All orders</option>
             <option value="1000"<:ifEq [orders_perpage] "1000":> selected="selected"<:eif:>>1000</option>

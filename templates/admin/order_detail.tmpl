@@ -361,13 +361,13 @@
     <:csrfp shop_order_paid hidden:>
     <fieldset>
       <legend>Payment</legend>
-      <div>
-        <label for="paymentType">Method</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="paymentType">Method</label>
+        <span class="field-input">
           <:.call "make_select", "name": "paymentType", "required": 1, "list": payment_types, "id": "id", "desc": "desc", "default": order.paymentType:>
         </span>
       </div>
-      <ul>
+      <ul class="field-list">
         <li>
           <input type="checkbox" name="id" id="id" value="<:= order.id :>" required="required" />
           <label for="id">Mark this order as paid using the selected payment method</label>
@@ -403,15 +403,15 @@
       <legend>Freight</legend>
       <input type="hidden" name="id" value="<:= order.id:>" />
       <:csrfp shop_order_save hidden:>
-      <div>
-        <label for="shipping_name">Shipping method</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="shipping_name">Shipping method</label>
+        <span class="field-input">
           <:shipping_method_select:>
         </span>
       </div>
-      <div>
-        <label for="freight_tracking">Tracking code</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="freight_tracking">Tracking code</label>
+        <span class="field-input">
           <input type="text" name="freight_tracking" id="freight_tracking" value="<:= order.freight_tracking:>" />
         </span>
       </div>
@@ -421,15 +421,15 @@
       <legend>Status</legend>
       <input type="hidden" name="id" value="<:= order.id:>" />
       <:csrfp shop_order_save hidden:>
-      <div>
-        <label for="stage">Order stage</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="stage">Order stage</label>
+        <span class="field-input">
           <:replace [stage_select] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":>
         </span>
       </div>
-      <div>
-        <label for="stage_note">Log note</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="stage_note">Log note</label>
+        <span class="field-input">
           <input type="text" name="stage_note" id="stage_note" />
         </span>
       </div>

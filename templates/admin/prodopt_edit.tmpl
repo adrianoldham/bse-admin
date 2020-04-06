@@ -35,24 +35,24 @@
     <:csrfp admin_save_option hidden:>
     <fieldset>
       <legend>Option</legend>
-      <div>
-        <label for="name">Name <span class="required">*</span> <:error_img name:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="name">Name <span class="required">*</span> <:error_img name:></label>
+        <span class="field-input">
           <input type="text" name="name" id="name" value="<:old name option name:>" required="required" class="<:ifError_img name:>error<:eif:>" />
           <:help edit name:>
         </span>
       </div>
-      <div>
-        <label for="enabled">Enabled <:error_img enabled:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="enabled">Enabled <:error_img enabled:></label>
+        <span class="field-input">
           <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOr [old enabled] [option enabled]:>checked="checked" <:eif:>/>
           <input type="hidden" name="save_enabled" value="1" />
           <:help edit enabled:>
         </span>
       </div>
-      <!--<div>
-        <label for="type">HTML Type <:error_img type:></label>
-        <span>
+      <!--<div class="field">
+        <label class="field-label" for="type">HTML Type <:error_img type:></label>
+        <span class="field-input">
           <select name="type" id="type">
             <option value="select"<:ifOr [ifMatch [old type] "select"] [ifMatch [option type] "select"]:> selected="selected"<:eif:>>Select Popup</option>
             <option value="radio"<:ifOr [ifMatch [old type] "radio"] [ifMatch [option type] "radio"]:> selected="selected"<:eif:>>Radio Buttons</option>
@@ -64,8 +64,8 @@
     <fieldset id="option_values">
       <legend>Values <:error_img default_value:></legend>
       <:- iterator begin dboptionvalues:>
-      <div>
-        <label for="value<:dboptionvalue id:>">
+      <div class="field">
+        <label class="field-label" for="value<:dboptionvalue id:>">
           <!--:dboptionvalue_move:-->
           <:-.set option_id = "option id".evaltag -:>
           <:-.set dboptionvalue_id = "dboptionvalue id".evaltag -:>
@@ -83,7 +83,7 @@
           <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifOr [ifEq [dboptionvalue id] [cgi default_value]] [ifEq [dboptionvalue id] [option default_value]]:>checked="checked"<:eif:> />
           #<:dboptionvalue_number:> <span class="required">*</span> <:error_img [cat value [dboptionvalue id]]:>
         </label>
-        <span>
+        <span class="field-input">
           <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [cat value [dboptionvalue id]] 0 dboptionvalue value:>" required="required" class="<:ifError_img [cat value [dboptionvalue id]]:>error<:eif:>" />
           <:help edit name:>
         </span>
@@ -96,9 +96,9 @@
       <:- iterator end dboptionvalues:>
       <:- if Cgi newvaluecount:>
       <:- iterator begin repeats [cgi newvaluecount]:>
-      <div>
-        <label for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
+        <span class="field-input">
           <input type="text" name="newvalue<:repeat value:>" value="<:= cgi.param("newvalue" _ "repeat value".evaltag ):>" required="required" class="<:ifError_img [cat newvalue [repeat value]]:>error<:eif:>" />
         </span>
         <span class="field-actions">
@@ -160,7 +160,7 @@
 
         var div = new Element("div", { "class":"field" });
 
-        var label = new Element("label", { "for":name }).update("#" + parseInt(oldValueCount + newValueCount));
+        var label = new Element("label", { "for":name, "class":"field-label" }).update("#" + parseInt(oldValueCount + newValueCount));
         div.appendChild(label);
 
         label.appendChild(requiredIndicator.clone(true));

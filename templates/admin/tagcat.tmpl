@@ -10,18 +10,18 @@
     <:csrfp admin_tagcatsave hidden :>
     <fieldset>
       <legend><:= cat.cat :> Depends on…</legend>
-      <div>
-        <label for="dep1">Tag name</label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="dep1">Tag name</label>
+        <span class="field-input">
           <input type="text" name="dep" id="dep1" value="" />
           <button class="button white small" onclick="plus(this); return false;" data-icon="add" data-icon-only="true">Add</button>
           <button class="button white small" onclick="minus(this); return false;" disabled="disabled" data-icon="subtract" data-icon-only="true">Delete</button>
         </span>
       </div>
       <:-.for dep in cat.deps :>
-      <div>
-        <label for="dep_<:=loop.count:>">or<!--Tag #<:=loop.count:>--></label>
-        <span>
+      <div class="field">
+        <label class="field-label" for="dep_<:=loop.count:>">or<!--Tag #<:=loop.count:>--></label>
+        <span class="field-input">
           <input type="text" name="dep" id="dep_<:=loop.count:>" value="<:= dep :>" />
         </span>
       </div>
