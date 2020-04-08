@@ -119,14 +119,17 @@
         $$("[data-icon=add]").invoke("observe", "click", plus);
         $$("[data-icon=subtract]").invoke("observe", "click", minus);
     }
-    
+
+    update();
+
     function plus(e) {
         e.preventDefault();
         e.stopPropagation();
         // cache the current newValueCount for later
         var currentNewValueCount = newValueCount;
         ++newValueCount;
-
+        
+        // New value field
         var name = "value" + newValueCount;
 
         var div = new Element("div", { "class":"field" });
@@ -155,15 +158,9 @@
         }
         // prevent insertion of new fields maxValueCount is reached
         else if (currentNewValueCount < maxValueCount) {
-            optionValues.insertBefore(div, this.up("div").nextSibling);
+            optionValues.insertBefore(div, this.up(".field").nextSibling);
             update();
         }
-        // diasable all add buttons when maxValueCount is reached
-        if (newValueCount == maxValueCount) {
-            $$("[data-icon=add]").invoke("writeAttribute", "disabled", true);
-        }
-
-        $("newvaluecount").value = newValueCount;
         
         //Reinitialise changesMonitor to include new inputs
         //Originally initialised in init.js
@@ -176,19 +173,13 @@
         e.stopPropagation();
         --newValueCount;
 
-        this.up("div").remove();
+        this.up(".field").remove();
         
         if (newValueCount == 0) {
             optionValues.appendChild(firstAddButton.observe("click", plus));
         }
-        // enable all add buttons when leaving maxValueCount
-        if (newValueCount == (maxValueCount - 1)) {
-            $$("[data-icon=add]").invoke("writeAttribute", "disabled", false);
-        }
 
         update();
-
-        $("newvaluecount").value = newValueCount;
 
         //Reinitialise changesMonitor to include new inputs
         //Originally initialised in init.js
@@ -197,6 +188,8 @@
     };
     
     function update() {
+        $("newvaluecount").value = newValueCount;
+        
         var newValueInputs = $$("input[name^=value][type=text][data-new]");
 
         for (var i = 0; i < newValueInputs.length; ++i) {
@@ -210,6 +203,15 @@
             var label = input.up("div").down("label");
             label.update("#" + parseInt(loop)).appendChild(requiredIndicator.clone(true));
             label.setAttribute("for", name);
-        }    
+        }
+        
+        // diasable all add buttons when maxValueCount is reached
+        if (newValueCount == maxValueCount) {
+            $$("[data-icon=add]").invoke("writeAttribute", "disabled", true);
+        }        
+        // enable all add buttons when leaving maxValueCount
+        if (newValueCount < maxValueCount) {
+            $$("[data-icon=add]").invoke("writeAttribute", "disabled", false);
+        }
     };
 </script>

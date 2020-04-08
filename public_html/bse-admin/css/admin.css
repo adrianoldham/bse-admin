@@ -491,7 +491,7 @@ fieldset legend {
 }
 
 .field {
-    display: table-row;
+    /*display: table-row;*/
 }
 
 .field-label,
@@ -543,6 +543,7 @@ fieldset legend {
 }
 
 .field-row .field {
+    display: table-row;
     width: 65%;
     float: left;
 }

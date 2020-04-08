@@ -148,7 +148,9 @@
         $$("[data-icon=add]").invoke("observe", "click", plus);
         $$("[data-icon=subtract]").invoke("observe", "click", minus);
     }
-    
+
+    update();
+
     function plus(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -156,6 +158,7 @@
         var currentNewValueCount = newValueCount;
         ++newValueCount;
 
+        // New value field
         var name = "newvalue" + newValueCount;
 
         var div = new Element("div", { "class":"field" });
@@ -168,7 +171,7 @@
         var span = new Element("span", { "class":"field-input" });
         div.appendChild(span);
     
-        var input = new Element("input", { "type":"text", "name":name, "id":name, "required":"required" });
+        var input = new Element("input", { "type":"text", "name":name, "id":name, "data-new":"true", "required":"required" });
         span.appendChild(input);
 
         var actions = new Element("span", { "class":"field-actions" });
@@ -184,49 +187,39 @@
         }
         // prevent insertion of new fields maxValueCount is reached
         else if (currentNewValueCount < maxValueCount) {
-            optionValues.insertBefore(div, this.up("div").nextSibling);
+            optionValues.insertBefore(div, this.up(".field").nextSibling);
             update();
         }
-        // diasable all add buttons when maxValueCount is reached
-        if (newValueCount == maxValueCount) {
-            $$("[data-icon=add]").invoke("writeAttribute", "disabled", true);
-        }
-
-        $("newvaluecount").value = newValueCount;
         
         //Reinitialise changesMonitor to include new inputs
         //Originally initialised in init.js
 
         changesMonitor.initialize();
     };
-    
+
     function minus(e) {
         e.preventDefault();
         e.stopPropagation();
         --newValueCount;
 
-        this.up("div").remove();
+        this.up(".field").remove();
         
         if (newValueCount == 0) {
             optionValues.appendChild(firstAddButton.observe("click", plus));
         }
-        // enable all add buttons when leaving maxValueCount
-        if (newValueCount == (maxValueCount - 1)) {
-            $$("[data-icon=add]").invoke("writeAttribute", "disabled", false);
-        }
 
         update();
-
-        $("newvaluecount").value = newValueCount;
 
         //Reinitialise changesMonitor to include new inputs
         //Originally initialised in init.js
 
         changesMonitor.initialize();
     };
-    
+
     function update() {
-        var newValueInputs = $$("input[name^=newvalue][type=text]");
+        $("newvaluecount").value = newValueCount;
+        
+        var newValueInputs = $$("input[name^=newvalue][type=text][data-new]");
         
         for (var i = 0; i < newValueInputs.length; ++i) {
             var loop = parseInt(i + 1);
@@ -239,7 +232,16 @@
             var label = input.up("div").down("label");
             label.update("#" + parseInt(oldValueCount + loop)).appendChild(requiredIndicator.clone(true));
             label.setAttribute("for", name);
-        }    
+        }
+                
+        // diasable all add buttons when maxValueCount is reached
+        if (newValueCount == maxValueCount) {
+            $$("[data-icon=add]").invoke("writeAttribute", "disabled", true);
+        }        
+        // enable all add buttons when leaving maxValueCount
+        if (newValueCount < maxValueCount) {
+            $$("[data-icon=add]").invoke("writeAttribute", "disabled", false);
+        }
     };
 </script>
 <:- eif UserCan:>
