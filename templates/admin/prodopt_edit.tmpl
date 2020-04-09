@@ -59,52 +59,72 @@
           </select>
           <:help edit type:>
         </span>
-      </div>-->
+      </div><!---->
     </fieldset>
     <fieldset id="option_values">
       <legend>Values <:error_img default_value:></legend>
       <:- iterator begin dboptionvalues:>
-      <div class="field">
-        <label class="field-label" for="value<:dboptionvalue id:>">
-          <!--:dboptionvalue_move:-->
-          <:-.set option_id = "option id".evaltag -:>
-          <:-.set dboptionvalue_id = "dboptionvalue id".evaltag -:>
-          <:-.set refresh = cfg.admin_url2("add", "edit_option", { "id":article.id, "option_id": option_id }) -:>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="value<:dboptionvalue id:>">
+            <!--:dboptionvalue_move:-->
+            <:-.set option_id = "option id".evaltag -:>
+            <:-.set dboptionvalue_id = "dboptionvalue id".evaltag -:>
+            <:-.set refresh = cfg.admin_url2("add", "edit_option", { "id":article.id, "option_id": option_id }) -:>
+    
+            <:-.if request.user_can("bse_edit_prodopt_edit", product) :>
+            <:-.set loop_next = "arithmetic [dboptionvalue_count] > [dboptionvalue_index] + 1".evaltag -:>
+            <:-.set loop_prev = "dboptionvalue_index".evaltag -:>
+    
+            <:-.set down_url = loop_next ? cfg.admin_url2("add", "option_value_movedown", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_move_option_value"), "r":refresh }) : 0 -:>
+            <:-.set up_url = loop_prev ? cfg.admin_url2("add", "option_value_moveup", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_move_option_value"), "r":refresh }) : 0 -:>
+            
+            <:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
+            <:-.end if :>
+            <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifOr [ifEq [dboptionvalue id] [cgi default_value]] [ifEq [dboptionvalue id] [option default_value]]:>checked="checked"<:eif:> />
+            #<:dboptionvalue_number:> <span class="required">*</span> <:error_img [cat value [dboptionvalue id]]:>
+          </label>
+          <span class="field-input">
+            <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [cat value [dboptionvalue id]] 0 dboptionvalue value:>" required="required" class="<:ifError_img [cat value [dboptionvalue id]]:>error<:eif:>" />
+            <:help edit value:>
+          </span>
+        </div>
+        <div class="field">
+          <label class="field-label" for="price<:dboptionvalue id:>">
+            $
+          </label>
+          <span class="field-input">
+            <input type="text" name="price<:dboptionvalue id:>" id="price<:dboptionvalue id:>" value="<:oldi [cat price [dboptionvalue id]] 0 dboptionvalue price:>" placeholder="0.00" class="<:ifError_img [cat price [dboptionvalue id]]:>error<:eif:>" />
+            <:help edit price:>
+          </span>
+          <span class="field-actions">
+            <:- if UserCan bse_edit_prodopt_edit:article:>
+            <a href="<:= cfg.admin_url2("add", "delete_option_value", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_delete_option_value"), "r":refresh }):>" data-action="Delete" data-object="Value" class="button red small">Delete</a>
+            <:- eif UserCan:>
+           </span>
+        </div>
 
-          <:-.if request.user_can("bse_edit_prodopt_edit", product) :>
-          <:-.set loop_next = "arithmetic [dboptionvalue_count] > [dboptionvalue_index] + 1".evaltag -:>
-          <:-.set loop_prev = "dboptionvalue_index".evaltag -:>
-
-          <:-.set down_url = loop_next ? cfg.admin_url2("add", "option_value_movedown", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_move_option_value"), "r":refresh }) : 0 -:>
-          <:-.set up_url = loop_prev ? cfg.admin_url2("add", "option_value_moveup", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_move_option_value"), "r":refresh }) : 0 -:>
-          
-          <:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
-          <:-.end if :>
-          <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifOr [ifEq [dboptionvalue id] [cgi default_value]] [ifEq [dboptionvalue id] [option default_value]]:>checked="checked"<:eif:> />
-          #<:dboptionvalue_number:> <span class="required">*</span> <:error_img [cat value [dboptionvalue id]]:>
-        </label>
-        <span class="field-input">
-          <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [cat value [dboptionvalue id]] 0 dboptionvalue value:>" required="required" class="<:ifError_img [cat value [dboptionvalue id]]:>error<:eif:>" />
-          <:help edit name:>
-        </span>
-        <span class="field-actions">
-          <:- if UserCan bse_edit_prodopt_edit:article:>
-          <a href="<:= cfg.admin_url2("add", "delete_option_value", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_delete_option_value"), "r":refresh }):>" data-action="Delete" data-object="Value" class="button red small">Delete</a>
-          <:- eif UserCan:>
-         </span>
       </div>
       <:- iterator end dboptionvalues:>
       <:- if Cgi newvaluecount:>
       <:- iterator begin repeats [cgi newvaluecount]:>
-      <div class="field">
-        <label class="field-label" for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
-        <span class="field-input">
-          <input type="text" name="newvalue<:repeat value:>" value="<:= cgi.param("newvalue" _ "repeat value".evaltag ):>" required="required" class="<:ifError_img [cat newvalue [repeat value]]:>error<:eif:>" />
-        </span>
-        <span class="field-actions">
-          <button class="button white small" data-icon="add" data-icon-only="true">Add</button>
-          <button class="button white small" data-icon="subtract" data-icon-only="true">Delete</button>
-        </span>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label" for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
+          <span class="field-input">
+            <input type="text" name="newvalue<:repeat value:>" value="<:= cgi.param("newvalue" _ "repeat value".evaltag ):>" data-new="true" required="required" class="<:ifError_img [cat newvalue [repeat value]]:>error<:eif:>" />
+          </span>
+        </div>
+        <div class="field">
+          <label class="field-label" for="newvalue<:repeat value:>">$ <:error_img [cat newprice [repeat value]]:></label>
+          <span class="field-input">
+            <input type="text" name="newprice<:repeat value:>" value="<:= cgi.param("newprice" _ "repeat value".evaltag ):>" data-new="true" placeholder="0.00" class="<:ifError_img [cat newprice [repeat value]]:>error<:eif:>" />
+          </span>
+          <span class="field-actions">
+            <button class="button white small" data-icon="add" data-icon-only="true">Add</button>
+            <button class="button white small" data-icon="subtract" data-icon-only="true">Delete</button>
+          </span>
+        </div>
       </div>
       <:- iterator end repeats:>
       <:- eif Cgi:>
@@ -148,9 +168,9 @@
         $$("[data-icon=add]").invoke("observe", "click", plus);
         $$("[data-icon=subtract]").invoke("observe", "click", minus);
     }
-
+    
     update();
-
+    
     function plus(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -158,6 +178,8 @@
         var currentNewValueCount = newValueCount;
         ++newValueCount;
 
+        var row = new Element("div", { "class":"field-row" });
+        
         // New value field
         var name = "newvalue" + newValueCount;
 
@@ -174,20 +196,40 @@
         var input = new Element("input", { "type":"text", "name":name, "id":name, "data-new":"true", "required":"required" });
         span.appendChild(input);
 
+        row.appendChild(div);
+
+
+        // New price field
+
+        var name = "newprice" + newValueCount;
+
+        var div = new Element("div", { "class":"field" });
+
+        var label = new Element("label", { "for":name, "class":"field-label" }).update("$");
+        div.appendChild(label);
+    
+        var span = new Element("span", { "class":"field-input" });
+        div.appendChild(span);
+    
+        var input = new Element("input", { "type":"text", "name":name, "id":name, "data-new":"true", "placeholder":"0.00" });
+        span.appendChild(input);
+
         var actions = new Element("span", { "class":"field-actions" });
         actions.appendChild(addButton.clone(true).observe("click", plus));
         // add a space so our buttons don’t collide
         actions.appendChild(document.createTextNode(" "));
         actions.appendChild(delButton.clone(true).observe("click", minus));
         div.appendChild(actions);
-    
+
+        row.appendChild(div);
+        
         if (currentNewValueCount == 0) {
-            optionValues.insertBefore(div, firstAddButton);
+            optionValues.insertBefore(row, firstAddButton);
             firstAddButton.remove();
         }
         // prevent insertion of new fields maxValueCount is reached
         else if (currentNewValueCount < maxValueCount) {
-            optionValues.insertBefore(div, this.up(".field").nextSibling);
+            optionValues.insertBefore(row, this.up(".field-row").nextSibling);
             update();
         }
         
@@ -196,13 +238,13 @@
 
         changesMonitor.initialize();
     };
-
+    
     function minus(e) {
         e.preventDefault();
         e.stopPropagation();
         --newValueCount;
 
-        this.up(".field").remove();
+        this.up(".field-row").remove();
         
         if (newValueCount == 0) {
             optionValues.appendChild(firstAddButton.observe("click", plus));
@@ -215,7 +257,7 @@
 
         changesMonitor.initialize();
     };
-
+    
     function update() {
         $("newvaluecount").value = newValueCount;
         
@@ -231,6 +273,20 @@
             
             var label = input.up("div").down("label");
             label.update("#" + parseInt(oldValueCount + loop)).appendChild(requiredIndicator.clone(true));
+            label.setAttribute("for", name);
+        } 
+     
+        var newPriceInputs = $$("input[name^=newprice][type=text][data-new]");
+        
+        for (var i = 0; i < newPriceInputs.length; ++i) {
+            var loop = parseInt(i + 1);
+            var name = "newprice" + loop;
+
+            var input = newPriceInputs[i];
+            input.setAttribute("name", name);
+            input.setAttribute("id", name);
+            
+            var label = input.up("div").down("label");
             label.setAttribute("for", name);
         }
                 
