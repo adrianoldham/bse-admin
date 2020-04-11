@@ -651,6 +651,22 @@ parameters:
 <:-.end define :>
 
 
+<:-.define move_option; "admin":0, "r":top.admin, "article_id":article.id, "option_id":loop.current.id, "req":0 -:>
+<:-.if bse.admin or admin -:>
+<:-.set request = req ? req : bse.admin ? generator.request : request -:>
+<:-.set article_id = article.id == article_id ? article.id : article_id -:>
+<:-.if request.user_can("bse_edit_prodopt_move", article_id) -:>
+
+<:-.set down_url = loop.next ? cfg.admin_url("add", { "a_option_movedown":1, "id":article_id, "option_id":option_id, "_csrfp":request.get_csrf_token("admin_move_option"), "r":r }) : 0 -:>
+<:-.set up_url = loop.prev ? cfg.admin_url("add", { "a_option_moveup":1, "id":article_id, "option_id":option_id, "_csrfp":request.get_csrf_token("admin_move_option"), "r":r }) : 0 -:>
+
+<:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
+
+<:-.end if -:>
+<:-.end if -:>
+<:-.end define :>
+
+
 <:-.define make_arrows -:>
 <:-.set class = cfg.entry("arrows", "class", "bse-arrows") -:>
 <:-.set width = cfg.entry("arrows", "image_width", 17) -:>

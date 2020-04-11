@@ -278,33 +278,32 @@
           </span>
         </div>
       </fieldset>
-      <:- if Dboptions:>
+      <:.set dboptions = [ product.db_options ] :>
+      <:-.if dboptions.size :>
       <fieldset>
         <legend>Options</legend>
         <ul class="full list">
-          <:- iterator begin dboptions:>
+          <:-.for dboption in dboptions:>
           <li>
-            <label><span class="indicator <:switch:><:case Dboption enabled:>green<:case default:>gray<:endswitch:>"></span> <:dboption name:></label>
+            <label><span class="indicator <:= dboption.enabled ? 'green' : 'gray':>"></span> <:= dboption.name:></label>
             <span class="field-input">
-              <:- if UserCan bse_edit_prodopt_edit:article:>
-              <a id="editoption<:dboption id:>" href="<:script:>?id=<:article id:>&amp;a_edit_option=1&amp;option_id=<:dboption id:>" class="button white small">Edit</a>
-              <:- or UserCan:>
+              <:-.if request.user_can("bse_edit_prodopt_edit", article ):>
+              <a id="editoption<:= dboption.id:>" href="<:= cfg.admin_url2("add", "edit_option", { "id":article_id, "option_id":dboption.id }):>" class="button white small">Edit</a>
+              <:-.else:>
               <a class="button white small disabled">Edit</a>
-              <:- eif UserCan:>
-              <:- if UserCan bse_edit_prodopt_delete:article:>
-              <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:dboption id:>&amp;_csrfp=<:csrfp admin_delete_option:>" data-action="Delete" data-object="Option" class="button red small">Delete</a>
-              <:- or UserCan:>
+              <:-.end if:>
+              <:-.if request.user_can("bse_edit_prodopt_delete", article ):>
+              <a href="<:= cfg.admin_url2("add", "delete_option", { "id":article_id, "option_id":dboption.id, "_csrfp":request.get_csrf_token("admin_delete_option"), "r":refresh }):>" data-action="Delete" data-object="Option" class="button red small">Delete</a>
+              <:-.else:>
               <a class="button red small disabled">Delete</a>
-              <:- eif UserCan:>
-              <:- ifUserCan bse_edit_prodopt_move:article:>
-              <:dboption_move:>
-              <:- eif:>
+              <:-.end if:>
+              <:.call "move_option", "admin":1, "r":refresh :>
             </span>
           </li>
-          <:- iterator end dboptions:>
+          <:-.end for:>
         </ul>
       </fieldset>
-      <:- eif Dboptions:>
+      <:-.end if:>
       <:-.if cfg.entries("shop", "product options"):>
       <fieldset>
         <legend>Global Options</legend>
