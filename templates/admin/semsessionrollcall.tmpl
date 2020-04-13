@@ -1,0 +1,119 @@
+<:-.wrap "admin/base.tmpl", "title": "Manage Seminar Attendees" :>
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id, "_t":"semsessions", "s":"all" }) -:>
+
+<:-.end if -:>
+
+<:-.set object = 0 -:>
+<:-.set session_id = "session id".evaltag :>
+
+<div class="window">
+  <header>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= pagetitle:></h1>
+      <nav data-role="toolbar">
+      <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"semsessions", "s":"all" }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <span data-role="controlgroup">
+        <:- if UserCan bse_members_user_list:>
+        <a href="<:= cfg.admin_url("add", { "id":article.id }):>" class="button">Seminar</a>
+        <:- eif UserCan:>
+        <:- if UserCan bse_members_group_list:>
+        <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"semsessions", "s":"all" }):>" class="button active">Sessions <span class="badge"><:add [ifSessions] 0:></span></a>
+        <:- eif UserCan:>
+      </span>      
+      <span data-role="controlgroup">
+        <:- if UserCan bse_members_user_list:>
+        <a href="<:= cfg.admin_url2("add", "editsemsession", { "id":article.id, "session_id":session_id }):>" class="button">Session</a>
+        <:- eif UserCan:>
+        <:- if UserCan bse_members_group_list:>
+        <a href="<:= cfg.admin_url2("add", "semsessionbookings", { "id":article.id, "session_id":session_id }):>" class="button selected">Bookings <span class="badge"><:add [ifRollusers] 0:></span></a>
+        <:- eif UserCan:>
+      </span>
+      <:-.if request.user_can("bse_edit_seminar_session_delete", article):>
+      <a href="<:= cfg.admin_url2("add", "askdelsemsession", { "id":article.id, "session_id":session_id }):>" class="button" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Session" data-icon="trash" class="button">Delete</a>
+      <:-.else:>
+      <a data-icon="trash" class="button disabled">Delete</a>
+      <:-.end if:>
+    </nav>
+  </header>
+  <:if Rollusers:>
+  <form action="<:= cfg.admin_url("add"):>" method="post" name="rollcall" data-object="Session">
+    <input type="hidden" name="id" value="<:= article.id:>" />
+    <input type="hidden" name="session_id" value="<:= session_id:>" />
+    <fieldset>
+      <legend>Bookings</legend>
+      <table class="full list">
+        <thead>
+          <tr>
+            <td>
+              <input name="toggle" type="checkbox" value="All" onClick="set_all_roll()" /><!--Actions-->
+            </td>
+            <th>Logon</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <:- iterator begin rollusers:>
+          <tr>
+            <td><input type="checkbox" name="roll_present_<:rolluser id:>" <:ifRolluser roll_present:>checked="checked"<:or:><:eif:> /></td>
+            <td><a href="<:adminurl2 siteusers edit id [rolluser id]:>"><:rolluser userId:></a></td>
+            <td><:rolluser name1:> <:rolluser name2:></td>
+            <td><a href="mailto:<:rolluser email:>"><:rolluser email:></a></td>
+          </tr>
+          <:- iterator end rollusers:>
+        </tbody>
+      </table>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." class="button white">Done</a>
+      <:-.if request.user_can("bse_session_edit", article ):>      
+      <input type="submit" name="a_takesessionrolesave" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:-.end if:>
+    </p>
+    <:- or Rollusers:>
+    <fieldset>
+      <legend>Bookings</legend>
+      <div class="center">
+        <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+        <p>No bookings to display</p>
+      </div>
+    </fieldset>
+  </form>
+  <:- eif Rollusers:>
+</div>
+<script type="text/javascript">
+    var is_checked = true;
+
+    function set_all_roll() {
+        update_checkboxes(is_checked);
+        if (is_checked) {
+            is_checked = false;
+        }
+        else {
+            is_checked = true;
+        }
+    }
+      
+    function update_checkboxes(is_checked) {
+        var f = document.rollcall;
+        for (var i = 0; i < f.elements.length; i++) {
+            var elem = f.elements[i];
+            var elemname = elem.name;
+            if (elemname.slice(0, 13) == "roll_present_") {
+                elem.checked = is_checked;
+            }
+        }
+        
+        changesMonitor.initialize();
+    }
+</script>

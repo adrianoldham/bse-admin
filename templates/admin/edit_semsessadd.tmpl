@@ -1,0 +1,51 @@
+<:-.wrap "admin/base.tmpl", "title": "New Seminar Session" :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
+
+<:-.end if -:>
+
+<:-.set object = 0 -:>
+
+<div class="window dialog">
+  <header>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= pagetitle:></h1>
+  </header>
+  <form action="<:script:>" method="post" data-object="Session">
+    <input type="hidden" name="id" value="<:seminar id:>" />
+    <input type="hidden" name="_t" value="semsessadd" />
+    <input type="hidden" name="r" value="<:script:>?id=<:seminar id:>&amp;_t=semsessions" />
+    <fieldset id="option_values">
+      <legend>Session</legend>
+      <div class="field">
+        <label class="field-label" for="location_id">Location <span class="required">*</span> <:error_img location_id:></label>
+        <span class="field-input">
+          <select name="location_id">
+            <option value="">(select a location)</option>
+            <:iterator begin locations enabled:>
+            <option value="<:location id:>" <:ifEq [old location_id] [location id]:>selected="selected"<:or:><:eif:>><:location description:></option>
+            <:iterator end locations:>
+          </select>
+        </span>
+      </div>
+      <:.call "inlinefield", "name": "when_at_date", "field": { "description": "Date", "required": 1 }, "options": { "placeholder": "DD/MM/YYYY" } :>
+      <:.call "inlinefield", "name": "when_at_time", "field": { "description": "Time", "required": 1 }, "options": { "placeholder": "HH:MM or HH:MMam/pm" } :>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <:- if UserCan bse_session_add:article:>
+      <input type="submit" name="a_addsemsession" value="Create Session" accesskey="c" title="AccessKey = c" class="button green" />
+      <:- eif UserCan:>
+    </p>
+  </form>
+</div>

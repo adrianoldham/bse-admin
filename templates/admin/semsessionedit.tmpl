@@ -1,0 +1,81 @@
+<:-.wrap "admin/base.tmpl", "title": "Edit Seminar Session" :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id, "_t":"semsessions" }) -:>
+
+<:-.end if -:>
+
+<:-.set object = 0 -:>
+<:-.set session_id = "session id".evaltag :>
+<:-.set when_at = "session when_at".evaltag :>
+<:-.set when_at_date = bse.date("%d/%m/%Y", when_at):>
+<:-.set when_at_time = bse.date("%I:%M%P", when_at):>
+
+<div class="window">
+  <header>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= pagetitle:></h1>
+      <nav data-role="toolbar">
+      <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"semsessions" }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <span data-role="controlgroup">
+        <:- if UserCan bse_members_user_list:>
+        <a href="<:= cfg.admin_url("add", { "id":article.id }):>" class="button">Seminar</a>
+        <:- eif UserCan:>
+        <:- if UserCan bse_members_group_list:>
+        <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"semsessions" }):>" class="button active">Sessions <span class="badge"><:session_count:></span></a>
+        <:- eif UserCan:>
+      </span>      
+      <span data-role="controlgroup">
+        <:- if UserCan bse_members_user_list:>
+        <a href="<:= cfg.admin_url2("add", "editsemsession", { "id":article.id, "session_id":session_id }):>" class="button selected">Session</a>
+        <:- eif UserCan:>
+        <:- if UserCan bse_members_group_list:>
+        <a href="<:= cfg.admin_url2("add", "semsessionbookings", { "id":article.id, "session_id":session_id }):>" class="button">Bookings <!--<span class="badge"><:bookeduser_count:></span>--></a>
+        <:- eif UserCan:>
+      </span>
+      
+      <:-.if request.user_can("bse_edit_seminar_session_delete", article):>
+      <a href="<:= cfg.admin_url2("add", "askdelsemsession", { "id":article.id, "session_id":session_id }):>" class="button" accesskey="d" title="AccessKey = d" _data-action="Delete" data-object="Session" data-icon="trash" class="button">Delete</a>
+      <:-.else:>
+      <a data-icon="trash" class="button disabled">Delete</a>
+      <:-.end if:>
+
+    </nav>
+  </header>
+  <form action="<:script:>" method="post" data-object="Session">
+    <input type="hidden" name="id" value="<:seminar id:>" />
+    <input type="hidden" name="session_id" value="<:session id:>" />
+    <input type="hidden" name="r" value="<:= cfg.admin_url2("add", "editsemsession", { "id":article.id, "session_id":session_id }):>" />
+    <fieldset id="option_values">
+      <legend>Session</legend>
+      <div class="field">
+        <label class="field-label" for="location_id">Location <span class="required">*</span> <:error_img location_id:></label>
+        <span class="field-input">
+          <select name="location_id">
+            <option value="">(select a location)</option>
+            <:iterator begin locations enabled:>
+            <option value="<:location id:>" <:ifEq [old location_id session location_id] [location id]:>selected="selected"<:eif:>><:location description:></option>
+            <:iterator end locations:>
+          </select>
+        </span>
+      </div>
+      <:.call "inlinefield", "name": "when_at_date", "field": { "description": "Date", "required": 1 }, "options": { "default":when_at_date, "placeholder": "DD/MM/YYYY" } :>
+      <:.call "inlinefield", "name": "when_at_time", "field": { "description": "Time", "required": 1 }, "options": { "default":when_at_time, "placeholder": "HH:MM or HH:MMam/pm" } :>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <:- if UserCan bse_edit_session_edit:article:>
+      <input type="submit" name="a_savesemsession" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:- eif UserCan:>
+    </p>
+  </form>
+</div>

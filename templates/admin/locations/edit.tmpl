@@ -1,0 +1,98 @@
+<:-.wrap "admin/base.tmpl", "title": "Edit Location" :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
+
+<:-.end if -:>
+
+<:-.set object = 0 -:>
+<:-.set location_id = "location id".evaltag :>
+<:-.set description = "location description".evaltag -:>
+<:-.set room = "location room".evaltag -:>
+<:-.set street1 = "location street1".evaltag -:>
+<:-.set street2 = "location street2".evaltag -:>
+<:-.set suburb = "location suburb".evaltag -:>
+<:-.set state = "location state".evaltag -:>
+<:-.set postcode = "location postcode".evaltag -:>
+<:-.set country = "location country".evaltag -:>
+<:-.set public_notes = "location public_notes".evaltag -:>
+<:-.set disabled = "location disabled".evaltag -:>
+
+<:-.set bookings_name = "location bookings_name".evaltag -:>
+<:-.set bookings_phone = "location bookings_phone".evaltag -:>
+<:-.set bookings_fax = "location bookings_fax".evaltag -:>
+<:-.set bookings_url = "location bookings_url".evaltag -:>
+
+<:-.set facilities_name = "location facilities_name".evaltag -:>
+<:-.set facilities_phone = "location facilities_phone".evaltag -:>
+<:-.set admin_notes = "location admin_notes".evaltag -:>
+
+<div class="window">
+  <header>
+    <h1><:= params.title:></h1>
+    <nav data-role="toolbar">
+      <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+      <:-.if request.user_can("bse_location_list") :>
+      <a href="<:= cfg.admin_url("admin_seminar", { "referer":1 }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <:-.end if :>
+      <:-.if request.user_can("bse_location_edit") or request.user_can("bse_session_list"):>
+      <span data-role="controlgroup">
+      <:-.if request.user_can("bse_location_edit"):>
+      <a href="<:= cfg.admin_url2("admin_seminar", "locedit", { "id":location_id, "referer":1 }):>" accesskey="l" title="AccessKey = l" class="button selected">Location</a>
+      <:-.end if:>
+      <:-.if request.user_can("bse_session_list"):>
+      <a href="<:= cfg.admin_url2("admin_seminar", "locview", { "id":location_id, "_t":"sessions", "referer":1 }):>" accesskey="l" title="AccessKey = l" class="button">Sessions <span class="badge"><:session_count:></span></a>
+      </span>
+      <:-.end if:>
+      <:-.if request.user_can("bse_location_delete") :>
+      <a href="<:= cfg.admin_url2("admin_seminar", "locdelete", { "referer":1 }):>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Location" data-icon="trash" class="button">Delete</a>
+      <:-.else:>
+      <a data-icon="trash" class="button disabled">Delete</a>
+      <:-.end if :>
+    </nav>
+  </header>
+  <form action="<:script:>" method="post" data-object="Location">
+    <input type="hidden" name="id" value="<:location id:>" />
+    <fieldset>
+      <legend>Location</legend>
+      <:.call "inlinefield", "name": "description", "field": { "description": "Description", "required": 1 }, "options": { "default":description } :>
+      <:.call "inlinefield", "name": "room", "field": { "description": "Room" }, "options": { "default":room } :>
+      <:.call "inlinefield", "name": "street1", "field": { "description": "Address", "required": 1 }, "options": { "default":street1 } :>
+      <:.call "inlinefield", "name": "street2", "field": { "description": "Address 2" }, "options": { "default":street2 } :>
+      <:.call "inlinefield", "name": "suburb", "field": { "description": "Suburb", "required": 1 }, "options": { "default":suburb } :>
+      <:.call "inlinefield", "name": "state", "field": { "description": "State", "required": 1 }, "options": { "default":state } :>
+      <:.call "inlinefield", "name": "postcode", "field": { "description": "Postcode", "required": 1 }, "options": { "default":postcode } :>
+      <:.call "inlinefield", "name": "country", "field": { "description": "Country" }, "options": { "default":country } :>
+      <:.call "inlinefield", "name": "public_notes", "field": { "description": "Public Notes", "htmltype":"textarea", "height":5, "class":"full" }, "options": { "default":public_notes } :>
+      <:.call "inlinefield", "name": "disabled", "field": { "description": "Disabled", "htmltype":"checkbox", "save_name":"save_disabled" }, "options": { "default":disabled } :>
+    </fieldset>
+    <fieldset>
+      <legend>Booking</legend>
+      <:.call "inlinefield", "name": "bookings_name", "field": { "description": "Contact Name" }, "options": { "default":bookings_name } :>
+      <:.call "inlinefield", "name": "bookings_phone", "field": { "description": "Telephone" }, "options": { "default":bookings_phone } :>
+      <:.call "inlinefield", "name": "bookings_fax", "field": { "description": "Facsimile" }, "options": { "default":bookings_fax } :>
+      <:.call "inlinefield", "name": "bookings_url", "field": { "description": "Website" }, "options": { "default":bookings_url } :>
+    </fieldset>
+    <fieldset>
+      <legend>Venue</legend>
+      <:.call "inlinefield", "name": "facilities_name", "field": { "description": "Contact Name" }, "options": { "default":facilities_name } :>
+      <:.call "inlinefield", "name": "facilities_phone", "field": { "description": "Telephone" }, "options": { "default":facilities_phone } :>
+      <:.call "inlinefield", "name": "admin_notes", "field": { "description": "Admin Notes", "htmltype":"textarea", "height":5, "class":"full" }, "options": { "default":admin_notes } :>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Done</a>
+      <:- if UserCan bse_location_edit:>
+      <input type="submit" name="a_locsave" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:- eif UserCan:>
+    </p>
+  </form>
+</div>

@@ -155,7 +155,8 @@
             <li><a href="<:adminurl shopadmin:>">Manage Products</a></li>
             <li><a href="<:adminurl add parentid 3 type Product referer 1:>">New Product…</a></li>
             <li><a href="<:adminurl add parentid 3 type Catalog referer 1:>">New Catalog…</a></li>
-          </ul>
+            <li><a href="<:adminurl add parentid 3 type Seminar referer 1:>">New Seminar…</a></li>
+         </ul>
         </li>
         <:- eif UserCan:>
         <:-.if request.user_can("bse_shop_coupon_list") or request.user_can("bse_shop_coupon_add") :>
@@ -170,6 +171,18 @@
           </ul>
         </li>
         <:-.end if :>
+        <:- if Or [ifUserCan bse_location_list] [ifUserCan bse_bse_location_add]:>
+        <li><a href="#">Locations</a>
+          <ul>
+            <:- if UserCan bse_location_list:>
+            <li><a href="<:adminurl admin_seminar:>">Manage Locations</a></li>
+            <:- eif UserCan:>
+            <:- if UserCan bse_bse_location_add:>
+            <li><a href="<:adminurl admin_seminar a_locaddform 1 referer 1:>">New Location…</a></li>
+            <:- eif UserCan:>
+          </ul>
+        </li>
+        <:- eif Or:>
         <:- if Or [ifUserCan bse_subscr_list] [ifUserCan bse_subscr_edit] [ifUserCan bse_subscr_add] [ifUserCan bse_subscr_detail] [ifUserCan bse_subscr_update]:>
         <li><a href="#">Subscriptions</a>
           <ul>

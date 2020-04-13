@@ -1,0 +1,85 @@
+<:-.wrap "admin/base.tmpl", "title": "Manage Seminar Bookings" :>
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id, "_t":"semsessions" }) -:>
+
+<:-.end if -:>
+
+<:-.set object = 0 -:>
+<:-.set session_id = "session id".evaltag :>
+
+<div class="window">
+  <header>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= pagetitle:></h1>
+      <nav data-role="toolbar">
+      <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"semsessions" }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <span data-role="controlgroup">
+        <:- if UserCan bse_members_user_list:>
+        <a href="<:= cfg.admin_url("add", { "id":article.id }):>" class="button">Seminar</a>
+        <:- eif UserCan:>
+        <:- if UserCan bse_members_group_list:>
+        <a href="<:= cfg.admin_url("add", { "id":article.id, "_t":"semsessions" }):>" class="button active">Sessions <span class="badge"><:session_count:></span></a>
+        <:- eif UserCan:>
+      </span>      
+      <span data-role="controlgroup">
+        <:- if UserCan bse_members_user_list:>
+        <a href="<:= cfg.admin_url2("add", "editsemsession", { "id":article.id, "session_id":session_id }):>" class="button">Session</a>
+        <:- eif UserCan:>
+        <:- if UserCan bse_members_group_list:>
+        <a href="<:= cfg.admin_url2("add", "semsessionbookings", { "id":article.id, "session_id":session_id }):>" class="button selected">Bookings <span class="badge"><:bookeduser_count:></span></a>
+        <:- eif UserCan:>
+      </span>
+      <:-.if request.user_can("bse_edit_seminar_session_delete", article):>
+      <a href="<:= cfg.admin_url2("add", "askdelsemsession", { "id":article.id, "session_id":session_id, "referer":1 }):>" class="button" accesskey="d" title="AccessKey = d" _data-action="Delete" data-object="Session" data-icon="trash" class="button">Delete</a>
+      <:-.else:>
+      <a data-icon="trash" class="button disabled">Delete</a>
+      <:-.end if:>
+    </nav>
+  </header>
+ <:if Bookedusers:>
+  <fieldset>
+    <legend>Bookings</legend>
+    <table class="full list">
+      <thead>
+        <tr>
+          <th>Logon</th>
+          <th>Name</th>
+          <th>Email</th>
+          <td><!--Actions--></td>
+        </tr>
+      </thead>
+      <tbody>
+        <:- iterator begin bookedusers:>
+        <tr>
+          <td><a href="<:adminurl2 siteusers edit id [bookeduser id]:>"><:bookeduser userId:></a></td>
+          <td><:bookeduser name1:> <:bookeduser name2:></td>
+          <td><a href="mailto:<:bookeduser email:>"><:bookeduser email:></a></td>
+          <td class="actions">
+            <a href="<:adminurl2 admin_seminar editbooking id [bookeduser booking_id]:>" class="button white small">Edit</a>
+            <:-# CONFIRM DELETE TARGET: cancelbookingconfirm or IMMEDIATE DELETE TARGET: cancelbooking :>
+            <a href="<:adminurl2 admin_seminar cancelbooking id [bookeduser booking_id]:>" data-action="Delete" data-object="Booking" class="button red small">Delete</a>
+          </td>
+        </tr>
+        <:- iterator end bookedusers:>
+      </tbody>
+    </table>
+  </fieldset>
+  <:- or Bookedusers:>
+  <fieldset>
+    <legend>Bookings</legend>
+    <div class="center">
+      <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+      <p>No bookings to display</p>
+    </div>
+  </fieldset>
+  <:- eif Bookedusers:>
+</div>

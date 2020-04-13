@@ -130,7 +130,7 @@
       <:-.if cfg.entry("title alias", "level" _ article.level):>
       <:.call "inlinefield", "name":"titleAlias", "field": { "description":"Title alias", "maxlength":60 }, "options": { "disabled":is_disabled("titleAlias") } :>
       <:-.end if:>
-      <:-.if typename eq "Product":>
+      <:-.if typename =~ /(Product|Seminar)/:>
       <:.call "inlinefield", "name":"description", "field": { "description":"Description", "maxlength":255, "class":"full" }, "options": { "disabled":is_disabled("description") } :>
       <:-.end if:>
       <:.call "inlinefield", "name":"body", "field": { "description":"Body", "htmltype":"textarea", "class":"full" }, "options": { "disabled":is_disabled("body") } :>
@@ -146,7 +146,19 @@
       </ul>
       <:-.end if:>
     </fieldset>
-    <:-.if typename eq "Product":>
+    <:-.if typename eq "Seminar":>
+    <fieldset>
+      <legend>Session</legend>
+      <div class="field">
+        <label class="field-label" for="duration">Duration <span class="required">*</span> <:.call "error_img_n", "name":"duration":></label>
+        <span class="field-input">
+          <:.call "input", "name":"duration", "field": { "required":1, "maxlength":11 }, "options": { "default":60, "placeholder":"minutes", "disabled":is_disabled("duration") } :>
+          <:help edit duration:>
+        </span>
+      </div>
+    </fieldset>
+    <:-.end if:>
+    <:-.if typename =~ /(Product|Seminar)/:>
     <fieldset>
       <legend>Pricing</legend>
       <:.call "inlinefield", "name":"retailPrice", "field": { "description":"Retail " _ cfg.entry("shop", "currency", "$"), "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("retailPrice") } :>
@@ -422,7 +434,7 @@
           </span>
           <span>
             <:-.if request.user_can("edit_field_edit_thumbnail", article ):>
-            <:-.if typename eq /(Product|Seminar)/:>
+            <:-.if typename =~ /(Product|Seminar)/:>
             <a href="<:= cfg.admin_url("add", { "id":article.id, "remove_thumb":1, "save":1, "lastModified":article.lastModified, "flags":article.flags, "_csrfp":request.get_csrf_token("admin_save_article"), "retailPrice":bse.number("money", article.retailPrice), "wholesalePrice":bse.number("money", article.wholesalePrice), "gst":bse.number("money", article.gst) }):>" data-action="Delete" data-object="Thumbnail" class="button red small">Delete</a>
 
             <:-.else:>

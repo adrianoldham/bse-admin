@@ -1,0 +1,68 @@
+<:-.wrap "admin/base.tmpl", "title": "Manage Location Sessions" :>
+<:-.set location_id = "location id".evaltag :>
+<div class="window">
+  <header>
+    <h1><:= params.title:></h1>
+    <nav data-role="toolbar">
+      <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+      <:-.if request.user_can("bse_location_list") :>
+      <a href="<:= cfg.admin_url("admin_seminar", { "referer":1 }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <:-.end if :>
+      <span data-role="controlgroup">
+      <a href="<:= cfg.admin_url2("admin_seminar", "locedit", { "id":location_id, "referer":1 }):>" accesskey="l" title="AccessKey = l" class="button">Location</a></li>
+      <a href="<:= cfg.admin_url2("admin_seminar", "locview", { "id":location_id, "_t":"sessions", "referer":1 }):>" accesskey="s" title="AccessKey = s" class="button selected">Sessions <span class="badge"><:session_count:></a></li>
+      </span>
+      <:-.if request.user_can("bse_location_delete") :>
+      <a href="<:= cfg.admin_url2("admin_seminar", "locdelete", { "referer":1 }):>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Location" data-icon="trash" class="button">Delete</a>
+      <:-.else:>
+      <a data-icon="trash" class="button disabled">Delete</a>
+      <:-.end if :>
+    </nav>
+  </header>
+  <:- if Sessions:>
+  <fieldset>
+    <legend>Sessions</legend>
+    <table class="list">
+      <tr>
+        <th>Seminar</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th><!-- Actions --></th>
+      </tr>
+      <:- iterator begin sessions:>
+      <tr>
+        <td><a href="<:adminurl add id [session seminar_id]:>"><:session title:></a></td>
+        <td><:date "%a %d-%b-%Y" session when_at:></td>
+        <td><:date "%I:%M%P" session when_at:></td>
+        <td class="actions">
+          <:- if Arithmetic [date "%s" session when_at] < [today "%s"]:>
+          <a href="<:adminurl2 add takesessionrole id [session seminar_id] session_id [session session_id] referer 1:>" class="button blue small">Roll call</a>
+          <:- or Arithmetic:>
+          <:- ifUserCan bse_session_edit:>
+          <a href="<:adminurl2 add editsemsession id [session seminar_id] session_id [session session_id] referer 1:>" class="button white small">Edit</a>
+          <:- eif:> 
+          <:- ifUserCan bse_session_bookings:>
+          <a href="<:adminurl2 add semsessionbookings id [session seminar_id] session_id [session session_id] referer 1:>" class="button blue small">Bookings</a>
+          <:- eif:>
+          <:- ifUserCan bse_session_delete:>
+          <a href="<:adminurl2 add askdelsemsession id [session seminar_id] session_id [session session_id] referer 1:>" class="button orange small">Delete</a>
+          <:- eif:>
+          <:- eif Arithmetic:>
+        </td>
+      </tr>
+      <:- iterator end sessions:>
+    </table>
+    <:- or Sessions:>
+    <fieldset>
+      <legend>Sessions</legend>
+      <div class="center">
+        <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+        <p>No sessions to display for this location</p>
+        <:-.if request.user_can("bse_location_add"):>
+        <p><a href="<:adminurl2 add semsessionbookings id [session seminar_id] session_id [session session_id]:>" data-icon="add" class="button white">New File…</a></p>
+        <:-.end if:>
+      </div>
+    </fieldset>z
+    <:- eif Sessions:>
+  </fieldset>
+</div>

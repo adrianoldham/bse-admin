@@ -1,0 +1,56 @@
+<:-.wrap "admin/base.tmpl", "title": "New Location" :>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
+
+<:-.end if -:>
+
+<:-.set object = 0 -:>
+
+<div class="window dialog">
+  <header>
+    <h1><:= params.title:></h1>
+  </header>
+  <form action="<:script:>" method="post" data-object="Location">
+    <fieldset>
+      <legend>Location</legend>
+      <:.call "inlinefield", "name": "description", "field": { "description": "Description", "required": 1 }, "options": {  } :>
+      <:.call "inlinefield", "name": "room", "field": { "description": "Room" }, "options": {  } :>
+      <:.call "inlinefield", "name": "street1", "field": { "description": "Address", "required": 1 }, "options": {  } :>
+      <:.call "inlinefield", "name": "street2", "field": { "description": "Address 2" }, "options": {  } :>
+      <:.call "inlinefield", "name": "suburb", "field": { "description": "Suburb", "required": 1 }, "options": {  } :>
+      <:.call "inlinefield", "name": "state", "field": { "description": "State", "required": 1 }, "options": {  } :>
+      <:.call "inlinefield", "name": "postcode", "field": { "description": "Postcode", "required": 1 }, "options": {  } :>
+      <:.call "inlinefield", "name": "country", "field": { "description": "Country" }, "options": {  } :>
+      <:.call "inlinefield", "name": "public_notes", "field": { "description": "Public Notes", "htmltype":"textarea", "height":5 }, "options": {  } :>
+    </fieldset>
+    <fieldset>
+      <legend>Booking</legend>
+      <:.call "inlinefield", "name": "bookings_name", "field": { "description": "Contact Name" }, "options": {  } :>
+      <:.call "inlinefield", "name": "bookings_phone", "field": { "description": "Telephone" }, "options": {  } :>
+      <:.call "inlinefield", "name": "bookings_fax", "field": { "description": "Facsimile" }, "options": {  } :>
+      <:.call "inlinefield", "name": "bookings_url", "field": { "description": "Website" }, "options": {  } :>
+    </fieldset>
+    <fieldset>
+      <legend>Venue</legend>
+      <:.call "inlinefield", "name": "facilities_name", "field": { "description": "Contact Name" }, "options": {  } :>
+      <:.call "inlinefield", "name": "facilities_phone", "field": { "description": "Telephone" }, "options": {  } :>
+      <:.call "inlinefield", "name": "admin_notes", "field": { "description": "Admin Notes", "htmltype":"textarea", "height":5 }, "options": {  } :>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <:- if UserCan bse_location_add:>
+      <input type="submit" name="a_locadd" value="Create Location" accesskey="c" title="AccessKey = c" class="button green" />
+      <:- eif UserCan:>
+    </p>
+  </form>
+</div>

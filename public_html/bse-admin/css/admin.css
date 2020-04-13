@@ -609,7 +609,9 @@ textarea[name=body] {
 .dialog textarea,
 textarea[name=summary],
 textarea[name=adminNotes],
-textarea[name=description] {
+textarea[name=description],
+textarea[name=public_notes],
+textarea[name=admin_notes] {
    height: 10em;
 }
 

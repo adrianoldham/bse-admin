@@ -1,0 +1,66 @@
+<:-.wrap "admin/base.tmpl", "title": "Manage Locations" :>
+<div class="window">
+  <header>
+    <h1><:= params.title:></h1>
+    <:-.if request.user_can("bse_location_add") :>
+    <nav data-role="toolbar">
+      <a href="<:= cfg.admin_url("menu"):>" accesskey="m" title="AccessKey = m" data-widget="close">Quick Launch</a>
+      <ul class="menu context">
+        <li><a href="#" data-icon="action+" data-icon-only="true" class="button">Actions</a>
+          <ul>
+            <:-.if request.user_can("bse_location_add") :>
+            <li><a href="<:= cfg.admin_url2("admin_seminar", "locaddform", { "referer":1 }):>" accesskey="c" title="AccessKey = c">New Location…</a></li>
+            <:-.end if :>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <:-.end if :>
+  </header>
+  <:- if Locations:>
+  <fieldset>
+    <legend>Location</legend>
+    <table class="list">
+      <tr>
+        <th>Description</th>
+        <th>Room</th>
+        <th>Street</th>
+        <th>Suburb</th>
+        <th><!-- Actions --></th>
+      </tr>
+      <:- iterator begin locations:>
+      <tr>
+        <td><span class="indicator <:ifIlocation disabled:>gray<:or:>green<:eif:>"></span> <:ilocation description:></td>
+        <td><:ilocation room:></td>
+        <td><:ilocation street1:> <:ilocation street2:></td>
+        <td><:ilocation suburb:></td>
+        <td class="actions">
+          <:- ifUserCan bse_location_edit:>
+          <a href="<:adminurl2 admin_seminar locedit id [ilocation id] referer 1:>" class="button white small">Edit</a>
+          <:- eif:> 
+          <:- ifUserCan bse_location_view:>
+          <a href="<:adminurl2 admin_seminar locview id [ilocation id] _t sessions referer 1:>" class="button white small">Sessions</a>
+          <:- eif:>
+          <:- ifAnd [ifRemovable] [ifUserCan bse_location_delete]:>
+          <a href="<:adminurl2 admin_seminar locdelete id [ilocation id]:>" data-action="Delete" data-object="Location"  class="button red small">Delete</a>
+          <:- or:>
+          <span class="button red small disabled">Delete</span>
+          <:- eif:>
+        </td>
+      </tr>
+      <:- iterator end locations:>
+    </table>
+    <:- or Locations:>
+    <fieldset>
+      <legend>Locations</legend>
+      <div class="center">
+        <p><img src="/bse-admin/images/icons/alert.png" alt="Alert!" /></p>
+        <p>No locations to display</p>
+        <:-.if request.user_can("bse_location_add"):>
+        <p><a href="<:= cfg.admin_url2("admin_seminar", "locaddform", { "referer":1 }):>" data-icon="add" class="button white">New Location…</a></p>
+        <:-.end if:>
+      </div>
+    </fieldset>
+    <:- eif Locations:>
+  </fieldset>
+</div>

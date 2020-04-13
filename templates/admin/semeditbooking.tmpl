@@ -1,0 +1,62 @@
+<:-.wrap "admin/base.tmpl", "title": "Edit Seminar Booking" :>
+
+<:-.set seminar_id = "seminar id".evaltag -:>
+<:-.set session_id = "session id".evaltag :>
+<:-.set booking_id = "booking id".evaltag -:>
+<:-.set customer_instructions = "booking customer_instructions".evaltag -:>
+<:-.set support_notes = "booking support_notes".evaltag -:>
+<:-.set article = bse.articles.getByPkey(seminar_id) -:>
+
+<:-.set referer = request.referer -:>
+<:-.set cgi_referer = cgi.param("referer") -:>
+
+<:-.if referer =~ cfg.admin_url("admin") -:>
+<:-.set done_url = cfg.admin_url("add", { "id": ( cgi_referer ? cgi_referer : article.id ), "preview": 1 }) -:>
+
+<:-.elsif cgi_referer and referer and referer !~ /logon/ -:>
+<:-.set done_url = referer.replace(/(&amp;|&|\?)referer=[\d]+/, "").replace(/\.pl&(mp;)?/, ".pl?") -:>
+
+<:-.else -:>
+<:-.set done_url = cfg.admin_url2("add", "semsessionbookings", { "id":article.id, "session_id":session_id }) -:>
+
+<:-.end if -:>
+
+<:-.set object = 0 -:>
+
+<div class="window dialog">
+  <header>
+    <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
+    <h1><:= pagetitle:></h1>
+    <nav data-role="toolbar">
+      <a href="<:= cfg.admin_url2("add", "semsessionbookings", { "id":article.id, "session_id":session_id }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <:-.if request.user_can("bse_session_booking_delete", article):>
+      <a href="<:= cfg.admin_url2("add", "askdelsemsession", { "id":article.id, "session_id":session_id }):>" accesskey="d" title="AccessKey = d" data-action="Delete" data-object="Booking" data-icon="trash" class="button">Delete</a>
+      <:-.else:>
+      <a data-icon="trash" class="button disabled">Delete</a>
+      <:-.end if:>
+    </nav>
+  </header>
+  <form action="<:script:>" method="post" data-object="Booking">
+    <input type="hidden" name="id" value="<:booking id:>" />
+    <input type="hidden" name="r" value="<:cgi r:>" />
+
+    <fieldset>
+      <legend>Booking</legend>
+      <div class="field">
+        <label class="field-label" for="session_id">Session <span class="required">*</span> <:error_img session_id:></label>
+        <span class="field-input">
+          <:session_popup:>
+          <:help booking session_id:>
+        </span>
+      </div>
+      <:.call "inlinefield", "name": "customer_instructions", "field": { "description": "Instructions", "htmltype":"textarea" }, "options": { "default":customer_instructions } :>
+      <:.call "inlinefield", "name": "support_notes", "field": { "description": "Support Notes", "htmltype":"textarea" }, "options": { "default":support_notes } :>
+    </fieldset>
+    <p class="buttons">
+      <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
+      <:- if UserCan bse_session_booking_edit:>
+      <input type="submit" name="a_savebooking" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
+      <:- eif UserCan:>
+    </p>
+  </form>
+</div>
