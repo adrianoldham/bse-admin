@@ -63,49 +63,49 @@
     </fieldset>
     <fieldset id="option_values">
       <legend>Values <:error_img default_value:></legend>
-      <:- iterator begin dboptionvalues:>
+      <:- .for dboptionvalue in [ option.values ]:>
       <div class="field-row">
         <div class="field">
-          <label class="field-label" for="value<:dboptionvalue id:>">
+          <label class="field-label" for="value<:= dboptionvalue.id:>">
             <!--:dboptionvalue_move:-->
-            <:-.set option_id = "option id".evaltag -:>
-            <:-.set dboptionvalue_id = "dboptionvalue id".evaltag -:>
+            <:-.set option_id = option.id -:>
+            <:-.set dboptionvalue_id = dboptionvalue.id -:>
             <:-.set refresh = cfg.admin_url2("add", "edit_option", { "id":article.id, "option_id": option_id }) -:>
     
             <:-.if request.user_can("bse_edit_prodopt_edit", product) :>
-            <:-.set loop_next = "arithmetic [dboptionvalue_count] > [dboptionvalue_index] + 1".evaltag -:>
-            <:-.set loop_prev = "dboptionvalue_index".evaltag -:>
+            <:-.set loop_next = loop.next -:>
+            <:-.set loop_prev = loop.prev -:>
     
             <:-.set down_url = loop_next ? cfg.admin_url2("add", "option_value_movedown", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_move_option_value"), "r":refresh }) : 0 -:>
             <:-.set up_url = loop_prev ? cfg.admin_url2("add", "option_value_moveup", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_move_option_value"), "r":refresh }) : 0 -:>
             
             <:.call "make_arrows", "down_url":down_url, "up_url":up_url :>
             <:-.end if :>
-            <input type="radio" name="default_value" value="<:dboptionvalue id:>" <:ifOr [ifEq [dboptionvalue id] [cgi default_value]] [ifEq [dboptionvalue id] [option default_value]]:>checked="checked"<:eif:> />
-            #<:dboptionvalue_number:> <span class="required">*</span> <:error_img [cat value [dboptionvalue id]]:>
+            <input type="radio" name="default_value" value="<:= dboptionvalue.id:>" <:.if cgi.param("default_value") ? dboptionvalue.id eq cgi.param("default_value") : dboptionvalue.id eq option.default_value :>checked="checked"<:.end if:> />
+            #<:= loop.count:> <span class="required">*</span> <:.call "error_img", "name": "value" _ dboptionvalue.id:>
           </label>
           <span class="field-input">
-            <input type="text" name="value<:dboptionvalue id:>" id="value<:dboptionvalue id:>" value="<:oldi [cat value [dboptionvalue id]] 0 dboptionvalue value:>" required="required" class="<:ifError_img [cat value [dboptionvalue id]]:>error<:eif:>" />
+            <input type="text" name="value<:= dboptionvalue.id :>" id="value<:= dboptionvalue.id :>" value="<:.call "old", "name": "value" _ dboptionvalue.id, "default":dboptionvalue.value :>" required="required" class="<:= errors["value" _ dboptionvalue.id] ? "error" : "" :>" />
             <:help edit value:>
           </span>
         </div>
         <div class="field">
-          <label class="field-label" for="price<:dboptionvalue id:>">
+          <label class="field-label" for="price<:= dboptionvalue.id:>">
             $
           </label>
           <span class="field-input">
-            <input type="text" name="price<:dboptionvalue id:>" id="price<:dboptionvalue id:>" value="<:oldi [cat price [dboptionvalue id]] 0 dboptionvalue price:>" placeholder="0.00" class="<:ifError_img [cat price [dboptionvalue id]]:>error<:eif:>" />
+            <input type="text" name="price<:= dboptionvalue.id :>" id="price<:= dboptionvalue.id:>" value="<:.call "old", "name":"price" _ dboptionvalue.id, "default": bse.number("money", dboptionvalue.get_custom("value_price") or 0) :>" placeholder="0.00" class="<:= errors["price" _ dboptionvalue.id] ? "error" : "" :>" />
             <:help edit price:>
           </span>
           <span class="field-actions">
-            <:- if UserCan bse_edit_prodopt_edit:article:>
+            <:- .if request.user_can("bse_edit_prodopt_edit", article) :>
             <a href="<:= cfg.admin_url2("add", "delete_option_value", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_delete_option_value"), "r":refresh }):>" data-action="Delete" data-object="Value" class="button red small">Delete</a>
-            <:- eif UserCan:>
+            <:- .end if:>
            </span>
         </div>
 
       </div>
-      <:- iterator end dboptionvalues:>
+      <:- .end for :>
       <:- if Cgi newvaluecount:>
       <:- iterator begin repeats [cgi newvaluecount]:>
       <div class="field-row">
