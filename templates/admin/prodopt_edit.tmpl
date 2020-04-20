@@ -13,7 +13,6 @@
 <:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
 
 <:-.end if -:>
-
 <div class="window dialog">
   <header>
     <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
@@ -63,7 +62,7 @@
     </fieldset>
     <fieldset id="option_values">
       <legend>Values <:error_img default_value:></legend>
-      <:- .for dboptionvalue in [ option.values ]:>
+      <:-.for dboptionvalue in [ option.values ]:>
       <div class="field-row">
         <div class="field">
           <label class="field-label" for="value<:= dboptionvalue.id:>">
@@ -105,20 +104,21 @@
         </div>
 
       </div>
-      <:- .end for :>
-      <:- if Cgi newvaluecount:>
-      <:- iterator begin repeats [cgi newvaluecount]:>
+      <:-.end for :>
+  
+      <:-.if cgi.param("newvaluecount"):>
+      <:-.for i in [1 .. cgi.param("newvaluecount")]:>
       <div class="field-row">
         <div class="field">
-          <label class="field-label" for="newvalue<:repeat value:>">#<:add [dboptionvalue_count] [repeat value]:> <span class="required">*</span> <:error_img [cat newvalue [repeat value]]:></label>
+          <label class="field-label" for="newvalue<:= i:>">#<:= dboptionvalue.size + i:> <span class="required">*</span> <:.call "error_img", "name":"newvalue" _ i:></label>
           <span class="field-input">
-            <input type="text" name="newvalue<:repeat value:>" value="<:= cgi.param("newvalue" _ "repeat value".evaltag ):>" data-new="true" required="required" class="<:ifError_img [cat newvalue [repeat value]]:>error<:eif:>" />
+            <input type="text" name="newvalue<:= i:>" value="<:= cgi.param("newvalue" _ i ):>" data-new="true" required="required" class="<:.call "error_classname", "name":"newvalue" _ i :>" />
           </span>
         </div>
         <div class="field">
-          <label class="field-label" for="newvalue<:repeat value:>">$ <:error_img [cat newprice [repeat value]]:></label>
+          <label class="field-label" for="newprice<:= i:>">$ <:.call "error_img", "name":"newprice" _ i:></label>
           <span class="field-input">
-            <input type="text" name="newprice<:repeat value:>" value="<:= cgi.param("newprice" _ "repeat value".evaltag ):>" data-new="true" placeholder="0.00" class="<:ifError_img [cat newprice [repeat value]]:>error<:eif:>" />
+            <input type="text" name="newprice<:= i:>" value="<:= cgi.param("newprice" _ i ):>" data-new="true" placeholder="0.00" class="<:.call "error_classname", "name":"newprice" _ i :>" />
           </span>
           <span class="field-actions">
             <button class="button white small" data-icon="add" data-icon-only="true">Add</button>
@@ -126,8 +126,8 @@
           </span>
         </div>
       </div>
-      <:- iterator end repeats:>
-      <:- eif Cgi:>
+      <:-.end for:>
+      <:-.end if:>
     </fieldset>
     <p class="buttons">
       <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
@@ -230,13 +230,13 @@
         // prevent insertion of new fields maxValueCount is reached
         else if (currentNewValueCount < maxValueCount) {
             optionValues.insertBefore(row, this.up(".field-row").nextSibling);
-            update();
         }
         
         //Reinitialise changesMonitor to include new inputs
         //Originally initialised in init.js
 
         changesMonitor.initialize();
+        update();
     };
     
     function minus(e) {

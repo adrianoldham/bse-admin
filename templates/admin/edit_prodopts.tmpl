@@ -62,7 +62,7 @@
           </span>
         </div>
         <div class="field">
-          <label class="field-label" for="price1">$ <:error_img price1:> <!--<input type="radio" name="default_value" value="price1" <:ifEq [old default_value] "price1":>checked="checked"<:eif:> />--></label>
+          <label class="field-label" for="price1">$ <:error_img price1:></label>
           <span class="field-input">
             <input type="text" name="price1" id="price1" value="<:old price1:>" placeholder="0.00" class="<:ifError_img price1:>error<:eif:>" />
           </span>
@@ -76,25 +76,25 @@
           </span>
         </div>
         <div class="field">
-          <label class="field-label" for="price2">$ <:error_img price2:> <!--<input type="radio" name="default_value" value="price2" <:ifEq [old default_value] "price2":>checked="checked"<:eif:> />--></label>
+          <label class="field-label" for="price2">$ <:error_img price2:></label>
           <span class="field-input">
-            <input type="text" name="price2" id="value2" value="<:old price2:>" placeholder="0.00" class="<:ifError_img price2:>error<:eif:>" />
+            <input type="text" name="price2" id="price2" value="<:old price2:>" placeholder="0.00" class="<:ifError_img price2:>error<:eif:>" />
           </span>
         </div>
       </div>
-      <:- if Cgi newvaluecount:>
-      <:- iterator begin repeats [cgi newvaluecount]:>
+      <:-.if cgi.param("newvaluecount"):>
+      <:-.for i in [1 .. cgi.param("newvaluecount")]:>
       <div class="field-row">
         <div class="field">
-          <label class="field-label" for="value<:add 2 [repeat value]:>">#<:add 2 [repeat value]:> <span class="required">*</span> <:error_img [cat value [repeat value]]:></label>
+          <label class="field-label" for="value<:= 2 + i:>">#<:= 2 + i:> <span class="required">*</span> <:.call "error_img", "name":"value" _ (2 + i):></label>
           <span class="field-input">
-            <input type="text" name="value<<:add 2 [repeat value]:>" value="<:= cgi.param("value" _ (2 + "repeat value".evaltag) ):>" data-new="true" required="required" class="<:ifError_img [cat value [add 2 [repeat value]]]:>error<:eif:>" />
+            <input type="text" name="value<:= 2 + i:>" value="<:= cgi.param("value" _ (2 + i) ):>" data-new="true" required="required" class="<:.call "error_classname", "name":"value" _ (2 + i) :>" />
           </span>
         </div>
         <div class="field">
-          <label class="field-label" for="price<:add 2 [repeat value]:>">$ <:error_img [cat price [repeat value]]:></label>
+          <label class="field-label" for="price<:= 2 + i:>">$ <:.call "error_img", "name":"price" _ (2 + i):></label>
           <span class="field-input">
-            <input type="text" name="price<:add 2 [repeat value]:>" value="<:= cgi.param("price" _ (2 + "repeat value".evaltag) ):>" data-new="true" placeholder="0.00" class="<:ifError_img [cat price [add 2 [repeat value]]]:>error<:eif:>" />
+            <input type="text" name="price<:= 2 + i:>" value="<:= cgi.param("price" _ (2 + i) ):>" data-new="true" placeholder="0.00" class="<:.call "error_classname", "name":"price" _ (2 + i) :>" />
           </span>
           <span class="field-actions">
             <button class="button white small" data-icon="add" data-icon-only="true">Add</button>
@@ -102,8 +102,8 @@
           </span>
         </div>
       </div>
-      <:- iterator end repeats:>
-      <:- eif Cgi:>
+      <:-.end for:>
+      <:-.end if:>
     </fieldset>
     <p class="buttons">
       <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
@@ -208,13 +208,13 @@
         // prevent insertion of new fields maxValueCount is reached
         else if (currentNewValueCount < maxValueCount) {
             optionValues.insertBefore(row, this.up(".field-row").nextSibling);
-            update();
         }
         
         //Reinitialise changesMonitor to include new inputs
         //Originally initialised in init.js
 
         changesMonitor.initialize();
+        update();
     };
     
     function minus(e) {
@@ -277,4 +277,8 @@
             $$("[data-icon=add]").invoke("writeAttribute", "disabled", false);
         }
     };
+
+    window.addEventListener('load', function () {
+        changesMonitor.initialize();
+    });
 </script>
