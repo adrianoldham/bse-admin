@@ -13,42 +13,32 @@
 <:-.set done_url = cfg.admin_url("add", { "id": article.id }) -:>
 
 <:-.end if -:>
+
+<:-.set object = 0 -:>
+
 <div class="window dialog">
   <header>
     <:-.set pagetitle = params.title _ " - " _ ( article.titleAlias or article.title ) _ " (Level " _ article.level _ ")" :>
     <h1><:= pagetitle:></h1>
     <nav data-role="toolbar">
-      <a href="<:adminurl add:>?id=<:article id:>" data-icon="back" data-icon-only="true" class="button">Back</a>
+      <a href="<:= cfg.admin_url("add", { "id": article.id }):>" data-icon="back" data-icon-only="true" class="button">Back</a>
       <:- if UserCan bse_edit_prodopt_delete:article:>
-      <a href="<:script:>?id=<:article id:>&amp;a_delete_option=1&amp;option_id=<:option id:>&amp;_csrfp=<:csrfp admin_delete_option:>" data-action="Delete" data-object="Option" data-icon="trash" class="button">Delete</a>
+      <a href="<:= cfg.admin_url2("add", "delete_option", { "id":article.id, "option_id":option.id, "_csrfp": request.get_csrf_token("admin_delete_option") }):>" data-action="Delete" data-object="Option" data-icon="trash" class="button">Delete</a>
       <:- or UserCan:>
       <a data-icon="trash" class="button disabled">Delete</a>
       <:- eif UserCan:>
     </nav>
   </header>
   <form action="<:script:>" method="post" data-object="Option">
-    <input type="hidden" name="id" value="<:article id:>" />
-    <input type="hidden" name="option_id" value="<:option id:>" />
-    <input type="hidden" name="newvaluecount" id="newvaluecount" value="<:ifCgi newvaluecount:><:cgi newvaluecount:><:or:>0<:eif:>" />
-    <input type="hidden" name="r" value="<:cgi r:>" />
+    <input type="hidden" name="id" value="<:= article.id:>" />
+    <input type="hidden" name="option_id" value="<:= option.id:>" />
+    <input type="hidden" name="newvaluecount" id="newvaluecount" value="<:= cgi.param("newvaluecount") ? cgi.param("newvaluecount") : 0 :>" />
+    <input type="hidden" name="r" value="<:= cgi.param("r"):>" />
     <:csrfp admin_save_option hidden:>
     <fieldset>
       <legend>Option</legend>
-      <div class="field">
-        <label class="field-label" for="name">Name <span class="required">*</span> <:error_img name:></label>
-        <span class="field-input">
-          <input type="text" name="name" id="name" value="<:old name option name:>" required="required" class="<:ifError_img name:>error<:eif:>" />
-          <:help edit name:>
-        </span>
-      </div>
-      <div class="field">
-        <label class="field-label" for="enabled">Enabled <:error_img enabled:></label>
-        <span class="field-input">
-          <input type="checkbox" name="enabled" id="enabled" value="1" <:ifOr [old enabled] [option enabled]:>checked="checked" <:eif:>/>
-          <input type="hidden" name="save_enabled" value="1" />
-          <:help edit enabled:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"name", "field": { "description":"Name", "required":1 }, "options": { "default":option.name, "autofocus":1 } :>
+      <:.call "inlinefield", "name":"enabled", "field": { "description":"Enabled", "htmltype":"checkbox" }, "options": { "default":option.enabled, "save_name":"save_enabled" } :>
       <!--<div class="field">
         <label class="field-label" for="type">HTML Type <:error_img type:></label>
         <span class="field-input">
@@ -58,7 +48,7 @@
           </select>
           <:help edit type:>
         </span>
-      </div><!---->
+      </div>-->
     </fieldset>
     <fieldset id="option_values">
       <legend>Values <:error_img default_value:></legend>
@@ -69,7 +59,7 @@
             <!--:dboptionvalue_move:-->
             <:-.set option_id = option.id -:>
             <:-.set dboptionvalue_id = dboptionvalue.id -:>
-            <:-.set refresh = cfg.admin_url2("add", "edit_option", { "id":article.id, "option_id": option_id }) -:>
+            <:-.set refresh = cfg.admin_url2("add", "edit_option", { "id":article.id, "option_id":option_id }) -:>
     
             <:-.if request.user_can("bse_edit_prodopt_edit", product) :>
             <:-.set loop_next = loop.next -:>
@@ -84,7 +74,7 @@
             #<:= loop.count:> <span class="required">*</span> <:.call "error_img", "name": "value" _ dboptionvalue.id:>
           </label>
           <span class="field-input">
-            <input type="text" name="value<:= dboptionvalue.id :>" id="value<:= dboptionvalue.id :>" value="<:.call "old", "name": "value" _ dboptionvalue.id, "default":dboptionvalue.value :>" required="required" class="<:= errors["value" _ dboptionvalue.id] ? "error" : "" :>" />
+            <input type="text" name="value<:= dboptionvalue.id :>" id="value<:= dboptionvalue.id :>" value="<:.call "old", "name": "value" _ dboptionvalue.id, "default":dboptionvalue.value :>" required="required" class="<:.call "error_classname", "name":"value" _ dboptionvalue.id:>" />
             <:help edit value:>
           </span>
         </div>
@@ -93,16 +83,15 @@
             $
           </label>
           <span class="field-input">
-            <input type="text" name="price<:= dboptionvalue.id :>" id="price<:= dboptionvalue.id:>" value="<:.call "old", "name":"price" _ dboptionvalue.id, "default": bse.number("money", dboptionvalue.get_custom("value_price") or 0) :>" placeholder="0.00" class="<:= errors["price" _ dboptionvalue.id] ? "error" : "" :>" />
+            <input type="text" name="price<:= dboptionvalue.id :>" id="price<:= dboptionvalue.id:>" value="<:.call "old", "name":"price" _ dboptionvalue.id, "default": bse.number("money_input", dboptionvalue.get_custom("value_price") or 0) :>" placeholder="0.00" class="<:.call "error_classname", "name":"price" _ dboptionvalue.id:>" />
             <:help edit price:>
           </span>
           <span class="field-actions">
-            <:- .if request.user_can("bse_edit_prodopt_edit", article) :>
+            <:-.if request.user_can("bse_edit_prodopt_edit", article) :>
             <a href="<:= cfg.admin_url2("add", "delete_option_value", { "id":article.id, "value_id":dboptionvalue_id, "_csrfp":request.get_csrf_token("admin_delete_option_value"), "r":refresh }):>" data-action="Delete" data-object="Value" class="button red small">Delete</a>
-            <:- .end if:>
+            <:-.end if:>
            </span>
         </div>
-
       </div>
       <:-.end for :>
   
@@ -112,13 +101,13 @@
         <div class="field">
           <label class="field-label" for="newvalue<:= i:>">#<:= dboptionvalue.size + i:> <span class="required">*</span> <:.call "error_img", "name":"newvalue" _ i:></label>
           <span class="field-input">
-            <input type="text" name="newvalue<:= i:>" value="<:= cgi.param("newvalue" _ i ):>" data-new="true" required="required" class="<:.call "error_classname", "name":"newvalue" _ i :>" />
+            <input type="text" name="newvalue<:= i:>" value="<:= cgi.param("newvalue" _ i):>" data-new="true" required="required" class="<:.call "error_classname", "name":"newvalue" _ i:>" />
           </span>
         </div>
         <div class="field">
           <label class="field-label" for="newprice<:= i:>">$ <:.call "error_img", "name":"newprice" _ i:></label>
           <span class="field-input">
-            <input type="text" name="newprice<:= i:>" value="<:= cgi.param("newprice" _ i ):>" data-new="true" placeholder="0.00" class="<:.call "error_classname", "name":"newprice" _ i :>" />
+            <input type="text" name="newprice<:= i:>" value="<:= cgi.param("newprice" _ i):>" data-new="true" placeholder="0.00" class="<:.call "error_classname", "name":"newprice" _ i:>" />
           </span>
           <span class="field-actions">
             <button class="button white small" data-icon="add" data-icon-only="true">Add</button>
@@ -131,13 +120,13 @@
     </fieldset>
     <p class="buttons">
       <a href="<:= done_url:>" accesskey="." title="AccessKey = ." data-action="Cancel" class="button white">Cancel</a>
-      <:- if UserCan bse_edit_prodopt_save:article:>
+      <:-.if request.user_can("bse_edit_prodopt_save", article ):>
       <input type="submit" name="a_save_option" value="Save Changes" accesskey="s" title="AccessKey = s" class="button green" />
-      <:- eif UserCan:>
+      <:-.end if:>
     </p>
   </form>
 </div>
-<:- if UserCan bse_edit_prodopt_edit:article:>
+<:-.if request.user_can("bse_edit_prodopt_edit", article ):>
 <script type="text/javascript">
     var optionValues = $("option_values");
     var oldValueCount = $$("input[name^=value][type=text]").length;
@@ -274,7 +263,7 @@
             var label = input.up("div").down("label");
             label.update("#" + parseInt(oldValueCount + loop)).appendChild(requiredIndicator.clone(true));
             label.setAttribute("for", name);
-        } 
+        }
      
         var newPriceInputs = $$("input[name^=newprice][type=text][data-new]");
         
@@ -300,4 +289,4 @@
         }
     };
 </script>
-<:- eif UserCan:>
+<:-.end if:>
