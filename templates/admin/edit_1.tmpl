@@ -382,7 +382,7 @@
         <legend>Presentation</legend>
         <div class="field">
           <label class="field-label" for="template">Template <:error_img template:></label>
-          <span class="field-input"<:ifFieldPerm template:>
+          <span class="field-input"><:ifFieldPerm template:>
             <:replace [templates] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
             <:replace [templates] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
             <:help edit template:>

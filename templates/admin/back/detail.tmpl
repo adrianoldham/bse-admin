@@ -16,7 +16,7 @@
     <:- eif Task:>
     <div class="field">
       <label class="field-label">Status</label>
-      <span class="field-input"<:ifTask_running:>Running (<:task task_pid:>)<:or:>Stopped<:eif:>
+      <span class="field-input"><:ifTask_running:>Running (<:task task_pid:>)<:or:>Stopped<:eif:>
       </span>
     </div>
     <:- if Task_running:><:or Task_running:>

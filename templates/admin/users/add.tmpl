@@ -108,7 +108,7 @@
         </div>
         <div class="field">
           <label class="field-label" for="country"><:cfg "site users" display_country "Country":><:ifRequired country:> <span class="required">*</span><:eif:> <:error_img country:></label>
-          <span class="field-input"<:if Cfgsection "country selector":>
+          <span class="field-input"><:if Cfgsection "country selector":>
             <select name="country" id="country" class="<:ifRequired userId:>required<:eif:><:ifError_img country:> error<:eif:>">
               <option value="">Please select a country</option><:iterator begin dyncfgsection "country selector" sort=value:>
               <option value="<:uc [dyncfgentry key]:>"<:if Or [ifEq [old country] [uc [dyncfgentry key]]] [ifEq [old country] [uc [dyncfgentry value]]]:> selected="selected"<:eif Or:>><:dyncfgentry value:></option>
