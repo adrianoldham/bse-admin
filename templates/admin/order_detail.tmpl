@@ -170,7 +170,7 @@
     </table>
     </div>
     <table class="items">
-      <caption>Order items</caption>
+      <caption><:-= cfg.entry("shop", "order_items_caption", "Order items") :></caption>
       <thead>
         <tr>
           <th class="item">Item</th>
@@ -239,7 +239,7 @@
     <div class="group">
     <:-.if order.billStreet:>
     <table class="vertical left">
-      <caption>Billing details</caption>
+      <caption><:-= cfg.entry("shop", "order_billing_caption", "Billing details") :></caption>
       <tbody>
         <tr>
           <th>Name:</th>
@@ -291,7 +291,7 @@
     <:-.end if:>
     <:-.if order.delivStreet:>
     <table class="vertical right">
-      <caption>Shipping details</caption>
+      <caption><:-= cfg.entry("shop", "order_shipping_caption", "Shipping details") :></caption>
       <tbody>
         <tr>
           <th>Name:</th>
