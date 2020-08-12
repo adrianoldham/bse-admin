@@ -101,6 +101,7 @@
           <th><a href="<:script:>?<:sorthelp userId:>&amp;p=<:siteusers_pagenum:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:cfg "site users" display_userid "Username":></a></th>
           <th><a href="<:script:>?<:sorthelp name1:>&amp;p=<:siteusers_pagenum:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:cfg "site users" display_name1 "First Name":></a></th>
           <th><a href="<:script:>?<:sorthelp name2:>&amp;p=<:siteusers_pagenum:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:cfg "site users" display_name2 "Last Name":></a></th>
+          <th><a href="<:script:>?<:sorthelp whenRegistered:>&amp;p=<:siteusers_pagenum:>&amp;pp=<:siteusers_perpage:>&amp;<:search_param:>"><:cfg "site users" display_whenRegistered "Date Registered":></a></th>
           <th><!--Actions--></th>
         </tr>
       </thead>
@@ -110,6 +111,7 @@
           <td><:= siteuser.userId:></td>
           <td><:= siteuser.name1:></td>
           <td><:= siteuser.name2:></td>
+          <td><:= bse.date("%d-%b-%Y / %r", siteuser.whenRegistered):></td>
           <td class="actions">
             <:-.if request.user_can("bse_members_user_view") or request.user_can("bse_members_user_edit") :>
             <a href="<:= cfg.admin_url2("siteusers", "edit", { "id":siteuser.id }):>" class="button white small">Edit</a>
