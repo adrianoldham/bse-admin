@@ -496,7 +496,8 @@ fieldset legend {
 
 .field-label,
 .field-input,
-.field-actions {
+.field-actions,
+.field-units {
     white-space: nowrap;
     display: table-cell;
     vertical-align: top;
@@ -523,8 +524,9 @@ fieldset legend {
     border: 0.0833333333333334em solid rgba(0, 0, 0, 0.1);
 }
 
+.field-units,
 .field-actions {
-    padding-left: 5px;
+    padding-left: 0.5em;
     width: auto;
 }
 
