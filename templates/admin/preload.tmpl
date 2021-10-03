@@ -96,11 +96,7 @@
   readonly - true to make it readonly
 :>
 <:-.define make_multicheck; "options":{}, "field":{} -:>
-      <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
-      <:-.set field_save_value = field.save_value ? field.save_value : 1 :>
-      <:-.if field_save_name ne "none" and !options.readonly :>
-      <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
-      <:-.end if:>
+      <:-.set field_save_name = save_name ? save_name : ('_save_' _ name ):>
       <:-.if !default.defined :>
         <:-.set default = [] :>
       <:-.end if :>
@@ -111,6 +107,9 @@
       <ul>
         <:-.for i in values :>
         <li>
+          <:-.if field_save_name ne "none" and !options.readonly :>
+          <input type="hidden" name="<:= field_save_name :>" value="<:= i.$id :>" />
+          <:-.end if:>
           <:-.set element_id = name _ "_" _ i.$id :>
           <input type="checkbox" name="<:= name :>" id="<:= element_id :>" value="<:= i.$id :>"
             <:-= checked[i.$id] ? ' checked="checked" ' : '' | raw :>
@@ -291,6 +290,7 @@
             "values":values,
             "id":field.select.id,
             "desc":field.select.label,
+            "save_name": field.save_name,
             "options":options
           :>
           <:-.elsif field.htmltype and field.htmltype eq "select" and !options.readonly :>
