@@ -271,7 +271,7 @@
           <:-.set field_value = field.value ? field.value : 1 :>
           <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
           <:-.set field_save_value = field.save_value ? field.save_value : 1 :>
-          <:-.set is_checked = request.method() eq 'post' ? cgi.param(name).defined : default :>
+          <:-.set is_checked = field_save_value eq default ? default : 0 :>
           <:-.if field_save_name ne "none" :>
           <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
           <:-.end if:>
