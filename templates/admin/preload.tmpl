@@ -101,20 +101,16 @@
         <:-.set default = [] :>
       <:-.end if :>
       <:-.set checked = {} :>
-      <:-.for v in default :>
-        <:-% checked.set(v, 1) :>
+      <:-.for val in default :>
+        <:-% checked.set(val, 1) :>
       <:-.end for :>
       <ul>
         <:-.for i in values :>
+        <:-.set is_checked = checked[i.$id] ? i.$id : 0 :>
+        <:-.set element_id = name _ "_" _ i.$id :>
         <li>
-          <:-.if field_save_name ne "none" and !options.readonly :>
-          <input type="hidden" name="<:= field_save_name :>" value="<:= i.$id :>" />
-          <:-.end if:>
-          <:-.set element_id = name _ "_" _ i.$id :>
-          <input type="checkbox" name="<:= name :>" id="<:= element_id :>" value="<:= i.$id :>"
-            <:-= checked[i.$id] ? ' checked="checked" ' : '' | raw :>
-            <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :> />
-          <label for="<:= element_id :>"><:= i.$desc :></label>
+          <:.call "input", "name":name, "field": { "value":i.$id, "save_name":field_save_name, "save_value":i.$id, "htmltype":"checkbox" }, "options": { "default":is_checked, "id":element_id, "disabled":is_disabled(name) }, "index":loop.index :>
+          <label for="<:= element_id:>"><:= i.$desc :></label>
         </li>
         <:-.end for :>
       </ul>
@@ -224,7 +220,7 @@
     <:-.set is_file = field.htmltype eq "file" :>
     <:-.set default = options.default :>
 
-    <:-.if cgi.param(name).defined :>
+    <:-.if !default.defined and cgi.param(name).defined :>
       <:-.set values = [ cgi.param(name) ] :>
       <:-.if values.size > 1 :>
         <:-.set default = values[index] :>
@@ -270,7 +266,7 @@
           <:-.set field_value = field.value ? field.value : 1 :>
           <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
           <:-.set field_save_value = field.save_value ? field.save_value : 1 :>
-          <:-.set is_checked = field_save_value eq default ? default : 0 :>
+          <:-.set is_checked = field_save_value eq default ? 1 : 0 :>
           <:-.if field_save_name ne "none" :>
           <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
           <:-.end if:>
