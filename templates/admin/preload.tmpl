@@ -95,8 +95,7 @@
   name - the name of the input elements
   readonly - true to make it readonly
 :>
-<:-.define make_multicheck; "options":{}, "field":{} -:>
-      <:-.set field_save_name = save_name ? save_name : ('_save_' _ name ):>
+<:-.define make_multicheck; "options":{}, "field":{}, "save_name":("_save_" _ name), "save_value":1 -:>
       <:-.if !default.defined :>
         <:-.set default = [] :>
       <:-.end if :>
@@ -104,13 +103,19 @@
       <:-.for val in default :>
         <:-% checked.set(val, 1) :>
       <:-.end for :>
+      <:-.set is_disabled = options.disabled or options.readonly :>
+      <:-.if !is_disabled -:>
+      <input type="hidden" name="<:= save_name:>" value="<:= save_value:>">
+      <:.end if -:>
       <ul>
         <:-.for i in values :>
-        <:-.set is_checked = checked[i.$id] ? i.$id : 0 :>
-        <:-.set element_id = name _ "_" _ i.$id :>
+        <:-.set value = i.$id :>
+        <:-.set description = i.$desc :>
+        <:-.set is_checked = checked[value] ? 1 : 0 :>
+        <:-.set element_id = name _ "_" _ value :>
         <li>
-          <:.call "input", "name":name, "field": { "value":i.$id, "save_name":field_save_name, "save_value":i.$id, "htmltype":"checkbox" }, "options": { "default":is_checked, "id":element_id, "disabled":is_disabled(name) }, "index":loop.index :>
-          <label for="<:= element_id:>"><:= i.$desc :></label>
+          <:.call "input", "name":name, "field": { "value":value, "save_name":"none", "htmltype":"checkbox" }, "options": { "default":is_checked, "id":element_id, "disabled":is_disabled } :>
+          <label for="<:= element_id:>"><:= description:></label>
         </li>
         <:-.end for :>
       </ul>
@@ -263,9 +268,9 @@
             <:-= default -:>
           </textarea>
           <:-.elsif field.htmltype and field.htmltype eq "checkbox" :>
-          <:-.set field_value = field.value ? field.value : 1 :>
+          <:-.set field_value = field.value.defined ? field.value : 1 :>
           <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
-          <:-.set field_save_value = field.save_value ? field.save_value : 1 :>
+          <:-.set field_save_value = field.save_value.defined ? field.save_value : 1 :>
           <:-.set is_checked = field_save_value eq default ? 1 : 0 :>
           <:-.if field_save_name ne "none" :>
           <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
@@ -279,7 +284,7 @@
           <:-# we expect default to be a list of selected checks :>
           <:-.set values = field.select["values"] :>
           <:-.set values = values.is_code ? values() : values :>
-          <:-.set default = cgi.param(name) ? [ cgi.param(name) ] : default :>
+          <:-.set default = cgi.param(name).defined ? [ cgi.param(name) ] : default :>
           <:-.call "make_multicheck",
             "name":name,
             "default":default,
