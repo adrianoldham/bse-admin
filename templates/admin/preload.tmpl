@@ -104,7 +104,7 @@
         <:-% checked.set(val, 1) :>
       <:-.end for :>
       <:-.set is_disabled = options.disabled or options.readonly :>
-      <:-.if !is_disabled -:>
+      <:-.if !is_disabled and save_name ne "none" -:>
       <input type="hidden" name="<:= save_name:>" value="<:= save_value:>">
       <:.end if -:>
       <ul>
@@ -114,7 +114,7 @@
         <:-.set is_checked = checked[value] ? 1 : 0 :>
         <:-.set element_id = name _ "_" _ value :>
         <li>
-          <:.call "input", "name":name, "field": { "value":value, "save_name":"none", "htmltype":"checkbox" }, "options": { "default":is_checked, "id":element_id, "disabled":is_disabled } :>
+          <:.call "input", "name":name, "field": { "value":value, "save_name":"none", "htmltype":"checkbox" }, "options": { "checked":is_checked, "id":element_id, "disabled":is_disabled }, "index":loop.index :>
           <label for="<:= element_id:>"><:= description:></label>
         </li>
         <:-.end for :>
@@ -271,7 +271,7 @@
           <:-.set field_value = field.value.defined ? field.value : 1 :>
           <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
           <:-.set field_save_value = field.save_value.defined ? field.save_value : 1 :>
-          <:-.set is_checked = field_save_value eq default ? 1 : 0 :>
+          <:-.set is_checked = (field_value eq default) or (field_save_value eq default) or options.checked ? 1 : 0 :>
           <:-.if field_save_name ne "none" :>
           <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
           <:-.end if:>
@@ -284,14 +284,12 @@
           <:-# we expect default to be a list of selected checks :>
           <:-.set values = field.select["values"] :>
           <:-.set values = values.is_code ? values() : values :>
-          <:-.set default = cgi.param(name).defined ? [ cgi.param(name) ] : default :>
           <:-.call "make_multicheck",
             "name":name,
             "default":default,
             "values":values,
             "id":field.select.id,
             "desc":field.select.label,
-            "save_name": field.save_name,
             "options":options
           :>
           <:-.elsif field.htmltype and field.htmltype eq "select" and !options.readonly :>
