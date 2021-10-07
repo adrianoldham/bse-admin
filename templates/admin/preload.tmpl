@@ -225,17 +225,6 @@
     <:-.set is_file = field.htmltype eq "file" :>
     <:-.set default = options.default :>
 
-    <:-.if !default.defined and cgi.param(name).defined :>
-      <:-.set values = [ cgi.param(name) ] :>
-      <:-.if values.size > 1 :>
-        <:-.set default = values[index] :>
-        <:-.set class = errors.$name and errors.$name[index] ? class _ ' error' : class :>
-      <:-.else :>
-        <:-.set default = cgi.param(name) :>
-        <:-.set class = errors.$name ? class _ ' error' : class :>
-      <:-.end if :>
-    <:-.end if :>
-
     <:-.if !default.defined :>
       <:-.if object and not(is_file) :>
         <:-.set fname = field.name or options.name or name :>
@@ -244,6 +233,17 @@
         <:-.set default = field.default :>
       <:-.else :>
         <:-.set default = "" :>
+      <:-.end if :>
+    <:-.end if :>
+
+    <:-.if field.htmltype ne "multicheck" and cgi.param(name).defined :>
+      <:-.set values = [ cgi.param(name) ] :>
+      <:-.if values.size > 1 :>
+        <:-.set default = values[index] :>
+        <:-.set class = errors.$name and errors.$name[index] ? class _ ' error' : class :>
+      <:-.else :>
+        <:-.set default = cgi.param(name) :>
+        <:-.set class = errors.$name ? class _ ' error' : class :>
       <:-.end if :>
     <:-.end if :>
 
