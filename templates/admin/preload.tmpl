@@ -225,8 +225,11 @@
     <:-.set element_id = options.id or name :>
     <:-.set class = options.class :>
     <:-.set is_file = field.htmltype eq "file" :>
+   
+    <:-# Default value defined in .call options:>
     <:-.set default = options.default :>
 
+    <:-# Default value from object field data:>
     <:-.if !default.defined :>
       <:-.if object and not(is_file) :>
         <:-.set fname = field.name or options.name or name :>
@@ -238,6 +241,16 @@
       <:-.end if :>
     <:-.end if :>
 
+    <:-# Format date, time & money default:>
+    <:-.if field.type and field.type eq "date" and default ne "" :>
+      <:-.set default = default =~ /^[29]999-12-31/ ? "" : bse.date("%d/%m/%Y", default ) :>
+    <:-.elsif field.type and field.type eq "time" and default ne "" :>
+      <:-.set default = bse.date(default =~ /:00$/ ? "%I:%M%p" : "%I:%M:%S%p", default).replace(/^0/, "").lower :>
+    <:-.elsif field.type and field.type eq "money" and default ne "" :>
+      <:-.set default = bse.number("money_input", default ) :>
+    <:-.end if :>
+
+    <:-# Preserve default values during submission validation errors:>
     <:-.if field.htmltype ne "multicheck" and field.htmltype ne "checkbox" and cgi.param(name).defined :>
       <:-.set values = [ cgi.param(name) ] :>
       <:-.if values.size > 1 :>
@@ -247,14 +260,6 @@
         <:-.set default = cgi.param(name) :>
         <:-.set class = errors.$name ? class _ ' error' : class :>
       <:-.end if :>
-    <:-.end if :>
-
-    <:-.if field.type and field.type eq "date" and default ne "" :>
-      <:-.set default = default =~ /^[29]999-12-31/ ? "" : bse.date("%d/%m/%Y", default ) :>
-    <:-.elsif field.type and field.type eq "time" and default ne "" :>
-      <:-.set default = bse.date(default =~ /:00$/ ? "%I:%M%p" : "%I:%M:%S%p", default).replace(/^0/, "").lower :>
-    <:-.elsif field.type and field.type eq "money" and default ne "" :>
-      <:-.set default = bse.number("money_input", default ) :>
     <:-.end if :>
 
           <:-.if field.htmltype and field.htmltype eq "textarea" :>
