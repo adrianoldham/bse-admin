@@ -126,52 +126,16 @@
     <:csrfp admin_save_article hidden:>
     <fieldset>
       <legend>Content</legend>
-      <div class="field full">
-        <label class="field-label" for="title">Title <span class="required">*</span> <:.call "error_img_n", "name":"title":></label>
-        <span class="field-input">
-          <:.call "input", "name":"title", "field": { "required":1, "maxlength":255 }, "options": { "disabled":is_disabled("title"), "autofocus":is_new } :>
-          <:help edit title:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"title", "field": { "description":"Title", "required":1, "maxlength":255, "class":"full" }, "options": { "disabled":is_disabled("title"), "autofocus":is_new } :>
       <:-.if cfg.entry("title alias", "level" _ article.level):>
-      <div class="field">
-        <label class="field-label" for="titleAlias">Title alias <:.call "error_img_n", "name":"titleAlias":></label>
-        <span class="field-input">
-          <:.call "input", "name":"titleAlias", "field": { "maxlength":60 }, "options": { "disabled":is_disabled("titleAlias") } :>
-          <:help edit titleAlias:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"titleAlias", "field": { "description":"Title alias", "maxlength":60 }, "options": { "disabled":is_disabled("titleAlias") } :>
       <:-.end if:>
       <:-.if typename eq "Product":>
-      <div class="field full">
-        <label class="field-label" for="description">Description <:.call "error_img_n", "name":"description":></label>
-        <span class="field-input">
-          <:.call "input", "name":"description", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("description") } :>
-          <:help edit description:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"description", "field": { "description":"Description", "maxlength":255, "class":"full" }, "options": { "disabled":is_disabled("description") } :>
       <:-.end if:>
-      <div class="field full">
-        <label class="field-label" for="body">Body <:.call "error_img_n", "name":"body":></label>
-        <span class="field-input">
-          <:.call "input", "name":"body", "field": { "htmltype":"textarea" }, "options": { "disabled":is_disabled("body") } :>
-          <:help edit body:>
-        </span>
-      </div>
-      <div class="field full">
-        <label class="field-label" for="summary">Summary <:.call "error_img_n", "name":"summary":></label>
-        <span class="field-input">
-          <:.call "input", "name":"summary", "field": { "htmltype":"textarea" }, "options": { "disabled":is_disabled("summary") } :>
-          <:help edit summary:>
-        </span>
-      </div>
-      <div class="field">
-        <label class="field-label" for="linkAlias">Link alias <:.call "error_img_n", "name":"linkAlias":></label>
-        <span class="field-input">
-          <:.call "input", "name":"linkAlias", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("linkAlias") } :>
-          <:help edit linkAlias:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"body", "field": { "description":"Body", "htmltype":"textarea", "class":"full" }, "options": { "disabled":is_disabled("body") } :>
+      <:.call "inlinefield", "name":"summary", "field": { "description":"Summary", "htmltype":"textarea", "class":"full" }, "options": { "disabled":is_disabled("summary") } :>
+      <:.call "inlinefield", "name":"linkAlias", "field": { "description":"Link alias", "maxlength":255 }, "options": { "disabled":is_disabled("linkAlias") } :>
       <:-.if is_article:>
       <ul class="meta data">
         <li><span><:= typename:> Id</span> <:= article.id:></li>
@@ -185,43 +149,19 @@
     <:-.if typename eq "Product":>
     <fieldset>
       <legend>Pricing</legend>
-      <div class="field">
-        <label class="field-label" for="retailPrice">Retail <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"retailPrice":></label>
-        <span class="field-input">
-          <:.call "input", "name":"retailPrice", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("retailPrice") } :>
-          <:help edit retailPrice:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"retailPrice", "field": { "description":"Retail " _ cfg.entry("shop", "currency", "$"), "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("retailPrice") } :>
       <:-.if cfg.entry("products", "legacy_gst"):>
-      <div class="field">
-        <label class="field-label" for="gst">GST <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"gst":></label>
-        <span class="field-input">
-          <:.call "input", "name":"gst", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("gst") } :>
-          <:help edit gst:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"gst", "field": { "description":"GST " _ cfg.entry("shop", "currency", "$"), "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("gst") } :>
       <:-.end if:>
       <:-.if cfg.entry("products", "legacy_wholesale"):>
-      <div class="field">
-        <label class="field-label" for="wholesalePrice">Wholesale <:= cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"wholesalePrice":></label>
-        <span class="field-input">
-          <:.call "input", "name":"wholesalePrice", "field": { "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("wholesalePrice") } :>
-          <:help edit wholesalePrice:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"wholesalePrice", "field": { "description":"Wholesale " _ cfg.entry("shop", "currency", "$"), "type":"money", "maxlength":11 }, "options": { "placeholder":"0.00", "disabled":is_disabled("wholesalePrice") } :>
       <:-.end if:>
       <:-.set price_tiers = [ bse.products.pricing_tiers ]:>
       <:-.if price_tiers.size:>
       <input type="hidden" name="save_pricing_tiers" value="1" />
       <:-.set tier_prices = [ article.prices ].maphash("tier_id", "retailPrice") :>
       <:-.for price_tier in price_tiers:>
-      <div class="field">
-        <label class="field-label" for="<:= "tier_price_" _ price_tier.id:>"><:= price_tier.description _ " " _ cfg.entry("shop", "currency", "$"):> <:.call "error_img_n", "name":"tier_price_" _ price_tier.id:></label>
-        <span class="field-input">
-          <:.call "input", "name":"tier_price_" _ price_tier.id, "object":tier_prices, "field": { "type":"money", "maxlength":11 }, "options": { "default":tier_prices[price_tier.id], "placeholder":"0.00", "disabled":is_disabled("price_tier_" _ price_tier.id) } :>
-          <:help edit tier_price:>
-        </span>
-      </div>
+      <:.call "inlinefield", "name":"tier_price_" _ price_tier.id, "field": { "description":price_tier.description _ " " _ cfg.entry("shop", "currency", "$"), "type":"money", "maxlength":11 }, "options": { "default":tier_prices[price_tier.id] ? tier_prices[price_tier.id] : '', "placeholder":"0.00", "disabled":is_disabled("price_tier_" _ price_tier.id) } :>
       <:-.end for:>
       <:-.end if:>
     </fieldset>
@@ -232,53 +172,17 @@
       <:-.if typename eq "Product":>
       <fieldset>
         <legend>Stock</legend>
-        <div class="field">
-          <label class="field-label" for="product_code">Product code <:.call "error_img_n", "name":"product_code":></label>
-          <span class="field-input">
-            <:.call "input", "name":"product_code", "field": { "maxlength":80 }, "options": { "disabled":is_disabled("product_code") } :>
-            <:help edit product_code:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="leadTime">Lead time <:.call "error_img_n", "name":"leadTime":></label>
-          <span class="field-input">
-            <:.call "input", "name":"leadTime", "field": { "maxlength":80 }, "options": { "placeholder":"days", "disabled":is_disabled("leadTime") } :>
-            <:help edit leadTime:>
-          </span>
-        </div>
+        <:.call "inlinefield", "name":"product_code", "field": { "description":"Product code", "maxlength":80 }, "options": { "disabled":is_disabled("product_code") } :>
+        <:.call "inlinefield", "name":"leadTime", "field": { "description":"Lead time", "maxlength":80 }, "options": { "placeholder":"days", "disabled":is_disabled("leadTime") } :>
       </fieldset>
       <fieldset>
         <legend>Measurements</legend>
-        <div class="field">
-          <label class="field-label" for="weight">Weight <:.call "error_img_n", "name":"weight":></label>
-          <span class="field-input">
-            <:.call "input", "name":"weight", "field": { "maxlength":11 }, "options": { "placeholder":"grams", "disabled":is_disabled("weight") } :>
-            <:help edit weight:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="length">Length <:.call "error_img_n", "name":"length":></label>
-          <span class="field-input">
-            <:.call "input", "name":"length", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("length") } :>
-            <:help edit length:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="width">Width <:.call "error_img_n", "name":"width":></label>
-          <span class="field-input">
-            <:.call "input", "name":"width", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("width") } :>
-            <:help edit width:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="height">Height <:.call "error_img_n", "name":"height":></label>
-          <span class="field-input">
-            <:.call "input", "name":"height", "field": { "maxlength":11 }, "options": { "placeholder":"millimetres", "disabled":is_disabled("height") } :>
-            <:help edit height:>
-          </span>
-        </div>
+        <:.call "inlinefield", "name":"weight", "field": { "description":"Weight", "maxlength":11 }, "options": { "default":empty_if_zero("weight"), "placeholder":"grams", "disabled":is_disabled("weight") } :>
+        <:.call "inlinefield", "name":"length", "field": { "description":"Length", "maxlength":11 }, "options": { "default":empty_if_zero("length"), "placeholder":"millimetres", "disabled":is_disabled("length") } :>
+        <:.call "inlinefield", "name":"width", "field": { "description":"Width", "maxlength":11 }, "options": { "default":empty_if_zero("width"), "placeholder":"millimetres", "disabled":is_disabled("width") } :>
+        <:.call "inlinefield", "name":"height", "field": { "description":"Height", "maxlength":11 }, "options": { "default":empty_if_zero("height"), "placeholder":"millimetres", "disabled":is_disabled("height") } :>
       </fieldset>
-      <:-.set dboptions = [ product.db_options ] :>
+      <:-.set dboptions =  is_new ? [] : [ product.db_options ] :>
       <:-.if dboptions.size :>
       <fieldset>
         <legend>Options</legend>
@@ -325,49 +229,28 @@
       <:-.end if:>
       <fieldset>
         <legend>Structure</legend>
-        <div class="field">
-          <label class="field-label" for="parentid">Parent <:error_img parentid:></label>
-          <span class="field-input">
-            <select name="parentid" id="parentid"<:ifFieldPerm parentid:><:or:> disabled="disabled"<:eif:>>
-              <option value="">Please select a <:ifArticle parent:><:parentType:><:or:>Section<:eif:></option><:ifFieldPerm parentid:><:if Article parentid:>
-              <:list:><:or Article:>
-              <option value="-1" selected="selected">No parent - this is a section</option><:eif Article:>
-              <:or:>
-              <option value="" selected="selected"><:parent title:> (<:parent id:>)</option><:eif:>
-            </select>
-            <:help edit section:>
-          </span>
-        </div>
+        <:-.set parents = [ self.possible_parents(article, "BSE::TB::Articles", request) ]:>
+        <:-.set parent_ids = parents[0]:>
+        <:-.set parent_labels = parents[1]:>
+        <:-.set parent_list = parent_ids.map(@{id: { id: id, desc: parent_labels[id] }}):>
+        <:-.call "inlinefield", "name":"parentid", "field": { "description":"Parent", "htmltype":"select", "select": { "values":parent_list, "id":"id", "label":"desc" } }, "default":article.menu, "options": { "disabled":is_disabled("parentid") } :>
         <:-.set menus_cfg_section = "level" _ article.level _ " menus":>
         <:-.if cfg.entries(menus_cfg_section):>
         <:-.set menu_list = [ cfg.orderCS(menus_cfg_section) ].map(@{k: { id: k, desc: cfg.entry(menus_cfg_section, k ) }}) :>
-        <div class="field">
-          <label class="field-label" for="menu">Menu <:.call "error_img_n", "name":"menu":></label>
-          <span class="field-input">
-            <:-.call "input", "name":"menu", "field": { "htmltype":"select", "select": { "values":menu_list, "id":"id", "label":"desc" } }, "default":article.menu, "options": { "disabled":is_disabled("menu") } :>
-            <:help edit menu:>
-          </span>
-        </div>
+        <:-.call "inlinefield", "name":"menu", "field": { "description":"Menu", "htmltype":"select", "select": { "values":menu_list, "id":"id", "label":"desc" } }, "default":article.menu, "options": { "disabled":is_disabled("menu") } :>
         <:-.end if:>
       </fieldset>
       <fieldset>
         <legend>Categorisation</legend>
         <:-.set categories = [ bse.articles.categories ]:>
-        <div class="field">
-          <label class="field-label" for="category">Category <:.call "error_img_n", "name":"category":></label>
-          <span class="field-input">
-            <:-.call "input", "name":"category", "field": { "htmltype":"select", "select": { "values":categories, "id":"id", "label":"name" } }, "default":article.category, "options": { "disabled":is_disabled("category") } :>
-            <:help edit category:>
-          </span>
-        </div>
+        <:-.call "inlinefield", "name":"category", "field": { "description":"Category", "htmltype":"select", "select": { "values":categories, "id":"id", "label":"name" } }, "default":article.category, "options": { "disabled":is_disabled("category") } :>
         <input type="hidden" name="_save_tags" value="1" />
-        <:-.set tags = cgi.param("_save_tags") ? [ cgi.param("tags") ] : [ "", article.tags ] :>
+        <:-.set tags = cgi.param("_save_tags").defined ? [ cgi.param("tags") ] : [ "", article.tags ] :>
         <:-.for tag in tags :>
         <div class="field">
           <label class="field-label" for="tag_<:= loop.count :>"><:= loop.is_first ? "Tag name" : "" :> <:.call "error_img_n", "name":"tags", "index":loop.index :></label>
           <span class="field-input">
             <:.call "input", "name":"tags", "field": { "maxlength":80 }, "options": { "default":tag, "id":"tag_" _ loop.count, "disabled":is_disabled("tags") }, "index":loop.index :>
-            <:help edit tags:>
           </span>
           <span class="field-actions">
             <:-.if loop.is_first:>
@@ -380,208 +263,141 @@
       </fieldset>
       <fieldset>
         <legend>Presentation</legend>
-        <div class="field">
-          <label class="field-label" for="template">Template <:error_img template:></label>
-          <span class="field-input"><:ifFieldPerm template:>
-            <:replace [templates] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\"":><:or:>
-            <:replace [templates] "name=\"([a-z A-Z _]+)\"" "name=\"$1\" id=\"$1\" disabled=\"disabled\"":><:eif:>
-            <:help edit template:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="force_dynamic">Page display <:.call "error_img_n", "name":"force_dynamic":></label>
-          <span class="field-input">
-            <:.call "input",
-              "name":"force_dynamic",
-              "field":{
-                  "htmltype":"select",
-                  "default":article.force_dynamic,
-                  "select":{
-                      "values":[
-                          { "id":"0", "desc":( article.cached_dynamic and article.force_dynamic == 0 ? "Dynamic (Inherited)" : "Static" ) },
-                          { "id":"1", "desc":"Dynamic" }
-                      ],
-                      "id":"id",
-                      "label":"desc"
-            		}
-              },
-            	"options":{ "disabled":is_disabled("force_dynamic") }
-            -:>
-            <:help edit force_dynamic:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="summaryLength">Summary length <:.call "error_img_n", "name":"summaryLength":></label>
-          <span class="field-input">
-            <:.call "input", "name":"summaryLength", "field": { "maxlength":5 }, "options": { "placeholder":"characters", "disabled":is_disabled("summaryLength") } :>
-            <:help edit summaryLength:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="threshold">Embed threshold <:.call "error_img_n", "name":"threshold":></label>
-          <span class="field-input">
-            <:.call "input", "name":"threshold", "field": { "maxlength":10 }, "options": { "placeholder":"children", "disabled":is_disabled("threshold") } :>
-            <:help edit threshold:>
-          </span>
-        </div>
+        <:-.set template_list = [ self.templates_long(article) ]:>
+        <:-.call "inlinefield", "name":"template", "field": { "description":"Templates", "htmltype":"select", "select": { "values":template_list, "id":"name", "label":"description" } }, "default":article.template, "options": { "disabled":is_disabled("template") } :>
+        <:.call "inlinefield",
+            "name":"force_dynamic",
+            "field":{
+                "description":"Page display",
+                "htmltype":"select",
+                "default":article.force_dynamic,
+                "select":{
+                    "values":[
+                        { "id":"0", "desc":( article.cached_dynamic and article.force_dynamic == 0 ? "Dynamic (Inherited)" : "Static" ) },
+                        { "id":"1", "desc":"Dynamic" }
+                    ],
+                    "id":"id",
+                    "label":"desc"
+        		}
+            },
+        	"options":{ "disabled":is_disabled("force_dynamic") }
+        -:>
+        <:.call "inlinefield", "name":"summaryLength", "field": { "description":"Summary length", "maxlength":5 }, "options": { "placeholder":"characters", "disabled":is_disabled("summaryLength") } :>
+        <:.call "inlinefield", "name":"threshold", "field": { "description":"Embed threshold", "maxlength":10 }, "options": { "placeholder":"children", "disabled":is_disabled("threshold") } :>
       </fieldset>
       <fieldset>
         <legend>Publication</legend>
-        <div class="field">
-          <label class="field-label" for="listed">List article <:.call "error_img_n", "name":"listed":></label>
-          <span class="field-input">
-            <:.call "input",
-              "name":"listed",
-              "field":{
-                  "htmltype":"select",
-                  "default":article.listed,
-                  "select":{
-                      "values":[
-                          { "id":"1", "desc":"Yes" },
-                          { "id":"0", "desc":"No" },
-                          { "id":"2", "desc":"In Sections, but not menus" }
-                      ],
-                      "id":"id",
-                      "label":"desc"
-                  }
-              },
-              "options":{ "disabled":is_disabled("listed") }
-            -:>
-            <:help edit listed:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="release">Release date <:.call "error_img_n", "name":"release":></label>
-          <span class="field-input">
-            <:.call "input", "name":"release", "field": { "type":"date", "maxlength":10 }, "options": { "placeholder":"DD/MM/YYYY", "disabled":is_disabled("release") } :>
-            <:help edit listed:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="expire">Expiry date <:.call "error_img_n", "name":"expire":></label>
-          <span class="field-input">
-            <:.call "input", "name":"expire", "field": { "type":"date", "maxlength":10 }, "options": { "placeholder":"DD/MM/YYYY", "disabled":is_disabled("expire") } :>
-            <:help edit expire:>
-          </span>
-        </div>
+        <:.call "inlinefield",
+            "name":"listed",
+            "field":{
+                "description":"List article",
+                "htmltype":"select",
+                "default":article.listed,
+                "select":{
+                    "values":[
+                        { "id":"1", "desc":"Yes" },
+                        { "id":"0", "desc":"No" },
+                        { "id":"2", "desc":"In Sections, but not menus" }
+                    ],
+                    "id":"id",
+                    "label":"desc"
+        		}
+            },
+        	"options":{ "disabled":is_disabled("listed") }
+        -:>
+        <:.call "inlinefield", "name":"release", "field": { "description":"Release date", "type":"date", "maxlength":10 }, "options": { "placeholder":"DD/MM/YYYY", "disabled":is_disabled("release") } :>
+        <:.call "inlinefield", "name":"expire", "field": { "description":"Expiry date", "type":"date", "maxlength":10 }, "options": { "placeholder":"DD/MM/YYYY", "disabled":is_disabled("expire") } :>
       </fieldset>
-      <:- if Groups:>
+      <:-.set groups = [ self.iter_groups ]:>
+      <:-.set group_ids = is_new ? [] : [ article.group_ids ] :>
+      <:-#= "OLD DEFAULT: " _ bse.dumper(group_ids) |raw:>
+      <:-.set group_defaults = cgi.param("group_id").defined ? [ cgi.param("group_id") ] : group_ids :>
+      <:-.set group_defaults = group_defaults:>
+      <:-#= "NEW DEFAULT: " _ bse.dumper(group_defaults) |raw:>
+      <:-#= "VALUES: " _ bse.dumper(groups) |raw:>
+      <:-.if groups.size:>
       <fieldset>
-        <legend>Access <:error_img groups:></legend>
+        <legend>Access <:.call "error_img_n", "name":"group_id":></legend>
         <ul>
-          <:- iterator begin groups:>
+          <:-.for group in groups:>
+          <:-.set group_checked = group_defaults.maphash[group.id] ? 1 : 0 :>
+          <:-#= "CHECKED: " _ group_checked:>
           <li>
-            <input type="hidden" name="save_group_id" value="<:group id:>" />
-            <input type="checkbox" name="group_id" id="group_id<:group id:>" value="<:group id:>" <:ifOr [ifGroupRequired] [ifEq [old group_id] [group id]]:>checked="checked" <:eif:><:ifFieldPerm group_id:><:or:>disabled="disabled" <:eif:>/>
-            <label for="group_id<:group id:>"><:if Match [group id] "^-":><:group name:><:or Match:><:if UserCan bse_members_group_edit:><a href="<:adminurl siteusers:>?a_groupmemberform=1&amp;id=<:group id:>&amp;referer=1"><:group name:></a><:or UserCan:><:group name:><:eif UserCan:><:eif Match:></label>
+            <:.call "input", "name":"group_id", "field": { "value":group.id, "save_name":"save_group_id", "save_value":group.id, "htmltype":"checkbox" }, "options": { "default":group_checked, "id":"group_id_" _ group.id, "disabled":is_disabled("group_id") }, "index":loop.index :>
+            <label for="group_id_<:= group.id:>">
+              <:-.if group.id =~ /^-/ -:>
+                <:= group.name:>
+              <:-.else -:>
+                <:-.if request.user_can("bse_members_group_edit") -:>
+                <a href="<:= cfg.admin_url2("siteusers", "groupmemberform", { "id": group.id, "referer":1 }):>"><:= group.name:></a>
+                <:-.else -:>
+                <:= group.name:>
+                <:-.end if -:>
+              <:-.end if -:>
+            </label>
           </li>
-          <:- iterator end groups:>
+          <:-.end for:>
         </ul>
-        <:help edit groups:>
+        <!--
+        <:#.call "make_multicheck", "name":"group_id", "values":groups, "id":"id", "desc":"name", "default":group_ids, "save_name":"save_group_id", "options":{ "disabled":is_disabled("group_id") } :>
+        -->
       </fieldset>
-      <:- eif Groups:>
+      <:-.end if:>
       <fieldset>
-        <legend>Flags <:error_img flags:></legend>
-        <ul>
-          <:- iterator begin flags:>
-          <li>
-            <input type="checkbox" name="flags" id="flags_<:flag id:>" value="<:flag id:>" <:ifOr [ifFlagSet [flag id]] [ifMatch [old flags] [flag id]]:>checked="checked" <:eif:><:ifFieldPerm flags:><:or:>disabled="disabled" <:eif:>/>
-            <label for="flags_<:flag id:>"><:flag desc |h:></label>
-          </li>
-          <:- iterator end flags:>
-        </ul>
-        <:help edit flags:>
+        <legend>Flags <:.call "error_img_n", "name":"flags":></legend>
+        <:-.set flags_list = [ self.flags ]:>
+        <:-.set article_flags = article.flags ? article.flags.split(undef, article.flags) : [] :>
+        <!--
+        ARTICLE FLAGS: <:#= bse.dumper(article_flags) |raw:>
+        <:-.set flags_default = cgi.param("flags").defined ? [ cgi.param("flags") ] : article_flags :>
+        DEAFULT FLAGS: <:#= bse.dumper(flags_default) |raw:>
+        -->
+        <!--
+        <:#.call "make_multicheck", "name":"flags", "values":flags_list, "id":"id", "desc":"desc", "default":article_flags, "save_name":"none", "options":{ "disabled":is_disabled("flags") } :>
+        -->
+        <:.call "input", "name":"flags", "field":{ "htmltype":"multicheck", "select":{ "values":flags_list, "label":"desc", "id":"id" }, "save_name":"none" }, "options":{ "default":article_flags, "disabled":is_disabled("flags") } :>
       </fieldset>
       <fieldset>
         <legend>Metadata</legend>
-        <div class="field">
-          <label class="field-label" for="pageTitle">Page title <:.call "error_img_n", "name":"pageTitle":></label>
-          <span class="field-input">
-            <:.call "input", "name":"pageTitle", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("pageTitle") } :>
-            <:help edit pageTitle:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="metaDescription">Meta description <:.call "error_img_n", "name":"metaDescription":></label>
-          <span class="field-input">
-            <:.call "input", "name":"metaDescription", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("metaDescription") } :>
-            <:help edit metaDescription:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="metaKeywords">Meta keywords <:.call "error_img_n", "name":"metaKeywords":></label>
-          <span class="field-input">
-            <:.call "input", "name":"metaKeywords", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("metaKeywords") } :>
-            <:help edit metaKeywords:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="author">Author name <:.call "error_img_n", "name":"author":></label>
-          <span class="field-input">
-            <:.call "input", "name":"author", "field": { "maxlength":255 }, "options": { "disabled":is_disabled("author") } :>
-            <:help edit author:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="keyword">Local keywords <:.call "error_img_n", "name":"keyword":></label>
-          <span class="field-input">
-            <:.call "input", "name":"keyword", "field": { "maxlength":255 }, "options": { "placeholder":"comma separated", "disabled":is_disabled("keyword") } :>
-            <:help edit keyword:>
-          </span>
-        </div>
+        <:.call "inlinefield", "name":"pageTitle", "field": { "description":"Page title", "maxlength":255 }, "options": { "disabled":is_disabled("pageTitle") } :>
+        <:.call "inlinefield", "name":"metaDescription", "field": { "description":"Meta description", "maxlength":255 }, "options": { "disabled":is_disabled("metaDescription") } :>
+        <:.call "inlinefield", "name":"metaKeywords", "field": { "description":"Meta keywords", "maxlength":255 }, "options": { "disabled":is_disabled("metaKeywords") } :>
+        <:.call "inlinefield", "name":"author", "field": { "description":"Author name", "maxlength":255 }, "options": { "disabled":is_disabled("author") } :>
+        <:.call "inlinefield", "name":"keyword", "field": { "description":"Local keywords", "maxlength":255 }, "options": { "placeholder":"comma separated", "disabled":is_disabled("keyword") } :>
         <:.call "edit_metadata" :>
       </fieldset>
-      <:-.if typename =~ "Article":><:include admin/include/article_custom.tmpl optional:>
-      <:-.elsif typename =~ "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
-      <:-.elsif typename =~ "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
-      <:-.elsif typename =~ "Product":><:include admin/include/product_custom.tmpl optional:>
+      <:-.if typename eq "Article":><:include admin/include/article_custom.tmpl optional:>
+      <:-.elsif typename eq "Catalog":><:include admin/include/catalog_custom.tmpl optional:>
+      <:-.elsif typename eq "Seminar":><:include admin/include/seminar_custom.tmpl optional:>
+      <:-.elsif typename eq "Product":><:include admin/include/product_custom.tmpl optional:>
       <:-.end if:>
-      <:- if Or [ifMatch [article generator] "Product"] [ifMatch [article generator] "Seminar"]:>
-      <:- if Subscriptions:>
+      <:-.if typename eq "Product" or typename eq "Seminar":>
+      <:-.set subscriptions = [ [ "subscription_id", "-1", "title", "(none)" ].as_hash, [ self.iter_subs ] ].expand:>
+      <:-.if subscriptions.size:>
       <fieldset>
         <legend>Subscription</legend>
-        <div class="field">
-          <label class="field-label" for="subscription_id">Subscription <:error_img subscription_id:></label>
-          <span class="field-input">
-            <select name="subscription_id" id="subscription_id" onchange="if (this.value != '-1') { this.form.subscription_usage.disabled = false, this.form.subscription_period.disabled = false } else { this.form.subscription_usage.disabled = true, this.form.subscription_period.disabled = true };"<:ifFieldPerm subscription_id:><:or:> disabled=disabled"<:eif:>>
-              <option value="-1"<:ifEq [old subscription_id] "-1":> selected="selected"<:eif:>>(nothing)</option>
-              <:- iterator begin subscriptions:>
-              <option value="<:subscription subscription_id:>"<:ifEq [old subscription_id] [subscription subscription_id]:> selected="selected"<:eif:>><:subscription title:></option>
-              <:- iterator end subscriptions:>
-            </select>
-            <:help edit subscription_id:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="subscription_period">Duration <:.call "error_img_n", "name":"subscription_period":></label>
-          <span class="field-input">
-            <:.call "input", "name":"subscription_period", "field": { "maxlength":11 }, "options": { "placeholder":"months", "disabled":is_disabled("subscription_period") } :>
-            <:help edit subscription_period:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="subscription_usage">Usage <:error_img subscription_usage:></label>
-          <span class="field-input">
-            <select name="subscription_usage" id="subscription_usage"<:ifFieldPerm subscription_usage:><:or:> disabled="disabled"<:eif:>>
-              <option value="3"<:ifEq [old subscription_usage] "3":> selected="selected"<:eif:>>Start or renew a subscription</option>
-              <option value="1"<:ifEq [old subscription_usage] "1":> selected="selected"<:eif:>>Start a subscription only</option>
-              <option value="2"<:ifEq [old subscription_usage] "2":> selected="selected"<:eif:>>Renew a subscription only</option>
-            </select>
-            <:help edit subscription_usage:>
-          </span>
-        </div>
-        <div class="field">
-          <label class="field-label" for="subscription_required">Requires <:error_img subscription_required:></label>
-          <span class="field-input">
-            <select name="subscription_required" id="subscription_required"<:ifFieldPerm subscription_required:><:or:> disabled="disabled"<:eif:>>
-              <option value="-1"<:ifEq [old subscription_required] "-1":> selected="selected"<:eif:>>(nothing)</option>
-              <:- iterator begin subscriptions:>
-              <option value="<:subscription subscription_id:>"<:ifEq [old subscription_required] [subscription subscription_id]:> selected="selected"<:eif:>><:subscription title:></option>
-              <:- iterator end subscriptions:>
-            </select>
-            <:help edit subscription_required:>
-          </span>
-        </div>
+        <:-.call "inlinefield", "name":"subscription_id", "field": { "description":"Subscription", "htmltype":"select", "select": { "values":subscriptions, "id":"subscription_id", "label":"title" } }, "options": { "disabled":is_disabled("subscription_id"), "onchange":"if (this.value != '-1') { this.form.subscription_usage.disabled = false, this.form.subscription_period.disabled = false } else { this.form.subscription_usage.disabled = true, this.form.subscription_period.disabled = true };" } :>
+        <:.call "inlinefield", "name":"subscription_period", "field": { "description":"Duration", "maxlength":11 }, "options": { "placeholder":"months", "disabled":is_disabled("subscription_period") } :>
+        <:.call "inlinefield",
+            "name":"subscription_usage",
+            "field":{
+                "description":"Usage",
+                "htmltype":"select",
+                "default":article.subscription_usage,
+                "select":{
+                    "values":[
+                        { "id":"3", "desc":"Start or renew a subscription" },
+                        { "id":"1", "desc":"Start a subscription only" },
+                        { "id":"2", "desc":"Renew a subscription only" }
+                    ],
+                    "id":"id",
+                    "label":"desc"
+        		  }
+            },
+        	"options":{ "disabled":is_disabled("subscription_usage") }
+        -:>
+        <:-.set subscriptions = [ [ "subscription_id", "-1", "title", "(nothing)" ].as_hash, [ self.iter_subs ] ].expand:>
+        <:-.call "inlinefield", "name":"subscription_required", "field": { "description":"Requires", "htmltype":"select", "select": { "values":subscriptions, "id":"subscription_id", "label":"title" } }, "options": { "disabled":is_disabled("subscription_required") } :>
       </fieldset>
       <script type="text/javascript">
           var form = document.forms[0];
@@ -594,8 +410,8 @@
               form.subscription_period.disabled = true
           };
       </script>
-      <:- eif Subscriptions:>
-      <:- eif Or:>
+      <:-.end if:>
+      <:-.end if:>
       <:-.if cfg.entry("articles", "legacy_thumbimage"):>
       <fieldset>
         <legend>Thumbnail</legend>
@@ -719,4 +535,5 @@
     function update() {
         changesMonitor.initialize();
     };
+
 </script>
