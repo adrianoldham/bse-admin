@@ -233,17 +233,17 @@
         <:-.set parent_ids = parents[0]:>
         <:-.set parent_labels = parents[1]:>
         <:-.set parent_list = parent_ids.map(@{id: { id: id, desc: parent_labels[id] }}):>
-        <:-.call "inlinefield", "name":"parentid", "field": { "description":"Parent", "htmltype":"select", "select": { "values":parent_list, "id":"id", "label":"desc" } }, "default":article.menu, "options": { "disabled":is_disabled("parentid") } :>
+        <:-.call "inlinefield", "name":"parentid", "field": { "description":"Parent", "htmltype":"select", "select": { "values":parent_list, "id":"id", "label":"desc" } }, "options": { "disabled":is_disabled("parentid") } :>
         <:-.set menus_cfg_section = "level" _ article.level _ " menus":>
         <:-.if cfg.entries(menus_cfg_section):>
         <:-.set menu_list = [ cfg.orderCS(menus_cfg_section) ].map(@{k: { id: k, desc: cfg.entry(menus_cfg_section, k ) }}) :>
-        <:-.call "inlinefield", "name":"menu", "field": { "description":"Menu", "htmltype":"select", "select": { "values":menu_list, "id":"id", "label":"desc" } }, "default":article.menu, "options": { "disabled":is_disabled("menu") } :>
+        <:-.call "inlinefield", "name":"menu", "field": { "description":"Menu", "htmltype":"select", "select": { "values":menu_list, "id":"id", "label":"desc" } }, "options": { "disabled":is_disabled("menu") } :>
         <:-.end if:>
       </fieldset>
       <fieldset>
         <legend>Categorisation</legend>
         <:-.set categories = [ bse.articles.categories ]:>
-        <:-.call "inlinefield", "name":"category", "field": { "description":"Category", "htmltype":"select", "select": { "values":categories, "id":"id", "label":"name" } }, "default":article.category, "options": { "disabled":is_disabled("category") } :>
+        <:-.call "inlinefield", "name":"category", "field": { "description":"Category", "htmltype":"select", "select": { "values":categories, "id":"id", "label":"name" } }, "options": { "disabled":is_disabled("category") } :>
         <input type="hidden" name="_save_tags" value="1" />
         <:-.set tags = cgi.param("_save_tags").defined ? [ cgi.param("tags") ] : [ "", article.tags ] :>
         <:-.for tag in tags :>
@@ -264,13 +264,12 @@
       <fieldset>
         <legend>Presentation</legend>
         <:-.set template_list = [ self.templates_long(article) ]:>
-        <:-.call "inlinefield", "name":"template", "field": { "description":"Templates", "htmltype":"select", "select": { "values":template_list, "id":"name", "label":"description" } }, "default":article.template, "options": { "disabled":is_disabled("template") } :>
+        <:-.call "inlinefield", "name":"template", "field": { "description":"Templates", "htmltype":"select", "select": { "values":template_list, "id":"name", "label":"description" } }, "options": { "disabled":is_disabled("template") } :>
         <:.call "inlinefield",
             "name":"force_dynamic",
             "field":{
                 "description":"Page display",
                 "htmltype":"select",
-                "default":article.force_dynamic,
                 "select":{
                     "values":[
                         { "id":"0", "desc":( article.cached_dynamic and article.force_dynamic == 0 ? "Dynamic (Inherited)" : "Static" ) },
@@ -292,7 +291,6 @@
             "field":{
                 "description":"List article",
                 "htmltype":"select",
-                "default":article.listed,
                 "select":{
                     "values":[
                         { "id":"1", "desc":"Yes" },
