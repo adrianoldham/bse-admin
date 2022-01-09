@@ -161,7 +161,7 @@
       <input type="hidden" name="save_pricing_tiers" value="1" />
       <:-.set tier_prices = [ article.prices ].maphash("tier_id", "retailPrice") :>
       <:-.for price_tier in price_tiers:>
-      <:.call "inlinefield", "name":"tier_price_" _ price_tier.id, "field": { "description":price_tier.description _ " " _ cfg.entry("shop", "currency", "$"), "type":"money", "maxlength":11 }, "options": { "default":tier_prices.size ? tier_prices[price_tier.id] : 0, "placeholder":"0.00", "disabled":is_disabled("price_tier_" _ price_tier.id) } :>
+      <:.call "inlinefield", "name":"tier_price_" _ price_tier.id, "field": { "description":price_tier.description _ " " _ cfg.entry("shop", "currency", "$"), "type":"money", "maxlength":11 }, "options": { "default":tier_prices[price_tier.id] ? tier_prices[price_tier.id] : '', "placeholder":"0.00", "disabled":is_disabled("price_tier_" _ price_tier.id) } :>
       <:-.end for:>
       <:-.end if:>
     </fieldset>
