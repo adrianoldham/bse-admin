@@ -123,6 +123,42 @@
       </ul>
 <:-.end define :>
 
+<:# make_multiradio expects:
+  values - list of hashes
+  default - a list of ids of checks to be checked
+  id - the name of the id field
+  desc - the name of the description field.
+  name - the name of the input elements
+  readonly - true to make it readonly
+:>
+<:-.define make_multiradio; "options":{}, "field":{}, "save_name":("_save_" _ name), "save_value":1 -:>
+      <:-#= "OLD DEFAULT: " _ bse.dumper(default) |raw:>
+      <:-.set default = cgi.param(name).defined ? [ cgi.param(name) ] : default :>
+      <:-.if !default:>
+        <:-.set default = [] :>
+      <:-.end if :>
+      <:-.set checked = default.maphash:>
+      <:-.set is_disabled = options.disabled or options.readonly :>
+      <:-.if !is_disabled and save_name ne "none" -:>
+      <input type="hidden" name="<:= save_name:>" value="<:= save_value:>">
+      <:.end if -:>
+      <:-#= "NEW DEFAULT: " _ bse.dumper(default) |raw:>      
+      <:-#= "VALUES: " _ bse.dumper(values) |raw:>
+      <ul>
+        <:-.for i in values :>
+        <:-.set value = i.$id :>
+        <:-.set description = i.$desc :>
+        <:-.set is_checked = checked[value] ? 1 : 0 :>
+        <:-.set element_id = name _ "_" _ value :>
+        <:-#= "CHECKED: " _ is_checked:>
+        <li>
+          <:.call "input", "name":name, "field": { "value":value, "save_name":"none", "htmltype":"radio" }, "options": { "default":is_checked, "id":element_id, "disabled":is_disabled }, "index":loop.index :>
+          <label for="<:= element_id:>"><:= description:></label>
+        </li>
+        <:-.end for :>
+      </ul>
+<:-.end define :>
+
 
 <:# paramaters:
   base - base url for links
@@ -251,7 +287,7 @@
     <:-.end if :>
 
     <:-# Preserve default values during submission validation errors:>
-    <:-.if field.htmltype ne "multicheck" and field.htmltype ne "checkbox" and cgi.param(name).defined :>
+    <:-.if field.htmltype ne "multicheck" and field.htmltype ne "checkbox" and field.htmltype ne "radio" and field.htmltype ne "multiradio" and cgi.param(name).defined :>
       <:-.set values = [ cgi.param(name) ] :>
       <:-.if values.size > 1 :>
         <:-.set default = values[index] :>
@@ -287,11 +323,36 @@
             <:-= field.required ? ' required="required"' : '' | raw :>
             <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :>
             <:-= options.onchange ? ' onchange="' _ options.onchange _ '"' : '' | raw :> />
+          <:-.elsif field.htmltype and field.htmltype eq "radio" :>
+          <:-.set field_value = field.value.defined ? field.value : 1 :>
+          <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
+          <:-.set field_save_value = field.save_value.defined ? field.save_value : 1 :>
+          <:-.set is_checked = default or (field_value eq default) or (field_save_value eq default) ? 1 : 0 :>
+          <:-.if field_save_name ne "none" :>
+          <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
+          <:-.end if:>
+          <input type="radio" name="<:= name :>" id="<:= element_id :>" value="<:= field_value :>" class="<:= class :>"
+            <:-= is_checked ? ' checked="checked"' : '' | raw :>
+            <:-= field.required ? ' required="required"' : '' | raw :>
+            <:-= options.disabled or options.readonly ? ' disabled="disabled"' : '' | raw :>
+            <:-= options.onchange ? ' onchange="' _ options.onchange _ '"' : '' | raw :> />
           <:-.elsif field.htmltype and field.htmltype eq "multicheck" :>
           <:-# we expect default to be a list of selected checks :>
           <:-.set values = field.select["values"] :>
           <:-.set values = values.is_code ? values() : values :>
           <:-.call "make_multicheck",
+            "name":name,
+            "default":default,
+            "values":values,
+            "id":field.select.id,
+            "desc":field.select.label,
+            "options":options
+          :>
+          <:-.elsif field.htmltype and field.htmltype eq "multiradio" :>
+          <:-# we expect default to be a list of selected radios :>
+          <:-.set values = field.select["values"] :>
+          <:-.set values = values.is_code ? values() : values :>
+          <:-.call "make_multiradio",
             "name":name,
             "default":default,
             "values":values,

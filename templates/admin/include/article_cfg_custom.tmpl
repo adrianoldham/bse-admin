@@ -21,6 +21,10 @@
             <:-.else :>
             <:.call "input", "name":field.key, "field": { "description":field.value.description, "type":field.value.type, "htmltype":field.value.htmltype, "required":field.value.required }, "options": { "default":default, "placeholder":field.value.placeholder, "disabled":is_disabled(field.key) } :>
             <:-.end if :>
+            <:-.if field.value.htmltype =~ /(radio|checkbox|file)/ :>
+            <b class="error">HTMLTYPE <:= field.value.htmltype.upper:> IS NOT CURRENTLY SUPPORTED.</b>
+            Consider using cfg metadata fields instead.
+            <:-.end if:>
           </span>
         </div>
         <:-.end for:>
