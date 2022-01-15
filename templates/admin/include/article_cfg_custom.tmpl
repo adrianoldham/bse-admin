@@ -10,6 +10,8 @@
           </label>
           <span class="field-input">
             <:-.set default = cgi.param(field.key) ? cgi.param(field.key) : is_new ? field.value.default : article.get(field.key) :>
+            <:-# Add hidden field using save_name with an empty value to support saving unchecked checkbox and radio inputs :>
+            <:-.set save_name = not(is_new) and (field.value.htmltype eq "checkbox") and article.get(field.key) ? field.key : "none" :> 
             <:-.if field.value.htmltype eq "select" :>
             <:-# the field config code uses an older mechanism, translate :>
             <:-.set list = [] -:>
@@ -19,11 +21,11 @@
             <:-.end for :>
             <:.call "make_select", "name":field.key, "list":list, "id":"id", "desc":"desc", "default":default, "required":field.value.required, "options": { "disabled":is_disabled(field.key) } :>
             <:-.else :>
-            <:.call "input", "name":field.key, "field": { "description":field.value.description, "type":field.value.type, "htmltype":field.value.htmltype, "required":field.value.required }, "options": { "default":default, "placeholder":field.value.placeholder, "disabled":is_disabled(field.key) } :>
+            <:.call "input", "name":field.key, "field": { "description":field.value.description, "type":field.value.type, "htmltype":field.value.htmltype, "required":field.value.required, "save_name":save_name, "save_value":'' }, "options": { "default":default, "placeholder":field.value.placeholder, "disabled":is_disabled(field.key) } :>
             <:-.end if :>
-            <:-.if field.value.htmltype =~ /(radio|checkbox|file)/ :>
-            <b class="error">HTMLTYPE <:= field.value.htmltype.upper:> IS NOT CURRENTLY SUPPORTED.</b>
-            Consider using cfg metadata fields instead.
+            <:-.if field.value.htmltype eq "file" :>
+            <b class="error">HTMLTYPE <:= field.value.htmltype.upper:> IS NOT SUPPORTED.</b>
+            Use cfg metadata fields instead.
             <:-.end if:>
           </span>
         </div>

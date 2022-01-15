@@ -269,7 +269,7 @@
     <:-.if !default.defined :>
       <:-.if object and not(is_file) :>
         <:-.set fname = field.name or options.name or name :>
-        <:-.set default = object.$fname or field.type =~ "money" ? object.$fname : ''  :>
+        <:-.set default = object.$fname or field.type =~ "money" ? object.$fname : '' :>
       <:-.elsif field.default :>
         <:-.set default = field.default :>
       <:-.else :>
@@ -314,7 +314,7 @@
           <:-.set field_value = field.value.defined ? field.value : 1 :>
           <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
           <:-.set field_save_value = field.save_value.defined ? field.save_value : 1 :>
-          <:-.set is_checked = default or (field_value eq default) or (field_save_value eq default) ? 1 : 0 :>
+          <:-.set is_checked = default ? 1 : 0 :>
           <:-.if field_save_name ne "none" :>
           <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
           <:-.end if:>
@@ -327,7 +327,7 @@
           <:-.set field_value = field.value.defined ? field.value : 1 :>
           <:-.set field_save_name = field.save_name ? field.save_name : ('_save_' _ name ):>
           <:-.set field_save_value = field.save_value.defined ? field.save_value : 1 :>
-          <:-.set is_checked = default or (field_value eq default) or (field_save_value eq default) ? 1 : 0 :>
+          <:-.set is_checked = default ? 1 : 0 :>
           <:-.if field_save_name ne "none" :>
           <input type="hidden" name="<:= field_save_name :>" value="<:= field_save_value :>" />
           <:-.end if:>
