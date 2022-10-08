@@ -57,6 +57,9 @@
           <td><:cfg shop currency "$":><:number money [product retailPrice]:></td>
           <td class="actions">
             <a href="<:adminurl add:>?id=<:product id:>&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" class="button white small">Edit</a>
+            <:- if UserCan bse_edit_field_edit_listed:[product id]:>
+            <a href="<:adminurl add:>?id=<:product id:>&amp;<:cond [product listed] hide unhide:>=1&amp;_csrfp=<:csrfp admin_save_article:>&amp;r=<:adminurl shopadmin:>" class="button <:cond [product listed] orange blue:> small"><:cond [product listed] Hide Show:></a>
+            <:- eif UserCan:>
             <:- if UserCan bse_edit_delete_article:product:>
             <a href="<:adminurl add:>?id=<:product id:>&amp;remove=1&amp;_csrfp=<:csrfp admin_remove_article:>&amp;r=<:adminurl shopadmin:>%23catalog<:catalog id:>" data-action="Delete" data-object="Product" class="button red small">Delete</a>
             <:- or UserCan:>
